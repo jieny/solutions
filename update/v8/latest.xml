@@ -4,5 +4,5 @@
 	<branding title="Yi's Solutions" copyright="Yi, Inc. https://fengyi.tel"/>
 	<changelog title="Yi's Solutions - new autoupdate system">   - Latest *Update
 	</changelog>
-	<download url="https://fengyi.tel/download/solutions/v8/latest.zip"/>
+	<download url="https://github.com/ilikeyi/solutions/raw/main/update/v8/latest.zip"/>
 </versioninfo>
