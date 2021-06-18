@@ -1,0 +1,160 @@
+﻿<#
+ .Synopsis
+  Signup
+
+ .Description
+  Signup Feature Modules
+#>
+
+<#
+	.Register user interface
+	.注册用户界面
+#>
+Function Signup
+{
+	param
+	(
+		[switch]$Force,
+		[switch]$Quit
+	)
+	if ($Quit) { $Global:QUIT = $true }
+
+	Logo -Title $($lang.Reset)
+	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+
+	if ($Force) {
+		if (Test-Path "$PSScriptRoot\..\..\Deploy\DoNotUpdate" -PathType Leaf) {
+			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
+		} else {
+			Write-Host "   - $($lang.ForceUpdate)"
+			Update -Force -IsProcess
+		}
+
+		SignupStart -Force
+	} else {
+		$caption = "$($lang.Reset) $($lang.Mainname) ?"
+		$message = "$($lang.Continue) (Y)`n$($lang.Cancel) (N)"
+		$choices = @("&Yes","&No")
+		$choicedesc = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
+		$choices | ForEach-Object { $choicedesc.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList $_))}
+		$prompt = $Host.ui.PromptForChoice($caption, $message, $choicedesc, 0)
+		Switch ($prompt)
+		{
+			0 {
+				Write-Host "   - $($lang.ForceUpdate)"
+				Update -Force -IsProcess
+				SignupStart
+				ToMainpage -wait 6
+			}
+			1 {
+				ToMainpage -wait 2
+			}
+		}
+	}
+}
+
+<#
+	.Start processing registration tasks
+	.开始处理注册任务
+#>
+Function SignupStart
+{
+	param
+	(
+		[switch]$Force
+	)
+
+	<#
+		.Respond to -Force first
+		.优先响应 -Force 处理
+	#>
+	if ($Force) {
+		<#
+			.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
+			.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
+		#>
+		If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
+		Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
+
+		<#
+			.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.
+			.使用 $OEM$ 模式添加文件后默认为只读，更改所有文件为：正常。
+		#>
+		Get-ChildItem "$env:SystemDrive\$($Global:UniqueID)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
+	}
+
+	<#
+		.Close the pop-up after entering the system for the first time: Network Location Wizard
+		.关闭第一次进入系统后弹出：网络位置向导
+	#>
+	Write-Host "`n   $($lang.Disable) $($lang.NetworkLocationWizard)"
+	New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force -ErrorAction SilentlyContinue | Out-Null
+
+	<#
+		.Set system language, keyboard, etc.
+		.设置系统语言、键盘等
+	#>
+	LanguageSetting
+
+	<#
+		.Recovery PowerShell strategy
+		.恢复 PowerShell 策略
+	#>
+	if (Test-Path "$PSScriptRoot\..\..\Deploy\ResetExecutionPolicy" -PathType Leaf) {
+		Set-ExecutionPolicy -ExecutionPolicy Restricted -Force -ErrorAction SilentlyContinue
+	}
+
+	<#
+		.Clean up the main engine
+		.清理主引擎
+	#>
+	if (Test-Path "$PSScriptRoot\..\..\Deploy\ClearEngine" -PathType Leaf) {
+		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
+		RemoveTree -Path "$($Global:UniqueMainFolder)\Engine"
+	}
+
+	<#
+		.Clean up the solution
+		.清理解决方案
+	#>
+	if (Test-Path "$PSScriptRoot\..\..\Deploy\ClearSolutions" -PathType Leaf) {
+		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
+		RemoveTree -Path "$($Global:UniqueMainFolder)"
+
+		<#
+			.In order to prevent the solution from being unable to be cleaned up, the next time you log in, execute it again
+			.为了防止无法清理解决方案，下次登录时，再次执行
+		#>
+		Write-Host "   $($lang.NextDelete)`n" -ForegroundColor Green
+		$regPath = "HKCU:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
+		$regKey = "Clear $($Global:UniqueID) Folder"
+		$regValue = "cmd.exe /c rd /s /q ""$($Global:UniqueMainFolder)"""
+		if ((Test-Path $regPath)) {
+			New-ItemProperty -Path $regPath -Name $regKey -Value $regValue -PropertyType STRING -Force | Out-Null
+		} else {
+			New-Item -Path $regPath -Force | Out-Null
+			New-ItemProperty -Path $regPath -Name $regKey -Value $regValue -PropertyType STRING -Force | Out-Null
+		}
+	}
+
+	<#
+		.Clean up deployment configuration
+		.清理部署配置
+	#>
+	RemoveTree -Path "$PSScriptRoot\..\..\Deploy"
+
+	<#
+		.首次注册模式
+		.First registration mode
+	#>
+	if ($Force) {
+		<#
+			.Reboot Computer
+			.重启计算机
+		#>
+		Restart-Computer -Force
+	}
+}
+
+Export-ModuleMember -Function "Signup"
+Export-ModuleMember -Function "SignupStart"
