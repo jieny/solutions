@@ -17,8 +17,8 @@
 	 PS C:\> .\Engine.ps1 -Function "Function1 -Param", "Function2 -Param"
 
 	.LINK
-	 https://github.com/ilikeyi/solutions/Multilingual
-	 https://gitee.com/ilikeyi/solutions/Multilingual
+	 https://github.com/ilikeyi/solutions/_scheme/engine/multilingual
+	 https://gitee.com/ilikeyi/solutions/_scheme/engine/multilingual
 #>
 
 [CmdletBinding()]
