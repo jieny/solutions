@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<versioninfo>
+	<version buildstring="1.0.0.2.bs_release.210226-1208" version="1.0.0.2" minau="1.0.0.0"/>
+	<branding title="Yi's Solutions" copyright="Yi, Inc. https://fengyi.tel"/>
+	<changelog title="Yi's Solutions - new autoupdate system">   - Latest *Update
+	</changelog>
+	<download url="https://fengyi.tel/download/solutions/update/Multilingual/latest.zip"/>
+</versioninfo>
