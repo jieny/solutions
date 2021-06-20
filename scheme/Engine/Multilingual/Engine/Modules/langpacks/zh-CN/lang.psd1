@@ -6,10 +6,10 @@
 	Reset                     = 重置
 	Disable                   = 禁用
 	Done                      = 完成
-	Continue                  = 继续
 	OK                        = 确定
 	Cancel                    = 取消
 	Exit                      = 退出
+	Inoperable                = 不可操作
 	ForceUpdate               = 强行检查并更新
 	SettingLangAndKeyboard    = 设置系统语言和键盘
 	SwitchLanguage            = 切换语言
@@ -27,7 +27,6 @@
 	KeyboardSequence          = 键盘顺序：
 	Wubi                      = 五笔
 	Pinyi                     = 拼音
-	English                   = 英语
 
 	# update
 	UpdateExit                = 自动更新脚本将会在 {0} 秒后自动退出。

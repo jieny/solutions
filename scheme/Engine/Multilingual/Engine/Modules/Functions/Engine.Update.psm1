@@ -79,8 +79,6 @@ Function Update
 		ImportModules
 		If ($Force) {
 			return
-		} else {
-			ToMainpage -wait 2
 		}
 	}
 
@@ -97,8 +95,6 @@ Function Update
 		ImportModules
 		If ($Force) {
 			return
-		} else {
-			ToMainpage -wait 2
 		}
 	}
 
@@ -143,8 +139,6 @@ Function Update
 				ImportModules
 				If ($Force) {
 					return
-				} else {
-					ToMainpage -wait 2
 				}
 			}
 
@@ -180,7 +174,6 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 					1 {
 						Write-Host "`n   $($lang.UserCancel)"
 						ImportModules
-						ToMainpage -wait 2
 					}
 				}
 			}
@@ -224,8 +217,6 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 	ImportModules
 	If ($Force) {
 		return
-	} else {
-		ToMainpage -wait 2
 	}
 }
 

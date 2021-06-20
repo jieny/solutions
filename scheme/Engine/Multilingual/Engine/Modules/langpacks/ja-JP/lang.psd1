@@ -6,12 +6,12 @@
 	Reset                     = リセット
 	Disable                   = 無効にする
 	Done                      = 実施する
-	Continue                  = 続ける
 	OK                        = 決定する
 	Cancel                    = キャンセル
 	Exit                      = 脱落
+	Inoperable                = 動作不能
 	ForceUpdate               = 強制的に確認して更新する
-	SettingLangAndKeyboard    = 设置系统语言和键盘
+	SettingLangAndKeyboard    = システム言語とキーボードを設定する
 	SwitchLanguage            = 言語を切り替える
 	Choose                    = 選んでください
 	FailedCreateFolder        = ディレクトリの作成に失敗しました:
@@ -27,7 +27,6 @@
 	KeyboardSequence          = キーボード シーケンス:
 	Wubi                      = ウビ
 	Pinyi                     = ピンイン
-	English                   = 英語
 
 	# update
 	UpdateExit                = 自動更新スクリプトは {0} 秒後に自動的に終了します。

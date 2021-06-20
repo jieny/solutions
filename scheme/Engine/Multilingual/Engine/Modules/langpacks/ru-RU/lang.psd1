@@ -6,10 +6,10 @@
 	Reset                     = Сброс настроек
 	Disable                   = Запрещать
 	Done                      = выполнять
-	Continue                  = продолжать
 	OK                        = определять
 	Cancel                    = отменить
 	Exit                      = выбывать
+	Inoperable                = Вышедший из строя
 	ForceUpdate               = Принудительно проверить и обновить
 	SettingLangAndKeyboard    = Установите системный язык и клавиатуру
 	SwitchLanguage            = Смена языка
@@ -27,7 +27,6 @@
 	KeyboardSequence          = последовательность клавиш:
 	Wubi                      = Вуби
 	Pinyi                     = Пиньинь
-	English                   = английский
 
 	# update
 	UpdateExit                = Сценарий автоматического обновления автоматически завершится через {0} секунд.

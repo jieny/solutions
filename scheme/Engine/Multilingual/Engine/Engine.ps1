@@ -17,8 +17,8 @@
 	 PS C:\> .\Engine.ps1 -Function "Function1 -Param", "Function2 -Param"
 
 	.LINK
-	 https://github.com/ilikeyi/solutions/_scheme/engine/multilingual
-	 https://gitee.com/ilikeyi/solutions/_scheme/engine/multilingual
+	 https://github.com/ilikeyi/solutions/tree/main/scheme/Engine/Multilingual
+	 https://gitee.com/ilikeyi/solutions/tree/master/scheme/Engine/Multilingual
 #>
 
 [CmdletBinding()]
@@ -29,13 +29,6 @@ param(
 
 Remove-Module -Name Engine -Force -ErrorAction Ignore | Out-Null
 Import-Module -Name $PSScriptRoot\Modules\Engine.psd1 -PassThru -Force | Out-Null
-ImportModules -Quick
-
-<#
-	.启用日志记录并将其保存在脚本文件夹中。
-	.Enable logging and save it in the script folder.
-#>
-Logging
 
 <#
 	.设置语言，用法
@@ -45,6 +38,12 @@ Logging
 	 Language -Force "zh-CN" | Mandatory use of specified language | 强制选择语言
 #>
 Language -Auto
+
+<#
+	.启用日志记录并将其保存在脚本文件夹中。
+	.Enable logging and save it in the script folder.
+#>
+Logging
 
 # Go
 if ($Functions) {

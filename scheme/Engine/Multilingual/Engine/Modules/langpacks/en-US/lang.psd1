@@ -6,10 +6,10 @@
 	Reset                     = Reset
 	Disable                   = Disabled
 	Done                      = Complete
-	Continue                  = Continue
 	OK                        = OK
 	Cancel                    = Cancel
 	Exit                      = Exit
+	Inoperable                = Inoperable
 	ForceUpdate               = Forcibly check and update
 	SettingLangAndKeyboard    = Set system language and keyboard
 	SwitchLanguage            = Switch language
@@ -27,7 +27,6 @@
 	KeyboardSequence          = Keyboard sequence: \
 	Wubi                      = Wubi
 	Pinyi                     = Pinyin
-	English                   = English
 
 	# update
 	UpdateExit                = The automatic update script will automatically exit after {0} seconds.

@@ -1,9 +1,4 @@
-﻿Push-Location "$PSScriptRoot\..\..\..\"
-$Global:UniqueMainFolder = $(Get-Location)
-$Global:UniqueID = [IO.Path]::GetFileName($(Get-Location))
-$Global:AuthorURL = "https://fengyi.tel"
-
-<#
+﻿<#
 	.Verify the directory and create
 	.验证目录并创建
 #>
@@ -73,5 +68,3 @@ Function JoinMainFolder
 Export-ModuleMember -Function "CheckCatalog"
 Export-ModuleMember -Function "RemoveTree"
 Export-ModuleMember -Function "JoinMainFolder"
-Export-ModuleMember -Variable "$($Global:UniqueMainFolder)"
-Export-ModuleMember -Variable "$($Global:UniqueID)"

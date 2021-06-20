@@ -6,10 +6,10 @@
 	Reset                     = 초기화
 	Disable                   = 비활성화
 	Done                      = 수행하다
-	Continue                  = 계속하다
 	OK                        = 결정
 	Cancel                    = 취소
 	Exit                      = 그만두 다
+	Inoperable                = 작동 불가
 	ForceUpdate               = 강제 확인 및 업데이트
 	SettingLangAndKeyboard    = 시스템 언어 및 키보드 설정
 	SwitchLanguage            = 언어 전환
@@ -27,7 +27,6 @@
 	KeyboardSequence          = 키보드 시퀀스 :
 	Wubi                      = Wubi
 	Pinyi                     = 병음
-	English                   = 영어
 
 	# update
 	UpdateExit                = 자동 업데이트 스크립트는 {0} 초 후에 자동으로 종료됩니다.

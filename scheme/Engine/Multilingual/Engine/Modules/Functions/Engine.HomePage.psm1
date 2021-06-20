@@ -40,11 +40,16 @@ Function Mainpage
 	$select = Read-Host "   $($lang.Choose)"
 	switch ($select)
 	{
-		"1" { Update }
-		"2" { Signup }
+		"1" {
+			Update
+			ToMainpage -wait 2
+		}
+		"2" {
+			Signup
+			ToMainpage -wait 2
+		}
 		"l" {
 			Language -Reset
-			ImportModules
 			Mainpage
 		}
 		"q" { exit }

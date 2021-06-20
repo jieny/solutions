@@ -30,58 +30,111 @@ Function Signup
 			Update -Force -IsProcess
 		}
 
-		SignupStart -Force
+		SignupProcess
 	} else {
-		$caption = "$($lang.Reset) $($lang.Mainname) ?"
-		$message = "$($lang.Continue) (Y)`n$($lang.Cancel) (N)"
-		$choices = @("&Yes","&No")
-		$choicedesc = New-Object System.Collections.ObjectModel.Collection[System.Management.Automation.Host.ChoiceDescription]
-		$choices | ForEach-Object { $choicedesc.Add((New-Object "System.Management.Automation.Host.ChoiceDescription" -ArgumentList $_))}
-		$prompt = $Host.ui.PromptForChoice($caption, $message, $choicedesc, 0)
-		Switch ($prompt)
-		{
-			0 {
-				Write-Host "   - $($lang.ForceUpdate)"
-				Update -Force -IsProcess
-				SignupStart
-				ToMainpage -wait 6
-			}
-			1 {
-				ToMainpage -wait 2
-			}
-		}
+		SignupGUI
 	}
+}
+
+Function SignupGUI
+{
+	Add-Type -AssemblyName System.Windows.Forms
+	Add-Type -AssemblyName System.Drawing
+	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Write-Host "`n   $($lang.Reset)"
+
+	$GUISignupCanelClick = {
+		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+		$GUISignup.Close()
+	}
+	$GUISignupOKClick = {
+		$GUISignup.Hide()
+
+		if ($GUISignupLangAndKeyboard.Checked) {
+			LanguageSetting
+			Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+		} else {
+			Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+		}
+
+		$GUISignup.Close()
+	}
+	$GUISignup         = New-Object system.Windows.Forms.Form -Property @{
+		autoScaleMode  = 2
+		Height         = 568
+		Width          = 450
+		Text           = $lang.Reset
+		TopMost        = $True
+		StartPosition  = "CenterScreen"
+		MaximizeBox    = $False
+		MinimizeBox    = $False
+		ControlBox     = $False
+		BackColor      = "#ffffff"
+	}
+	$GUISignupPanel    = New-Object system.Windows.Forms.Panel -Property @{
+		Height         = 468
+		Width          = 450
+		BorderStyle    = 0
+		autoSizeMode   = 0
+		autoScroll     = $True
+		Padding        = 0
+		Dock           = 1
+	}
+	$GUISignupLangAndKeyboard = New-Object System.Windows.Forms.CheckBox -Property @{
+		Location       = "10,5"
+		Height         = 22
+		Width          = 390
+		Text           = $lang.SettingLangAndKeyboard
+		Checked        = $True
+	}
+	$GUISignupOK       = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "10,482"
+		Height         = 36
+		Width          = 202
+		add_Click      = $GUISignupOKClick
+		Text           = $lang.OK
+	}
+	$GUISignupCanel    = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "218,482"
+		Height         = 36
+		Width          = 202
+		add_Click      = $GUISignupCanelClick
+		Text           = $lang.Cancel
+	}
+	$GUISignup.controls.AddRange((
+		$GUISignupPanel,
+		$GUISignupOK,
+		$GUISignupCanel
+	))
+	$GUISignupPanel.controls.AddRange((
+		$GUISignupLangAndKeyboard
+	))
+ 
+	$GUISignup.FormBorderStyle = 'Fixed3D'
+	$GUISignup.ShowDialog() | Out-Null
 }
 
 <#
 	.Start processing registration tasks
 	.开始处理注册任务
 #>
-Function SignupStart
+Function SignupProcess
 {
-	param
-	(
-		[switch]$Force
-	)
+	<#
+		.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
+		.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
+	#>
+	If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
+	Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
 
 	<#
-		.Respond to -Force first
-		.优先响应 -Force 处理
+		.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.
+		.使用 $OEM$ 模式添加文件后默认为只读，更改所有文件为：正常。
 	#>
-	if ($Force) {
-		<#
-			.According to the official requirements of Microsoft, add the strategy: Prevent Windows 10 from automatically deleting unused language packs
-			.按照微软官方要求，添加策略：防止 Windows 10 自动删除未使用的语言包
-		#>
-		If (-not (Test-Path "HKLM:\Software\Policies\Microsoft\Control Panel\International")) { New-Item -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Force | Out-Null }
-		Set-ItemProperty -Path "HKLM:\Software\Policies\Microsoft\Control Panel\International" -Name "BlockCleanupOfUnusedPreinstalledLangPacks" -Type DWord -Value 1 -ErrorAction SilentlyContinue | Out-Null
-
-		<#
-			.After using the $OEM$ mode to add files, the default is read-only. Change all files to: Normal.
-			.使用 $OEM$ 模式添加文件后默认为只读，更改所有文件为：正常。
-		#>
-		Get-ChildItem "$env:SystemDrive\$($Global:UniqueID)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
-	}
+	Get-ChildItem "$env:SystemDrive\$($Global:UniqueID)" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object { $_.Attributes="Normal" }
 
 	<#
 		.Close the pop-up after entering the system for the first time: Network Location Wizard
@@ -157,4 +210,4 @@ Function SignupStart
 }
 
 Export-ModuleMember -Function "Signup"
-Export-ModuleMember -Function "SignupStart"
+Export-ModuleMember -Function "SignupProcess"
