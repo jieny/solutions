@@ -10,7 +10,7 @@
 	.Current version
 	.当前版本
 #>
-$Global:ProductVersion = "1.0.0.2"
+$Global:ProductVersion = "1.0.0.3"
 
 <#
 	.Update minimum version requirements
@@ -19,10 +19,18 @@ $Global:ProductVersion = "1.0.0.2"
 $Global:chkLocalver    = "1.0.0.0"
 
 <#
-	.Update the connection to the server
-	.更新连接到服务器
+	.Server test
+	.服务器测试
 #>
-$ServerList = @(
+$ServerTest     = $false
+$IsCorrectAuVer = $false
+
+<#
+	.Available servers
+	.可用的服务器
+#>
+$Global:ServerList = @()
+$PreServerList = @(
 	("$($Global:AuthorURL)",
 	 "/download/solutions/update/Multilingual/latest.xml"),
 	("https://github.com",
@@ -37,30 +45,261 @@ Function Update
 {
 	param
 	(
+		[switch]$Auto,
 		[switch]$Force,
-		[switch]$Quit,
 		[switch]$IsProcess
 	)
-	if ($Quit) { $Global:QUIT = $true }
+	
+	$Global:ServerList = @()
+	if ($Force) {
+		$Global:ForceUpdate = $True
+	} else {
+		$Global:ForceUpdate = $False
+	}
+	
+	if ($IsProcess) {
+		$Global:IsProcess = $True
+	} else {
+		$Global:IsProcess = $False
+	}
 
 	Logo -Title $($lang.Update)
-	$ServerTest     = $false
-	$IsCorrectAuVer = $false
+	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
 
+	if ($Auto) {
+		foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
+			$Global:ServerList += $item[0] + $item[1]
+		}
+		UpdateProcess
+	} else {
+		UpdateGUI
+	}
+}
+
+<#
+	.Update interface
+	.更新界面
+#>
+Function UpdateGUI
+{
+	Add-Type -AssemblyName System.Windows.Forms
+	Add-Type -AssemblyName System.Drawing
+	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Write-Host "`n   $($lang.Update)"
+
+	$GUIUpdateAutoClick = {
+		if ($GUIUpdateAuto.Checked) {
+			$GUIUpdatePanel.Enabled = $False
+		} else {
+			$GUIUpdatePanel.Enabled = $True
+		}
+	}
+	$GUIUpdateCanelClick = {
+		$GUIUpdate.Hide()
+		$Global:ServerList = @()
+		$Global:UpdateAvailableSilent = $False
+		$Global:UpdateAvailableReset = $False
+
+		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+		$GUIUpdate.Close()
+	}
+	$GUIUpdateOKClick = {
+		$Global:ServerList = @()
+
+		if ($GUIUpdateSilent.Checked) {
+			$Global:UpdateAvailableSilent = $True
+		} else {
+			$Global:UpdateAvailableSilent = $False
+		}
+
+		if ($GUIUpdateReset.Checked) {
+			$Global:UpdateAvailableReset = $True
+		} else {
+			$Global:UpdateAvailableReset = $False
+		}
+
+		if ($GUIUpdateAuto.Checked) {
+			$GUIUpdate.Hide()
+			foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
+				$Global:ServerList += $item[0] + $item[1]
+			}
+			UpdateProcess
+			$GUIUpdate.Close()
+		} else {
+			$FlagsVerifyServerlist = $False
+			$GUIUpdatePanel.Controls | ForEach-Object {
+				if ($_ -is [System.Windows.Forms.CheckBox]) {
+					if ($_.Checked) {
+						$FlagsVerifyServerlist = $true
+						$Global:ServerList += $_.Tag
+					}
+				}
+			}
+
+			if ($FlagsVerifyServerlist) {
+				$GUIUpdate.Hide()
+				UpdateProcess
+				$GUIUpdate.Close()
+			} else {
+				$GUIUpdateErrorMsg.Text = "$($lang.UpdateServerNoSelect)"
+			}
+		}
+	}
+	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{
+		autoScaleMode  = 2
+		Height         = 568
+		Width          = 450
+		Text           = $lang.Update
+		TopMost        = $True
+		StartPosition  = "CenterScreen"
+		MaximizeBox    = $False
+		MinimizeBox    = $False
+		ControlBox     = $False
+		BackColor      = "#ffffff"
+	}
+	$GUIUpdateAuto     = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 22
+		Width          = 395
+		Text           = $lang.UpdateServerSelect
+		Location       = '10,6'
+		add_Click      = $GUIUpdateAutoClick
+		Checked        = $True
+	}
+	$GUIUpdatePanel    = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
+		Height         = 320
+		Width          = 428
+		BorderStyle    = 0
+		autoSizeMode   = 0
+		autoScroll     = $True
+		Padding        = "24,0,8,0"
+		Dock           = 0
+		Location       = "0,28"
+		Enabled        = $False
+	}
+	$GUIUpdateSilent   = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 22
+		Width          = 395
+		Text           = $lang.UpdateSilent
+		Location       = '10,368'
+		Checked        = $True
+	}
+	$GUIUpdateReset    = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 22
+		Width          = 395
+		Text           = $lang.UpdateReset
+		Location       = '10,395'
+	}
+	$GUIUpdateResetTips = New-Object system.Windows.Forms.Label -Property @{
+		Location       = "26,418"
+		Height         = 28
+		Width          = 390
+		Text           = $lang.UpdateResetTips
+	}
+	$GUIUpdateErrorMsg = New-Object system.Windows.Forms.Label -Property @{
+		Location       = "10,458"
+		Height         = 22
+		Width          = 405
+		Text           = ""
+	}
+	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "10,482"
+		Height         = 36
+		Width          = 202
+		add_Click      = $GUIUpdateOKClick
+		Text           = $lang.OK
+	}
+	$GUIUpdateCanel    = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "218,482"
+		Height         = 36
+		Width          = 202
+		add_Click      = $GUIUpdateCanelClick
+		Text           = $lang.Cancel
+	}
+	$GUIUpdate.controls.AddRange((
+		$GUIUpdateAuto,
+		$GUIUpdatePanel,
+		$GUIUpdateSilent,
+		$GUIUpdateReset,
+		$GUIUpdateResetTips,
+		$GUIUpdateErrorMsg,
+		$GUIUpdateOK,
+		$GUIUpdateCanel
+	))
+
+	foreach ($list in $PreServerList) {
+		$fullurl = $list[0] + $list[1]
+		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
+			Height  = 26
+			Width   = 395
+			Text    = $list[0]
+			Tag     = $fullurl
+			Checked = $true
+		}
+		$GUIUpdatePanel.controls.AddRange($CheckBox)
+	}
+
+	<#
+		.Add right-click menu: select all, clear button
+		.添加右键菜单：全选、清除按钮
+	#>
+	$GUIUpdateAllSelClick = {
+		$GUIUpdatePanel.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.CheckBox]) {
+				if ($_.Enabled) {
+					$_.Checked = $true
+				}
+			}
+		}
+	}
+	$GUIUpdateAllClearClick = {
+		$GUIUpdatePanel.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.CheckBox]) {
+				if ($_.Enabled) {
+					$_.Checked = $false
+				}
+			}
+		}
+	}
+	$GUIUpdateMenu = New-Object System.Windows.Forms.ContextMenuStrip
+	$GUIUpdateMenu.Items.Add($lang.AllSel).add_Click($GUIUpdateAllSelClick)
+	$GUIUpdateMenu.Items.Add($lang.AllClear).add_Click($GUIUpdateAllClearClick)
+	$GUIUpdatePanel.ContextMenuStrip = $GUIUpdateMenu
+
+	switch ($Global:IsLang) {
+		"zh-CN" {
+			$GUIUpdate.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
+		}
+		Default {
+			$GUIUpdate.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+		}
+	}
+
+	$GUIUpdate.FormBorderStyle = 'Fixed3D'
+	$GUIUpdate.ShowDialog() | Out-Null
+}
+
+<#
+	.Update process
+	.更新处理
+#>
+Function UpdateProcess
+{
 	<#
 		.Disabled IE first-launch configuration
 		.禁用 IE 首次启动配置
 	#>
 	Set-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Main" -Name "DisableFirstRunCustomize" -Value 2 -ErrorAction SilentlyContinue
 
-	Write-Host "   $($lang.UpdateCheckServerStatus -f $($ServerList.Count))
+	Write-Host "   $($lang.UpdateCheckServerStatus -f $($Global:ServerList.Count))
    ---------------------------------------------------"
 
-	foreach ($list in $ServerList | Sort-Object { Get-Random } ) {
-		$fullurl = $list[0] + $list[1]
-		Write-Host "   * $($lang.UpdateServerAddress -f $($list[0]))"
-		if (TestURI $fullurl) {
-			$versionxmlloc = $fullurl
+	foreach ($item in $Global:ServerList) {
+		Write-Host "   * $($lang.UpdateServerAddress -f $($item))"
+		if (TestURI $item) {
+			$versionxmlloc = $item
 			$ServerTest = $true
 			Write-Host "   - $($lang.UpdateServeravailable)" -ForegroundColor Green
 			break
@@ -75,11 +314,7 @@ Function Update
 	} else {
 		Write-Host "   - $($lang.UpdateServerTestFailed)" -ForegroundColor Red
 		Write-Host "   ---------------------------------------------------"
-
-		ImportModules
-		If ($Force) {
-			return
-		}
+		return
 	}
 
 	Write-host "`n   $($lang.UpdateQueryingUpdate)"
@@ -91,11 +326,7 @@ Function Update
 		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
 	} else {
 		Write-host "`n   $($lang.UpdateConnectFailed)"
-
-		ImportModules
-		If ($Force) {
-			return
-		}
+		return
 	}
 
 	$getSerVer = (Invoke-WebRequest -Uri $versionxmlloc -UseBasicParsing -Body $body -Method:Get -Headers $head -ContentType "application/xml" -TimeoutSec 15 -ErrorAction:stop)
@@ -117,7 +348,7 @@ Function Update
 		Write-Host "`n   $($lang.UpdateMinimumVersion -f $($Global:chkLocalver))"
 		$IsUpdateAvailable = $false
 		$url = ([xml]$getSerVer.Content).versioninfo.download.url
-		$output = "$PSScriptRoot\..\..\..\latest.zip"
+		$output = Convert-Path "$PSScriptRoot\..\..\..\latest.zip" -ErrorAction SilentlyContinue | Out-Null
 
 		if (([xml]$getSerVer.Content).versioninfo.version.version.Replace('.', '') -gt $Global:ProductVersion.Replace('.', '')) {
 			$IsUpdateAvailable = $true
@@ -137,7 +368,7 @@ Function Update
 				Write-Host "   - $($lang.UpdateUnavailable)" -ForegroundColor Red
 				Write-Host "   ---------------------------------------------------"
 				ImportModules
-				If ($Force) {
+				If ($Global:ForceUpdate) {
 					return
 				}
 			}
@@ -150,12 +381,24 @@ Function Update
 $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 
 			Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
-			If ($Force) {
+
+			$FlagsCheckForceUpdate = $False
+			If ($Global:ForceUpdate) {
+				$FlagsCheckForceUpdate = $True
+			}
+
+			if ($Global:UpdateAvailableSilent) {
+				$FlagsCheckForceUpdate = $True
+			}
+
+			if ($Global:UpdateAvailableReset) {
+				$FlagsCheckForceUpdate = $True
+			}
+
+			If ($FlagsCheckForceUpdate) {
 				$title = "   $($lang.UpdateForce)"
-				$start_time = Get-Date
-				remove-item -path $output -force -ErrorAction SilentlyContinue
-				Invoke-WebRequest -Uri $url -OutFile $output -ErrorAction SilentlyContinue
-				Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
+
+				ArchivePacker -output $output
 			} else {
 				$title = "$($lang.UpdateInstall)"
 				$message = "$($lang.UpdateInstallSel)"
@@ -166,10 +409,7 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 				Switch ($prompt)
 				{
 					0 {
-						$start_time = Get-Date
-						remove-item -path $output -force -ErrorAction SilentlyContinue
-						Invoke-WebRequest -Uri $url -OutFile $output -ErrorAction SilentlyContinue
-						Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
+						ArchivePacker -output $output
 					}
 					1 {
 						Write-Host "`n   $($lang.UserCancel)"
@@ -177,47 +417,65 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 					}
 				}
 			}
-
-			if ((Test-Path $output -PathType Leaf)) {
-				Write-Host "`n   $($lang.UpdateUnpacking)$output"
-				Archive -filename $output -to "$PSScriptRoot\..\..\..\"
-				ImportModules
-				Write-Host "`n   * $($lang.UpdatePostProc)"
-				if ($IsProcess) {
-					Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
-				} else {
-					if ((Test-Path $PPocess -PathType Leaf)) {
-						Start-Process -FilePath $PPocess -wait -WindowStyle Minimized
-						remove-item -path $PPocess -force
-						Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
-					} else {
-						Write-Host "   - $($lang.UpdateNoPost)" -ForegroundColor red
-					}
-					if ((Test-Path $PsPocess -PathType Leaf)) {
-						Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
-						remove-item -path $PsPocess -force
-						Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
-					} else {
-						Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
-					}
-					ImportModules
-					Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
-				}
-			} else {
-				Write-host "`n   $($lang.UpdateUpdateStop)"
-			}
-			remove-item -path $output -force -ErrorAction SilentlyContinue
 		} else {
-			Write-host "   $($lang.UpdateNoUpdateAvailable -f $($Global:UniqueID))"
+			if ($Global:UpdateAvailableReset) {
+				$title = "   $($lang.UpdateForce)"
+				ArchivePacker -output $output
+			} else {
+				Write-host "   $($lang.UpdateNoUpdateAvailable -f $($Global:UniqueID))"
+			}
 		}
 	} else {
 		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:chkLocalver), $($Global:UniqueID))"
 	}
 
 	ImportModules
-	If ($Force) {
+	If ($Global:ForceUpdate) {
 		return
 	}
+}
+
+Function ArchivePacker
+{
+	param
+	(
+		$output
+	)
+
+	$start_time = Get-Date
+	remove-item -path $output -force -ErrorAction SilentlyContinue
+	Invoke-WebRequest -Uri $url -OutFile $output -ErrorAction SilentlyContinue
+	Write-Host "`n   $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)"
+
+	if ((Test-Path $output -PathType Leaf)) {
+		Write-Host "`n   $($lang.UpdateUnpacking)$output"
+		Archive -filename $output -to "$PSScriptRoot\..\..\..\"
+		ImportModules
+		Write-Host "`n   * $($lang.UpdatePostProc)"
+		if ($Global:IsProcess) {
+			Write-Host "   - $($lang.UpdateNotExecuted)" -ForegroundColor red
+		} else {
+			if ((Test-Path $PPocess -PathType Leaf)) {
+				Start-Process -FilePath $PPocess -wait -WindowStyle Minimized
+				remove-item -path $PPocess -force
+				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "   - $($lang.UpdateNoPost)" -ForegroundColor red
+			}
+			if ((Test-Path $PsPocess -PathType Leaf)) {
+				Start-Process powershell -ArgumentList "-file $($PsPocess)" -Wait -WindowStyle Minimized
+				remove-item -path $PsPocess -force
+				Write-Host "   - $($lang.Done)`n" -ForegroundColor Green
+			} else {
+				Write-Host "   - $($lang.UpdateNoPost)`n" -ForegroundColor red
+			}
+			ImportModules
+			Write-host "`n   $($Global:UniqueID)'s Solutions $($lang.UpdateDone)`n"
+		}
+	} else {
+		Write-host "`n   $($lang.UpdateUpdateStop)"
+	}
+	remove-item -path $output -force -ErrorAction SilentlyContinue
 }
 
 <#
@@ -415,8 +673,11 @@ Function TestURI
 Export-ModuleMember -Variable "$($Global:ProductVersion)"
 Export-ModuleMember -Variable "$($Global:chkLocalver)"
 Export-ModuleMember -Function "Update"
-Export-ModuleMember -Function "ArchitecturePacker"
+Export-ModuleMember -Function "UpdateGUI"
+Export-ModuleMember -Function "UpdateProcess"
+Export-ModuleMember -Function "ArchivePacker"
 Export-ModuleMember -Function "Archive"
 Export-ModuleMember -Function "Compressing"
+Export-ModuleMember -Function "ArchitecturePacker"
 Export-ModuleMember -Function "GetArchitecturePacker"
 Export-ModuleMember -Function "TestURI"

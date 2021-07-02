@@ -35,13 +35,14 @@ Function Mainpage
    2. $($lang.Reset) $($lang.Mainname)" -ForegroundColor Green
 
    write-host  "`n`n   L. $($lang.SwitchLanguage)
+   R. $($lang.RefreshModules)
    Q. $($lang.Exit)`n"
 
 	$select = Read-Host "   $($lang.Choose)"
 	switch ($select)
 	{
 		"1" {
-			Update
+			UpdateGUI
 			ToMainpage -wait 2
 		}
 		"2" {
@@ -51,6 +52,10 @@ Function Mainpage
 		"l" {
 			Language -Reset
 			Mainpage
+		}
+		"r" {
+			ImportModules
+			ToMainpage -wait 2
 		}
 		"q" { exit }
 		default { Mainpage }

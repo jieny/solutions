@@ -27,7 +27,7 @@ Function Signup
 			Write-Host "   - $($lang.UpdateSkipUpdateCheck)"
 		} else {
 			Write-Host "   - $($lang.ForceUpdate)"
-			Update -Force -IsProcess
+			Update -Auto -Force -IsProcess
 		}
 
 		SignupProcess
@@ -113,6 +113,15 @@ Function SignupGUI
 		$GUISignupLangAndKeyboard
 	))
  
+	switch ($Global:IsLang) {
+		"zh-CN" {
+			$GUISignup.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
+		}
+		Default {
+			$GUISignup.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+		}
+	}
+
 	$GUISignup.FormBorderStyle = 'Fixed3D'
 	$GUISignup.ShowDialog() | Out-Null
 }
@@ -158,15 +167,6 @@ Function SignupProcess
 	}
 
 	<#
-		.Clean up the main engine
-		.清理主引擎
-	#>
-	if (Test-Path "$PSScriptRoot\..\..\Deploy\ClearEngine" -PathType Leaf) {
-		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
-		RemoveTree -Path "$($Global:UniqueMainFolder)\Engine"
-	}
-
-	<#
 		.Clean up the solution
 		.清理解决方案
 	#>
@@ -188,6 +188,15 @@ Function SignupProcess
 			New-Item -Path $regPath -Force | Out-Null
 			New-ItemProperty -Path $regPath -Name $regKey -Value $regValue -PropertyType STRING -Force | Out-Null
 		}
+	}
+
+	<#
+		.Clean up the main engine
+		.清理主引擎
+	#>
+	if (Test-Path "$PSScriptRoot\..\..\Deploy\ClearEngine" -PathType Leaf) {
+		Stop-Transcript -ErrorAction SilentlyContinue | Out-Null
+		RemoveTree -Path "$($Global:UniqueMainFolder)\Engine"
 	}
 
 	<#
