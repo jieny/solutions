@@ -9,10 +9,13 @@
 	OK                        = OK
 	Cancel                    = Cancel
 	Exit                      = Exit
+	AllSel                    = Select all
+	AllClear                  = Clear all
 	Inoperable                = Inoperable
 	ForceUpdate               = Forcibly check and update
 	SettingLangAndKeyboard    = Set system language and keyboard
 	SwitchLanguage            = Switch language
+	RefreshModules            = Reload the module
 	Choose                    = Please select
 	FailedCreateFolder        = Failed to create directory: \
 	ToMsg                     = \n   Automatically return to the main menu after {0} seconds.
@@ -29,6 +32,11 @@
 	Pinyi                     = Pinyin
 
 	# update
+	UpdateServerSelect        = Automatic server selection or custom selection
+	UpdateServerNoSelect      = Please select an available server
+	UpdateSilent              = When updates are available, update silently
+	UpdateReset               = Reset this solution
+	UpdateResetTips           = When the download address is available, it is forced to download and update automatically.
 	UpdateExit                = The automatic update script will automatically exit after {0} seconds.
 	UpdateNoLocalVersion      = The version.xml file of the local version was not found, and the update check has been aborted.
 	UpdateCheckServerStatus   = Check server status ( total {0} optional )
