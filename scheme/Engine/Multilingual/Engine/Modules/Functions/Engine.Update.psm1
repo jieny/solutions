@@ -46,17 +46,10 @@ Function Update
 	param
 	(
 		[switch]$Auto,
-		[switch]$Force,
 		[switch]$IsProcess
 	)
 	
 	$Global:ServerList = @()
-	if ($Force) {
-		$Global:ForceUpdate = $True
-	} else {
-		$Global:ForceUpdate = $False
-	}
-	
 	if ($IsProcess) {
 		$Global:IsProcess = $True
 	} else {
@@ -354,69 +347,68 @@ Function UpdateProcess
 		}
 
 		if ($IsUpdateAvailable) {
-			Write-host "`n   $($lang.UpdateVerifyAvailable)
-   ---------------------------------------------------"
-
+			Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
 			Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
 			if (TestURI $url) {
 				Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "   ---------------------------------------------------"
+
+				Write-host "`n   $($lang.UpdateCurrent)$($Global:ProductVersion)
+	   $($lang.UpdateLatest)$($getSerVer.version.version)
+	
+	   $($getSerVer.changelog.title)
+	   $('-' * ($getSerVer.changelog.title).Length)
+	$($getSerVer.changelog.log.'#text')"
+	
+				Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
+	
+				$FlagsCheckForceUpdate = $False
+				if ($Global:UpdateAvailableSilent) {
+					$FlagsCheckForceUpdate = $True
+				}
+	
+				if ($Global:UpdateAvailableReset) {
+					$FlagsCheckForceUpdate = $True
+				}
+	
+				If ($FlagsCheckForceUpdate) {
+					ArchivePacker -url $url
+				} else {
+					$title = "$($lang.UpdateInstall)"
+					$message = "$($lang.UpdateInstallSel)"
+					$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Yes"
+					$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "No"
+					$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
+					$prompt=$host.ui.PromptForChoice($title, $message, $options, 0)
+					Switch ($prompt)
+					{
+						0 {
+							ArchivePacker -url $url
+						}
+						1 {
+							Write-Host "`n   $($lang.UserCancel)"
+							ImportModules
+						}
+					}
+				}
 			} else {
 				Write-Host "   - $($lang.UpdateUnavailable)" -ForegroundColor Red
 				Write-Host "   ---------------------------------------------------"
-				ImportModules
-				If ($Global:ForceUpdate) {
-					return
-				}
-			}
-
-			Write-host "`n   $($lang.UpdateCurrent)$($Global:ProductVersion)
-   $($lang.UpdateLatest)$($getSerVer.version.version)
-
-   $($getSerVer.changelog.title)
-   $('-' * ($getSerVer.changelog.title).Length)
-$($getSerVer.changelog.log.'#text')"
-
-			Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
-
-			$FlagsCheckForceUpdate = $False
-			If ($Global:ForceUpdate) {
-				$FlagsCheckForceUpdate = $True
-			}
-
-			if ($Global:UpdateAvailableSilent) {
-				$FlagsCheckForceUpdate = $True
-			}
-
-			if ($Global:UpdateAvailableReset) {
-				$FlagsCheckForceUpdate = $True
-			}
-
-			If ($FlagsCheckForceUpdate) {
-				$title = "   $($lang.UpdateForce)"
-				ArchivePacker -url $url
-			} else {
-				$title = "$($lang.UpdateInstall)"
-				$message = "$($lang.UpdateInstallSel)"
-				$yes = New-Object System.Management.Automation.Host.ChoiceDescription "&Yes", "Yes"
-				$no = New-Object System.Management.Automation.Host.ChoiceDescription "&No", "No"
-				$options = [System.Management.Automation.Host.ChoiceDescription[]]($yes, $no)
-				$prompt=$host.ui.PromptForChoice($title, $message, $options, 0)
-				Switch ($prompt)
-				{
-					0 {
-						ArchivePacker -url $url
-					}
-					1 {
-						Write-Host "`n   $($lang.UserCancel)"
-						ImportModules
-					}
-				}
+				return
 			}
 		} else {
 			if ($Global:UpdateAvailableReset) {
-				$title = "   $($lang.UpdateForce)"
-				ArchivePacker -url $url
+				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   ---------------------------------------------------"
+				Write-Host "   * $($lang.UpdateDownloadAddress)$($url)"
+				if (TestURI $url) {
+					Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
+					Write-Host "   ---------------------------------------------------"
+					ArchivePacker -url $url
+				} else {
+					Write-Host "   - $($lang.UpdateUnavailable)" -ForegroundColor Red
+					Write-Host "   ---------------------------------------------------"
+					return
+				}
 			} else {
 				Write-host "   $($lang.UpdateNoUpdateAvailable -f $($Global:UniqueID))"
 			}
@@ -425,10 +417,7 @@ $($getSerVer.changelog.log.'#text')"
 		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:chkLocalver), $($Global:UniqueID))"
 	}
 
-	ImportModules
-	If ($Global:ForceUpdate) {
-		return
-	}
+	Language -Auto
 }
 
 Function ArchivePacker
