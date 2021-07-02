@@ -9,10 +9,13 @@
 	OK                        = 確定
 	Cancel                    = 取消
 	Exit                      = 退出
+	AllSel                    = 選擇所有
+	AllClear                  = 清除所有
 	Inoperable                = 不可操作
 	ForceUpdate               = 強行檢查並更新
 	SettingLangAndKeyboard    = 設置系統語言和鍵盤
 	SwitchLanguage            = 切換語言
+	RefreshModules            = 重新加載模塊
 	Choose                    = 請選擇
 	FailedCreateFolder        = 創建目錄失敗：
 	ToMsg                     = \n   {0} 秒後自動返回到主菜單。
@@ -29,6 +32,11 @@
 	Pinyi                     = 拼音
 
 	# update
+	UpdateServerSelect        = 自動選擇服務器或自定義選擇
+	UpdateServerNoSelect      = 請選擇可用的服務器
+	UpdateSilent              = 有可用更新時，靜默更新
+	UpdateReset               = 重置此解決方案
+	UpdateResetTips           = 下載地址可用時，強制下載並自動更新。
 	UpdateExit                = 自動更新腳本將會在 {0} 秒後自動退出。
 	UpdateNoLocalVersion      = 未找到本地版的 version.xml 文件，檢查更新已中止。
 	UpdateCheckServerStatus   = 檢查服務器狀態 ( 共 {0} 個可選 )
