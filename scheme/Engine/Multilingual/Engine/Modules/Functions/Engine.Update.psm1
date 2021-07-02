@@ -32,9 +32,9 @@ $IsCorrectAuVer = $false
 $Global:ServerList = @()
 $PreServerList = @(
 	("$($Global:AuthorURL)",
-	 "/download/solutions/update/Multilingual/latest.xml"),
+	 "/download/solutions/update/Multilingual/latest.json"),
 	("https://github.com",
-	 "/ilikeyi/solutions/raw/main/update/Multilingual/latest.xml")
+	 "/ilikeyi/solutions/raw/main/update/Multilingual/latest.json")
 )
 
 <#
@@ -299,7 +299,7 @@ Function UpdateProcess
 	foreach ($item in $Global:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress -f $($item))"
 		if (TestURI $item) {
-			$versionxmlloc = $item
+			$PreServerVersion = $item
 			$ServerTest = $true
 			Write-Host "   - $($lang.UpdateServeravailable)" -ForegroundColor Green
 			break
@@ -320,7 +320,7 @@ Function UpdateProcess
 	Write-host "`n   $($lang.UpdateQueryingUpdate)"
 
 	$error.Clear()
-	$time = Measure-Command { Invoke-WebRequest -Uri $versionxmlloc -ErrorAction SilentlyContinue }
+	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -ErrorAction SilentlyContinue }
 
 	if ($error.Count -eq 0) {
 		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
@@ -329,15 +329,14 @@ Function UpdateProcess
 		return
 	}
 
-	$getSerVer = (Invoke-WebRequest -Uri $versionxmlloc -UseBasicParsing -Body $body -Method:Get -Headers $head -ContentType "application/xml" -TimeoutSec 15 -ErrorAction:stop)
-	$chkRemovever = ([xml]$getSerVer.Content).versioninfo.version.minau
-	$PPocess = "$PSScriptRoot\Post.Processing.bat"
-	$PsPocess = "$PSScriptRoot\Post.Processing.ps1"
-
+	$getSerVer = (Invoke-RestMethod -Uri $PreServerVersion -UseBasicParsing -Body $body -Method:Get -Headers $head -ContentType "application/json" -TimeoutSec 15 -ErrorAction:stop)
+	$chkRemovever = $($getSerVer.version.minau).Replace('.', '')
+	$url = $getSerVer.url
+	
 	If ([String]::IsNullOrEmpty($chkRemovever)) {
 		$IsCorrectAuVer = $false
 	} else {
-		if ($Global:chkLocalver.Replace('.', '') -ge $chkRemovever.Replace('.', '')) {
+		if ($Global:chkLocalver.Replace('.', '') -ge $chkRemovever) {
 			$IsCorrectAuVer = $true
 		} else {
 			$IsCorrectAuVer = $false
@@ -347,10 +346,8 @@ Function UpdateProcess
 	if ($IsCorrectAuVer) {
 		Write-Host "`n   $($lang.UpdateMinimumVersion -f $($Global:chkLocalver))"
 		$IsUpdateAvailable = $false
-		$url = ([xml]$getSerVer.Content).versioninfo.download.url
-		$output = Convert-Path "$PSScriptRoot\..\..\..\latest.zip" -ErrorAction SilentlyContinue | Out-Null
 
-		if (([xml]$getSerVer.Content).versioninfo.version.version.Replace('.', '') -gt $Global:ProductVersion.Replace('.', '')) {
+		if ($getSerVer.version.version.Replace('.', '') -gt $Global:ProductVersion.Replace('.', '')) {
 			$IsUpdateAvailable = $true
 		} else {
 			$IsUpdateAvailable = $false
@@ -374,11 +371,11 @@ Function UpdateProcess
 			}
 
 			Write-host "`n   $($lang.UpdateCurrent)$($Global:ProductVersion)
-   $($lang.UpdateLatest)$(([xml]$getSerVer.Content).versioninfo.version.version)
+   $($lang.UpdateLatest)$($getSerVer.version.version)
 
-   $(([xml]$getSerVer.Content).versioninfo.changelog.title)
-   $('-' * (([xml]$getSerVer.Content).versioninfo.changelog.title).Length)
-$(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
+   $($getSerVer.changelog.title)
+   $('-' * ($getSerVer.changelog.title).Length)
+$($getSerVer.changelog.log.'#text')"
 
 			Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
 
@@ -397,8 +394,7 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 
 			If ($FlagsCheckForceUpdate) {
 				$title = "   $($lang.UpdateForce)"
-
-				ArchivePacker -output $output
+				ArchivePacker -url $url
 			} else {
 				$title = "$($lang.UpdateInstall)"
 				$message = "$($lang.UpdateInstallSel)"
@@ -409,7 +405,7 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 				Switch ($prompt)
 				{
 					0 {
-						ArchivePacker -output $output
+						ArchivePacker -url $url
 					}
 					1 {
 						Write-Host "`n   $($lang.UserCancel)"
@@ -420,7 +416,7 @@ $(([xml]$getSerVer.Content).versioninfo.changelog.'#text')"
 		} else {
 			if ($Global:UpdateAvailableReset) {
 				$title = "   $($lang.UpdateForce)"
-				ArchivePacker -output $output
+				ArchivePacker -url $url
 			} else {
 				Write-host "   $($lang.UpdateNoUpdateAvailable -f $($Global:UniqueID))"
 			}
@@ -439,8 +435,12 @@ Function ArchivePacker
 {
 	param
 	(
-		$output
+		$url
 	)
+
+	$output = "$PSScriptRoot\..\..\..\latest.zip"
+	$PPocess = "$PSScriptRoot\Post.Processing.bat"
+	$PsPocess = "$PSScriptRoot\Post.Processing.ps1"
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
@@ -670,14 +670,5 @@ Function TestURI
 	}
 }
 
-Export-ModuleMember -Variable "$($Global:ProductVersion)"
-Export-ModuleMember -Variable "$($Global:chkLocalver)"
-Export-ModuleMember -Function "Update"
-Export-ModuleMember -Function "UpdateGUI"
-Export-ModuleMember -Function "UpdateProcess"
-Export-ModuleMember -Function "ArchivePacker"
-Export-ModuleMember -Function "Archive"
-Export-ModuleMember -Function "Compressing"
-Export-ModuleMember -Function "ArchitecturePacker"
-Export-ModuleMember -Function "GetArchitecturePacker"
-Export-ModuleMember -Function "TestURI"
+Export-ModuleMember -Variable $Global:ProductVersion, $Global:chkLocalver
+Export-ModuleMember -Function Update, UpdateGUI, UpdateProcess, ArchivePacker, Archive, Compressing, ArchitecturePacker, GetArchitecturePacker, TestURI

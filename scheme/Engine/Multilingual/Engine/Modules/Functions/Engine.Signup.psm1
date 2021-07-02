@@ -218,5 +218,4 @@ Function SignupProcess
 	}
 }
 
-Export-ModuleMember -Function "Signup"
-Export-ModuleMember -Function "SignupProcess"
+Export-ModuleMember -Function Signup, SignupProcess

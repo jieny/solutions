@@ -54,7 +54,7 @@ Function Mainpage
 			Mainpage
 		}
 		"r" {
-			ImportModules
+			Language -Auto
 			ToMainpage -wait 2
 		}
 		"q" { exit }
@@ -85,6 +85,4 @@ Function ToMainpage
 	}
 }
 
-Export-ModuleMember -Function "Logo"
-Export-ModuleMember -Function "Mainpage"
-Export-ModuleMember -Function "ToMainpage"
+Export-ModuleMember -Function Logo, Mainpage, ToMainpage

@@ -8,7 +8,7 @@
 
 <#
 	.Set system language settings
-	.设置系统语言设置
+	.设置系统语言
 #>
 Function LanguageSetting
 {
@@ -144,5 +144,4 @@ Function ProcessLanguage {
 	}
 }
 
-Export-ModuleMember -Function "LanguageSetting"
-Export-ModuleMember -Function "ProcessLanguage"
+Export-ModuleMember -Function LanguageSetting, ProcessLanguage

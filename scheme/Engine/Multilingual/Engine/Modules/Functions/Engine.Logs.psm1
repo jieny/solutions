@@ -102,5 +102,4 @@ Function Logging
 	Start-Transcript -Path "$LogsSaveFolder\$SaveTo.log" -Force -ErrorAction SilentlyContinue
 }
 
-Export-ModuleMember -Function "Logging"
-Export-ModuleMember -Function "WriteLogs"
+Export-ModuleMember -Function Logging, WriteLogs
