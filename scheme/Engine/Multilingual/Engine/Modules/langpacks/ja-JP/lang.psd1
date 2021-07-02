@@ -9,10 +9,13 @@
 	OK                        = 決定する
 	Cancel                    = キャンセル
 	Exit                      = 脱落
+	AllSel                    = すべて選択
+	AllClear                  = すべてクリア
 	Inoperable                = 動作不能
 	ForceUpdate               = 強制的に確認して更新する
 	SettingLangAndKeyboard    = システム言語とキーボードを設定する
 	SwitchLanguage            = 言語を切り替える
+	RefreshModules            = モジュールをリロードします
 	Choose                    = 選んでください
 	FailedCreateFolder        = ディレクトリの作成に失敗しました:
 	ToMsg                     = \n   {0} 数秒後、自動的にメインメニューに戻ります。
@@ -29,6 +32,11 @@
 	Pinyi                     = ピンイン
 
 	# update
+	UpdateServerSelect        = 自動サーバー選択またはカスタム選択
+	UpdateServerNoSelect      = 利用可能なサーバーを選択してください
+	UpdateSilent              = アップデートが利用可能な場合、サイレントアップデート
+	UpdateReset               = このソリューションをリセットする
+	UpdateResetTips           = ダウンロードアドレスが利用可能になると、自動的にダウンロードして更新するように強制されます。
 	UpdateExit                = 自動更新スクリプトは {0} 秒後に自動的に終了します。
 	UpdateNoLocalVersion      = ローカル バージョンの version.xml ファイルが見つかりませんでした。チェックの更新は中止されました。
 	UpdateCheckServerStatus   = サーバーのステータスを確認します ( 合計 {0} オプション )
