@@ -9,10 +9,13 @@
 	OK                        = 결정
 	Cancel                    = 취소
 	Exit                      = 그만두 다
+	AllSel                    = 모두 선택
+	AllClear                  = 모두 지우기
 	Inoperable                = 작동 불가
 	ForceUpdate               = 강제 확인 및 업데이트
 	SettingLangAndKeyboard    = 시스템 언어 및 키보드 설정
 	SwitchLanguage            = 언어 전환
+	RefreshModules            = 모듈 다시로드
 	Choose                    = 선택하세요
 	FailedCreateFolder        = 디렉터리 생성 실패:
 	ToMsg                     = \n   {0} 몇 초 후 자동으로 주 메뉴로 돌아갑니다.
@@ -29,10 +32,15 @@
 	Pinyi                     = 병음
 
 	# update
+	UpdateServerSelect        = 자동 서버 선택 또는 사용자 지정 선택
+	UpdateServerNoSelect      = 사용 가능한 서버를 선택하십시오
+	UpdateSilent              = 사용 가능한 업데이트가있을 때 자동 업데이트
+	UpdateReset               = 이 솔루션 재설정
+	UpdateResetTips           = 다운로드 주소를 사용할 수 있으면 자동으로 다운로드 및 업데이트해야합니다.
 	UpdateExit                = 자동 업데이트 스크립트는 {0} 초 후에 자동으로 종료됩니다.
 	UpdateNoLocalVersion      = 로컬 버전의 version.xml 파일을 찾을 수 없습니다. 업데이트 확인이 중단되었습니다.
 	UpdateCheckServerStatus   = 서버 상태 확인 ( 총 {0} 선택 사항 )
-	UpdateServerAddress       = 서버 주소 : {0}
+	UpdateServerAddress       = 서버 주소: {0}
 	UpdateServeravailable     = 상태: 사용 가능
 	UpdateServerUnavailable   = 상태: 사용할 수 없음
 	UpdatePriority            = 우선 순위로 설정 됨
