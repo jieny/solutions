@@ -336,6 +336,15 @@ Function LanguageSelectGUI
 		}
 	}
 
+	switch ($Global:IsLang) {
+		"zh-CN" {
+			$GUISelectLanguage.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
+		}
+		Default {
+			$GUISelectLanguage.Font = New-Object System.Drawing.Font("Arial", 9, [System.Drawing.FontStyle]::Regular)
+		}
+	}
+
 	$GUISelectLanguage.FormBorderStyle = 'Fixed3D'
 	$GUISelectLanguage.ShowDialog() | Out-Null
 }
