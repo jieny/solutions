@@ -19,7 +19,7 @@ Function Logo
 	Write-Host "`n   Author: $($Global:UniqueID) ( $($Global:AuthorURL) )
 
    From: $($Global:UniqueID)'s Solutions
-   buildstring: $($Global:ProductVersion).bs_release.210226-1208`n"
+   buildstring: $($ProductVersion).bs_release.210226-1208`n"
 }
 
 <#

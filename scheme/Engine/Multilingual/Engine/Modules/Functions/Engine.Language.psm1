@@ -33,7 +33,7 @@ Function LanguageSetting
 		.添加当前首选语言
 	#>
 	Write-Host "   - $($lang.SetLang)$($Global:UILanguage)" -ForegroundColor Green
-	ProcessLanguage -NewLang $Global:UILanguage
+	LanguageProcess -NewLang $Global:UILanguage
 
 	<#
 		.Specialized processing: monolingual, and non-monolingual
@@ -50,7 +50,7 @@ Function LanguageSetting
 			.处理：单语版
 		#>
 		if ($Global:UILanguage -ne "en-US" ) {
-			ProcessLanguage -NewLang "en-US"
+			LanguageProcess -NewLang "en-US"
 		}
 	} else {
 		<#
@@ -63,7 +63,7 @@ Function LanguageSetting
 		#>
 		foreach ($item in (Get-WmiObject -Class Win32_OperatingSystem).MUILanguages) {
 			if ($Global:UILanguage -ne $item) {
-				ProcessLanguage -NewLang $item
+				LanguageProcess -NewLang $item
 			}
 		}
 	}
@@ -115,7 +115,7 @@ Function LanguageSetting
 
      https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/default-input-locales-for-windows-language-packs	
 #>
-Function ProcessLanguage {
+Function LanguageProcess {
 	param (
 		$NewLang
 	)
@@ -144,4 +144,4 @@ Function ProcessLanguage {
 	}
 }
 
-Export-ModuleMember -Function LanguageSetting, ProcessLanguage
+Export-ModuleMember -Function LanguageSetting, LanguageProcess

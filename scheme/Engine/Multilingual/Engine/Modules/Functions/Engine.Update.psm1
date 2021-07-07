@@ -10,13 +10,13 @@
 	.Current version
 	.当前版本
 #>
-$Global:ProductVersion = "1.0.0.3"
+$ProductVersion = "1.0.0.3"
 
 <#
 	.Update minimum version requirements
 	.更新最低版本要求
 #>
-$Global:chkLocalver    = "1.0.0.0"
+$ChkLocalver    = "1.0.0.0"
 
 <#
 	.Server test
@@ -329,7 +329,7 @@ Function UpdateProcess
 	If ([String]::IsNullOrEmpty($chkRemovever)) {
 		$IsCorrectAuVer = $false
 	} else {
-		if ($Global:chkLocalver.Replace('.', '') -ge $chkRemovever) {
+		if ($ChkLocalver.Replace('.', '') -ge $chkRemovever) {
 			$IsCorrectAuVer = $true
 		} else {
 			$IsCorrectAuVer = $false
@@ -337,10 +337,10 @@ Function UpdateProcess
 	}
 
 	if ($IsCorrectAuVer) {
-		Write-Host "`n   $($lang.UpdateMinimumVersion -f $($Global:chkLocalver))"
+		Write-Host "`n   $($lang.UpdateMinimumVersion -f $($ChkLocalver))"
 		$IsUpdateAvailable = $false
 
-		if ($getSerVer.version.version.Replace('.', '') -gt $Global:ProductVersion.Replace('.', '')) {
+		if ($getSerVer.version.version.Replace('.', '') -gt $ProductVersion.Replace('.', '')) {
 			$IsUpdateAvailable = $true
 		} else {
 			$IsUpdateAvailable = $false
@@ -353,15 +353,15 @@ Function UpdateProcess
 				Write-Host "   - $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "   ---------------------------------------------------"
 
-				Write-host "`n   $($lang.UpdateCurrent)$($Global:ProductVersion)
-	   $($lang.UpdateLatest)$($getSerVer.version.version)
-	
-	   $($getSerVer.changelog.title)
-	   $('-' * ($getSerVer.changelog.title).Length)
-	$($getSerVer.changelog.log.'#text')"
+				Write-host "`n   $($lang.UpdateCurrent)$($ProductVersion)
+   $($lang.UpdateLatest)$($getSerVer.version.version)
+
+   $($getSerVer.changelog.title)
+   $('-' * ($getSerVer.changelog.title).Length)
+$($getSerVer.changelog.log)`n"
 	
 				Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
-	
+
 				$FlagsCheckForceUpdate = $False
 				if ($Global:UpdateAvailableSilent) {
 					$FlagsCheckForceUpdate = $True
@@ -414,7 +414,7 @@ Function UpdateProcess
 			}
 		}
 	} else {
-		Write-host "   $($lang.UpdateNotSatisfied -f $($Global:chkLocalver), $($Global:UniqueID))"
+		Write-host "   $($lang.UpdateNotSatisfied -f $($ChkLocalver), $($Global:UniqueID))"
 	}
 
 	Language -Auto
@@ -475,6 +475,7 @@ Function Archive
 {
 	param
 	(
+		$Password,
 		$filename,
 		$to
 	)
@@ -483,7 +484,11 @@ Function Archive
 
 	if (Compressing) {
 		Write-host "   - $($lang.UseZip -f $($Global:Zip))"
-		$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y""";
+		if ([string]::IsNullOrEmpty($Password)) {
+			$arguments = "x ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
+		} else {
+			$arguments = "x ""-p$Password"" ""-r"" ""-tzip"" ""$filename"" ""-o$to"" ""-y"""
+		}
 		Start-Process $Global:Zip "$arguments" -Wait -WindowStyle Minimized
 	} else {
 		Write-host "    - $($lang.UseOSZip)"
@@ -659,5 +664,5 @@ Function TestURI
 	}
 }
 
-Export-ModuleMember -Variable $Global:ProductVersion, $Global:chkLocalver
+Export-ModuleMember -Variable ProductVersion, ChkLocalver
 Export-ModuleMember -Function Update, UpdateGUI, UpdateProcess, ArchivePacker, Archive, Compressing, ArchitecturePacker, GetArchitecturePacker, TestURI
