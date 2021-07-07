@@ -40,6 +40,12 @@ Import-Module -Name $PSScriptRoot\Modules\Engine.psd1 -PassThru -Force | Out-Nul
 Language -Auto
 
 <#
+	.Prerequisites
+	.先决条件
+#>
+Requirements
+
+<#
 	.启用日志记录并将其保存在脚本文件夹中。
 	.Enable logging and save it in the script folder.
 #>
