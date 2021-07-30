@@ -4,6 +4,10 @@
 
  .Description
   Signup Feature Modules
+
+ .NOTES
+  Author:  Yi
+  Website: http://fengyi.tel
 #>
 
 <#
