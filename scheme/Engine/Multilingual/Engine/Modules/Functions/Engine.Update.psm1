@@ -14,7 +14,7 @@
 	.Current version
 	.当前版本
 #>
-$ProductVersion = "1.0.0.5"
+$ProductVersion = "1.0.0.6"
 
 <#
 	.Update minimum version requirements
@@ -61,6 +61,7 @@ Function Update
 	param
 	(
 		[switch]$Auto,
+		[switch]$Force,
 		[switch]$IsProcess
 	)
 	
@@ -71,14 +72,14 @@ Function Update
 		$Global:IsProcess = $False
 	}
 
-	Logo -Title $($lang.PlanTask)
-	Write-Host "   $($lang.PlanTask)`n   ---------------------------------------------------"
+	Logo -Title $($lang.Update)
+	Write-Host "   $($lang.Update)`n   ---------------------------------------------------"
 
 	if ($Auto) {
 		foreach ($item in $PreServerList | Sort-Object { Get-Random } ) {
 			$Global:ServerList += $item[0] + $item[1]
 		}
-		UpdateProcess
+		UpdateProcess -Force
 	} else {
 		UpdateGUI
 	}
@@ -156,7 +157,7 @@ Function UpdateGUI
 	}
 	$GUIUpdate         = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-		Height         = 568
+		Height         = 600
 		Width          = 450
 		Text           = $lang.Update
 		TopMost        = $True
@@ -175,7 +176,7 @@ Function UpdateGUI
 		Checked        = $True
 	}
 	$GUIUpdatePanel    = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 320
+		Height         = 355
 		Width          = 428
 		BorderStyle    = 0
 		autoSizeMode   = 0
@@ -189,30 +190,30 @@ Function UpdateGUI
 		Height         = 22
 		Width          = 395
 		Text           = $lang.UpdateSilent
-		Location       = '10,368'
+		Location       = '10,400'
 		Checked        = $True
 	}
 	$GUIUpdateReset    = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 395
 		Text           = $lang.UpdateReset
-		Location       = '10,395'
+		Location       = '10,425'
 	}
 	$GUIUpdateResetTips = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "26,418"
+		Location       = "26,450"
 		Height         = 28
 		Width          = 390
 		Text           = $lang.UpdateResetTips
 	}
 	$GUIUpdateErrorMsg = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "10,458"
+		Location       = "10,490"
 		Height         = 22
 		Width          = 405
 		Text           = ""
 	}
 	$GUIUpdateOK       = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "10,482"
+		Location       = "10,515"
 		Height         = 36
 		Width          = 202
 		add_Click      = $GUIUpdateOKClick
@@ -220,7 +221,7 @@ Function UpdateGUI
 	}
 	$GUIUpdateCanel    = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "218,482"
+		Location       = "218,515"
 		Height         = 36
 		Width          = 202
 		add_Click      = $GUIUpdateCanelClick
@@ -295,6 +296,11 @@ Function UpdateGUI
 #>
 Function UpdateProcess
 {
+	param
+	(
+		[switch]$Force
+	)
+
 	<#
 		.Disabled IE first-launch configuration
 		.禁用 IE 首次启动配置
@@ -378,6 +384,10 @@ $($getSerVer.changelog.log)`n"
 				Write-host "   $($lang.UpdateNewLatest)`n" -ForegroundColor Green
 
 				$FlagsCheckForceUpdate = $False
+				if ($Force) {
+					$FlagsCheckForceUpdate = $True
+				}
+
 				if ($Global:UpdateAvailableSilent) {
 					$FlagsCheckForceUpdate = $True
 				}
@@ -442,9 +452,9 @@ Function ArchivePacker
 		$url
 	)
 
-	$output   = "$PSScriptRoot\..\..\..\latest.zip"
-	$PPocess  = "$PSScriptRoot\..\..\Post.Processing.bat"
-	$PsPocess = "$PSScriptRoot\..\..\Post.Processing.ps1"
+	$output   = "$($PSScriptRoot)\..\..\..\latest.zip"
+	$PPocess  = "$($PSScriptRoot)\..\..\Post.Processing.bat"
+	$PsPocess = "$($PSScriptRoot)\..\..\Post.Processing.ps1"
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
@@ -453,7 +463,7 @@ Function ArchivePacker
 
 	if (Test-Path -Path $output -PathType Leaf) {
 		Write-Host "`n   $($lang.UpdateUnpacking)$output"
-		Archive -filename $output -to "$PSScriptRoot\..\..\..\"
+		Archive -filename $output -to "$($PSScriptRoot)\..\..\..\"
 		RefreshModules -Silent
 		Write-Host "`n   * $($lang.UpdatePostProc)"
 		if ($Global:IsProcess) {

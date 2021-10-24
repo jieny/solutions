@@ -11,6 +11,7 @@
 	Exit                      = выбывать
 	AllSel                    = Выбрать все
 	AllClear                  = Очистить все
+	Operable                  = Работоспособен
 	Inoperable                = Вышедший из строя
 	ForceUpdate               = Принудительно проверить и обновить
 	SettingLangAndKeyboard    = Установите системный язык и клавиатуру
@@ -20,11 +21,21 @@
 	FailedCreateFolder        = Не удалось создать каталог:
 	ToMsg                     = \n   {0} Через несколько секунд он автоматически вернется в главное меню.
 	ToQuit                    = \n   {0} Выйти из главного меню за секунды.
-	PlanTask                  = Запланированные задачи
 	DiskSearch                = План поиска:
 	DiskSearchFind            = Поиск, выполняется: {0}
 	DeployCleanup             = Очистить Deploy каталог
+	FirstDeployment           = Развертывание первого опыта
+	FirstDeploymentWarning    = Не выключайте значок PowerShell, отображаемый на панели задач.
+	FirstDeploymentDone       = Развертывание завершено.
+	FirstDeploymentPopup      = Всплывает основной интерфейс
+	FirstExpFinishOnDemand    = Разрешить первый предварительный опыт, как и планировалось
+	DeployTask                = Задачи развертывания: \
 	Reboot                    = По завершении перезагрузите компьютер.
+
+	DeployPackerTips          = Доступны пакеты развертывания
+	DeployPackerTipsDone      = Пакет развертывания завершен.
+	DeployOfficeTips          = Доступен план развертывания Office
+	DeployOfficeTipsDone      = План развертывания Office завершен.
 
 	NetworkLocationWizard     = Мастер сетевого расположения
 	UseZip                    = Использовать программу распаковки {0}
