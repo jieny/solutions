@@ -4,7 +4,7 @@
 		"url":  "https://fengyi.tel"
 	},
 	"version": {
-		"buildstring": "8.0.0.0.bs_release.220110-1208",
+		"buildstring": "8.0.0.1.bs_release.220110-1208",
 		"version":     "8.0.0.0",
 		"minau":       "7.0.0.0"
 	},
