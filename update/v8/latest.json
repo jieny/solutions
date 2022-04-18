@@ -4,13 +4,13 @@
 		"url":  "https://fengyi.tel"
 	},
 	"version": {
-		"buildstring": "8.0.1.6.bs_release.220201-1208",
-		"version":     "8.0.1.6",
+		"buildstring": "8.0.1.8.bs_release.220201-1208",
+		"version":     "8.0.1.8",
 		"minau":       "7.0.0.0"
 	},
 	"changelog": {
 		"title": "Yi's Solutions - new autoupdate system",
 		"log":   "   - Latest *Update"
 	},
-	"url": "https://github.com/ilikeyi/solutions/raw/main/update/v8/latest.zip"
+	"url": "https://fengyi.tel/download/solutions/update/v8/latest.zip"
 }
