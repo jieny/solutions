@@ -1,4 +1,4 @@
-﻿$Lang = "zh-CN"
+$Lang = "zh-CN"
 
 Get-AppXProvisionedPackage -Path "D:\OS11_Custom\Install\Install\Mount" | Foreach-object {
     if ($_.DisplayName -Like "*LanguageExperiencePack*$($Lang)*") {
