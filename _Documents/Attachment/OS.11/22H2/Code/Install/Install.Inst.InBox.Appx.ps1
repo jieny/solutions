@@ -302,7 +302,7 @@ Function Install_Appx
                Write-Host "Done" -ForegroundColor Green
             } catch {
                 Write-Host "Failed" -ForegroundColor Red
-                Write-Host "   $($_)" -ForegroundColor Yellow
+                Write-Host "   $($_)" -ForegroundColor Red
             }
         } else {
             Write-host "   No License".PadRight(22) -NoNewline -ForegroundColor Red
@@ -313,7 +313,7 @@ Function Install_Appx
                 Write-Host "Done" -ForegroundColor Green
             } catch {
                 Write-Host "Failed" -ForegroundColor Red
-                Write-Host "   $($_)" -ForegroundColor Yellow
+                Write-Host "   $($_)" -ForegroundColor Red
             }
         }
     } else {

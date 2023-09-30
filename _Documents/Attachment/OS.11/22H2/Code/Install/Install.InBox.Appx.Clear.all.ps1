@@ -7,5 +7,6 @@
         Write-host "Finish" -ForegroundColor Green
     } catch {
         Write-host "Failed" -ForegroundColor Red
+        Write-host "   $($_)" -ForegroundColor Red
     }
 }

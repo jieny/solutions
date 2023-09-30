@@ -17,4 +17,5 @@ if (Test-Path "$($FileName).New" -PathType Leaf) {
 	Write-Host "Finish" -ForegroundColor Green
 } else {
 	Write-host "Failed" -ForegroundColor Red
+    Write-host "   $($_)" -ForegroundColor Red
 }

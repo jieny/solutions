@@ -1,5 +1,5 @@
 ﻿$Mount = "D:\OS2022_Custom\Install\WinRE\Mount"
-$Sources = "D:\OS2022_Custom\Install\WinRE\Language\zh-CN"
+$Sources = "D:\OS2022_Custom\Install\WinRE\Language\Add\zh-CN"
 
 $Initl_install_Language_Component = @()
 Get-WindowsPackage -Path $Mount | ForEach-Object {
@@ -45,6 +45,7 @@ ForEach ($Rule in $Language_List) {
                 Write-host "Finish" -ForegroundColor Green
             } catch {
                 Write-host "Failed" -ForegroundColor Red
+                Write-host "   $($_)" -ForegroundColor Red
             }
 
             break

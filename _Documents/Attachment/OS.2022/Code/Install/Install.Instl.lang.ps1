@@ -2,7 +2,7 @@
 $Mount = "D:\OS2022_Custom\Install\Install\Mount"
 
 # 语言包来源
-$Sources = "D:\OS2022_Custom\Install\Install\Language\zh-CN"
+$Sources = "D:\OS2022_Custom\Install\Install\Language\Add\zh-CN"
 
 # 获取组件
 $Initl_install_Language_Component = @()
@@ -44,6 +44,7 @@ ForEach ($Rule in $Language_List) {
 				Write-host "Finish" -ForegroundColor Green
 			} catch {
 				Write-host "Failed" -ForegroundColor Red
+        		Write-host "   $($_)" -ForegroundColor Red
 			}
 
             break

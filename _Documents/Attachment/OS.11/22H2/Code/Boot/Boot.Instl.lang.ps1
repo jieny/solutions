@@ -1,5 +1,5 @@
 ﻿$Mount = "D:\OS11_Custom\Boot\Boot\Mount"
-$Sources = "D:\OS11_Custom\Boot\Boot\Language\zh-CN"
+$Sources = "D:\OS11_Custom\Boot\Boot\Language\Add\zh-CN"
 
 $Initl_install_Language_Component = @()
 Get-WindowsPackage -Path $Mount | ForEach-Object {
@@ -33,7 +33,7 @@ ForEach ($Rule in $Language) {
             Write-host "   Component name: " -NoNewline
             Write-host $Component -ForegroundColor Green
             Write-host "   Language pack file: " -NoNewline
-            Write-host $Rule.File -ForegroundColor Green
+            Write-host "$($Sources)\$($Rule.File)" -ForegroundColor Green
 
             Write-Host "   Installing ".PadRight(22) -NoNewline
             try {
@@ -41,6 +41,7 @@ ForEach ($Rule in $Language) {
                 Write-host "Finish" -ForegroundColor Green
             } catch {
                 Write-host "Failed" -ForegroundColor Red
+                Write-host "   $($_)" -ForegroundColor Red
             }
 
             break

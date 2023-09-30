@@ -10,6 +10,7 @@ Get-AppXProvisionedPackage -Path "D:\OS11_Custom\Install\Install\Mount" | Foreac
             Write-host "Finish" -ForegroundColor Green
         } catch {
             Write-host "Failed" -ForegroundColor Red
+            Write-host "   $($_)" -ForegroundColor Red
         }
     }
 }
