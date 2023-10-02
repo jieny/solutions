@@ -6,31 +6,73 @@ $SaveTo = "D:\OS2022_Custom"
 
 # 提取添加、删除
 $Extract_language_Pack = @(
-    @{
-        Tag   = "zh-CN"
-        Act   = "Add"
-        Scope = @( "Install\Install"; "Install\WinRE"; "Boot\Boot" )
-    }
-    @{
-        Tag   = "en-US"
-        Act   = "Del"
-        Scope = @( "Install\Install"; "Install\WinRE"; "Boot\Boot" )
-    }
+    @{ Tag = "zh-CN"; Act = "Add"; Scope = @( "Install\Install"; "Install\WinRE"; "Boot\Boot" ) }
+    @{ Tag = "en-US"; Act = "Del"; Scope = @( "Install\Install"; "Install\WinRE"; "Boot\Boot" ) }
 )
 
 Function Extract_Language
 {
-    param
-    (
-        $Act, $NewLang, $Expand
-    )
+    param( $Act, $NewLang, $Expand )
+
+    Function Match_Required_Fonts
+    {
+        param( $Lang )
+
+        $Fonts = @(
+            @{ Match = @("as", "ar-SA", "ar", "ar-AE", "ar-BH", "ar-DJ", "ar-DZ", "ar-EG", "ar-ER", "ar-IL", "ar-IQ", "ar-JO", "ar-KM", "ar-KW", "ar-LB", "ar-LY", "ar-MA", "ar-MR", "ar-OM", "ar-PS", "ar-QA", "ar-SD", "ar-SO", "ar-SS", "ar-SY", "ar-TD", "ar-TN", "ar-YE", "arz-Arab", "ckb-Arab", "fa", "fa-AF", "fa-IR", "glk-Arab", "ha-Arab", "ks-Arab", "ks-Arab-IN", "ku-Arab", "ku-Arab-IQ", "mzn-Arab", "pa-Arab", "pa-Arab-PK", "pnb-Arab", "prs", "prs-AF", "prs-Arab", "ps", "ps-AF", "sd-Arab", "sd-Arab-PK", "tk-Arab", "ug", "ug-Arab", "ug-CN", "ur", "ur-IN", "ur-PK", "uz-Arab", "uz-Arab-AF"); Name = "Arab"; }
+            @{ Match = @("bn-IN", "as-IN", "bn", "bn-BD", "bpy-Beng"); Name = "Beng"; }
+            @{ Match = @("da-dk", "iu-Cans", "iu-Cans-CA"); Name = "Cans"; }
+            @{ Match = @("chr-Cher-US", "chr-Cher"); Name = "Cher"; }
+            @{ Match = @("hi-IN", "bh-Deva", "brx", "brx-Deva", "brx-IN", "hi", "ks-Deva", "mai", "mr", "mr-IN", "ne", "ne-IN", "ne-NP", "new-Deva", "pi-Deva", "sa", "sa-Deva", "sa-IN"); Name = "Deva"; }
+            @{ Match = @("am", "am-ET", "byn", "byn-ER", "byn-Ethi", "ti", "ti-ER", "ti-ET", "tig", "tig-ER", "tig-Ethi", "ve-Ethi", "wal", "wal-ET", "wal-Ethi"); Name = "Ethi"; }
+            @{ Match = @("gu", "gu-IN"); Name = "Gujr"; }
+            @{ Match = @("pa", "pa-IN", "pa-Guru"); Name = "Guru"; }
+            @{ Match = @("zh-CN", "cmn-Hans", "gan-Hans", "hak-Hans", "wuu-Hans", "yue-Hans", "zh-gan-Hans", "zh-hak-Hans", "zh-Hans", "zh-SG", "zh-wuu-Hans", "zh-yue-Hans"); Name = "Hans"; }
+            @{ Match = @("zh-TW", "cmn-Hant", "hak-Hant", "lzh-Hant", "zh-hak-Hant", "zh-Hant", "zh-HK", "zh-lzh-Hant", "zh-MO", "zh-yue-Hant"); Name = "Hant"; }
+            @{ Match = @("he", "he-IL", "yi"); Name = "Hebr"; }
+            @{ Match = @("ja", "ja-JP"); Name = "Jpan"; }
+            @{ Match = @("km", "km-KH"); Name = "Khmr"; }
+            @{ Match = @("kn", "kn-IN"); Name = "Knda"; }
+            @{ Match = @("ko", "ko-KR"); Name = "Kore"; }
+            @{ Match = @("de-de", "lo", "lo-LA"); Name = "Laoo"; }
+            @{ Match = @("ml", "ml-IN"); Name = "Mlym"; }
+            @{ Match = @("or", "or-IN"); Name = "Orya"; }
+            @{ Match = @("si", "si-LK"); Name = "Sinh"; }
+            @{ Match = @("tr-tr", "arc-Syrc", "syr", "syr-SY", "syr-Syrc"); Name = "Syrc"; }
+            @{ Match = @("ta", "ta-IN", "ta-LK", "ta-MY", "ta-SG"); Name = "Taml"; }
+            @{ Match = @("te", "te-IN"); Name = "Telu"; }
+            @{ Match = @("th", "th-TH"); Name = "Thai"; }
+        )
+
+        ForEach ($item in $Fonts) {
+            if (($item.Match) -Contains $Lang) {
+                return $item.Name
+            }
+        }
+
+        return "Not_matched"
+    }
+
+    Function Match_Other_Region_Specific_Requirements
+    {
+        param( $Lang )
+
+        $Fonts = @(
+            @{ Match = @("zh-TW"); Name = "Taiwan"; }
+        )
+
+        ForEach ($item in $Fonts) {
+            if (($item.Match) -Contains $Lang) {
+                return $item.Name
+            }
+        }
+
+        return "Skip_specific_packages"
+    }
 
     Function Extract_Process
     {
-        param
-        (
-            $Package, $Name, $NewSaveTo
-        )
+        param( $Package, $Name, $NewSaveTo )
 
         $NewSaveTo = "$($SaveTo)\$($NewSaveTo)\Language\$($Act)\$($NewLang)"
         New-Item -Path $NewSaveTo -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
@@ -66,11 +108,9 @@ Function Extract_Language
             $Path = "$($NewSaveTo)\$([IO.Path]::GetFileName($item))"
 
             if (Test-Path $Path -PathType Leaf) {
-                Write-host "   Discover: " -NoNewLine
-                Write-host $Path -ForegroundColor Green
+                Write-host "   Discover: " -NoNewLine; Write-host $Path -ForegroundColor Green
             } else {
-                Write-host "   Not found: " -NoNewLine
-                Write-host $Path -ForegroundColor Red
+                Write-host "   Not found: " -NoNewLine; Write-host $Path -ForegroundColor Red
             }
         }
     }
@@ -146,40 +186,16 @@ Function Extract_Language
         }
     )
 
-    switch -regex ($NewLang) {
-        "ar-AE|ar-BH|ar-DJ|ar-DZ|ar-EG|ar-ER|ar-IL|ar-IQ|ar-JO|ar-KM|ar-KW|ar-LB|ar-LY|ar-MA|ar-MR|ar-OM|ar-PS|ar-QA|ar-SA|ar-SD|ar-SO|ar-SS|ar-SY|ar-TD|ar-TN|ar-YE|arz-Arab|ckb-Arab|fa-AF|fa-IR|glk-Arab|ha-Arab|ks-Arab|ks-Arab-IN|ku-Arab|ku-Arab-IQ|mzn-Arab|pa-Arab|pa-Arab-PK|pnb-Arab|prs-AF|prs-Arab|ps-AF|sd-Arab|sd-Arab-PK|tk-Arab|ug-Arab|ug-CN|ur-IN|ur-PK|uz-Arab|uz-Arab-AF" { $NewDiyLanguage = "Arab" }
-        "as-IN|bn-BD|bn-IN|bpy-Beng" { $NewDiyLanguage = "Beng" }
-        "da-dk|iu-Cans|iu-Cans-CA" { $NewDiyLanguage = "Cans" }
-        "chr-Cher-US|chr-Cher" { $NewDiyLanguage = "Cher" }
-        "bh-Deva|brx-Deva|brx-IN|hi-IN|ks-Deva|mr-IN|ne-IN|ne-NP|new-Deva|pi-Deva|sa-Deva|sa-IN" { $NewDiyLanguage = "Deva" }
-        "am-ET|byn-ER|byn-Ethi|ti-ER|ti-ET|tig-ER|tig-Ethi|ve-Ethi|wal-ET|wal-Ethi" { $NewDiyLanguage = "Ethi" }
-        "gu-IN" { $NewDiyLanguage = "Gujr" }
-        "pa-Guru|pa-IN" { $NewDiyLanguage = "Guru" }
-        "cmn-Hans|gan-Hans|hak-Hans|wuu-Hans|yue-Hans|zh-CN|zh-gan-Hans|zh-hak-Hans|zh-Hans|zh-SG|zh-wuu-Hans|zh-yue-Hans" { $NewDiyLanguage = "Hans" }
-        "cmn-Hant|hak-Hant|lzh-Hant|zh-hak-Hant|zh-Hant|zh-HK|zh-lzh-Hant|zh-MO|zh-TW|zh-yue-Hant" { $NewDiyLanguage = "Hant" }
-        "he-IL|yi" { $NewDiyLanguage = "Hebr" }
-        "ja-JP" { $NewDiyLanguage = "Jpan" }
-        "km-KH" { $NewDiyLanguage = "Khmr" }
-        "kn-IN" { $NewDiyLanguage = "Knda" }
-        "ko-KR" { $NewDiyLanguage = "Kore" }
-        "de-de|lo-LA" { $NewDiyLanguage = "Laoo" }
-        "ml-IN" { $NewDiyLanguage = "Mlym" }
-        "or-IN" { $NewDiyLanguage = "Orya" }
-        "si-LK" { $NewDiyLanguage = "Sinh" }
-        "tr-tr|arc-Syrc|syr-SY|syr-Syrc" { $NewDiyLanguage = "Syrc" }
-        "ta-IN|ta-LK|ta-MY|ta-SG" { $NewDiyLanguage = "Taml" }
-        "te-IN" { $NewDiyLanguage = "Telu" }
-        "th-TH" { $NewDiyLanguage = "Thai" }
-        default { $NewDiyLanguage = "skip_$($NewLanguage)_" }
-    }
-    
+    $NewFonts = Match_Required_Fonts -Lang $NewLang
+    $SpecificPackage = Match_Other_Region_Specific_Requirements -Lang $NewLang
+
     Foreach ($item in $Expand) {
         $Language = @()
 
         Foreach ($itemList in $AdvLanguage) {
             if ($itemList.Path -eq $item) {
                 Foreach ($PrintLang in $itemList.Rule) {
-                    $Language += "$($PrintLang)".Replace("{Lang}", $NewLang).Replace("{DiyLang}", $NewDiyLanguage)
+                    $Language += "$($PrintLang)".Replace("{Lang}", $NewLang).Replace("{DiyLang}", $NewFonts).Replace("{Specific}", $SpecificPackage)
                 }
 
                 Extract_Process -NewSaveTo $itemList.Path -Package $Language -Name $item
