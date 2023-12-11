@@ -1,0 +1,983 @@
+﻿<#
+	.Del driver
+	.删除驱动
+#>
+Function Drive_Delete_UI
+{
+	<#
+		.转换架构类型
+	#>
+	switch ($Global:Architecture) {
+		"arm64" { $ArchitectureNew = "arm64" }
+		"AMD64" { $ArchitectureNew = "x64" }
+		"x86" { $ArchitectureNew = "x86" }
+	}
+
+	<#
+		.初始化数组：选择新目录
+	#>
+	$Script:TempSelectDriveDelFolderQueue = @()
+
+	$SearchFolderRule = @(
+		"$($Global:MainMasterFolder)\$($Global:ImageType)\_Custom\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Drive\$($ArchitectureNew)\Del"
+		"$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Drive\Del"
+		"$($Global:Image_source)_Custom\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Drive\Del"
+	)
+	$SearchFolderRule = $SearchFolderRule | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+
+	if (-not $Global:EventQueueMode) {
+		Logo -Title "$($lang.Drive): $($lang.Del)"
+		Write-Host "   $($lang.Dashboard)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
+		Write-Host "   $($lang.MountImageTo) " -NoNewline
+		if (Test-Path $Global:Mount_To_Route -PathType Container) {
+			Write-Host $Global:Mount_To_Route -ForegroundColor Green
+		} else {
+			Write-Host $Global:Mount_To_Route -ForegroundColor Yellow
+		}
+
+		Write-Host "   $($lang.MainImageFolder) " -NoNewline
+		if (Test-Path $Global:Image_source -PathType Container) {
+			Write-Host $Global:Image_source -ForegroundColor Green
+		} else {
+			Write-Host $Global:Image_source -ForegroundColor Red
+			Write-host "   $('-' * 80)"
+			Write-Host "   $($lang.NoInstallImage)" -ForegroundColor Red
+
+			ToWait -wait 2
+		}
+
+		Image_Get_Mount_Status
+	}
+
+	Write-Host "`n   $($lang.Drive): $($lang.Del)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+
+	Add-Type -AssemblyName System.Windows.Forms
+	Add-Type -AssemblyName System.Drawing
+	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	<#
+		.事件：强行结束按需任务
+	#>
+	$UI_Main_Suggestion_Stop_Click = {
+		$UI_Main.Hide()
+		Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+		Event_Reset_Variable
+		$UI_Main.Close()
+	}
+
+	Function Drive_Del_Refresh_Sources
+	{
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+		$UI_Main_Rule.controls.Clear()
+
+		<#
+			.计算公式：
+				四舍五入为整数
+					(初始化字符长度 * 初始化字符长度）
+				/ 控件高度
+		#>
+
+		<#
+			.初始化字符长度
+		#>
+		[int]$InitCharacterLength = 78
+
+		<#
+			.初始化控件高度
+		#>
+		[int]$InitControlHeight = 40
+
+		<#
+			.预规则，标题
+		#>
+		$UI_Main_Rule_Name = New-Object system.Windows.Forms.Label -Property @{
+			Height         = 30
+			Width          = 505
+			margin         = "0,30,0,0"
+			Text           = $lang.AddSources
+		}
+		$UI_Main_Pre_Rule  = New-Object system.Windows.Forms.Label -Property @{
+			Height         = 30
+			Width          = 505
+			Padding        = "16,0,0,0"
+			Text           = $lang.RulePre
+		}
+		$UI_Main_Rule.controls.AddRange((
+			$UI_Main_Rule_Name,
+			$UI_Main_Pre_Rule
+		))
+
+		ForEach ($item in $SearchFolderRule) {
+			$InitLength = $item.Length
+			if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
+
+			$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
+				Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
+				Width     = 470
+				Margin    = "35,0,0,10"
+				Text      = $item
+				Tag       = $item
+				add_Click = {
+					$UI_Main_Error.Text = ""
+					$UI_Main_Error_Icon.Image = $null
+				}
+			}
+			$UI_Main_Rule.controls.AddRange($CheckBox)
+
+			$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
+				autosize        = 1
+				Padding         = "50,0,0,0"
+				margin          = "0,0,0,15"
+				Text            = $lang.RuleNoFindFile
+				Tag             = $item
+				LinkColor       = "GREEN"
+				ActiveLinkColor = "RED"
+				LinkBehavior    = "NeverUnderline"
+				add_Click       = {
+					$UI_Main_Error.Text = ""
+					$UI_Main_Error_Icon.Image = $null
+		
+					if ([string]::IsNullOrEmpty($This.Tag)) {
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+					} else {
+						if (Test-Path $This.Tag -PathType Container) {
+							Start-Process $This.Tag
+		
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
+						} else {
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+						}
+					}
+				}
+			}
+
+			$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
+				Height          = 30
+				Width           = 470
+				Padding         = "48,0,0,0"
+				Text            = $lang.OpenFolder
+				Tag             = $item
+				LinkColor       = "GREEN"
+				ActiveLinkColor = "RED"
+				LinkBehavior    = "NeverUnderline"
+				add_Click       = {
+					$UI_Main_Error.Text = ""
+					$UI_Main_Error_Icon.Image = $null
+
+					if ([string]::IsNullOrEmpty($This.Tag)) {
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+					} else {
+						if (Test-Path $This.Tag -PathType Container) {
+							Start-Process $This.Tag
+		
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
+						} else {
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+						}
+					}
+				}
+			}
+
+			$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
+				Height          = 30
+				Width           = 470
+				Padding         = "48,0,0,0"
+				Text            = $lang.Paste
+				Tag             = $item
+				LinkColor       = "GREEN"
+				ActiveLinkColor = "RED"
+				LinkBehavior    = "NeverUnderline"
+				add_Click       = {
+					$UI_Main_Error.Text = ""
+					$UI_Main_Error_Icon.Image = $null
+
+					if ([string]::IsNullOrEmpty($This.Tag)) {
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
+					} else {
+						Set-Clipboard -Value $This.Tag
+
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+						$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
+					}
+				}
+			}
+
+			if (Test-Path $item -PathType Container) {
+				if ($UI_Main_Dont_Checke_Is_Folder.Checked) {
+					$CheckBox.Checked = $True
+				} else {
+					$CheckBox.Checked = $False
+				}
+
+				<#
+					.判断目录里，是否存在文件
+				#>
+				if ($UI_Main_Dont_Checke_Is_File.Checked) {
+					$CheckBox.Enabled = $True
+				} else {
+					<#
+						.从目录里判断是否有文件
+					#>
+					if((Get-ChildItem $item -Recurse -Include "*.inf" -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+						<#
+							.提示，未发现文件
+						#>
+
+						$UI_Main_Rule.controls.AddRange($AddSourcesPath)
+						$CheckBox.Enabled = $False
+					} else {
+						$CheckBox.Enabled = $True
+					}
+				}
+
+				$UI_Main_Rule.controls.AddRange((
+					$AddSourcesPathOpen,
+					$AddSourcesPathPaste
+				))
+
+				$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
+					Height         = 30
+					Width          = 520
+				}
+				$UI_Main_Rule.controls.AddRange($AddSourcesPath_Wrap)
+			} else {
+				$CheckBox.Enabled = $False
+
+				$AddSourcesPathNoFolder = New-Object system.Windows.Forms.LinkLabel -Property @{
+					autosize        = 1
+					Padding         = "48,0,0,0"
+					Text            = $lang.RuleMatchNoFindFolder
+					Tag             = $item
+					LinkColor       = "GREEN"
+					ActiveLinkColor = "RED"
+					LinkBehavior    = "NeverUnderline"
+					add_Click       = {
+						Check_Folder -chkpath $this.Tag
+						Drive_Del_Refresh_Sources
+					}
+				}
+				$UI_Main_Rule.controls.AddRange($AddSourcesPathNoFolder)
+
+				$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
+					Height         = 30
+					Width          = 520
+				}
+				$UI_Main_Rule.controls.AddRange($AddSourcesPath_Wrap)
+			}
+		}
+
+		<#
+			.其它规则
+		#>
+		$UI_Main_Other_Rule = New-Object system.Windows.Forms.Label -Property @{
+			Height         = 30
+			Width          = 505
+			Margin         = "0,35,0,0"
+			Padding        = "18,0,0,0"
+			Text           = $lang.RuleOther
+		}
+		$UI_Main_Rule.controls.AddRange($UI_Main_Other_Rule)
+		if ($Script:TempSelectDriveDelFolderQueue.count -gt 0) {
+			ForEach ($item in $Script:TempSelectDriveDelFolderQueue) {
+				$InitLength = $item.Length
+				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
+
+				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
+					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
+					Width     = 470
+					Margin    = "35,0,0,5"
+					Text      = $item
+					Tag       = $item
+					add_Click = {
+						$UI_Main_Error.Text = ""
+						$UI_Main_Error_Icon.Image = $null
+					}
+				}
+				$UI_Main_Rule.controls.AddRange($CheckBox)
+
+				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
+					autosize        = 1
+					Padding         = "50,0,0,0"
+					margin          = "0,0,0,10"
+					Text            = $lang.RuleNoFindFile
+					Tag             = $item
+					LinkColor       = "GREEN"
+					ActiveLinkColor = "RED"
+					LinkBehavior    = "NeverUnderline"
+					add_Click       = {
+						$UI_Main_Error.Text = ""
+						$UI_Main_Error_Icon.Image = $null
+			
+						if ([string]::IsNullOrEmpty($This.Tag)) {
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+						} else {
+							if (Test-Path $This.Tag -PathType Container) {
+								Start-Process $This.Tag
+			
+								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
+							} else {
+								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+							}
+						}
+					}
+				}
+
+				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
+					Height          = 30
+					Width           = 470
+					Padding         = "48,0,0,0"
+					Text            = $lang.OpenFolder
+					Tag             = $item
+					LinkColor       = "GREEN"
+					ActiveLinkColor = "RED"
+					LinkBehavior    = "NeverUnderline"
+					add_Click       = {
+						$UI_Main_Error.Text = ""
+						$UI_Main_Error_Icon.Image = $null
+			
+						if ([string]::IsNullOrEmpty($This.Tag)) {
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+						} else {
+							if (Test-Path $This.Tag -PathType Container) {
+								Start-Process $This.Tag
+			
+								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
+							} else {
+								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
+							}
+						}
+					}
+				}
+
+				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
+					Height          = 30
+					Width           = 470
+					Padding         = "48,0,0,0"
+					Text            = $lang.Paste
+					Tag             = $item
+					LinkColor       = "GREEN"
+					ActiveLinkColor = "RED"
+					LinkBehavior    = "NeverUnderline"
+					add_Click       = {
+						$UI_Main_Error.Text = ""
+						$UI_Main_Error_Icon.Image = $null
+
+						if ([string]::IsNullOrEmpty($This.Tag)) {
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
+						} else {
+							Set-Clipboard -Value $This.Tag
+	
+							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
+						}
+					}
+				}
+	
+				if (Test-Path $item -PathType Container) {
+					if ($UI_Main_Dont_Checke_Is_Folder.Checked) {
+						$CheckBox.Checked = $True
+					} else {
+						$CheckBox.Checked = $False
+					}
+	
+					<#
+						.判断目录里，是否存在文件
+					#>
+					if ($UI_Main_Dont_Checke_Is_File.Checked) {
+						$CheckBox.Enabled = $True
+					} else {
+						<#
+							.从目录里判断是否有文件
+						#>
+						if((Get-ChildItem $item -Recurse -Include "*.inf" -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+							<#
+								.提示，未发现文件
+							#>
+	
+							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
+							$CheckBox.Enabled = $False
+						} else {
+							$CheckBox.Enabled = $True
+						}
+					}
+	
+					$UI_Main_Rule.controls.AddRange((
+						$AddSourcesPathOpen,
+						$AddSourcesPathPaste
+					))
+
+					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
+						Height         = 30
+						Width          = 520
+					}
+					$UI_Main_Rule.controls.AddRange($AddSourcesPath_Wrap)
+				} else {
+					$CheckBox.Enabled = $False
+
+					$AddSourcesPathNoFolder = New-Object system.Windows.Forms.LinkLabel -Property @{
+						autosize        = 1
+						Padding         = "48,0,0,0"
+						Text            = $lang.RuleMatchNoFindFolder
+						Tag             = $item
+						LinkColor       = "GREEN"
+						ActiveLinkColor = "RED"
+						LinkBehavior    = "NeverUnderline"
+						add_Click       = {
+							Check_Folder -chkpath $this.Tag
+							Drive_Del_Refresh_Sources
+						}
+					}
+					$UI_Main_Rule.controls.AddRange($AddSourcesPathNoFolder)
+
+					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
+						Height         = 30
+						Width          = 520
+					}
+					$UI_Main_Rule.controls.AddRange($AddSourcesPath_Wrap)
+				}
+			}
+		} else {
+			$UI_Main_Other_Rule_Not_Find = New-Object system.Windows.Forms.Label -Property @{
+				Height         = 40
+				Width          = 490
+				Padding        = "33,0,0,0"
+				Text           = $lang.NoWork
+			}
+			$UI_Main_Rule.controls.AddRange($UI_Main_Other_Rule_Not_Find)
+
+			$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
+				Height         = 30
+				Width          = 520
+			}
+			$UI_Main_Rule.controls.AddRange($AddSourcesPath_Wrap)
+		}
+	}
+
+	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+	
+		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
+			$_.Effect = 'Copy'
+		} else {
+			$_.Effect = 'None'
+		}
+	}
+	$UI_Main_DragDrop = {
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+
+		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
+			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
+				if (Test-Path -Path $filename -PathType Container) {
+					$Get_Temp_Select_Update_Add_Folder = @()
+					$UI_Main_Rule.Controls | ForEach-Object {
+						if ($_ -is [System.Windows.Forms.CheckBox]) {
+							$Get_Temp_Select_Update_Add_Folder += $_.Tag
+						}
+					}
+
+					if ($Get_Temp_Select_Update_Add_Folder -Contains $filename) {
+						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						$UI_Main_Error.Text = $lang.Existed
+					} else {
+						$Script:TempSelectDriveDelFolderQueue += $filename
+						Drive_Del_Refresh_Sources
+					}
+				} else {
+					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+					$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.SelectFolder)"
+				}
+			}
+		}
+	}
+
+	$UI_Main           = New-Object system.Windows.Forms.Form -Property @{
+		autoScaleMode  = 2
+		Height         = 720
+		Width          = 928
+		Text           = "$($lang.Drive): $($lang.Del)"
+		StartPosition  = "CenterScreen"
+		MaximizeBox    = $False
+		MinimizeBox    = $False
+		ControlBox     = $False
+		BackColor      = "#FFFFFF"
+		FormBorderStyle = "Fixed3D"
+		AllowDrop      = $true
+		Add_DragOver   = $UI_Main_DragOver
+		Add_DragDrop   = $UI_Main_DragDrop
+	}
+	$UI_Main_Menu      = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
+		BorderStyle    = 0
+		Height         = 675
+		Width          = 555
+		autoSizeMode   = 1
+		Location       = '20,0'
+		Padding        = "0,15,0,0"
+		autoScroll     = $True
+	}
+
+	<#
+		.可选功能
+	#>
+	$UI_Main_Adv       = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 530
+		Text           = $lang.AdvOption
+	}
+
+	<#
+		.不再检查目录里是否存在文件
+	#>
+	$UI_Main_Dont_Checke_Is_File = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 530
+		Padding        = "18,0,0,0"
+		Text           = "$($lang.RuleSkipFolderCheck)*.inf"
+		add_Click      = {
+			if ($UI_Main_Dont_Checke_Is_File.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -name "$(Get_GPS_Location)_Is_Skip_Check_File_Del" -value "True" -String
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -name "$(Get_GPS_Location)_Is_Skip_Check_File_Del" -value "False" -String
+			}
+
+			Drive_Del_Refresh_Sources
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -Name "$(Get_GPS_Location)_Is_Skip_Check_File_Del" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -Name "$(Get_GPS_Location)_Is_Skip_Check_File_Del" -ErrorAction SilentlyContinue) {
+			"True" {
+				$UI_Main_Dont_Checke_Is_File.Checked = $True
+			}
+			"False" {
+				$UI_Main_Dont_Checke_Is_File.Checked = $False
+			}
+		}
+	} else {
+		$UI_Main_Dont_Checke_Is_File.Checked = $False
+	}
+
+	<#
+		.目录可用时，自动选择
+	#>
+	$UI_Main_Dont_Checke_Is_Folder = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 530
+		Padding        = "18,0,0,0"
+		Text           = $lang.RuleFindFolder
+		add_Click      = {
+			if ($UI_Main_Dont_Checke_Is_Folder.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -name "$(Get_GPS_Location)_Is_Check_Folder_Available_Del" -value "True" -String
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -name "$(Get_GPS_Location)_Is_Check_Folder_Available_Del" -value "False" -String
+			}
+
+			Drive_Del_Refresh_Sources
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -Name "$(Get_GPS_Location)_Is_Check_Folder_Available_Del" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -Name "$(Get_GPS_Location)_Is_Check_Folder_Available_Del" -ErrorAction SilentlyContinue) {
+			"True" {
+				$UI_Main_Dont_Checke_Is_Folder.Checked = $True
+			}
+			"False" {
+				$UI_Main_Dont_Checke_Is_Folder.Checked = $False
+			}
+		}
+	} else {
+		$UI_Main_Dont_Checke_Is_Folder.Checked = $True
+	}
+
+	$UI_Main_Rule      = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
+		BorderStyle    = 0
+		autosize       = 1
+		autoSizeMode   = 1
+		autoScroll     = $False
+	}
+
+	$UI_Main_Refresh_Sources = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "620,10"
+		Height         = 36
+		Width          = 280
+		Text           = $lang.Refresh
+		add_Click      = {
+			Drive_Del_Refresh_Sources
+
+			$UI_Main_Error.Text = "$($lang.Refresh), $($lang.Done)"
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+		}
+	}
+	$UI_Main_Select_Folder = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "620,50"
+		Height         = 36
+		Width          = 280
+		Text           = $lang.SelectFolder
+		add_Click      = {
+			$Get_Temp_Select_Update_Add_Folder = @()
+			$UI_Main_Rule.Controls | ForEach-Object {
+				if ($_ -is [System.Windows.Forms.CheckBox]) {
+					$Get_Temp_Select_Update_Add_Folder += $_.Tag
+				}
+			}
+
+			$FolderBrowser   = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
+				RootFolder   = "MyComputer"
+			}
+
+			if ($FolderBrowser.ShowDialog() -eq "OK") {
+				if ($Get_Temp_Select_Update_Add_Folder -Contains $FolderBrowser.SelectedPath) {
+					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+					$UI_Main_Error.Text = $lang.Existed
+				} else {
+					$Script:TempSelectDriveDelFolderQueue += $FolderBrowser.SelectedPath
+					Drive_Del_Refresh_Sources
+				}
+			} else {
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+				$UI_Main_Error.Text = $lang.UserCanel
+			}
+		}
+	}
+	$UI_Main_Select_Folder_Tips = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 100
+		Width          = 260
+		Location       = "628,95"
+		Text           = $lang.DropFolder
+	}
+
+	<#
+		.End on-demand mode
+		.结束按需模式
+	#>
+	$UI_Main_Suggestion_Manage = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 30
+		Width          = 280
+		Text           = $lang.AssignSetting
+		Location       = '620,395'
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Event_Assign_Setting }
+	}
+	$UI_Main_Suggestion_Stop_Current = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 30
+		Width          = 415
+		Text           = "$($lang.AssignEndCurrent -f $Global:Primary_Key_Image.Uid)"
+		Location       = '620,425'
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = {
+			$UI_Main.Hide()
+			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+			Event_Need_Mount_Global_Variable -DevQueue "9" -Master $Global:Primary_Key_Image.Master -ImageFileName $Global:Primary_Key_Image.ImageFileName
+			Event_Reset_Suggest
+			$UI_Main.Close()
+		}
+	}
+	$UI_Main_Event_Assign_Stop = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 30
+		Width          = 280
+		Text           = $lang.AssignForceEnd
+		Location       = '620,455'
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = $UI_Main_Suggestion_Stop_Click
+	}
+
+	<#
+		.Suggested content
+		.建议的内容
+	#>
+	$UI_Main_Suggestion_Not = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 430
+		Text           = $lang.SuggestedSkip
+		Location       = '620,390'
+		add_Click      = {
+			if ($UI_Main_Suggestion_Not.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -name "IsSuggested" -value "True" -String
+				$UI_Main_Suggestion_Setting.Enabled = $False
+				$UI_Main_Suggestion_Stop.Enabled = $False
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -name "IsSuggested" -value "False" -String
+				$UI_Main_Suggestion_Setting.Enabled = $True
+				$UI_Main_Suggestion_Stop.Enabled = $True
+			}
+		}
+	}
+	$UI_Main_Suggestion_Setting = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 30
+		Width          = 280
+		Text           = $lang.AssignSetting
+		Location       = '636,426'
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Event_Assign_Setting }
+	}
+	$UI_Main_Suggestion_Stop = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 30
+		Width          = 280
+		Text           = $lang.AssignForceEnd
+		Location       = '636,455'
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = $UI_Main_Suggestion_Stop_Click
+	}
+
+	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
+		Location       = '620,523'
+		Height         = 20
+		Width          = 20
+		SizeMode       = "StretchImage"
+	}
+	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
+		Location       = '645,525'
+		Height         = 60
+		Width          = 255
+		Text           = ""
+	}
+	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "620,595"
+		Height         = 36
+		Width          = 280
+		Text           = $lang.OK
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+
+			<#
+				.Reset selected
+				.重置已选择
+			#>
+			New-Variable -Scope global -Name "Queue_Is_Drive_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $False -Force
+			New-Variable -Scope global -Name "Queue_Is_Drive_Delete_Custom_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
+
+			$Temp_Queue_Drive_Del_Select = @()
+			$UI_Main_Rule.Controls | ForEach-Object {
+				if ($_ -is [System.Windows.Forms.CheckBox]) {
+					if ($_.Enabled) {
+						if ($_.Checked) {
+							$Temp_Queue_Drive_Del_Select += $($_.Text)
+						}
+					}
+				}
+			}
+
+			if ($Temp_Queue_Drive_Del_Select.Count -gt 0) {
+				$UI_Main.Hide()
+				New-Variable -Scope global -Name "Queue_Is_Drive_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $True -Force
+				New-Variable -Scope global -Name "Queue_Is_Drive_Delete_Custom_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $Temp_Queue_Drive_Del_Select -Force
+
+				ForEach ($item in $Temp_Queue_Drive_Del_Select) {
+					Write-Host "   $($item)"
+				}
+
+				if ($UI_Main_Suggestion_Not.Checked) {
+					Init_Canel_Event -All
+				}
+				$UI_Main.Close()
+			} else {
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+				$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose)"
+			}
+		}
+	}
+	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "620,635"
+		Height         = 36
+		Width          = 280
+		Text           = $lang.Cancel
+		add_Click      = {
+			$UI_Main.Hide()
+			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
+			New-Variable -Scope global -Name "Queue_Is_Drive_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $False -Force
+			New-Variable -Scope global -Name "Queue_Is_Drive_Delete_Custom_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
+
+			if ($UI_Main_Suggestion_Not.Checked) {
+				Init_Canel_Event
+			}
+			$UI_Main.Close()
+		}
+	}
+	$UI_Main.controls.AddRange((
+		$UI_Main_Menu,
+		$UI_Main_Refresh_Sources,
+		$UI_Main_Select_Folder,
+		$UI_Main_Select_Folder_Tips,
+		$UI_Main_Error_Icon,
+		$UI_Main_Error,
+		$UI_Main_OK,
+		$UI_Main_Canel
+	))
+	$UI_Main_Menu.controls.AddRange((
+		$UI_Main_Adv,
+		$UI_Main_Dont_Checke_Is_File,
+		$UI_Main_Dont_Checke_Is_File_Tips,
+		$UI_Main_Dont_Checke_Is_Folder,
+		$UI_Main_Rule
+	))
+
+	Drive_Del_Refresh_Sources
+
+	<#
+		.Add right-click menu: select all, clear button
+		.添加右键菜单：全选、清除按钮
+	#>
+	$UI_Main_Menu = New-Object System.Windows.Forms.ContextMenuStrip
+	$UI_Main_Menu.Items.Add($lang.AllSel).add_Click({
+		$UI_Main_Rule.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.CheckBox]) {
+				if ($_.Enabled) {
+					$_.Checked = $true
+				}
+			}
+		}
+	})
+	$UI_Main_Menu.Items.Add($lang.AllClear).add_Click({
+		$UI_Main_Rule.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.CheckBox]) {
+				if ($_.Enabled) {
+					$_.Checked = $false
+				}
+			}
+		}
+	})
+	$UI_Main_Rule.ContextMenuStrip = $UI_Main_Menu
+
+	if ($Global:EventQueueMode) {
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+		$UI_Main.controls.AddRange((
+			$UI_Main_Suggestion_Manage,
+			$UI_Main_Suggestion_Stop_Current,
+			$UI_Main_Event_Assign_Stop
+		))
+	} else {
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+
+		<#
+			.初始化复选框：不再建议
+		#>
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
+				"True" {
+					$UI_Main_Suggestion_Not.Checked = $True
+					$UI_Main_Suggestion_Setting.Enabled = $False
+					$UI_Main_Suggestion_Stop.Enabled = $False
+				}
+				"False" {
+					$UI_Main_Suggestion_Not.Checked = $False
+					$UI_Main_Suggestion_Setting.Enabled = $True
+					$UI_Main_Suggestion_Stop.Enabled = $True
+				}
+			}
+		} else {
+			$UI_Main_Suggestion_Not.Checked = $False
+			$UI_Main_Suggestion_Setting.Enabled = $True
+			$UI_Main_Suggestion_Stop.Enabled = $True
+		}
+
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
+			if ((Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsSuggested" -ErrorAction SilentlyContinue) -eq "True") {
+				$UI_Main.controls.AddRange((
+					$UI_Main_Suggestion_Not,
+					$UI_Main_Suggestion_Setting,
+					$UI_Main_Suggestion_Stop
+				))
+			}
+		}
+	}
+
+	<#
+		.Allow open windows to be on top
+		.允许打开的窗口后置顶
+	#>
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "TopMost" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "TopMost" -ErrorAction SilentlyContinue) {
+			"True" { $UI_Main.TopMost = $True }
+		}
+	}
+
+	switch ($Global:IsLang) {
+		"zh-CN" {
+			$UI_Main.Font = New-Object System.Drawing.Font("Microsoft YaHei", 9, [System.Drawing.FontStyle]::Regular)
+		}
+		Default {
+			$UI_Main.Font = New-Object System.Drawing.Font("Segoe UI", 9, [System.Drawing.FontStyle]::Regular)
+		}
+	}
+
+	$UI_Main.ShowDialog() | Out-Null
+}
+
+<#
+	.Start processing to delete the driver
+	.开始处理删除驱动
+#>
+Function Drive_Delete_Process
+{
+	if (-not $Global:EventQueueMode) {
+		$Host.UI.RawUI.WindowTitle = "$($lang.Drive): $($lang.Del)"
+	}
+
+	$Temp_Queue_Drive_Delete_Custom_Select = (Get-Variable -Scope global -Name "Queue_Is_Drive_Delete_Custom_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+	if ($Temp_Queue_Drive_Delete_Custom_Select.count -gt 0) {
+		Write-Host "   $($lang.AddSources)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+		ForEach ($item in $Temp_Queue_Drive_Delete_Custom_Select) {
+			Write-Host "   $($item)" -ForegroundColor Green
+		}
+
+		Write-Host "`n   $($lang.AddQueue)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+		ForEach ($item in $Temp_Queue_Drive_Delete_Custom_Select) {
+			if (Test-Path $item -PathType Container) {
+				Get-ChildItem -Path $item -Recurse -include "*.inf" | Where-Object {
+					if (Test-Path $_.FullName -PathType Leaf) {
+						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+							Write-host "   $($lang.Developers_Mode_Location)35" -ForegroundColor Green
+							Write-host "   $('-' * 80)"
+							write-host "   Remove-WindowsDriver -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -Driver ""$($_.FullName)""" -ForegroundColor Green
+							Write-host "   $('-' * 80)`n"
+						}
+			
+						Write-Host "   $($_.FullName)" -ForegroundColor Green
+						Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
+						Remove-WindowsDriver -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -Driver $_.FullName -ErrorAction SilentlyContinue | Out-Null
+						Write-Host $lang.Done -ForegroundColor Green
+
+						Write-Host ""
+					}
+				}
+			}
+		}
+	} else {
+		Write-Host "   $($lang.NoWork)" -ForegroundColor Red
+	}
+}
