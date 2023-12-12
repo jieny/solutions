@@ -5,7 +5,7 @@ YI’S SOULTIONS
 <br>
 
 <details>
-  <summary>由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等</summary>
+  <summary>Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.</summary>
 <br>
 
 ##### Summary of components
