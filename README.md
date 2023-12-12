@@ -1,7 +1,37 @@
 YI’S SOULTIONS
 -
+ * Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.
  * Yi’s Soultions 由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等
 <br>
+
+<details>
+  <summary>由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等</summary>
+<br>
+
+##### Summary of components
+请查看完整的组成部分和详细介绍
+
+<h4><pre>Chapter 1.  Packaging Tutorial</pre></h4>
+<ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 23H2, 22H2, Windows 10, and Windows Server 2022. Different packaging versions are available.</ol>
+
+<h4><pre>Chapter 2.  Encapsulation Script</pre></h4>
+<ol>Developed using the PowerShell language, it follows an open source license and can be distributed arbitrarily without copyright restrictions.</ol>
+
+<h4><pre>Chapter 3.  Video Tutorial</pre></h4>
+<ol>The video tutorial includes different packaging methods: custom allocation of packaging events, automatic driving, manual packaging, and introduction to packaging scripts.</ol>
+
+<h4><pre>Chapter 4.  Local Language Experience Packs (LXPs) Downloader</pre></h4>
+<ol>Solve the problem of batch downloading of "Local Language Experience Packages (LXPs)" installation packages, and you can filter or download all.</ol>
+
+<h4><pre>Chapter 5.  Fully automatic addition of Windows installed languages</pre></h4>
+<ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
+
+<h4><pre>Chapter 6.  Yi’s optimization script</pre></h4>
+<ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
+<ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+</details>
 
 <details>
   <summary>由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等</summary>
