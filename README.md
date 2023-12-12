@@ -1,8 +1,8 @@
 <a name="readme-top"></a>
 YI’S SOULTIONS
 -
- * Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.
- * Yi’s Soultions 由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等
+ * Only the summary is displayed. After selecting, choose to view the complete components and view the detailed function introduction.
+ * 仅展示摘要，选择后选择查看完整组成部分，查看详细的功能介绍
 <br>
 
 <details>
@@ -62,7 +62,6 @@ YI’S SOULTIONS
 
 <p align="right">(<a href="#readme-top">返回顶部</a>)</p>
 </details>
-
 
 ## License
 
