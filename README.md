@@ -1,16 +1,14 @@
 <a name="readme-top"></a>
 YI’S SOULTIONS
 -
- * Only the summary is displayed. After selecting, choose to view the complete components and view the detailed function introduction.
- * 仅展示摘要，选择后选择查看完整组成部分，查看详细的功能介绍
+ * [View full feature introduction](https://github.com/ilikeyi/solutions)
+ * [查看完整的功能介绍](https://github.com/ilikeyi/solutions)
 <br>
 
 <details>
-  <summary>Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.</summary>
+  <summary>Summary</summary>
 <br>
-
-##### Summary of components
-请查看完整的组成部分和详细介绍
+<h4>Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.</h4>
 
 <h4><pre>Chapter 1.  Packaging Tutorial</pre></h4>
 <ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 23H2, 22H2, Windows 10, and Windows Server 2022. Different packaging versions are available.</ol>
@@ -35,12 +33,11 @@ YI’S SOULTIONS
 </details>
 
 <details>
-  <summary>由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等</summary>
+  <summary>摘要</summary>
 <br>
+<h4>由多部分组成：封装教程、封装脚本、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等</h4>
 
-##### 组成部分摘要
-请查看完整的组成部分和详细介绍
-
+##### 组成部分
 <h4><pre>章节 1.  封装教程</pre></h4>
 <ol>由 Yi 编写的封装教程，可选开启 Windows 11 23H2、22H2、Windows 10、Windows Server 2022 的封装之旅，有不同的封装版本可选。</ol>
 
