@@ -1,8 +1,8 @@
-﻿$Oscdimg = "D:\Oscdimg.exe"
+﻿$Oscdimg = "D:\data\program\Oscdimg.exe"
 
 $ISO = "D:\OS_11"
-$Volume = "OS_11"
-$FileName = "D:\OS_11.iso"
+$Volume = "Windows11"
+$FileName = "D:\Windows11.iso"
 
 $Arguments = @(
     "-m",
