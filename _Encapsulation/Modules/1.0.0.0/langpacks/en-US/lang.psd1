@@ -11,6 +11,7 @@
 	Rebuild                         = Rebuild
 	AddTo                           = Add to
 	Del                             = Delete
+	Copy                            = Copy
 	Rename                          = Rename
 	Refresh                         = Refresh
 	RefreshModules                  = Reload the module
@@ -38,7 +39,6 @@
 	ToMsg                           = \n   Automatically return to the main menu after {0} seconds.
 	ToQuit                          = \n   Exit the main panel in {0} seconds.
 	OnDemandPlanTask                = Custom Assign Known Events
-	QueueMode                       = Event batch mode
 	Operable                        = Operable
 	Inoperable                      = Inoperable
 	Hide                            = Hide
@@ -47,12 +47,13 @@
 	Healthy                         = Healthy
 	HealthyTips                     = It is particularly important to check the health status. When "repairable" or "unrepairable" appears: During the ESD conversion process, error 13 is displayed, the data is invalid; an error is reported when the system is installed.
 	Healthy_Save                    = When repairable or unrepairable appears, do not save
+	Repair                          = Repair
 	Repairable                      = Repairable
 	NonRepairable                   = Irreparable
 	HealthyForceStop                = Encountered an irreversible error while processing\n   the event and was forcibly terminated.\n\n   Causes the main problem:\n\n      1. Physical hardware damage, hard disk;\n\n      2. If you use RAMDISK memory virtual disk (including hybrid),\n         please check the physical memory;\n\n      3. Verify the SHA256 of the original MVS (MSDN) version.\n         if the same, please change the directory and try again.\n         if the SHA256 is inconsistent, please download and try again;\n\n      4. Others are not listed in this example.
 	Superseded                      = Superseded
 	SupersededTips                  = Includes outdated updates, components, etc.
-	SpecialFunction                 = Running PowerShell Functions
+	SpecialFunction                 = PowerShell functions
 	Functions_Before                = Before running
 	Functions_Rear                  = After finishing
 	Functions_Wait_Assign           = Name of the function to be allocated
@@ -68,6 +69,8 @@
 	Uping                           = Building
 	Exclude_View                    = View exclusion rules
 	User_Interaction                = User interaction
+	Ok_Go_To                        = Available to
+	Ok_Go_To_No                     = Not going
 
 	Detailed                        = Details
 	Detailed_View                   = View selected rule details
@@ -118,6 +121,7 @@
 	RuleDependenciesFix             = Fix unselected dependencies
 	Extract_Tips                    = Hint\n\n   1. The result after extracting the language pack cannot be used as the main reference object;\n\n   2. Please use the component list as the main reference object, how to generate:\n\n       In Functions, select Build Components (get the packages in the installed image), select Print or Instant View;\n\n   3. After installing the language pack, please regenerate a component report to see if it corresponds;
 
+	DescendingRuleLang              = Remove language packs in reverse order
 	OrderRuleLang                   = Install the language packs in pre-rule order
 	OrderRuleLangTips               = Add in order: Basic, Font, Optical Character Recognition, Handwriting Recognition, Text-to-Speech, Speech Recognition, Retail Presentation Experience, Other
 	RuleLanguageTips                = Illustrate: \n\n   After using "Install language packs in pre-rule order", files are automatically matched by ambiguous name in the following order: \n
@@ -147,7 +151,6 @@
 	ImageLanguage                   = Image language settings
 	OnlyLangCleanup                 = Cleanup Components: Tag by Language
 	Matched_Component_Names         = Matched component names: \
-	OnlyLangCleanupTips             = After deleting the language, the corresponding language tag is needed to clean up other components.
 	BootProcess                     = When processing {0}.wim
 	Extract_Rule_Only_And_Full      = Only selected languages are extracted
 	Sync_Language_To                = Sync to
@@ -193,6 +196,7 @@
 	ExportShow                      = Show report
 	MoreFeature                     = More features
 	OpenFolder                      = Open Directory
+	Running                         = Run
 	Paste                           = Copy path
 	Clipboard_Copy                  = Copied to clipboard
 	ViewWIMFileInfo                 = View file details

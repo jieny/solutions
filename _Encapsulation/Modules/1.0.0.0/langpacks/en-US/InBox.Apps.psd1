@@ -4,7 +4,7 @@
 	AdvAppsDetailed                 = Generate a report
 	AdvAppsDetailedTips             = Search by region tag, find available local language experience packs, get more details, generate a report file: *. CSV.
 	ProcessSources                  = Process the source
-	InboxAppsManager                = Inbox appx
+	InboxAppsManager                = Inbox apps
 	InboxAppsMatchDel               = Delete by matching rule
 	InboxAppsOfflineDel             = Delete provisioned applications
 	InboxAppsClear                  = Forcibly delete all installed pre-apps ( UWP )
@@ -27,16 +27,11 @@
 	NoLicense                       = No certificate
 	StepOne                         = First step: Mark, local language experience pack ( LXPs )
 	StepTwo                         = Second step: \
-	StepThree                       = Third step: Update or remove, Local Language Experience Pack ( LXPs )
 	CurrentIsNVeriosn               = N version series
 	CurrentNoIsNVersion             = Full-featured version
-	LXPsWaitSync                    = After choosing to wait to be added, sync to:
 	LXPsWaitAddUpdate               = Pending upgrade
 	LXPsWaitAdd                     = To be added
 	LXPsWaitRemove                  = To be deleted
-	LXPsWaitRemoveKnown             = To be removed and show other languages known
-	LXPsSyncToRemove                = Re-synchronization waiting to be added to waiting to be deleted
-	LXPsRestoreOld                  = Restore the previously selected waiting to be deleted
 	LXPsAddDelTipsView              = There are new tips, check it out now
 	LXPsAddDelTipsGlobal            = No more prompts, sync to the global
 	LXPsAddDelTips                  = Do not remind again

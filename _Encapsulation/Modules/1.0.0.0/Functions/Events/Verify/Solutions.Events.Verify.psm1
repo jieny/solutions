@@ -21,90 +21,6 @@ Function Event_Assign_Task_Verify
 		}
 
 		<#
-			.Windows 功能：启用，匹配
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Enable_Match_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.Windows 功能：启用
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Enable_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.Windows 功能：禁用
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Disable_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.添加语言体验包
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Add_Step_One_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.本地语言体验（LXPs），添加
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Add_Step_There_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.本地语言体验（LXPs），删除
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $true
-		}
-
-		<#
-			.按匹配规则删除 UWP 预安装软件
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Match_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.离线删除已安装的 UWP 预安装软件
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Mount_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.按匹配规则删除 UWP 预安装软件
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.打印：UWP 预安装应用列表
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Report_Logs_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.查看：UWP 预安装应用列表
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Report_View_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
-			.优化预配 Appx 包，通过用硬链接替换相同的文件
-		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Optimize_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-			$FlagIsWait = $True
-		}
-
-		<#
 			.语言添加
 		#>
 		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
@@ -126,6 +42,13 @@ Function Event_Assign_Task_Verify
 		}
 
 		<#
+			.清理组件
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Components_Clean_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
 			.自动修复安装程序缺少项：已挂载
 		#>
 		if ((Get-Variable -Scope global -Name "Queue_Is_Setup_Fix_Missing_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
@@ -133,23 +56,30 @@ Function Event_Assign_Task_Verify
 		}
 
 		<#
-			.同步语言包到安装程序
+			.同步语言包到安装程序：添加
 		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			$FlagIsWait = $True
 		}
 
 		<#
-			.重建 lang.ini
+			.同步语言包到安装程序：删除
 		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_Del_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			$FlagIsWait = $True
 		}
 
 		<#
-			.清理组件
+			.重建 lang.ini：添加
 		#>
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Components_Clean_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.重建 lang.ini：删除
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_Del_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			$FlagIsWait = $True
 		}
 
@@ -171,6 +101,106 @@ Function Event_Assign_Task_Verify
 			.打印：映像语言
 		#>
 		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Report_Image_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.Windows 功能：启用，匹配
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Enable_Match_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.Windows 功能：启用
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Enable_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.Windows 功能：禁用，匹配
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Disable_Match_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.Windows 功能：禁用
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Disable_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.本地语言体验包：标记
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Mark_UI_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+
+			<#
+				.强行删除已安装的所有预应用程序 ( UWP )
+			#>
+			if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Clear_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+				$FlagIsWait = $True
+			}
+		}
+
+		<#
+			.本地语言体验（LXPs），添加
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.本地语言体验（LXPs），更新
+		#>
+		$Temp_Queue_Is_InBox_Apps_Update = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Update_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+		if ($Temp_Queue_Is_InBox_Apps_Update.Count -gt 0) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.本地语言体验（LXPs），删除
+		#>
+		$Temp_LXPs_Delete = (Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+		if ($Temp_LXPs_Delete.Count -gt 0) {
+			$FlagIsWait = $true
+		}
+
+		<#
+			.按匹配规则删除 UWP 预安装软件
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Match_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.离线删除已安装的 UWP 预安装软件
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Mount_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.打印：UWP 预安装应用列表
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Report_Logs_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.查看：UWP 预安装应用列表
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Report_View_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+			$FlagIsWait = $True
+		}
+
+		<#
+			.优化预配 Appx 包，通过用硬链接替换相同的文件
+		#>
+		if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Optimize_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			$FlagIsWait = $True
 		}
 
@@ -265,6 +295,7 @@ Function Event_Assign_Task_Verify
 	if ($All) {
 		if ($Global:QueueConvert) { $FlagIsWait = $True }
 		if ($Global:Queue_ISO) { $FlagIsWait = $True }
+		if ($Global:Queue_ISO_Associated) { $FlagIsWait = $True }
 	}
 
 	return $FlagIsWait

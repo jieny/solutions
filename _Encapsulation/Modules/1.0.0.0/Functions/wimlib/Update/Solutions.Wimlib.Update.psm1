@@ -165,7 +165,7 @@ Function Wimlib_Extract_And_Update
 			if ($MarkCheckedImageIndex) {
 				$UI_Main_Tips.Text = ""
 				ForEach ($item in $Global:Primary_Key_Image.Index) {
-					if (($Script:Wimlib_Select_Index) -Contains $item.ImageIndex) {
+					if ($Script:Wimlib_Select_Index -Contains $item.ImageIndex) {
 						$UI_Main_Tips.Text += "$($lang.Wim_Image_Name): $($item.ImageName)`n"
 
 						$UI_Main_Tips.Text += "$($lang.MountedIndex): $($item.ImageIndex)`n`n"
@@ -504,7 +504,7 @@ Function Wimlib_Extract_And_Update
 				Write-Host "`n   $($lang.MountedIndexSelect)" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				ForEach ($item in $Global:Primary_Key_Image.Index) {
-					if (($Script:Wimlib_Select_Index) -Contains $item.ImageIndex) {
+					if ($Script:Wimlib_Select_Index -Contains $item.ImageIndex) {
 						Write-Host "   $($lang.Wim_Image_Name): " -NoNewline
 						Write-host $item.ImageName -ForegroundColor Yellow
 						
@@ -651,7 +651,7 @@ Function Wimlib_Extract_And_Update
 
 				Write-Host "`n   $($lang.MountedIndexSelect)"
 				ForEach ($item in $Global:Primary_Key_Image.Index) {
-					if (($Script:Wimlib_Select_Index) -Contains $item.ImageIndex) {
+					if ($Script:Wimlib_Select_Index -Contains $item.ImageIndex) {
 						Write-Host "   $($lang.Wim_Image_Name): " -NoNewline
 						Write-host $item.ImageName -ForegroundColor Yellow
 
@@ -905,7 +905,8 @@ Function Image_Queue_Wimlib_Process_Wim_Main
 		$NewUid,
 		$NewMaster,
 		$NewImageFileName,
-		$MasterFile
+		$MasterFile,
+		$DevCode
 	)
 
 	<#

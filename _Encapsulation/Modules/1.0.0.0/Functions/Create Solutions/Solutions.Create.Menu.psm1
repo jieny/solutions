@@ -5,7 +5,7 @@
 Function Solutions_Menu
 {
 	if (-not $Global:EventQueueMode) {
-		Logo -Title $($lang.Solution)
+		Logo -Title $lang.Solution
 		Write-Host "   $($lang.Dashboard)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 
@@ -38,7 +38,7 @@ Function Solutions_Menu
 
 	Write-Host "`n   $($Global:Image_source)" -ForegroundColor Yellow
 
-	if (Test-Path "$($Global:Image_source)\Sources\`$OEM$" -PathType Container) {
+	if (Test-Path -Path "$($Global:Image_source)\Sources\`$OEM$" -PathType Container) {
 		Write-Host "      1   $($lang.Del): " -NoNewline -ForegroundColor Green
 		Write-host "\Sources\`$OEM$" -ForegroundColor Yellow
 	} else {
@@ -46,7 +46,7 @@ Function Solutions_Menu
 		Write-host "\Sources\`$OEM$" -ForegroundColor Yellow
 	}
 
-	if (Test-Path "$($Global:Image_source)\Sources\Unattend.xml" -PathType leaf) {
+	if (Test-Path -Path "$($Global:Image_source)\Sources\Unattend.xml" -PathType leaf) {
 		Write-Host "      2   $($lang.Del): " -NoNewline -ForegroundColor Green
 		Write-host "\Sources\Unattend.xml" -ForegroundColor Yellow
 	} else {
@@ -54,7 +54,7 @@ Function Solutions_Menu
 		Write-host "\Sources\Unattend.xml" -ForegroundColor Yellow
 	}
 
-	if (Test-Path "$($Global:Image_source)\Autounattend.xml" -PathType leaf) {
+	if (Test-Path -Path "$($Global:Image_source)\Autounattend.xml" -PathType leaf) {
 		Write-Host "      3   $($lang.Del): " -NoNewline -ForegroundColor Green
 		Write-host "\Autounattend.xml" -ForegroundColor Yellow
 	} else {
@@ -63,9 +63,9 @@ Function Solutions_Menu
 	}
 
 	Write-Host ""
-	if ((Test-Path "$($Global:Image_source)\Autounattend.xml" -PathType Leaf) -or
-		(Test-Path "$($Global:Image_source)\Sources\Unattend.xml" -PathType Leaf) -or
-		(Test-Path "$($Global:Image_source)\Sources\`$OEM$" -PathType Container))
+	if ((Test-Path -Path "$($Global:Image_source)\Autounattend.xml" -PathType Leaf) -or
+		(Test-Path -Path "$($Global:Image_source)\Sources\Unattend.xml" -PathType Leaf) -or
+		(Test-Path -Path "$($Global:Image_source)\Sources\`$OEM$" -PathType Container))
 	{
 		Write-Host "      A   $($lang.EnglineDoneClearFull)" -ForegroundColor Green
 	} else {
@@ -156,7 +156,7 @@ Function Solutions_Menu
 			Write-Host "`n   $($Global:Image_source)\Autounattend.xml" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
 			Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
-			if (Test-Path "$($Global:Image_source)\Autounattend.xml" -PathType leaf) {
+			if (Test-Path -Path "$($Global:Image_source)\Autounattend.xml" -PathType leaf) {
 				Remove_Tree "$($Global:Image_source)\Autounattend.xml"
 				Write-Host "   $lang.Done -ForegroundColor Green
 			} else {
@@ -170,7 +170,7 @@ Function Solutions_Menu
 			Write-Host "`n   $($Global:Image_source)\Sources\`$OEM$" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
 			Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
-			if (Test-Path "$($Global:Image_source)\Sources\`$OEM$" -PathType Container) {
+			if (Test-Path -Path "$($Global:Image_source)\Sources\`$OEM$" -PathType Container) {
 				Remove_Tree "$($Global:Image_source)\Sources\`$OEM$"
 				Write-Host $lang.Done -ForegroundColor Green
 			} else {
@@ -180,7 +180,7 @@ Function Solutions_Menu
 			Write-Host "`n   $($Global:Image_source)\Sources\Unattend.xml" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
 			Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
-			if (Test-Path "$($Global:Image_source)\Sources\Unattend.xml" -PathType leaf) {
+			if (Test-Path -Path "$($Global:Image_source)\Sources\Unattend.xml" -PathType leaf) {
 				Remove_Tree "$($Global:Image_source)\Sources\Unattend.xml"
 				Write-Host $lang.Done -ForegroundColor Green
 			} else {
@@ -190,7 +190,7 @@ Function Solutions_Menu
 			Write-Host "`n   $($Global:Image_source)\Autounattend.xml" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
 			Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
-			if (Test-Path "$($Global:Image_source)\Autounattend.xml" -PathType leaf) {
+			if (Test-Path -Path "$($Global:Image_source)\Autounattend.xml" -PathType leaf) {
 				Remove_Tree "$($Global:Image_source)\Autounattend.xml"
 				Write-Host $lang.Done -ForegroundColor Green
 			} else {

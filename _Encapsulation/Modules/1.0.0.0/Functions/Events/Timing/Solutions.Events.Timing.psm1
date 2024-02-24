@@ -1,26 +1,38 @@
 ﻿<#
-	.Initial waiting time
-	.初始等待时间
-#>
-$Script:EventWaitTime = 0
-
-<#
-	.初始化：分钟
-#>
-$Script:Init_Wait_Time_Minute = 30
-
-<#
 	.等待时间设置界面
 	.Waiting time setting interface
 #>
 Function Event_Completion_Start_Setting_UI
 {
-	Write-Host "`n   $($lang.WaitTimeTitle)" -ForegroundColor Yellow
-	Write-host "   $('-' * 80)"
+	param (
+		[array]$Autopilot
+	)
 
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Function Autopilot_Event_Completion_Save
+	{
+		if ($UI_Main_Time_Execute.Checked) {
+			$Global:QueueWaitTime = @{
+				IsEnabled = $False
+				Sky = 0
+				Time = 0
+				Minute = 30
+			}
+		} else {
+			$Global:QueueWaitTime = @{
+				IsEnabled = $True
+				Sky    = $UI_Time_Sky.Text
+				Time   = $UI_Time_Time.Text
+				Minute = $UI_Time_Minute.Text
+			}
+		}
+
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+		$UI_Main_Error.Text = "$($lang.Save), $($lang.Done)"
+	}
 
 	<#
 		.事件：强行结束按需任务
@@ -83,14 +95,12 @@ Function Event_Completion_Start_Setting_UI
 	$UI_Time_Sky       = New-Object System.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
 		Width          = 60
-		Value          = 0
+		Value          = $Global:QueueWaitTime.Sky
 		Minimum        = 0
 		Maximum        = 99
 		Margin         = "5,0,0,30"
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Sky" -ErrorAction SilentlyContinue) {
-		$UI_Time_Sky.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Sky"
-	}
+
 
 	<#
 		.小时
@@ -103,13 +113,10 @@ Function Event_Completion_Start_Setting_UI
 	$UI_Time_Time    = New-Object System.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
 		Width          = 60
-		Value          = 0
+		Value          = $Global:QueueWaitTime.Time
 		Minimum        = 0
 		Maximum        = 24
 		Margin         = "5,0,0,30"
-	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Hour" -ErrorAction SilentlyContinue) {
-		$UI_Time_Time.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Hour"
 	}
 
 	<#
@@ -123,19 +130,16 @@ Function Event_Completion_Start_Setting_UI
 	$UI_Time_Minute    = New-Object System.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
 		Width          = 60
-		Value          = $Script:Init_Wait_Time_Minute
+		Value          = $Global:QueueWaitTime.Minute
 		Minimum        = 0
 		Maximum        = 60
 		Margin         = "5,0,0,40"
-	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Minute" -ErrorAction SilentlyContinue) {
-		$UI_Time_Minute.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Minute"
 	}
 
 	<#
 		.保存为默认
 	#>
-	$UI_Main_Save      = New-Object system.Windows.Forms.LinkLabel -Property @{
+	$UI_Main_Save_Default = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 30
 		Width          = 235
 		Text           = $lang.Image_Popup_Default
@@ -143,9 +147,14 @@ Function Event_Completion_Start_Setting_UI
 		ActiveLinkColor = "RED"
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -name "Sky" -value $UI_Time_Sky.Text -String
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -name "Hour" -value $UI_Time_Time.Text -String
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -name "Minute" -value $UI_Time_Minute.Text -String
+			$UI_Time_Sky.Text = "0"
+ 			$UI_Time_Time.Text = "0"
+			$UI_Time_Minute.Text = "30"
+
+			Autopilot_Event_Completion_Save
+
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+			$UI_Main_Error.Text = "$($lang.Image_Popup_Default), $($lang.Done)"
 		}
 	}
 
@@ -162,11 +171,10 @@ Function Event_Completion_Start_Setting_UI
 		add_Click      = {
 			$UI_Time_Sky.Text = "0"
  			$UI_Time_Time.Text = "0"
-			$UI_Time_Minute.Text = $Script:Init_Wait_Time_Minute
+			$UI_Time_Minute.Text = "30"
 
-			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Sky" -ErrorAction SilentlyContinue | Out-Null
-			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Hour" -ErrorAction SilentlyContinue | Out-Null
-			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\Time" -Name "Minute" -ErrorAction SilentlyContinue | Out-Null
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+			$UI_Main_Error.Text = "$($lang.Image_Restore_Default), $($lang.Done)"
 		}
 	}
 
@@ -267,33 +275,25 @@ Function Event_Completion_Start_Setting_UI
 		ReadOnly       = $True
 	}
 
-	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
+	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
+		Location       = "360,563"
+		Height         = 20
+		Width          = 20
+		SizeMode       = "StretchImage"
+	}
+	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 255
+		Location       = "385,565"
+		Text           = ""
+	}
+	$UI_Main_Save      = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "360,595"
 		Height         = 36
 		Width          = 280
 		Text           = $lang.OK
-		add_Click      = {
-			$UI_Main.Hide()
-
-			$Global:QueueWaitTime = $True
-
-			if ($UI_Main_Time_Execute.Checked) {
-				$Script:EventWaitTime = 0
-			} else {
-				$Init_Time_Sky    = $([math]::Ceiling($UI_Time_Sky.Text) * 86400)
-				$Init_Time_Time   = $([math]::Ceiling($UI_Time_Time.Text) * 60 * 60)
-				$Init_Time_Minute = $([math]::Ceiling($UI_Time_Minute.Text) * 60)
-
-				$sum_all = $Init_Time_Sky + $Init_Time_Time + $Init_Time_Minute
-
-				Write-Host "   $($lang.TimeWait)" -NoNewline
-				Write-host "$($sum_all) $($lang.TimeSeconds)" -ForegroundColor Yellow
-				$Script:EventWaitTime = $sum_all
-			}
-
-			$UI_Main.Close()
-		}
+		add_Click      = { Autopilot_Event_Completion_Save }
 	}
 	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
@@ -302,8 +302,6 @@ Function Event_Completion_Start_Setting_UI
 		Width          = 280
 		Text           = $lang.Cancel
 		add_Click      =  {
-			Write-Host "   $($lang.WaitTimeCanel)" -ForegroundColor Red
-			$Global:QueueWaitTime = $False
 			$UI_Main.Close()
 		}
 	}
@@ -311,7 +309,9 @@ Function Event_Completion_Start_Setting_UI
 		$UI_Main_Time_Execute,
 		$UI_Main_Menu,
 		$UI_Main_Tips,
-		$UI_Main_OK,
+		$UI_Main_Error_Icon,
+		$UI_Main_Error,
+		$UI_Main_Save,
 		$UI_Main_Canel
 	))
 	
@@ -322,24 +322,38 @@ Function Event_Completion_Start_Setting_UI
 		$UI_Time_Time,
 		$UI_Time_Minute_Name,
 		$UI_Time_Minute,
-		$UI_Main_Save,
+		$UI_Main_Save_Default,
 		$UI_Main_Restore
 	))
 
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -Name "Minute" -ErrorAction SilentlyContinue) {
+		$UI_Time_Minute.Text = Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -Name "Minute"
+
+		write-host  Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -Name "Minute"
+	}
 	if ($UI_Main_Time_Execute.Checked) {
 		$UI_Main_Menu.Enabled = $False
 	} else {
 		$UI_Main_Menu.Enabled = $True
 	}
 
+	if ($Global:AutopilotMode) {
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Autopilot) ]"
+	}
+
 	if ($Global:EventQueueMode) {
-		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
 			$UI_Main_Suggestion_Stop_Current,
 			$UI_Main_Event_Assign_Stop
 		))
-	} else {
+	}
+
+	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
+		Write-Host "`n   $($lang.WaitTimeTitle)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		if (Image_Is_Select_IAB) {
 			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		}
@@ -396,7 +410,39 @@ Function Event_Completion_Start_Setting_UI
 		}
 	}
 
-	$UI_Main.ShowDialog() | Out-Null
+	if ($Autopilot) {
+		Write-host "   $($lang.Autopilot)" -ForegroundColor Green
+
+		switch ($Autopilot.Schome) {
+			"Instantly" {
+				$UI_Main_Time_Execute.Checked = $True
+				$UI_Main_Menu.Enabled = $False
+			}
+			"Custom" {
+				$UI_Main_Time_Execute.Checked = $False
+				$UI_Main_Menu.Enabled = $True
+
+				<#
+					.天
+				#>
+				$UI_Time_Sky.Text = $Autopilot.Custom.Sky
+			
+				<#
+					.小时
+				#>
+				$UI_Time_Time.Text = $Autopilot.Custom.Hour
+				
+				<#
+					.分钟
+				#>
+				$UI_Time_Minute.Text = $Autopilot.Custom.Minute
+			}
+		}
+
+		Autopilot_Event_Completion_Save
+	} else {
+		$UI_Main.ShowDialog() | Out-Null
+	}
 }
 
 <#
@@ -405,11 +451,17 @@ Function Event_Completion_Start_Setting_UI
 #>
 Function Event_Completion_Start_Process
 {
-	$NowTime       = Get-Date -format "yyyy/MM/dd HH:mm:ss"
-	$GUITimeOKTime = (Get-Date).AddSeconds($Script:EventWaitTime)
+	$Init_Time_Sky    = $([math]::Ceiling($Global:QueueWaitTime.Sky) * 86400)
+	$Init_Time_Time   = $([math]::Ceiling($Global:QueueWaitTime.Time) * 60 * 60)
+	$Init_Time_Minute = $([math]::Ceiling($Global:QueueWaitTime.Minute) * 60)
+
+	$sum_all = $Init_Time_Sky + $Init_Time_Time + $Init_Time_Minute
+
+	$NowTime       = Get-Date -format "yyyy/MM/dd HH:mm:ss tt"
+	$GUITimeOKTime = (Get-Date).AddSeconds($sum_all)
 
 	Write-Host "   $($lang.TimeWait)" -NoNewline
-	Write-Host "$($Script:EventWaitTime) $($lang.TimeSeconds)" -ForegroundColor Yellow
+	Write-Host "$($sum_all) $($lang.TimeSeconds)" -ForegroundColor Yellow
 
 	Write-Host "   $($lang.NowTime)" -NoNewline
 	Write-Host $NowTime -ForegroundColor Yellow
@@ -419,9 +471,9 @@ Function Event_Completion_Start_Process
 
 	Write-Host "`n   $($lang.TimeMsg)"
 
-	if ($Script:EventWaitTime -gt 99999) {
-		Start-Sleep -s $Script:EventWaitTime
+	if ($sum_all -gt 99999) {
+		Start-Sleep -s $sum_all
 	} else {
-		start-process "timeout.exe" -argumentlist "/t $($Script:EventWaitTime) /nobreak" -wait -nonewwindow
+		start-process "timeout.exe" -argumentlist "/t $($sum_all) /nobreak" -wait -nonewwindow
 	}
 }

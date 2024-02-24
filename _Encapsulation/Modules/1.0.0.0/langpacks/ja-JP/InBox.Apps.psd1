@@ -27,16 +27,11 @@
 	NoLicense                       = 証明書なし
 	StepOne                         = ステップ 1：マーキング、ローカル言語エクスペリエンスパック ( LXPs )
 	StepTwo                         = ステップ 2：
-	StepThree                       = ステップ 3：ローカル言語エクスペリエンスパックを更新または削除する ( LXPs )
 	CurrentIsNVeriosn               = N エディションシリーズ
 	CurrentNoIsNVersion             = 完全に機能するバージョン
-	LXPsWaitSync                    = 追加を待ってから、以下に同期することを選択します：
 	LXPsWaitAddUpdate               = アップグレード待ち
 	LXPsWaitAdd                     = 追加する
 	LXPsWaitRemove                  = 削除する
-	LXPsWaitRemoveKnown             = 削除され、既知の他の言語を表示する
-	LXPsSyncToRemove                = 保留中の追加を保留中の削除に再同期
-	LXPsRestoreOld                  = 以前に選択した保留中の削除を復元する
 	LXPsAddDelTipsView              = 新しいヒントがあります。今すぐチェックしてください
 	LXPsAddDelTipsGlobal            = プロンプトはもう必要ありません。グローバルに同期してください
 	LXPsAddDelTips                  = 二度と思い出させないでください

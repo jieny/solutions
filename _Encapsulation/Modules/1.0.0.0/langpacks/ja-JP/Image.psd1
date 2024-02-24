@@ -69,6 +69,7 @@
 	Rule_Show_Full                  = すべて表示
 	Rule_Show_Only                  = ルールのみを表示
 	Rule_Show_Only_Select           = ルールから選ぶ
+	Image_Unmount_After             = 以前にマウントされていたものをすべて強制的にアンインストールします
 
 	Wim_Rule_Update                 = イメージ内のファイルの抽出、更新
 	Wim_Rule_Extract                = ファイルを抽出します
@@ -89,7 +90,7 @@
 	Wim_Expander_Space              = スペースを広げる
 
 	IABSelectNo                     = 主キーが選択されていません: Install、WinRE、Boot
-	Unique_Name                     = 一意の名前: \
+	Unique_Name                     = 一意の名前
 	Select_Path                     = パス
 	Setting_Pri_Key                 = この更新ファイルをメイン テンプレートとして設定します：
 	Pri_Key_Update_To               = 次に、次のように更新します：

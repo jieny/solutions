@@ -3,7 +3,6 @@
 	Function_Limited                = 부분적으로 제한됨
 	AssignNeedMount                 = 새로운 마운트 이미지가 있는 경우
 	AssignNoMount                   = 이미지가 마운트되지 않은 경우
-	AssignTask                      = 사용 가능한 이벤트 작업 할당
 	AssignSetting                   = 인식 이벤트 관리
 	AssignEndCurrent                = 종료 할당 ( {0} ) 이벤트만
 	AssignEndNoMount                = 마운트 시간 없음 이벤트 종료
@@ -13,11 +12,14 @@
 	SuggestedReset                  = 모든 지각 제안 재설정
 	SuggestedNext                   = 전역에 동기화를 권장합니다
 
+	EventManagerMul                 = 멀티태스킹 이벤트
 	EventManager                    = 이벤트
 	EventManagerCount               = 안건
 	EventManagerNo                  = 이벤트 없음
 	EventManagerClear               = 모든 이벤트 지우기
+	EventManagerCurrentClear        = 저장된 작업 지우기
 	AfterFinishingNotExecuted       = 작업 또는 이벤트를 사용할 수 있는 경우
+	AfterFinishingNoProcess         = 진행되지 않았다
 	AfterFinishingPause             = 정지시키다
 	AfterFinishingReboot            = 컴퓨터를 다시 시작
 	AfterFinishingShutdown          = 컴퓨터를 종료
@@ -39,7 +41,6 @@
 	Wimlib_New_Tips                 = 사후 팝업 이벤트 없음
 
 	WaitTimeTitle                   = 언제 시작합니까
-	WaitTimeCanel                   = 취소됨, 대기열에 즉시 실행될 작업이 있습니다.
 	WaitTimeTips                    = 힌트\n\n    1. 대기 시간을 선택하십시오.\n\n    2. 취소, 대기열의 작업이 즉시 실행됩니다.
 	WaitQueue                       = 대기열에서 대기
 	AddSources                      = 소스 추가

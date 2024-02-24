@@ -30,8 +30,10 @@ Function Other_Tasks_Delete_Folder_Yi
 			Write-Host $lang.Done -ForegroundColor Green
 		}
 	} else {
-		Write-Host $lang.NoInstallImage -ForegroundColor Red
+		Write-Host "   $($lang.NoInstallImage)" -ForegroundColor Red
 	}
+
+	Write-Host
 }
 
 <#
@@ -49,6 +51,8 @@ Function Other_Tasks_Add_Test_Folder
 	Write-host "   $($Local_Regedit_File_System)" -ForegroundColor Green
 
 	Write-Host "   $($lang.Done)" -ForegroundColor Green
+
+	Write-Host
 }
 
 <#
@@ -102,9 +106,9 @@ Function Other_Tasks_TPM
 				}
 
 				Remove-PSDrive -Name OtherTasksTPM
-				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "   $($lang.Done)" -ForegroundColor Green
 			} else {
-				Write-Host "   $($lang.AddTo), $($lang.Failed)`n" -ForegroundColor Red
+				Write-Host "   $($lang.AddTo), $($lang.Failed)" -ForegroundColor Red
 			}
 		} else {
 			Write-Host "`n   $($lang.NoInstallImage)"
@@ -112,8 +116,10 @@ Function Other_Tasks_TPM
 		}
 	} else {
 		Write-host "`n   $($lang.Mounted_Status)" -ForegroundColor Yellow
-		Write-Host "   $($lang.NotMounted)`n" -ForegroundColor Red
+		Write-Host "   $($lang.NotMounted)" -ForegroundColor Red
 	}
+
+	Write-Host
 }
 
 <#
@@ -163,9 +169,9 @@ Function Other_Tasks_REFS
 				}
 
 				Remove-PSDrive -Name OtherTasksREFS
-				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "   $($lang.Done)" -ForegroundColor Green
 			} else {
-				Write-Host "   $($lang.AddTo), $($lang.Failed)`n" -ForegroundColor Red
+				Write-Host "   $($lang.AddTo), $($lang.Failed)" -ForegroundColor Red
 			}
 		} else {
 			Write-Host "`n   $($lang.NoInstallImage)"
@@ -173,8 +179,10 @@ Function Other_Tasks_REFS
 		}
 	} else {
 		Write-host "`n   $($lang.Mounted_Status)" -ForegroundColor Yellow
-		Write-Host "   $($lang.NotMounted)`n" -ForegroundColor Red
+		Write-Host "   $($lang.NotMounted)" -ForegroundColor Red
 	}
+
+	Write-Host
 }
 
 <#
@@ -203,6 +211,8 @@ Function Other_Tasks_Format_Disk_Volume_Name_RAMDISK
 	} else {
 		Write-Host "   $($lang.UpdateUnavailable)" -ForegroundColor Red
 	}
+
+	Write-Host
 }
 
 <#
@@ -215,4 +225,6 @@ Function Other_Tasks_Pause
 
 	Get_Next
 	Write-Host "   $($lang.Done)" -ForegroundColor Green
+
+	Write-Host
 }

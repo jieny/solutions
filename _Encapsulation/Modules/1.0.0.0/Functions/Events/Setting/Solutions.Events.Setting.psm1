@@ -110,12 +110,19 @@ Function Event_Assign_Setting
 		Text           = "$($lang.StepTwo)$($lang.AddTo)"
 		Tag            = "InBox_Apps_Add_UI"
 	}
-	$UI_Main_Need_Mount_InBox_Apps_There = New-Object System.Windows.Forms.CheckBox -Property @{
+	$UI_Main_Need_Mount_InBox_Apps_Update = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 450
 		Padding        = "31,0,0,0"
-		Text           = $lang.StepThree
-		Tag            = "InBox_Apps_Refresh_UI"
+		Text           = "$($lang.LocalExperiencePackTips): $($lang.Update)"
+		Tag            = "InBox_Apps_Update_UI"
+	}
+	$UI_Main_Need_Mount_InBox_Apps_Remove = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 450
+		Padding        = "31,0,0,0"
+		Text           = "$($lang.LocalExperiencePackTips): $($lang.Del)"
+		Tag            = "InBox_Apps_Remove_UI"
 	}
 	$UI_Main_Need_Mount_InBox_Apps_Match_Del = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -168,8 +175,16 @@ Function Event_Assign_Setting
 		Height         = 30
 		Width          = 450
 		Padding        = "31,0,0,0"
-		Text           = "$($lang.Enable): $($lang.MatchMode)"
+		Text           = "$($lang.Enable), $($lang.MatchMode)"
 		Tag            = "Feature_Enabled_Match_UI"
+	}
+	$UI_Main_Need_Mount_Feature_Disable_Match = New-Object System.Windows.Forms.CheckBox -Property @{
+		Name           = "IsAssign"
+		Height         = 35
+		Width          = 450
+		Padding        = "31,0,0,0"
+		Text           = "$($lang.Disable), $($lang.MatchMode)"
+		Tag            = "Feature_Disable_Match_UI"
 	}
 	$UI_Main_Need_Mount_Feature_Enabled = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -410,7 +425,7 @@ Function Event_Assign_Setting
 		$UI_Main_Select_No_Mounting_Group.controls.AddRange($UI_Main_Select_No_Mounting)
 		$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectEventNeedMount)
 
-		if (($Temp_Add_Not_Mounted_New) -Contains "Image_Convert_UI") {
+		if ($Temp_Add_Not_Mounted_New -Contains "Image_Convert_UI") {
 			$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectFunctionConvertImage)
 			
 			if (Image_Is_Mount) {
@@ -418,13 +433,13 @@ Function Event_Assign_Setting
 			}
 		}
 
-		if (($Temp_Add_Not_Mounted_New) -Contains "ISO_Create_UI") {
+		if ($Temp_Add_Not_Mounted_New -Contains "ISO_Create_UI") {
 			$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectFunctionISO)
 		}
 		
 		$UI_Main_Select_No_Mounting.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
-				if (($Global:Queue_Assign_Not_Monuted_Expand_Select) -Contains $_.Tag) {
+				if ($Global:Queue_Assign_Not_Monuted_Expand_Select -Contains $_.Tag) {
 					$_.Checked = $True
 				}
 			}
@@ -446,7 +461,7 @@ Function Event_Assign_Setting
 	#>
 	$GUIImageSelectEventHave_Group.Controls | ForEach-Object {
 		if ($_ -is [System.Windows.Forms.CheckBox]) {
-			if (($Global:Queue_Assign_Available_Select) -Contains $_.Tag) {
+			if ($Global:Queue_Assign_Available_Select -Contains $_.Tag) {
 				$_.Checked = $True
 			}
 		}
@@ -465,7 +480,7 @@ Function Event_Assign_Setting
 		$Temp_Is_Mounted_Assign_Task_Check += $item
 	}
 
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Solutions_Create_UI") { $MarkShareGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Solutions_Create_UI") { $MarkShareGroup = $True }
 
 	if ($MarkShareGroup) {
 		$UI_Main_Need_Mount = New-Object system.Windows.Forms.Label -Property @{
@@ -475,7 +490,7 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Solutions_Create_UI") {$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Solutions_Create) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Solutions_Create_UI") {$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Solutions_Create) }
 
 		$UI_Main_Not_Need_Mount_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -485,10 +500,10 @@ Function Event_Assign_Setting
 	}
 
 	$MarkLanguageGroup = $False
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Add_UI") { $MarkLanguageGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Delete_UI") { $MarkLanguageGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Change_UI") { $MarkLanguageGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Cleanup_Components_UI") { $MarkLanguageGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Add_UI") { $MarkLanguageGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Delete_UI") { $MarkLanguageGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Change_UI") { $MarkLanguageGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Cleanup_Components_UI") { $MarkLanguageGroup = $True }
 
 	if ($MarkLanguageGroup) {
 		$UI_Main_Need_Mount_Lang_Name = New-Object system.Windows.Forms.Label -Property @{
@@ -499,10 +514,10 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Name)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Add_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Add) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Del) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Change_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Change) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Language_Cleanup_Components_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Components) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Add_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Add) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Del) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Change_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Change) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Language_Cleanup_Components_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Lang_Components) }
 
 		$UI_Main_Need_Mount_Lang_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -512,10 +527,10 @@ Function Event_Assign_Setting
 	}
 
 	$MarkUwpGroup = $False
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Mark_UI") { $MarkUwpGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Add_UI") { $MarkUwpGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Refresh_UI") { $MarkUwpGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Match_Delete_UI") { $MarkUwpGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Mark_UI") { $MarkUwpGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Add_UI") { $MarkUwpGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Update_UI") { $MarkUwpGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Match_Delete_UI") { $MarkUwpGroup = $True }
 
 	if ($MarkUwpGroup) {
 		$GUIQueueUWP       = New-Object System.Windows.Forms.Label -Property @{
@@ -526,10 +541,11 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($GUIQueueUWP)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Mark_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_One) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Add_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_Two) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Refresh_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_There) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "InBox_Apps_Match_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_Match_Del) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Mark_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_One) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Add_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_Two) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Update_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_Update) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Remove_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_Remove) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "InBox_Apps_Match_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_InBox_Apps_Match_Del) }
 
 		$UI_Main_Need_Mount_InBox_Apps_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -539,8 +555,8 @@ Function Event_Assign_Setting
 	}
 
 	$MarkUpdateGroup = $False
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Update_Add_UI") {  $MarkUpdateGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Update_Delete_UI") { $MarkUpdateGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Update_Add_UI") {  $MarkUpdateGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Update_Delete_UI") { $MarkUpdateGroup = $True }
 
 	if ($MarkUpdateGroup) {
 		$UI_Main_Need_Mount_Update_Name = New-Object system.Windows.Forms.Label -Property @{
@@ -551,8 +567,8 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Update_Name)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Update_Add_UI") {  $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Update_Add) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Update_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Update_Del) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Update_Add_UI") {  $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Update_Add) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Update_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Update_Del) }
 
 		$UI_Main_Need_Mount_Update_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -562,8 +578,8 @@ Function Event_Assign_Setting
 	}
 
 	$MarkDriveGroup = $False
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Drive_Add_UI") { $MarkDriveGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Drive_Delete_UI") { $MarkDriveGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Drive_Add_UI") { $MarkDriveGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Drive_Delete_UI") { $MarkDriveGroup = $True }
 
 	if ($MarkDriveGroup) {
 		$UI_Main_Need_Mount_Drive_Name = New-Object system.Windows.Forms.Label -Property @{
@@ -574,8 +590,8 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Drive_Name)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Drive_Add_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Drive_Add) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Drive_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Drive_Del) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Drive_Add_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Drive_Add) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Drive_Delete_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Drive_Del) }
 
 		$UI_Main_Need_Mount_Drive_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -585,9 +601,10 @@ Function Event_Assign_Setting
 	}
 
 	$MarkWinFeatureGroup = $False
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Feature_Enabled_Match_UI") { $MarkWinFeatureGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Feature_Enabled_UI") { $MarkWinFeatureGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Feature_Disable_UI") { $MarkWinFeatureGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Enabled_Match_UI") { $MarkWinFeatureGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Disable_Match_UI") { $MarkWinFeatureGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Enabled_UI") { $MarkWinFeatureGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Disable_UI") { $MarkWinFeatureGroup = $True }
 
 	if ($MarkWinFeatureGroup) {
 		$UI_Main_Need_Mount_Windows_Feature = New-Object system.Windows.Forms.Label -Property @{
@@ -598,9 +615,10 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Windows_Feature)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Feature_Enabled_Match_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Enabled_Match) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Feature_Enabled_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Enabled) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Feature_Disable_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Disable) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Enabled_Match_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Enabled_Match) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Disable_Match_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Disable_Match) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Enabled_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Enabled) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Feature_Disable_UI") { $UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Feature_Disable) }
 
 		$UI_Main_Need_Mount_Lang_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -610,8 +628,8 @@ Function Event_Assign_Setting
 	}
 
 	$MarkFunctionsGroup = $False
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Functions_Before_UI") { $MarkFunctionsGroup = $True }
-	if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Functions_Rear_UI") { $MarkFunctionsGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Functions_Before_UI") { $MarkFunctionsGroup = $True }
+	if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Functions_Rear_UI") { $MarkFunctionsGroup = $True }
 
 	if ($MarkFunctionsGroup) {
 		$UI_Main_Need_Mount_Functions = New-Object system.Windows.Forms.Label -Property @{
@@ -622,8 +640,8 @@ Function Event_Assign_Setting
 		}
 		$UI_Main_Menu.controls.AddRange($UI_Main_Need_Mount_Functions)
 
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Functions_Before_UI") { $UI_Main_Menu.controls.AddRange($GUIImage_Functions_Before) }
-		if (($Temp_Is_Mounted_Assign_Task_Check) -Contains "Functions_Rear_UI") { $UI_Main_Menu.controls.AddRange($GUIImage_Functions_Rear) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Functions_Before_UI") { $UI_Main_Menu.controls.AddRange($GUIImage_Functions_Before) }
+		if ($Temp_Is_Mounted_Assign_Task_Check -Contains "Functions_Rear_UI") { $UI_Main_Menu.controls.AddRange($GUIImage_Functions_Rear) }
 
 		$UI_Main_Need_Mount_Lang_Wrap = New-Object system.Windows.Forms.Label -Property @{
 			Height         = 30
@@ -638,7 +656,7 @@ Function Event_Assign_Setting
 	$Temp_Save_Has_Been_Run = (Get-Variable -Scope global -Name "Queue_Assign_Has_Been_Run_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	$UI_Main_Menu.Controls | ForEach-Object {
 		if ($_ -is [System.Windows.Forms.CheckBox]) {
-			if (($Temp_Save_Has_Been_Run) -Contains $_.Tag) {
+			if ($Temp_Save_Has_Been_Run -Contains $_.Tag) {
 				$_.ForeColor = "GREEN"
 				$_.Checked = $True
 				if ($Global:EventQueueMode) {
@@ -649,7 +667,7 @@ Function Event_Assign_Setting
 	}
 	$UI_Main_Select_No_Mounting.Controls | ForEach-Object {
 		if ($_ -is [System.Windows.Forms.CheckBox]) {
-			if (($Temp_Save_Has_Been_Run) -Contains $_.Tag) {
+			if ($Temp_Save_Has_Been_Run -Contains $_.Tag) {
 				$_.ForeColor = "GREEN"
 				$_.Checked = $True
 				$_.Enabled = $False
@@ -666,7 +684,7 @@ Function Event_Assign_Setting
 
 	$UI_Main_Menu.Controls | ForEach-Object {
 		if ($_ -is [System.Windows.Forms.CheckBox]) {
-			if (($Temp_Queue_Is_Mounted_Primary_Assign_Task) -Contains $_.Tag) {
+			if ($Temp_Queue_Is_Mounted_Primary_Assign_Task -Contains $_.Tag) {
 				$_.ForeColor = "GREEN"
 				$_.Checked = $True
 				$_.Enabled = $False
@@ -675,7 +693,7 @@ Function Event_Assign_Setting
 	}
 	$UI_Main_Select_No_Mounting.Controls | ForEach-Object {
 		if ($_ -is [System.Windows.Forms.CheckBox]) {
-			if (($Temp_Queue_Is_Mounted_Primary_Assign_Task) -Contains $_.Tag) {
+			if ($Temp_Queue_Is_Mounted_Primary_Assign_Task -Contains $_.Tag) {
 				$_.ForeColor = "GREEN"
 				$_.Checked = $True
 				$_.Enabled = $False
@@ -689,7 +707,7 @@ Function Event_Assign_Setting
 	$Temp_Queue_Is_Mounted_Primary_Assign_Task = (Get-Variable -Scope global -Name "Queue_Is_Mounted_Expand_Assign_Task_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	$UI_Main_Menu.Controls | ForEach-Object {
 		if ($_ -is [System.Windows.Forms.CheckBox]) {
-			if (($Temp_Queue_Is_Mounted_Primary_Assign_Task) -Contains $_.Tag) {
+			if ($Temp_Queue_Is_Mounted_Primary_Assign_Task -Contains $_.Tag) {
 				$_.Checked = $True
 			}
 		}
@@ -735,7 +753,11 @@ Function Event_Assign_Setting
 	$UI_Main_Menu.ContextMenuStrip = $UI_Main_Menu_Select
 
 	if ($Global:EventQueueMode) {
-		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+		if ($Global:AutopilotMode) {
+			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Autopilot) ]"
+		} else {
+			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+		}
 	} else {
 		if (Image_Is_Select_IAB) {
 			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
@@ -773,7 +795,8 @@ Function Image_Set_Global_Primary_Key
 	(
 		$DevCode,
 		$Uid,
-		[switch]$Detailed
+		[switch]$Detailed,
+		[switch]$Silent
 	)
 
 	if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
@@ -787,12 +810,14 @@ Function Image_Set_Global_Primary_Key
 
 	ForEach ($item in $Global:Image_Rule) {
 		if ($Uid -eq $item.Main.Uid) {
-			Write-Host "`n   $($lang.Event_Primary_Key)" -ForegroundColor Yellow
-			Write-Host "   $($Uid)" -ForegroundColor Green
+			if (-not $Silent) {
+				Write-Host "`n   $($lang.Event_Primary_Key)" -ForegroundColor Yellow
+				Write-Host "   $($Uid)" -ForegroundColor Green
+			}
 
 			if ($Detailed) {
 				Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
-				if (Test-Path "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -PathType Leaf) {
+				if (Test-Path -Path "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -PathType Leaf) {
 					$RandomGuid = [guid]::NewGuid()
 					$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
 
@@ -820,7 +845,7 @@ Function Image_Set_Global_Primary_Key
 									Version            = "$($empDetail.WINDOWS.VERSION.BUILD).$($empDetail.WINDOWS.VERSION.SPBUILD)"
 								}
 							}
-						
+
 							Remove-Item -Path $Export_To_New_Xml
 							Write-Host $lang.Done -ForegroundColor Green
 						} else {
@@ -878,7 +903,10 @@ Function Image_Set_Global_Primary_Key
 				}
 			}
 
-			Write-Host "   $($lang.Setting)".PadRight(28) -NoNewline
+			if (-not $Silent) {
+				Write-Host "   $($lang.Setting)".PadRight(28) -NoNewline
+			}
+
 			$Global:Primary_Key_Image = @{
 				ImageSources   = $Global:Image_source
 				Group          = $item.Main.Group
@@ -891,18 +919,22 @@ Function Image_Set_Global_Primary_Key
 				Index          = $custom_array
 			}
 
-			Write-Host $lang.Done -ForegroundColor Green
+			if (-not $Silent) {
+				Write-Host $lang.Done -ForegroundColor Green
+			}
 			return
 		}
 
 		if ($item.Expand.Count -gt 0) {
 			ForEach ($Expand in $item.Expand) {
 				if ($Uid -eq $Expand.Uid) {
-					Write-Host "`n   $($Expand.ImageFileName).wim" -ForegroundColor Green
+					if (-not $Silent) {
+						Write-Host "`n   $($Expand.ImageFileName).wim" -ForegroundColor Green
+					}
 
 					if ($Detailed) {
 						Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
-						if (Test-Path "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -PathType Leaf) {
+						if (Test-Path -Path "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -PathType Leaf) {
 							try {
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
@@ -933,7 +965,10 @@ Function Image_Set_Global_Primary_Key
 						}
 					}
 
-					Write-Host "   $($lang.Setting)".PadRight(28) -NoNewline
+					if (-not $Silent) {
+						Write-Host "   $($lang.Setting)".PadRight(28) -NoNewline
+					}
+
 					$Global:Primary_Key_Image = @{
 						ImageSources   = $Global:Image_source
 						Group          = $Expand.Group
@@ -946,7 +981,9 @@ Function Image_Set_Global_Primary_Key
 						Index          = $custom_array
 					}
 
-					Write-Host $lang.Done -ForegroundColor Green
+					if (-not $Silent) {
+						Write-Host $lang.Done -ForegroundColor Green
+					}
 					return
 				}
 			}

@@ -22,8 +22,8 @@ Function Event_Assign_Not_Allowed_UI
 		}
 
 		ForEach ($item in $Global:Queue_Assign_Not_Monuted_Expand_Select) {
-			if (($Global:Queue_Assign_Not_Monuted_Primary) -NotContains $item) {
-				if (($Global:Queue_Assign_Not_Monuted_Expand_Select) -Contains $item) {
+			if ($Global:Queue_Assign_Not_Monuted_Primary -NotContains $item) {
+				if ($Global:Queue_Assign_Not_Monuted_Expand_Select -Contains $item) {
 					$Temp_Save_Has_Been_Run += $item
 					New-Variable -Scope global -Name "Queue_Assign_Has_Been_Run_Engine" -Value $Temp_Save_Has_Been_Run -Force
 

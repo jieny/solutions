@@ -69,6 +69,7 @@
 	Rule_Show_Full                  = 显示全部
 	Rule_Show_Only                  = 仅显示规则里的
 	Rule_Show_Only_Select           = 从规则里选择
+	Image_Unmount_After             = 强行卸载所有已挂载前
 
 	Wim_Rule_Update                 = 提取、更新映像内的文件
 	Wim_Rule_Extract                = 提取文件
@@ -89,7 +90,7 @@
 	Wim_Expander_Space              = 展开空间
 
 	IABSelectNo                     = 未选择主键：Install、WinRE、Boot
-	Unique_Name                     = 唯一命名：
+	Unique_Name                     = 唯一命名
 	Select_Path                     = 路径
 	Setting_Pri_Key                 = 将此更新文件设置为主模板：
 	Pri_Key_Update_To               = 然后更新到：

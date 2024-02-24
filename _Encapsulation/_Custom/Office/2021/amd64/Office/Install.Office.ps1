@@ -1720,7 +1720,7 @@ Function Language_Region
 	$LanguageFull = @()
 
 	ForEach ($item in $Global:Languages_Available) {
-		if (($LanguageFull.Region) -NotContains $item.Region) {
+		if ($LanguageFull.Region -NotContains $item.Region) {
 			$LanguageFull += @{
 				RegionID = $item.RegionID
 				Region   = $item.Region
@@ -1733,7 +1733,7 @@ Function Language_Region
 
 		if ($item.Expand.Count -gt 0) {
 			ForEach ($itemExpand in $item.Expand) {
-				if (($LanguageFull.Region) -NotContains $itemExpand.Region) {
+				if ($LanguageFull.Region -NotContains $itemExpand.Region) {
 					$LanguageFull += @{
 						RegionID = $itemExpand.RegionID
 						Region   = $itemExpand.Region
@@ -1812,18 +1812,18 @@ Function Install-Process
 		.获取当前操作系统默认语言
 	#>
 	Write-Host "`n   Main language: $($Global:UILanguage)"
-	if (($GetKnownLanguages) -Contains $Global:UILanguage) {
+	if ($GetKnownLanguages -Contains $Global:UILanguage) {
 		$GetAddedLanguage += $Global:UILanguage
 		$TempOfficeLanguage += "			<Language ID=""$($Global:UILanguage)"" />`n"
 	} else {
-		if (($GetKnownLanguages) -Contains "en-US") {
+		if ($GetKnownLanguages -Contains "en-US") {
 			$GetAddedLanguage += "en-US"
 			$TempOfficeLanguage += "			<Language ID=""en-US"" />`n"
 		}
 	}
 
 	foreach ($item in $GetKnownLanguages) {
-		if (($GetAddedLanguage) -notcontains $item) {
+		if ($GetAddedLanguage -notcontains $item) {
 			$GetAddedLanguage += $item
 			$TempOfficeLanguage += "			<Language ID=""$($item)"" />`n"
 		}

@@ -3,7 +3,6 @@
 	Function_Limited                = Teilweise eingeschränkt
 	AssignNeedMount                 = Wenn es ein neues Mount-Image gibt
 	AssignNoMount                   = Wenn kein Bild gemountet ist
-	AssignTask                      = Verfügbare Ereignisaufgaben zuweisen
 	AssignSetting                   = Wahrnehmungsereignisse verwalten
 	AssignEndCurrent                = Nur ( {0} ) Ereignisse der Zuordnung beenden
 	AssignEndNoMount                = Beenden Sie kein Mount-Zeit-Ereignis
@@ -13,11 +12,14 @@
 	SuggestedReset                  = Alle Wahrnehmungsvorschläge zurücksetzen
 	SuggestedNext                   = Die Synchronisierung wird für die globale empfohlen
 
+	EventManagerMul                 = Multitasking-Events
 	EventManager                    = Veranstaltung
 	EventManagerCount               = Artikel
 	EventManagerNo                  = Kein Event
 	EventManagerClear               = Alle Ereignisse löschen
+	EventManagerCurrentClear        = Gespeicherte Aufgaben löschen
 	AfterFinishingNotExecuted       = Wenn eine Aufgabe oder ein Ereignis verfügbar ist
+	AfterFinishingNoProcess         = Nicht verarbeitet
 	AfterFinishingPause             = Pause
 	AfterFinishingReboot            = Starte den Computer neu
 	AfterFinishingShutdown          = Den Computer herunterfahren
@@ -39,7 +41,6 @@
 	Wimlib_New_Tips                 = Keine Post-Popup-Events
 
 	WaitTimeTitle                   = Wann fängt es an
-	WaitTimeCanel                   = Abgebrochen, es gibt Aufgaben in der Warteschlange, die sofort ausgeführt werden.
 	WaitTimeTips                    = Hinweis\n\n    1. Bitte wählen Sie die Wartezeit aus;\n\n    2. Abbrechen, die Aufgaben in der Warteschlange werden sofort ausgeführt.
 	WaitQueue                       = In der Schlange warten
 	AddSources                      = Quelle hinzufügen

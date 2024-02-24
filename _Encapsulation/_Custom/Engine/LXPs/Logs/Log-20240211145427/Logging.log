@@ -1,0 +1,31 @@
+**********************
+PowerShell transcript start
+Start time: 20240211145429
+Username: DESKTOP-PIPVU8K\Administrator
+RunAs User: DESKTOP-PIPVU8K\Administrator
+Configuration Name: 
+Machine: DESKTOP-PIPVU8K (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Program Files\PowerShell\7\pwsh.dll
+Process ID: 13824
+PSVersion: 7.4.1
+PSEdition: Core
+GitCommitId: 7.4.1
+OS: Microsoft Windows 10.0.22631
+Platform: Win32NT
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1, 6.0, 7.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+WSManStackVersion: 3.0
+**********************
+
+   Author: Yi ( https://fengyi.tel )
+
+   From: Yi's Solutions
+   buildstring: 1.0.0.6.bs_release.230429-1208
+   Menu
+   --------------------------------------------------------------------------------
+      1   Check for updates
+      2   Local language experience pack ( LXPs )
+
+      L   Switch language
+      R   Reload the module

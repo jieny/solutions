@@ -27,16 +27,11 @@
 	NoLicense                       = Kein Zertifikat
 	StepOne                         = Schritt 1: Markup, Local Language Experience Packs ( LXPs )
 	StepTwo                         = Schritt 2: \
-	StepThree                       = Schritt 3: Aktualisieren oder entfernen Sie das Local Language Experience Pack ( LXPs )
 	CurrentIsNVeriosn               = N Versionsserie
 	CurrentNoIsNVersion             = Voll funktionsfähige Version
-	LXPsWaitSync                    = Warten Sie auf Hinzufügungen und synchronisieren Sie dann mit: \
 	LXPsWaitAddUpdate               = ausstehendes Upgrade
 	LXPsWaitAdd                     = Hinzuzufügen
 	LXPsWaitRemove                  = Gelöscht werden
-	LXPsWaitRemoveKnown             = Zu entfernen und andere bekannte Sprachen anzuzeigen
-	LXPsSyncToRemove                = Neusynchronisierung ausstehendes Hinzufügen zu ausstehendem Löschen
-	LXPsRestoreOld                  = Stellen Sie die zuvor ausgewählte ausstehende Löschung wieder her
 	LXPsAddDelTipsView              = Es gibt neue Tipps, schau es dir jetzt an
 	LXPsAddDelTipsGlobal            = Keine Eingabeaufforderungen mehr, synchronisieren Sie mit dem globalen
 	LXPsAddDelTips                  = Nicht erneut erinnern

@@ -33,7 +33,7 @@ Function Remove_Tree
 
 	Remove-Item $Path -force -Recurse -ErrorAction silentlycontinue -Confirm:$false | Out-Null
 	
-	if (Test-Path "$($path)\" -ErrorAction silentlycontinue) {
+	if (Test-Path -Path "$($path)\" -ErrorAction silentlycontinue) {
 		Get-ChildItem -Path $Path -File -Force -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove-Item $_.FullName -force -ErrorAction SilentlyContinue -Confirm:$false
 		}
@@ -42,7 +42,7 @@ Function Remove_Tree
 			Remove_Tree -Path $_.FullName
 		}
 
-		if (Test-Path "$($path)\" -ErrorAction silentlycontinue) {
+		if (Test-Path -Path "$($path)\" -ErrorAction silentlycontinue) {
 			Remove-Item $Path -force -Recurse -ErrorAction SilentlyContinue -Confirm:$false
 		}
 	}
@@ -107,6 +107,7 @@ Function Test_Available_Disk
 	)
 
 	try {
+		$Path = Join_MainFolder -Path $Path
 		New-Item -Path $Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 
 		$RandomGuid = [guid]::NewGuid()
@@ -257,15 +258,15 @@ Function Clear_Arch_Path
 
 	switch ($Global:ArchitecturePack) {
 		"arm64" {
-			if (Test-Path "$($path)\arm64" -PathType Container -ErrorAction SilentlyContinue) {
+			if (Test-Path -Path "$($path)\arm64" -PathType Container) {
 				Remove_Tree -Path "$($path)\AMD64"
 				Remove_Tree -Path "$($path)\x86"
 			} else {
-				if (Test-Path "$($path)\AMD64" -PathType Container -ErrorAction SilentlyContinue) {
+				if (Test-Path -Path "$($path)\AMD64" -PathType Container) {
 					Remove_Tree -Path "$($path)\arm64"
 					Remove_Tree -Path "$($path)\x86"
 				} else {
-					if (Test-Path "$($path)\x86" -PathType Container -ErrorAction SilentlyContinue) {
+					if (Test-Path -Path "$($path)\x86" -PathType Container) {
 						Remove_Tree -Path "$($path)\arm64"
 						Remove_Tree -Path "$($path)\AMD64"
 					}
@@ -273,11 +274,11 @@ Function Clear_Arch_Path
 			}
 		}
 		"AMD64" {
-			if (Test-Path "$($path)\AMD64" -PathType Container -ErrorAction SilentlyContinue) {
+			if (Test-Path -Path "$($path)\AMD64" -PathType Container) {
 				Remove_Tree -Path "$($path)\arm64"
 				Remove_Tree -Path "$($path)\x86"
 			} else {
-				if (Test-Path "$($path)\x86" -PathType Container -ErrorAction SilentlyContinue) {
+				if (Test-Path -Path "$($path)\x86" -PathType Container) {
 					Remove_Tree -Path "$($path)\arm64"
 					Remove_Tree -Path "$($path)\AMD64"
 				}
@@ -440,5 +441,16 @@ Function Get_GPS_Location
 		}
 	}
 
-	return "Now"
+	return "ISO"
+}
+
+Function Get_Autopilot_Location
+{
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel" -ErrorAction SilentlyContinue) {
+		$GetSaveLabelGUID = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel" -ErrorAction SilentlyContinue
+
+		return $GetSaveLabelGUID
+	}
+
+	return "Default"
 }

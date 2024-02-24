@@ -179,7 +179,7 @@ $SearchKMS = @(
 Function Solutions
 {
 	if (-not $Global:EventQueueMode) {
-		Logo -Title $($lang.Solution)
+		Logo -Title $lang.Solution
 		Write-Host "   $($lang.Dashboard)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 
@@ -212,20 +212,108 @@ Function Solutions
 
 Function Solutions_Create_UI
 {
-	Write-Host "`n   $($lang.Solution)" -ForegroundColor Yellow
-	Write-host "   $('-' * 80)"
+	param (
+		[array]$Autopilot,
+		[switch]$ISO,
+		[switch]$mount
+	)
+
+	if ($ISO) {
+		$Script:init_To_GPS = "ISO"
+	} else {
+		$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+	}
 
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Function Refres_Event_Tasks_Solutions_Add
+	{
+		$Falg_Event = $False
+
+		if ((Get-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
+			$Falg_Event = $true
+			$UI_Main_Dashboard_Event_Engine_Status.Text = "$($lang.EnabledEnglish): $($lang.Enable)"
+			$UI_Main_Dashboard_Event_Engine_Clear.Text = "$($lang.YesWork), $($lang.EventManagerCurrentClear)"
+		} else {
+			$UI_Main_Dashboard_Event_Engine_Status.Text = "$($lang.EnabledEnglish): $($lang.Disable)"
+			$UI_Main_Dashboard_Event_Engine_Clear.Text = $lang.EventManagerNo
+		}
+
+		if ((Get-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
+			$Falg_Event = $true
+			$UI_Main_Dashboard_Event_Unattend_Status.Text = "$($lang.EnabledUnattend): $($lang.Enable)"
+			$UI_Main_Dashboard_Event_Unattend_Clear.Text = "$($lang.YesWork), $($lang.EventManagerCurrentClear)"
+		} else {
+			$UI_Main_Dashboard_Event_Unattend_Status.Text = "$($lang.EnabledUnattend): $($lang.Disable)"
+			$UI_Main_Dashboard_Event_Unattend_Clear.Text = $lang.EventManagerNo
+		}
+
+		if ((Get-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
+			$Falg_Event = $true
+			$UI_Main_Dashboard_Event_Collection_Status.Text = "$($lang.EnabledSoftwarePacker): $($lang.Enable)"
+			$UI_Main_Dashboard_Event_Collection_Clear.Text = "$($lang.YesWork), $($lang.EventManagerCurrentClear)"
+		} else {
+			$UI_Main_Dashboard_Event_Collection_Status.Text = "$($lang.EnabledSoftwarePacker): $($lang.Disable)"
+			$UI_Main_Dashboard_Event_Collection_Clear.Text = $lang.EventManagerNo
+		}
+
+		if ($Falg_Event) {
+		} else {
+			New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $False -Force
+		}
+		
+		if ((Get-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
+			$UI_Main_Dashboard_Event_Status.Text = "$($lang.EventManager): $($lang.Enable)"
+			$UI_Main_Dashboard_Event_Clear.Text = "$($lang.YesWork), $($lang.EventManagerCurrentClear)"
+		} else {
+			$UI_Main_Dashboard_Event_Status.Text = "$($lang.EventManager): $($lang.Disable)"
+			$UI_Main_Dashboard_Event_Clear.Text = $lang.EventManagerNo
+		}
+	}
+
+	Function Solutions_Event_Clear
+	{
+		param (
+			[switch]$All,
+			[switch]$Engine,
+			[switch]$Unattend,
+			[switch]$Collection
+		)
+
+		if ($All) {
+			New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $False -Force
+			New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $False -Force
+			New-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -Value $False -Force
+			New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $False -Force
+		}
+
+		if ($Engine) {
+			New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $False -Force
+		}
+
+		if ($Unattend) {
+			New-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -Value $False -Force
+		}
+
+		if ($Collection) {
+			New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $False -Force
+		}
+
+		Refres_Event_Tasks_Solutions_Add
+
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Success.ico")
+		$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
+	}
 
 	Function Solutions_Create_Refresh_Regional
 	{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
 
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Region_Preferred" -ErrorAction SilentlyContinue) {
-			$GetNewSaveLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Region_Preferred" -ErrorAction SilentlyContinue
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Region_Preferred" -ErrorAction SilentlyContinue) {
+			$GetNewSaveLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Region_Preferred" -ErrorAction SilentlyContinue
 			$EngineRegionalShow.Text = $($lang.SolutionsEngineRegionalTips -f $Global:MainImageLang, $GetNewSaveLanguage)
 		} else {
 			$EngineRegionalShow.Text = $($lang.SolutionsEngineRegionalTips -f $Global:MainImageLang, $Global:MainImageLang)
@@ -283,8 +371,8 @@ Function Solutions_Create_UI
 		<#
 			.保存到注册表
 		#>
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Save_Command_WinSetup" -value $Temp_Save_Windows_Setup -Multi
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Save_Command_WinSPE" -value $Temp_Save_Windows_PE -Multi
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Save_Command_WinSetup" -value $Temp_Save_Windows_Setup -Multi
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Save_Command_WinSPE" -value $Temp_Save_Windows_PE -Multi
 	}
 
 
@@ -317,20 +405,20 @@ Function Solutions_Create_UI
 			}
 		}
 
-		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$(Get_GPS_Location)_Exclude_Software" -ErrorAction SilentlyContinue)) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$(Get_GPS_Location)_Exclude_Software" -value "" -Multi
+		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$($Script:init_To_GPS)_Exclude_Software" -ErrorAction SilentlyContinue)) {
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$($Script:init_To_GPS)_Exclude_Software" -value "" -Multi
 		}
-		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$(Get_GPS_Location)_Exclude_Software"
+		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$($Script:init_To_GPS)_Exclude_Software"
 
 		$ExcludeSoftware = @()
 		ForEach ($item in $GetExcludeSoftware) {
 			$ExcludeSoftware += $item
 		}
 
-		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$(Get_GPS_Location)_Exclude_Fonts" -ErrorAction SilentlyContinue)) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$(Get_GPS_Location)_Exclude_Fonts" -value "" -Multi
+		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$($Script:init_To_GPS)_Exclude_Fonts" -ErrorAction SilentlyContinue)) {
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$($Script:init_To_GPS)_Exclude_Fonts" -value "" -Multi
 		}
-		$GetExcludeFonts = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$(Get_GPS_Location)_Exclude_Fonts"
+		$GetExcludeFonts = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$($Script:init_To_GPS)_Exclude_Fonts"
 
 		$ExcludeFonts = @()
 		ForEach ($item in $GetExcludeFonts) {
@@ -352,7 +440,7 @@ Function Solutions_Create_UI
 					}
 				}
 
-				if (($ExcludeSoftware) -Contains $_.BaseName) {
+				if ($ExcludeSoftware -Contains $_.BaseName) {
 					$CheckBox.Checked = $False
 				} else {
 					$CheckBox.Checked = $True
@@ -383,7 +471,7 @@ Function Solutions_Create_UI
 				}
 			}
 
-			if (($ExcludeFonts) -Contains $_.BaseName) {
+			if ($ExcludeFonts -Contains $_.BaseName) {
 				$CheckBox.Checked = $False
 			} else {
 				$CheckBox.Checked = $True
@@ -393,8 +481,8 @@ Function Solutions_Create_UI
 
 		Solutions_Create_Refresh_Office_Status
 
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_PreOfficeVersion" -ErrorAction SilentlyContinue) {
-			$GetTempSelectPacker = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_PreOfficeVersion" -ErrorAction SilentlyContinue
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_PreOfficeVersion" -ErrorAction SilentlyContinue) {
+			$GetTempSelectPacker = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_PreOfficeVersion" -ErrorAction SilentlyContinue
 			$Solutions_Office_Select.Text = $GetTempSelectPacker
 		}
 	}
@@ -447,13 +535,13 @@ Function Solutions_Create_UI
 		$GroupMainVerList.controls.Clear()
 
 		Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Engine" -Directory -ErrorAction SilentlyContinue | ForEach-Object {
-			if (Test-Path "$($_.Fullname)\Engine.ps1" -PathType Leaf) {
+			if (Test-Path -Path "$($_.Fullname)\Engine.ps1" -PathType Leaf) {
 				$GroupMainVerList.Items.Add($_.BaseName) | Out-Null
 			}
 		}
 
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_SelectSolutionVersion" -ErrorAction SilentlyContinue) {
-			$GetSelectVer = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_SelectSolutionVersion" -ErrorAction SilentlyContinue
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_SelectSolutionVersion" -ErrorAction SilentlyContinue) {
+			$GetSelectVer = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_SelectSolutionVersion" -ErrorAction SilentlyContinue
 			$GroupMainVerList.Text = $GetSelectVer
 		}
 	}
@@ -472,12 +560,12 @@ volume
 1
 "@ | Out-File -FilePath "$($Global:Image_source)\sources\EI.CFG" -Encoding Ascii -ErrorAction SilentlyContinue
 
-			if (($Global:ImageType) -eq "Desktop") {
+			if ($Global:ImageType -eq "Desktop") {
 				$SchemeDiskSpecifiedIndex.Enabled = $False        # 索引号按钮
 				$SchemeDiskSpecifiedIndexPanel.Enabled = $False   # 索引号面板
 			}
 
-			if (($Global:ImageType) -eq "Server") {
+			if ($Global:ImageType -eq "Server") {
 				$SchemeDiskSpecifiedIndex.Enabled = $True         # 索引号按钮
 				$SchemeDiskSpecifiedIndexPanel.Enabled = $True    # 索引号面板
 			}
@@ -489,14 +577,14 @@ volume
 		if ($InstlModeconsumer.Checked) {
 			Remove_Tree "$($Global:Image_source)\sources\EI.CFG"
 
-			if (($Global:ImageType) -eq "Desktop") {
+			if ($Global:ImageType -eq "Desktop") {
 				$SchemeDiskSpecifiedIndex.Enabled = $True         # 索引号按钮
 				$SchemeDiskSpecifiedIndexPanel.Enabled = $True    # 索引号面板
 				$SchemeDiskSpecifiedKEY.Enabled = $False          # 序列号按钮
 				$SchemeDiskSpecifiedKEYPanel.Enabled = $False     # 序列号面板
 			}
 
-			if (($Global:ImageType) -eq "Server") {
+			if ($Global:ImageType -eq "Server") {
 				$SchemeDiskSpecifiedIndex.Enabled = $True         # 索引号按钮
 				$SchemeDiskSpecifiedIndexPanel.Enabled = $True    # 索引号面板
 				$SchemeDiskSpecifiedKEY.Enabled = $True           # 序列号按钮
@@ -506,7 +594,7 @@ volume
 		}
 
 		if ($SchemeDiskHalf.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_UnattendMode" -value "1" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_UnattendMode" -value "1" -String
 			$SchemeDiskSpecifiedPanel.Enabled = $False
 			if ($SchemeVerMulti.Checked) {
 				$SchemeVerMulti.Enabled = $True
@@ -518,14 +606,14 @@ volume
 		}
 
 		if ($SchemeDiskUefi.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_UnattendMode" -value "2" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_UnattendMode" -value "2" -String
 			$SchemeDiskSpecifiedPanel.Enabled = $True
 			$SchemeVerMulti.Enabled = $True
 			$SchemeVerSingle.Enabled = $True
 		}
 
 		if ($SchemeDiskLegacy.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_UnattendMode" -value "3" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_UnattendMode" -value "3" -String
 			$SchemeDiskSpecifiedPanel.Enabled = $True
 			$SchemeVerMulti.Enabled = $True
 			$SchemeVerSingle.Enabled = $True
@@ -553,27 +641,27 @@ volume
 		$UI_Main_Error_Icon.Image = $null
 
 		if ($CreateUnattendISO.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendISO" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendISO" -value "True" -String
 		} else {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendISO" -value "False" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendISO" -value "False" -String
 		}
 
 		if ($CreateUnattendISOSources.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendISOSources" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendISOSources" -value "True" -String
 		} else {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendISOSources" -value "False" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendISOSources" -value "False" -String
 		}
 
 		if ($CreateUnattendISOSourcesOEM.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendISOSourcesOEM" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendISOSourcesOEM" -value "True" -String
 		} else {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendISOSourcesOEM" -value "False" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendISOSourcesOEM" -value "False" -String
 		}
 
 		if ($CreateUnattendPanther.Checked) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendPather" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendPather" -value "True" -String
 		} else {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_AllowUnattendPather" -value "False" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_AllowUnattendPather" -value "False" -String
 		}
 	}
 
@@ -610,13 +698,13 @@ volume
 
 		if ($SchemeVerMulti.Checked) {
 			$SchemeVerSingle.Enabled = $False
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsLanguageUnattend" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsLanguageUnattend" -value "True" -String
 		} else {
 			$SchemeVerSingle.Enabled = $True
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsLanguageUnattend" -value "False" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsLanguageUnattend" -value "False" -String
 		}
 
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_LanguageUnattend" -value $SchemeVerSingle.Text -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_LanguageUnattend" -value $SchemeVerSingle.Text -String
 	}
 
 	$SchemeLangMultiClick = {
@@ -634,16 +722,16 @@ volume
 			$SolutionsCollectionKeep.Enabled = $True
 			$SolutionsCollectionKeepChange.Enabled = $True
 			$SolutionsCollectionKeepShow.Enabled = $True
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsLanguageCollection" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsLanguageCollection" -value "True" -String
 		} else {
 			$SchemeLangSingle.Enabled = $True
 			$SolutionsCollectionKeep.Enabled = $False
 			$SolutionsCollectionKeepChange.Enabled = $False
 			$SolutionsCollectionKeepShow.Enabled = $False
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsLanguageCollection" -value "False" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsLanguageCollection" -value "False" -String
 		}
 
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_LanguageCollection" -value $SchemeLangSingle.Text -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_LanguageCollection" -value $SchemeLangSingle.Text -String
 	}
 
 	$SolutionsOfficeChangeCfgClick = {
@@ -678,7 +766,7 @@ volume
 		}
 
 		New-Variable -Scope global -Name "DeployCollectionLanguageOnly_$($Script:init_To_GPS)" -Value $Temp_DeployCollectionLanguageOnly -Force
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$(Get_GPS_Location)_Collection_Reserved_Language" -value $Temp_DeployCollectionLanguageOnly -Multi
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$($Script:init_To_GPS)_Collection_Reserved_Language" -value $Temp_DeployCollectionLanguageOnly -Multi
 		$SolutionsCollectionKeepShow.Text = $Temp_DeployCollectionLanguageOnly
 	}
 
@@ -704,7 +792,7 @@ volume
 			}
 		}
 
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_Reserved_Language" -value $TempDeployOfficeLanguageOnly -Multi
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_Reserved_Language" -value $TempDeployOfficeLanguageOnly -Multi
 		$SolutionsOfficeKeepShow.Text = $TempDeployOfficeLanguageOnly
 	}
 
@@ -724,10 +812,10 @@ volume
 		<#
 			.Windows 安装初始化选择
 		#>
-		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Save_Command_WinSetup" -ErrorAction SilentlyContinue)) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Save_Command_WinSetup" -value $Script:Init_Pre_Select_Command -Multi
+		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Save_Command_WinSetup" -ErrorAction SilentlyContinue)) {
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Save_Command_WinSetup" -value $Script:Init_Pre_Select_Command -Multi
 		}
-		$Get_Init_Select_Guid_Command = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Save_Command_WinSetup"
+		$Get_Init_Select_Guid_Command = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Save_Command_WinSetup"
 
 		$Group_Get_Init_Select_Guid_Command = @()
 		ForEach ($item in $Get_Init_Select_Guid_Command) {
@@ -737,10 +825,10 @@ volume
 		<#
 			.Windows PE
 		#>
-		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Save_Command_WinSPE" -ErrorAction SilentlyContinue)) {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Save_Command_WinSPE" -value "" -Multi
+		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Save_Command_WinSPE" -ErrorAction SilentlyContinue)) {
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Save_Command_WinSPE" -value "" -Multi
 		}
-		$Get_Init_Select_Guid_PE_Command = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Save_Command_WinSPE"
+		$Get_Init_Select_Guid_PE_Command = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Save_Command_WinSPE"
 
 		$Group_Get_Init_Select_PE_Guid_Command = @()
 		ForEach ($item in $Get_Init_Select_Guid_PE_Command) {
@@ -778,7 +866,7 @@ volume
 					}
 				}
 
-				if (($Group_Get_Init_Select_Guid_Command) -Contains $item.GUID) {
+				if ($Group_Get_Init_Select_Guid_Command -Contains $item.GUID) {
 					$CheckBox.Checked = $True
 				}
 
@@ -786,7 +874,7 @@ volume
 			} else {
 				$Filet = "Microsoft-Windows-Shell-Setup"
 
-				if (($item.Apply) -Contains $Filet) {
+				if ($item.Apply -Contains $Filet) {
 					$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 						Height    = 40
 						Width     = 425
@@ -799,7 +887,7 @@ volume
 						}
 					}
 
-					if (($Group_Get_Init_Select_Guid_Command) -Contains $item.GUID) {
+					if ($Group_Get_Init_Select_Guid_Command -Contains $item.GUID) {
 						$CheckBox.Checked = $True
 					}
 
@@ -845,7 +933,7 @@ volume
 					}
 				}
 
-				if (($Group_Get_Init_Select_PE_Guid_Command) -Contains $item.GUID) {
+				if ($Group_Get_Init_Select_PE_Guid_Command -Contains $item.GUID) {
 					$CheckBox.Checked = $True
 				}
 
@@ -853,9 +941,9 @@ volume
 			} else {
 				$Filet = "Microsoft-Windows-Setup"
 
-				if (($item.Apply) -Contains $Filet) {
+				if ($item.Apply -Contains $Filet) {
 					$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
-						Height    = 28
+						Height    = 30
 						Width     = 425
 						Padding   = "18,0,0,0"
 						Text      = $item.Name
@@ -866,7 +954,7 @@ volume
 						}
 					}
 
-					if (($Group_Get_Init_Select_PE_Guid_Command) -Contains $item.GUID) {
+					if ($Group_Get_Init_Select_PE_Guid_Command -Contains $item.GUID) {
 						$CheckBox.Checked = $True
 					}
 
@@ -885,7 +973,8 @@ volume
 		.Event: Ok
 		.事件：确认
 	#>
-	$UI_Main_OK_Click = {
+	Function Autopilot_Solutions_Save
+	{
 		<#
 			.初始化变量
 		#>
@@ -913,12 +1002,14 @@ volume
 
 		if ($SolutionsToMount.Enabled) {
 			if ($SolutionsToMount.Checked) {
+				$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
 				$init_Is_Select_Add_To = $True
 			}
 		}
 
 		if ($SolutionsToSources.Enabled) {
 			if ($SolutionsToSources.Checked) {
+				$Script:init_To_GPS = "ISO"
 				$init_Is_Select_Add_To = $True
 			}
 		}
@@ -928,7 +1019,7 @@ volume
 		} else {
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose) ( $($lang.SolutionsTo) )"
-			return
+			return $False
 		}
 
 		<#
@@ -939,7 +1030,7 @@ volume
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.VerifyName)"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 
 		<#
@@ -950,7 +1041,7 @@ volume
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 		
 		<#
@@ -961,7 +1052,7 @@ volume
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 		
 		<#
@@ -972,7 +1063,7 @@ volume
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 
 		<#
@@ -983,7 +1074,7 @@ volume
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorOther)"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 
 		<#
@@ -994,26 +1085,25 @@ volume
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISOLengthError -f "16")"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 
 		if ($GUISolutionsCustomizeName.Text -match '\s') {
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
-			return
+			return $False
 		}
 
 		<#
 			.多重初始变量
 		#>
 		New-Variable -Scope global -Name "Name_Engine_$($Script:init_To_GPS)" -Value $GUISolutionsCustomizeName.Text -Force
-		New-Variable -Scope global -Name "DeployOfficeVersion_$($Script:init_To_GPS)" -Value "" -Force
+
 		New-Variable -Scope global -Name "QueueDeploySelect_$($Script:init_To_GPS)" -Value "" -Force
 		New-Variable -Scope global -Name "DeployOfficeSyncConfig_$($Script:init_To_GPS)" -Value $False -Force
 		New-Variable -Scope global -Name "DeployOfficeTo_$($Script:init_To_GPS)" -Value "0" -Force
 		New-Variable -Scope global -Name "DeployPackageTo_$($Script:init_To_GPS)" -Value "0" -Force
-		New-Variable -Scope global -Name "Queue_Is_Solutions_To_$($Script:init_To_GPS)" -Value "" -Force
 
 		<#
 			.添加软件
@@ -1075,7 +1165,6 @@ volume
 			#>
 			New-Variable -Scope global -Name "Queue_Is_OOBE_Account_AutoLogon_$($Script:init_To_GPS)" -Value $False -Force
 
-
 			if ($Is_Init_Select_Custom_Specified) {
 				<#
 					.判断复选框：自动登录
@@ -1124,7 +1213,7 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.OOBE_init_Specified)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
-								return
+								return $False
 							}
 
 							<#
@@ -1135,7 +1224,7 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
-								return
+								return $False
 							}
 
 							<#
@@ -1146,7 +1235,7 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
-								return
+								return $False
 							}
 
 							<#
@@ -1157,7 +1246,7 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorSpace)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
-								return
+								return $False
 							}
 
 							<#
@@ -1168,7 +1257,7 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISO9660TipsErrorOther)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
-								return
+								return $False
 							}
 
 							<#
@@ -1179,7 +1268,7 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISOLengthError -f "20")"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
-								return
+								return $False
 							}
 
 							New-Variable -Scope global -Name "Name_Unattend_$($Script:init_To_GPS)" -Value $SolutionsOther_Specified_Expand_UserName_Custom.Text -Force
@@ -1194,7 +1283,7 @@ volume
 			} else {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 				$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose) ( $($lang.OOBE_init_Create), $($lang.OOBE_init_Specified) )"
-				return
+				return $False
 			}
 
 
@@ -1218,15 +1307,15 @@ volume
 		}
 
 		<#
-			.Processing tag
+			.Requirementsing tag
 			.处理标记
 		#>
 		if ($MarkolutionsCustomizeName) {
 			<#
-				.Processing: after completion
+				.Requirementsing: after completion
 				.处理：完成后
 			#>
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_SaveEngine" -value $GUISolutionsCustomizeName.Text -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_SaveEngine" -value $GUISolutionsCustomizeName.Text -String
 		}
 
 		if ($InstlModebusiness.Enabled) {
@@ -1269,7 +1358,7 @@ volume
 						$GUISolutionsCollectionChange_Error.Text = ""
 						$GUISolutionsCollectionChange_Error_Icon.Image = $null
 						$GUISolutionsCollectionChange.visible = $True
-						return
+						return $False
 					}
 				} else {
 					New-Variable -Scope global -Name "SolutionsLang_$($Script:init_To_GPS)" -Value "Single" -Force
@@ -1277,12 +1366,12 @@ volume
 					if ([string]::IsNullOrEmpty($SchemeLangSingle.Text)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = $lang.UnattendLangPack
-						return
+						return $False
 					}
 				}
 
 				New-Variable -Scope global -Name "SolutionsLangDefault_$($Script:init_To_GPS)" -Value $SchemeLangSingle.Text -Force
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_LanguageCollection" -value $SchemeLangSingle.Text -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_LanguageCollection" -value $SchemeLangSingle.Text -String
 
 				if ($ArchitectureARM64.Checked) { $Global:ArchitecturePack = "arm64" }
 				if ($ArchitectureAMD64.Checked) { $Global:ArchitecturePack  = "AMD64" }
@@ -1294,10 +1383,10 @@ volume
 					if ([string]::IsNullOrEmpty($Solutions_Office_Select.Text)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = $lang.SolutionsDeployOfficeNoSelect
-						return
+						return $False
 					} else {
 						New-Variable -Scope global -Name "DeployOfficeVersion_$($Script:init_To_GPS)" -Value $Solutions_Office_Select.Text -Force
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_PreOfficeVersion" -value $Solutions_Office_Select.Text -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_PreOfficeVersion" -value $Solutions_Office_Select.Text -String
 					}
 
 					if ([string]::IsNullOrEmpty($SolutionsOfficeKeepShow.Text)) {
@@ -1306,7 +1395,7 @@ volume
 						$GUISolutionsCollectionChange_Error.Text = ""
 						$GUISolutionsCollectionChange_Error_Icon.Image = $null
 						$GUISolutionsOfficeChange.visible = $True
-						return
+						return $False
 					}
 
 					if ($GUISolutionsOfficeToPublic.Checked) {
@@ -1355,7 +1444,7 @@ volume
 								if ($_.Checked) {
 									$MarkCheckPackageSel = $True
 									New-Variable -Scope global -Name "DeployPackerVersion_$($Script:init_To_GPS)" -Value $_.Tag -Force
-									Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_SolutionsPacker" -value $_.Text -String
+									Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_SolutionsPacker" -value $_.Text -String
 								}
 							}
 						}
@@ -1364,7 +1453,7 @@ volume
 					if (-not ($MarkCheckPackageSel)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.DeployPackageSelect)"
-						return
+						return $False
 					}
 				}
 
@@ -1387,7 +1476,7 @@ volume
 
 						New-Variable -Scope global -Name "QueueSoftwareSelect_$($Script:init_To_GPS)" -Value $Temp_QueueSoftwareSelect -Force
 						New-Variable -Scope global -Name "QueueSoftwareNoSelect_$($Script:init_To_GPS)" -Value $Temp_QueueSoftwareNoSelect -Force
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$(Get_GPS_Location)_Exclude_Software" -value $Temp_QueueSoftwareNoSelect -Multi
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$($Script:init_To_GPS)_Exclude_Software" -value $Temp_QueueSoftwareNoSelect -Multi
 					}
 				} else {
 					New-Variable -Scope global -Name "QueueSoftwareSelect_$($Script:init_To_GPS)" -Value @() -Force
@@ -1413,7 +1502,7 @@ volume
 
 						New-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -Value $Temp_QueueFontsSelect -Force
 						New-Variable -Scope global -Name "QueueFontsNoSelect_$($Script:init_To_GPS)" -Value $Temp_QueueFontsNoSelect -Force
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$(Get_GPS_Location)_Exclude_Fonts" -value $Temp_QueueFontsNoSelect -Multi
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$($Script:init_To_GPS)_Exclude_Fonts" -value $Temp_QueueFontsNoSelect -Multi
 					}
 				} else {
 					New-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -Value @() -Force
@@ -1428,73 +1517,73 @@ volume
 			开启并添加应预答
 		#>
 		if ($SolutionsUnattend.Checked) {
-				<#
-					.判断是否选择版本
-				#>
-				if ([string]::IsNullOrEmpty($Unattend_Version_Select.Text)) {
-					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-					$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISOAddEICFG)"
-					return
-				} else {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_Scheme" -value $Unattend_Version_Select.Text -Multi
-					New-Variable -Scope global -Name "Queue_Unattend_Scheme_$($Script:init_To_GPS)" -Value $Unattend_Version_Select.Text -Force
-				}
+			<#
+				.判断是否选择版本
+			#>
+			if ([string]::IsNullOrEmpty($Unattend_Version_Select.Text)) {
+				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
+				$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.ISOAddEICFG)"
+				return $False
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_Scheme" -value $Unattend_Version_Select.Text -Multi
+				New-Variable -Scope global -Name "Queue_Unattend_Scheme_$($Script:init_To_GPS)" -Value $Unattend_Version_Select.Text -Force
+			}
 
-				<#
-					.添加应预答前，判断是否添加“部署引擎”，如果是需要添加部署引擎，需要启用 2 项才能正常运行
-				#>
-				if ($SolutionsEngine.Checked) {
-					if ($Engine_Unattend_Auto_Fix.Checked) {
-						$Temp_Save_Windows_Setup = @()
-						$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
-							if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
-								if ("WinSetup" -eq $_.Name) {
-									$_.Controls | ForEach-Object {
-										if ($_ -is [System.Windows.Forms.CheckBox]) {
-											if (($Script:Init_Pre_Select_Command) -contains $_.Tag) {
-												$Temp_Save_Windows_Setup += $_.Tag
-												$_.Checked = $True
-											}
+			<#
+				.添加应预答前，判断是否添加“部署引擎”，如果是需要添加部署引擎，需要启用 2 项才能正常运行
+			#>
+			if ($SolutionsEngine.Checked) {
+				if ($Engine_Unattend_Auto_Fix.Checked) {
+					$Temp_Save_Windows_Setup = @()
+					$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
+						if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
+							if ("WinSetup" -eq $_.Name) {
+								$_.Controls | ForEach-Object {
+									if ($_ -is [System.Windows.Forms.CheckBox]) {
+										if ($Script:Init_Pre_Select_Command -contains $_.Tag) {
+											$Temp_Save_Windows_Setup += $_.Tag
+											$_.Checked = $True
 										}
 									}
 								}
 							}
-						}
-
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Save_Command_WinSetup" -value $Temp_Save_Windows_Setup -Multi
-						New-Variable -Scope global -Name "Queue_Command_WinSetup_$($Script:init_To_GPS)" -Value $Temp_Save_Windows_Setup -Force
-					} else {
-						$Temp_Save_Windows_Setup = @()
-						$Mark_Not_Select_Rule = $False
-						$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
-							if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
-								if ("WinSetup" -eq $_.Name) {
-									$_.Controls | ForEach-Object {
-										if ($_ -is [System.Windows.Forms.CheckBox]) {
-											if ($_.Checked) {
-												$Temp_Save_Windows_Setup += $_.Tag
-											}
-										}
-									}
-								}
-							}
-						}
-
-						ForEach ($item in $Script:Init_Pre_Select_Command) {
-							if ($Temp_Save_Windows_Setup -contains $item) {
-
-							} else {
-								$Mark_Not_Select_Rule = $True
-							}
-						}
-
-						if ($Mark_Not_Select_Rule) {
-							$UIUnzipPanel_Error_Tips.visible = $True
-							$UIUnzipPanel_Select_Rule.visible = $True
-							return
 						}
 					}
+
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Save_Command_WinSetup" -value $Temp_Save_Windows_Setup -Multi
+					New-Variable -Scope global -Name "Queue_Command_WinSetup_$($Script:init_To_GPS)" -Value $Temp_Save_Windows_Setup -Force
+				} else {
+					$Temp_Save_Windows_Setup = @()
+					$Mark_Not_Select_Rule = $False
+					$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
+						if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
+							if ("WinSetup" -eq $_.Name) {
+								$_.Controls | ForEach-Object {
+									if ($_ -is [System.Windows.Forms.CheckBox]) {
+										if ($_.Checked) {
+											$Temp_Save_Windows_Setup += $_.Tag
+										}
+									}
+								}
+							}
+						}
+					}
+
+					ForEach ($item in $Script:Init_Pre_Select_Command) {
+						if ($Temp_Save_Windows_Setup -contains $item) {
+
+						} else {
+							$Mark_Not_Select_Rule = $True
+						}
+					}
+
+					if ($Mark_Not_Select_Rule) {
+						$UIUnzipPanel_Error_Tips.visible = $True
+						$UIUnzipPanel_Select_Rule.visible = $True
+						return $False
+					}
 				}
+			}
 
 			<#
 				.获取最终选择的命令行并保存到当前数组里
@@ -1540,12 +1629,12 @@ volume
 
 			if ($GUISolutionsVerifySync.Enabled) {
 				if ($GUISolutionsVerifySync.Checked) {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_OSAccountName" -value 1 -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_OSAccountName" -value 1 -String
 				} else {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_OSAccountName" -value 2 -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_OSAccountName" -value 2 -String
 				}
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_OSAccountName" -value 2 -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_OSAccountName" -value 2 -String
 			}
 
 			New-Variable -Scope global -Name "SolutionsCreateUnattendISO_$($Script:init_To_GPS)" -Value $False -Force
@@ -1585,11 +1674,11 @@ volume
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 					$UI_Main_Error.Text = $lang.UnattendSelectVer
 					$SchemeVerSingle.BackColor = "LightPink"
-					return
+					return $False
 				}
 			}
 			New-Variable -Scope global -Name "UnattendLangDefault_$($Script:init_To_GPS)" -Value $SchemeVerSingle.Text -Force
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_LanguageUnattend" -value $SchemeVerSingle.Text -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_LanguageUnattend" -value $SchemeVerSingle.Text -String
 
 			$MarkVerifyIndexProductKey = $False
 			if ($SchemeDiskHalf.Checked) {
@@ -1614,7 +1703,7 @@ volume
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.NoChoose) ( $($lang.MountedIndex) )"
 #							Solutions_Index_UI
-							return
+							return $False
 						} else {
 							New-Variable -Scope global -Name "AllowUnattendIndex_$($Script:init_To_GPS)" -Value $True -Force
 						}
@@ -1628,7 +1717,7 @@ volume
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose) ( $($lang.KMSKey) )"
 #							KMSkeys
-							return
+							return $False
 						} else {
 							New-Variable -Scope global -Name "AllowUnattendProductKey_$($Script:init_To_GPS)" -Value $True -Force
 						}
@@ -1694,7 +1783,7 @@ volume
 			if ([string]::IsNullOrEmpty($GroupMainVerList.Text)) {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 				$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.SolutionsScript)"
-				return
+				return $False
 			} else {
 				<#
 					打开队列功能
@@ -1705,21 +1794,20 @@ volume
 					打开主引擎总添加方案
 				#>
 				New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $True -Force
-				Write-Host "`n   $($lang.EnabledEnglish)"
 
 				<#
 					获得用户选择的版本
 				#>
 				New-Variable -Scope global -Name "SelectSolutionVersion_$($Script:init_To_GPS)" -Value $GroupMainVerList.Text -Force
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_SelectSolutionVersion" -value $GroupMainVerList.Text -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_SelectSolutionVersion" -value $GroupMainVerList.Text -String
 
 				<#
 					.允许全盘搜索并同步部署标记
 				#>
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Is_Mark_Sync" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Is_Mark_Sync" -value "False" -String
 				if ($EngineChkSyncMark.Enabled) {
 					if ($EngineChkSyncMark.Checked) {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Is_Mark_Sync" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Is_Mark_Sync" -value "True" -String
 						$QueueDeploySelect += "Is_Mark_Sync"
 					}
 				}
@@ -1727,10 +1815,10 @@ volume
 				<#
 					.允许首次自动更新
 				#>
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Auto_Update" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Auto_Update" -value "False" -String
 				if ($EngineChkUpdate.Enabled) {
 					if ($EngineChkUpdate.Checked) {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Auto_Update" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Auto_Update" -value "True" -String
 						$QueueDeploySelect += "Auto_Update"
 					}
 				}
@@ -1739,9 +1827,9 @@ volume
 				if ($EngineDefender.Enabled) {
 					if ($EngineDefender.Checked) {
 						$QueueDeploySelect += "Exclude_Defender"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Defender" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Defender" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Defender" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Defender" -value "False" -String
 					}
 				}
 
@@ -1749,9 +1837,9 @@ volume
 				if ($EngineNetworkLocationWizard.Enabled) {
 					if ($EngineNetworkLocationWizard.Checked) {
 						$QueueDeploySelect += "Disable_Network_Location_Wizard"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Network_Location_Wizard" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Network_Location_Wizard" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Network_Location_Wizard" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Network_Location_Wizard" -value "False" -String
 					}
 				}
 
@@ -1761,9 +1849,9 @@ volume
 				if ($GUISolutionsVolume.Enabled) {
 					if ($GUISolutionsVolume.Checked) {
 						$QueueDeploySelect += "Sync_Volume_Name"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Sync_Volume_Name" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Sync_Volume_Name" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Sync_Volume_Name" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Sync_Volume_Name" -value "False" -String
 					}
 				}
 
@@ -1773,9 +1861,9 @@ volume
 				if ($GUIPreAppxCleanup.Enabled) {
 					if ($GUIPreAppxCleanup.Checked) {
 						$QueueDeploySelect += "Disable_Cleanup_Appx_Tasks"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_PreAppxCleanup" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_PreAppxCleanup" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_PreAppxCleanup" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_PreAppxCleanup" -value "False" -String
 					}
 				}
 
@@ -1785,9 +1873,9 @@ volume
 				if ($GUILanguageComponents.Enabled) {
 					if ($GUILanguageComponents.Checked) {
 						$QueueDeploySelect += "Disable_Cleanup_On_Demand_Language"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_LanguageComponents" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_LanguageComponents" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_LanguageComponents" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_LanguageComponents" -value "False" -String
 					}
 				}
 
@@ -1797,9 +1885,9 @@ volume
 				if ($GUIPreventCleaningUnusedLP.Enabled) {
 					if ($GUIPreventCleaningUnusedLP.Checked) {
 						$QueueDeploySelect += "Disable_Cleanup_Unsed_Language"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_PreventCleaningUnusedLP" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_PreventCleaningUnusedLP" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_PreventCleaningUnusedLP" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_PreventCleaningUnusedLP" -value "False" -String
 					}
 				}
 
@@ -1807,30 +1895,30 @@ volume
 				if ($EngineDeskMenu.Enabled) {
 					if ($EngineDeskMenu.Checked) {
 						$QueueDeploySelect += "Desktop_Menu"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Desktop_Menu" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Desktop_Menu" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Desktop_Menu" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Desktop_Menu" -value "False" -String
 					}
 				}
 				if ($EngineDeskMenuShift.Enabled) {
 					if ($EngineDeskMenuShift.Checked) {
 						$QueueDeploySelect += "Desktop_Menu_Shift"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Desktop_Menu_Shift" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Desktop_Menu_Shift" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Desktop_Menu_Shift" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Desktop_Menu_Shift" -value "False" -String
 					}
 				}
 
 				# 首次体验：先决条件重启
 				if ($EnginePrerequisitesReboot.Enabled) {
 					if ($EnginePrerequisitesReboot.Checked) {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Prerequisites_Reboot" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Prerequisites_Reboot" -value "True" -String
 						$QueueDeploySelect += "Prerequisites_Reboot"
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Prerequisites_Reboot" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Prerequisites_Reboot" -value "False" -String
 					}
 				} else {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Prerequisites_Reboot" -value "False" -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Prerequisites_Reboot" -value "False" -String
 				}
 
 				<#
@@ -1840,9 +1928,9 @@ volume
 				if ($EnginePopsupEngine.Enabled) {
 					if ($EnginePopsupEngine.Checked) {
 						$QueueDeploySelect += "Popup_Engine"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_PopupEngine" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_PopupEngine" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_PopupEngine" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_PopupEngine" -value "False" -String
 					}
 				}
 
@@ -1850,9 +1938,9 @@ volume
 				if ($EngineFirstExp.Enabled) {
 					if ($EngineFirstExp.Checked) {
 						$QueueDeploySelect += "Allow_First_Pre_Experience"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Allow_First_Pre_Experience" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Allow_First_Pre_Experience" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Allow_First_Pre_Experience" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Allow_First_Pre_Experience" -value "False" -String
 					}
 				}
 
@@ -1860,9 +1948,9 @@ volume
 				if ($EngineRestricted.Enabled) {
 					if ($EngineRestricted.Checked) {
 						$QueueDeploySelect += "Reset_Execution_Policy"
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Restricted" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Restricted" -value "True" -String
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Restricted" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Restricted" -value "False" -String
 					}
 				}
 
@@ -1871,39 +1959,39 @@ volume
 				#>
 				if ($EngineDoneClearFull.Enabled) {
 					if ($EngineDoneClearFull.Checked) {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_ClearFull" -value "True" -String
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Clear" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_ClearFull" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Clear" -value "False" -String
 						$QueueDeploySelect += "Clear_Solutions"
 						$QueueDeploySelect += "Clear_Engine"
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_ClearFull" -value "False" -String
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Clear" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_ClearFull" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Clear" -value "False" -String
 					}
 				} else {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_ClearFull" -value "False" -String
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Clear" -value "False" -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_ClearFull" -value "False" -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Clear" -value "False" -String
 				}
 
 				if ($EngineDoneClear.Enabled) {
 					if ($EngineDoneClear.Checked) {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Clear" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Clear" -value "True" -String
 						$QueueDeploySelect += "Clear_Engine"
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Clear" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Clear" -value "False" -String
 					}
 				} else {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Clear" -value "False" -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Clear" -value "False" -String
 				}
 
 				if ($FirstExpFinishReboot.Enabled) {
 					if ($FirstExpFinishReboot.Checked) {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_First_Experience_Reboot" -value "True" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_First_Experience_Reboot" -value "True" -String
 						$QueueDeploySelect += "First_Experience_Reboot"
 					} else {
-						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_First_Experience_Reboot" -value "False" -String
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_First_Experience_Reboot" -value "False" -String
 					}
 				} else {
-					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_First_Experience_Reboot" -value "False" -String
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_First_Experience_Reboot" -value "False" -String
 				}
 
 				if ($GUISolutionsShowLanguageUTF8.Enabled) {
@@ -1925,22 +2013,15 @@ volume
 			判断完成后，解决方案生成到那里
 		#>
 		if ($MarkolutionsEngine) {
-			$UI_Main.Hide()
-			if ($SolutionsSoftwarePacker.Checked) {
-				Write-Host "   $($lang.EnabledSoftwarePacker)"
-			}
+			Refres_Event_Tasks_Solutions_Add
 
-			if ($SolutionsUnattend.Checked) {
-				Write-Host "   $($lang.EnabledUnattend)"
-			}
-
-			if ($UI_Main_Suggestion_Not.Checked) {
-				Init_Canel_Event -All
-			}
-			$UI_Main.Close()
+			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Success.ico")
+			$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
+			return $True
 		} else {
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.SolutionsScript)"
+			return $False
 		}
 	}
 	$UI_Main           = New-Object system.Windows.Forms.Form -Property @{
@@ -2001,9 +2082,9 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 			
 			if ($GUISolutionsShowLanguageUTF8.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Region_UTF8" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Region_UTF8" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Region_UTF8" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Region_UTF8" -value "False" -String
 			}
 		}
 	}
@@ -2027,8 +2108,8 @@ volume
 		Text           = ""
 		ReadOnly       = $True
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Region_Preferred" -ErrorAction SilentlyContinue) {
-		$GetNewSaveLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Region_Preferred" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Region_Preferred" -ErrorAction SilentlyContinue) {
+		$GetNewSaveLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Region_Preferred" -ErrorAction SilentlyContinue
 		$GUISolutionsShowNewLanguage.Text = $GetNewSaveLanguage
 	} else {
 		$GUISolutionsShowNewLanguage.Text = $Global:MainImageLang
@@ -2095,7 +2176,7 @@ volume
 		Width          = 435
 		Text           = $lang.AdvOption
 	}
-	$GroupSoftwarePackerADV= New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
+	$GroupSoftwarePackerADV = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
 		autoSize       = 1
 		autoSizeMode   = 1
@@ -2206,7 +2287,7 @@ volume
 		add_Click      = {
 			$SoftwareTipsErrorMsg.Text = $lang.SolutionsTipsArm64
 			Solutions_Create_Refresh_Office_Status
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_SolutionsSoftwareArch" -value "arm64" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_SolutionsSoftwareArch" -value "arm64" -String
 		}
 	}
 	$ArchitectureAMD64 = New-Object System.Windows.Forms.RadioButton -Property @{
@@ -2217,7 +2298,7 @@ volume
 		add_Click      = {
 			$SoftwareTipsErrorMsg.Text = $lang.SolutionsTipsAMD64
 			Solutions_Create_Refresh_Office_Status
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_SolutionsSoftwareArch" -value "amd64" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_SolutionsSoftwareArch" -value "amd64" -String
 		}
 	}
 	$ArchitectureX86    = New-Object System.Windows.Forms.RadioButton -Property @{
@@ -2227,7 +2308,7 @@ volume
 		add_Click      = {
 			$SoftwareTipsErrorMsg.Text = $lang.SolutionsTipsX86
 			Solutions_Create_Refresh_Office_Status
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_SolutionsSoftwareArch" -value "x86" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_SolutionsSoftwareArch" -value "x86" -String
 		}
 	}
 	$SoftwareTips      = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
@@ -2287,7 +2368,7 @@ volume
 
 			$GUISolutionsCollectionChangeShowLanguage.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
-					if ($($Verify_Language_New_Path.Lang) -contains $_.Tag) {
+					if ($Verify_Language_New_Path.Lang -contains $_.Tag) {
 						$_.Checked = $True
 					} else {
 						$_.Checked = $False
@@ -2295,7 +2376,7 @@ volume
 				}
 			}
 
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$(Get_GPS_Location)_Collection_Reserved_Language" -value $Verify_Language_New_Path.Lang -Multi
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -name "$($Script:init_To_GPS)_Collection_Reserved_Language" -value $Verify_Language_New_Path.Lang -Multi
 			$SolutionsCollectionKeepShow.Text = $Verify_Language_New_Path.Lang
 
 			$GUISolutionsCollectionChange_Error.Text = "$($Lang.ISOAddFlagsLangGet), $($lang.Done)"
@@ -2392,14 +2473,14 @@ volume
 			$GUISolutionsOfficeChange_Error_Icon.Image = $null
 
 			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_AllowSyncConfig" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowSyncConfig" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_AllowSyncConfig" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowSyncConfig" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_AllowSyncConfig" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_AllowSyncConfig" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_AllowSyncConfig" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_AllowSyncConfig" -ErrorAction SilentlyContinue) {
 			"True" {
 				$SolutionsOfficeOnly.Checked = $True
 			}
@@ -2432,7 +2513,7 @@ volume
 
 			$GUISolutionsOfficeChangeShowLanguage.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
-					if ($($Verify_Language_New_Path.Lang) -contains $_.Tag) {
+					if ($Verify_Language_New_Path.Lang -contains $_.Tag) {
 						$_.Checked = $True
 					} else {
 						$_.Checked = $False
@@ -2440,7 +2521,7 @@ volume
 				}
 			}
 
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_Reserved_Language" -value $Verify_Language_New_Path.Lang -Multi
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_Reserved_Language" -value $Verify_Language_New_Path.Lang -Multi
 			$SolutionsOfficeKeepShow.Text = $Verify_Language_New_Path.Lang
 
 			$GUISolutionsOfficeChange_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Success.ico")
@@ -2472,7 +2553,7 @@ volume
 
 	$GUISolutionsGroupOfficeTo = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
-		Height         = 200
+		Height         = 280
 		Width          = 550
 		Location       = '420,240'
 		autoSizeMode   = 1
@@ -2492,7 +2573,7 @@ volume
 			$GUISolutionsOfficeChange_Error_Icon.Image = $null
 			
 			$SolutionsOfficeToShow.Text = $lang.SolutionsDeployOfficeToPublic
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_CopyTo" -value 1 -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_CopyTo" -value 1 -String
 		}
 	}
 	$GUISolutionsOfficeToPublicShow = New-Object System.Windows.Forms.Label -Property @{
@@ -2511,8 +2592,8 @@ volume
 			$GUISolutionsOfficeChange_Error.Text = ""
 			$GUISolutionsOfficeChange_Error_Icon.Image = $null
 
-			$SolutionsOfficeToShow.Text = $GUISolutionsOfficeToMain_Path.Text
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_CopyTo" -value 2 -String
+			$SolutionsOfficeToShow.Text = $lang.MainImageFolder
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_CopyTo" -value 2 -String
 		}
 	}
 	$GUISolutionsOfficeToMain_Path = New-Object System.Windows.Forms.Label -Property @{
@@ -2554,13 +2635,13 @@ volume
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($this.Checked) {
 				$SolutionsOfficeShow.Enabled = $True
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_AllowDeploy" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "True" -String
 			} else {
 				$SolutionsOfficeShow.Enabled = $False
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_AllowDeploy" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "False" -String
 			}
 		}
 	}
@@ -2616,11 +2697,11 @@ volume
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_Reserved_Language" -ErrorAction SilentlyContinue) {
-		$SolutionsOfficeKeepShow.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_Reserved_Language" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue) {
+		$SolutionsOfficeKeepShow.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue
 	} else {
 		$Verify_Language_New_Path = ISO_Local_Language_Calc
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_Reserved_Language" -value $Verify_Language_New_Path.Lang -Multi
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_Reserved_Language" -value $Verify_Language_New_Path.Lang -Multi
 		$SolutionsOfficeKeepShow.Text = $Verify_Language_New_Path.Lang
 	}
 
@@ -2656,10 +2737,10 @@ volume
 			
 			if ($SolutionsPackage.Checked) {
 				$SolutionsPackageShow.Enabled = $True
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_AllowDeployCollection" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_AllowDeployCollection" -value "True" -String
 			} else {
 				$SolutionsPackageShow.Enabled = $False
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_AllowDeployCollection" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_AllowDeployCollection" -value "False" -String
 			}
 		}
 	}
@@ -2667,7 +2748,7 @@ volume
 		BorderStyle    = 0
 		autoSize       = 1
 		autoSizeMode   = 1
-		Padding        = "15,10,0,0"
+		Padding        = "15,15,0,0"
 		margin         = "0,0,0,35"
 		autoScroll     = $false
 	}
@@ -2690,7 +2771,7 @@ volume
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 			
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_DeployCollectionSelect" -value "1" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_DeployCollectionSelect" -value "1" -String
 		}
 	}
 	$SolutionsPackageToSolutions = New-Object System.Windows.Forms.RadioButton -Property @{
@@ -2702,7 +2783,7 @@ volume
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 			
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_DeployCollectionSelect" -value "2" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_DeployCollectionSelect" -value "2" -String
 		}
 	}
 	$SolutionsPackageToPublish = New-Object System.Windows.Forms.RadioButton -Property @{
@@ -2714,7 +2795,7 @@ volume
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 			
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_DeployCollectionSelect" -value "3" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_DeployCollectionSelect" -value "3" -String
 		}
 	}
 
@@ -2748,10 +2829,10 @@ volume
 			
 			if ($GroupSoftwareListTitle.Checked) {
 				$GroupSoftwareList.Enabled = $True
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsSoftware" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsSoftware" -value "True" -String
 			} else {
 				$GroupSoftwareList.Enabled = $False
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsSoftware" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsSoftware" -value "False" -String
 			}
 		}
 	}
@@ -2777,10 +2858,10 @@ volume
 			
 			if ($GroupFontsListTitle.Checked) {
 				$GroupFontsList.Enabled = $True
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsFonts" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsFonts" -value "True" -String
 			} else {
 				$GroupFontsList.Enabled = $False
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsFonts" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsFonts" -value "False" -String
 			}
 		}
 	}
@@ -2857,8 +2938,8 @@ volume
 		$Unattend_Version_Select.Items.Add($_.BaseName) | Out-Null
 	}
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_Scheme" -ErrorAction SilentlyContinue) {
-		$GetSaveEngine = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_Scheme" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_Scheme" -ErrorAction SilentlyContinue) {
+		$GetSaveEngine = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_Scheme" -ErrorAction SilentlyContinue
 		$Unattend_Version_Select.Text = $GetSaveEngine
 	} else {
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel" -ErrorAction SilentlyContinue) {
@@ -2881,6 +2962,199 @@ volume
 		AutoSize       = 1
 		Margin         = "22,0,0,35"
 		Text           = $lang.Unattend_Version_Tips
+	}
+
+	Function Refresh_Select_OOBE_Init_User
+	{
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+
+		$init_Select_Default = ""
+
+		if ($SchemeDiskHalf.Enabled) {
+			if ($SchemeDiskHalf.Checked) {
+				$init_Select_Default = "Custom"
+			}
+		}
+
+		if ($SchemeDiskUefi.Enabled) {
+			if ($SchemeDiskUefi.Checked) {
+				$init_Select_Default = "Specified"
+			}
+		}
+
+		if ($SchemeDiskLegacy.Enabled) {
+			if ($SchemeDiskLegacy.Checked) {
+				$init_Select_Default = "Specified"
+			}
+		}
+
+		<#
+			.选择“自定义创建帐号”或“指定默认帐号”
+		#>
+		switch ($init_Select_Default) {
+			"Custom" {
+				$SolutionsOther_Custom.Enabled = $True
+				$SolutionsOther_Specified.Enabled = $True
+
+			}
+			"Specified" {
+				$SolutionsOther_Custom.Enabled = $False
+				$SolutionsOther_Specified.Enabled = $True
+			}
+		}
+
+		if ($SolutionsOther_Specified.Enabled) {
+			if ($SolutionsOther_Specified.Checked) {
+				$SolutionsOther_Specified_Expand.Enabled = $True
+			} else {
+				$SolutionsOther_Specified_Expand.Enabled = $False
+			}
+		} else {
+			$SolutionsOther_Specified_Expand.Enabled = $False
+		}
+
+		<#
+			.判断是否选择：将目录名设置为主用户名
+		#>
+		if ($GUISolutionsVerifySync.Checked) {
+			$SolutionsOther_Specified_Expand_UserName_Custom.Enabled = $False
+		} else {
+			$SolutionsOther_Specified_Expand_UserName_Custom.Enabled = $True
+		}
+	}
+
+	$SolutionsOtherSelectUserGroup = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
+		BorderStyle    = 0
+		autoSize       = 1
+		autoSizeMode   = 1
+		Padding        = "16,0,0,0"
+		margin         = "0,0,0,30"
+		autoScroll     = $False
+	}
+	$SolutionsOther_Initl = New-Object System.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 450
+		Text           = $lang.OOBE_Init_User
+	}
+
+	$SolutionsOther_Custom = New-Object System.Windows.Forms.RadioButton -Property @{
+		Height         = 40
+		Width          = 430
+		Text           = $lang.OOBE_init_Create
+		add_Click      = {
+			if ($this.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$($Script:init_To_GPS)_OOBE_Select_Init_User" -value "Custom" -String
+			}
+
+			Refresh_Select_OOBE_Init_User
+		}
+	}
+	$SolutionsOther_Specified = New-Object System.Windows.Forms.RadioButton -Property @{
+		Height         = 40
+		Width          = 430
+		Text           = $lang.OOBE_init_Specified
+		add_Click      = {
+			if ($this.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$($Script:init_To_GPS)_OOBE_Select_Init_User" -value "Specified" -String
+			}
+
+			Refresh_Select_OOBE_Init_User
+		}
+	}
+
+	$SolutionsOther_Specified_Expand = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
+		BorderStyle    = 0
+		autoSize       = 1
+		autoSizeMode   = 1
+		Padding        = "16,0,0,0"
+		autoScroll     = $False
+	}
+	$SolutionsOther_Specified_Expand_UserName_Custom = New-Object System.Windows.Forms.TextBox -Property @{
+		Height         = 30
+		Width          = 360
+		Text           = "Administrator"
+		margin         = "0,5,0,15"
+		add_Click      = {
+			$This.BackColor = "#FFFFFF"
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+		}
+	}
+
+	<#
+		.初始化复选框：将目录名设置为主用户名
+	#>
+	$GUISolutionsVerifySync = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 40
+		Width          = 405
+		Text           = $lang.VerifyNameSync
+		add_Click      = {
+			if ($this.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$($Script:init_To_GPS)_Is_Sync_Folder_Name" -value "True" -String
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$($Script:init_To_GPS)_Is_Sync_Folder_Name" -value "False" -String
+			}
+
+			Refresh_Select_OOBE_Init_User
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$($Script:init_To_GPS)_Is_Sync_Folder_Name" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$($Script:init_To_GPS)_Is_Sync_Folder_Name" -ErrorAction SilentlyContinue) {
+			"True"  {
+				$GUISolutionsVerifySync.Checked = $True
+			}
+			"False" {
+				$GUISolutionsVerifySync.Checked = $False
+			}
+		}
+	} else {
+		$GUISolutionsVerifySync.Checked = $False
+	}
+
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_OSAccountName" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_OSAccountName" -ErrorAction SilentlyContinue) {
+			1 { $GUISolutionsVerifySync.Checked = $True }
+			2 { $GUISolutionsVerifySync.Checked = $False }
+		}
+	}
+
+	$GUISolutionsVerifySyncTips = New-Object system.Windows.Forms.Label -Property @{
+		AutoSize       = 1
+		Text           = $lang.VerifyNameSyncTips
+		Padding        = "19,0,0,0"
+		Margin         = "0,0,0,25"
+	}
+
+	<#
+		.初始化复选框：自动登录
+	#>
+	$SolutionsOther_Specified_Expand_UserName_Autorun = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 40
+		Width          = 405
+		Text           = $lang.OOBE_Init_Autologin
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+			
+			if ($this.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$($Script:init_To_GPS)_Is_Autorun" -value "True" -String
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$($Script:init_To_GPS)_Is_Autorun" -value "False" -String
+			}
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$($Script:init_To_GPS)_Is_Autorun" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$($Script:init_To_GPS)_Is_Autorun" -ErrorAction SilentlyContinue) {
+			"True"  {
+				$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $True
+			}
+			"False" {
+				$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $False
+			}
+		}
+	} else {
+		$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $True
 	}
 
 	<#
@@ -3211,8 +3485,8 @@ volume
 		Checked        = $True
 		add_Click      = $CreateUnattendISOClick
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendISO" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendISO" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendISO" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendISO" -ErrorAction SilentlyContinue) {
 			"True" { $CreateUnattendISO.Checked = $True }
 			"False" { $CreateUnattendISO.Checked = $False }
 		}
@@ -3225,8 +3499,8 @@ volume
 		Checked        = $True
 		add_Click      = $CreateUnattendISOClick
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendISOSources" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendISOSources" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendISOSources" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendISOSources" -ErrorAction SilentlyContinue) {
 			"True" { $CreateUnattendISOSources.Checked = $True }
 			"False" { $CreateUnattendISOSources.Checked = $False }
 		}
@@ -3239,8 +3513,8 @@ volume
 		Checked        = $True
 		add_Click      = $CreateUnattendISOClick
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendISOSourcesOEM" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendISOSourcesOEM" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendISOSourcesOEM" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendISOSourcesOEM" -ErrorAction SilentlyContinue) {
 			"True" { $CreateUnattendISOSourcesOEM.Checked = $True }
 			"False" { $CreateUnattendISOSourcesOEM.Checked = $False }
 		}
@@ -3253,8 +3527,8 @@ volume
 		Checked        = $True
 		add_Click      = $CreateUnattendISOClick
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendPather" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_AllowUnattendPather" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendPather" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_AllowUnattendPather" -ErrorAction SilentlyContinue) {
 			"True" { $CreateUnattendPanther.Checked = $True }
 			"False" { $CreateUnattendPanther.Checked = $False }
 		}
@@ -3289,14 +3563,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SolutionsUnattendOOBEActivate.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsOOBEActivate" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsOOBEActivate" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsOOBEActivate" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsOOBEActivate" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsOOBEActivate" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsOOBEActivate" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsOOBEActivate" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsOOBEActivate" -ErrorAction SilentlyContinue) {
 			"True" { $SolutionsUnattendOOBEActivate.Checked = $True }
 			"False" { $SolutionsUnattendOOBEActivate.Checked = $False }
 		}
@@ -3314,14 +3588,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SolutionsUnattendSetupOSUI.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsSetupUI" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsSetupUI" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsSetupUI" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsSetupUI" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsSetupUI" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsSetupUI" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsSetupUI" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsSetupUI" -ErrorAction SilentlyContinue) {
 			"True" { $SolutionsUnattendSetupOSUI.Checked = $True }
 			"False" { $SolutionsUnattendSetupOSUI.Checked = $False }
 		}
@@ -3339,14 +3613,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SolutionsUnattendAccectEula.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsAccectEula" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsAccectEula" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsAccectEula" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsAccectEula" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsAccectEula" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsAccectEula" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsAccectEula" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsAccectEula" -ErrorAction SilentlyContinue) {
 			"True" { $SolutionsUnattendAccectEula.Checked = $True }
 			"False" { $SolutionsUnattendAccectEula.Checked = $False }
 		}
@@ -3391,14 +3665,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SolutionsUnattendDoNotServerManager.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsDoNotServerManager" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsDoNotServerManager" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsDoNotServerManager" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsDoNotServerManager" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsDoNotServerManager" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsDoNotServerManager" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsDoNotServerManager" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsDoNotServerManager" -ErrorAction SilentlyContinue) {
 			"True" { $SolutionsUnattendDoNotServerManager.Checked = $True }
 			"False" { $SolutionsUnattendDoNotServerManager.Checked = $False }
 		}
@@ -3426,14 +3700,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SolutionsUnattendIEAdmin.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsIEAdmin" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsIEAdmin" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsIEAdmin" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsIEAdmin" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsIEAdmin" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsIEAdmin" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsIEAdmin" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsIEAdmin" -ErrorAction SilentlyContinue) {
 			"True" { $SolutionsUnattendIEAdmin.Checked = $True }
 			"False" { $SolutionsUnattendIEAdmin.Checked = $False }
 		}
@@ -3454,14 +3728,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SolutionsUnattendIEUser.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsIEUser" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsIEUser" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsIEUser" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsIEUser" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsIEUser" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsIEUser" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsIEUser" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsIEUser" -ErrorAction SilentlyContinue) {
 			"True" { $SolutionsUnattendIEUser.Checked = $True }
 			"False" { $SolutionsUnattendIEUser.Checked = $False }
 		}
@@ -3487,10 +3761,10 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($SchemeTimeZoneSelect.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsTimeZone" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsTimeZone" -value "True" -String
 				$SchemeTimezoneDynamicButton.Enabled = $True
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_IsTimeZone" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_IsTimeZone" -value "False" -String
 				$SchemeTimezoneDynamicButton.Enabled = $False
 			}
 		}
@@ -3539,16 +3813,16 @@ volume
 		Text           = $lang.Command_Not_Class
 		add_Click      = {
 			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Allow_Command_Not_Class" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Allow_Command_Not_Class" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Allow_Command_Not_Class" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Allow_Command_Not_Class" -value "False" -String
 			}
 
 			Refresh_Command_Rule_Select_Group
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Allow_Command_Not_Class" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Allow_Command_Not_Class" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Allow_Command_Not_Class" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Allow_Command_Not_Class" -ErrorAction SilentlyContinue) {
 			"True" {
 				$UI_Command_Not_Class.Checked = $True
 			}
@@ -3603,7 +3877,7 @@ volume
 					if ("WinSetup" -eq $_.Name) {
 						$_.Controls | ForEach-Object {
 							if ($_ -is [System.Windows.Forms.CheckBox]) {
-								if (($Script:Init_Pre_Select_Command) -contains $_.Tag) {
+								if ($Script:Init_Pre_Select_Command -contains $_.Tag) {
 									$_.Checked = $True
 								}
 							}
@@ -3630,7 +3904,7 @@ volume
 				.选择复选框：未选择必备项时自动修复
 			#>
 			$Engine_Unattend_Auto_Fix.Checked = $True
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Is_Auto_Fix_Command" -value "True" -String
+			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Is_Auto_Fix_Command" -value "True" -String
 
 			$UIUnzipPanel_Error_Unattend_Auto_Fix_Next.Visible = $False
 			$UIUnzipPanel_Error.Text = "$($lang.Choose) ( $($lang.Unattend_Auto_Fix) )"
@@ -3764,7 +4038,7 @@ volume
 	$SolutionsEngine   = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 470
-		Margin         = "0,30,0,0"
+		Margin         = "0,35,0,0"
 		Text           = $lang.EnabledEnglish
 		Checked        = $True
 		add_Click      = {
@@ -3782,7 +4056,7 @@ volume
 		BorderStyle    = 0
 		AutoSize       = 1
 		autoSizeMode   = 1
-		Padding        = "10,0,0,30"
+		Padding        = "10,10,0,30"
 		autoScroll     = $False
 	}
 
@@ -3790,7 +4064,7 @@ volume
 		选择主引擎版本
 	#>
 	$GroupMainVerTitle = New-Object System.Windows.Forms.Label -Property @{
-		Height         = 40
+		Height         = 30
 		Width          = 435
 		Text           = $lang.SolutionsScript
 	}
@@ -3799,7 +4073,7 @@ volume
 		.获取已选择的部署引擎版本
 	#>
 	$GroupMainVerList  = New-Object system.Windows.Forms.ComboBox -Property @{
-		Height         = 55
+		Height         = 30
 		Width          = 420
 		Margin         = "22,5,0,40"
 		Text           = ""
@@ -3820,7 +4094,6 @@ volume
 		Height         = 30
 		Width          = 430
 		Text           = $lang.AdvOption
-		Location       = '16,0'
 	}
 
 	<#
@@ -3836,14 +4109,14 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 
 			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Is_Auto_Fix_Command" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Is_Auto_Fix_Command" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_Is_Auto_Fix_Command" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Is_Auto_Fix_Command" -value "False" -String
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Is_Auto_Fix_Command" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Is_Auto_Fix_Command" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Is_Auto_Fix_Command" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Is_Auto_Fix_Command" -ErrorAction SilentlyContinue) {
 			"True"  { $Engine_Unattend_Auto_Fix.Checked = $True }
 			"False" { $Engine_Unattend_Auto_Fix.Checked = $False }
 		}
@@ -3858,11 +4131,11 @@ volume
 		margin         = "0,0,0,25"
 	}
 
-	$EngineFirstExpProcess = New-Object System.Windows.Forms.Label -Property @{
+	$EngineFirstExpRequirements = New-Object System.Windows.Forms.Label -Property @{
 		Height         = 30
 		Width          = 433
 		margin         = "0,25,0,0"
-		Text           = $lang.FirstExpProcess
+		Text           = $lang.FirstExpRequirements
 	}
 
 	$EngineChkSyncMark = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -3875,8 +4148,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Is_Mark_Sync" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Is_Mark_Sync" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Is_Mark_Sync" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Is_Mark_Sync" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineChkSyncMark.Checked = $True }
 			"False" { $EngineChkSyncMark.Checked = $False }
 		}
@@ -3894,8 +4167,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Auto_Update" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Auto_Update" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Auto_Update" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Auto_Update" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineChkUpdate.Checked = $True }
 			"False" { $EngineChkUpdate.Checked = $False }
 		}
@@ -3914,8 +4187,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Defender" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Defender" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Defender" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Defender" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineDefender.Checked = $True }
 			"False" { $EngineDefender.Checked = $False }
 		}
@@ -3932,8 +4205,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Network_Location_Wizard" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Network_Location_Wizard" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Network_Location_Wizard" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Network_Location_Wizard" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineNetworkLocationWizard.Checked = $True }
 			"False" { $EngineNetworkLocationWizard.Checked = $False }
 		}
@@ -3949,8 +4222,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Sync_Volume_Name" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Sync_Volume_Name" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Sync_Volume_Name" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Sync_Volume_Name" -ErrorAction SilentlyContinue) {
 			"True"  { $GUISolutionsVolume.Checked = $True }
 			"False" { $GUISolutionsVolume.Checked = $False }
 		}
@@ -3973,8 +4246,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_PreAppxCleanup" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_PreAppxCleanup" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_PreAppxCleanup" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_PreAppxCleanup" -ErrorAction SilentlyContinue) {
 			"True"  { $GUIPreAppxCleanup.Checked = $True }
 			"False" { $GUIPreAppxCleanup.Checked = $False }
 		}
@@ -3992,8 +4265,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_LanguageComponents" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_LanguageComponents" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_LanguageComponents" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_LanguageComponents" -ErrorAction SilentlyContinue) {
 			"True"  { $GUILanguageComponents.Checked = $True }
 			"False" { $GUILanguageComponents.Checked = $False }
 		}
@@ -4011,8 +4284,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_PreventCleaningUnusedLP" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_PreventCleaningUnusedLP" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_PreventCleaningUnusedLP" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_PreventCleaningUnusedLP" -ErrorAction SilentlyContinue) {
 			"True"  { $GUIPreventCleaningUnusedLP.Checked = $True }
 			"False" { $GUIPreventCleaningUnusedLP.Checked = $False }
 		}
@@ -4037,8 +4310,8 @@ volume
 			}
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Desktop_Menu" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Desktop_Menu" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Desktop_Menu" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Desktop_Menu" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineDeskMenu.Checked = $True }
 			"False" { $EngineDeskMenu.Checked = $False }
 		}
@@ -4054,8 +4327,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Desktop_Menu_Shift" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Desktop_Menu_Shift" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Desktop_Menu_Shift" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Desktop_Menu_Shift" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineDeskMenuShift.Checked = $True }
 			"False" { $EngineDeskMenuShift.Checked = $False }
 		}
@@ -4069,9 +4342,9 @@ volume
 		add_Click      = {
 			if ($EngineRegional.Checked) {
 				$EngineRegionalShow.Enabled = $True
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Is_Region" -value "True" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Is_Region" -value "True" -String
 			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Is_Region" -value "False" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Is_Region" -value "False" -String
 				$EngineRegionalShow.Enabled = $False
 			}
 
@@ -4108,8 +4381,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Prerequisites_Reboot" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Prerequisites_Reboot" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Prerequisites_Reboot" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Prerequisites_Reboot" -ErrorAction SilentlyContinue) {
 			"True" { $EnginePrerequisitesReboot.Checked = $True }
 			"False" { $EnginePrerequisitesReboot.Checked = $False }
 		}
@@ -4119,7 +4392,7 @@ volume
 
 	$EnginePrerequisitesRebootTips = New-Object system.Windows.Forms.Label -Property @{
 		AutoSize       = 1
-		Text           = $lang.FirstExpProcessTips
+		Text           = $lang.FirstExpRequirementsTips
 		margin         = "31,0,0,0"
 	}
 
@@ -4141,8 +4414,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_PopupEngine" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_PopupEngine" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_PopupEngine" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_PopupEngine" -ErrorAction SilentlyContinue) {
 			"True"  { $EnginePopsupEngine.Checked = $True }
 			"False" { $EnginePopsupEngine.Checked = $False }
 		}
@@ -4158,8 +4431,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Allow_First_Pre_Experience" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Allow_First_Pre_Experience" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Allow_First_Pre_Experience" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Allow_First_Pre_Experience" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineFirstExp.Checked = $True }
 			"False" { $EngineFirstExp.Checked = $False }
 		}
@@ -4174,8 +4447,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Restricted" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Restricted" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Restricted" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Restricted" -ErrorAction SilentlyContinue) {
 			"True"  { $EngineRestricted.Checked = $True }
 			"False" { $EngineRestricted.Checked = $False }
 		}
@@ -4239,8 +4512,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_First_Experience_Reboot" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_First_Experience_Reboot" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_First_Experience_Reboot" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_First_Experience_Reboot" -ErrorAction SilentlyContinue) {
 			"True" {
 				$FirstExpFinishReboot.Checked = $True
 			}
@@ -4255,238 +4528,25 @@ volume
 	}
 
 	<#
-		.侧边栏：右
+		.Set the name of the system disk home directory
+		.设置系统盘主目录名称
 	#>
-	$SolutionsOtherGroup = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
-		BorderStyle    = 0
-		Height         = 425
-		Width          = 485
-		autoSizeMode   = 1
-		Location       = '560,15'
-		autoScroll     = $True
-	}
-
-	Function Refresh_Select_OOBE_Init_User
-	{
-		$UI_Main_Error.Text = ""
-		$UI_Main_Error_Icon.Image = $null
-
-		$init_Select_Default = ""
-
-		if ($SchemeDiskHalf.Enabled) {
-			if ($SchemeDiskHalf.Checked) {
-				$init_Select_Default = "Custom"
-			}
-		}
-
-		if ($SchemeDiskUefi.Enabled) {
-			if ($SchemeDiskUefi.Checked) {
-				$init_Select_Default = "Specified"
-			}
-		}
-
-		if ($SchemeDiskLegacy.Enabled) {
-			if ($SchemeDiskLegacy.Checked) {
-				$init_Select_Default = "Specified"
-			}
-		}
-
-		<#
-			.选择“自定义创建帐号”或“指定默认帐号”
-		#>
-		switch ($init_Select_Default) {
-			"Custom" {
-				$SolutionsOther_Custom.Enabled = $True
-				$SolutionsOther_Specified.Enabled = $True
-
-			}
-			"Specified" {
-				$SolutionsOther_Custom.Enabled = $False
-				$SolutionsOther_Specified.Enabled = $True
-			}
-		}
-
-		if ($SolutionsOther_Specified.Enabled) {
-			if ($SolutionsOther_Specified.Checked) {
-				$SolutionsOther_Specified_Expand.Enabled = $True
-			} else {
-				$SolutionsOther_Specified_Expand.Enabled = $False
-			}
-		} else {
-			$SolutionsOther_Specified_Expand.Enabled = $False
-		}
-
-		<#
-			.判断是否选择：将目录名设置为主用户名
-		#>
-		if ($GUISolutionsVerifySync.Checked) {
-			$SolutionsOther_Specified_Expand_UserName_Custom.Enabled = $False
-		} else {
-			$SolutionsOther_Specified_Expand_UserName_Custom.Enabled = $True
-		}
-	}
-
-	$SolutionsOtherSelectUserGroup = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
-		BorderStyle    = 0
-		autoSize       = 1
-		autoSizeMode   = 1
-		Padding        = "16,0,8,0"
-		margin         = "0,0,0,30"
-		autoScroll     = $False
-	}
-	$SolutionsOther_Initl = New-Object System.Windows.Forms.Label -Property @{
-		Height         = 30
-		Width          = 460
-		Text           = $lang.OOBE_Init_User
-	}
-
-	$SolutionsOther_Custom = New-Object System.Windows.Forms.RadioButton -Property @{
-		Height         = 40
-		Width          = 430
-		Text           = $lang.OOBE_init_Create
-		add_Click      = {
-			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$(Get_GPS_Location)_OOBE_Select_Init_User" -value "Custom" -String
-			}
-
-			Refresh_Select_OOBE_Init_User
-		}
-	}
-	$SolutionsOther_Specified = New-Object System.Windows.Forms.RadioButton -Property @{
-		Height         = 40
-		Width          = 430
-		Text           = $lang.OOBE_init_Specified
-		add_Click      = {
-			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$(Get_GPS_Location)_OOBE_Select_Init_User" -value "Specified" -String
-			}
-
-			Refresh_Select_OOBE_Init_User
-		}
-	}
-
-	$SolutionsOther_Specified_Expand = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
-		BorderStyle    = 0
-		autoSize       = 1
-		autoSizeMode   = 1
-		Padding        = "16,0,8,0"
-		autoScroll     = $False
-	}
-	$SolutionsOther_Specified_Expand_UserName_Custom = New-Object System.Windows.Forms.TextBox -Property @{
-		Height         = 30
-		Width          = 360
-		Text           = "Administrator"
-		margin         = "0,5,0,15"
-		add_Click      = {
-			$This.BackColor = "#FFFFFF"
-			$UI_Main_Error.Text = ""
-			$UI_Main_Error_Icon.Image = $null
-		}
-	}
-
-	<#
-		.初始化复选框：将目录名设置为主用户名
-	#>
-	$GUISolutionsVerifySync = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 40
-		Width          = 400
-		Text           = $lang.VerifyNameSync
-		add_Click      = {
-			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$(Get_GPS_Location)_Is_Sync_Folder_Name" -value "True" -String
-			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$(Get_GPS_Location)_Is_Sync_Folder_Name" -value "False" -String
-			}
-
-			Refresh_Select_OOBE_Init_User
-		}
-	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$(Get_GPS_Location)_Is_Sync_Folder_Name" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$(Get_GPS_Location)_Is_Sync_Folder_Name" -ErrorAction SilentlyContinue) {
-			"True"  {
-				$GUISolutionsVerifySync.Checked = $True
-			}
-			"False" {
-				$GUISolutionsVerifySync.Checked = $False
-			}
-		}
-	} else {
-		$GUISolutionsVerifySync.Checked = $False
-	}
-
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_OSAccountName" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_OSAccountName" -ErrorAction SilentlyContinue) {
-			1 { $GUISolutionsVerifySync.Checked = $True }
-			2 { $GUISolutionsVerifySync.Checked = $False }
-		}
-	}
-
-	$GUISolutionsVerifySyncTips = New-Object system.Windows.Forms.Label -Property @{
-		AutoSize       = 1
-		Text           = $lang.VerifyNameSyncTips
-		Padding        = "19,0,0,0"
-		Margin         = "0,0,0,25"
-	}
-
-	<#
-		.初始化复选框：自动登录
-	#>
-	$SolutionsOther_Specified_Expand_UserName_Autorun = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 40
-		Width          = 400
-		Text           = $lang.OOBE_Init_Autologin
-		add_Click      = {
-			$UI_Main_Error.Text = ""
-			$UI_Main_Error_Icon.Image = $null
-			
-			if ($this.Checked) {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$(Get_GPS_Location)_Is_Autorun" -value "True" -String
-			} else {
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -name "$(Get_GPS_Location)_Is_Autorun" -value "False" -String
-			}
-		}
-	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$(Get_GPS_Location)_Is_Autorun" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$(Get_GPS_Location)_Is_Autorun" -ErrorAction SilentlyContinue) {
-			"True"  {
-				$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $True
-			}
-			"False" {
-				$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $False
-			}
-		}
-	} else {
-		$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $True
-	}
-
-	<#
-		.其它功能
-	#>
-	$SolutionsOtherFunction = New-Object System.Windows.Forms.Label -Property @{
-		Height         = 30
-		Width          = 460
-		Text           = $lang.AdvOption
-	}
 	$SolutionsOtherFunctionGroup = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
 		autoSize       = 1
 		autoSizeMode   = 1
-		Padding        = "16,0,0,0"
+		margin         = "0,35,0,0"
 		autoScroll     = $False
 	}
 
-	<#
-		.Set the name of the system disk home directory
-		.设置系统盘主目录名称
-	#>
 	$GUISolutionsVerifyTitle = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
-		Width          = 436
+		Width          = 460
 		Text           = $lang.VerifyName
 	}
 	$GUISolutionsVerify = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
-		Width          = 436
+		Width          = 460
 		Text           = $lang.VerifyNameUse
 		Checked        = $True
 		Padding        = "15,0,0,0"
@@ -4507,8 +4567,8 @@ volume
 			$UI_Main_Error_Icon.Image = $null
 		}
 	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_SaveEngine" -ErrorAction SilentlyContinue) {
-		$GetSaveEngine = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_SaveEngine" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_SaveEngine" -ErrorAction SilentlyContinue) {
+		$GetSaveEngine = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_SaveEngine" -ErrorAction SilentlyContinue
 		$GUISolutionsCustomizeName.Text = $GetSaveEngine
 	} else {
 		$GUISolutionsCustomizeName.Text = (Get-Module -Name Solutions).Author
@@ -4520,9 +4580,100 @@ volume
 		Padding        = "31,0,0,0"
 	}
 
-	$GUISolutions_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
-		Height         = 20
-		Width          = 436
+	<#
+		.侧边栏：仪表板
+	#>
+	$Solutions_Dashboard_Group = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
+		BorderStyle    = 0
+		Height         = 425
+		Width          = 485
+		autoSizeMode   = 1
+		Location       = '560,15'
+		autoScroll     = $True
+	}
+
+	$UI_Main_Dashboard = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 430
+		Text           = $lang.Dashboard
+	}
+
+	$UI_Main_Dashboard_Event_Status = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 430
+		Padding        = "16,0,0,0"
+		Text           = "$($lang.EventManager): $($lang.Failed)"
+	}
+	$UI_Main_Dashboard_Event_Clear = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 430
+		Text           = $lang.EventManagerCurrentClear
+		Padding        = "32,0,0,0"
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Solutions_Event_Clear -All }
+	}
+
+	$UI_Main_Dashboard_Event_Mul = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 430
+		Padding        = "32,0,0,0"
+		margin         = "0,15,0,0"
+		Text           = $lang.EventManagerMul
+	}
+	$UI_Main_Dashboard_Event_Engine_Status = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 430
+		Padding        = "48,0,0,0"
+		Text           = "$($lang.EnabledEnglish): $($lang.Failed)"
+	}
+	$UI_Main_Dashboard_Event_Engine_Clear = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 430
+		margin         = "0,0,0,15"
+		Padding        = "64,0,0,0"
+		Text           = $lang.EventManagerCurrentClear
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Solutions_Event_Clear -Engine }
+	}
+
+	$UI_Main_Dashboard_Event_Unattend_Status = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 430
+		Padding        = "48,0,0,0"
+		Text           = "$($lang.EnabledUnattend): $($lang.Failed)"
+	}
+	$UI_Main_Dashboard_Event_Unattend_Clear = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 430
+		margin         = "0,0,0,15"
+		Padding        = "64,0,0,0"
+		Text           = $lang.EventManagerCurrentClear
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Solutions_Event_Clear -Unattend }
+	}
+
+	$UI_Main_Dashboard_Event_Collection_Status = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 430
+		Padding        = "48,0,0,0"
+		Text           = "$($lang.EnabledSoftwarePacker): $($lang.Failed)"
+	}
+	$UI_Main_Dashboard_Event_Collection_Clear = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 430
+		margin         = "0,0,0,15"
+		Padding        = "64,0,0,0"
+		Text           = $lang.EventManagerCurrentClear
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Solutions_Event_Clear -Collection }
 	}
 
 	<#
@@ -4617,39 +4768,45 @@ volume
 	}
 
 	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
-		Location       = "560,598"
+		Location       = "560,600"
 		Height         = 20
 		Width          = 20
 		SizeMode       = "StretchImage"
 	}
 	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "585,600"
+		Location       = "585,602"
 		Height         = 30
-		Width          = 430
+		Width          = 460
 		Text           = ""
 	}
-	$UI_Main_OK       = New-Object system.Windows.Forms.Button -Property @{
+	$UI_Main_Event_Clear = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "560,635"
 		Height         = 36
-		Width          = 240
-		add_Click      = $UI_Main_OK_Click
-		Text           = $lang.OK
+		Width          = 158
+		Text           = $lang.EventManagerCurrentClear
+		add_Click      = { Solutions_Event_Clear -All }
+	}
+	$UI_Main_Save      = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "725,635"
+		Height         = 36
+		Width          = 158
+		Text           = $lang.Save
+		add_Click      = {
+			if (Autopilot_Solutions_Save) {
+
+			}
+		}
 	}
 	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "807,635"
+		Location       = "889,635"
 		Height         = 36
-		Width          = 240
+		Width          = 158
 		Text           = $lang.Cancel
 		add_Click      = {
-			New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $False -Force
-			New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $False -Force
-			New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $False -Force
-			New-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -Value $False -Force
-
 			$UI_Main.Hide()
-			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
 
 			if ($UI_Main_Suggestion_Not.Checked) {
 				Init_Canel_Event
@@ -4663,11 +4820,12 @@ volume
 		$GUISolutionsCollectionChange,
 		$GUISolutionsOfficeChange,
 		$GUISolutionsRegional,
-		$SolutionsOtherGroup,                     # 右侧边栏
+		$Solutions_Dashboard_Group,                     # 右侧边栏
 		$GUISolutionsShowGlobal,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
-		$UI_Main_OK,
+		$UI_Main_Event_Clear,
+		$UI_Main_Save,
 		$UI_Main_Canel
 	))
 
@@ -4690,9 +4848,23 @@ volume
 		$UIUnzipPanel_Error_Unattend_Auto_Fix_Next
 	))
 
+	$Solutions_Dashboard_Group.controls.AddRange((
+		$UI_Main_Dashboard,
+		$UI_Main_Dashboard_Event_Status,
+		$UI_Main_Dashboard_Event_Clear,
+		$UI_Main_Dashboard_Event_Mul,
+		$UI_Main_Dashboard_Event_Engine_Status,
+		$UI_Main_Dashboard_Event_Engine_Clear,
+		$UI_Main_Dashboard_Event_Unattend_Status,
+		$UI_Main_Dashboard_Event_Unattend_Clear,
+		$UI_Main_Dashboard_Event_Collection_Status,
+		$UI_Main_Dashboard_Event_Collection_Clear
+	))
+
 	$GUISolutionsShowGlobal.controls.AddRange((
 		$SolutionsCopyToTitle,                     # 解决方案添加到标题
 		$GroupSolutionsCopyTo,                     # 解决方案添加到：组
+		$SolutionsOtherFunctionGroup,              # 全局组：添加到的主目录名
 		$SolutionsEngine,                          # 全局组：引擎，选择
 		$GroupSolutionsEngine,                     # 全局组：引擎，显示区域
 		$SolutionsUnattend,                        # 全局组：应预答，选择
@@ -4711,12 +4883,6 @@ volume
 		$SolutionsToSources
 	))
 
-	$SolutionsOtherGroup.controls.AddRange((
-		$SolutionsOther_Initl,
-		$SolutionsOtherSelectUserGroup,
-		$SolutionsOtherFunction,
-		$SolutionsOtherFunctionGroup               # 全局组：可选功能
-	))
 	$SolutionsOtherSelectUserGroup.controls.AddRange((
 		$SolutionsOther_Custom,
 		$SolutionsOther_Specified,
@@ -4733,8 +4899,7 @@ volume
 		$GUISolutionsVerifyTitle,
 		$GUISolutionsVerify,
 		$GUISolutionsCustomizeName,
-		$GUISolutionsVerifyErrorMsg,
-		$GUISolutions_End_Wrap
+		$GUISolutionsVerifyErrorMsg
 	))
 
 	$GUISolutionsCollectionChange.controls.AddRange((
@@ -4848,6 +5013,10 @@ volume
 		$Unattend_Version,
 		$Unattend_Version_Select,
 		$Unattend_Version_Tips,
+
+		$SolutionsOther_Initl,
+		$SolutionsOtherSelectUserGroup,
+		
 		$First_Command_Title,
 		$First_Command_Select,
 		$GroupUnattendVer,
@@ -4944,7 +5113,7 @@ volume
 		$EngineFirstAdvTitle,
 		$Engine_Unattend_Auto_Fix,
 		$Engine_Unattend_Auto_Fix_Tips,
-		$EngineFirstExpProcess,
+		$EngineFirstExpRequirements,
 		$EngineChkSyncMark,
 		$EngineChkUpdate,
 		$EngineDefender,
@@ -4970,24 +5139,98 @@ volume
 		$FirstExpFinishRebootTips
 	))
 
-	if ($Global:EventQueueMode) {
-		$SolutionsToMount.Checked = $True
+
+	<#
+		刷新添加解决方案到，复选框
+	#>
+	Solutions_Create_Refresh_Add_To_Path
+
+	if ($ISO) {
+		$SolutionsToMount.Enabled = $False
+		$SolutionsToMount.Checked = $False
+		$SolutionsToSources.Enabled = $True
+		$SolutionsToSources.Checked = $True
 	} else {
-		if (Image_Is_Select_IAB) {
-			if (Test-Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container -ErrorAction SilentlyContinue) {
-				$SolutionsToMount.Checked = $True
+		if ($Global:AutopilotMode) {
+			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Autopilot), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+
+			$SolutionsToMount.Enabled = $True
+			$SolutionsToMount.Checked = $True
+			$SolutionsToSources.Enabled = $False
+			$SolutionsToSources.Checked = $false
+		}
+
+		if ($Global:EventQueueMode) {
+			Write-Host "w111888888881"
+			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+			$UI_Main.controls.AddRange((
+				$UI_Main_Suggestion_Manage,
+				$UI_Main_Suggestion_Stop_Current,
+				$UI_Main_Event_Assign_Stop
+			))
+
+			$SolutionsToMount.Enabled = $True
+			$SolutionsToMount.Checked = $True
+			$SolutionsToSources.Enabled = $False
+			$SolutionsToSources.Checked = $false
+		}
+
+		if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
+			Write-Host "`n   $($lang.Solution): $($lang.IsCreate)" -ForegroundColor Yellow
+			Write-host "   $('-' * 80)"
+
+			if (Image_Is_Select_IAB) {
+				$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+	
+				if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
+					$SolutionsToMount.Enabled = $True
+					$SolutionsToMount.Checked = $True
+					$SolutionsToSources.Enabled = $False
+					$SolutionsToSources.Checked = $false
+				} else {
+					$SolutionsToMount.Enabled = $False
+					$SolutionsToMount.Checked = $False
+					$SolutionsToSources.Enabled = $True
+					$SolutionsToSources.Checked = $True
+				}
 			} else {
 				$SolutionsToMount.Enabled = $False
+				$SolutionsToMount.Checked = $False
+				$SolutionsToSources.Enabled = $True
+				$SolutionsToSources.Checked = $True
+			}
 
-				if (Test-Path "$($Global:Image_source)" -PathType Container -ErrorAction SilentlyContinue) {
-					$SolutionsToSources.Checked = $True
-				} else {
-					$SolutionsSoftwarePacker.Checked = $True
+			<#
+				.初始化复选框：不再建议
+			#>
+			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
+				switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
+					"True" {
+						$UI_Main_Suggestion_Not.Checked = $True
+						$UI_Main_Suggestion_Setting.Enabled = $False
+						$UI_Main_Suggestion_Stop.Enabled = $False
+					}
+					"False" {
+						$UI_Main_Suggestion_Not.Checked = $False
+						$UI_Main_Suggestion_Setting.Enabled = $True
+						$UI_Main_Suggestion_Stop.Enabled = $True
+					}
+				}
+			} else {
+				$UI_Main_Suggestion_Not.Checked = $False
+				$UI_Main_Suggestion_Setting.Enabled = $True
+				$UI_Main_Suggestion_Stop.Enabled = $True
+			}
+	
+			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
+				if ((Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsSuggested" -ErrorAction SilentlyContinue) -eq "True") {
+					$UI_Main.controls.AddRange((
+						$UI_Main_Suggestion_Not,
+						$UI_Main_Suggestion_Setting,
+						$UI_Main_Suggestion_Stop
+					))
 				}
 			}
-		} else {
-			$SolutionsToMount.Enabled = $False
-			$SolutionsToSources.Checked = $True
 		}
 	}
 
@@ -5007,8 +5250,8 @@ volume
 	}
 
 	$SchemeVerSingle.controls.Clear()
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_LanguageUnattend" -ErrorAction SilentlyContinue) {
-		$SchemeVerSingle.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_LanguageUnattend" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_LanguageUnattend" -ErrorAction SilentlyContinue) {
+		$SchemeVerSingle.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_LanguageUnattend" -ErrorAction SilentlyContinue
 	} else {
 		$SchemeVerSingle.Text = $Global:MainImageLang
 	}
@@ -5017,8 +5260,8 @@ volume
 		.获取目录里的已知语言，输出到：添加合集
 	#>
 	$SchemeLangSingle.controls.Clear()
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_LanguageCollection" -ErrorAction SilentlyContinue) {
-		$SchemeLangSingle.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_LanguageCollection" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_LanguageCollection" -ErrorAction SilentlyContinue) {
+		$SchemeLangSingle.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_LanguageCollection" -ErrorAction SilentlyContinue
 	} else {
 		$SchemeLangSingle.Text = $Global:MainImageLang
 	}
@@ -5026,8 +5269,8 @@ volume
 	<#
 		.选择解决方案语言包
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsLanguageUnattend" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsLanguageUnattend" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsLanguageUnattend" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsLanguageUnattend" -ErrorAction SilentlyContinue) {
 			"True" {
 				$SchemeVerMulti.Checked = $True
 				$SchemeVerSingle.Enabled = $False
@@ -5067,8 +5310,8 @@ volume
 	<#
 		.选择解决方案语言包
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsLanguageCollection" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsLanguageCollection" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsLanguageCollection" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsLanguageCollection" -ErrorAction SilentlyContinue) {
 			"True" {
 				$SchemeLangMulti.Checked = $True
 				$SchemeLangSingle.Enabled = $False
@@ -5108,8 +5351,8 @@ volume
 	<#
 		.添加合集，更改语言，语言选择
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$(Get_GPS_Location)_Collection_Reserved_Language" -ErrorAction SilentlyContinue) {
-		$GetCollectionLanguageOnlyArray = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$(Get_GPS_Location)_Collection_Reserved_Language" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$($Script:init_To_GPS)_Collection_Reserved_Language" -ErrorAction SilentlyContinue) {
+		$GetCollectionLanguageOnlyArray = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Collection" -Name "$($Script:init_To_GPS)_Collection_Reserved_Language" -ErrorAction SilentlyContinue
 	} else {
 		$Verify_Language_New_Path = ISO_Local_Language_Calc
 
@@ -5171,8 +5414,8 @@ volume
 	<#
 		.复选框：Office 同步配置
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_AllowDeploy" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_AllowDeploy" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_AllowDeploy" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_AllowDeploy" -ErrorAction SilentlyContinue) {
 			"True" {
 				$SolutionsOffice.Checked = $True
 				$SolutionsOfficeShow.Enabled = $True
@@ -5190,28 +5433,28 @@ volume
 	<#
 		.选择框：选择部署到（1，公共桌面；2，主目录）
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_CopyTo" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_CopyTo" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_CopyTo" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_CopyTo" -ErrorAction SilentlyContinue) {
 			"1" {
 				$GUISolutionsOfficeToPublic.Checked = $True
 				$SolutionsOfficeToShow.Text = $lang.SolutionsDeployOfficeToPublic
 			}
 			"2" {
 				$GUISolutionsOfficeToMain.Checked = $True
-				$SolutionsOfficeToShow.Text = "$($Global:Image_source)\Sources\`$OEM$\`$1\$($GUISolutionsCustomizeName.Text)"
+				$SolutionsOfficeToShow.Text = $lang.MainImageFolder
 			}
 		}
 	} else {
 		$GUISolutionsOfficeToPublic.Checked = $True
 		$SolutionsOfficeToShow.Text = $lang.SolutionsDeployOfficeToPublic
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$(Get_GPS_Location)_CopyTo" -value 1 -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_CopyTo" -value 1 -String
 	}
 
 	<#
 		.Microsoft Office
 	#>
 	$Region = Language_Region
-	$GetOfficeLanguageOnlyArray = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$(Get_GPS_Location)_Reserved_Language" -ErrorAction SilentlyContinue
+	$GetOfficeLanguageOnlyArray = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue
 	ForEach ($itemRegion in $Region) {
 		$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height    = 55
@@ -5262,8 +5505,8 @@ volume
 	<#
 		.软件包合集
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$(Get_GPS_Location)_SolutionsPacker" -ErrorAction SilentlyContinue) {
-		$GetTempSelectPacker = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$(Get_GPS_Location)_SolutionsPacker" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$($Script:init_To_GPS)_SolutionsPacker" -ErrorAction SilentlyContinue) {
+		$GetTempSelectPacker = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$($Script:init_To_GPS)_SolutionsPacker" -ErrorAction SilentlyContinue
 		$TempSelectPacker = $GetTempSelectPacker
 	} else {
 		$TempSelectPacker = ""
@@ -5271,7 +5514,7 @@ volume
 
 	$OptionalPacker = Convert-Path -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Collection" -ErrorAction SilentlyContinue
 	Get-ChildItem $OptionalPacker -directory -ErrorAction SilentlyContinue | ForEach-Object {
-		if (Test-Path "$($_.FullName)\Deploy.ps1" -PathType Leaf) {
+		if (Test-Path -Path "$($_.FullName)\Deploy.ps1" -PathType Leaf) {
 			$CheckBox     = New-Object System.Windows.Forms.RadioButton -Property @{
 				Height    = 40
 				Width     = 385
@@ -5285,7 +5528,7 @@ volume
 						if ($_ -is [System.Windows.Forms.RadioButton]) {
 							if ($_.Enabled) {
 								if ($_.Checked) {
-									Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$(Get_GPS_Location)_SolutionsPacker" -value $_.Text -String
+									Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_SolutionsPacker" -value $_.Text -String
 								}
 							}
 						}
@@ -5304,8 +5547,8 @@ volume
 	<#
 		.复选框：部署软件包合集
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$(Get_GPS_Location)_AllowDeployCollection" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$(Get_GPS_Location)_AllowDeployCollection" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$($Script:init_To_GPS)_AllowDeployCollection" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$($Script:init_To_GPS)_AllowDeployCollection" -ErrorAction SilentlyContinue) {
 			"True" {
 				$SolutionsPackage.Checked = $True
 				$SolutionsPackageShow.Enabled = $True
@@ -5320,8 +5563,8 @@ volume
 		$SolutionsPackageShow.Enabled = $False
 	}
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$(Get_GPS_Location)_DeployCollectionSelect" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$(Get_GPS_Location)_DeployCollectionSelect" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$($Script:init_To_GPS)_DeployCollectionSelect" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -Name "$($Script:init_To_GPS)_DeployCollectionSelect" -ErrorAction SilentlyContinue) {
 			"1" { $SolutionsPackageToRoot.Checked = $True }
 			"2" { $SolutionsPackageToSolutions.Checked = $True }
 			"3" { $SolutionsPackageToPublish.Checked = $True }
@@ -5340,8 +5583,8 @@ volume
 		.复选框：Select the software to be added
 		.复选框：选择需要加入的软件
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsSoftware" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsSoftware" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsSoftware" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsSoftware" -ErrorAction SilentlyContinue) {
 			"True" {
 				$GroupSoftwareListTitle.Checked = $True
 				$GroupSoftwareList.Enabled = $True
@@ -5354,15 +5597,15 @@ volume
 	} else {
 		$GroupSoftwareListTitle.Checked = $True
 		$GroupSoftwareList.Enabled = $True
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsSoftware" -value "True" -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsSoftware" -value "True" -String
 	}
 
 	<#
 		.复选框：Select the fonts to be added
 		.复选框：选择需要加入的字体
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsFonts" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_IsFonts" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsFonts" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_IsFonts" -ErrorAction SilentlyContinue) {
 			"True" {
 				$GroupFontsListTitle.Checked = $True
 				$GroupFontsList.Enabled = $True
@@ -5375,7 +5618,7 @@ volume
 	} else {
 		$GroupFontsListTitle.Checked = $True
 		$GroupFontsList.Enabled = $True
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$(Get_GPS_Location)_IsFonts" -value "True" -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_IsFonts" -value "True" -String
 	}
 
 	<#
@@ -5384,7 +5627,7 @@ volume
 		 商业版, ei.cfg
 		 消费者版, no ei.cfg
 	#>
-	if (Test-Path "$($Global:Image_source)\sources\EI.CFG" -PathType Leaf -ErrorAction SilentlyContinue) {
+	if (Test-Path -Path "$($Global:Image_source)\sources\EI.CFG" -PathType Leaf -ErrorAction SilentlyContinue) {
 		$InstlModebusiness.Checked = $True
 		$InstlModeconsumer.Checked = $False
 		$InstlModeTipsErrorMsg.Text = $lang.BusinessTips
@@ -5448,8 +5691,8 @@ volume
 	<#
 		.时间：将所有已知时间显示到列表里
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_Time_Zone" -ErrorAction SilentlyContinue) {
-		$GetSaveTimezone = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_Time_Zone" -ErrorAction SilentlyContinue
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_Time_Zone" -ErrorAction SilentlyContinue) {
+		$GetSaveTimezone = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_Time_Zone" -ErrorAction SilentlyContinue
 		New-Variable -Scope global -Name "TimeZone_$($Script:init_To_GPS)" -Value $GetSaveTimezone -Force
 		$GUISolutionsUnattendChangeCustomizeInput.Text = $GetSaveTimezone
 		$SchemeTimezoneDynamicNow.Text = $GetSaveTimezone
@@ -5459,7 +5702,7 @@ volume
 				New-Variable -Scope global -Name "TimeZone_$($Script:init_To_GPS)" -Value $itemRegion.Timezone -Force
 				$GUISolutionsUnattendChangeCustomizeInput.Text = $itemRegion.Timezone
 				$SchemeTimezoneDynamicNow.Text = $itemRegion.Timezone
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_Time_Zone" -value $itemRegion.Timezone -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_Time_Zone" -value $itemRegion.Timezone -String
 				break
 			}
 		}
@@ -5467,6 +5710,7 @@ volume
 
 	ForEach ($itemRegion in $Region) {
 		$CheckBox      = New-Object System.Windows.Forms.RadioButton -Property @{
+			Name       = $itemRegion.Region
 			Height     = 45
 			Width      = 346
 			Text       = "$($itemRegion.Region)`n$($itemRegion.Timezone)"
@@ -5483,7 +5727,7 @@ volume
 
 								$GUISolutionsUnattendChangeCustomizeInput.Text = $_.Tag
 								$SchemeTimezoneDynamicNow.Text = $_.Tag
-								Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$(Get_GPS_Location)_Time_Zone" -value $_.Tag -String
+								Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_Time_Zone" -value $_.Tag -String
 							}
 						}
 					}
@@ -5497,8 +5741,8 @@ volume
 	<#
 		.复选框：时间区域
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsTimeZone" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_IsTimeZone" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsTimeZone" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_IsTimeZone" -ErrorAction SilentlyContinue) {
 			"True" {
 				$SchemeTimeZoneSelect.Checked = $True
 				$SchemeTimezoneDynamicButton.Enabled = $True
@@ -5516,8 +5760,8 @@ volume
 	<#
 		判断是否需要删除整个解决方案
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_ClearFull" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_ClearFull" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_ClearFull" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_ClearFull" -ErrorAction SilentlyContinue) {
 			"True" {
 				$EngineDoneClearFull.Enabled = $True
 				$EngineDoneClearFull.Checked = $True
@@ -5528,8 +5772,8 @@ volume
 				$EngineDefender.Enabled = $False
 			}
 			"False" {
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Clear" -ErrorAction SilentlyContinue) {
-					switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Clear" -ErrorAction SilentlyContinue) {
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Clear" -ErrorAction SilentlyContinue) {
+					switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Clear" -ErrorAction SilentlyContinue) {
 						"True" {
 							$EngineDoneClearFull.Enabled = $True
 							$EngineDoneClear.Checked = $True
@@ -5551,8 +5795,8 @@ volume
 			}
 		}
 	} else {
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Clear" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Clear" -ErrorAction SilentlyContinue) {
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Clear" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Clear" -ErrorAction SilentlyContinue) {
 				"True" {
 					$EngineDoneClearFull.Enabled = $True
 					$EngineDoneClear.Checked = $True
@@ -5572,8 +5816,8 @@ volume
 		}
 	}
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Region_UTF8" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$(Get_GPS_Location)_Region_UTF8" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Region_UTF8" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Name "$($Script:init_To_GPS)_Region_UTF8" -ErrorAction SilentlyContinue) {
 			"True"  {
 				$GUISolutionsShowLanguageUTF8.Checked = $True
 			}
@@ -5599,7 +5843,7 @@ volume
 						if ($_.Checked) {
 							$GUISolutionsShowNewLanguage.Text = $_.Tag
 							$EngineRegionalShow.Text = $($lang.SolutionsEngineRegionalTips -f $Global:MainImageLang, $_.Tag)
-							Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$(Get_GPS_Location)_Region_Preferred" -value $_.Tag -String
+							Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -name "$($Script:init_To_GPS)_Region_Preferred" -value $_.Tag -String
 						}
 					}
 				}
@@ -5613,8 +5857,8 @@ volume
 		$GUISolutionsShowLanguage.controls.AddRange($CheckBox)
 	}
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Is_Region" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Is_Region" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Is_Region" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Is_Region" -ErrorAction SilentlyContinue) {
 			"True"  {
 				$EngineRegional.Checked = $True
 				$EngineRegionalShow.Enabled = $True
@@ -5651,8 +5895,8 @@ volume
 		}
 	}
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_UnattendMode" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$(Get_GPS_Location)_UnattendMode" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_UnattendMode" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -Name "$($Script:init_To_GPS)_UnattendMode" -ErrorAction SilentlyContinue) {
 			"1" { $SchemeDiskHalf.Checked = $True }
 			"2" { $SchemeDiskUefi.Checked = $True }
 			"3" { $SchemeDiskLegacy.Checked = $True }
@@ -5662,11 +5906,6 @@ volume
 	}
 
 	<#
-		刷新添加解决方案到，复选框
-	#>
-	Solutions_Create_Refresh_Add_To_Path
-
-	<#
 		.刷新应预答状态
 	#>
 	Solutions_Unattend_Refresh_Status
@@ -5674,8 +5913,8 @@ volume
 	<#
 		.初始化复选框：自定义创建用户名、指定用户名
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$(Get_GPS_Location)_OOBE_Select_Init_User" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$(Get_GPS_Location)_OOBE_Select_Init_User" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$($Script:init_To_GPS)_OOBE_Select_Init_User" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\OOBE" -Name "$($Script:init_To_GPS)_OOBE_Select_Init_User" -ErrorAction SilentlyContinue) {
 			"Custom" {
 				$SolutionsOther_Custom.Checked = $True
 				$SolutionsOther_Specified.Checked = $False
@@ -5694,54 +5933,12 @@ volume
 		$SolutionsOther_Specified.Checked = $True
 	}
 
-
 	Refresh_Select_OOBE_Init_User
 
 	<#
 		.刷新：命令行已选择项
 	#>
 	Refresh_Command_Rule_Select_Group
-
-	if ($Global:EventQueueMode) {
-		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
-		$UI_Main.controls.AddRange((
-			$UI_Main_Suggestion_Manage,
-			$UI_Main_Suggestion_Stop_Current,
-			$UI_Main_Event_Assign_Stop
-		))
-	} else {
-		<#
-			.初始化复选框：不再建议
-		#>
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
-				"True" {
-					$UI_Main_Suggestion_Not.Checked = $True
-					$UI_Main_Suggestion_Setting.Enabled = $False
-					$UI_Main_Suggestion_Stop.Enabled = $False
-				}
-				"False" {
-					$UI_Main_Suggestion_Not.Checked = $False
-					$UI_Main_Suggestion_Setting.Enabled = $True
-					$UI_Main_Suggestion_Stop.Enabled = $True
-				}
-			}
-		} else {
-			$UI_Main_Suggestion_Not.Checked = $False
-			$UI_Main_Suggestion_Setting.Enabled = $True
-			$UI_Main_Suggestion_Stop.Enabled = $True
-		}
-
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsSuggested" -ErrorAction SilentlyContinue) {
-			if ((Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsSuggested" -ErrorAction SilentlyContinue) -eq "True") {
-				$UI_Main.controls.AddRange((
-					$UI_Main_Suggestion_Not,
-					$UI_Main_Suggestion_Setting,
-					$UI_Main_Suggestion_Stop
-				))
-			}
-		}
-	}
 
 	<#
 		.Allow open windows to be on top
@@ -5769,14 +5966,885 @@ volume
 		}
 	}
 
-	$UI_Main.ShowDialog() | Out-Null
+	if ($Autopilot) {
+		Write-host "   $($lang.Autopilot)" -ForegroundColor Green
+		Write-host "   $('-' * 80)"
+		Write-host "   $($lang.Save)".PadRight(18) -NoNewline -ForegroundColor Yellow
+
+		<#
+			.部署到
+		#>
+		Switch ($Autopilot.SaveTo.Path) {
+			"ISO" {
+				$SolutionsToMount.Enabled = $False
+				$SolutionsToMount.Checked = $False
+				$SolutionsToSources.Enabled = $True
+				$SolutionsToSources.Checked = $True
+			}
+			"Mounted" {
+				$SolutionsToMount.Enabled = $True
+				$SolutionsToMount.Checked = $True
+				$SolutionsToSources.Enabled = $False
+				$SolutionsToSources.Checked = $false
+			}
+		}
+
+		<#
+			.添加到系统盘主目录名称
+		#>
+		if ([string]::IsNullOrEmpty($Autopilot.SaveTo.FolderName)) {
+
+		} else {
+			$GUISolutionsCustomizeName.Text = $Autopilot.SaveTo.FolderName
+		}
+
+		<#
+			.用户首次体验
+		#>
+		Switch ($Autopilot.Account.Schome) {
+			"Custom" {
+				$SolutionsOther_Custom.Checked = $True
+			}
+			"Designated" {
+				$SolutionsOther_Specified.Checked = $True
+				
+				<#
+					.用户名
+				#>
+				$SolutionsOther_Specified_Expand_UserName_Custom.Text = $Autopilot.Account.Designated.UserName
+
+				<#
+					.将目录名设置为主用户名
+				#>
+				if ($Autopilot.Account.Designated.UserName) {
+					$GUISolutionsVerifySync.Checked = $True
+				} else {
+					$GUISolutionsVerifySync.Checked = $False
+				}
+
+				<#
+					.自动登录
+				#>
+				if ($Autopilot.Account.Designated.AutoLogin) {
+					$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $True
+				} else {
+					$SolutionsOther_Specified_Expand_UserName_Autorun.Checked = $False
+				}
+			}
+		}
+
+		<#
+			.自动驾驶：部署引擎
+		#>
+		#region 自动驾驶：部署引擎
+			<#
+				.允许添加
+			#>
+			if ($Autopilot.Schome.Engine.Enable) {
+				$SolutionsEngine.Checked = $True
+				$GroupSolutionsEngine.Enabled = $True
+			} else {
+				$SolutionsEngine.Checked = $False
+				$GroupSolutionsEngine.Enabled = $False
+			}
+
+			<#
+				.部署引擎：选择版本
+			#>
+			if ([string]::IsNullOrEmpty($Autopilot.Schome.Engine.Version)) {
+			} else {
+				$GroupMainVerList.Text = $Autopilot.Schome.Engine.Version
+			}
+
+			<#
+				.未选择必备项时自动修复
+			#>
+			if ($Autopilot.Schome.Engine.OptAdv.AutoFix) {
+				$Engine_Unattend_Auto_Fix.Checked = $True
+			} else {
+				$Engine_Unattend_Auto_Fix.Checked = $False
+			}
+
+			<#
+				.首次体验
+			#>
+				<#
+					.首次体验，部署先决条件过程中
+				#>
+					<#
+						.允许全盘搜索并同步部署标记
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.FirstExpSyncMark) {
+						$EngineChkSyncMark.Checked = $True
+					} else {
+						$EngineChkSyncMark.Checked = $False
+					}
+
+					<#
+						.允许自动更新
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.FirstExpUpdate) {
+						$EngineChkUpdate.Checked = $True
+					} else {
+						$EngineChkUpdate.Checked = $False
+					}
+
+					<#
+						.添加主目录到 Defend 排除目录
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.FirstExpDefender) {
+						$EngineDefender.Checked = $True
+					} else {
+						$EngineDefender.Checked = $False
+					}
+
+					<#
+						.网络位置向导
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.NetworkLocationWizard) {
+						$EngineNetworkLocationWizard.Checked = $True
+					} else {
+						$EngineNetworkLocationWizard.Checked = $False
+					}
+
+					<#
+						.系统盘卷标：主目录名相同
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.FirstExpSyncLabel) {
+						$GUISolutionsVolume.Checked = $True
+					} else {
+						$GUISolutionsVolume.Checked = $False
+					}
+
+					<#
+						.遇到多语言时：
+					#>
+						<#
+							.阻止 Appx 清理维护任务
+						#>
+						if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.IsMulti.PreAppxCleanup) {
+							$GUIPreAppxCleanup.Checked = $True
+						} else {
+							$GUIPreAppxCleanup.Checked = $False
+						}
+
+						<#
+							.阻止清理未使用的按需功能语言包
+						#>
+						if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.IsMulti.LanguageComponents) {
+							$GUILanguageComponents.Checked = $True
+						} else {
+							$GUILanguageComponents.Checked = $False
+						}
+						
+						<#
+							.阻止清理未使用的语言包
+						#>
+						if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.IsMulti.PreventCleaningUnusedLP) {
+							$GUIPreventCleaningUnusedLP.Checked = $True
+						} else {
+							$GUIPreventCleaningUnusedLP.Checked = $False
+						}
+
+					<#
+						.个性化“上下文菜单”
+					#>
+						<#
+							.个性化“上下文菜单”：添加
+						#>
+						if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.DesktopMenu.Enable) {
+							$EngineDeskMenu.Checked = $True
+						} else {
+							$EngineDeskMenu.Checked = $False
+						}
+
+						<#
+							.个性化“上下文菜单”：按住 Shift 键后点击右键
+						#>
+						if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.DesktopMenu.Right) {
+							$EngineDeskMenuShift.Checked = $True
+						} else {
+							$EngineDeskMenuShift.Checked = $False
+						}
+
+					<#
+						.时间区域
+					#>
+						<#
+							.更改时间
+						#>
+						if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.Time.Enable) {
+							$EngineRegional.Checked = $True
+							$EngineRegionalShow.Enabled = $True
+
+							if ([string]::IsNullOrEmpty($Autopilot.Schome.Engine.FirstExperience.Prerequisite.Time.Region)) {
+							} else {
+								$GUISolutionsShowLanguage.Controls | ForEach-Object {
+									if ($_ -is [System.Windows.Forms.RadioButton]) {
+										if ($_.Tag -eq $Autopilot.Schome.Engine.FirstExperience.Prerequisite.Time.Region) {
+											$_.Checked = $True
+											$GUISolutionsShowNewLanguage.Text = $_.Tag
+											$EngineRegionalShow.Text = $($lang.SolutionsEngineRegionalTips -f $Global:MainImageLang, $_.Tag)
+										}
+									}
+								}
+							}
+
+							
+							<#
+								.Beta 版：使用 Unicode UTF-8 提供全球语言支持
+							#>
+							if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.Time.UTF8) {
+								$GUISolutionsShowLanguageUTF8.Checked = $True
+							} else {
+								$GUISolutionsShowLanguageUTF8.Checked = $False
+							}
+						} else {
+							$EngineRegional.Checked = $False
+							$EngineRegionalShow.Enabled = $False
+						}
+
+					<#
+						.重新启动计算机
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Prerequisite.Restart) {
+						$EnginePrerequisitesReboot.Checked = $True
+					} else {
+						$EnginePrerequisitesReboot.Checked = $False
+					}
+
+				<#
+					.首次体验，完成先决条件后
+				#>
+					<#
+						.弹出部署引擎主界面
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Finish.FirstExpFinishPopup) {
+						$EnginePopsupEngine.Checked = $True
+					} else {
+						$EnginePopsupEngine.Checked = $False
+					}
+
+					<#
+						.允许首次预体验，按计划
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Finish.FirstExpFinishOnDemand) {
+						$EngineFirstExp.Checked = $True
+					} else {
+						$EngineFirstExp.Checked = $False
+					}
+
+					<#
+						.恢复 Powershell 执行策略：受限
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Finish.ResetExecutionPolicy) {
+						$EngineRestricted.Checked = $True
+					} else {
+						$EngineRestricted.Checked = $False
+					}
+
+					<#
+						.删除整个解决方案
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Finish.ClearFull) {
+						$EngineDoneClearFull.Checked = $True
+					} else {
+						$EngineDoneClearFull.Checked = $False
+					}
+
+					<#
+						.删除部署引擎，保留其它
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Finish.OnlyClearEngine) {
+						$EngineDoneClear.Checked = $True
+					} else {
+						$EngineDoneClear.Checked = $False
+					}
+
+					<#
+						.重新启动计算机
+					#>
+					if ($Autopilot.Schome.Engine.FirstExperience.Finish.Restart) {
+						$FirstExpFinishReboot.Checked = $True
+					} else {
+						$FirstExpFinishReboot.Checked = $False
+					}
+		#endregion
+
+		<#
+			.自动驾驶：应预答
+		#>
+		#region 自动驾驶：应预答
+			<#
+				.允许添加
+			#>
+			if ($Autopilot.Schome.Unattend.Enable) {
+				$SolutionsUnattend.Checked = $True
+				$GroupSolutionsUnattend.Enabled = $True
+				$GUISolutionsVerifySync.Enabled = $True
+				$GUISolutionsVerifySyncTips.Enabled = $True
+				
+				<#
+					.应预答：选择版本
+				#>
+				if ([string]::IsNullOrEmpty($Autopilot.Schome.Unattend.Version)) {
+				} else {
+					$Unattend_Version_Select.Text = $Autopilot.Schome.Unattend.Version
+				}
+
+				<#
+					.应预答：命令行
+				#>
+				#region 应预答：命令行
+					<#
+						.Windows 安装
+					#>
+					if ([string]::IsNullOrEmpty($Autopilot.Schome.Unattend.Command.WindowsSetup)) {
+					} else {
+						$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
+							if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
+								if ("WinSetup" -eq $_.Name) {
+									$_.Controls | ForEach-Object {
+										if ($_ -is [System.Windows.Forms.CheckBox]) {
+											if ($Autopilot.Schome.Unattend.Command.WindowsSetup -contains $_.Tag) {
+												$_.Checked = $True
+											} else {
+												$_.Checked = $False
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+
+					<#
+						.Windows 安装
+					#>
+					if ([string]::IsNullOrEmpty($Autopilot.Schome.Unattend.Command.WindowsPE)) {
+					} else {
+						$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
+							if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
+								if ("WinPE" -eq $_.Name) {
+									$_.Controls | ForEach-Object {
+										if ($_ -is [System.Windows.Forms.CheckBox]) {
+											if ($Autopilot.Schome.Unattend.Command.WindowsPE -contains $_.Tag) {
+												$_.Checked = $True
+											} else {
+												$_.Checked = $False
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				#endregion
+
+				<#
+					.应预答：单语、多语
+				#>
+				Switch ($Autopilot.Schome.Unattend.IsMulti) {
+					"Auto" {
+					}
+					default {
+						$SchemeVerMulti.Checked = $False
+						$SchemeVerSingle.Enabled = $True
+
+						$SchemeVerSingle.Text = $Autopilot.Schome.Unattend.IsMulti
+					}
+				}
+
+				<#
+					.应预答：重置映像版本
+				#>
+				Switch ($Autopilot.Schome.Unattend.InstallMethod) {
+					"Auto" {
+					}
+					"Business" {
+						$InstlModebusiness.Checked = $True
+@"
+[Channel]
+volume
+			
+[VL]
+1
+"@ | Out-File -FilePath "$($Global:Image_source)\sources\EI.CFG" -Encoding Ascii -ErrorAction SilentlyContinue
+					}
+					"Consumer" {
+						$InstlModeconsumer.Checked = $True
+						Remove_Tree "$($Global:Image_source)\sources\EI.CFG"
+					}
+				}
+
+				<#
+					.应预答：重置映像版本
+				#>
+				Switch ($Autopilot.Schome.Unattend.Schome.Version) {
+					"Semi" {
+						$SchemeDiskHalf.Checked = $True
+					}
+					"UEFI" {
+						if ($SchemeDiskUefi.Enabled) {
+							if ([string]::IsNullOrEmpty($Autopilot.Schome.Unattend.Schome.UEFI.ImageIndex)) {
+							} else {
+								$SchemeDiskUefi.Checked = $True
+								$SchemeDiskSpecifiedPanel.Enabled = $True
+								$SchemeVerMulti.Enabled = $True
+								$SchemeVerSingle.Enabled = $True
+
+								$NewAutopilot = @{
+									Index = $Autopilot.Schome.Unattend.Schome.UEFI.ImageIndex
+								}
+								Solutions_Index_UI -Autopilot $NewAutopilot
+								$SchemeDiskSpecifiedIndexShow.Text = $Global:UnattendSelectIndex.Name
+							}
+						}
+					}
+					"Legacy" {
+						if ($SchemeDiskLegacy.Enabled) {
+							if ([string]::IsNullOrEmpty($Autopilot.Schome.Unattend.Schome.Legacy.ProductKey)) {
+							} else {
+								$SchemeDiskLegacy.Checked = $True
+								$SchemeDiskSpecifiedPanel.Enabled = $True
+								$SchemeVerMulti.Enabled = $True
+								$SchemeVerSingle.Enabled = $True
+
+								$Global:ProductKey = $Autopilot.Schome.Unattend.Schome.Legacy.ProductKey
+								$SchemeDiskSpecifiedKEYShow.Text = $Autopilot.Schome.Unattend.Schome.Legacy.ProductKey
+							}
+						}
+					}
+				}
+
+				<#
+					.应预答：添加到
+				#>
+					<#
+						.[ISO]:\\Autounattend.xml
+					#>
+					if ($Autopilot.Schome.Unattend.AddTo.ISOAutounattend) {
+						$CreateUnattendISO.Checked = $True
+					} else {
+						$CreateUnattendISO.Checked = $False
+					}
+
+					<#
+						.[ISO]:\\sources\\Unattend.xml
+					#>
+					if ($Autopilot.Schome.Unattend.AddTo.ISOSourcesUnattend) {
+						$CreateUnattendISOSources.Checked = $True
+					} else {
+						$CreateUnattendISOSources.Checked = $False
+					}
+
+					<#
+						.[ISO]:\\sources\\$OEM$\\$$\\Panther\\unattend.xml
+					#>
+					if ($Autopilot.Schome.Unattend.AddTo.ISOPantherUnattendOEM) {
+						$CreateUnattendISOSourcesOEM.Checked = $True
+					} else {
+						$CreateUnattendISOSourcesOEM.Checked = $False
+					}
+
+					<#
+						.[挂载到]:\\Windows\\Panther\\unattend.xml
+					#>
+					if ($Autopilot.Schome.Unattend.AddTo.ISOPantherUnattendOS) {
+						$CreateUnattendPanther.Checked = $True
+					} else {
+						$CreateUnattendPanther.Checked = $False
+					}
+
+				<#
+					.安装界面
+				#>
+					<#
+						.隐藏 产品密钥
+					#>
+					if ($Autopilot.Schome.Unattend.InstallInterface.OOBEProductKey) {
+						$SolutionsUnattendOOBEActivate.Checked = $True
+					} else {
+						$SolutionsUnattendOOBEActivate.Checked = $False
+					}
+
+					<#
+						.隐藏 选择要安装的操作系统
+					#>
+					if ($Autopilot.Schome.Unattend.InstallInterface.OOBEOSImage) {
+						$SolutionsUnattendSetupOSUI.Checked = $True
+					} else {
+						$SolutionsUnattendSetupOSUI.Checked = $False
+					}
+
+					<#
+						.隐藏 接受许可条款
+					#>
+					if ($Autopilot.Schome.Unattend.InstallInterface.OOBEEula) {
+						$SolutionsUnattendAccectEula.Checked = $True
+					} else {
+						$SolutionsUnattendAccectEula.Checked = $False
+					}
+
+				<#
+					.服务器选项
+				#>
+					<#
+						.登录时不自动启动服务器管理器
+					#>
+					if ($Autopilot.Schome.Unattend.Server.ServerManager) {
+						$SolutionsUnattendDoNotServerManager.Checked = $True
+					} else {
+						$SolutionsUnattendDoNotServerManager.Checked = $False
+					}
+
+					<#
+						.Internet Explorer 增强的安全配置
+					#>
+						<#
+							.关闭“管理员”
+						#>
+						if ($Autopilot.Schome.Unattend.Server.InternetExplorer.Administrator) {
+							$SolutionsUnattendIEAdmin.Checked = $True
+						} else {
+							$SolutionsUnattendIEAdmin.Checked = $False
+						}
+
+						<#
+							.关闭“用户”
+						#>
+						if ($Autopilot.Schome.Unattend.Server.InternetExplorer.User) {
+							$SolutionsUnattendIEUser.Checked = $True
+						} else {
+							$SolutionsUnattendIEUser.Checked = $False
+						}
+
+				<#
+					.时间区域
+				#>
+					<#
+						.更改时间
+					#>
+					if ($Autopilot.Schome.Unattend.Time.Enable) {
+						$SchemeTimeZoneSelect.Checked = $True
+						$SchemeTimezoneDynamicButton.Enabled = $True
+
+						if ([string]::IsNullOrEmpty($Autopilot.Schome.Unattend.Time.Region)) {
+						} else {
+							$GUISolutionsUnattendChangeShowTimeZone.Controls | ForEach-Object {
+								if ($_ -is [System.Windows.Forms.RadioButton]) {
+									if ($_.Name -eq $Autopilot.Schome.Unattend.Time.Region) {
+										$_.Checked = $True
+										New-Variable -Scope global -Name "TimeZone_$($Script:init_To_GPS)" -Value $_.Tag -Force
+
+										$GUISolutionsUnattendChangeCustomizeInput.Text = $_.Tag
+										$SchemeTimezoneDynamicNow.Text = $_.Tag
+										Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_Time_Zone" -value $_.Tag -String
+									}
+								}
+							}
+						}
+					} else {
+						$SchemeTimeZoneSelect.Checked = $False
+						$SchemeTimezoneDynamicButton.Enabled = $False
+					}
+			} else {
+				$SolutionsUnattend.Checked = $False
+				$GroupSolutionsUnattend.Enabled = $False
+				$GUISolutionsVerifySync.Enabled = $False
+				$GUISolutionsVerifySyncTips.Enabled = $False
+			}
+		#endregion
+
+		<#
+			.自动驾驶：合集
+		#>
+		#region 自动驾驶：合集
+			<#
+				.允许添加
+			#>
+			if ($Autopilot.Schome.Collection.Enable) {
+				$SolutionsSoftwarePacker.Checked = $True
+				$GroupSolutionsSoftwarePacker.Enabled = $True
+
+				<#
+					.生成预部署报告
+				#>
+				if ($Autopilot.Schome.Collection.OptAdv.GenerateReport) {
+					$CreateReport.Checked = $True
+				} else {
+					$CreateReport.Checked = $False
+				}
+
+				<#
+					.初始化：语言包
+				#>
+				switch ($Autopilot.Schome.Collection.Language.IsMulti) {
+					"auto" {}
+					"Multi" {
+						$SchemeLangMulti.Checked = $True
+						$SchemeLangSingle.Enabled = $False
+						$SolutionsCollectionKeep.Enabled = $True
+						$SolutionsCollectionKeepChange.Enabled = $True
+						$SolutionsCollectionKeepShow.Enabled = $True
+
+						$GUISolutionsCollectionChangeShowLanguage.Controls | ForEach-Object {
+							if ($_ -is [System.Windows.Forms.CheckBox]) {
+								if ($Autopilot.Schome.Collection.Language.Multi -contains $_.Tag) {
+									$_.Checked = $True
+								} else {
+									$_.Checked = $False
+								}
+							}
+						}
+
+						$SolutionsCollectionKeepShow.Text = $Autopilot.Schome.Collection.Language.Multi
+					}
+					"Single" {
+						$SchemeLangMulti.Checked = $False
+						$SchemeLangSingle.Enabled = $True
+						$SolutionsCollectionKeep.Enabled = $False
+						$SolutionsCollectionKeepChange.Enabled = $False
+						$SolutionsCollectionKeepShow.Enabled = $False
+
+						$SchemeLangSingle.Text = $Autopilot.Schome.Collection.Language.Single
+					}
+				}
+
+				<#
+					.初始化：语言包
+				#>
+				switch ($Autopilot.Schome.Collection.Architecture) {
+					"arm64" {
+						if ($ArchitectureARM64.Enabled) {
+							$ArchitectureARM64.Checked = $True
+							Solutions_Create_Refresh_Office_Status
+						}
+					}
+					"x64" {
+						if ($ArchitectureAMD64.Enabled) {
+							$ArchitectureAMD64.Checked = $True
+							Solutions_Create_Refresh_Office_Status
+						}
+					}
+					"x86" {
+						if ($ArchitectureX86.Enabled) {
+							$ArchitectureX86.Checked = $True
+							Solutions_Create_Refresh_Office_Status
+						}
+					}
+				}
+
+				<#
+					.部署 Office
+				#>
+				if ($Autopilot.Schome.Collection.Office.IsDeploy) {
+					if ([string]::IsNullOrEmpty($Autopilot.Schome.Collection.Office.Version)) {
+						$SolutionsOffice.Checked = $False
+						$SolutionsOfficeShow.Enabled = $False
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "False" -String
+					} else {
+						$Solutions_Office_Select.Text = $Autopilot.Schome.Collection.Office.Version
+
+						if ([string]::IsNullOrEmpty($Solutions_Office_Select.Text)) {
+							$SolutionsOffice.Checked = $False
+							$SolutionsOfficeShow.Enabled = $False
+							Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "False" -String
+						} else {
+							$SolutionsOffice.Checked = $True
+							$SolutionsOfficeShow.Enabled = $True
+							Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "True" -String
+						}
+
+						switch ($Autopilot.Schome.Collection.Office.Language) {
+							"Auto" {}
+							Default {
+								$GUISolutionsOfficeChangeShowLanguage.Controls | ForEach-Object {
+									if ($Autopilot.Schome.Collection.Office.Language -contains $_.Tag) {
+										$_.Checked = $True
+									} else {
+										$_.Checked = $False
+									}
+								}
+
+								Solutions_Create_Refresh_Office_Language
+							}
+						}
+
+						switch ($Autopilot.Schome.Collection.Office.DeployTo) {
+							"PublicDektop" {
+								$GUISolutionsOfficeToPublic.Checked = $True
+								$SolutionsOfficeToShow.Text = $lang.SolutionsDeployOfficeToPublic
+							}
+							"MainDirectory" {
+								$GUISolutionsOfficeToMain.Checked = $True
+								$SolutionsOfficeToShow.Text = $lang.MainImageFolder
+							}
+						}
+					}
+				} else {
+					$SolutionsOffice.Checked = $False
+					$SolutionsOfficeShow.Enabled = $False
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "False" -String
+				}
+
+				<#
+					.自定义合集
+				#>
+				if ($Autopilot.Schome.Collection.Custom.IsDeploy) {
+					switch ($Autopilot.Schome.Collection.Custom.DeployTo) {
+						"SystemDisk" {
+							$SolutionsPackageToRoot.Checked = $True
+						}
+						"Solution" {
+							$SolutionsPackageToSolutions.Checked = $True
+						}
+						"PublicDesktop" {
+							$SolutionsPackageToPublish.Checked = $True
+						}
+					}
+
+					if ([string]::IsNullOrEmpty($Autopilot.Schome.Collection.Custom.Version)) {
+						$SolutionsPackage.Checked = $False
+						$SolutionsPackageShow.Enabled = $False
+					} else {
+						$MarkCheckPackageSel = @()
+						$SolutionsPackageSelList.Controls | ForEach-Object {
+							if ($_ -is [System.Windows.Forms.RadioButton]) {
+								if ($Autopilot.Schome.Collection.Custom.Version -eq $_.Text) {
+									$_.Checked = $True
+									$MarkCheckPackageSel += $_.Text
+									New-Variable -Scope global -Name "DeployPackerVersion_$($Script:init_To_GPS)" -Value $_.Tag -Force
+									Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Package" -name "$($Script:init_To_GPS)_SolutionsPacker" -value $_.Text -String
+								} else {
+									$_.Checked = $False
+								}
+							}
+						}
+
+						if ($MarkCheckPackageSel.Count -gt 0) {
+							$SolutionsPackage.Checked = $True
+							$SolutionsPackageShow.Enabled = $True
+						} else {
+							$SolutionsPackage.Checked = $False
+							$SolutionsPackageShow.Enabled = $False
+						}
+					}
+				} else {
+					$SolutionsPackage.Checked = $False
+					$SolutionsPackageShow.Enabled = $False
+				}
+
+				<#
+					.软件包
+				#>
+				if ($Autopilot.Schome.Collection.Software.IsDeploy) {
+					$GroupSoftwareListTitle.Checked = $True
+					$GroupSoftwareList.Enabled = $True
+
+					$MarkCheckPackageSel = @()
+					$GroupSoftwareList.Controls | ForEach-Object {
+						if ($_ -is [System.Windows.Forms.Checkbox]) {
+							if ($Autopilot.Schome.Collection.Software.App -contains $_.Text) {
+								$_.Checked = $True
+								$MarkCheckPackageSel += $_.Text
+							} else {
+								$_.Checked = $False
+							}
+						}
+					}
+
+					if ($MarkCheckPackageSel.Count -gt 0) {
+						$GroupFontsListTitle.Checked = $True
+						$GroupFontsList.Enabled = $True
+					} else {
+						$GroupFontsListTitle.Checked = $False
+						$GroupFontsList.Enabled = $False
+					}
+				} else {
+					$GroupSoftwareListTitle.Checked = $False
+					$GroupSoftwareList.Enabled = $False
+				}
+
+
+				<#
+					.字体
+				#>
+				if ($Autopilot.Schome.Collection.Fonts.IsDeploy) {
+					$MarkCheckPackageSel = @()
+					$GroupFontsList.Controls | ForEach-Object {
+						if ($_ -is [System.Windows.Forms.Checkbox]) {
+							if ($Autopilot.Schome.Collection.Fonts.Package -contains $_.Text) {
+								$_.Checked = $True
+								$MarkCheckPackageSel += $_.Text
+							} else {
+								$_.Checked = $False
+							}
+						}
+					}
+
+					if ($MarkCheckPackageSel.Count -gt 0) {
+						$GroupFontsListTitle.Checked = $True
+						$GroupFontsList.Enabled = $True
+					} else {
+						$GroupFontsListTitle.Checked = $False
+						$GroupFontsList.Enabled = $False
+					}
+				} else {
+					$GroupFontsListTitle.Checked = $False
+					$GroupFontsList.Enabled = $False
+				}
+			} else {
+				$SolutionsSoftwarePacker.Checked = $False
+				$GroupSolutionsSoftwarePacker.Enabled = $False
+			}
+		#endregion
+
+		Refres_Event_Tasks_Solutions_Add
+
+		if (Autopilot_Solutions_Save) {
+			Write-host $lang.Done -ForegroundColor Green
+		} else {
+			Write-host $lang.ISOCreateFailed -ForegroundColor Red
+			$UI_Main.ShowDialog() | Out-Null
+		}
+	} else {
+		Refres_Event_Tasks_Solutions_Add
+		$UI_Main.ShowDialog() | Out-Null
+	}
+}
+
+Function Autopilot_Solutions_Create_Import
+{
+	param (
+		$Tasks,
+		[switch]$ISO,
+		[switch]$Mount
+	)
+
+	<#
+		.测试完成后，检查配置文件里是否有事件
+	#>
+	if ([string]::IsNullOrEmpty($Tasks)) {
+		Write-Host "   $($lang.NoWork)" -ForegroundColor Red
+	} else {
+		Write-Host "   $($lang.YesWork)" -ForegroundColor Yellow
+
+		if ($ISO) {
+			Solutions_Create_UI -Autopilot $Tasks -ISO
+		}
+
+		if ($Mount) {
+			Solutions_Create_UI -Autopilot $Tasks -Mount
+		}
+	}
 }
 
 <#
 	.Start working on the build solution
 	.开始处理生成解决方案
 #>
-Function Solutions_Copy_Process
+Function Solutions_Copy_Prerequisite
 {
 	param
 	(
@@ -5785,18 +6853,18 @@ Function Solutions_Copy_Process
 	)
 
 	<#
-		.Processing: arm64
+		.Requirementsing: arm64
 		.处理：arm64
 	#>
 	if ($Global:ArchitecturePack -eq "arm64") {
-		if (Test-Path "$($path)\arm64" -PathType Container -ErrorAction SilentlyContinue) {
-			Solutions_Copy_Files_To_Process -From "$($path)\arm64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+		if (Test-Path -Path "$($path)\arm64" -PathType Container) {
+			Solutions_Copy_Files_To_Prerequisite -From "$($path)\arm64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
 		} else {
-			if (Test-Path "$($path)\AMD64" -PathType Container -ErrorAction SilentlyContinue) {
-				Solutions_Copy_Files_To_Process -From "$($path)\AMD64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+			if (Test-Path -Path "$($path)\AMD64" -PathType Container) {
+				Solutions_Copy_Files_To_Prerequisite -From "$($path)\AMD64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
 			} else {
-				if (Test-Path "$($path)\x86" -PathType Container -ErrorAction SilentlyContinue) {
-					Solutions_Copy_Files_To_Process -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+				if (Test-Path -Path "$($path)\x86" -PathType Container) {
+					Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
 				} else {
 					Write-Host "   $($lang.NoInstallImage)"
 					Write-host "   $($path)\x86" -ForegroundColor Red
@@ -5806,15 +6874,15 @@ Function Solutions_Copy_Process
 	}
 
 	<#
-		.Processing: AMD64
+		.Requirementsing: AMD64
 		.处理：AMD64
 	#>
 	if ($Global:ArchitecturePack -eq "AMD64") {
-		if (Test-Path "$($path)\AMD64" -PathType Container -ErrorAction SilentlyContinue) {
-			Solutions_Copy_Files_To_Process -From "$($path)\AMD64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+		if (Test-Path -Path "$($path)\AMD64" -PathType Container) {
+			Solutions_Copy_Files_To_Prerequisite -From "$($path)\AMD64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
 		} else {
-			if (Test-Path "$($path)\x86" -PathType Container -ErrorAction SilentlyContinue) {
-				Solutions_Copy_Files_To_Process -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+			if (Test-Path -Path "$($path)\x86" -PathType Container) {
+				Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
 			} else {
 				Write-Host "   $($lang.NoInstallImage)"
 				Write-host "   $($path)\x86" -ForegroundColor Red
@@ -5823,12 +6891,12 @@ Function Solutions_Copy_Process
 	}
 
 	<#
-		.Processing: x86
+		.Requirementsing: x86
 		.处理：x86
 	#>
 	if ($Global:ArchitecturePack -eq "x86") {
-		if (Test-Path "$($path)\x86" -PathType Container -ErrorAction SilentlyContinue) {
-			Solutions_Copy_Files_To_Process -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+		if (Test-Path -Path "$($path)\x86" -PathType Container) {
+			Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
 		} else {
 			Write-Host "   $($lang.NoInstallImage)"
 			Write-host "   $($path)\x86" -ForegroundColor Red
@@ -5840,7 +6908,7 @@ Function Solutions_Copy_Process
 	.Copy solution directory
 	.复制解决方案目录
 #>
-Function Solutions_Copy_Files_To_Process
+Function Solutions_Copy_Files_To_Prerequisite
 {
 	param
 	(
@@ -5856,11 +6924,11 @@ Function Solutions_Copy_Files_To_Process
 		"Single" {
 			$NewPathTo = Join-Path -Path $To -ChildPath "$($OSDefaultUser)\$($ShortPath)" -ErrorAction SilentlyContinue
 
-			if (Test-Path "$($From)\$($OSDefaultSolutionsLangDefault)" -PathType Container -ErrorAction SilentlyContinue) {
+			if (Test-Path -Path "$($From)\$($OSDefaultSolutionsLangDefault)" -PathType Container) {
 				Check_Folder -chkpath $NewPathTo
 				Copy-Item -Path "$($From)\$($OSDefaultSolutionsLangDefault)\*" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 			} else {
-				if (Test-Path "$($From)\en-US" -PathType Container -ErrorAction SilentlyContinue) {
+				if (Test-Path -Path "$($From)\en-US" -PathType Container) {
 					Check_Folder -chkpath $NewPathTo
 					Copy-Item -Path "$($From)\en-US\*" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 				} else {
@@ -5873,7 +6941,7 @@ Function Solutions_Copy_Files_To_Process
 			ForEach ($item in (Get-Variable -Scope global -Name "DeployCollectionLanguageOnly_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 				$NewPathTo = Join-Path -Path $To -ChildPath "$($OSDefaultUser)\$($ShortPath)" -ErrorAction SilentlyContinue
 				Check_Folder -chkpath $NewPathTo
-				if (Test-Path "$($From)\$($item)" -PathType Container -ErrorAction SilentlyContinue) {
+				if (Test-Path -Path "$($From)\$($item)" -PathType Container) {
 					Copy-Item -Path "$($From)\$($item)" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 				}
 			}
@@ -5881,7 +6949,7 @@ Function Solutions_Copy_Files_To_Process
 	}
 }
 
-Function Solutions_Copy_Fonts_Process
+Function Solutions_Copy_Fonts_Prerequisite
 {
 	$OSDefaultUser = (Get-Variable -Scope global -Name "Name_Engine_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value
 
@@ -5898,15 +6966,15 @@ Function Solutions_Office_Copy
 	$OSDeployOfficeVersion = (Get-Variable -Scope global -Name "DeployOfficeVersion_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value
 
 	<#
-		.Processing: AMD64
+		.Requirementsing: AMD64
 		.处理：AMD64
 	#>
 	if ($Global:ArchitecturePack -eq "AMD64") {
-        if (Test-Path "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\amd64\Office\Data\v64.cab" -PathType Leaf -ErrorAction SilentlyContinue) {
-            Solutions_Office_Copy_Process -From "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\amd64\Office"
+        if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\amd64\Office\Data\v64.cab" -PathType Leaf -ErrorAction SilentlyContinue) {
+            Solutions_Office_Copy_Prerequisite -From "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\amd64\Office"
         } else {
-            if (Test-Path "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office\Data\v32.cab" -PathType Leaf -ErrorAction SilentlyContinue) {
-                Solutions_Office_Copy_Process -From "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office"
+            if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office\Data\v32.cab" -PathType Leaf -ErrorAction SilentlyContinue) {
+                Solutions_Office_Copy_Prerequisite -From "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office"
             } else {
                 Write-Host "   $($lang.NoInstallImage)"
 				Write-host "   $($PSScriptRoot)\..\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office" -ForegroundColor Red
@@ -5915,12 +6983,12 @@ Function Solutions_Office_Copy
 	}
 
 	<#
-		.Processing: x86
+		.Requirementsing: x86
 		.处理：x86
 	#>
 	if ($Global:ArchitecturePack -eq "x86") {
-        if (Test-Path "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office\Data\v32.cab" -PathType Leaf -ErrorAction SilentlyContinue) {
-            Solutions_Office_Copy_Process -From "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office"
+        if (Test-Path -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office\Data\v32.cab" -PathType Leaf -ErrorAction SilentlyContinue) {
+            Solutions_Office_Copy_Prerequisite -From "$($PSScriptRoot)\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office"
         } else {
             Write-Host "   $($lang.NoInstallImage)"
 			Write-host "   $($PSScriptRoot)\..\..\..\..\..\_Custom\Office\$($OSDeployOfficeVersion)\x86\Office" -ForegroundColor Red
@@ -5955,7 +7023,7 @@ Function Solutions_Office_Match
 		$SaveToName = $SaveToName.replace('i640','').replace('i64','').replace('s640','').replace('s64','').replace('sp64','').replace('i320','').replace('i32','').replace('s320','').replace('s32','').replace('sp32','')
 
 		ForEach ($itemRegion in $Region) {
-			if (($OSDefaultQueueDeployLanguageExclue) -Contains $itemRegion.Region) {
+			if ($OSDefaultQueueDeployLanguageExclue -Contains $itemRegion.Region) {
 			} else {
 				if ($SaveToName -like "*$($itemRegion.Region)*") {
 					$DataLanguage += $item
@@ -5982,7 +7050,7 @@ Function Solutions_Office_Match
 	.Copy solution directory
 	.复制 Microsoft Office 安装包
 #>
-Function Solutions_Office_Copy_Process
+Function Solutions_Office_Copy_Prerequisite
 {
 	param
 	(
@@ -6007,7 +7075,7 @@ Function Solutions_Office_Copy_Process
 			Write-Host "`n   $($lang.SolutionsDeployOfficeSync)"
 			if ($OSDefaultQueueDeployDeployOfficeSyncConfig) {
 				Write-Host "   $($lang.Operable)" -ForegroundColor Green
-				Solutions_Office_Copy_Config_Process -To $NewPathTo
+				Solutions_Office_Copy_Config_Prerequisite -To $NewPathTo
 			} else {
 				Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 			}
@@ -6026,7 +7094,7 @@ Function Solutions_Office_Copy_Process
 			Write-Host "`n   $($lang.SolutionsDeployOfficeSync)"
 			if ($OSDefaultQueueDeployDeployOfficeSyncConfig) {
 				Write-Host "   $($lang.Operable)" -ForegroundColor Green
-				Solutions_Office_Copy_Config_Process -To $NewPathTo
+				Solutions_Office_Copy_Config_Prerequisite -To $NewPathTo
 			} else {
 				Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 			}
@@ -6038,7 +7106,7 @@ Function Solutions_Office_Copy_Process
 	.Copy 合集
 	.复制 合集
 #>
-Function Solutions_Copy_Package_Process
+Function Solutions_Copy_Package_Prerequisite
 {
 	$OSDefaultUser = (Get-Variable -Scope global -Name "Name_Engine_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value
 	$OSDefaultDeployPackerVersion = (Get-Variable -Scope global -Name "DeployPackerVersion_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value
@@ -6048,24 +7116,24 @@ Function Solutions_Copy_Package_Process
 			$NewPathTo = "$($Script:CopySolutionsToRoot)\Package"
 			Remove_Tree $NewPathTo
 			Check_Folder -chkpath $NewPathTo
-			start-process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$NewPathTo`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
+			Start-Process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$NewPathTo`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
 		}
 		2 {
 			$NewPathTo = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Package"
 			Remove_Tree $NewPathTo
 			Check_Folder -chkpath $NewPathTo
-			start-process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$NewPathTo`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
+			Start-Process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$NewPathTo`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
 		}
 		3 {
 			$NewPathTo = "$($Script:CopySolutionsToRoot)\Users\Public\Desktop\Package"
 			Remove_Tree $NewPathTo
 			Check_Folder -chkpath $NewPathTo
-			start-process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$NewPathTo`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
+			Start-Process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$NewPathTo`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
 		}
 	}
 }
 
-Function Solutions_Office_Copy_Config_Process
+Function Solutions_Office_Copy_Config_Prerequisite
 {
 	param
 	(
@@ -6104,9 +7172,34 @@ Function Solutions_Office_Copy_Config_Process
 #>
 Function Solutions_Index_UI
 {
+	param (
+		[array]$Autopilot
+	)
+
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Function Solutions_Index_Save
+	{
+		$UI_Main_Menu.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.RadioButton]) {
+				if ($_.Enabled) {
+					if ($_.Checked) {
+						$UI_Main.Hide()
+						$Global:UnattendSelectIndex = @{
+							Name  = $_.Text;
+							Index = $_.Tag
+						}
+						$UI_Main.Close()
+					}
+				}
+			}
+		}
+
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
+		$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose)"
+	}
 
 	$UI_Main           = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
@@ -6142,31 +7235,13 @@ Function Solutions_Index_UI
 		Width          = 490
 		Text           = ""
 	}
-	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
+	$UI_Main_Save      = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "8,595"
 		Height         = 36
 		Width          = 515
 		Text           = $lang.OK
-		add_Click      = {
-			$UI_Main_Menu.Controls | ForEach-Object {
-				if ($_ -is [System.Windows.Forms.RadioButton]) {
-					if ($_.Enabled) {
-						if ($_.Checked) {
-							$UI_Main.Hide()
-							$Global:UnattendSelectIndex = @{
-								Name  = $_.Text;
-								Index = $_.Tag
-							}
-							$UI_Main.Close()
-						}
-					}
-				}
-			}
-
-			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-			$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose)"
-		}
+		add_Click      = { Solutions_Index_Save }
 	}
 	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
@@ -6182,7 +7257,7 @@ Function Solutions_Index_UI
 		$UI_Main_Menu,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
-		$UI_Main_OK,
+		$UI_Main_Save,
 		$UI_Main_Canel
 	))
 
@@ -6294,14 +7369,6 @@ Function Solutions_Index_UI
 		}
 	}
 
-	if ($Global:EventQueueMode) {
-		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
-	} else {
-		if (Image_Is_Select_IAB) {
-			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
-		}
-	}
-
 	<#
 		.Allow open windows to be on top
 		.允许打开的窗口后置顶
@@ -6321,7 +7388,24 @@ Function Solutions_Index_UI
 		}
 	}
 
-	$UI_Main.ShowDialog() | Out-Null
+	if ($Autopilot) {
+		Write-host "   $($lang.Autopilot)" -ForegroundColor Green
+
+		$UI_Main_Menu.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.RadioButton]) {
+				if ($_.tag -eq $Autopilot.index) {
+					$Global:UnattendSelectIndex = @{
+						Name  = $_.Text;
+						Index = $_.Tag
+					}
+				}
+			}
+		}
+	
+		$UI_Main.Close()
+	} else {
+		$UI_Main.ShowDialog() | Out-Null
+	}
 }
 
 <#
@@ -6443,7 +7527,7 @@ Function KMSkeys
 		Width          = 404
 		Text           = ""
 	}
-	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
+	$UI_Main_Save      = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "420,595"
 		Height         = 36
@@ -6487,7 +7571,7 @@ Function KMSkeys
 		$UI_Main_KMS_Show_All,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
-		$UI_Main_OK,
+		$UI_Main_Save,
 		$UI_Main_Canel
 	))
  
@@ -6517,9 +7601,15 @@ Function KMSkeys
 		}
 	}
 
+	if ($Global:AutopilotMode) {
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Autopilot), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+	}
+
 	if ($Global:EventQueueMode) {
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
-	} else {
+	}
+
+	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		if (Image_Is_Select_IAB) {
 			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		}
@@ -6570,7 +7660,8 @@ Function Solutions_Create_Deploy_Report
 @"
 {
 	"Author": {
-		"Name":           "$((Get-Module -Name Solutions).Version)",
+		"Name":           "Yi",
+		"Version":        "$((Get-Module -Name Solutions).Version)",
 		"Url":            "$((Get-Module -Name Solutions).HelpInfoURI)"
 	},
 	"Engine": {
@@ -6815,7 +7906,7 @@ Function Solutions_Replace_Unattend
 		[int]$Init_Microsoft_Windows_Setup = 0
 	
 		ForEach ($item in $Global:Pre_Config_Command_Rules) {
-			if (($Get_Queue_Command_WinSetup) -Contains $item.GUID) {
+			if ($Get_Queue_Command_WinSetup -Contains $item.GUID) {
 				foreach ($itemCommand in $item.Command) {
 					<#
 						替换内容
@@ -6852,7 +7943,7 @@ $($Save_Microsoft_Windows_Setup)
 		[int]$Init_Microsoft_Windows_Setup = 0
 	
 		ForEach ($item in $Global:Pre_Config_Command_Rules) {
-			if (($Get_Queue_Command_WinPE) -Contains $item.GUID) {
+			if ($Get_Queue_Command_WinPE -Contains $item.GUID) {
 				foreach ($itemCommand in $item.Command) {
 					<#
 						替换内容
@@ -6908,7 +7999,7 @@ $($Save_Microsoft_Windows_PE)
 	.Start working on the build solution
 	.开始处理生成解决方案
 #>
-Function Solutions_Generate_Process
+Function Solutions_Generate_Prerequisite
 {
 	param
 	(
@@ -6936,15 +8027,15 @@ Function Solutions_Generate_Process
 			Write-Host "   $($Global:Image_source)\$($item)" -ForegroundColor Green
 			Remove_Tree "$($Global:Image_source)\$($item)"
 
-			if (Test-Path "$($Global:Image_source)\$($item)" -PathType Container -ErrorAction SilentlyContinue) {
+			if (Test-Path -Path "$($Global:Image_source)\$($item)" -PathType Container) {
 				Write-Host "   $($lang.Del), $($lang.Failed) ( $($Global:Image_source)\$($item) )" -ForegroundColor Red
 			}
 		}
 	}
 
 	if ($Mount) {
-		$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
 		if (Image_Is_Select_IAB) {
+			$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
 			$Script:CopySolutionsToRoot = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 			$Script:CopySolutionsToWindows = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows"
 
@@ -6963,7 +8054,7 @@ Function Solutions_Generate_Process
 					Write-Host "   $($Script:CopySolutionsToRoot)\$($item)" -ForegroundColor Green
 					Remove_Tree "$($Script:CopySolutionsToRoot)\$($item)"
 
-					if (Test-Path "$($Script:CopySolutionsToRoot)\$($item)" -PathType Container -ErrorAction SilentlyContinue) {
+					if (Test-Path -Path "$($Script:CopySolutionsToRoot)\$($item)" -PathType Container) {
 						Write-Host "   $($lang.Del), $($lang.Failed) ( $($Script:CopySolutionsToRoot)\$($item) )" -ForegroundColor Red
 					}
 				}
@@ -7005,13 +8096,13 @@ Function Solutions_Generate_Process
 
 			Write-host ""
 
-			Solutions_Copy_Process -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Software\$($item.Path)" -ShortPath "$($item.Path)"
+			Solutions_Copy_Prerequisite -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Software\$($item.Path)" -ShortPath "$($item.Path)"
 		}
 
 		Write-Host "`n   $($lang.SolutionsFontsList)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 		if ((Get-Variable -Scope global -Name "DeployFonts_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
-			Solutions_Copy_Fonts_Process
+			Solutions_Copy_Fonts_Prerequisite
 		} else {
 			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 		}
@@ -7035,7 +8126,7 @@ Function Solutions_Generate_Process
 		Write-host "   $('-' * 80)"
 		if ((Get-Variable -Scope global -Name "SolutionsDeployPackageInstall_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
-			Solutions_Copy_Package_Process
+			Solutions_Copy_Package_Prerequisite
 		} else {
 			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 		}
@@ -7081,21 +8172,21 @@ Function Solutions_Generate_Process
 	if ((Get-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 		Write-Host "   $($lang.CreateUnattendISO)" -ForegroundColor Green
 		if ((Get-Variable -Scope global -Name "SolutionsCreateUnattendISO_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
-			Solutions_Copy_Unattend_Files_To_Process -SaveTo $Global:Image_source -NewFileName "Autounattend.xml"
+			Solutions_Copy_Unattend_Files_To_Prerequisite -SaveTo $Global:Image_source -NewFileName "Autounattend.xml"
 		} else {
 			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 		}
 
 		Write-Host "`n   $($lang.CreateUnattendISOSources)" -ForegroundColor Green
 		if ((Get-Variable -Scope global -Name "SolutionsCreateUnattendISOSources_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
-			Solutions_Copy_Unattend_Files_To_Process -SaveTo "$($Global:Image_source)\Sources" -NewFileName "Unattend.xml"
+			Solutions_Copy_Unattend_Files_To_Prerequisite -SaveTo "$($Global:Image_source)\Sources" -NewFileName "Unattend.xml"
 		} else {
 			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 		}
 
 		Write-Host "`n   $($lang.CreateUnattendISOSourcesOEM)" -ForegroundColor Green
 		if ((Get-Variable -Scope global -Name "SolutionsCreateUnattendISOSourcesOEM_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
-			Solutions_Copy_Unattend_Files_To_Process -SaveTo "$($Global:Image_source)\Sources\`$OEM$\`$$\Panther" -NewFileName "Unattend.xml"
+			Solutions_Copy_Unattend_Files_To_Prerequisite -SaveTo "$($Global:Image_source)\Sources\`$OEM$\`$$\Panther" -NewFileName "Unattend.xml"
 		} else {
 			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 		}
@@ -7103,8 +8194,8 @@ Function Solutions_Generate_Process
 		Write-Host "`n   $($lang.CreateUnattendPanther)" -ForegroundColor Green
 		if ((Get-Variable -Scope global -Name "SolutionsCreateUnattendPanther_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 			if (Image_Is_Select_IAB) {
-				if (Test-Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container 	-ErrorAction SilentlyContinue) {
-					Solutions_Copy_Unattend_Files_To_Process -SaveTo "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows\Panther" -NewFileName "Unattend.xml"
+				if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container 	-ErrorAction SilentlyContinue) {
+					Solutions_Copy_Unattend_Files_To_Prerequisite -SaveTo "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows\Panther" -NewFileName "Unattend.xml"
 				} else {
 					Write-Host "   $($lang.NotMounted)" -ForegroundColor Red
 				}
@@ -7158,7 +8249,7 @@ Function Solutions_Generate_Process
 		Check_Folder -chkpath $Create_Mark_Deploy_Allow
 		Check_Folder -chkpath $Create_Mark_Deploy_Region
 
-		Write-host "`n   $($lang.FirstExpProcess)"
+		Write-host "`n   $($lang.FirstExpPrerequisite)"
 		Write-host "   $('-' * 80)"
 		Write-Host "   $($lang.SaveTo): " -NoNewline
 		Write-Host $Create_Mark_Deploy_Allow -ForegroundColor Green
@@ -7172,12 +8263,12 @@ Function Solutions_Generate_Process
 
 		Write-Host "`n   $($lang.SolutionsEngineRegional)"
 		Write-host "   $('-' * 80)"
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Is_Region" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Is_Region" -ErrorAction SilentlyContinue) {
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Is_Region" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Is_Region" -ErrorAction SilentlyContinue) {
 				"True"  {
 					Write-host "   $($lang.LXPsWaitAdd)"
-					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Region_Preferred" -ErrorAction SilentlyContinue) {
-						$GetNewSaveLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$(Get_GPS_Location)_Region_Preferred" -ErrorAction SilentlyContinue
+					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Region_Preferred" -ErrorAction SilentlyContinue) {
+						$GetNewSaveLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create\Mark" -Name "$($Script:init_To_GPS)_Region_Preferred" -ErrorAction SilentlyContinue
 						$TempSaveLangToNew = "$($Create_Mark_Deploy_Region)\$($GetNewSaveLanguage)"
 
 						Write-Host "   $($lang.SaveTo): " -NoNewline
@@ -7226,7 +8317,7 @@ Function Solutions_Generate_Process
 	}
 }
 
-Function Solutions_Copy_Unattend_Files_To_Process
+Function Solutions_Copy_Unattend_Files_To_Prerequisite
 {
 	param
 	(
@@ -7235,7 +8326,7 @@ Function Solutions_Copy_Unattend_Files_To_Process
 	)
 
 	<#
-		.Pre-answer solution language: 1 = single language, current processing: 1, semi-auto;
+		.Pre-answer solution language: 1 = single language, current Requirementsing: 1, semi-auto;
 		.应预答解决方案语言：1 = 单语言，当前处理：1、半自动；
 	#>
 
@@ -7243,7 +8334,7 @@ Function Solutions_Copy_Unattend_Files_To_Process
 		.Judging the third step, judging the installation method, 1 = commercial version; 2 = consumer version;
 		.判断第三步，判断安装方式：1 = 商业版；2 = 消费者版；
 
-		.Current processing: 1 = single language, 1 = semi-automatic is valid for all installation methods
+		.Current Requirementsing: 1 = single language, 1 = semi-automatic is valid for all installation methods
 		.当前处理：1 = 单语言，1 = 半自动对所有安装方式有效
 	#>
 
@@ -7274,7 +8365,7 @@ Function Solutions_Copy_Unattend_Files_To_Process
 		}
 		3 {
 			<#
-				.Pre-answer solution language: 1 = single language, current processing: 1, semi-auto;
+				.Pre-answer solution language: 1 = single language, current Requirementsing: 1, semi-auto;
 				.应预答解决方案语言：1 = 单语言，当前处理：2、Legacy 自动安装
 			#>
 			switch ($OSDefaultSolutionsInstallMode) {
@@ -7298,7 +8389,7 @@ Function Solutions_Quick_Copy_Process_To_ISO
 		Write-Host "`n   $($lang.Solution)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 		Write-Host "   $($lang.Operable)" -ForegroundColor Green
-		Solutions_Generate_Process -ISO
+		Solutions_Generate_Prerequisite -ISO
 
 		New-Variable -Scope global -Name "Queue_Is_Solutions_ISO" -Value $False -Force
 	}

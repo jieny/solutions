@@ -36,7 +36,7 @@
 	InstallFonts              = フォントをインストールします
 	SettingTo                 = に設定 {0}
 	SwitchLanguage            = 言語の切り替え
-	Choose                    = 選択してください
+	PleaseChoose              = 選択してください
 	FailedCreateFolder        = ディレクトリの作成に失敗しました：
 	ToMsg                     = \n   {0} 秒後に自動的にメインメニューに戻ります。
 	ToQuit                    = \n   {0} 秒でメインメニューを終了します。

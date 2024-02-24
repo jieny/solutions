@@ -11,6 +11,7 @@
 	Rebuild                         = Wiederaufbau
 	AddTo                           = Hinzufügen
 	Del                             = Löschen
+	Copy                            = Kopieren
 	Rename                          = Umbenennen
 	Refresh                         = Aktualisierung
 	RefreshModules                  = Modul neu laden
@@ -38,7 +39,6 @@
 	ToMsg                           = \n   {0} Kehrt nach Sekunden automatisch zum Hauptmenü zurück.
 	ToQuit                          = \n   {0} Verlassen Sie das Hauptfenster nach Sekunden.
 	OnDemandPlanTask                = Bekannte Ereignisse benutzerdefiniert zuweisen
-	QueueMode                       = Ereignis-Batch-Modus
 	Operable                        = Betriebsbereit
 	Inoperable                      = Funktionsunfähig
 	Hide                            = Verstecken
@@ -47,12 +47,13 @@
 	Healthy                         = Gesund
 	HealthyTips                     = Besonders wichtig ist die Überprüfung des Health-Status Bei Anzeige "reparierbar" oder "nicht reparierbar": Während der ESD-Konvertierung wird Fehler 13 angezeigt, die Daten sind ungültig, bei der Installation des Systems wird ein Fehler gemeldet.
 	Healthy_Save                    = Wenn reparierbar oder nicht reparierbar angezeigt wird, speichern Sie nicht
+	Repair                          = Reparatur
 	Repairable                      = Reparierbar
 	NonRepairable                   = Nicht reparierbar
 	HealthyForceStop                = Beim Verarbeiten des Ereignisses ist ein irreversibler Fehler aufgetreten und wurde zwangsweise beendet.\n\n   Verursacht das Hauptproblem:\n\n      1. Physischer Hardwareschaden, Festplatte;\n\n      2. Wenn Sie eine virtuelle Festplatte mit RAMDISK-Speicher (einschließlich Hybrid) verwenden,\n         überprüfen Sie bitte den physischen Speicher;\n\n      3. Überprüfen Sie den SHA256 der ursprünglichen MVS (MSDN) Version. Wenn derselbe ist,\n         ändern Sie bitte das Verzeichnis und versuchen Sie es erneut.\n         Wenn der SHA256 inkonsistent ist, laden Sie ihn bitte herunter und versuchen Sie es erneut.\n\n      4. Andere, die in diesem Beispiel nicht aufgeführt sind.
 	Superseded                      = Aufräumen ersetzt
 	SupersededTips                  = Beinhaltet veraltete Updates, Komponenten usw
-	SpecialFunction                 = Führen Sie eine PowerShell-Funktion aus
+	SpecialFunction                 = PowerShell Funktion
 	Functions_Before                = Vor dem Laufen
 	Functions_Rear                  = Nach dem Beenden
 	Functions_Wait_Assign           = Funktionsname, der zugewiesen werden soll
@@ -68,6 +69,8 @@
 	Uping                           = Erstellen
 	Exclude_View                    = Ausschlussregeln anzeigen
 	User_Interaction                = Benutzerinteraktion
+	Ok_Go_To                        = Verfügbar für
+	Ok_Go_To_No                     = Geht nicht
 
 	Detailed                        = Detailliert
 	Detailed_View                   = Anzeigen der Details der ausgewählten Regel
@@ -118,6 +121,7 @@
 	RuleDependenciesFix             = Beheben, dass Abhängigkeiten nicht ausgewählt sind
 	Extract_Tips                    = Hinweis\n\n   1. Das Ergebnis nach dem Extrahieren des Sprachpakets kann nicht als Hauptreferenzobjekt verwendet werden;\n\n   2. Bitte verwenden Sie die Komponentenliste als Hauptbezugsobjekt, um zu generieren: \n\n       Wählen Sie Komponenten generieren in Funktionen aus (um die Pakete im installierten Image zu erhalten), wählen Sie Drucken oder Sofortansicht;\n\n   3. Generieren Sie nach der Installation des Sprachpakets bitte erneut einen Komponentenbericht, um zu sehen, ob er übereinstimmt;
 
+	DescendingRuleLang              = Entfernen Sie Sprachpakete in umgekehrter Reihenfolge
 	OrderRuleLang                   = Installieren Sie Sprachpakete in einer vorgegebenen Reihenfolge
 	OrderRuleLangTips               = Der Reihe nach hinzugefügt: Basic, Fonts, Optical Character Recognition, Handwriting Recognition, Text-to-Speech, Speech Recognition, Retail Demo Experience, Other
 	RuleLanguageTips                = Veranschaulichen:\n\n   Nach der Verwendung von "Install language packs in pre-rule order" werden die Dateien automatisch mit mehrdeutigen Namen in der folgenden Reihenfolge abgeglichen:\n
@@ -147,7 +151,6 @@
 	ImageLanguage                   = Einstellung der Bildsprache
 	OnlyLangCleanup                 = Bereinigungskomponenten: Tag nach Sprache
 	Matched_Component_Names         = Übereinstimmende Komponentennamen: \
-	OnlyLangCleanupTips             = Nach dem Löschen einer Sprache wird das entsprechende Sprach Tag benötigt, um andere Komponenten zu bereinigen.
 	BootProcess                     = Beim Verarbeiten von {0}.wim
 	Extract_Rule_Only_And_Full      = Es werden nur ausgewählte Sprachen extrahiert
 	Sync_Language_To                = Synchronisieren mit
@@ -193,6 +196,7 @@
 	ExportShow                      = Bericht zeigen
 	MoreFeature                     = Mehr Funktionen
 	OpenFolder                      = Verzeichnis öffnen
+	Running                         = Laufen
 	Paste                           = Pfad kopieren
 	Clipboard_Copy                  = In die Zwischenablage kopiert
 	ViewWIMFileInfo                 = Dateidetails anzeigen

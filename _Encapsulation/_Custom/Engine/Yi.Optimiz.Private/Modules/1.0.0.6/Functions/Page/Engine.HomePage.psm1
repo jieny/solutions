@@ -75,7 +75,7 @@ Function Mainpage
      10   $($lang.Instl) $($lang.Necessary)
      11   $($lang.Instl) $($lang.MostUsedSoftware)`n"
 
-	Write-Host "      A   $($lang.OnDemandPlanTask)" -ForegroundColor Green
+	Write-Host "      C   $($lang.OnDemandPlanTask)" -ForegroundColor Green
 	Write-host "      L   $($lang.SwitchLanguage)"
 	Write-host "      R   $($lang.RefreshModules)`n"
 
@@ -97,7 +97,7 @@ Function Mainpage
 			Restore_Point_Create_UI
 			ToMainpage -wait 2
 		}
-		"a" {
+		"c" {
 			$Global:EventQueueMode = $True
 			Image_Assign_Event_Master
 			Event_Assign_Not_Allowed_UI

@@ -54,7 +54,7 @@ Function Update
 		$Script:IsProcess = $False
 	}
 
-	Logo -Title $($lang.ChkUpdate)
+	Logo -Title $lang.ChkUpdate
 	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
 
 	if ($Auto)
@@ -330,7 +330,7 @@ Function Update_Process
 	$chkRemovever = $($getSerVer.version.minau).Replace('.', '')
 	$url = $getSerVer.url
 
-	If (([String]::IsNullOrEmpty($chkRemovever))) {
+	If ([String]::IsNullOrEmpty($chkRemovever)) {
 		$IsCorrectAuVer = $false
 	} else {
 		if ($((Get-Module -Name Solutions).PrivateData.PSData.MinimumVersion).Replace('.', '') -ge $chkRemovever) {

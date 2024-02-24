@@ -1701,7 +1701,7 @@ Function Language_Region
 	$LanguageFull = @()
 
 	ForEach ($item in $Global:Languages_Available) {
-		if (($LanguageFull.Region) -NotContains $item.Region) {
+		if ($LanguageFull.Region -NotContains $item.Region) {
 			$LanguageFull += @{
 				RegionID = $item.RegionID
 				Region   = $item.Region
@@ -1714,7 +1714,7 @@ Function Language_Region
 
 		if ($item.Expand.Count -gt 0) {
 			ForEach ($itemExpand in $item.Expand) {
-				if (($LanguageFull.Region) -NotContains $itemExpand.Region) {
+				if ($LanguageFull.Region -NotContains $itemExpand.Region) {
 					$LanguageFull += @{
 						RegionID = $itemExpand.RegionID
 						Region   = $itemExpand.Region
@@ -1870,11 +1870,13 @@ Function Language_Select_GUI
 			$FlagsLanguageCheck = $False
 			$GUISelectLanguagePanel.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.RadioButton]) {
-					if ($_.Checked) {
-						$FlagsLanguageCheck = $True
-						New-ItemProperty -Path $Path -Name "Language" -Value $_.Tag -PropertyType string -Force | Out-Null
-						Language_Change -lang $_.Tag
-						Modules_Import -Import
+					if ($_.Enabled) {
+						if ($_.Checked) {
+							$FlagsLanguageCheck = $True
+							New-ItemProperty -Path $Path -Name "Language" -Value $_.Tag -PropertyType string -Force | Out-Null
+							Language_Change -lang $_.Tag
+							Modules_Import -Import
+						}
 					}
 				}
 			}

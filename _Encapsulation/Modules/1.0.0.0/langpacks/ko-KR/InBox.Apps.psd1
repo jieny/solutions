@@ -27,16 +27,11 @@
 	NoLicense                       = 인증서 없음
 	StepOne                         = 1 단계: 마크, 현지 언어 체험 팩 ( LXPs )
 	StepTwo                         = 2 단계: \
-	StepThree                       = 3 단계: 현지 언어 경험 팩 업데이트 또는 삭제 ( LXPs )
 	CurrentIsNVeriosn               = N 에디션 시리즈
 	CurrentNoIsNVersion             = 완전한 기능 버전
-	LXPsWaitSync                    = 추가 대기를 선택한 후 동기화 대상: \
 	LXPsWaitAddUpdate               = 보류 중인 업그레이드
 	LXPsWaitAdd                     = 추가할 수 있습니다
 	LXPsWaitRemove                  = 삭제될
-	LXPsWaitRemoveKnown             = 제거되고 알려진 다른 언어 표시
-	LXPsSyncToRemove                = 보류 중인 삭제에 다시 동기화 보류 중인 추가
-	LXPsRestoreOld                  = 이전에 선택한 보류 중인 삭제 복원
 	LXPsAddDelTipsView              = 새로운 팁이 있습니다, 지금 확인하세요
 	LXPsAddDelTipsGlobal            = 더 이상 프롬프트가 표시되지 않습니다. 글로벌 동기화
 	LXPsAddDelTips                  = 다시 상기시키지 않음

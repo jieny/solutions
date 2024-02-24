@@ -36,7 +36,7 @@
 	InstallFonts              = Install fonts
 	SettingTo                 = Set to {0}
 	SwitchLanguage            = Switch language
-	Choose                    = Please select
+	PleaseChoose              = Please select
 	FailedCreateFolder        = Failed to create directory: \
 	ToMsg                     = \n   Automatically return to the main menu after {0} seconds.
 	ToQuit                    = \n   Exit the main menu in {0} seconds.

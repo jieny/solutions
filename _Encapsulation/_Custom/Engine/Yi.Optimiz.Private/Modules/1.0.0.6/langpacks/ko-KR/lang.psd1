@@ -36,7 +36,7 @@
 	InstallFonts              = 글꼴 설치
 	SettingTo                 = 으로 설정 {0}
 	SwitchLanguage            = 언어 전환
-	Choose                    = 선택해주세요
+	PleaseChoose              = 선택해주세요
 	FailedCreateFolder        = 디렉토리 생성 실패: \
 	ToMsg                     = \n   {0} 초 후에 자동으로 메인 메뉴로 돌아갑니다.
 	ToQuit                    = \n   {0} 초 후에 주 메뉴를 종료합니다.

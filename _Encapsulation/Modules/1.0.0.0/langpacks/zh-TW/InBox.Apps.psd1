@@ -27,16 +27,11 @@
 	NoLicense                       = 無證書
 	StepOne                         = 第一步：標記，本地語言體驗包 ( LXPs )
 	StepTwo                         = 第二步：
-	StepThree                       = 第三步：更新或刪除，本地語言體驗包 ( LXPs )
 	CurrentIsNVeriosn               = N 版系列
 	CurrentNoIsNVersion             = 全功能版本
-	LXPsWaitSync                    = 選擇等待添加後，同步到：
 	LXPsWaitAddUpdate               = 待更新
 	LXPsWaitAdd                     = 待添加
 	LXPsWaitRemove                  = 待刪除
-	LXPsWaitRemoveKnown             = 待刪除並顯示已知其它語言
-	LXPsSyncToRemove                = 重新同步等待添加到等待刪除
-	LXPsRestoreOld                  = 還原以前選擇的等待刪除
 	LXPsAddDelTipsView              = 有新的提示，現在查看
 	LXPsAddDelTipsGlobal            = 不再提示，同步至全域
 	LXPsAddDelTips                  = 不再提示

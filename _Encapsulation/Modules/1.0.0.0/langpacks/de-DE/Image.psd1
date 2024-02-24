@@ -69,6 +69,7 @@
 	Rule_Show_Full                  = Alle anzeigen
 	Rule_Show_Only                  = Nur Regeln anzeigen
 	Rule_Show_Only_Select           = Aus Regeln auswählen
+	Image_Unmount_After             = Deinstallieren Sie alle zuvor gemounteten Dateien gewaltsam
 
 	Wim_Rule_Update                 = Dateien im Image extrahieren, aktualisieren
 	Wim_Rule_Extract                = Extrahieren Sie die Dateien
@@ -89,7 +90,7 @@
 	Wim_Expander_Space              = Erweitern Sie den Raum
 
 	IABSelectNo                     = Primärschlüssel nicht ausgewählt: Install、WinRE、Boot
-	Unique_Name                     = Eindeutiger Name: \
+	Unique_Name                     = Eindeutiger Name
 	Select_Path                     = Pfad
 	Setting_Pri_Key                 = Legen Sie diese Update-Datei als Hauptvorlage fest: \
 	Pri_Key_Update_To               = Dann aktualisieren auf: \

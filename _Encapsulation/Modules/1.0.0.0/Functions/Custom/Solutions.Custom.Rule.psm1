@@ -15,7 +15,6 @@ $Global:Search_KB_File_Type = @(
 	"*.esd"
 	"*.cab"
 	"*.msu"
-	"*.exe"
 	"*.mum"
 )
 

@@ -36,7 +36,7 @@
 	InstallFonts              = Schriftarten installieren
 	SettingTo                 = auf {0} gesetzt
 	SwitchLanguage            = prache wechseln
-	Choose                    = Bitte wählen
+	PleaseChoose              = Bitte wählen
 	FailedCreateFolder        = Fehler beim Erstellen des Verzeichnisses: \
 	ToMsg                     = \n   Nach {0} Sekunden automatisch zum Hauptmenü zurückkehren.
 	ToQuit                    = \n   Beendet das Hauptmenü in {0} Sekunden.

@@ -69,6 +69,7 @@
 	Rule_Show_Full                  = 모두 표시
 	Rule_Show_Only                  = 규칙만 표시
 	Rule_Show_Only_Select           = 규칙에서 선택
+	Image_Unmount_After             = 이전에 마운트된 모든 항목을 강제로 제거합니다
 
 	Wim_Rule_Update                 = 이미지 내의 파일 추출, 업데이트
 	Wim_Rule_Extract                = 파일을 추출합니다
@@ -89,7 +90,7 @@
 	Wim_Expander_Space              = 공간 확장
 
 	IABSelectNo                     = 기본 키가 선택되지 않았습니다: Install、WinRE、Boot
-	Unique_Name                     = 고유한 이름 지정: \
+	Unique_Name                     = 고유한 이름 지정
 	Select_Path                     = 경로입니다
 	Setting_Pri_Key                 = 이 업데이트 파일을 기본 템플릿으로 설정합니다.
 	Pri_Key_Update_To               = 그런 다음 업데이트: \

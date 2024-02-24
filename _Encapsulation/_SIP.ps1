@@ -53,7 +53,7 @@ Language -Auto
 	.Prerequisites
 	.先决条件
 #>
-Requirements
+Prerequisite
 
 <#
 	.Enable log

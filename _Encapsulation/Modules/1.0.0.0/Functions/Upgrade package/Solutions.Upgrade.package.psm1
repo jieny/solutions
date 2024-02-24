@@ -5,7 +5,7 @@
 Function Update_Create_UI
 {
 	if (-not $Global:EventQueueMode) {
-		Logo -Title $($lang.UpdateCreate)
+		Logo -Title $lang.UpdateCreate
 		Write-Host "   $($lang.UpdateCreate)" -ForegroundColor Green
 		Write-host "   $('-' * 80)"
 	}
@@ -243,7 +243,7 @@ Function Update_Create_UI
 	))
 
 	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Engine" -Directory -ErrorAction SilentlyContinue | ForEach-Object {
-		if (Test-Path "$($_.Fullname)\_Create.Upgrade.Package.ps1" -PathType Leaf) {
+		if (Test-Path -Path "$($_.Fullname)\_Create.Upgrade.Package.ps1" -PathType Leaf) {
 			$CheckBox      = New-Object System.Windows.Forms.CheckBox -Property @{
 				Height     = 35
 				Width      = 325

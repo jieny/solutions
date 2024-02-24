@@ -30,6 +30,20 @@ $Global:Custom_Rule = @(
 		Copyright    = ""
 		Name         = "Template"
 		Description  = ""
+		Autopilot   = @{
+			Prerequisite = @{
+				x64 = @{
+					ISO = @{
+						Language  = @(
+							""
+						)
+						InBoxApps = @(
+							""
+						)
+					}
+				}
+			}
+		}
 		InboxApps   = @{
 			ISO = @(
 				""
@@ -86,6 +100,20 @@ $Global:Custom_Rule_Language = @(
 		Copyright    = ''
 		Name         = "Template"
 		Description  = ""
+		Autopilot   = @{
+			Prerequisite = @{
+				x64 = @{
+					ISO = @{
+						Language  = @(
+							""
+						)
+						InBoxApps = @(
+							""
+						)
+					}
+				}
+			}
+		}
 		InboxApps   = @{
 			ISO = @(
 				""

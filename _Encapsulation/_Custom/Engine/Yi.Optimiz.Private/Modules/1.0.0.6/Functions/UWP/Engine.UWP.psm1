@@ -171,7 +171,7 @@ Function UWP_Uninstall
 		switch ((Get-Host).Version.Major) {
 			7 {
 				Get-AppxProvisionedPackage -Online | ForEach-Object {
-					if (($AppsExcluded) -notcontains $_.DisplayName) {
+					if ($AppsExcluded -notcontains $_.DisplayName) {
 						$CheckBox  = New-Object System.Windows.Forms.CheckBox -Property @{
 							Height = 35
 							Width  = 365
@@ -187,7 +187,7 @@ Function UWP_Uninstall
 				}
 
 				Get-AppxProvisionedPackage -Online | ForEach-Object {
-					if (($AppsExcluded) -Contains $_.DisplayName) {
+					if ($AppsExcluded -Contains $_.DisplayName) {
 						$CheckBox  = New-Object System.Windows.Forms.CheckBox -Property @{
 							Height = 35
 							Width  = 470
@@ -195,7 +195,7 @@ Function UWP_Uninstall
 							Tag    = $_.DisplayName
 						}
 		
-						if (($AppsUncheck) -Contains $_.DisplayName) {
+						if ($AppsUncheck -Contains $_.DisplayName) {
 							$CheckBox.Checked = $True
 						}
 						$UI_Main_Depend_Select.controls.AddRange($CheckBox)
@@ -236,7 +236,7 @@ Function UWP_Uninstall
 
 				[Windows.Management.Deployment.PackageManager, Windows.Web, ContentType = WindowsRuntime]::new().FindPackages() | Select-Object -ExpandProperty Id -Property DisplayName | Where-Object -FilterScript {
 					($_.Name -in (Get-AppxPackage -PackageTypeFilter Bundle -AllUsers).Name) -and ($null -ne $_.DisplayName)} | ForEach-Object {
-					if (($AppsExcluded) -Contains $_.Name) {
+					if ($AppsExcluded -Contains $_.Name) {
 						$CheckBox  = New-Object System.Windows.Forms.CheckBox -Property @{
 							Height = 35
 							Width  = 470
@@ -244,7 +244,7 @@ Function UWP_Uninstall
 							Tag    = $_.Name
 						}
 
-						if (($AppsUncheck) -Contains $_.Name) {
+						if ($AppsUncheck -Contains $_.Name) {
 							$CheckBox.Checked = $True
 						}
 						$UI_Main_Depend_Select.controls.AddRange($CheckBox)

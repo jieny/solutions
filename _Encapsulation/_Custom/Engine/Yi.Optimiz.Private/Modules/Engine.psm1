@@ -1696,7 +1696,7 @@ Function Language_Region
 	$LanguageFull = @()
 
 	ForEach ($item in $Global:Languages_Available) {
-		if (($LanguageFull.Region) -NotContains $item.Region) {
+		if ($LanguageFull.Region -NotContains $item.Region) {
 			$LanguageFull += @{
 				RegionID = $item.RegionID
 				Region   = $item.Region
@@ -1709,7 +1709,7 @@ Function Language_Region
 
 		if ($item.Expand.Count -gt 0) {
 			ForEach ($itemExpand in $item.Expand) {
-				if (($LanguageFull.Region) -NotContains $itemExpand.Region) {
+				if ($LanguageFull.Region -NotContains $itemExpand.Region) {
 					$LanguageFull += @{
 						RegionID = $itemExpand.RegionID
 						Region   = $itemExpand.Region

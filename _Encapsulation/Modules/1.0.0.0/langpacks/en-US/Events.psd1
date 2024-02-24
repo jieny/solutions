@@ -3,7 +3,6 @@
 	Function_Limited                = Partially restricted
 	AssignNeedMount                 = When there is a new mount image
 	AssignNoMount                   = When no image is mounted
-	AssignTask                      = Assign available event tasks
 	AssignSetting                   = Manage perception events
 	AssignEndCurrent                = End allocation ( {0} ) events only
 	AssignEndNoMount                = End no mount time event
@@ -13,11 +12,14 @@
 	SuggestedReset                  = Reset all perception suggestions
 	SuggestedNext                   = Synchronization is recommended for the global
 
+	EventManagerMul                 = Multitasking events
 	EventManager                    = Events
 	EventManagerCount               = Items
 	EventManagerNo                  = No event
 	EventManagerClear               = Clear all events
+	EventManagerCurrentClear        = Clear saved tasks
 	AfterFinishingNotExecuted       = When a task or event is available
+	AfterFinishingNoProcess         = Not processed
 	AfterFinishingPause             = Pause
 	AfterFinishingReboot            = Restart computer
 	AfterFinishingShutdown          = Turn off the computer
@@ -39,7 +41,6 @@
 	Wimlib_New_Tips                 = There are no events after pop-up
 
 	WaitTimeTitle                   = When does it begin
-	WaitTimeCanel                   = Cancelled, there are tasks in the queue that will be executed immediately.
 	WaitTimeTips                    = Tips\n\n    1. Please select the time to wait;\n\n    2. Cancel, the tasks in the queue will be executed immediately.
 	WaitQueue                       = Waiting in queue
 	AddSources                      = Add source

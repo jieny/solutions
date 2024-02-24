@@ -1,0 +1,40 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20240112122448
+Username: DESKTOP-M3TO41V\Administrator
+RunAs User: DESKTOP-M3TO41V\Administrator
+Configuration Name: 
+Machine: DESKTOP-M3TO41V (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -file  D:\Yi.Solutions\_Encapsulation\_Custom\Engine\Yi_Optimiz_Private\Engine.ps1 
+Process ID: 12980
+PSVersion: 5.1.22621.2506
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.2506
+BuildVersion: 10.0.22621.2506
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+   Author: Yi ( https://fengyi.tel )
+
+   From: Yi's Solutions
+   buildstring: 1.0.0.6.bs_release.230429-1208
+   Solutions
+   --------------------------------------------------------------------------------
+      1   Check for updates
+      2   First experience deployment
+      3   Delete Solutions
+
+      4   System restore point
+      5   Change user folder location
+      6   Desktop icon
+      7   Optimization System
+      8   Optimization Service
+      9   Delete UWP application
+     10   Installation Necessary software
+     11   Installation Most Popular Software
+      C   Custom Assign Known Events
+      L   Switch language
+      R   Reload the modulek and update

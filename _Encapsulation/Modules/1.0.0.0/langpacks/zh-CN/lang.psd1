@@ -11,6 +11,7 @@
 	Rebuild                         = 重建
 	AddTo                           = 添加
 	Del                             = 删除
+	Copy                            = 复制
 	Rename                          = 重命名
 	Refresh                         = 刷新
 	RefreshModules                  = 重新加载模块
@@ -38,7 +39,6 @@
 	ToMsg                           = \n   {0} 秒后自动返回到主菜单。
 	ToQuit                          = \n   {0} 秒后退出主面板。
 	OnDemandPlanTask                = 自定义分配已知事件
-	QueueMode                       = 按需模式
 	Operable                        = 可操作
 	Inoperable                      = 不可操作
 	Hide                            = 隐藏
@@ -47,12 +47,13 @@
 	Healthy                         = 健康
 	HealthyTips                     = 检查健康状态尤为重要，出现“可修复”、“不可修复”时：转换 ESD 过程中，提示错误 13，数据无效；安装系统时报错。
 	Healthy_Save                    = 出现可修复、不可修复时，不保存
+	Repair                          = 修复
 	Repairable                      = 可修复
 	NonRepairable                   = 不可修复
 	HealthyForceStop                = 处理事件时，遇到不可逆的错误，已强行终止。\n\n   造成主要的问题：\n\n      1、物理硬件受损，硬盘；\n\n      2、如果您使用 RAMDISK 内存虚拟盘（含混合），请检查物理内存；\n\n      3、校验 MVS (MSDN) 原版 SHA256，如果一致，请重新换目录后尝试，如果 SHA256 不一致，请重新下载后尝试；\n\n      4、其它，不在此例出的。
 	Superseded                      = 清理取代的
 	SupersededTips                  = 包括过时的更新、组件等
-	SpecialFunction                 = 运行 PowerShell 函数
+	SpecialFunction                 = PowerShell 函数
 	Functions_Before                = 运行前
 	Functions_Rear                  = 完成后
 	Functions_Wait_Assign           = 待分配的函数名称
@@ -68,6 +69,8 @@
 	Uping                           = 生成中
 	Exclude_View                    = 查看排除规则
 	User_Interaction                = 用户交互
+	Ok_Go_To                        = 可前往
+	Ok_Go_To_No                     = 不前往
 
 	Detailed                        = 详细
 	Detailed_View                   = 查看已选规则详细信息
@@ -118,6 +121,7 @@
 	RuleDependenciesFix             = 修复未选择依赖项
 	Extract_Tips                    = 提示\n\n   1、提取语言包后的结果，并不能做为主要参照对象；\n\n   2、请通过组件列表做为主要参照对象，如何生成：\n\n       在 Functions 里选择生成组件（获取已安装映像中的包），选择打印或即时查看；\n\n   3、安装完语言包后，请重新生成一份组件报告，查看是否已对应；
 
+	DescendingRuleLang              = 按相反的顺序删除语言包
 	OrderRuleLang                   = 按预规则顺序安装语言包
 	OrderRuleLangTips               = 按顺序添加：基本、字体、光学字符识别、手写内容识别、文本转语音、语音识别、零售演示体验、其它
 	RuleLanguageTips                = 说明：\n\n   使用“按预规则顺序安装语言包”后，按以下顺序自动按模糊名匹配文件：\n
@@ -147,7 +151,6 @@
 	ImageLanguage                   = 映像语言设置
 	OnlyLangCleanup                 = 清理组件：按语言标记
 	Matched_Component_Names         = 已匹配组件名：
-	OnlyLangCleanupTips             = 删除语言后，需对应的语言标记来清理其它组件。
 	BootProcess                     = 处理 {0}.wim 时
 	Extract_Rule_Only_And_Full      = 仅提取已选语言
 	Sync_Language_To                = 同步到
@@ -193,6 +196,7 @@
 	ExportShow                      = 即时显示报表
 	MoreFeature                     = 更多功能
 	OpenFolder                      = 打开目录
+	Running                         = 运行
 	Paste                           = 复制路径
 	Clipboard_Copy                  = 已复制到剪贴板
 	ViewWIMFileInfo                 = 查看文件详细信息

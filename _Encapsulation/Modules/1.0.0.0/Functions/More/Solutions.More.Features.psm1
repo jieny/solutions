@@ -5,7 +5,7 @@
 Function Feature_More
 {
 	Clear-Host
-	Logo -Title $($lang.MoreFeature)
+	Logo -Title $lang.MoreFeature
 
 	Write-Host "   $($lang.Menu)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
@@ -29,17 +29,20 @@ Function Feature_More
 	Write-Host "      B   " -NoNewline -ForegroundColor Yellow
 	Write-host $lang.UpBackup -ForegroundColor Green
 
-	Write-Host "      H   " -NoNewline -ForegroundColor Yellow
+	Write-Host "      Z   " -NoNewline -ForegroundColor Yellow
 	Write-host $lang.ConvertToArchive -ForegroundColor Green
 
 	Write-Host "      C   " -NoNewline -ForegroundColor Yellow
 	Write-host $lang.UpdateCreate -ForegroundColor Green
 
+	Write-Host "      H   " -NoNewline -ForegroundColor Yellow
+	Write-host $lang.Help -ForegroundColor Green
+
 	Write-host "`n   $($lang.ViewWIMFileInfo)" -ForegroundColor Green
 	Write-host "   $('-' * 80)"
 	Write-host "   $($Global:Image_source)\sources\" -ForegroundColor Yellow
 
-	if (Test-Path "$($Global:Image_source)\sources\Boot.wim" -PathType Leaf) {
+	if (Test-Path -Path "$($Global:Image_source)\sources\Boot.wim" -PathType Leaf) {
 		Write-Host "      1   " -NoNewline -ForegroundColor Yellow
 		Write-host "$($lang.ViewWIMFileInfo): " -NoNewline -ForegroundColor Green
 		Write-Host "Boot.wim" -ForegroundColor Yellow
@@ -49,7 +52,7 @@ Function Feature_More
 		Write-host "Boot.wim" -ForegroundColor Yellow
 	}
 
-	if (Test-Path "$($Global:Image_source)\sources\Install.wim" -PathType Leaf) {
+	if (Test-Path -Path "$($Global:Image_source)\sources\Install.wim" -PathType Leaf) {
 		Write-Host "      2   " -NoNewline -ForegroundColor Yellow
 		Write-host "$($lang.ViewWIMFileInfo): " -NoNewline -ForegroundColor Green
 		Write-Host "Install.wim" -ForegroundColor Yellow
@@ -59,7 +62,7 @@ Function Feature_More
 		Write-host "Install.wim" -ForegroundColor Yellow
 	}
 
-	if (Test-Path "$($Global:Image_source)\sources\Install.swm" -PathType Leaf) {
+	if (Test-Path -Path "$($Global:Image_source)\sources\Install.swm" -PathType Leaf) {
 		Write-Host "      3   " -NoNewline -ForegroundColor Yellow
 		Write-host "$($lang.ViewWIMFileInfo): " -NoNewline -ForegroundColor Green
 		Write-Host "Install.swm" -ForegroundColor Yellow
@@ -69,7 +72,7 @@ Function Feature_More
 		Write-host "Install.swm" -ForegroundColor Yellow
 	}
 
-	if (Test-Path "$($Global:Image_source)\sources\Install.esd" -PathType Leaf) {
+	if (Test-Path -Path "$($Global:Image_source)\sources\Install.esd" -PathType Leaf) {
 		Write-Host "      4   " -NoNewline -ForegroundColor Yellow
 		Write-host "$($lang.ViewWIMFileInfo): " -NoNewline -ForegroundColor Green
 		Write-Host "Install.esd" -ForegroundColor Yellow
@@ -81,7 +84,7 @@ Function Feature_More
 
 	if (Image_Is_Select_Install) {
 		Write-host "`n   $($Global:Mount_To_Route)\Install\Install\Mount" -ForegroundColor Yellow
-		if (Test-Path "$($Global:Mount_To_Route)\Install\Install\Mount\Windows\System32\Recovery\WinRE.wim" -PathType Leaf) {
+		if (Test-Path -Path "$($Global:Mount_To_Route)\Install\Install\Mount\Windows\System32\Recovery\WinRE.wim" -PathType Leaf) {
 			Write-Host "      5   " -NoNewline -ForegroundColor Yellow
 			Write-host "$($lang.ViewWIMFileInfo): " -NoNewline -ForegroundColor Green
 			Write-Host "Windows\System32\Recovery\WinRE.wim" -ForegroundColor Yellow
@@ -208,6 +211,13 @@ Function Feature_More
 			Feature_More
 		}
 		'h' {
+			Solutions_Help
+
+			Get_Next
+			ToWait -wait 2
+			Feature_More
+		}
+		'z' {
 			Covert_Software_Package_Unpack
 
 			ToWait -wait 2
@@ -324,7 +334,7 @@ Function Image_Get_Apps_Package
 		$Save
 	)
 
-	if (Test-Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
+	if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 		$custom_array = @()
 		try {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
@@ -457,9 +467,19 @@ Function Image_Get_Detailed
 			return
 		}
 
-		$Get_Index_Now = Image_Get_Mount_Index
-		Check_Folder -chkpath "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report"
-		$TempSaveTo = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report\Index.$($Get_Index_Now).Image.$(Get-Date -Format "yyyyMMddHHmmss").csv"
+		if (Image_Is_Select_IAB) {
+			if (Verify_Is_Current_Same) {
+				$Get_Index_Now = Image_Get_Mount_Index
+				Check_Folder -chkpath "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report"
+				$TempSaveTo = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report\Index.$($Get_Index_Now).Image.$(Get-Date -Format "yyyyMMddHHmmss").csv"
+			} else {
+				Check_Folder -chkpath "$($Global:Mount_To_Route)\Report"
+				$TempSaveTo = "$($Global:Mount_To_Route)\Report\Index.Image.$(Get-Date -Format "yyyyMMddHHmmss").csv"
+			}
+		} else {
+			Check_Folder -chkpath "$($Global:Mount_To_Route)\Report"
+			$TempSaveTo = "$($Global:Mount_To_Route)\Report\Index.Image.$(Get-Date -Format "yyyyMMddHHmmss").csv"
+		}
 
 		Write-Host "`n   $($lang.SaveTo)"
 		Write-Host "   $($TempSaveTo)" -ForegroundColor Green
@@ -532,7 +552,7 @@ Function Image_Get_Components_Package
 	)
 
 	$custom_array = @()
-	if (Test-Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
+	if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 		try {
 			Get-WindowsPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Get.log" -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" | ForEach-Object {
 				$custom_array += [PSCustomObject]@{

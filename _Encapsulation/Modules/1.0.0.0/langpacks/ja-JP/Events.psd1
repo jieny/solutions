@@ -3,7 +3,6 @@
 	Function_Limited                = 部分的に制限されています
 	AssignNeedMount                 = 新しいマウントイメージがある場合
 	AssignNoMount                   = イメージがマウントされていない場合
-	AssignTask                      = 利用可能なイベントタスクを割り当てる
 	AssignSetting                   = 認識イベントを管理します
 	AssignEndCurrent                = 割り当て終了 ( {0} ) イベントのみ
 	AssignEndNoMount                = ノーマウントタイムイベント終了
@@ -13,11 +12,14 @@
 	SuggestedReset                  = すべての認識の推奨事項をリセットします
 	SuggestedNext                   = 同期はグローバルに推奨されます
 
+	EventManagerMul                 = マルチタスクイベント
 	EventManager                    = イベントです
 	EventManagerCount               = 項目
 	EventManagerNo                  = イベントはありません
 	EventManagerClear               = すべてのイベントをクリアします
+	EventManagerCurrentClear        = 保存したタスクをクリアする
 	AfterFinishingNotExecuted       = 使用可能なタスクまたはイベントがある場合
+	AfterFinishingNoProcess         = 処理されていません
 	AfterFinishingPause             = 一時停止します
 	AfterFinishingReboot            = コンピュータを再起動します
 	AfterFinishingShutdown          = コンピュータの電源を切ります
@@ -39,7 +41,6 @@
 	Wimlib_New_Tips                 = ポップアップ後のイベントはありません
 
 	WaitTimeTitle                   = いつ出発するか
-	WaitTimeCanel                   = キャンセルされ、キュー内のタスクがすぐに実行されます。
 	WaitTimeTips                    = ヒント\n\n    1、待つ時間を選択してください。\n\n    2、キャンセル、キュー内のタスクは、すぐに実行されます。
 	WaitQueue                       = キューを待機しています
 	AddSources                      = ソースを追加します

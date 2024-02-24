@@ -11,6 +11,7 @@
 	Rebuild                         = 再建
 	AddTo                           = 追加
 	Del                             = 消去
+	Copy                            = コピー
 	Rename                          = 名前の変更
 	Refresh                         = リフレッシュ
 	RefreshModules                  = モジュールをリロード
@@ -38,7 +39,6 @@
 	ToMsg                           = \n   {0} 秒後に自動的にメインメニューに戻ります。
 	ToQuit                          = \n   {0} 秒後にメインパネルを終了します。
 	OnDemandPlanTask                = 既知のイベントのカスタム割り当て
-	QueueMode                       = オンデマンドモード
 	Operable                        = 運用
 	Inoperable                      = 動作不能
 	Hide                            = 隠れる
@@ -47,12 +47,13 @@
 	Healthy                         = 元気
 	HealthyTips                     = ヘルスステータスを確認することは特に重要です。「修復可能」または「修復不能」が表示された場合：ESD 変換プロセス中にエラー 13 が表示され、データが無効になります。システムのインストール時にエラーが報告されます。
 	Healthy_Save                    = 修復可能または修復不能が表示された場合は、保存しないでください
+	Repair                          = 修理
 	Repairable                      = 修理可能
 	NonRepairable                   = 取り返しのつかない
 	HealthyForceStop                = イベントの処理中に不可逆エラーが発生し、強制的に終了しました。\n\n   主な問題の原因：\n\n      1. 物理的なハードウェアの損傷、ハードディスク。\n\n      2. RAMDISK メモリ仮想ディスク（ハイブリッドを含む）を使用する場合は、物理メモリを確認してください。\n\n      3. 元の MVS (MSDN) バージョンのSHA256を確認します。同じ場合は、ディレクトリを変更して再試行してください。SHA256に一貫性がない場合は、ダウンロードして再試行してください。\n\n      4. その他、この例にはリストされていません。
 	Superseded                      = クリーンアップ交換
 	SupersededTips                  = 古いアップデート、コンポーネントなどが含まれます
-	SpecialFunction                 = PowerShell 関数を実行する
+	SpecialFunction                 = PowerShell 関数
 	Functions_Before                = 走る前に
 	Functions_Rear                  = 終わった後
 	Functions_Wait_Assign           = 割り当てる関数名
@@ -68,6 +69,8 @@
 	Uping                           = ビルド内
 	Exclude_View                    = 除外ルールを確認します
 	User_Interaction                = ユーザー インタラクション
+	Ok_Go_To                        = 利用可能
+	Ok_Go_To_No                     = 行きません
 
 	Detailed                        = 詳細
 	Detailed_View                   = 選択したルールの詳細を表示します
@@ -118,6 +121,7 @@
 	RuleDependenciesFix             = 選択されていない依存関係を修正します
 	Extract_Tips                    = ヒント\n\n   1. 言語パックを抽出した結果は、メインの参照オブジェクトとして使用できません。\n\n   2. コンポーネント リストを主な参照オブジェクトとして使用してください。生成方法は次のとおりです：\n\n       [機能] で、[ビルド コンポーネント] (インストールされたイメージのパッケージを取得) を選択し、[印刷] または [インスタント ビュー] を選択します。\n\n   3. 言語パックをインストールしたら、コンポーネント レポートを再生成して、対応しているかどうかを確認してください。
 
+	DescendingRuleLang              = 逆の順序で言語パックを削除します
 	OrderRuleLang                   = あらかじめ決められた順序で言語パックをインストールする
 	OrderRuleLangTips               = 順に追加: 基本、フォント、光学式文字認識、手書き認識、テキスト読み上げ、音声認識、小売デモ体験、その他
 	RuleLanguageTips                = 説明します: \n\n   「言語パックをルールの前の順序でインストールする」を使用した後、ファイルは次の順序であいまいな名前で自動的に照合されます。\n
@@ -147,7 +151,6 @@
 	ImageLanguage                   = 画像言語設定
 	OnlyLangCleanup                 = コンポーネントのクリーンアップ: 言語別にマークします
 	Matched_Component_Names         = 一致したコンポーネント名: \
-	OnlyLangCleanupTips             = 言語を削除した後、他のコンポーネントをクリーンアップするには、対応する言語タグが必要です。
 	BootProcess                     = {0}.wim を処理するとき
 	Extract_Rule_Only_And_Full      = 選択した言語のみが抽出されます
 	Sync_Language_To                = 同期先
@@ -193,6 +196,7 @@
 	ExportShow                      = レポートを即座に表示
 	MoreFeature                     = その他の機能
 	OpenFolder                      = 開けるコンテンツ
+	Running                         = 走る
 	Paste                           = コピーパス
 	Clipboard_Copy                  = クリップボードにコピーされました
 	ViewWIMFileInfo                 = ファイルの詳細を表示する

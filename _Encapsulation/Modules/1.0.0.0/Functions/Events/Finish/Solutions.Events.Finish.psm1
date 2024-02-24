@@ -4,12 +4,46 @@
 #>
 Function Event_Completion_Setting_UI
 {
-	Write-Host "`n   $($lang.AfterFinishingNotExecuted)" -ForegroundColor Yellow
-	Write-host "   $('-' * 80)"
+	param (
+		[array]$Autopilot
+	)
 
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Function Autopilot_Event_Completion_Setting_UI_Save
+	{
+		if ($Global:AutopilotMode) {
+			$EventMaps = "Queue"
+		}
+
+		if ($Global:EventQueueMode) {
+			$EventMaps = "Queue"
+		}
+
+		if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
+			$EventMaps = "Assign"
+		}
+
+		<#
+			.Reset selected
+			.重置已选择
+		#>
+		$UI_Main_After_Finishing.Controls | ForEach-Object {
+			if ($_ -is [System.Windows.Forms.RadioButton]) {
+				if ($_.Enabled) {
+					if ($_.Checked) {
+						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value $_.Tag -String
+					}
+				}
+			}
+		}
+
+		$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+		$UI_Main_Error.Text = "$($lang.Save), $($lang.Done)"
+		return $true
+	}
 
 	<#
 		.事件：强行结束按需任务
@@ -37,21 +71,12 @@ Function Event_Completion_Setting_UI
 	<#
 		.完成后显示区域
 	#>
-	$UI_Main_Not_Executed = New-Object System.Windows.Forms.CheckBox -Property @{
+	
+	$UI_Main_Not_Executed = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
 		Width          = 280
-		Text           = $lang.AfterFinishingNotExecuted
 		Location       = '15,15'
-		add_Click      = {
-			$UI_Main_Error.Text = ""
-			$UI_Main_Error_Icon.Image = $null
-
-			if ($this.Checked) {
-				$UI_Main_After_Finishing.Enabled = $False
-			} else {
-				$UI_Main_After_Finishing.Enabled = $True
-			}
-		}
+		Text           = $lang.Ok_Go_To
 	}
 	$UI_Main_After_Finishing = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
@@ -59,14 +84,24 @@ Function Event_Completion_Setting_UI
 		Width          = 280
 		autoSizeMode   = 1
 		Padding        = "15,0,0,0"
-		Location       = '15,50'
+		Location       = '15,45'
+	}
+
+	$UI_Main_After_Finishing_NoProcess = New-Object System.Windows.Forms.RadioButton -Property @{
+		Height         = 30
+		Width          = 235
+		Text           = $lang.AfterFinishingNoProcess
+		Tag            = "NoProcess"
+		add_Click      = {
+			$UI_Main_Error.Text = ""
+			$UI_Main_Error_Icon.Image = $null
+		}
 	}
 	$UI_Main_After_Finishing_Pause = New-Object System.Windows.Forms.RadioButton -Property @{
 		Height         = 30
 		Width          = 235
 		Text           = $lang.AfterFinishingPause
-		Tag            = "2"
-		Checked        = $True
+		Tag            = "Pause"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
@@ -76,7 +111,7 @@ Function Event_Completion_Setting_UI
 		Height         = 30
 		Width          = 235
 		Text           = $lang.AfterFinishingReboot
-		Tag            = "3"
+		Tag            = "Reboot"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
@@ -86,7 +121,7 @@ Function Event_Completion_Setting_UI
 		Height         = 30
 		Width          = 235
 		Text           = $lang.AfterFinishingShutdown
-		Tag            = "4"
+		Tag            = "Shutdown"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
@@ -191,66 +226,26 @@ Function Event_Completion_Setting_UI
 	}
 
 	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
-		Location       = "360,523"
+		Location       = "360,560"
 		Height         = 20
 		Width          = 20
 		SizeMode       = "StretchImage"
 	}
 	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "385,525"
-		Height         = 60
+		Location       = "385,562"
+		Height         = 30
 		Width          = 255
 		Text           = ""
 	}
-	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
+	$UI_Main_Save      = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "360,595"
 		Height         = 36
 		Width          = 280
-		Text           = $lang.OK
+		Text           = $lang.Save
 		add_Click      = {
-			<#
-				.Reset selected
-				.重置已选择
-			#>
-			$Global:IsFinish = $False
-			$SelectEveveLevel = @()
+			if (Autopilot_Event_Completion_Setting_UI_Save) {
 
-			$UI_Main_After_Finishing.Controls | ForEach-Object {
-				if ($_ -is [System.Windows.Forms.RadioButton]) {
-					if ($_.Enabled) {
-						if ($_.Checked) {
-							$SelectEveveLevel += @{
-								EventName = $_.Text
-								EventID   = $_.Tag
-							}
-						}
-					}
-				}
-			}
-
-			<#
-				.Verification mark: check selection status
-				.验证标记：检查选择状态
-			#>
-			if ($SelectEveveLevel.Count -gt 0) {
-				$UI_Main.Hide()
-				$Global:IsFinish = $True
-				Write-Host "`n 8888  $($lang.AfterFinishingNotExecuted)" -ForegroundColor Yellow
-				Write-host "   $('-' * 80)"
-				Write-Host "   $($SelectEveveLevel.EventName)" -ForegroundColor Green
-
-				if ($Global:EventQueueMode) {
-					$EventMaps = "Queue"
-				} else {
-					$EventMaps = "Assign"
-				}
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AllowAfterFinishing" -value "True" -String
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "$($SelectEveveLevel.EventID)" -String
-				$UI_Main.Close()
-			} else {
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError)$($lang.NoChoose)"
 			}
 		}
 	}
@@ -261,19 +256,6 @@ Function Event_Completion_Setting_UI
 		Width          = 280
 		Text           = $lang.Cancel
 		add_Click      = {
-			$UI_Main.Hide()
-			Write-Host "   $($lang.UserCancel)" -ForegroundColor Red
-
-			$Global:IsFinish = $True
-			if ($Global:EventQueueMode) {
-				$EventMaps = "Queue"
-			} else {
-				$EventMaps = "Assign"
-			}
-
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AllowAfterFinishing" -value "True" -String
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "2" -String
-
 			$UI_Main.Close()
 		}
 	}
@@ -283,31 +265,43 @@ Function Event_Completion_Setting_UI
 		$UI_Main_After_Finishing,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
-		$UI_Main_OK,
+		$UI_Main_Save,
 		$UI_Main_Canel
 	))
 
 	$UI_Main_After_Finishing.controls.AddRange((
+		$UI_Main_After_Finishing_NoProcess,
 		$UI_Main_After_Finishing_Pause,
 		$UI_Main_After_Finishing_Reboot,
 		$UI_Main_After_Finishing_Shutdown
 	))
 
+
+	if ($Global:AutopilotMode) {
+		$EventMaps = "Queue"
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Autopilot) ]"
+	}
+
 	if ($Global:EventQueueMode) {
-		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.QueueMode), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+		$EventMaps = "Queue"
+		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
 			$UI_Main_Suggestion_Stop_Current,
 			$UI_Main_Event_Assign_Stop
 		))
+	}
 
-		$EventMaps = "Queue"
-	} else {
+	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
+		$EventMaps = "Assign"
+
+		Write-Host "`n   $($lang.AfterFinishingNotExecuted)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		if (Image_Is_Select_IAB) {
 			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		}
 
-		$EventMaps = "Assign"
 		<#
 			.初始化复选框：不再建议
 		#>
@@ -341,34 +335,17 @@ Function Event_Completion_Setting_UI
 		}
 	}
 
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AllowAfterFinishing" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AllowAfterFinishing" -ErrorAction SilentlyContinue) {
-			"True" {
-				$UI_Main_Not_Executed.Checked = $True
-				$UI_Main_After_Finishing.Enabled = $False
-
-				<#
-					.初始化选择：暂停、重启、关机
-				#>
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
-					switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
-						2 { $UI_Main_After_Finishing_Pause.Checked = $True }
-						3 { $UI_Main_After_Finishing_Reboot.Checked = $True }
-						4 { $UI_Main_After_Finishing_Shutdown.Checked = $True }
-					}
-				} else {
-					$UI_Main_After_Finishing_Pause.Checked = $True
-				}
-			}
-			"False" {
-				$UI_Main_Not_Executed.Checked = $False
-				$UI_Main_After_Finishing.Enabled = $True
-				$UI_Main_After_Finishing_Pause.Checked = $True
-			}
+	<#
+		.初始化选择：暂停、重启、关机
+	#>
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
+			"NoProcess" { $UI_Main_After_Finishing_NoProcess.Checked = $True }
+			"Pause" { $UI_Main_After_Finishing_Pause.Checked = $True }
+			"Reboot" { $UI_Main_After_Finishing_Reboot.Checked = $True }
+			"Shutdown" { $UI_Main_After_Finishing_Shutdown.Checked = $True }
 		}
 	} else {
-		$UI_Main_Not_Executed.Checked = $False
-		$UI_Main_After_Finishing.Enabled = $True
 		$UI_Main_After_Finishing_Pause.Checked = $True
 	}
 
@@ -391,7 +368,30 @@ Function Event_Completion_Setting_UI
 		}
 	}
 
-	$UI_Main.ShowDialog() | Out-Null
+	if ($Autopilot) {
+		Write-host "   $($lang.Autopilot)" -ForegroundColor Green
+		Write-host "   $('-' * 80)"
+		Write-host "   $($lang.Save)".PadRight(18) -NoNewline -ForegroundColor Yellow
+
+		switch ($Autopilot) {
+			"NoProcess" { $UI_Main_After_Finishing_NoProcess.Checked = $True }
+			"Pause" { $UI_Main_After_Finishing_Pause.Checked = $True }
+			"Reboot" { $UI_Main_After_Finishing_Reboot.Checked = $True }
+			"Shutdown" { $UI_Main_After_Finishing_Shutdown.Checked = $True }
+			default {
+				$UI_Main_After_Finishing_Pause.Checked = $True
+			}
+		}
+
+		if (Autopilot_Event_Completion_Setting_UI_Save) {
+			Write-host $lang.Done -ForegroundColor Green
+		} else {
+			Write-host $lang.ISOCreateFailed -ForegroundColor Red
+			$UI_Main.ShowDialog() | Out-Null
+		}
+	} else {
+		$UI_Main.ShowDialog() | Out-Null
+	}
 }
 
 <#
@@ -403,43 +403,50 @@ Function Event_Completion_Process
 	Write-Host "`n   $($lang.AfterFinishingNotExecuted)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 
-	if ($Global:IsFinish) {
-		if ($Global:EventQueueMode) {
-			$EventMaps = "Queue"
-		} else {
-			$EventMaps = "Assign"
-		}
+	if ($Global:AutopilotMode) {
+		$EventMaps = "Queue"
+	}
 
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AllowAfterFinishing" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AllowAfterFinishing" -ErrorAction SilentlyContinue) {
-				"True" {
-					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
-						switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
-							2 {
-								Write-Host "   $($lang.AfterFinishingPause)" -ForegroundColor Green
-								Get_Next
-								Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-							}
-							3 {
-								Write-Host "   $($lang.AfterFinishingReboot)" -ForegroundColor Green
-								start-process "timeout.exe" -argumentlist "/t 10 /nobreak" -wait -nonewwindow
-								Restart-Computer -Force -ErrorAction SilentlyContinue
-								Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-							}
-							4 {
-								Write-Host "   $($lang.AfterFinishingShutdown)" -ForegroundColor Green
-								start-process "timeout.exe" -argumentlist "/t 10 /nobreak" -wait -nonewwindow
-								Stop-Computer -Force -ErrorAction SilentlyContinue
-								Write-Host "   $($lang.Done)`n" -ForegroundColor Green
-							}
-						}
-					}
-				}
+	if ($Global:EventQueueMode) {
+		$EventMaps = "Queue"
+	}
+
+	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
+		$EventMaps = "Assign"
+	}
+
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
+			"NoProcess" {
+				Write-Host "   $($lang.AfterFinishingNoProcess)" -ForegroundColor Green
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 			}
-		} else {
-			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+			"Pause" {
+				Write-Host "   $($lang.AfterFinishingPause)" -ForegroundColor Green
+				Get_Next
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			}
+			"Reboot" {
+				Write-Host "   $($lang.AfterFinishingReboot)" -ForegroundColor Green
+				start-process "timeout.exe" -argumentlist "/t 10 /nobreak" -wait -nonewwindow
+				Restart-Computer -Force -ErrorAction SilentlyContinue
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			}
+			"Shutdown" {
+				Write-Host "   $($lang.AfterFinishingShutdown)" -ForegroundColor Green
+				start-process "timeout.exe" -argumentlist "/t 10 /nobreak" -wait -nonewwindow
+				Stop-Computer -Force -ErrorAction SilentlyContinue
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			}
+			default {
+				Write-Host "   $($lang.AfterFinishingPause)" -ForegroundColor Green
+				Get_Next
+				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+			}
 		}
 	} else {
-		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+		Write-Host "   $($lang.AfterFinishingPause)" -ForegroundColor Green
+		Get_Next
+		Write-Host "   $($lang.Done)`n" -ForegroundColor Green
 	}
 }

@@ -69,6 +69,7 @@
 	Rule_Show_Full                  = Show all
 	Rule_Show_Only                  = Only those in the rule are displayed
 	Rule_Show_Only_Select           = Select from the rules
+	Image_Unmount_After             = Before forcibly uninstalling all mounts
 
 	Wim_Rule_Update                 = Extract, update files within the image
 	Wim_Rule_Extract                = Extracting files
@@ -89,7 +90,7 @@
 	Wim_Expander_Space              = Expand space
 
 	IABSelectNo                     = Primary key not selected: Install, WinRE, Boot
-	Unique_Name                     = Unique Name: \
+	Unique_Name                     = Unique Name
 	Select_Path                     = Path
 	Setting_Pri_Key                 = Set this update file as the main template: \
 	Pri_Key_Update_To               = Then update to: \

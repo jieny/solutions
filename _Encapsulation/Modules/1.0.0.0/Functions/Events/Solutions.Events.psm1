@@ -13,7 +13,7 @@
 		Language_Cleanup_Components_UI        # 语言：清理组件
 		InBox_Apps_Mark_UI                    # InBox Apps：第一步：标记，本地语言体验包 ( LXPs )
 		InBox_Apps_Add_UI                     # InBox Apps：第二步：添加 InBox Apps 应用程序
-		InBox_Apps_Refresh_UI                 # InBox Apps：第三步：更新或删除，本地语言体验包 ( LXPs )
+		InBox_Apps_Update_UI                 # InBox Apps：第三步：更新或删除，本地语言体验包 ( LXPs )
 		InBox_Apps_Offline_Delete_UI          # InBox Apps：添加
 		InBox_Apps_Match_Delete_UI            # InBox Apps：添加
 		Drive_Add_UI                          # 驱动：添加
@@ -271,7 +271,7 @@ Function Event_Assign
 				Primary = "InBox_Apps_Mark_UI"
 				Expand  = @(
 					"InBox_Apps_Add_UI"
-					"InBox_Apps_Refresh_UI"
+					"InBox_Apps_Update_UI"
 				)
 			}
 			NotMonuted  = @{
@@ -289,7 +289,7 @@ Function Event_Assign
 			IsMounted   = @{
 				Primary = "InBox_Apps_Add_UI"
 				Expand  = @(
-					"InBox_Apps_Refresh_UI"
+					"InBox_Apps_Update_UI"
 				)
 			}
 			NotMonuted  = @{
@@ -303,9 +303,25 @@ Function Event_Assign
 			)
 		}
 		@{
-			Uid         = "InBox_Apps_Refresh_UI"
+			Uid         = "InBox_Apps_Update_UI"
 			IsMounted   = @{
-				Primary = "InBox_Apps_Refresh_UI"
+				Primary = "InBox_Apps_Update_UI"
+				Expand  = @()
+			}
+			NotMonuted  = @{
+				Primary = ""
+				Expand  = @()
+			}
+			IsEvent = @(
+				"Image_Eject_UI"
+				"Event_Completion_Setting_UI"
+				"Event_Completion_Start_Setting_UI"
+			)
+		}
+		@{
+			Uid         = "InBox_Apps_Remove_UI"
+			IsMounted   = @{
+				Primary = "InBox_Apps_Remove_UI"
 				Expand  = @()
 			}
 			NotMonuted  = @{
@@ -663,15 +679,23 @@ Function Event_Track
 		$Global:EventProcessGuid = [guid]::NewGuid()
 	}
 
+	if ($Global:AutopilotMode) {
+		$EventMaps = "Queue"
+	}
+
 	if ($Global:EventQueueMode) {
 		$EventMaps = "Queue"
-	} else {
+	}
+
+	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		$EventMaps = "Assign"
 	}
 
 	if ($Add) {
 		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "GUID" -value $Global:EventProcessGuid -String
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "Time" -value "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "Time" -value "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -String
+
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "Pause" -String
 	}
 
 	if ($Del) {
@@ -705,7 +729,7 @@ Function Event_Assign_Task
 		#>
 		Event_Process_Available_UI
 
-		if ($Global:QueueWaitTime) {
+		if ($Global:QueueWaitTime.IsEnabled) {
 			Event_Completion_Start_Process
 		}
 
@@ -743,7 +767,7 @@ Function Event_Assign_Task
 								Write-host "`n   $($lang.Unique_Name): " -NoNewline -ForegroundColor Yellow
 								Write-host "$($item.Main.ImageFileName);$($itemExpandNew.ImageFileName);" -ForegroundColor Green
 
-								Image_Queue_Wimlib_Process_Wim_Main -NewUid $itemExpandNew.Uid -NewMaster $item.Main.ImageFileName -NewImageFileName $itemExpandNew.ImageFileName -MasterFile "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" 
+								Image_Queue_Wimlib_Process_Wim_Main -NewUid $itemExpandNew.Uid -NewMaster $item.Main.ImageFileName -NewImageFileName $itemExpandNew.ImageFileName -MasterFile "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"  -DevCode "1"
 
 								New-Variable -Scope global -Name "Queue_Is_Update_Rule_Expand_Rule_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value @() -Force
 							}
@@ -819,20 +843,28 @@ Function Init_Canel_Event
 		<#
 			.初始化：等待时间
 		#>
-		$Global:QueueWaitTime = $False
+		$Global:QueueWaitTime = @{
+			IsEnabled = $false
+			Sky = 0
+			Time = 0
+			Minute = 30
+		}
+
+		if ($Global:AutopilotMode) {
+			$EventMaps = "Queue"
+		}
 
 		if ($Global:EventQueueMode) {
 			$EventMaps = "Queue"
-		} else {
+		}
+
+		if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 			$EventMaps = "Assign"
 		}
 
 		<#
 			.初始化：完成后事件
 		#>
-		$Global:IsFinish = $True
-
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AllowAfterFinishing" -value "True" -String
-		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "2" -String
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "Pause" -String
 	}
 }

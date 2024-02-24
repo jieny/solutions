@@ -2174,7 +2174,7 @@ Function Install_UI
 		$init_Select_Default_App = $Script:Custom_Config.Config.DefaultSelect
 
 		foreach ($item in $Script:Custom_Config.App) {
-			if (($Script:Init_Select_Value) -Contains $item.Group) {
+			if ($Script:Init_Select_Value -Contains $item.Group) {
 				$Temp_Main_Save_Expand_Name = New-Object system.Windows.Forms.Label -Property @{
 					Height         = 30
 					Width          = 470

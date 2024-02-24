@@ -11,6 +11,7 @@
 	Rebuild                         = 재건
 	AddTo                           = 에 추가
 	Del                             = 삭제
+	Copy                            = 복사
 	Rename                          = 이름 바꾸기
 	Refresh                         = 새로 고치다
 	RefreshModules                  = 모듈을 다시 로드
@@ -38,7 +39,6 @@
 	ToMsg                           = \n   {0} 몇 초 후에 자동으로 기본 메뉴로 돌아갑니다.
 	ToQuit                          = \n   {0} 몇 초 후에 메인 패널을 종료합니다.
 	OnDemandPlanTask                = 사용자 지정 알려진 이벤트 할당
-	QueueMode                       = 이벤트 일괄 처리 모드
 	Operable                        = 운영
 	Inoperable                      = 작동 불능
 	Hide                            = 숨다
@@ -47,12 +47,13 @@
 	Healthy                         = 건강한
 	HealthyTips                     = 건강 상태를 확인하는 것이 특히 중요합니다. "repairable" 또는 "unrepairable" 이 표시되면 ESD 변환 프로세스 동안 오류 13 이 표시되고 데이터가 유효하지 않으며 시스템 설치 시 오류가 보고됩니다.
 	Healthy_Save                    = 수리 가능 또는 수리 불가가 표시되면 저장하지 마십시오.
+	Repair                          = 수리하다
 	Repairable                      = 수리 가능
 	NonRepairable                   = 돌이킬 수 없는
 	HealthyForceStop                = 이벤트 처리 중 되돌릴 수 없는 오류가 발생하여 강제 종료되었습니다.\n\n   주요 문제의 원인:\n\n      1. 물리적 하드웨어 손상, 하드 디스크;\n\n      2. RAMDISK 메모리 가상 디스크 (하이브리드 포함) 를 사용하는 경우 물리적 메모리를 확인하십시오.\n\n      3. 원본 MSDN 버전의 SHA256 을 확인하십시오.동일한 경우 디렉토리를 변경하고 다시 시도하십시오 .SHA256 이 일치하지 않으면 다운로드하여 다시 시도하십시오.\n\n      4. 이 예에 나열되지 않은 기타.
 	Superseded                      = 청소 교체
 	SupersededTips                  = 오래된 업데이트, 구성 요소 등이 포함됩니다
-	SpecialFunction                 = PowerShell 함수 실행
+	SpecialFunction                 = PowerShell 기능
 	Functions_Before                = 달리기 전
 	Functions_Rear                  = 마친 후
 	Functions_Wait_Assign           = 할당할 기능 이름
@@ -68,6 +69,8 @@
 	Uping                           = 생성
 	Exclude_View                    = 제외 규칙 보기
 	User_Interaction                = 사용자 상호 작용
+	Ok_Go_To                        = 사용할 수
+	Ok_Go_To_No                     = 안 가요
 
 	Detailed                        = 자세한 내용
 	Detailed_View                   = 선택한 규칙 세부 정보를 봅니다
@@ -118,6 +121,7 @@
 	RuleDependenciesFix             = 선택되지 않은 종속성을 수정합니다
 	Extract_Tips                    = 힌트\n\n   1. 언어 팩을 추출한 후의 결과는 기본 참조 개체로 사용할 수 없습니다.\n\n   2. 구성 요소 목록을 주요 참조 개체로 사용하십시오. 생성 방법: \n\n       존재하다 Functions 구성 요소 빌드(설치된 이미지에서 패키지 가져오기)를 선택하고 인쇄 또는 인스턴트 보기를 선택합니다.\n\n   3. 언어 팩을 설치한 후 구성 요소 보고서를 재생성하여 일치하는지 확인하십시오.
 
+	DescendingRuleLang              = 언어 팩을 역순으로 제거
 	OrderRuleLang                   = 사전 규정된 순서로 언어 팩 설치
 	OrderRuleLangTips               = 순서대로 추가됨: 기본, 글꼴, 광학 문자 인식, 필기 인식, 텍스트 음성 변환, 음성 인식, 소매 데모 체험, 기타
 	RuleLanguageTips                = 예시: \n\n   "규칙 이전 순서로 언어 팩 설치"를 사용한 후 파일은 다음 순서로 모호한 이름으로 자동 일치됩니다.\n
@@ -147,7 +151,6 @@
 	ImageLanguage                   = 이미지 언어 설정
 	OnlyLangCleanup                 = 정리 구성요소: 언어별 태그 지정
 	Matched_Component_Names         = 일치하는 구성 요소 이름: \
-	OnlyLangCleanupTips             = 언어를 삭제한 후 다른 구성 요소를 정리하려면 해당 언어 태그가 필요합니다.
 	BootProcess                     = {0}.wim 을 처리할 때
 	Extract_Rule_Only_And_Full      = 선택한 언어만 추출됩니다
 	Sync_Language_To                = 동기화 대상
@@ -193,6 +196,7 @@
 	ExportShow                      = 보고서를 보여주다
 	MoreFeature                     = 더 많은 기능
 	OpenFolder                      = 디렉토리 열기
+	Running                         = 달리다
 	Paste                           = 복사 경로
 	Clipboard_Copy                  = 클립보드에 복사됨
 	ViewWIMFileInfo                 = 파일 세부 정보 보기

@@ -36,7 +36,7 @@
 	InstallFonts              = 安裝字體
 	SettingTo                 = 設置為 {0}
 	SwitchLanguage            = 切換語言
-	Choose                    = 請選擇
+	PleaseChoose              = 請選擇
 	FailedCreateFolder        = 創建目錄失敗：
 	ToMsg                     = \n   {0} 秒後自動返回到主菜單。
 	ToQuit                    = \n   {0} 秒後退出主菜單。

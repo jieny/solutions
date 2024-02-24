@@ -4,9 +4,6 @@
 #>
 Function Event_Process_Task_Need_Mount
 {
-	<#
-		.存储当前已知来源
-	#>
 	# 保存
 	$IsEjectAfterSave = $False
 	if ((Get-Variable -Scope global -Name "Queue_Eject_Only_Save_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
@@ -20,9 +17,21 @@ Function Event_Process_Task_Need_Mount
 	$IsEjectAfterSaveNot = $False
 	if ((Get-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 		$IsEjectAfterSaveNot = $True
+
+		if ($Global:Developers_Mode) {
+			Write-Host "`n   $('-' * 80)`n   $($lang.Developers_Mode_Location)E0x009000 ]`n   Start"
+			Write-host "Queue_Eject_Do_Not_Save_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+			Write-Host "`n   $('-' * 80)`n   $($lang.Developers_Mode_Location)E0x009000 ]`n   End"
+		}
 	}
 	if ((Get-Variable -Scope global -Name "Queue_Expand_Eject_Do_Not_Save_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 		$IsEjectAfterSaveNot = $True
+
+		if ($Global:Developers_Mode) {
+			Write-Host "`n   $('-' * 80)`n   $($lang.Developers_Mode_Location)E0x009010 ]`n   Start"
+			Write-host "Queue_Expand_Eject_Do_Not_Save_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+			Write-Host "`n   $('-' * 80)`n   $($lang.Developers_Mode_Location)E0x009010 ]`n   End"
+		}
 	}
 
 	$Temp_Expand_Rule = (Get-Variable -Scope global -Name "Queue_Export_SaveTo_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
@@ -35,7 +44,7 @@ Function Event_Process_Task_Need_Mount
 	<#
 		.初始化时间：每任务
 	#>
-	$Script:SingleTaskTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+	$Script:SingleTaskTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 	$Script:SingleTaskTime = New-Object System.Diagnostics.Stopwatch
 	$Script:SingleTaskTime.Reset()
 	$Script:SingleTaskTime.Start()
@@ -50,7 +59,7 @@ Function Event_Process_Task_Need_Mount
 
 	Write-host "`n   $($lang.TimeStart)" -ForegroundColor Green
 	Write-Host "   $('-' * 80)"
-	Write-host "   $($Script:SingleTaskTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+	Write-host "   $($Script:SingleTaskTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 	<#
 		.Start processing all tasks
@@ -87,12 +96,12 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Solution)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Solutions_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		Write-Host "   $($lang.Operable)" -ForegroundColor Green
+		Write-Host " sssss  $($lang.Operable)" -ForegroundColor Green
 
 		<#
 			.批量操作，挂载所有映像源，并添加
 		#>
-		Solutions_Generate_Process -Mount
+		Solutions_Generate_Prerequisite -Mount
 	} else {
 		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}
@@ -104,6 +113,17 @@ Function Event_Process_Task_Need_Mount
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Enable_Match_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 		Feature_Enabled_Match_Process
+	} else {
+		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+	}
+
+	<#
+		.Windows Feature: Enabled, Match
+	#>
+	Write-Host "`n   $($lang.WindowsFeature): $($lang.Disable), $($lang.MatchMode)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+	if ((Get-Variable -Scope global -Name "Queue_Is_Feature_Disable_Match_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		Feature_Disable_Match_Process
 	} else {
 		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}
@@ -140,13 +160,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Language): $($lang.AddTo)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Language_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LanguageAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:LanguageAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LanguageAddTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LanguageAddTasksTime.Reset()
 		$Script:LanguageAddTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LanguageAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LanguageAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Language_Add_Process
@@ -193,7 +213,7 @@ Function Event_Process_Task_Need_Mount
 		#>
 		Write-Host "`n   $($lang.BootSyncToISO)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 			Language_Sync_To_ISO_Process
@@ -207,7 +227,7 @@ Function Event_Process_Task_Need_Mount
 		#>
 		Write-Host "`n   $($lang.LangIni)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 			Language_Refresh_Ini
@@ -219,10 +239,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Language): $($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LanguageAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LanguageAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LanguageAddTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -255,13 +275,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Language): $($lang.Del)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Language_Del_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LanguageDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:LanguageDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LanguageDelTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LanguageDelTasksTime.Reset()
 		$Script:LanguageDelTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LanguageDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LanguageDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Language_Delete_Process
@@ -271,7 +291,7 @@ Function Event_Process_Task_Need_Mount
 		#>
 		Write-Host "`n   $($lang.BootSyncToISO)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_Del_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 			Language_Sync_To_ISO_Process
@@ -285,7 +305,7 @@ Function Event_Process_Task_Need_Mount
 		#>
 		Write-Host "`n   $($lang.LangIni)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		if ((Get-Variable -Scope global -Name "Queue_Is_Language_INI_Rebuild_Del_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 			Language_Refresh_Ini
@@ -297,10 +317,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Language): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LanguageDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LanguageDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LanguageDelTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -333,13 +353,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.OnlyLangCleanup)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Language_Components_Clean_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:ComponentsClearTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:ComponentsClearTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:ComponentsClearTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:ComponentsClearTasksTime.Reset()
 		$Script:ComponentsClearTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:ComponentsClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:ComponentsClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Cleanup_Components_Process
@@ -348,10 +368,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.OnlyLangCleanup), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:ComponentsClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:ComponentsClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:ComponentsClearTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -376,13 +396,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.InboxAppsClear)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Clear_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:InBoxAppsDeletePreTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:InBoxAppsDeletePreTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:InBoxAppsDeletePreTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:InBoxAppsDeletePreTasksTime.Reset()
 		$Script:InBoxAppsDeletePreTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:InBoxAppsDeletePreTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:InBoxAppsDeletePreTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_LIPs_Clean_Process
@@ -391,10 +411,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.InboxAppsClear), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:InBoxAppsDeletePreTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:InBoxAppsDeletePreTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:InBoxAppsDeletePreTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -412,14 +432,14 @@ Function Event_Process_Task_Need_Mount
 	#>
 	Write-Host "`n   $($lang.StepOne)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Add_Step_One_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:InBoxAppsAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Mark_UI_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
+		$Script:InBoxAppsAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:InBoxAppsAddTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:InBoxAppsAddTasksTime.Reset()
 		$Script:InBoxAppsAddTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:InBoxAppsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:InBoxAppsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_LIPs_Add_Mark_Process
@@ -428,10 +448,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.StepOne), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:InBoxAppsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:InBoxAppsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:InBoxAppsAddTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -450,13 +470,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.StepTwo)$($lang.AddTo)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:InBoxAppsInstallNewTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:InBoxAppsInstallNewTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:InBoxAppsInstallNewTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:InBoxAppsInstallNewTasksTime.Reset()
 		$Script:InBoxAppsInstallNewTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:InBoxAppsInstallNewTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:InBoxAppsInstallNewTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_Add_Process
@@ -465,10 +485,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.StepTwo)$($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:InBoxAppsInstallNewTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:InBoxAppsInstallNewTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:InBoxAppsInstallNewTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -486,14 +506,15 @@ Function Event_Process_Task_Need_Mount
 	#>
 	Write-Host "`n   $($lang.Del) ( $($lang.LocalExperiencePackTips) )" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LXPsDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+	$Temp_LXPs_Delete = (Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+	if ($Temp_LXPs_Delete.Count -gt 0) {
+		$Script:LXPsDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LXPsDelTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LXPsDelTasksTime.Reset()
 		$Script:LXPsDelTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LXPsDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LXPsDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_LIPs_Delete_Process
@@ -502,10 +523,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Del) ( $($lang.LocalExperiencePackTips) ), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LXPsDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LXPsDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LXPsDelTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -521,16 +542,17 @@ Function Event_Process_Task_Need_Mount
 		.Step 4: Add only local language experience packs (LXPs)
 		.第四步：仅添加本地语言体验包 (LXPs)
 	#>
-	Write-Host "`n   $($lang.StepThree)" -ForegroundColor Yellow
+	Write-Host "`n   $($lang.LocalExperiencePackTips): $($lang.Update)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Add_Step_There_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LXPsAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+	$Temp_Queue_Is_InBox_Apps_Update = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Update_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+	if ($Temp_Queue_Is_InBox_Apps_Update.Count -gt 0) {
+		$Script:LXPsAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LXPsAddTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LXPsAddTasksTime.Reset()
 		$Script:LXPsAddTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LXPsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LXPsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_LIPs_Add_Process
@@ -539,10 +561,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.StepTwo)$($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LXPsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LXPsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LXPsAddTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -560,14 +582,15 @@ Function Event_Process_Task_Need_Mount
 	#>
 	Write-Host "`n   $($lang.Del) ( $($lang.LocalExperiencePackTips) )" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LXPsDeleteOldTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+	$Temp_LXPs_Delete = (Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+	if ($Temp_LXPs_Delete.Count -gt 0) {
+		$Script:LXPsDeleteOldTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LXPsDeleteOldTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LXPsDeleteOldTasksTime.Reset()
 		$Script:LXPsDeleteOldTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LXPsDeleteOldTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LXPsDeleteOldTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_LIPs_Delete_Process
@@ -576,10 +599,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Del) ( $($lang.LocalExperiencePackTips) ), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LXPsDeleteOldTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LXPsDeleteOldTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LXPsDeleteOldTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -597,14 +620,15 @@ Function Event_Process_Task_Need_Mount
 	#>
 	Write-Host "`n   $($lang.InboxAppsMatchDel)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Match_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LXPsDeleteMatchTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+	$Temp_Functions_Before_Task = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Match_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
+	if ($Temp_Functions_Before_Task.Count -gt 0) {
+		$Script:LXPsDeleteMatchTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LXPsDeleteMatchTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LXPsDeleteMatchTasksTime.Reset()
 		$Script:LXPsDeleteMatchTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LXPsDeleteMatchTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LXPsDeleteMatchTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_Match_Delete_Process
@@ -613,10 +637,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.InboxAppsMatchDel), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LXPsDeleteMatchTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LXPsDeleteMatchTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LXPsDeleteMatchTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -635,13 +659,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.InboxAppsOfflineDel)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Mount_Rule_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:LXPsDeleteOfflineTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:LXPsDeleteOfflineTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:LXPsDeleteOfflineTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:LXPsDeleteOfflineTasksTime.Reset()
 		$Script:LXPsDeleteOfflineTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:LXPsDeleteOfflineTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:LXPsDeleteOfflineTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		InBox_Apps_Offline_Delete_Process
@@ -650,10 +674,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.InboxAppsOfflineDel), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:LXPsDeleteOfflineTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:LXPsDeleteOfflineTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:LXPsDeleteOfflineTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -672,13 +696,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.UWPOptimize)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Optimize_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:InBoxAppsOptimizeTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:InBoxAppsOptimizeTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:InBoxAppsOptimizeTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:InBoxAppsOptimizeTasksTime.Reset()
 		$Script:InBoxAppsOptimizeTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:InBoxAppsOptimizeTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:InBoxAppsOptimizeTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Inbox_Apps_Hard_Links_Optimize
@@ -687,10 +711,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.UWPOptimize), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:InBoxAppsOptimizeTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:InBoxAppsOptimizeTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:InBoxAppsOptimizeTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -709,13 +733,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.CUpdate): $($lang.AddTo)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Update_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:OSUpdateAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:OSUpdateAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:OSUpdateAddTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:OSUpdateAddTasksTime.Reset()
 		$Script:OSUpdateAddTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:OSUpdateAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:OSUpdateAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Update_Add_Process
@@ -724,10 +748,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.CUpdate): $($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:OSUpdateAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:OSUpdateAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:OSUpdateAddTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -746,13 +770,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.CUpdate): $($lang.Del)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Update_Del_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:OSUpdateDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:OSUpdateDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:OSUpdateDelTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:OSUpdateDelTasksTime.Reset()
 		$Script:OSUpdateDelTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:OSUpdateDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:OSUpdateDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Update_Del_Process
@@ -761,10 +785,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.CUpdate): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:OSUpdateDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:OSUpdateDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:OSUpdateDelTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -783,13 +807,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Drive): $($lang.AddTo)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Drive_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:DriveAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:DriveAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:DriveAddTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:DriveAddTasksTime.Reset()
 		$Script:DriveAddTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:DriveAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:DriveAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 	
 		Drive_Add_Process
@@ -798,10 +822,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Drive): $($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:DriveAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:DriveAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:DriveAddTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -820,13 +844,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Drive): $($lang.Del)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Drive_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:DriveDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:DriveDelTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:DriveDelTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:DriveDelTasksTime.Reset()
 		$Script:DriveDelTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:DriveDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:DriveDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 	
 		Drive_Delete_Process
@@ -835,10 +859,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Drive): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:DriveDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:DriveDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:DriveDelTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -857,13 +881,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.CuringUpdate)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Update_Curing_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:CuringUpdateTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:CuringUpdateTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:CuringUpdateTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:CuringUpdateTasksTime.Reset()
 		$Script:CuringUpdateTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:CuringUpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:CuringUpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
@@ -880,10 +904,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.CuringUpdate), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:CuringUpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:CuringUpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:CuringUpdateTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -901,13 +925,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Superseded)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Superseded_Clean_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:SupersededClearTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:SupersededClearTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:SupersededClearTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:SupersededClearTasksTime.Reset()
 		$Script:SupersededClearTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:SupersededClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:SupersededClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Image_Clear_Superseded
@@ -916,10 +940,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Superseded), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:SupersededClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:SupersededClearTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:SupersededClearTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -992,7 +1016,7 @@ Function Event_Process_Task_Need_Mount
 	Write-host "   $('-' * 80)"
 	Write-Host "   $($lang.ExportToLogs)" -ForegroundColor Yellow
 	if ((Get-Variable -Scope global -Name "Queue_Is_Language_Report_Image_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		if (Test-Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
+		if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
@@ -1024,13 +1048,13 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Healthy)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Healthy_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		$Script:HealthyTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:HealthyTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:HealthyTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:HealthyTasksTime.Reset()
 		$Script:HealthyTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:HealthyTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:HealthyTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 
 		<#
 			.触发此事件强制结束
@@ -1048,8 +1072,7 @@ Function Event_Process_Task_Need_Mount
 				<#
 					.重置：完成后事件
 				#>
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AllowAfterFinishing" -value "True" -String
-				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "2" -String
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "NoProcess" -String
 
 				<#
 					.清空所有任务
@@ -1067,10 +1090,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.Healthy), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:HealthyTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:HealthyTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:HealthyTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -1115,15 +1138,15 @@ Function Event_Process_Task_Need_Mount
 	#>
 	Write-Host "`n   $($lang.UnmountAndSave)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	Write-Host "   $($lang.Save)" -ForegroundColor Yellow
+	Write-host "   $($lang.SaveTo)" -ForegroundColor Yellow
 	if ($IsEjectAfterSave) {
-		$Script:EjectSaveTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:EjectSaveTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:EjectSaveTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:EjectSaveTasksTime.Reset()
 		$Script:EjectSaveTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:EjectSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:EjectSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Write-Host "   $($lang.Event_Group): " -NoNewline -ForegroundColor Yellow
@@ -1207,7 +1230,7 @@ Function Event_Process_Task_Need_Mount
 							} else {
 								Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 							}
-					
+
 							<#
 								.不保存
 								 保存带不保存，优先判断：主映像文件卸载，再判断自定义选择单独项
@@ -1242,7 +1265,7 @@ Function Event_Process_Task_Need_Mount
 								<#
 									.检查了已挂载后，判断目录是否存在，再次删除。
 								#>
-								if (Test-Path $Temp_Do_Not_Save_Path -PathType Container -ErrorAction SilentlyContinue) {
+								if (Test-Path $Temp_Do_Not_Save_Path -PathType Container) {
 									if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 										Write-Host "`n   $($lang.Command)" -ForegroundColor Green
 										Write-host "   $($lang.Developers_Mode_Location)18" -ForegroundColor Green
@@ -1280,8 +1303,6 @@ Function Event_Process_Task_Need_Mount
 						Write-Host "   $($lang.Done)" -ForegroundColor Green
 					}
 				}
-
-				break
 			}
 		}
 
@@ -1305,10 +1326,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.UnmountAndSave): $($lang.Save), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:EjectSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:EjectSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:EjectSaveTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -1327,13 +1348,13 @@ Function Event_Process_Task_Need_Mount
 	#>
 	Write-Host "`n   $($lang.DoNotSave)" -ForegroundColor Yellow
 	if ($IsEjectAfterSaveNot) {
-		$Script:EjectDoNotSaveTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss"
+		$Script:EjectDoNotSaveTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
 		$Script:EjectDoNotSaveTasksTime = New-Object System.Diagnostics.Stopwatch
 		$Script:EjectDoNotSaveTasksTime.Reset()
 		$Script:EjectDoNotSaveTasksTime.Start()
 	
 		Write-host "   $($lang.TimeStart)" -NoNewline
-		Write-host " $($Script:EjectDoNotSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Green
+		Write-host " $($Script:EjectDoNotSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
 		Write-Host "   $($lang.Event_Group): " -NoNewline -ForegroundColor Yellow
@@ -1371,7 +1392,7 @@ Function Event_Process_Task_Need_Mount
 						Write-host "`n   $($lang.Mounted_Status)" -ForegroundColor Yellow
 						Write-Host "   $('-' * 80)"
 						Write-Host "   $($lang.Unmount)"-ForegroundColor Yellow
-						if (Test-Path $Temp_Do_Not_Save_Path -PathType Container -ErrorAction SilentlyContinue) {
+						if (Test-Path $Temp_Do_Not_Save_Path -PathType Container) {
 							<#
 								.Determine if it is mounted
 								.判断是否已挂载
@@ -1395,7 +1416,7 @@ Function Event_Process_Task_Need_Mount
 								Image_Mount_Force_Del -NewPath "$($Temp_Do_Not_Save_Path)"
 							}
 
-							if (Test-Path $Temp_Do_Not_Save_Path -PathType Container -ErrorAction SilentlyContinue) {
+							if (Test-Path $Temp_Do_Not_Save_Path -PathType Container) {
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
 									Write-host "   $($lang.Developers_Mode_Location)21" -ForegroundColor Green
@@ -1413,7 +1434,6 @@ Function Event_Process_Task_Need_Mount
 							Write-Host "   $($lang.Done)" -ForegroundColor Green
 						}
 					}
-					break
 				} else {
 					Write-Host "   $($lang.NoWork)" -ForegroundColor Red
 				}
@@ -1472,10 +1492,10 @@ Function Event_Process_Task_Need_Mount
 		Write-host "`n   $($lang.UnmountAndSave): $($lang.DoNotSave), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeStart)" -NoNewline
-		Write-Host "$($Script:EjectDoNotSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$($Script:EjectDoNotSaveTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEnd)" -NoNewline
-		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+		Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 	
 		Write-Host "   $($lang.TimeEndAll)" -NoNewline
 		Write-Host "$($Script:EjectDoNotSaveTasksTime.Elapsed)" -ForegroundColor Yellow
@@ -1490,10 +1510,10 @@ Function Event_Process_Task_Need_Mount
 	$Script:SingleTaskTime.Stop()
 	Write-Host "`n   $('-' * 80)"
 	Write-Host "   $($lang.TimeStart)" -NoNewline
-	Write-Host "$($Script:SingleTaskTimeStart -f "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+	Write-Host "$($Script:SingleTaskTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 	Write-Host "   $($lang.TimeEnd)" -NoNewline
-	Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss")" -ForegroundColor Yellow
+	Write-Host "$(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
 
 	Write-Host "   $($lang.TimeEndAll)" -NoNewline
 	Write-Host "$($Script:SingleTaskTime.Elapsed)" -ForegroundColor Yellow
@@ -1544,7 +1564,7 @@ Function Event_Processing_Requires_Mounting
 		ForEach ($item in $Temp_Assign_Task) {
 			$Temp_Assign_Task_Select = (Get-Variable -Scope global -Name "Queue_Is_Mounted_Primary_Assign_Task_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 
-			if (($Temp_Assign_Task_Select) -Contains $item) {
+			if ($Temp_Assign_Task_Select -Contains $item) {
 				if ($Global:Developers_Mode) {
 					Write-Host "`n   $('-' * 80)`n   $($lang.Developers_Mode_Location)E0x003150 ]`n   Start"
 				}
@@ -1586,7 +1606,7 @@ Function Event_Processing_Requires_Mounting
 
 		ForEach ($item in $Temp_Assign_Task) {
 			$Temp_Assign_Task_Select = (Get-Variable -Scope global -Name "Queue_Is_Mounted_Expand_Assign_Task_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
-			if (($Temp_Assign_Task_Select) -Contains $item) {
+			if ($Temp_Assign_Task_Select -Contains $item) {
 				$Temp_Save_Has_Been_Run += $item
 				New-Variable -Scope global -Name "Queue_Assign_Has_Been_Run_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $Temp_Save_Has_Been_Run -Force
 
@@ -1646,8 +1666,8 @@ Function Event_Assign_Not_Allowed_UI
 		}
 
 		ForEach ($item in $Global:Queue_Assign_Not_Monuted_Expand_Select) {
-			if (($Global:Queue_Assign_Not_Monuted_Primary) -NotContains $item) {
-				if (($Global:Queue_Assign_Not_Monuted_Expand_Select) -Contains $item) {
+			if ($Global:Queue_Assign_Not_Monuted_Primary -NotContains $item) {
+				if ($Global:Queue_Assign_Not_Monuted_Expand_Select -Contains $item) {
 					$Temp_Save_Has_Been_Run += $item
 					New-Variable -Scope global -Name "Queue_Assign_Has_Been_Run_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $Temp_Save_Has_Been_Run -Force
 
@@ -1682,13 +1702,15 @@ Function Event_Process_Task_Sustainable
 		<#
 			.判断先决条件：没有挂载项时才生效。
 		#>
-		Write-host "   $($lang.Mounted_Status)" -ForegroundColor Yellow
-		if (Image_Is_Mount) {
-			Write-Host "   $($lang.Mounted)"
-			Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
-		} else {
-			Image_Convert_Process
-		}
+		<#
+			.强行弹出所有已挂载项：不保存
+		#>
+		Eject_Forcibly_All -DontSave
+
+		<#
+			.开始转换
+		#>
+		Image_Convert_Process
 	} else {
 		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}
@@ -1701,6 +1723,18 @@ Function Event_Process_Task_Sustainable
 	Write-host "   $('-' * 80)"
 	if ($Global:Queue_ISO) {
 		ISO_Create_Process
+	} else {
+		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+	}
+
+	<#
+		.Associated ISO schemes
+		.关联 ISO 方案
+	#>
+	Write-Host "`n   $($lang.ISO_Associated_Schemes)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+	if ($Global:Queue_ISO_Associated) {
+		Autopilot_ISO_Associated_Process
 	} else {
 		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}
@@ -1732,29 +1766,36 @@ Function Event_Process_Available_UI
 			"Event_Completion_Start_Setting_UI"
 		)
 
+		if ($Global:AutopilotMode) {
+			$EventMaps = "Queue"
+		}
+	
 		if ($Global:EventQueueMode) {
 			$EventMaps = "Queue"
-		} else {
+		}
+	
+		if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 			$EventMaps = "Assign"
 		}
 
-		if (($Init_IsEvent) -NotContains "Event_Completion_Setting_UI") {
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AllowAfterFinishing" -value "True" -String
-			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -name "AfterFinishing" -value "2" -String
-
+		if ($Init_IsEvent -NotContains "Event_Completion_Setting_UI") {
 			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\$($EventMaps)\$($Global:EventProcessGuid)" -Name "AfterFinishing" -ErrorAction SilentlyContinue) {
-				2 {
+				"NoProcess" {
+					Write-Host "   $($lang.AfterFinishingNoProcess)" -ForegroundColor Green
+					Write-Host "   $($lang.Done)" -ForegroundColor Green
+				}
+				"Pause" {
 					Write-Host "   $($lang.AfterFinishingPause)" -ForegroundColor Green
 					Get_Next
 					Write-Host "   $($lang.Done)" -ForegroundColor Green
 				}
-				3 {
+				"Reboot" {
 					Write-Host "   $($lang.AfterFinishingReboot)" -ForegroundColor Green
 					start-process "timeout.exe" -argumentlist "/t 10 /nobreak" -wait -nonewwindow
 					Restart-Computer -Force -ErrorAction SilentlyContinue
 					Write-Host "   $($lang.Done)" -ForegroundColor Green
 				}
-				4 {
+				"Shutdown" {
 					Write-Host "   $($lang.AfterFinishingShutdown)" -ForegroundColor Green
 					start-process "timeout.exe" -argumentlist "/t 10 /nobreak" -wait -nonewwindow
 					Stop-Computer -Force -ErrorAction SilentlyContinue
@@ -1766,8 +1807,13 @@ Function Event_Process_Available_UI
 		Write-Host "`n   $($lang.WaitTimeTitle)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 		Write-Host "   $($lang.TimeExecute)" -ForegroundColor Green
-		if (($Init_IsEvent) -NotContains "Event_Completion_Start_Setting_UI") {
-			$Global:QueueWaitTime = $False
+		if ($Init_IsEvent -NotContains "Event_Completion_Start_Setting_UI") {
+			$Global:QueueWaitTime = @{
+				IsEnabled = $false
+				Sky = 0
+				Time = 0
+				Minute = 30
+			}
 		}
 	}
 }
@@ -1823,6 +1869,10 @@ Function Healthy_Check_Process
 				}
 			}
 		} catch {
+			Write-host "   $($lang.ConvertChk)"
+			Write-Host "   $($_)" -ForegroundColor Yellow
+			Write-host "   $($lang.Inoperable)`n" -ForegroundColor Red
+
 			return $False
 		}
 	} else {
@@ -1830,4 +1880,126 @@ Function Healthy_Check_Process
 	}
 
 	return $False
+}
+
+Function Eject_Forcibly_All
+{
+	param (
+		[switch]$Save,
+		[switch]$DontSave
+	)
+
+	Write-Host "`n   $($lang.Eject)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+	ForEach ($item in $Global:Image_Rule) {
+		if ($item.Main.Suffix -eq "wim") {
+			if ($item.Expand.Count -gt 0) {
+				Write-host "       $($lang.Event_Assign_Expand)" -ForegroundColor Yellow
+				Write-host "       $('-' * 76)"
+
+				ForEach ($Expand in $item.Expand) {
+					$Eject_Expand_Do_Not_Save_Path = "$($Global:Mount_To_Route)\$($item.Main.ImageFileName)\$($Expand.ImageFileName)\Mount"
+
+					Write-Host "       $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
+					Write-Host $Expand.Uid -ForegroundColor Green
+
+					Write-Host "       $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
+					Write-host $Eject_Expand_Do_Not_Save_Path -ForegroundColor Green
+					Write-host "       $('-' * 76)"
+
+					Image_Get_Mount_Status_New -ImageMaster $item.Main.ImageFileName -ImageName $Expand.ImageFileName -ImageFile "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -Silent $True
+
+					if ((Get-Variable -Scope global -Name "Mark_Is_Mount_$($item.Main.ImageFileName)_$($Expand.ImageFileName)").Value) {
+						Write-Host "   $($lang.Mounted)"
+
+						<#
+							.初始化变量
+						#>
+						$Eject_Expand_Do_Not_Save_Path = "$($Global:Mount_To_Route)\$($item.Main.ImageFileName)\$($Expand.ImageFileName)\Mount"
+
+						Write-Host "       $($lang.YesWork)" -ForegroundColor Yellow
+						Write-host "       $('-' * 76)"
+
+						Write-Host "       $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
+						Write-Host $Expand.Uid -ForegroundColor Green
+
+						Write-Host "       $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
+						Write-host $Eject_Expand_Do_Not_Save_Path -ForegroundColor Green
+
+						Write-Host "`n       $($lang.Save)" -ForegroundColor Yellow
+						Write-host "       $('-' * 76)"
+						if ($Save) {
+							Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $Eject_Expand_Do_Not_Save_Path | Out-Null
+							Write-Host "       $($lang.Done)" -ForegroundColor Green
+						} else {
+							Write-Host "       $($lang.Inoperable)" -ForegroundColor Red
+						}
+		
+						Write-Host "`n       $($lang.DoNotSave)" -ForegroundColor Yellow
+						Write-host "       $('-' * 76)"
+						if ($DontSave) {
+							Dismount-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Dismount.log" -Path "$($Eject_Expand_Do_Not_Save_Path)" -Discard -ErrorAction SilentlyContinue | Out-Null
+							Image_Mount_Force_Del -NewPath "$($Eject_Expand_Do_Not_Save_Path)"
+		
+							<#
+								.检查了已挂载后，判断目录是否存在，再次删除。
+							#>
+							if (Test-Path $Eject_Expand_Do_Not_Save_Path -PathType Container) {
+								Dismount-WindowsImage -ScratchDirectory $(Get_Mount_To_Temp) -LogPath "$(Get_Mount_To_Logs)\Dismount.log" -Path "$($Eject_Expand_Do_Not_Save_Path)" -Discard -ErrorAction SilentlyContinue | Out-Null
+								Image_Mount_Force_Del -NewPath "$($Eject_Expand_Do_Not_Save_Path)"
+							}
+		
+							Write-Host "       $($lang.Done)" -ForegroundColor Green
+						}
+					} else {
+						Write-host "       $($lang.NotMounted)" -ForegroundColor Red
+					}
+				}
+			}
+
+			$Eject_Main_Do_Not_Save_Path = "$($Global:Mount_To_Route)\$($item.Main.ImageFileName)\$($item.Main.ImageFileName)\Mount"
+
+			Write-host "`n   $($lang.Event_Assign_Main)" -ForegroundColor Yellow
+			Write-host "   $('-' * 80)"
+			Write-Host "   $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
+			Write-Host $item.Main.Uid -ForegroundColor Green
+
+			Write-Host "   $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
+			Write-host $Eject_Main_Do_Not_Save_Path -ForegroundColor Green
+			Write-host "   $('-' * 80)"
+
+			Image_Get_Mount_Status_New -ImageMaster $item.Main.ImageFileName -ImageName $item.Main.ImageFileName -ImageFile "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -Silent $True
+			if ((Get-Variable -Scope global -Name "Mark_Is_Mount_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)").Value) {
+				Write-Host "   $($lang.Mounted)"
+
+				Write-Host "`n   $($lang.Save)" -ForegroundColor Yellow
+				Write-host "   $('-' * 80)"
+				if ($Save) {
+					Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $Eject_Main_Do_Not_Save_Path | Out-Null
+					Write-Host "   $($lang.Done)" -ForegroundColor Green
+				} else {
+					Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
+				}
+
+				Write-Host "`n   $($lang.DoNotSave)" -ForegroundColor Yellow
+				Write-host "   $('-' * 80)"
+				if ($DontSave) {
+					Dismount-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Dismount.log" -Path "$($Eject_Main_Do_Not_Save_Path)" -Discard -ErrorAction SilentlyContinue | Out-Null
+					Image_Mount_Force_Del -NewPath "$($Eject_Main_Do_Not_Save_Path)"
+
+					<#
+						.检查了已挂载后，判断目录是否存在，再次删除。
+					#>
+					if (Test-Path $Eject_Main_Do_Not_Save_Path -PathType Container) {
+						Dismount-WindowsImage -ScratchDirectory $(Get_Mount_To_Temp) -LogPath "$(Get_Mount_To_Logs)\Dismount.log" -Path "$($Eject_Main_Do_Not_Save_Path)" -Discard -ErrorAction SilentlyContinue | Out-Null
+						Image_Mount_Force_Del -NewPath "$($Eject_Main_Do_Not_Save_Path)"
+					}
+
+					Write-Host "   $($lang.Done)" -ForegroundColor Green
+				}
+			} else {
+				Write-host "   $($lang.NotMounted)" -ForegroundColor Red
+			}
+		}
+	}
 }

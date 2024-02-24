@@ -3,7 +3,6 @@
 	Function_Limited                = 部分受限的
 	AssignNeedMount                 = 有新的掛載映像時
 	AssignNoMount                   = 沒有掛載映像時
-	AssignTask                      = 分配可用的任務
 	AssignSetting                   = 管理感知事件
 	AssignEndCurrent                = 僅結束分配 ( {0} ) 事件
 	AssignEndNoMount                = 結束無掛載時事件
@@ -13,11 +12,14 @@
 	SuggestedReset                  = 重置所有感知的建議
 	SuggestedNext                   = 同步為全局感到建議
 
+	EventManagerMul                 = 多任務事件
 	EventManager                    = 事件
 	EventManagerCount               = 項
 	EventManagerNo                  = 無事件
 	EventManagerClear               = 清除所有事件
+	EventManagerCurrentClear        = 清除已儲存的任務
 	AfterFinishingNotExecuted       = 有可用任務或事件時
+	AfterFinishingNoProcess         = 不处理
 	AfterFinishingPause             = 暫停
 	AfterFinishingReboot            = 重啟計算機
 	AfterFinishingShutdown          = 關閉計算機
@@ -39,7 +41,6 @@
 	Wimlib_New_Tips                 = 沒有彈出後的事件
 
 	WaitTimeTitle                   = 什麼時候開始
-	WaitTimeCanel                   = 已取消，隊列中有任務將立即執行。
 	WaitTimeTips                    = 提示\n\n    1、請選擇需要等待的時間；\n\n    2、取消，隊列中有任務將立即執行。
 	WaitQueue                       = 正在等待隊列
 	AddSources                      = 添加來源
