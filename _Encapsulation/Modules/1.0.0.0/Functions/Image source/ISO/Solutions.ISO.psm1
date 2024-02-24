@@ -3939,7 +3939,7 @@ Function ISO_Create_Process
 				<#
 					.开始生成
 				#>
-				$calchash = (Get-FileHash "$($Global:ISOSaveToFullName)" -Algorithm SHA256).Hash
+				$calchash = (Get-FileHash "$($Global:ISOSaveToFullName)" -Algorithm SHA256)
 				"$($calchash.Hash)  $($Global:ISOSaveToFileName)" | Out-File -FilePath "$($Global:ISOSaveToFullName).sha256" -Encoding ASCII -ErrorAction SilentlyContinue | Out-Null
 
 				if (Test-Path -Path "$($Global:ISOSaveToFullName).sha256" -PathType Leaf) {
