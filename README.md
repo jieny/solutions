@@ -1,17 +1,10 @@
 <a name="readme-top"></a>
 YI’S SOULTIONS
 -
-Available languages
--
- * United States - English
- * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.zh-CN.md)
-
-<br>
-
 Detailed
 <br>
 -
- * United States - English
+ * [United States - English](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.pdf)
  * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.zh-CN.pdf)
 
 <br>
