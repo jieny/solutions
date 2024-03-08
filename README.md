@@ -40,14 +40,14 @@ Summary
 <h4><pre>A.&nbsp;&nbsp;封装教程</pre></h4>
 
 <ul>
-  提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：
+  <p>提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：</p>
   <dl>
     <dd>1.	完整版本，无删减内容；</dd>
     <dd>2.	精简版，不包含：报告、注意事项等；</dd>
   </dl>
 
 <br>
-  提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：
+  <p>可前往封装之旅的教程有，</p>
   <dl>
     <dd>可选语言版本：简体中文版、美国英文版（Google 翻译：中文译英文），下载完整包可获得所有文档：[压缩包]:\_Documents\Attachment，或前往 https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment 后选择。</dd>
   </dl>
@@ -57,26 +57,73 @@ Summary
 <h4><pre>B.&nbsp;&nbsp;视频教程</pre></h4>
 <ul>
   <dl>
-    <dd>1. 自动驾驶
+    <dd>
+      <p>1. 自动驾驶</p>
       <dl>
-        <dd>1.1.	Windows 11 23H2：自动驾驶封装</dd>
-        <dd>1.2.	Windows 10 22H2：自动驾驶封装</dd>
+        <dd>1.1.	Windows 11 23H2：自动驾驶封装
+            <dl>
+               <dd>
+
+[Youtube](http://fengyi.tel) | [哔哩哔哩](http://fengyi.tel) | [腾讯视频](http://fengyi.tel) | [西瓜视频](http://fengyi.tel)
+               </dd>
+            </dl>
+         </dd>
+        <dd>1.2.	Windows 10 22H2：自动驾驶封装
+            <dl>
+               <dd>
+
+[Youtube](http://fengyi.tel) | [哔哩哔哩](http://fengyi.tel) | [腾讯视频](http://fengyi.tel) | [西瓜视频](http://fengyi.tel)
+               </dd>
+            </dl>
+         </dd>
       </dl>
     </dd>
 
 <br>
-    <dd>2. 自定义分配封装事件
+    <dd>
+      <p>2. 自定义分配封装事件</p>
       <dl>
-        <dd>2.1.	Windows 11 23H2：自定义分配封装事件</dd>
-        <dd>2.2.	Windows 10 22H2：自定义分配封装事件</dd>
+         <dd>2.1.  Windows 11 23H2：自定义分配封装事件
+            <dl>
+               <dd>
+
+[Youtube](http://fengyi.tel) | [哔哩哔哩](http://fengyi.tel) | [腾讯视频](http://fengyi.tel) | [西瓜视频](http://fengyi.tel)
+               </dd>
+            </dl>
+         </dd>
+
+<br>
+        <dd>2.2.  Windows 10 22H2：自定义分配封装事件
+            <dl>
+               <dd>
+
+[Youtube](http://fengyi.tel) | [哔哩哔哩](http://fengyi.tel) | [腾讯视频](http://fengyi.tel) | [西瓜视频](http://fengyi.tel)
+               </dd>
+            </dl>
+         </dd>
       </dl>
     </dd>
 
 <br>
-    <dd>3. 手动封装
+    <dd>
+      <p>3. 手动封装</p>
       <dl>
-        <dd>3.1.	Windows 11 23H2：手动封装</dd>
-        <dd>3.2.	Windows 10 22H2：手动封装</dd>
+        <dd>3.1.	Windows 11 23H2：手动封装
+            <dl>
+               <dd>
+
+[Youtube](http://fengyi.tel) | [哔哩哔哩](http://fengyi.tel) | [腾讯视频](http://fengyi.tel) | [西瓜视频](http://fengyi.tel)
+               </dd>
+            </dl>
+         </dd>
+        <dd>3.2.	Windows 10 22H2：手动封装
+            <dl>
+               <dd>
+
+[Youtube](http://fengyi.tel) | [哔哩哔哩](http://fengyi.tel) | [腾讯视频](http://fengyi.tel) | [西瓜视频](http://fengyi.tel)
+               </dd>
+            </dl>
+         </dd>
       </dl>
     </dd>
   </dl>
