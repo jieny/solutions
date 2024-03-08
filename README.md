@@ -17,6 +17,48 @@ Detailed introduction
 
 <br>
 
+章节 2&nbsp;&nbsp;&nbsp;&nbsp;开启封装之旅
+-
+
+<h4><pre>A.&nbsp;&nbsp;先决条件</pre></h4>
+
+<ul>
+  <p>I.	获取封装脚本</p>
+  <dl>
+    <dd>1.	完整版本，无删减内容；</dd>
+    <dd>2.	精简版，不包含：报告、注意事项等；</dd>
+  </dl>
+
+<br>
+  <p>II.	要求</p>
+  <dl>
+    <dd>可选语言版本：简体中文版、美国英文版（Google 翻译：中文译英文），下载完整包可获得所有文档：[压缩包]:\_Documents\Attachment，或前往 https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment 后选择。</dd>
+  </dl>
+
+<br>
+  <p>III.	命令行</p>
+  <dl>
+    <dd>可选语言版本：简体中文版、美国英文版（Google 翻译：中文译英文），下载完整包可获得所有文档：[压缩包]:\_Documents\Attachment，或前往 https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment 后选择。</dd>
+  </dl>
+
+<br>
+  <p>IV.	PowerShell 脚本</p>
+  <dl>
+    <dd>
+      <p>1.	先决条件：满足后，运行封装主脚本</p>
+
+```
+D:\Yi.Solutions\_Encapsulation\_SIP.ps1
+```
+
+<p>进入封装脚本主界面后，您可将路由功能添加到系统变量，添加后，下次在 PowerShell 终端里运行 Yi 进入引导界面，或输入 Yi -sip 直接进入封装界面，无需再输入脚本完整路径才可运行。</p>
+    </dd>
+    <dd>2.	其它项</dd>
+  </dl>
+</ul>
+
+<br>
+
 Component
 -
 
