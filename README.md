@@ -20,22 +20,22 @@ Detailed introduction
 Component
 -
 
-<h4><pre>Chapter 1.&nbsp;&nbsp;Packaging Tutorial</pre></h4>
+<h4><pre>A.&nbsp;&nbsp;Packaging Tutorial</pre></h4>
 <ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 23H2, 22H2, Windows 10, and Windows Server 2022. Different packaging versions are available.</ol>
 
-<h4><pre>Chapter 2.&nbsp;&nbsp;Encapsulation Script</pre></h4>
+<h4><pre>B.&nbsp;&nbsp;Encapsulation Script</pre></h4>
 <ol>Developed using the PowerShell language, it follows an open source license and can be distributed arbitrarily without copyright restrictions.</ol>
 
-<h4><pre>Chapter 3.&nbsp;&nbsp;Video Tutorial</pre></h4>
+<h4><pre>C.&nbsp;&nbsp;Video Tutorial</pre></h4>
 <ol>The video tutorial includes different packaging methods: custom allocation of packaging events, automatic driving, manual packaging, and introduction to packaging scripts.</ol>
 
-<h4><pre>Chapter 4.&nbsp;&nbsp;Local Language Experience Packs (LXPs) Downloader</pre></h4>
+<h4><pre>D.&nbsp;&nbsp;Local Language Experience Packs (LXPs) Downloader</pre></h4>
 <ol>Solve the problem of batch downloading of "Local Language Experience Packages (LXPs)" installation packages, and you can filter or download all.</ol>
 
-<h4><pre>Chapter 5.&nbsp;&nbsp;Fully automatic addition of Windows installed languages</pre></h4>
+<h4><pre>E.&nbsp;&nbsp;Fully automatic addition of Windows installed languages</pre></h4>
 <ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
 
-<h4><pre>Chapter 6.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
+<h4><pre>F.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
 <ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
 
