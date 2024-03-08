@@ -33,6 +33,13 @@ Detailed introduction
           <dl>
             <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
           </dl>
+
+<br>
+          <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
+          <dl>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://github.com/ilikeyi/solutions 后选择“代码”，再选择下载 ZIP。</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;或前往 https://github.com/ilikeyi/solutions/releases 后，选择需要下载的可用版本，点击下载源代码（zip、tar.gz）。</dd>
+          </dl>
         </dd>
       </dl>
 
