@@ -179,7 +179,7 @@ Yi’s soultions
 
 <br>
         <dd>
-          <p>2.2.&nbsp;&nbsp事件处理</p>
+          <p>2.2.&nbsp;&nbsp;事件处理</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;事件处理分为几种方案：无需挂载映像、需要挂载映像后才能操作项方式，支持主映像、映像内批量处理。</p>
           <dl>
             <dd>2.2.1.	无需挂载映像
@@ -194,18 +194,18 @@ Yi’s soultions
             </dd>
 
 <br>
-            <dd>2.2.2.&nbsp;&nbsp需要挂载映像后才能操作项
+            <dd>2.2.2.&nbsp;&nbsp;需要挂载映像后才能操作项
               <dl>
-                <dd>2.2.2.1.&nbsp;&nbsp语言包</dd>
-                <dd>2.2.2.2.&nbsp;&nbsp本地语言体验包（LXPs）</dd>
-                <dd>2.2.2.3.&nbsp;&nbspInBox Apps</dd>
-                <dd>2.2.2.4.&nbsp;&nbsp累积更新</dd>
-                <dd>2.2.2.5.&nbsp;&nbsp驱动</dd>
-                <dd>2.2.2.6.&nbsp;&nbspWindows 功能</dd>
-                <dd>2.2.2.7.&nbsp;&nbsp运行 PowerShell 函数</dd>
-                <dd>2.2.2.8.&nbsp;&nbsp解决方案：生成</dd>
-                <dd>2.2.2.9.&nbsp;&nbsp生成报告</dd>
-                <dd>2.2.2.10.&nbsp;&nbsp弹出</dd>
+                <dd>2.2.2.1.&nbsp;&nbsp;语言包</dd>
+                <dd>2.2.2.2.&nbsp;&nbsp;本地语言体验包（LXPs）</dd>
+                <dd>2.2.2.3.&nbsp;&nbsp;InBox Apps</dd>
+                <dd>2.2.2.4.&nbsp;&nbsp;累积更新</dd>
+                <dd>2.2.2.5.&nbsp;&nbsp;驱动</dd>
+                <dd>2.2.2.6.&nbsp;&nbsp;Windows 功能</dd>
+                <dd>2.2.2.7.&nbsp;&nbsp;运行 PowerShell 函数</dd>
+                <dd>2.2.2.8.&nbsp;&nbsp;解决方案：生成</dd>
+                <dd>2.2.2.9.&nbsp;&nbsp;生成报告</dd>
+                <dd>2.2.2.10.&nbsp;&nbsp;弹出</dd>
               </dl>
             </dd>
           </dl>
