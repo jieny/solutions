@@ -163,7 +163,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <br>
     <dd>
       <p>2. For the main functions of the image source</p>
-      <p>&nbsp;&nbsp;&nbsp;&nbsp;面向于封装 Windows 操作系统的主要功能，支持批量操作主要项、扩展项。</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;Aimed at encapsulating the main functions of the Windows operating system, it supports batch operations of main items and extensions.</p>
 
 <br>
       <dl>
@@ -199,13 +199,13 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
                 <dd>2.2.2.1.&nbsp;&nbsp;Language pack</dd>
                 <dd>2.2.2.2.&nbsp;&nbsp;Local Language Experience Packages (LXPs)</dd>
                 <dd>2.2.2.3.&nbsp;&nbsp;InBox Apps</dd>
-                <dd>2.2.2.4.&nbsp;&nbsp;累积更新</dd>
-                <dd>2.2.2.5.&nbsp;&nbsp;驱动</dd>
-                <dd>2.2.2.6.&nbsp;&nbsp;Windows 功能</dd>
-                <dd>2.2.2.7.&nbsp;&nbsp;运行 PowerShell 函数</dd>
-                <dd>2.2.2.8.&nbsp;&nbsp;解决方案：生成</dd>
-                <dd>2.2.2.9.&nbsp;&nbsp;生成报告</dd>
-                <dd>2.2.2.10.&nbsp;&nbsp;弹出</dd>
+                <dd>2.2.2.4.&nbsp;&nbsp;Cumulative updates</dd>
+                <dd>2.2.2.5.&nbsp;&nbsp;Drive</dd>
+                <dd>2.2.2.6.&nbsp;&nbsp;Windows features</dd>
+                <dd>2.2.2.7.&nbsp;&nbsp;Run a PowerShell function</dd>
+                <dd>2.2.2.8.&nbsp;&nbsp;Solution: Generate</dd>
+                <dd>2.2.2.9.&nbsp;&nbsp;Generate report</dd>
+                <dd>2.2.2.10.&nbsp;&nbsp;Pop up</dd>
               </dl>
             </dd>
           </dl>
@@ -314,28 +314,28 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
         <dd>
           <p>2.1.&nbsp;&nbsp;Backup
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1，路由功能可用时：Yi -unpack</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1, when routing function is available: Yi -unpack</dd>
             </dl>
           </p>
 
 <br>
           <p>2.2.&nbsp;&nbsp;Create upgrade package
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1，路由功能可用时：Yi -CU</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1, when routing function is available: Yi -CU</dd>
             </dl>
           </p>
 
 <br>
           <p>2.3.&nbsp;&nbsp;Create a deployment engine upgrade package
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1，路由功能可用时：Yi -CEUP</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1, when routing function is available: Yi -CEUP</dd>
             </dl>
           </p>
 
 <br>
           <p>2.4.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1，路由功能可用时：Yi -Zip</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -Zip</dd>
             </dl>
           </p>
         </dd>
