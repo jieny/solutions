@@ -17,135 +17,6 @@ Detailed introduction
 
 <br>
 
-章节 2&nbsp;&nbsp;&nbsp;&nbsp;开启封装之旅
--
-
-<h4><pre>A.&nbsp;&nbsp;先决条件</pre></h4>
-
-<ul>
-  <p>I.	获取封装脚本</p>
-  <dl>
-    <dd>
-      <p>1.	项目地址</p>
-      <dl>
-        <dd>
-          <p>1.1.	官方网站</p>
-          <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
-          </dl>
-
-<br>
-          <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
-          <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://github.com/ilikeyi/solutions 后选择“代码”，再选择下载 ZIP。</dd>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;或前往 https://github.com/ilikeyi/solutions/releases 后，选择需要下载的可用版本，点击下载源代码（zip、tar.gz）。</dd>
-          </dl>
-        </dd>
-      </dl>
-
-<br>
-      <p>2.	网盘下载</p>
-      <dl>
-        <dd>
-          <p>2.1.	阿里云网盘 | https://www.alipan.com/s/sFU4uaJ6uV3</p>
-          <p>2.2.	123 网盘 | https://www.123pan.com/s/zitA-QU9l.html</p>
-        </dd>
-      </dl>
-
-<br>
-      <p>3.	下载完成后，将已下载的文件解压到：D:\Yi.Solutions</p>
-    </dd>
-  </dl>
-
-<br>
-  <p>II.	要求</p>
-  <dl>
-    <dd>
-      <p>PowerShell 版本</p>
-      <dl>
-        <dd>
-          <p>PowerShell 5.1</p>
-          <dl><dd>需要 Windows 11、Windows 10、Windows Server 2022、Windows Server vNext 或系统默认自带的 5.1 版本，可选升级最新版 PowerShell 7。</dd></dl>
-        </dd>
-
-<br>
-        <dd>
-          <p>PowerShell 7</p>
-          <dl><dd>获取最新版，前往 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows 后，选择需要下载的版本，下载后并安装。</dd></dl>
-        </dd>
-      </dl>
-    </dd>
-  </dl>
-
-<br>
-
-<br>
-  <p>III.	命令行</p>
-  <dl>
-    <dd>1.	可选“Terminal ”或“PowerShell ISE”，未安装“Terminal”，请前往 https://github.com/microsoft/terminal/releases 后下载；</dd>
-    <dd>2.	以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：
-
-```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-```
-
-</dd>
-    <dd>3.	在本文中，绿色部分属于 PS 命令行，请复制后，粘贴到“Terminal”对话框，按回车键（Enter）后开始运行；</dd>
-    <dd>4.	有 .ps1 时，点击文件右键，选择以 PowerShell 运行，或复制路径，粘贴到“Terminal ”或“PowerShell ISE”里运行，带冒号的路径，在命令行添加  & 字符，示例：& "D:\Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
-  </dl>
-
-<br>
-  <p>IV.	PowerShell 脚本</p>
-  <dl>
-    <dd>
-      <p>1.	先决条件：满足后，运行封装主脚本</p>
-
-```
-D:\Yi.Solutions\_Encapsulation\_SIP.ps1
-```
-
-<p>进入封装脚本主界面后，您可将路由功能添加到系统变量，添加后，下次在 PowerShell 终端里运行 Yi 进入引导界面，或输入 Yi -sip 直接进入封装界面，无需再输入脚本完整路径才可运行。</p>
-    </dd>
-
-<br>
-    <dd>
-      <p>2.	其它项</p>
-      <dl>
-        <dd>
-          <p>2.1.&nbsp;&nbsp;备份
-            <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1，路由功能可用时：Yi -unpack</dd>
-            </dl>
-          </p>
-
-<br>
-          <p>2.2.&nbsp;&nbsp;创建升级包
-            <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1，路由功能可用时：Yi -CU</dd>
-            </dl>
-          </p>
-
-<br>
-          <p>2.3.&nbsp;&nbsp;创建部署引擎升级包
-            <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1，路由功能可用时：Yi -CEUP</dd>
-            </dl>
-          </p>
-
-<br>
-          <p>2.4.&nbsp;&nbsp;将所有软件转换为压缩包
-            <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1，路由功能可用时：Yi -Zip</dd>
-            </dl>
-          </p>
-        </dd>
-      </dl>
-    </dd>
-  </dl>
-</ul>
-
-<br>
-
 Component
 -
 
@@ -344,7 +215,133 @@ Component
   </dl>
 </ul>
 
+<br>
+章节 2&nbsp;&nbsp;&nbsp;&nbsp;开启封装之旅
+-
 
+<h4><pre>A.&nbsp;&nbsp;先决条件</pre></h4>
+
+<ul>
+  <p>I.	获取封装脚本</p>
+  <dl>
+    <dd>
+      <p>1.	项目地址</p>
+      <dl>
+        <dd>
+          <p>1.1.	官方网站</p>
+          <dl>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
+          </dl>
+
+<br>
+          <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
+          <dl>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://github.com/ilikeyi/solutions 后选择“代码”，再选择下载 ZIP。</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;或前往 https://github.com/ilikeyi/solutions/releases 后，选择需要下载的可用版本，点击下载源代码（zip、tar.gz）。</dd>
+          </dl>
+        </dd>
+      </dl>
+
+<br>
+      <p>2.	网盘下载</p>
+      <dl>
+        <dd>
+          <p>2.1.	阿里云网盘 | https://www.alipan.com/s/sFU4uaJ6uV3</p>
+          <p>2.2.	123 网盘 | https://www.123pan.com/s/zitA-QU9l.html</p>
+        </dd>
+      </dl>
+
+<br>
+      <p>3.	下载完成后，将已下载的文件解压到：D:\Yi.Solutions</p>
+    </dd>
+  </dl>
+
+<br>
+  <p>II.	要求</p>
+  <dl>
+    <dd>
+      <p>PowerShell 版本</p>
+      <dl>
+        <dd>
+          <p>PowerShell 5.1</p>
+          <dl><dd>需要 Windows 11、Windows 10、Windows Server 2022、Windows Server vNext 或系统默认自带的 5.1 版本，可选升级最新版 PowerShell 7。</dd></dl>
+        </dd>
+
+<br>
+        <dd>
+          <p>PowerShell 7</p>
+          <dl><dd>获取最新版，前往 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows 后，选择需要下载的版本，下载后并安装。</dd></dl>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+
+<br>
+
+<br>
+  <p>III.	命令行</p>
+  <dl>
+    <dd>1.	可选“Terminal ”或“PowerShell ISE”，未安装“Terminal”，请前往 https://github.com/microsoft/terminal/releases 后下载；</dd>
+    <dd>2.	以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+```
+
+</dd>
+    <dd>3.	在本文中，绿色部分属于 PS 命令行，请复制后，粘贴到“Terminal”对话框，按回车键（Enter）后开始运行；</dd>
+    <dd>4.	有 .ps1 时，点击文件右键，选择以 PowerShell 运行，或复制路径，粘贴到“Terminal ”或“PowerShell ISE”里运行，带冒号的路径，在命令行添加  & 字符，示例：& "D:\Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
+  </dl>
+
+<br>
+  <p>IV.	PowerShell 脚本</p>
+  <dl>
+    <dd>
+      <p>1.	先决条件：满足后，运行封装主脚本</p>
+
+```
+D:\Yi.Solutions\_Encapsulation\_SIP.ps1
+```
+
+<p>进入封装脚本主界面后，您可将路由功能添加到系统变量，添加后，下次在 PowerShell 终端里运行 Yi 进入引导界面，或输入 Yi -sip 直接进入封装界面，无需再输入脚本完整路径才可运行。</p>
+    </dd>
+
+<br>
+    <dd>
+      <p>2.	其它项</p>
+      <dl>
+        <dd>
+          <p>2.1.&nbsp;&nbsp;备份
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1，路由功能可用时：Yi -unpack</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.2.&nbsp;&nbsp;创建升级包
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1，路由功能可用时：Yi -CU</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.3.&nbsp;&nbsp;创建部署引擎升级包
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1，路由功能可用时：Yi -CEUP</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.4.&nbsp;&nbsp;将所有软件转换为压缩包
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1，路由功能可用时：Yi -Zip</dd>
+            </dl>
+          </p>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+</ul>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
