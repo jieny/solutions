@@ -11,8 +11,8 @@ Yi’s soultions
 详细介绍
 -
 
- * [United States - English](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.pdf)
- * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.zh-CN.pdf)
+ * [United States - English](https://github.com/ilikeyi/solutions/blob/35203a2867fade19ef12bc7631c11c1209b8cc05/_Documents/Readme/Readme.Detailed.pdf)
+ * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/Readme/Readme.Detailed.zh-CN.pdf)
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正查看部分介绍，可查看完整版介绍。</p>
 
