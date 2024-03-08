@@ -33,9 +33,20 @@ Summary
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
 
 <br>
-<h4>章节 1&nbsp;&nbsp;&nbsp;&nbsp;组成部分介绍</h4>
-<ol>A.&nbsp;&nbsp;封装教程</ol>
-<ol>B.&nbsp;&nbsp;视频教程</ol>
+
+章节 1&nbsp;&nbsp;&nbsp;&nbsp;组成部分介绍
+-
+
+<ol>A.&nbsp;&nbsp;封装教程
+  <dl>
+    <dd>提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：</dd>
+    <dd>1.	完整版本，无删减内容；</dd>
+    <dd>2.	精简版，不包含：报告、注意事项等；</dd>
+  </dl>
+</ol>
+<ol>B.&nbsp;&nbsp;视频教程
+  <dd>kkkkkkkkkj</dd>
+</ol>
 <ol>B.&nbsp;&nbsp;封装脚本</ol>
 <ol>D.&nbsp;&nbsp;本地语言体验包（LXPs）下载器</ol>
 <ol>E.&nbsp;&nbsp;全自动添加 Windows 已安装语言</ol>
