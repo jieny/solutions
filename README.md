@@ -155,13 +155,52 @@ Summary
 
 <br>
     <dd>
-      <p>2. 封装脚本主要功能</p>
+      <p>2. 面向于映像源主要功能</p>
+      <p>&nbsp;&nbsp;&nbsp;&nbsp;面向于封装 Windows 操作系统的主要功能，支持批量操作主要项、扩展项。</p>
       <dl>
-        <dd>2.1.	事件</dd>
-        <dd>2.2.	事件处理</dd>
-        <dd></dd>
-        <dd></dd>
-        <dd></dd>
+        <dd>2.1.	事件
+
+<br>
+          <dl>
+            <dd>比如操作 WinRE.wim 时，需要挂载 Install.wim 后才能再挂载 WinRe.wim，才可以执行针对 WinRE 的相应任务。</dd>
+            <dd>什么是映像内的文件？例如 Install.wim 里包含了 WinRE.wim 文件，挂载 install.wim 后，可以分配事件去处理 WinRe.wim。</dd>
+            <dd>主要功能：可分配已挂载或未挂载事件，主要触发事件，可分配：</dd>
+          </dl>
+        </dd>
+
+<br>
+        <dd>
+          <p>2.2.&nbsp;&nbsp事件处理</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;事件处理分为几种方案：无需挂载映像、需要挂载映像后才能操作项方式，支持主映像、映像内批量处理。</p>
+          <dl>
+            <dd>2.2.1.	无需挂载映像
+              <dl>
+                <dd>2.2.1.1. 添加、删除、更新映像内的文件、提取、重建、应用</dd>
+                <dd>2.2.1.2. 提取语言包</dd>
+                <dd>2.2.1.3. 互转 Esd、Wim</dd>
+                <dd>2.2.1.4. 拆分 Install.wim 为 Install.swm</dd>
+                <dd>2.2.1.5. 合并 install.swm 到 install.wim</dd>
+                <dd>2.2.1.6. 生成 ISO</dd>
+              </dl>
+            </dd>
+
+<br>
+            <dd>2.2.2.&nbsp;&nbsp需要挂载映像后才能操作项
+              <dl>
+                <dd>2.2.2.1.&nbsp;&nbsp语言包</dd>
+                <dd>2.2.2.2.&nbsp;&nbsp本地语言体验包（LXPs）</dd>
+                <dd>2.2.2.3.&nbsp;&nbspInBox Apps</dd>
+                <dd>2.2.2.4.&nbsp;&nbsp累积更新</dd>
+                <dd>2.2.2.5.&nbsp;&nbsp驱动</dd>
+                <dd>2.2.2.6.&nbsp;&nbspWindows 功能</dd>
+                <dd>2.2.2.7.&nbsp;&nbsp运行 PowerShell 函数</dd>
+                <dd>2.2.2.8.&nbsp;&nbsp解决方案：生成</dd>
+                <dd>2.2.2.9.&nbsp;&nbsp生成报告</dd>
+                <dd>2.2.2.10.&nbsp;&nbsp弹出</dd>
+              </dl>
+            </dd>
+          </dl>
+        </dd>
       </dl>
     </dd>
   </dl>
