@@ -1,13 +1,19 @@
 <a name="readme-top"></a>
-YI’S SOULTIONS
+Yi’s soultions
 -
-Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.
+It consists of multiple parts: packaging script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi’s optimization script, etc.
 
-View full version introduction
+To help you solve the difficult problem of packaging multilingual versions, the production method provided by Yi and the deployment engine can perfectly solve this problem. You can initiate this packaging journey at will and end this "unpackageable journey".
+
 <br>
+
+Detailed introduction
 -
+
  * [United States - English](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.pdf)
  * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.zh-CN.pdf)
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
 
 <br>
 
