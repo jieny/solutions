@@ -31,26 +31,23 @@ Detailed introduction
         <dd>
           <p>1.1.	官方网站</p>
           <dl>
-            <dd>前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
-          </dl>
-        </dd>
-
-<br>
-        <dd>
-          <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
-          <dl>
-            <dd>前往 https://github.com/ilikeyi/solutions 后选择“代码”，再选择下载 ZIP。</dd>
-            <dd>或前往 https://github.com/ilikeyi/solutions/releases 后，选择需要下载的可用版本，点击下载源代码（zip、tar.gz）。</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
           </dl>
         </dd>
       </dl>
+
+<br>
+      <p>2.	网盘下载</p>
+      <dl>
+        <dd>
+          <p>2.1.	阿里云网盘 | https://www.alipan.com/s/sFU4uaJ6uV3</p>
+          <p>2.2.	123 网盘 | https://www.123pan.com/s/zitA-QU9l.html</p>
+        </dd>
+      </dl>
+
+<br>
+      <p>3.	下载完成后，将已下载的文件解压到：D:\Yi.Solutions</p>
     </dd>
-
-<br>
-    <dd>2.	网盘下载</dd>
-
-<br>
-    <dd>3.	下载完成后</dd>
   </dl>
 
 <br>
