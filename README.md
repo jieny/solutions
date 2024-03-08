@@ -53,7 +53,39 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 
 <p>进入封装脚本主界面后，您可将路由功能添加到系统变量，添加后，下次在 PowerShell 终端里运行 Yi 进入引导界面，或输入 Yi -sip 直接进入封装界面，无需再输入脚本完整路径才可运行。</p>
     </dd>
-    <dd>2.	其它项</dd>
+    <dd>
+      <p>2.	其它项</p>
+      <dl>
+        <dd>
+          <p>2.1.&nbsp;&nbsp;备份
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1，路由功能可用时：Yi -unpack</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.2.&nbsp;&nbsp;创建升级包
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1，路由功能可用时：Yi -CU</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.3.&nbsp;&nbsp;创建部署引擎升级包
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1，路由功能可用时：Yi -CEUP</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.4.&nbsp;&nbsp;将所有软件转换为压缩包
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1，路由功能可用时：Yi -Zip</dd>
+            </dl>
+          </p>
+        </dd>
+      </dl>
+    </dd>
   </dl>
 </ul>
 
