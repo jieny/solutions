@@ -3,7 +3,7 @@ YI’S SOULTIONS
 -
 Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.
 
-Detailed
+View full version introduction
 <br>
 -
  * [United States - English](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.pdf)
