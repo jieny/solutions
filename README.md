@@ -25,8 +25,32 @@ Detailed introduction
 <ul>
   <p>I.	获取封装脚本</p>
   <dl>
-    <dd>1.	完整版本，无删减内容；</dd>
-    <dd>2.	精简版，不包含：报告、注意事项等；</dd>
+    <dd>
+      <p>1.	项目地址</p>
+      <dl>
+        <dd>
+          <p>1.1.	官方网站</p>
+          <dl>
+            <dd>前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
+          </dl>
+        </dd>
+
+<br>
+        <dd>
+          <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
+          <dl>
+            <dd>前往 https://github.com/ilikeyi/solutions 后选择“代码”，再选择下载 ZIP。</dd>
+            <dd>或前往 https://github.com/ilikeyi/solutions/releases 后，选择需要下载的可用版本，点击下载源代码（zip、tar.gz）。</dd>
+          </dl>
+        </dd>
+      </dl>
+    </dd>
+
+<br>
+    <dd>2.	网盘下载</dd>
+
+<br>
+    <dd>3.	下载完成后</dd>
   </dl>
 
 <br>
