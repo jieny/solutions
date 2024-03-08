@@ -40,7 +40,13 @@ Detailed introduction
   <p>III.	命令行</p>
   <dl>
     <dd>1.	可选“Terminal ”或“PowerShell ISE”，未安装“Terminal”，请前往 https://github.com/microsoft/terminal/releases 后下载；</dd>
-    <dd>2.	以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：</dd>
+    <dd>2.	以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+```
+
+</dd>
     <dd>3.	在本文中，绿色部分属于 PS 命令行，请复制后，粘贴到“Terminal”对话框，按回车键（Enter）后开始运行；</dd>
     <dd>4.	有 .ps1 时，点击文件右键，选择以 PowerShell 运行，或复制路径，粘贴到“Terminal ”或“PowerShell ISE”里运行，带冒号的路径，在命令行添加  & 字符，示例：& "D:\Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
   </dl>
