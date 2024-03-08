@@ -32,9 +32,21 @@ Detailed introduction
 <br>
   <p>II.	要求</p>
   <dl>
-    <dd>1.	完整版本，无删减内容；</dd>
-    <dd>2.	精简版，不包含：报告、注意事项等；</dd>
+    <dd>PowerShell 版本
+      <dl>
+        <dd>PowerShell 5.1
+          <dl><dd>需要 Windows 11、Windows 10、Windows Server 2022、Windows Server vNext 或系统默认自带的 5.1 版本，可选升级最新版 PowerShell 7。</dd></dl>
+        </dd>
+
+<br>
+        <dd>PowerShell 7
+          <dl><dd>获取最新版，前往 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows 后，选择需要下载的版本，下载后并安装。</dd></dl>
+        </dd>
+      </dl>
+    </dd>
   </dl>
+
+<br>
 
 <br>
   <p>III.	命令行</p>
