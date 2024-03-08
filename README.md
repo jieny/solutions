@@ -41,7 +41,7 @@ Component
 
 <br>
 
-章节 1&nbsp;&nbsp;&nbsp;&nbsp;组成部分介绍
+Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 -
 
 <h4><pre>A.&nbsp;&nbsp;封装教程</pre></h4>
@@ -216,61 +216,62 @@ Component
 </ul>
 
 <br>
-章节 2&nbsp;&nbsp;&nbsp;&nbsp;开启封装之旅
+
+Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
 -
 
-<h4><pre>A.&nbsp;&nbsp;先决条件</pre></h4>
+<h4><pre>A.&nbsp;&nbsp;Prerequisites</pre></h4>
 
 <ul>
-  <p>I.	获取封装脚本</p>
+  <p>I.	Get the package script</p>
   <dl>
     <dd>
-      <p>1.	项目地址</p>
+      <p>1.	Project address</p>
       <dl>
         <dd>
-          <p>1.1.	官方网站</p>
+          <p>1.1.	Official website</p>
           <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://fengyi.tel/solutions 后查看下载项，或打开 https://fengyi.tel/go/solutions 后直接下载。</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</dd>
           </dl>
 
 <br>
           <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
           <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;前往 https://github.com/ilikeyi/solutions 后选择“代码”，再选择下载 ZIP。</dd>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;或前往 https://github.com/ilikeyi/solutions/releases 后，选择需要下载的可用版本，点击下载源代码（zip、tar.gz）。</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</dd>
           </dl>
         </dd>
       </dl>
 
 <br>
-      <p>2.	网盘下载</p>
+      <p>2.	Netdisk download</p>
       <dl>
         <dd>
-          <p>2.1.	阿里云网盘 | https://www.alipan.com/s/sFU4uaJ6uV3</p>
-          <p>2.2.	123 网盘 | https://www.123pan.com/s/zitA-QU9l.html</p>
+          <p>2.1.	Alibaba cloud network disk | https://www.alipan.com/s/sFU4uaJ6uV3</p>
+          <p>2.2.	123 network disk | https://www.123pan.com/s/zitA-QU9l.html</p>
         </dd>
       </dl>
 
 <br>
-      <p>3.	下载完成后，将已下载的文件解压到：D:\Yi.Solutions</p>
+      <p>3.	After the download is complete, unzip the downloaded file to: D:\Yi.Solutions</p>
     </dd>
   </dl>
 
 <br>
-  <p>II.	要求</p>
+  <p>II.	Require</p>
   <dl>
     <dd>
-      <p>PowerShell 版本</p>
+      <p>PowerShell Version</p>
       <dl>
         <dd>
           <p>PowerShell 5.1</p>
-          <dl><dd>需要 Windows 11、Windows 10、Windows Server 2022、Windows Server vNext 或系统默认自带的 5.1 版本，可选升级最新版 PowerShell 7。</dd></dl>
+          <dl><dd>Requires Windows 11, Windows 10, Windows Server 2022, Windows Server vNext or the 5.1 version that comes with the system by default. You can optionally upgrade to the latest version of PowerShell 7.</dd></dl>
         </dd>
 
 <br>
         <dd>
           <p>PowerShell 7</p>
-          <dl><dd>获取最新版，前往 https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows 后，选择需要下载的版本，下载后并安装。</dd></dl>
+          <dl><dd>To get the latest version, go to https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows, select the version you want to download, download and install.</dd></dl>
         </dd>
       </dl>
     </dd>
@@ -279,60 +280,60 @@ Component
 <br>
 
 <br>
-  <p>III.	命令行</p>
+  <p>III.	Command Line</p>
   <dl>
-    <dd>1.	可选“Terminal ”或“PowerShell ISE”，未安装“Terminal”，请前往 https://github.com/microsoft/terminal/releases 后下载；</dd>
-    <dd>2.	以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：
+    <dd>1.	You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
+    <dd>2.	Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 ```
 
 </dd>
-    <dd>3.	在本文中，绿色部分属于 PS 命令行，请复制后，粘贴到“Terminal”对话框，按回车键（Enter）后开始运行；</dd>
-    <dd>4.	有 .ps1 时，点击文件右键，选择以 PowerShell 运行，或复制路径，粘贴到“Terminal ”或“PowerShell ISE”里运行，带冒号的路径，在命令行添加  & 字符，示例：& "D:\Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
+    <dd>3.	In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
+    <dd>4.	When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: & "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
   </dl>
 
 <br>
-  <p>IV.	PowerShell 脚本</p>
+  <p>IV.	PowerShell script</p>
   <dl>
     <dd>
-      <p>1.	先决条件：满足后，运行封装主脚本</p>
+      <p>1.	Prerequisites: Once met, run the package main script</p>
 
 ```
 D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 ```
 
-<p>进入封装脚本主界面后，您可将路由功能添加到系统变量，添加后，下次在 PowerShell 终端里运行 Yi 进入引导界面，或输入 Yi -sip 直接进入封装界面，无需再输入脚本完整路径才可运行。</p>
+<p>After entering the main interface of the packaging script, you can add the routing function to the system variable. After adding it, run Yi in the PowerShell terminal next time to enter the boot interface, or enter Yi -sip to directly enter the packaging interface without entering the full path of the script. run.</p>
     </dd>
 
 <br>
     <dd>
-      <p>2.	其它项</p>
+      <p>2.	Other items</p>
       <dl>
         <dd>
-          <p>2.1.&nbsp;&nbsp;备份
+          <p>2.1.&nbsp;&nbsp;Backup
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1，路由功能可用时：Yi -unpack</dd>
             </dl>
           </p>
 
 <br>
-          <p>2.2.&nbsp;&nbsp;创建升级包
+          <p>2.2.&nbsp;&nbsp;Create upgrade package
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1，路由功能可用时：Yi -CU</dd>
             </dl>
           </p>
 
 <br>
-          <p>2.3.&nbsp;&nbsp;创建部署引擎升级包
+          <p>2.3.&nbsp;&nbsp;Create a deployment engine upgrade package
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1，路由功能可用时：Yi -CEUP</dd>
             </dl>
           </p>
 
 <br>
-          <p>2.4.&nbsp;&nbsp;将所有软件转换为压缩包
+          <p>2.4.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1，路由功能可用时：Yi -Zip</dd>
             </dl>
