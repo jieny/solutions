@@ -37,20 +37,54 @@ Summary
 章节 1&nbsp;&nbsp;&nbsp;&nbsp;组成部分介绍
 -
 
-<ol>A.&nbsp;&nbsp;封装教程
+<h4><pre>A.&nbsp;&nbsp;封装教程</pre></h4>
+
+<ul>
+  提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：
   <dl>
-    <dd>提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：</dd>
     <dd>1.	完整版本，无删减内容；</dd>
     <dd>2.	精简版，不包含：报告、注意事项等；</dd>
   </dl>
-</ol>
-<ol>B.&nbsp;&nbsp;视频教程
-  <dd>kkkkkkkkkj</dd>
-</ol>
-<ol>B.&nbsp;&nbsp;封装脚本</ol>
-<ol>D.&nbsp;&nbsp;本地语言体验包（LXPs）下载器</ol>
-<ol>E.&nbsp;&nbsp;全自动添加 Windows 已安装语言</ol>
-<ol>F.&nbsp;&nbsp;Yi’s 优化脚本</ol>
+
+<br>
+  提供了不同的版本：有完整版本、精简版，提供的格式：.Docx 文档格式，.Pdf 文档格式，版本区别：
+  <dl>
+    <dd>可选语言版本：简体中文版、美国英文版（Google 翻译：中文译英文），下载完整包可获得所有文档：[压缩包]:\_Documents\Attachment，或前往 https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment 后选择。</dd>
+  </dl>
+</ul>
+
+<br>
+<h4><pre>B.&nbsp;&nbsp;视频教程</pre></h4>
+<ul>
+  <dl>
+    <dd>1. 自动驾驶
+      <dl>
+        <dd>1.1.	Windows 11 23H2：自动驾驶封装</dd>
+        <dd>1.2.	Windows 10 22H2：自动驾驶封装</dd>
+      </dl>
+    </dd>
+
+<br>
+    <dd>2. 自定义分配封装事件
+      <dl>
+        <dd>2.1.	Windows 11 23H2：自定义分配封装事件</dd>
+        <dd>2.2.	Windows 10 22H2：自定义分配封装事件</dd>
+      </dl>
+    </dd>
+
+<br>
+    <dd>3. 手动封装
+      <dl>
+        <dd>3.1.	Windows 11 23H2：手动封装</dd>
+        <dd>3.2.	Windows 10 22H2：手动封装</dd>
+      </dl>
+    </dd>
+  </dl>
+</ul>
+
+<br>
+<h4><pre>C.&nbsp;&nbsp;封装脚本</pre></h4>
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
