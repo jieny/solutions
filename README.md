@@ -32,13 +32,17 @@ Detailed introduction
 <br>
   <p>II.	要求</p>
   <dl>
-    <dd>可选语言版本：简体中文版、美国英文版（Google 翻译：中文译英文），下载完整包可获得所有文档：[压缩包]:\_Documents\Attachment，或前往 https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment 后选择。</dd>
+    <dd>1.	完整版本，无删减内容；</dd>
+    <dd>2.	精简版，不包含：报告、注意事项等；</dd>
   </dl>
 
 <br>
   <p>III.	命令行</p>
   <dl>
-    <dd>可选语言版本：简体中文版、美国英文版（Google 翻译：中文译英文），下载完整包可获得所有文档：[压缩包]:\_Documents\Attachment，或前往 https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment 后选择。</dd>
+    <dd>1.	可选“Terminal ”或“PowerShell ISE”，未安装“Terminal”，请前往 https://github.com/microsoft/terminal/releases 后下载；</dd>
+    <dd>2.	以管理员身份打开“Terminal”或“PowerShell ISE”，设置 PowerShell 执行策略：绕过，PS 命令行：</dd>
+    <dd>3.	在本文中，绿色部分属于 PS 命令行，请复制后，粘贴到“Terminal”对话框，按回车键（Enter）后开始运行；</dd>
+    <dd>4.	有 .ps1 时，点击文件右键，选择以 PowerShell 运行，或复制路径，粘贴到“Terminal ”或“PowerShell ISE”里运行，带冒号的路径，在命令行添加  & 字符，示例：& "D:\Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
   </dl>
 
 <br>
@@ -53,6 +57,8 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 
 <p>进入封装脚本主界面后，您可将路由功能添加到系统变量，添加后，下次在 PowerShell 终端里运行 Yi 进入引导界面，或输入 Yi -sip 直接进入封装界面，无需再输入脚本完整路径才可运行。</p>
     </dd>
+
+<br>
     <dd>
       <p>2.	其它项</p>
       <dl>
