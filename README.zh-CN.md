@@ -1,43 +1,43 @@
 <a name="readme-top"></a>
 Yi’s soultions
 -
-It consists of multiple parts: packaging script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi’s optimization script, etc.
+由多部分组成：封装脚本、封装教程、视频教程、部署引擎：全自动添加 Windows 已安装语言、Yi’s 优化脚本等。
 
-To help you solve the difficult problem of packaging multilingual versions, the production method provided by Yi and the deployment engine can perfectly solve this problem. You can initiate this packaging journey at will and end this "unpackageable journey".
+为你解决封装多语版的疑难问题，通过Yi 提供的制作方法，搭配部署引擎可完美的解决此问题，你可任意的发起这一场封装之旅，从此结束这场“不可封装之旅”。
+
 
 <br>
 
-Detailed introduction
+详细介绍
 -
 
  * [United States - English](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.pdf)
  * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/README.zh-CN.pdf)
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;正查看部分介绍，可查看完整版介绍。</p>
 
 <br>
 
-Component
+组成部分
 -
 
-<h4><pre>Chapter 1.&nbsp;&nbsp;Packaging Tutorial</pre></h4>
-<ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 23H2, 22H2, Windows 10, and Windows Server 2022. Different packaging versions are available.</ol>
+<h4><pre>A.&nbsp;&nbsp;封装教程</pre></h4>
+<ol>由 Yi 编写的封装教程，可选开启 Windows 11 23H2、22H2、Windows 10、Windows Server 2022 的封装之旅，有不同的封装版本可选。</ol>
 
-<h4><pre>Chapter 2.&nbsp;&nbsp;Encapsulation Script</pre></h4>
-<ol>Developed using the PowerShell language, it follows an open source license and can be distributed arbitrarily without copyright restrictions.</ol>
+<h4><pre>B.&nbsp;&nbsp;视频教程</pre></h4>
+<ol>视频教程包含了不同的封装方法：自定义分配封装事件、自动驾驶、手动封装，以及封装脚本介绍等。</ol>
 
-<h4><pre>Chapter 3.&nbsp;&nbsp;Video Tutorial</pre></h4>
-<ol>The video tutorial includes different packaging methods: custom allocation of packaging events, automatic driving, manual packaging, and introduction to packaging scripts.</ol>
+<h4><pre>C.&nbsp;&nbsp;封装脚本</pre></h4>
+<ol>使用 PowerShell 语言开发，遵循开源协议，可任意分发，不受版权限制。</ol>
 
-<h4><pre>Chapter 4.&nbsp;&nbsp;Local Language Experience Packs (LXPs) Downloader</pre></h4>
-<ol>Solve the problem of batch downloading of "Local Language Experience Packages (LXPs)" installation packages, and you can filter or download all.</ol>
+<h4><pre>D.&nbsp;&nbsp;本地语言体验包（LXPs）下载器</pre></h4>
+<ol>解决批量下载“本地语言体验包（LXPs）”安装包，可筛选或下载全部。</ol>
 
-<h4><pre>Chapter 5.&nbsp;&nbsp;Fully automatic addition of Windows installed languages</pre></h4>
-<ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
+<h4><pre>E.&nbsp;&nbsp;全自动添加 Windows 已安装语言</pre></h4>
+<ol>自动获取已安装的语言并自动添加，支持全盘部署标记，自定义部署过程，不包含其它。</ol>
 
-<h4><pre>Chapter 6.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
-<ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
-<ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
+<h4><pre>F.&nbsp;&nbsp;Yi’s 优化脚本</pre></h4>
+<ol>自动获取已安装的语言并自动添加，支持全盘部署标记，自定义部署过程，包含：优化脚本、常用软件安装、软件安装、系统优化、服务优化、UWP 卸载、更改文件夹位置等。</ol>
 
 <br>
 
