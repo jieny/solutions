@@ -1,6 +1,8 @@
 <a name="readme-top"></a>
 YI’S SOULTIONS
 -
+Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.
+
 Detailed
 <br>
 -
@@ -9,9 +11,8 @@ Detailed
 
 <br>
 
-Summary
+Component
 -
-<h4>Yi’s Soultions consists of multiple parts: packaging tutorials, packaging scripts, video tutorials, deployment engine: fully automatic addition of Windows installed languages, Yi’s optimization scripts, etc.</h4>
 
 <h4><pre>Chapter 1.&nbsp;&nbsp;Packaging Tutorial</pre></h4>
 <ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 23H2, 22H2, Windows 10, and Windows Server 2022. Different packaging versions are available.</ol>
