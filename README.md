@@ -146,66 +146,66 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <ul>
   <dl>
     <dd>
-      <p>1. 封装脚本主要功能</p>
+      <p>1. The main functions of the encapsulated script</p>
       <dl>
-        <dd>1.1.	检查更新：为更好的保持至最新版本，可随时检查是否有最新版可用</dd>
-        <dd>1.2.	热刷新 ：更改脚本后，在主界面里输入 R 后执行“重新加载模块”即可完成热刷新</dd>
-        <dd>1.3.	语言包：United States - English、中文（简体）、中文（繁体）、대한민국 - 한국어、日本 - 日本語</dd>
-        <dd>1.4.	事件模式：自动驾驶、自定义分配事件、手动操作</dd>
-        <dd>1.5.	降序：自动识别 ARM64、x64、x86 架构，根据架构自动降序选择依赖性程序</dd>
-        <dd>1.6.	ISO：自动识别 ISO 标签名并初始化规则（支持包含类匹配）、解压、挂载、弹出、校验哈稀、按规则显示对应ISO文件、搜索，自动分类：文件、语言包、功能包、InBox Apps</dd>
-        <dd>1.7.	感知功能</dd>
-        <dd>1.8.	修复</dd>
-        <dd>1.9.	挂载点</dd>
+        <dd>1.1.	Check for updates: In order to better stay up to date with the latest version, you can check whether the latest version is available at any time</dd>
+        <dd>1.2.	Hot refresh: After changing the script, enter R in the main interface and execute "reload module" to complete the hot refresh</dd>
+        <dd>1.3.	Language pack: United States - English、中文（简体）、中文（繁体）、대한민국 - 한국어、日本 - 日本語</dd>
+        <dd>1.4.	Event mode: automatic driving, custom assigned events, manual operation</dd>
+        <dd>1.5.	Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
+        <dd>1.6.	ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
+        <dd>1.7.	Perception function</dd>
+        <dd>1.8.	Fix</dd>
+        <dd>1.9.	Mount points</dd>
       </dl>
     </dd>
 
 <br>
     <dd>
-      <p>2. 面向于映像源主要功能</p>
+      <p>2. For the main functions of the image source</p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;面向于封装 Windows 操作系统的主要功能，支持批量操作主要项、扩展项。</p>
 
 <br>
       <dl>
-        <dd>2.1.	事件
+        <dd>2.1.	Event
 
 <br>
           <dl>
-            <dd>比如操作 WinRE.wim 时，需要挂载 Install.wim 后才能再挂载 WinRe.wim，才可以执行针对 WinRE 的相应任务。</dd>
-            <dd>什么是映像内的文件？例如 Install.wim 里包含了 WinRE.wim 文件，挂载 install.wim 后，可以分配事件去处理 WinRe.wim。</dd>
-            <dd>主要功能：可分配已挂载或未挂载事件，主要触发事件，可分配：</dd>
+            <dd>For example, when operating WinRE.wim, you need to mount Install.wim before mounting WinRe.wim to perform the corresponding tasks for WinRE.</dd>
+            <dd>What are the files within the image? For example, Install.wim contains the WinRE.wim file. After mounting install.wim, events can be assigned to process WinRe.wim.</dd>
+            <dd>Main functions: Mounted or unmounted events can be assigned. The main trigger events can be assigned: </dd>
           </dl>
         </dd>
 
 <br>
         <dd>
-          <p>2.2.&nbsp;&nbsp事件处理</p>
-          <p>&nbsp;&nbsp;&nbsp;&nbsp;事件处理分为几种方案：无需挂载映像、需要挂载映像后才能操作项方式，支持主映像、映像内批量处理。</p>
+          <p>2.2.&nbsp;&nbsp;Event handling</p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;Event processing is divided into several options: no need to mount the image, item mode that requires the image to be mounted, and support for main image and batch processing within the image.</p>
           <dl>
-            <dd>2.2.1.	无需挂载映像
+            <dd>2.2.1.	No need to mount image
               <dl>
-                <dd>2.2.1.1. 添加、删除、更新映像内的文件、提取、重建、应用</dd>
-                <dd>2.2.1.2. 提取语言包</dd>
-                <dd>2.2.1.3. 互转 Esd、Wim</dd>
-                <dd>2.2.1.4. 拆分 Install.wim 为 Install.swm</dd>
-                <dd>2.2.1.5. 合并 install.swm 到 install.wim</dd>
-                <dd>2.2.1.6. 生成 ISO</dd>
+                <dd>2.2.1.1. Add, delete, update files within the image, extract, rebuild, apply</dd>
+                <dd>2.2.1.2. Extract language pack</dd>
+                <dd>2.2.1.3. Interchange Esd, Wim</dd>
+                <dd>2.2.1.4. Split Install.wim into Install.swm</dd>
+                <dd>2.2.1.5. Merge install.swm to install.wim</dd>
+                <dd>2.2.1.6. Generate ISO</dd>
               </dl>
             </dd>
 
 <br>
-            <dd>2.2.2.&nbsp;&nbsp需要挂载映像后才能操作项
+            <dd>2.2.2.&nbsp;&nbsp;You need to mount the image before you can operate the item
               <dl>
-                <dd>2.2.2.1.&nbsp;&nbsp语言包</dd>
-                <dd>2.2.2.2.&nbsp;&nbsp本地语言体验包（LXPs）</dd>
-                <dd>2.2.2.3.&nbsp;&nbspInBox Apps</dd>
-                <dd>2.2.2.4.&nbsp;&nbsp累积更新</dd>
-                <dd>2.2.2.5.&nbsp;&nbsp驱动</dd>
-                <dd>2.2.2.6.&nbsp;&nbspWindows 功能</dd>
-                <dd>2.2.2.7.&nbsp;&nbsp运行 PowerShell 函数</dd>
-                <dd>2.2.2.8.&nbsp;&nbsp解决方案：生成</dd>
-                <dd>2.2.2.9.&nbsp;&nbsp生成报告</dd>
-                <dd>2.2.2.10.&nbsp;&nbsp弹出</dd>
+                <dd>2.2.2.1.&nbsp;&nbsp;Language pack</dd>
+                <dd>2.2.2.2.&nbsp;&nbsp;Local Language Experience Packages (LXPs)</dd>
+                <dd>2.2.2.3.&nbsp;&nbsp;InBox Apps</dd>
+                <dd>2.2.2.4.&nbsp;&nbsp;累积更新</dd>
+                <dd>2.2.2.5.&nbsp;&nbsp;驱动</dd>
+                <dd>2.2.2.6.&nbsp;&nbsp;Windows 功能</dd>
+                <dd>2.2.2.7.&nbsp;&nbsp;运行 PowerShell 函数</dd>
+                <dd>2.2.2.8.&nbsp;&nbsp;解决方案：生成</dd>
+                <dd>2.2.2.9.&nbsp;&nbsp;生成报告</dd>
+                <dd>2.2.2.10.&nbsp;&nbsp;弹出</dd>
               </dl>
             </dd>
           </dl>
