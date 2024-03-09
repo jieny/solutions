@@ -338,6 +338,20 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -Zip</dd>
             </dl>
           </p>
+
+<br>
+          <p>2.5.&nbsp;&nbsp;Create templates: Cumulative updates
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -CU</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.6.&nbsp;&nbsp;Create templates: Drive
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -CD</dd>
+            </dl>
+          </p>
         </dd>
       </dl>
     </dd>
