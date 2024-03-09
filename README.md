@@ -56,7 +56,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <br>
   <p>Tutorials available for the packaging journey include: </p>
   <dl>
-    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: [Compressed package]:\_Documents\Attachment, or go to https://github.com/ilikeyi /solutions/tree/main/_Documents/Attachment and select it.</dd>
+    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: [Compressed package]:\_Documents\Attachment, or go to https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment and select it.</dd>
   </dl>
 </ul>
 
@@ -154,7 +154,20 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
         <dd>1.4.	Event mode: automatic driving, custom assigned events, manual operation</dd>
         <dd>1.5.	Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
         <dd>1.6.	ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
-        <dd>1.7.	Perception function</dd>
+        <dd>
+          <p>1.7.	Perception function</p>
+          <dl>
+            <dd>1.7.1.&nbsp;&nbsp;&nbsp;&nbsp;Add language pack, combo: add language pack, add cumulative update, save mounted, generate ISO</dd>
+            <dd>1.7.1.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted, generate ISO</dd>
+            <dd>1.7.2.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted</dd>
+            <dd>1.7.3.&nbsp;&nbsp;&nbsp;&nbsp;Video introduction: Yi’s Solution package script function introduction: perception function</dd>
+	          <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Youtube | </dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bilibili | </dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tencent Video | </dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Watermelon video | </dd>
+            </dl>
+        </dd>
         <dd>1.8.	Fix</dd>
         <dd>1.9.	Mount points</dd>
       </dl>
