@@ -841,6 +841,9 @@ Function Image_Convert_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.Convert_Only), $($lang.Conver_Merged), $($lang.Conver_Split_To_Swm)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -852,7 +855,7 @@ Function Image_Convert_UI
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.Convert_Only), $($lang.Conver_Merged), $($lang.Conver_Split_To_Swm)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		<#
 			.初始化复选框：不再建议
 		#>

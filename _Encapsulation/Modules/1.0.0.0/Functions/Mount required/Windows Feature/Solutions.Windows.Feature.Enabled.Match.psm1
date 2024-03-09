@@ -376,6 +376,9 @@ Function Feature_Enabled_Match_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.WindowsFeature): $($lang.Enable), $($lang.MatchMode)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -387,7 +390,7 @@ Function Feature_Enabled_Match_UI
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.WindowsFeature): $($lang.Enable), $($lang.MatchMode)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		<#
 			.初始化复选框：不再建议

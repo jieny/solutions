@@ -356,6 +356,9 @@ Function Language_Change_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.SwitchLanguage)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -367,7 +370,7 @@ Function Language_Change_UI
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.SwitchLanguage)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 
 		<#

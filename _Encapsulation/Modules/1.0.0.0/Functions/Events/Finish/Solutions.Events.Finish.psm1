@@ -284,6 +284,10 @@ Function Event_Completion_Setting_UI
 
 	if ($Global:EventQueueMode) {
 		$EventMaps = "Queue"
+
+		Write-Host "`n   $($lang.AfterFinishingNotExecuted)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,

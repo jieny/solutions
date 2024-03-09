@@ -491,6 +491,9 @@
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.SpecialFunction): $($lang.Functions_Rear)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -502,7 +505,7 @@
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.SpecialFunction): $($lang.Functions_Rear)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		if (Image_Is_Select_IAB) {
 			$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 

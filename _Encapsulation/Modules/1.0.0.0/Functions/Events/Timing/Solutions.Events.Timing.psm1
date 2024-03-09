@@ -342,6 +342,9 @@ Function Event_Completion_Start_Setting_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.WaitTimeTitle)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,

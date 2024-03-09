@@ -379,6 +379,8 @@ function Autopilot_ISO_Associated_Process
 	if ($Global:Queue_ISO_Associated_Tasks.count -gt 0) {
 		foreach ($item in $Global:Queue_ISO_Associated_Tasks) {
 			foreach ($itemrule in $item.Rule) {
+				Remove-Item -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
+
 				Autopilot_iso_Import -FileName $itemrule
 				ISO_Create_Process
 			}

@@ -3311,6 +3311,9 @@ Function ISO_Create_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.UnpackISO)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+	
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -3322,7 +3325,7 @@ Function ISO_Create_UI
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.UnpackISO)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		<#
 			.初始化复选框：不再建议
 		#>

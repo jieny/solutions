@@ -4668,6 +4668,8 @@ Function Image_Assign_Autopilot_Master
 			}
 			#endregion
 
+			Autopilot_Refresh_Event_All
+
 #			Refresh_Config_Rule_Sync_To_Show
 			
 			$UI_Main_Export_Error.Text = "$($lang.LanguageExtractAddTo), $($lang.Done)"

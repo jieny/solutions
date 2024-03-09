@@ -382,6 +382,9 @@ Function InBox_Apps_Remove_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.LocalExperiencePackTips): $($lang.Del)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -393,7 +396,7 @@ Function InBox_Apps_Remove_UI
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.LocalExperiencePackTips): $($lang.Del)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 
 		<#
@@ -476,7 +479,6 @@ Function InBox_Apps_Remove_UI
 
 		$UI_Main_Is_Wait_Del.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
-				write-host $_.Tag
 				if ($Temp_Assign_Task_Select -contains $_.Tag) {
 					$_.Checked = $True
 				} else {

@@ -752,6 +752,7 @@
 
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
+
 		<#
 			.初始化复选框：不再建议
 		#>

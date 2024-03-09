@@ -1012,6 +1012,9 @@ Function Feature_More_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.MoreFeature)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main_UWP_To_Log.Enabled = $True
 		$UI_Main_Package_To_Log.Enabled = $True
 		$UI_Main_Drive_To_Log.Enabled = $True

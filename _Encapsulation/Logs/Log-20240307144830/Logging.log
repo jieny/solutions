@@ -1,0 +1,169 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20240307144838
+Username: DESKTOP-51QA6BQ\Administrator
+RunAs User: DESKTOP-51QA6BQ\Administrator
+Configuration Name: 
+Machine: DESKTOP-51QA6BQ (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -file D:\Yi.Solutions\_Encapsulation\Modules\Router\..\..\_Sip.ps1
+Process ID: 4576
+PSVersion: 5.1.22621.2506
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.2506
+BuildVersion: 10.0.22621.2506
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+   Yi's Solutions, v1.0.0.0
+   https://github.com/ilikeyi/solutions
+
+   Dashboard
+   --------------------------------------------------------------------------------
+   Save the log to
+ D:\Yi.Solutions\_Encapsulation\Logs\Log-20240307144830
+
+   Image source
+   --------------------------------------------------------------------------------
+   D:\OS
+   Not selected
+
+   Mount to, Main directory
+   D:\OS\en-us_windows_11_business_editions_version_23h2_x64_dvd_a9092734_Custom
+
+   Main directory
+   D:\OS\en-us_windows_11_business_editions_version_23h2_x64_dvd_a9092734
+
+ Install
+   Not mounted
+
+ Boot
+   Not mounted
+
+   Temporary directory
+   C:\Users\Administrator\AppData\Local\Temp
+
+   Language
+   en-US
+
+   Code
+   11
+
+   Types
+   Desktop
+
+   Architecture
+   AMD64
+
+   Clear all events
+   Clear all
+   Complete
+
+   Available to
+   --------------------------------------------------------------------------------
+   Autopilot
+
+   Yi's Solutions, v1.0.0.0
+   https://github.com/ilikeyi/solutions
+
+   Dashboard
+   --------------------------------------------------------------------------------
+   Mount to
+D:\OS\en-us_windows_11_business_editions_version_23h2_x64_dvd_a9092734_Custom
+   Main directory
+D:\OS\en-us_windows_11_business_editions_version_23h2_x64_dvd_a9092734
+
+ Install
+   Not mounted
+
+ Boot
+   Not mounted
+
+   Autopilot
+   --------------------------------------------------------------------------------
+   The user has cancelled the operation.
+
+   Clear all events
+   Clear all
+   Complete
+
+   Process all known tasks
+   --------------------------------------------------------------------------------
+   Start time:
+ 2024/03/07 15:25:52 PM
+
+   Preferred primary key
+   Install;Install;wim;
+   Settings
+Complete
+
+   Mount status
+   Not mounted
+   Error: Select index number ( Install;Install;wim; )
+
+   Allow update rules
+   Mount status
+   Not mounted
+
+   Assignable extensions
+   --------------------------------------------------------------------------------
+   Unique Name:
+Install;WinRe;
+
+   Allow update rules ( 0 ) Items
+   --------------------------------------------------------------------------------
+   No task
+
+   Rebuilding
+   Inoperable
+
+   Preferred primary key
+   Boot;Boot;wim;
+   Settings
+Complete
+
+   Mount status
+   Not mounted
+   Error: Select index number ( Boot;Boot;wim; )
+
+   Allow update rules
+   Mount status
+   Not mounted
+
+   Assignable extensions
+   --------------------------------------------------------------------------------
+   No task
+
+   Rebuilding
+   Inoperable
+
+   Interconversion, Merged, Split
+   --------------------------------------------------------------------------------
+   Inoperable
+
+   Generate ISO
+   --------------------------------------------------------------------------------
+   Inoperable
+
+   Associated ISO schemes
+   --------------------------------------------------------------------------------
+   Inoperable
+
+   --------------------------------------------------------------------------------
+   Start time:
+2024/03/07 15:25:52 PM
+   Complete time:
+2024/03/07 15:25:52 PM
+   Total time spent:
+00:00:00.2371791
+   Total time:
+237 Milliseconds
+   --------------------------------------------------------------------------------
+
+   When a task or event is available
+   --------------------------------------------------------------------------------
+   Pause
+
+   Finish, press any key to return to the main interface...

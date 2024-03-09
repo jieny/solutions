@@ -1,0 +1,28 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20240301064017
+Username: DESKTOP-51QA6BQ\Administrator
+RunAs User: DESKTOP-51QA6BQ\Administrator
+Configuration Name: 
+Machine: DESKTOP-51QA6BQ (Microsoft Windows NT 10.0.22631.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -File D:\Yi.Solutions\_Encapsulation\_Custom\Engine\LXPs\_Create.Upgrade.Package.ps1 -Silent -SHA256 -SaveTo D:\Yi\Desktop\Yi.Solutions.Upgrade.Package\LXPs
+Process ID: 14016
+PSVersion: 5.1.22621.2506
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.22621.2506
+BuildVersion: 10.0.22621.2506
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+   * Generating latest.zip
+     Complete
+   * Generating D:\Yi\Documents\Temp.LXPs.Upgrade.Package\latest.zip.sha256
+     Complete
+PS>$global:?
+True
+**********************
+Windows PowerShell transcript end
+End time: 20240301064019
+**********************

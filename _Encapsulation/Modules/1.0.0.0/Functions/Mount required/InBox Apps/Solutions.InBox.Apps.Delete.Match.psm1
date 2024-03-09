@@ -406,7 +406,7 @@ Function InBox_Apps_Match_Delete_UI
 		Height         = 30
 		Width          = 415
 		Text           = "$($lang.AssignEndCurrent -f $Global:Primary_Key_Image.Uid)"
-		Location       = '620,455'
+		Location       = '620,425'
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
 		LinkBehavior   = "NeverUnderline"
@@ -422,7 +422,7 @@ Function InBox_Apps_Match_Delete_UI
 		Height         = 30
 		Width          = 280
 		Text           = $lang.AssignForceEnd
-		Location       = '620,425'
+		Location       = '620,455'
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
 		LinkBehavior   = "NeverUnderline"
@@ -796,6 +796,9 @@ Function InBox_Apps_Match_Delete_UI
 	}
 
 	if ($Global:EventQueueMode) {
+		Write-Host "`n   $($lang.InboxAppsMatchDel)" -ForegroundColor Yellow
+		Write-host "   $('-' * 80)"
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 		$UI_Main.controls.AddRange((
 			$UI_Main_Suggestion_Manage,
@@ -807,7 +810,7 @@ Function InBox_Apps_Match_Delete_UI
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n   $($lang.InboxAppsMatchDel)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-	
+
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
 
 		<#
