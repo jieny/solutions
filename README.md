@@ -10,8 +10,8 @@ To help you solve the difficult problem of packaging multilingual versions, the 
 Detailed introduction
 -
 
- * United States - English | <a href="https://raw.githubusercontent.com/ilikeyi/Solutions/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
- * 简体中文 - 中国 | <a href="https://raw.githubusercontent.com/ilikeyi/Solutions/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
+ * United States - English | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
+ * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
 
