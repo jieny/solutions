@@ -10,7 +10,7 @@ To help you solve the difficult problem of packaging multilingual versions, the 
 Detailed introduction
 -
 
- * [United States - English](https://github.com/ilikeyi/solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf)
+ * [United States - English](https://raw.githubusercontent.com/ilikeyi/Solutions/main/_Learn/Readme/Readme.Detailed.pdf)
  * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf)
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
@@ -65,9 +65,9 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <ul>
   <dl>
     <dd>
-      <p>1. Autopilot</p>
+      <p>1.&nbsp;&nbsp;Autopilot</p>
       <dl>
-        <dd>1.1.	Windows 11 23H2: Autonomous driving package
+        <dd>1.1.&nbsp;&nbsp;Windows 11 23H2: Autonomous driving package
             <dl>
                <dd>
 
@@ -77,7 +77,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
          </dd>
 
 <br>
-        <dd>1.2.	Windows 10 22H2: Autonomous driving package
+        <dd>1.2.&nbsp;&nbsp;Windows 10 22H2: Autonomous driving package
             <dl>
                <dd>
 
