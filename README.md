@@ -10,8 +10,8 @@ To help you solve the difficult problem of packaging multilingual versions, the 
 Detailed introduction
 -
 
- * [United States - English](https://raw.githubusercontent.com/ilikeyi/Solutions/main/_Learn/Readme/Readme.Detailed.pdf)
- * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf)
+ * United States - English | <a href="https://raw.githubusercontent.com/ilikeyi/Solutions/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=drive_link">Google Docs</a> | <a href="">Yi</a>
+ * 简体中文 - 中国 | <a href="https://raw.githubusercontent.com/ilikeyi/Solutions/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=drive_link">Google Docs</a> | <a href="">Yi</a>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
 
