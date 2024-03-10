@@ -10,8 +10,8 @@ To help you solve the difficult problem of packaging multilingual versions, the 
 Detailed introduction
 -
 
- * [United States - English](https://github.com/ilikeyi/solutions/blob/35203a2867fade19ef12bc7631c11c1209b8cc05/_Documents/Readme/Readme.Detailed.pdf)
- * [简体中文 - 中国](https://github.com/ilikeyi/solutions/blob/main/_Documents/Readme/Readme.Detailed.zh-CN.pdf)
+ * United States - English | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
+ * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
 
@@ -49,14 +49,14 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <ul>
   <p>Different versions are provided: a full version and a simplified version. The formats provided are: .Docx document format, .Pdf document format. Version differences:</p>
   <dl>
-    <dd>1.	Complete version, no deleted content;</dd>
-    <dd>2.	The streamlined version does not include: reports, notes, etc.;</dd>
+    <dd>1.&nbsp;&nbsp;Complete version, no deleted content;</dd>
+    <dd>2.&nbsp;&nbsp;The streamlined version does not include: reports, notes, etc.;</dd>
   </dl>
 
 <br>
   <p>Tutorials available for the packaging journey include: </p>
   <dl>
-    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: [Compressed package]:\_Documents\Attachment, or go to https://github.com/ilikeyi /solutions/tree/main/_Documents/Attachment and select it.</dd>
+    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: [Compressed package]:\_Documents\Attachment, or go to https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment and select it.</dd>
   </dl>
 </ul>
 
@@ -65,9 +65,9 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <ul>
   <dl>
     <dd>
-      <p>1. Autopilot</p>
+      <p>1.&nbsp;&nbsp;Autopilot</p>
       <dl>
-        <dd>1.1.	Windows 11 23H2: Autonomous driving package
+        <dd>1.1.&nbsp;&nbsp;Windows 11 23H2: Autonomous driving package
             <dl>
                <dd>
 
@@ -77,7 +77,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
          </dd>
 
 <br>
-        <dd>1.2.	Windows 10 22H2: Autonomous driving package
+        <dd>1.2.&nbsp;&nbsp;Windows 10 22H2: Autonomous driving package
             <dl>
                <dd>
 
@@ -92,7 +92,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
     <dd>
       <p>2. Custom distribution of encapsulated events</p>
       <dl>
-         <dd>2.1.  Windows 11 23H2: Custom allocation of encapsulated events
+         <dd>2.1.&nbsp;&nbsp;Windows 11 23H2: Custom allocation of encapsulated events
             <dl>
                <dd>
 
@@ -102,7 +102,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
          </dd>
 
 <br>
-        <dd>2.2.  Windows 10 22H2: Custom allocation of encapsulated events
+        <dd>2.2.&nbsp;&nbsp;Windows 10 22H2: Custom allocation of encapsulated events
             <dl>
                <dd>
 
@@ -115,9 +115,9 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 
 <br>
     <dd>
-      <p>3. Manual packaging</p>
+      <p>3.&nbsp;&nbsp;Manual packaging</p>
       <dl>
-        <dd>3.1.	Windows 11 23H2: Manual packaging
+        <dd>3.1.&nbsp;&nbsp;Windows 11 23H2: Manual packaging
             <dl>
                <dd>
 
@@ -127,7 +127,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
          </dd>
 
 <br>
-        <dd>3.2.	Windows 10 22H2: Manual packaging
+        <dd>3.2.&nbsp;&nbsp;Windows 10 22H2: Manual packaging
             <dl>
                <dd>
 
@@ -146,28 +146,42 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <ul>
   <dl>
     <dd>
-      <p>1. The main functions of the encapsulated script</p>
+      <p>1.&nbsp;&nbsp;The main functions of the encapsulated script</p>
       <dl>
-        <dd>1.1.	Check for updates: In order to better stay up to date with the latest version, you can check whether the latest version is available at any time</dd>
-        <dd>1.2.	Hot refresh: After changing the script, enter R in the main interface and execute "reload module" to complete the hot refresh</dd>
-        <dd>1.3.	Language pack: United States - English、中文（简体）、中文（繁体）、대한민국 - 한국어、日本 - 日本語</dd>
-        <dd>1.4.	Event mode: automatic driving, custom assigned events, manual operation</dd>
-        <dd>1.5.	Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
-        <dd>1.6.	ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
-        <dd>1.7.	Perception function</dd>
-        <dd>1.8.	Fix</dd>
-        <dd>1.9.	Mount points</dd>
+        <dd>1.1.&nbsp;&nbsp;Check for updates: In order to better stay up to date with the latest version, you can check whether the latest version is available at any time</dd>
+        <dd>1.2.&nbsp;&nbsp;Hot refresh: After changing the script, enter R in the main interface and execute "reload module" to complete the hot refresh</dd>
+        <dd>1.3.&nbsp;&nbsp;Language pack: United States - English、中文（简体）、中文（繁体）、대한민국 - 한국어、日本 - 日本語</dd>
+        <dd>1.4.&nbsp;&nbsp;Event mode: automatic driving, custom assigned events, manual operation</dd>
+        <dd>1.5.&nbsp;&nbsp;Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
+        <dd>1.6.&nbsp;&nbsp;ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
+        <dd>
+          <p>1.7.&nbsp;&nbsp;Perception function</p>
+          <dl>
+            <dd>1.7.1.&nbsp;&nbsp;&nbsp;&nbsp;Add language pack, combo: add language pack, add cumulative update, save mounted, generate ISO</dd>
+            <dd>1.7.1.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted, generate ISO</dd>
+            <dd>1.7.2.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted</dd>
+            <dd>1.7.3.&nbsp;&nbsp;&nbsp;&nbsp;Video introduction: Yi’s Solution package script function introduction: perception function
+		<dl>
+			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Youtube | </dd>
+              		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bilibili | </dd>
+			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tencent Video | </dd>
+			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Watermelon video | </dd>
+		</dl>
+	    </dd>
+        </dd>
+        <dd>1.8.&nbsp;&nbsp;Fix</dd>
+        <dd>1.9.&nbsp;&nbsp;Mount points</dd>
       </dl>
     </dd>
 
 <br>
     <dd>
-      <p>2. For the main functions of the image source</p>
+      <p>2.&nbsp;&nbsp;For the main functions of the image source</p>
       <p>&nbsp;&nbsp;&nbsp;&nbsp;Aimed at encapsulating the main functions of the Windows operating system, it supports batch operations of main items and extensions.</p>
 
 <br>
       <dl>
-        <dd>2.1.	Event
+        <dd>2.1.&nbsp;&nbsp;Event
 
 <br>
           <dl>
@@ -182,14 +196,14 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
           <p>2.2.&nbsp;&nbsp;Event handling</p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;Event processing is divided into several options: no need to mount the image, item mode that requires the image to be mounted, and support for main image and batch processing within the image.</p>
           <dl>
-            <dd>2.2.1.	No need to mount image
+            <dd>2.2.1.&nbsp;&nbsp;No need to mount image
               <dl>
-                <dd>2.2.1.1. Add, delete, update files within the image, extract, rebuild, apply</dd>
-                <dd>2.2.1.2. Extract language pack</dd>
-                <dd>2.2.1.3. Interchange Esd, Wim</dd>
-                <dd>2.2.1.4. Split Install.wim into Install.swm</dd>
-                <dd>2.2.1.5. Merge install.swm to install.wim</dd>
-                <dd>2.2.1.6. Generate ISO</dd>
+                <dd>2.2.1.1.&nbsp;&nbsp;Add, delete, update files within the image, extract, rebuild, apply</dd>
+                <dd>2.2.1.2.&nbsp;&nbsp;Extract language pack</dd>
+                <dd>2.2.1.3.&nbsp;&nbsp;Interchange Esd, Wim</dd>
+                <dd>2.2.1.4.&nbsp;&nbsp;Split Install.wim into Install.swm</dd>
+                <dd>2.2.1.5.&nbsp;&nbsp;Merge install.swm to install.wim</dd>
+                <dd>2.2.1.6.&nbsp;&nbsp;Generate ISO</dd>
               </dl>
             </dd>
 
@@ -223,19 +237,19 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
 <h4><pre>A.&nbsp;&nbsp;Prerequisites</pre></h4>
 
 <ul>
-  <p>I.	Get the package script</p>
+  <p>I.&nbsp;&nbsp;Get the package script</p>
   <dl>
     <dd>
-      <p>1.	Project address</p>
+      <p>1.&nbsp;&nbsp;Project address</p>
       <dl>
         <dd>
-          <p>1.1.	Official website</p>
+          <p>1.1.&nbsp;&nbsp;Official website</p>
           <dl>
             <dd>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</dd>
           </dl>
 
 <br>
-          <p>1.2.	Gihtub：https://github.com/ilikeyi/Solutions</p>
+          <p>1.2.&nbsp;&nbsp;Gihtub：https://github.com/ilikeyi/Solutions</p>
           <dl>
             <dd>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</dd>
             <dd>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</dd>
@@ -244,21 +258,21 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
       </dl>
 
 <br>
-      <p>2.	Netdisk download</p>
+      <p>2.&nbsp;&nbsp;Netdisk download</p>
       <dl>
         <dd>
-          <p>2.1.	Alibaba cloud network disk | https://www.alipan.com/s/sFU4uaJ6uV3</p>
-          <p>2.2.	123 network disk | https://www.123pan.com/s/zitA-QU9l.html</p>
+          <p>2.1.&nbsp;&nbsp;Alibaba cloud network disk | https://www.alipan.com/s/sFU4uaJ6uV3</p>
+          <p>2.2.&nbsp;&nbsp;123 network disk | https://www.123pan.com/s/zitA-QU9l.html</p>
         </dd>
       </dl>
 
 <br>
-      <p>3.	After the download is complete, unzip the downloaded file to: D:\Yi.Solutions</p>
+      <p>3.&nbsp;&nbsp;After the download is complete, unzip the downloaded file to: D:\Yi.Solutions</p>
     </dd>
   </dl>
 
 <br>
-  <p>II.	Require</p>
+  <p>II.&nbsp;&nbsp;Require</p>
   <dl>
     <dd>
       <p>PowerShell Version</p>
@@ -280,25 +294,25 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
 <br>
 
 <br>
-  <p>III.	Command Line</p>
+  <p>III.&nbsp;&nbsp;Command Line</p>
   <dl>
-    <dd>1.	You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
-    <dd>2.	Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
+    <dd>1.&nbsp;&nbsp;You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
+    <dd>2.&nbsp;&nbsp;Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 ```
 
 </dd>
-    <dd>3.	In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
-    <dd>4.	When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: & "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
+    <dd>3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
+    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: & "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
   </dl>
 
 <br>
-  <p>IV.	PowerShell script</p>
+  <p>IV.&nbsp;&nbsp;PowerShell script</p>
   <dl>
     <dd>
-      <p>1.	Prerequisites: Once met, run the package main script</p>
+      <p>1.&nbsp;&nbsp;Prerequisites: Once met, run the package main script</p>
 
 ```
 D:\Yi.Solutions\_Encapsulation\_SIP.ps1
@@ -309,7 +323,7 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 
 <br>
     <dd>
-      <p>2.	Other items</p>
+      <p>2.&nbsp;&nbsp;Other items</p>
       <dl>
         <dd>
           <p>2.1.&nbsp;&nbsp;Backup
@@ -336,6 +350,20 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
           <p>2.4.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -Zip</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.5.&nbsp;&nbsp;Create templates: Cumulative updates
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -CU</dd>
+            </dl>
+          </p>
+
+<br>
+          <p>2.6.&nbsp;&nbsp;Create templates: Drive
+            <dl>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -CD</dd>
             </dl>
           </p>
         </dd>
