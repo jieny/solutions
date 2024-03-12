@@ -1,6 +1,3 @@
-# Enable TLSv1.2 for compatibility with older clients
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-
 clear-host
 
 Write-Host "`n   Prerequisites" -ForegroundColor Yellow
@@ -10,7 +7,11 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
 	Write-Host "OK".PadLeft(8) -ForegroundColor Green
 } else {
 	Write-Host "Failed".PadLeft(8) -ForegroundColor Red
+	return
 }
+
+# Enable TLSv1.2 for compatibility with older clients
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 
 <#
 	.Available servers
@@ -325,19 +326,23 @@ Function TestArchive {
 }
 
 $New_Root_Disk = Install_Init_Disk_To
-$New_Root_Disk_Full_Solutions = Join-Path -Path $New_Root_Disk -ChildPath "Yi's Solutions" -ErrorAction SilentlyContinue
+$New_Root_Disk_Full_Solutions = Join-Path -Path $New_Root_Disk -ChildPath "YiSolutions" -ErrorAction SilentlyContinue
 
 if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
 	write-host "`n   There was a problem downloading Yi's Solutions" -ForegroundColor Yellow
 	write-host "`n   Error message: " -ForegroundColor Yellow
 	Write-Host "   $('-' * 80)"
 	Write-host "   There is a file in the directory, please delete it manually and try again.`n" -ForegroundColor Red
-	Write-host "   Path: $($New_Root_Disk_Full_Solutions)`n" -ForegroundColor Red
+	Write-host "   Path: " -NoNewline
+	Write-host "$($New_Root_Disk_Full_Solutions)`n" -ForegroundColor Green
 } else {
 	Write-Host "`n`n   * Automatically download from available servers" -ForegroundColor Green
 	Write-Host "   $('-' * 80)"
 
 	ForEach ($item in $Script:PreServerList) {
+		write-host "   Connection address: " -NoNewline -ForegroundColor Yellow
+		write-host $item -ForegroundColor Green
+
 		if (Test_URI $item) {
 			Write-Host "   Address available" -ForegroundColor Green
 
@@ -348,7 +353,7 @@ if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyCo
 				.删除旧文件
 				.Delete old files
 			#>
-			remove-item -path $item -Force -ErrorAction SilentlyContinue
+			remove-item -path $NewFilePath -Force -ErrorAction SilentlyContinue
 
 			Invoke-WebRequest -Uri $item -OutFile $NewFilePath -ErrorAction SilentlyContinue | Out-Null
 
@@ -360,17 +365,19 @@ if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyCo
 
 					$Route_PS = "$($New_Root_Disk_Full_Solutions)\_Encapsulation\Modules\Router\Yi.ps1"
 					if (Test-Path -Path $Route_PS -PathType leaf) {
-						& $Route_PS -Add
+						powershell -file $Route_PS -Add
 					}
 
 					$Solutions_PS = "$($New_Root_Disk_Full_Solutions)\_Encapsulation\_Sip.ps1"
 					if (Test-Path -Path $Solutions_PS -PathType leaf) {
 
-						& $Solutions_PS
+						powershell -file $Solutions_PS
 					}
 
 					break
 				} else {
+					remove-item -path $NewFilePath -Force -ErrorAction SilentlyContinue
+
 					write-host "   File format error."
 				}
 			} else {
