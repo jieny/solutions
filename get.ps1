@@ -10,9 +10,6 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
 	return
 }
 
-# Enable TLSv1.2 for compatibility with older clients
-[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
-
 <#
 	.Available servers
 	.可用的服务器
@@ -37,7 +34,7 @@ $Script:PreServerList = @(
     .临时存放路径
 #>
 $RandomGuid = [guid]::NewGuid()
-$Temp_Main_Path = "$($env:TEMP)\$($RandomGuid)"
+$Temp_Main_Path = Join-Path -Path $env:TEMP -ChildPath $RandomGuid -ErrorAction SilentlyContinue
 New-Item -Path $Temp_Main_Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
 
 Function Test_Available_Disk
@@ -347,7 +344,7 @@ if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyCo
 			Write-Host "   Address available" -ForegroundColor Green
 
 			$NewFileName = [IO.Path]::GetFileName($item)
-			$NewFilePath = "$($Temp_Main_Path)\$($NewFileName)"
+			$NewFilePath = Join-Path -Path $Temp_Main_Path -ChildPath $NewFileName -ErrorAction SilentlyContinue
 
 			<#
 				.删除旧文件
@@ -363,14 +360,13 @@ if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyCo
 				if (TestArchive -Path $NewFilePath) {
 					Archive -filename $NewFilePath -to $New_Root_Disk_Full_Solutions
 
-					$Route_PS = "$($New_Root_Disk_Full_Solutions)\_Encapsulation\Modules\Router\Yi.ps1"
+					$Route_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\Modules\Router\Yi.ps1" -ErrorAction SilentlyContinue
 					if (Test-Path -Path $Route_PS -PathType leaf) {
 						powershell -file $Route_PS -Add
 					}
 
-					$Solutions_PS = "$($New_Root_Disk_Full_Solutions)\_Encapsulation\_Sip.ps1"
+					$Solutions_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\_Sip.ps1" -ErrorAction SilentlyContinue
 					if (Test-Path -Path $Solutions_PS -PathType leaf) {
-
 						powershell -file $Solutions_PS
 					}
 
