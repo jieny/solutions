@@ -13,7 +13,7 @@ Detailed introduction
  * United States - English | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
  * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
 
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, you can view the full version.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, please view the full version for more information.</p>
 
 <br>
 
@@ -31,13 +31,16 @@ Component
 
 <h4><pre>D.&nbsp;&nbsp;Local Language Experience Packs (LXPs) Downloader</pre></h4>
 <ol>Solve the problem of batch downloading of "Local Language Experience Packages (LXPs)" installation packages, and you can filter or download all.</ol>
+<ol>Project address: https://github.com/ilikeyi/LXPs, included in the full version: \_Encapsulation\_Custom\Engine\LXPs</ol>
 
 <h4><pre>E.&nbsp;&nbsp;Fully automatic addition of Windows installed languages</pre></h4>
 <ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
+<ol>Project address: https://github.com/ilikeyi/Multilingual, included in the full version: \_Encapsulation\_Custom\Engine\Multilingual</ol>
 
 <h4><pre>F.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
 <ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
+<ol>Project address: https://github.com/ilikeyi/Yi.Optimiz.Private, included in the full version: \_Encapsulation\_Custom\Engine\Yi.Optimiz.Private</ol>
 
 <br>
 
