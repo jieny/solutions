@@ -29,7 +29,7 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
 	)
 #>
 $Script:PreServerList = @(
-	"https://github.com/ilikeyi/solutions/latest.zip"
+	"https://github.com/ilikeyi/Solutions/raw/main/latest.zip"
 	"https://fengyi.tel/download/solutions/latest.zip"
 )
 
