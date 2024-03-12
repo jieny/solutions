@@ -157,20 +157,8 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
         <dd>1.4.&nbsp;&nbsp;Event mode: automatic driving, custom assigned events, manual operation</dd>
         <dd>1.5.&nbsp;&nbsp;Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
         <dd>1.6.&nbsp;&nbsp;ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
-        <dd>
-          <p>1.7.&nbsp;&nbsp;Perception function</p>
-          <dl>
-            <dd>1.7.1.&nbsp;&nbsp;&nbsp;&nbsp;Add language pack, combo: add language pack, add cumulative update, save mounted, generate ISO</dd>
-            <dd>1.7.1.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted, generate ISO</dd>
-            <dd>1.7.2.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted</dd>
-            <dd>1.7.3.&nbsp;&nbsp;&nbsp;&nbsp;Video introduction: Yi’s Solution package script function introduction: perception function
-		<dl>
-			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Youtube | Bilibili | Tencent Video | Watermelon video | </dd>
-		</dl>
-	    </dd>
-        </dd>
-        <dd>1.8.&nbsp;&nbsp;Fix</dd>
-        <dd>1.9.&nbsp;&nbsp;Mount points</dd>
+        <dd>1.7.&nbsp;&nbsp;Fix</dd>
+        <dd>1.8.&nbsp;&nbsp;Mount points</dd>
       </dl>
     </dd>
 
