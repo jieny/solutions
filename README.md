@@ -282,31 +282,35 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
         <dd>
           <p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
           <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;自动下载
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://fengyi.tel/get.ps1 | iex
 ```
-<p>优先从官方网站下载，下载完成后：添加路由功能。运行封装脚本。</p>
+<p>Priority is to download from the official website, and after the download is complete: add the routing function. Run the wrapper script.</p>
 	    </dd>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;手动下载
+
+<br>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
 		<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
 	    </dd>
           </dl>
 
 <br>
-          <p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub：https://github.com/ilikeyi/Solutions</p>
+          <p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub</p>
           <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;自动下载
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-irm https://fengyi.tel/get.ps1 | iex
+irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
-<p>优先从 Github 网站下载，下载完成后：添加路由功能，运行封装脚本。</p>
+<p>Prioritize downloads from the Github website, and after the download is complete: add routing features and run the wrapper script.</p>
 	    </dd>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;手动下载
+
+<br>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
 		    <dl>
 			<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
 			<p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
