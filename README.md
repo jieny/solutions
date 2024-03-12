@@ -280,16 +280,38 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
       <p>1.&nbsp;&nbsp;Project address</p>
       <dl>
         <dd>
-          <p>1.1.&nbsp;&nbsp;Official website</p>
+          <p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
           <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;自动下载
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+irm https://fengyi.tel/get.ps1 | iex
+```
+<p>优先从官方网站下载，下载完成后：添加路由功能。运行封装脚本。</p>
+	    </dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;手动下载
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
+	    </dd>
           </dl>
 
 <br>
-          <p>1.2.&nbsp;&nbsp;Gihtub：https://github.com/ilikeyi/Solutions</p>
+          <p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub：https://github.com/ilikeyi/Solutions</p>
           <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</dd>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;自动下载
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+irm https://fengyi.tel/get.ps1 | iex
+```
+<p>优先从 Github 网站下载，下载完成后：添加路由功能，运行封装脚本。</p>
+	    </dd>
+            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;手动下载
+		    <dl>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
+		    </dl>
+	    </dd>
           </dl>
         </dd>
       </dl>
