@@ -165,10 +165,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
             <dd>1.7.2.&nbsp;&nbsp;&nbsp;&nbsp;Add cumulative update, combo: add cumulative update, save mounted</dd>
             <dd>1.7.3.&nbsp;&nbsp;&nbsp;&nbsp;Video introduction: Yi’s Solution package script function introduction: perception function
 		<dl>
-			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Youtube | </dd>
-              		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bilibili | </dd>
-			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tencent Video | </dd>
-			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Watermelon video | </dd>
+			<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Youtube | Bilibili | Tencent Video | Watermelon video | </dd>
 		</dl>
 	    </dd>
         </dd>
@@ -240,7 +237,44 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
 <h4><pre>A.&nbsp;&nbsp;Prerequisites</pre></h4>
 
 <ul>
-  <p>I.&nbsp;&nbsp;Get the package script</p>
+  <p>I.&nbsp;&nbsp;Require</p>
+  <dl>
+    <dd>
+      <p>PowerShell Version</p>
+      <dl>
+        <dd>
+          <p>PowerShell 5.1</p>
+          <dl><dd>Requires Windows 11, Windows 10, Windows Server 2022, Windows Server vNext or the 5.1 version that comes with the system by default. You can optionally upgrade to the latest version of PowerShell 7.</dd></dl>
+        </dd>
+
+<br>
+        <dd>
+          <p>PowerShell 7</p>
+          <dl><dd>To get the latest version, go to https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows, select the version you want to download, download and install.</dd></dl>
+        </dd>
+      </dl>
+    </dd>
+  </dl>
+
+<br>
+
+<br>
+  <p>II.&nbsp;&nbsp;Command Line</p>
+  <dl>
+    <dd>1.&nbsp;&nbsp;You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
+    <dd>2.&nbsp;&nbsp;Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
+
+```
+Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
+```
+
+</dd>
+    <dd>3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
+    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: & "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
+  </dl>
+
+<br>
+  <p>III.&nbsp;&nbsp;Get the package script</p>
   <dl>
     <dd>
       <p>1.&nbsp;&nbsp;Project address</p>
@@ -264,51 +298,15 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
       <p>2.&nbsp;&nbsp;Netdisk download</p>
       <dl>
         <dd>
-          <p>2.1.&nbsp;&nbsp;Alibaba cloud network disk | https://www.alipan.com/s/sFU4uaJ6uV3</p>
-          <p>2.2.&nbsp;&nbsp;123 network disk | https://www.123pan.com/s/zitA-QU9l.html</p>
+			<p>2.1.&nbsp;&nbsp;Alibaba cloud network disk | https://www.alipan.com/s/sFU4uaJ6uV3</p>
+			<p>2.2.&nbsp;&nbsp;123 network disk | https://www.123pan.com/s/zitA-QU9l.html</p>
+			<p>2.3.&nbsp;&nbsp;Google Drive | https://drive.google.com/drive/folders/1qTgFvbETlk23v_RGw_rXQPcZvIVirO-O?usp=sharing</p>
         </dd>
       </dl>
 
 <br>
       <p>3.&nbsp;&nbsp;After the download is complete, unzip the downloaded file to: D:\Yi.Solutions</p>
     </dd>
-  </dl>
-
-<br>
-  <p>II.&nbsp;&nbsp;Require</p>
-  <dl>
-    <dd>
-      <p>PowerShell Version</p>
-      <dl>
-        <dd>
-          <p>PowerShell 5.1</p>
-          <dl><dd>Requires Windows 11, Windows 10, Windows Server 2022, Windows Server vNext or the 5.1 version that comes with the system by default. You can optionally upgrade to the latest version of PowerShell 7.</dd></dl>
-        </dd>
-
-<br>
-        <dd>
-          <p>PowerShell 7</p>
-          <dl><dd>To get the latest version, go to https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows, select the version you want to download, download and install.</dd></dl>
-        </dd>
-      </dl>
-    </dd>
-  </dl>
-
-<br>
-
-<br>
-  <p>III.&nbsp;&nbsp;Command Line</p>
-  <dl>
-    <dd>1.&nbsp;&nbsp;You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
-    <dd>2.&nbsp;&nbsp;Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
-
-```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-```
-
-</dd>
-    <dd>3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
-    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: & "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
   </dl>
 
 <br>
