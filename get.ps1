@@ -1,4 +1,4 @@
-clear-host
+﻿clear-host
 
 Write-Host "`n   Prerequisites" -ForegroundColor Yellow
 Write-host "   $('-' * 80)"
