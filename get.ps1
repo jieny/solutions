@@ -1,4 +1,4 @@
-﻿clear-host
+clear-host
 
 Write-Host "`n   Prerequisites" -ForegroundColor Yellow
 Write-host "   $('-' * 80)"
@@ -7,6 +7,13 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
 	Write-Host "OK".PadLeft(8) -ForegroundColor Green
 } else {
 	Write-Host "Failed".PadLeft(8) -ForegroundColor Red
+
+	Write-host "`n   How to solve: " -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"	
+	Write-host "     1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator, "
+	Write-host "        set PowerShell execution policy: Bypass, PS command line: `n"
+	Write-host "        Set-ExecutionPolicy -ExecutionPolicy Bypass -Force" -ForegroundColor Green
+	Write-host "`n     2. Once resolved, rerun the command`n"
 	return
 }
 
@@ -21,8 +28,7 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
        只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
 
 	$Script:PreServerList = @(
-        "https://fengyi.tel/download/solutions/latest.zip"
-		"https://github.com/ilikeyi/Solutions/Update/latest.zip"
+        ,"https://github.com/ilikeyi/Solutions/Update/latest.zip"
 	)
 #>
 $Script:PreServerList = @(
