@@ -28,12 +28,12 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
        只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
 
 	$Script:PreServerList = @(
-        ,"https://github.com/ilikeyi/Solutions/Update/latest.zip"
+        ,"https://github.com/ilikeyi/Solutions/Update/latest.full.zip"
 	)
 #>
 $Script:PreServerList = @(
-	"https://github.com/ilikeyi/Solutions/raw/main/latest.zip"
-	"https://fengyi.tel/download/solutions/latest.zip"
+	"https://github.com/ilikeyi/Solutions/raw/main/update/latest.full.zip"
+	"https://fengyi.tel/download/solutions/latest.full.zip"
 )
 
 <#
