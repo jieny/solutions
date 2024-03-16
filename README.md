@@ -366,42 +366,35 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
         <dd>
           <p>2.1.&nbsp;&nbsp;Backup
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Unpack.ps1, when routing function is available: Yi -unpack</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Unpack.ps1, when routing function is available: Yi -unpack</dd>
             </dl>
           </p>
 
 <br>
           <p>2.2.&nbsp;&nbsp;Create upgrade package
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Upgrade.Package.ps1, when routing function is available: Yi -CU</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Create.Upgrade.Package.ps1, when routing function is available: Yi -CU</dd>
             </dl>
           </p>
 
 <br>
           <p>2.3.&nbsp;&nbsp;Create a deployment engine upgrade package
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1, when routing function is available: Yi -CEUP</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1, when routing function is available: Yi -CEUP</dd>
             </dl>
           </p>
 
 <br>
           <p>2.4.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -Zip</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -Zip</dd>
             </dl>
           </p>
 
 <br>
-          <p>2.5.&nbsp;&nbsp;Create templates: Cumulative updates
+          <p>2.5.&nbsp;&nbsp;Create templates
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -CU</dd>
-            </dl>
-          </p>
-
-<br>
-          <p>2.6.&nbsp;&nbsp;Create templates: Drive
-            <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\Yi.Solutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -CD</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Ct.ps1, when routing function is available: Yi -CT</dd>
             </dl>
           </p>
         </dd>
