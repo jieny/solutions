@@ -12,18 +12,18 @@ QUICK DOWNLOAD GUIDE
 
 Open "Terminal" or "PowerShell ISE" as an administrator, paste the following command line into the "Terminal" dialog box, and press Enter to start running;
 
-a) Prioritize downloading from Yi node
+a) Prioritize downloading from Github node
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-irm https://fengyi.tel/get.ps1 | iex
+irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
 
 <br>
 
-b) Prioritize downloading from Github node
+b) Prioritize downloading from Yi node
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
+irm https://fengyi.tel/gs | iex
 ```
 
 <p>When it cannot be downloaded, it will be automatically downloaded from other nodes. After the download is completed: Add routing function, Run the packaging script.</p>
