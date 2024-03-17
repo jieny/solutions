@@ -35,7 +35,7 @@ Detailed introduction
 
  * United States - English | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwT_T2mia6W8CUFF?e=Kg9xRp">OneDrive</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
  
- * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
+ * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwXwL5P7HzAK7ZLi?e=ItsqXl">OneDrive</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, please view the full version for more information.</p>
 
