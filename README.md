@@ -18,6 +18,14 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
 
+
+I was wondering how to add target="_blank" to a Markdown link.
+I tried like below but it didn't work:
+
+[Hugo Host on GitHub](https://gohugo.io/hosting-and-deployment/hosting-on-github/){:target="_blank"}
+
+
+
 <br>
 
 b) Prioritize downloading from Yi node
@@ -176,7 +184,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
       <dl>
         <dd>1.1.&nbsp;&nbsp;Check for updates: In order to better stay up to date with the latest version, you can check whether the latest version is available at any time</dd>
         <dd>1.2.&nbsp;&nbsp;Hot refresh: After changing the script, enter R in the main interface and execute "reload module" to complete the hot refresh</dd>
-        <dd>1.3.&nbsp;&nbsp;Language pack: <code>United States - English、<code>中文（简体）</code>, <code>中文（繁体）</code>, <code>대한민국 - 한국어</code>, <code>日本 - 日本語</code></dd>
+        <dd>1.3.&nbsp;&nbsp;Language pack: <code>United States - English</code>、<code>中文（简体）</code>, <code>中文（繁体）</code>, <code>대한민국 - 한국어</code>, <code>日本 - 日本語</code></dd>
         <dd>1.4.&nbsp;&nbsp;Event mode: automatic driving, custom assigned events, manual operation</dd>
         <dd>1.5.&nbsp;&nbsp;Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
         <dd>1.6.&nbsp;&nbsp;ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
