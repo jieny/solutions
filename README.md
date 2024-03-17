@@ -54,16 +54,16 @@ Component
 
 <h4><pre>D.&nbsp;&nbsp;Local Language Experience Packs (LXPs) Downloader</pre></h4>
 <ol>Solve the problem of batch downloading of "Local Language Experience Packages (LXPs)" installation packages, and you can filter or download all.</ol>
-<ol>Project address: https://github.com/ilikeyi/LXPs, included in the full version: \_Encapsulation\_Custom\Engine\LXPs</ol>
+<ol>Project address: https://github.com/ilikeyi/LXPs, included in the full version: <code>\_Encapsulation\_Custom\Engine\LXPs</code></ol>
 
 <h4><pre>E.&nbsp;&nbsp;Fully automatic addition of Windows installed languages</pre></h4>
 <ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
-<ol>Project address: https://github.com/ilikeyi/Multilingual, included in the full version: \_Encapsulation\_Custom\Engine\Multilingual</ol>
+<ol>Project address: https://github.com/ilikeyi/Multilingual, included in the full version: <code>\_Encapsulation\_Custom\Engine\Multilingual</code></ol>
 
 <h4><pre>F.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
 <ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
-<ol>Project address: https://github.com/ilikeyi/Yi.Optimiz.Private, included in the full version: \_Encapsulation\_Custom\Engine\Yi.Optimiz.Private</ol>
+<ol>Project address: https://github.com/ilikeyi/Yi.Optimiz.Private, included in the full version: <code>\_Encapsulation\_Custom\Engine\Yi.Optimiz.Private</code></ol>
 
 <br>
 
@@ -82,7 +82,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <br>
   <p>Tutorials available for the packaging journey include: </p>
   <dl>
-    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: [Compressed package]:\_Documents\Attachment, or go to https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment and select it.</dd>
+    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: <code>[Compressed package]:\_Documents\Attachment</code>, or go to https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment and select it.</dd>
   </dl>
 </ul>
 
@@ -176,7 +176,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
       <dl>
         <dd>1.1.&nbsp;&nbsp;Check for updates: In order to better stay up to date with the latest version, you can check whether the latest version is available at any time</dd>
         <dd>1.2.&nbsp;&nbsp;Hot refresh: After changing the script, enter R in the main interface and execute "reload module" to complete the hot refresh</dd>
-        <dd>1.3.&nbsp;&nbsp;Language pack: United States - English、中文（简体）、中文（繁体）、대한민국 - 한국어、日本 - 日本語</dd>
+        <dd>1.3.&nbsp;&nbsp;Language pack: <code>United States - English、<code>中文（简体）</code>, <code>中文（繁体）</code>, <code>대한민국 - 한국어</code>, <code>日本 - 日本語</code></dd>
         <dd>1.4.&nbsp;&nbsp;Event mode: automatic driving, custom assigned events, manual operation</dd>
         <dd>1.5.&nbsp;&nbsp;Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
         <dd>1.6.&nbsp;&nbsp;ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>
@@ -281,7 +281,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 </dd>
     <dd>3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
-    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: & "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</dd>
+    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: <code>& "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</code></dd>
   </dl>
 
 <br>
@@ -356,7 +356,7 @@ irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 ```
 
-<p>After entering the main interface of the packaging script, you can add the routing function to the system variable. After adding it, run Yi in the PowerShell terminal next time to enter the boot interface, or enter Yi -sip to directly enter the packaging interface without entering the full path of the script. run.</p>
+<p>After entering the main interface of the packaging script, you can add the routing function to the system variable. After adding it, run <code>Yi</code> in the PowerShell terminal next time to enter the boot interface, or enter <code>Yi -sip</code> to directly enter the packaging interface without entering the full path of the script. run.</p>
     </dd>
 
 <br>
@@ -366,35 +366,35 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
         <dd>
           <p>2.1.&nbsp;&nbsp;Backup
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Unpack.ps1, when routing function is available: Yi -unpack</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Unpack.ps1</code>, when routing function is available: <code>Yi -unpack</code></dd>
             </dl>
           </p>
 
 <br>
           <p>2.2.&nbsp;&nbsp;Create upgrade package
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Create.Upgrade.Package.ps1, when routing function is available: Yi -CU</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Upgrade.Package.ps1</code>, when routing function is available: <code>Yi -CU</code></dd>
             </dl>
           </p>
 
 <br>
           <p>2.3.&nbsp;&nbsp;Create a deployment engine upgrade package
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1, when routing function is available: Yi -CEUP</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1</code>, when routing function is available: <code>Yi -CEUP</code></dd>
             </dl>
           </p>
 
 <br>
           <p>2.4.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Zip.ps1, when routing function is available: Yi -Zip</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Zip.ps1</code>, when routing function is available: <code>Yi -Zip</code></dd>
             </dl>
           </p>
 
 <br>
           <p>2.5.&nbsp;&nbsp;Create templates
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;D:\YiSolutions\_Encapsulation\_Ct.ps1, when routing function is available: Yi -CT</dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Ct.ps1</code>, when routing function is available: <code>Yi -CT</code></dd>
             </dl>
           </p>
         </dd>
