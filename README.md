@@ -18,14 +18,6 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
 
-
-I was wondering how to add target="_blank" to a Markdown link.
-I tried like below but it didn't work:
-
-[Hugo Host on GitHub](https://gohugo.io/hosting-and-deployment/hosting-on-github/){:target="_blank"}
-
-
-
 <br>
 
 b) Prioritize downloading from Yi node
