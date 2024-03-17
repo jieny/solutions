@@ -17,7 +17,7 @@ $Global:Pre_Config_Command_Rules = @(
 			"Microsoft-Windows-Shell-Setup"
 		)
 		Command = @(
-			"powershell -Command ""Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'RemoteSigned' -Force"""
+			"powershell -Command ""Set-ExecutionPolicy -Scope 'LocalMachine' -ExecutionPolicy 'Bypass' -Force"""
 		)
 	}
 	@{

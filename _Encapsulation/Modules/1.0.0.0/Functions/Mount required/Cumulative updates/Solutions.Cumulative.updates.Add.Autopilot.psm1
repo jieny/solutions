@@ -278,7 +278,7 @@ Function Update_Add_UI_Autopilot
 						<#
 							.从目录里判断是否有文件
 						#>
-						if((Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+						if((Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
 							<#
 								.提示，未发现文件
 							#>
@@ -592,7 +592,7 @@ Function Update_Add_UI_Autopilot
 						<#
 							.从目录里判断是否有文件
 						#>
-						if((Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+						if((Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
 							<#
 								.提示，未发现文件
 							#>
@@ -765,7 +765,7 @@ Function Update_Add_UI_Autopilot
 				<#
 					.从目录里判断是否有文件
 				#>
-				if((Get-ChildItem $MarkNewFolder -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+				if((Get-ChildItem $MarkNewFolder -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
 					<#
 						.提示，未发现文件
 					#>

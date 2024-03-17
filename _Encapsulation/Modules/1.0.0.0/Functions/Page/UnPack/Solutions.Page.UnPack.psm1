@@ -16,7 +16,7 @@ $UnPackigtype = @(
   .Compressed package name
   .压缩包名称
 #>
-$UnPackName = "$((Get-Module -Name Solutions).Author).Solutions_$(Get-Date -Format "yyyyMMddHHmmss")"
+$UnPackName = "$((Get-Module -Name Solutions).Author)Solutions.$(Get-Date -Format "yyyyMMddHHmmss")"
 
 <#
   .Save the compressed package to
@@ -60,8 +60,9 @@ $ArchiveExcludeUnPack = @(
 	 生成 gz, xz，需生成 tar，否则无法创建。
 #>
 $BuildTypeUnpack = @(
-	[Archive]::tar
-	[Archive]::xz
+	[Archive]::zip
+#	[Archive]::tar
+#	[Archive]::xz
 )
 
 Enum Archive

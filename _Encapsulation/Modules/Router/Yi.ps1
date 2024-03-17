@@ -5,6 +5,7 @@ param
 	[switch]$Help,
 	[switch]$Update,
 	[switch]$CU,
+	[switch]$Ct,
 	[switch]$Add,
 	[switch]$Remove,
 	[switch]$Reset,
@@ -1084,6 +1085,7 @@ Function Help
 
       U    $($PSscript.BaseName) -Update  | $($Script:Lang.ChkUpdate)
       C    $($PSscript.BaseName) -CU      | $($Script:Lang.CreateUP)
+	  T    $($PSscript.BaseName) -CT      | $($Script:Lang.CreateUP)
 
       1    $($PSscript.BaseName) -Add     | $($Script:Lang.Add)
       2    $($PSscript.BaseName) -Remove  | $($Script:Lang.Remove)
@@ -1103,10 +1105,13 @@ Function Help
 	switch (Read-Host "  $($Script:Lang.Choose)")
 	{
 		'u' {
-			powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function Update""
+			powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function "Update"
 		}
 		'c' {
-			Run_File -Name "$($PSScriptRoot)\..\..\_Create.Upgrade.Package.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_Create.Upgrade.Package.ps1"
+		}
+		't' {
+			powershell -file "$($PSScriptRoot)\..\..\_CT.ps1"
 		}
 		'1' {
 			System_Env -Add
@@ -1121,16 +1126,16 @@ Function Help
 			Solutions_Clear_Hostiry
 		}
 		'5' {
-			Run_File -Name "$($PSScriptRoot)\..\..\_Sip.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1"
 		}
 		'6' {
-			Run_File -Name "$($PSScriptRoot)\..\..\_Unpack.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_Unpack.ps1"
 		}
 		'7' {
-			Run_File -Name "$($PSScriptRoot)\..\..\_Create.Custom.Engine.upgrade.package.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_Create.Custom.Engine.upgrade.package.ps1"
 		}
 		'8' {
-			Run_File -Name "$($PSScriptRoot)\..\..\_zip.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_zip.ps1"
 		}
 		'11' {
 			Mount_Fix_Dism
@@ -1149,36 +1154,22 @@ Function Help
 	}
 }
 
-Function Run_File
-{
-	param
-	(
-		[string]$Name
-	)
-
-	if (Test-Path $Name -PathType Leaf) {
-		if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544") {
-			powershell -file $Name
-		} else {
-			Start-Process powershell -ArgumentList "-file $($Name)" -Verb RunAs
-		}
-	} else {
-		Write-Host "`n   $($Name)" -ForegroundColor Red
-	}
-}
-
 if ($Help) {
 	Help
 	return
 }
 
 if ($Update) {
-	powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function Update""
+	powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function "Update"
 	return
 }
 
 if ($CU) {
-	Run_File -Name "$($PSScriptRoot)\..\..\_Create.Upgrade.Package.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Create.Upgrade.Package.ps1"
+}
+
+if ($CT) {
+	powershell -file "$($PSScriptRoot)\..\..\_Ct.ps1"
 }
 
 if ($Add) {
@@ -1218,27 +1209,27 @@ if ($History) {
 }
 
 if ($SIP) {
-	Run_File -Name "$($PSScriptRoot)\..\..\_Sip.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1"
 	return
 }
 
 if ($Unpack) {
-	Run_File -Name "$($PSScriptRoot)\..\..\_Unpack.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Unpack.ps1"
 	return
 }
 
 if ($CEUP) {
-	Run_File -Name "$($PSScriptRoot)\..\..\_Create.Custom.Engine.upgrade.package.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Create.Custom.Engine.upgrade.package.ps1"
 	return
 }
 
 if ($Update) {
-	Run_File -Name "$($PSScriptRoot)\..\..\_Create.upgrade.package.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Create.upgrade.package.ps1"
 	return
 }
 
 if ($zip) {
-	Run_File -Name "$($PSScriptRoot)\..\..\_zip.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_zip.ps1"
 	return
 }
 

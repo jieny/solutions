@@ -319,7 +319,7 @@ Function Update_Delete_UI
 						<#
 							.从目录里判断是否有文件
 						#>
-						if((Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+						if((Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
 							<#
 								.提示，未发现文件
 							#>
@@ -632,7 +632,7 @@ Function Update_Delete_UI
 						<#
 							.从目录里判断是否有文件
 						#>
-						if((Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+						if((Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
 							<#
 								.提示，未发现文件
 							#>
@@ -791,7 +791,7 @@ Function Update_Delete_UI
 				<#
 					.从目录里判断是否有文件
 				#>
-				if((Get-ChildItem $MarkNewFolder -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
+				if((Get-ChildItem $MarkNewFolder -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -eq 0) {
 					<#
 						.提示，未发现文件
 					#>
@@ -1768,7 +1768,7 @@ Function Autopilot_Update_Delete_UI_Import
 
 					foreach ($item in $New_Tasks_Assign_Auto_Schome) {
 						if (Test-Path $item -PathType Container) {
-							if((Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+							if((Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
 								$Is_Valid_New_Custom_Path += $item
 							}
 						}
@@ -1800,7 +1800,7 @@ Function Autopilot_Update_Delete_UI_Import
 
 				foreach ($item in $New_Custom_Path) {
 					if (Test-Path $item -PathType Container) {
-						if((Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+						if((Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
 							$Is_Valid_New_Custom_Path += $item
 						}
 					}
@@ -1843,7 +1843,7 @@ Function Update_Del_Process
 		Write-Host "`n   $($lang.AddQueue)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 		ForEach ($item in $Temp_Assign_Task_Select) {
-			Get-ChildItem $item -Recurse -Include ($Global:Search_KB_File_Type) -ErrorAction SilentlyContinue | ForEach-Object {
+			Get-ChildItem $item -Recurse -Include $Global:Search_KB_File_Type -ErrorAction SilentlyContinue | ForEach-Object {
 				if (Test-Path -Path $_.FullName -PathType Leaf) {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
