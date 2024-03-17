@@ -5,27 +5,46 @@ Write-host "   $('-' * 80)"
 Write-Host -NoNewline "   Checking Must be elevated to higher authority".PadRight(75)
 if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S-1-5-32-544") {
 	Write-Host "OK".PadLeft(8) -ForegroundColor Green
+
+	Write-Host -NoNewline "   Check execution strategy".PadRight(75)
+	switch (Get-ExecutionPolicy) {
+		"Bypass" {
+			Write-Host "Pass".PadLeft(8) -ForegroundColor Green
+		}
+		"RemoteSigned" {
+			Write-Host "Pass".PadLeft(8) -ForegroundColor Green
+		}
+		"Unrestricted" {
+			Write-Host "Pass".PadLeft(8) -ForegroundColor Green
+		}
+		default {
+			Write-Host "Did not pass".PadLeft(8) -ForegroundColor Red
+
+			Write-host "`n   How to solve: " -ForegroundColor Yellow
+			Write-host "   $('-' * 80)"	
+			Write-host "     1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator, "
+			Write-host "        set PowerShell execution policy: Bypass, PS command line: `n"
+			Write-host "        Set-ExecutionPolicy -ExecutionPolicy Bypass -Force" -ForegroundColor Green
+			Write-host "`n     2. Once resolved, rerun the command`n"
+			return
+		}
+	}
 } else {
 	Write-Host "Failed".PadLeft(8) -ForegroundColor Red
 
 	Write-host "`n   How to solve: " -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"	
-	Write-host "     1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator, "
-	Write-host "        set PowerShell execution policy: Bypass, PS command line: `n"
-	Write-host "        Set-ExecutionPolicy -ExecutionPolicy Bypass -Force" -ForegroundColor Green
+	Write-host "     1. Open ""Terminal"" or ""PowerShell ISE"" as an administrator."
 	Write-host "`n     2. Once resolved, rerun the command`n"
 	return
 }
 
 <#
 	.Available servers
-	.可用的服务器
 
 	Usage:
-	用法：
 
        Only one URL address must be added in front of the, number, multiple addresses do not need to be added, example:
-       只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
 
 	$Script:PreServerList = @(
         ,"https://github.com/ilikeyi/Solutions/Update/latest.full.zip"
@@ -36,9 +55,6 @@ $Script:PreServerList = @(
 	"https://fengyi.tel/download/solutions/latest.full.zip"
 )
 
-<#
-    .临时存放路径
-#>
 $RandomGuid = [guid]::NewGuid()
 $Temp_Main_Path = Join-Path -Path $env:TEMP -ChildPath $RandomGuid -ErrorAction SilentlyContinue
 New-Item -Path $Temp_Main_Path -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
@@ -219,9 +235,6 @@ Function Archive
 	}
 }
 
-<#
-	.验证可用磁盘大小
-#>
 Function Verify_Available_Size
 {
 	param
@@ -243,9 +256,6 @@ Function Verify_Available_Size
 	return $TempCheckVerify
 }
 
-<#
-	.转换磁盘空间大小
-#>
 Function Convert_Size
 {
 	param
@@ -276,19 +286,10 @@ Function Convert_Size
 	return [Math]::Round($value,$Precision,[MidPointRounding]::AwayFromZero)
 }
 
-<#
-	.自动选择磁盘
-#>
 Function Install_Init_Disk_To
 {
-	<#
-		.搜索磁盘条件，排除系统盘
-	#>
 	$drives = Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | Where-Object { -not ((Join_MainFolder -Path $env:SystemDrive) -eq $_.Root) } | Select-Object -ExpandProperty 'Root'
 
-	<#
-		.搜索磁盘条件，排除系统盘
-	#>
 	$FlagsSearchNewDisk = $False
 	ForEach ($item in $drives) {
 		if (Test_Available_Disk -Path $item) {
@@ -300,9 +301,6 @@ Function Install_Init_Disk_To
 		}
 	}
 
-	<#
-		.未找到可用磁盘，初始化：当前系统盘
-	#>
 	if (-not ($FlagsSearchNewDisk)) {
 		return Join_MainFolder -Path $env:SystemDrive
 	}
@@ -329,70 +327,78 @@ Function TestArchive {
 }
 
 $New_Root_Disk = Install_Init_Disk_To
-$New_Root_Disk_Full_Solutions = Join-Path -Path $New_Root_Disk -ChildPath "YiSolutions" -ErrorAction SilentlyContinue
+$New_Root_Disk_Full_Solutions = "$($New_Root_Disk)YiSolutions"
 
-if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-	write-host "`n   There was a problem downloading Yi's Solutions" -ForegroundColor Yellow
-	write-host "`n   Error message: " -ForegroundColor Yellow
-	Write-Host "   $('-' * 80)"
-	Write-host "   There is a file in the directory, please delete it manually and try again.`n" -ForegroundColor Red
-	Write-host "   Path: " -NoNewline
-	Write-host "$($New_Root_Disk_Full_Solutions)`n" -ForegroundColor Green
-} else {
-	Write-Host "`n`n   * Automatically download from available servers" -ForegroundColor Green
-	Write-Host "   $('-' * 80)"
+write-host "`n   Save to: " -ForegroundColor Yellow
+Write-Host "   $('-' * 80)"
+Write-host "$($New_Root_Disk_Full_Solutions)`n" -ForegroundColor Green
 
-	ForEach ($item in $Script:PreServerList) {
-		write-host "   Connection address: " -NoNewline -ForegroundColor Yellow
-		write-host $item -ForegroundColor Green
+if (Test-Path $New_Root_Disk_Full_Solutions -PathType Container) {
+	if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+		write-host "`n   There was a problem downloading Yi's Solutions" -ForegroundColor Yellow
+		write-host "`n   Error message: " -ForegroundColor Yellow
+		Write-Host "   $('-' * 80)"
+		Write-host "   There is a file in the directory, please delete it manually and try again.`n" -ForegroundColor Red
 
-		if (Test_URI $item) {
-			Write-Host "   Address available" -ForegroundColor Green
+		<#
+		    .Clean up temporarily generated files
+		#>
+		remove-item -path $Temp_Main_Path -force -Recurse -ErrorAction silentlycontinue | Out-Null
+		return
+	}
+}
 
-			$NewFileName = [IO.Path]::GetFileName($item)
-			$NewFilePath = Join-Path -Path $Temp_Main_Path -ChildPath $NewFileName -ErrorAction SilentlyContinue
+Write-Host "   * Automatically download from available servers" -ForegroundColor Green
+Write-Host "   $('-' * 80)"
 
-			<#
-				.删除旧文件
-				.Delete old files
-			#>
-			remove-item -path $NewFilePath -Force -ErrorAction SilentlyContinue
+ForEach ($item in $Script:PreServerList) {
+	write-host "   Connection address: " -NoNewline -ForegroundColor Yellow
+	write-host $item -ForegroundColor Green
 
-			Invoke-WebRequest -Uri $item -OutFile $NewFilePath -ErrorAction SilentlyContinue | Out-Null
+	if (Test_URI $item) {
+		Write-Host "   Address available" -ForegroundColor Green
 
-			if (Test-Path -Path $NewFilePath -PathType leaf) {
-				Add-Type -AssemblyName System.IO.Compression.FileSystem
+		$NewFileName = [IO.Path]::GetFileName($item)
+		$NewFilePath = Join-Path -Path $Temp_Main_Path -ChildPath $NewFileName -ErrorAction SilentlyContinue
 
-				if (TestArchive -Path $NewFilePath) {
-					Archive -filename $NewFilePath -to $New_Root_Disk_Full_Solutions
+		<#
+			.Delete old files
+		#>
+		remove-item -path $NewFilePath -Force -ErrorAction SilentlyContinue
 
-					$Route_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\Modules\Router\Yi.ps1" -ErrorAction SilentlyContinue
-					if (Test-Path -Path $Route_PS -PathType leaf) {
-						powershell -file $Route_PS -Add
-					}
+		Invoke-WebRequest -Uri $item -OutFile $NewFilePath -ErrorAction SilentlyContinue | Out-Null
 
-					$Solutions_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\_Sip.ps1" -ErrorAction SilentlyContinue
-					if (Test-Path -Path $Solutions_PS -PathType leaf) {
-						powershell -file $Solutions_PS
-					}
+		if (Test-Path -Path $NewFilePath -PathType leaf) {
+			Add-Type -AssemblyName System.IO.Compression.FileSystem
 
-					break
-				} else {
-					remove-item -path $NewFilePath -Force -ErrorAction SilentlyContinue
+			if (TestArchive -Path $NewFilePath) {
+				Archive -filename $NewFilePath -to $New_Root_Disk_Full_Solutions
 
-					write-host "   File format error."
+				$Route_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\Modules\Router\Yi.ps1" -ErrorAction SilentlyContinue
+				if (Test-Path -Path $Route_PS -PathType leaf) {
+					powershell -file $Route_PS -Add
 				}
+
+				$Solutions_PS = Join-Path -Path $New_Root_Disk_Full_Solutions -ChildPath "_Encapsulation\_Sip.ps1" -ErrorAction SilentlyContinue
+				if (Test-Path -Path $Solutions_PS -PathType leaf) {
+					powershell -file $Solutions_PS
+				}
+
+				break
 			} else {
-				write-host "   Download failed."
+				remove-item -path $NewFilePath -Force -ErrorAction SilentlyContinue
+
+				write-host "   File format error."
 			}
 		} else {
-			Write-Host "   Address not available`n" -ForegroundColor Red
+			write-host "   Download failed."
 		}
+	} else {
+		Write-Host "   Address not available`n" -ForegroundColor Red
 	}
 }
 
 <#
     .Clean up temporarily generated files
-    .清理临时生成的文件
 #>
 remove-item -path $Temp_Main_Path -force -Recurse -ErrorAction silentlycontinue | Out-Null
