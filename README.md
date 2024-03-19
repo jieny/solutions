@@ -83,7 +83,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <br>
   <p>Tutorials available for the packaging journey include: </p>
   <dl>
-    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: <code>[Compressed package]:\_Documents\Attachment</code>, or go to https://github.com/ilikeyi/solutions/tree/main/_Documents/Attachment and select it.</dd>
+    <dd>Optional language versions: Simplified Chinese version, American English version (Google Translate: Chinese to English), download the complete package to get all documents: <code>[Compressed package]:\_Learn\Packaging.tutorial</code>, or go to https://github.com/ilikeyi/solutions/tree/main/_Learn/Packaging.tutorial and select it.</dd>
   </dl>
 </ul>
 
