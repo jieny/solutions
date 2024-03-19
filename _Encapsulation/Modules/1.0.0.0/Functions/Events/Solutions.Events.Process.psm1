@@ -1029,7 +1029,7 @@ Function Event_Process_Task_Need_Mount
 
 			$Get_Index_Now = Image_Get_Mount_Index
 			Check_Folder -chkpath $Temp_Export_SaveTo
-			$TempSaveTo = "$($Temp_Export_SaveTo)\Index.$($Get_Index_Now).Language.$(Get-Date -Format "yyyyMMddHHmmss").$($Global:EventProcessGuid).log"
+			$TempSaveTo = "$($Temp_Export_SaveTo)\Index.$($Get_Index_Now).Language.$(Get-Date -Format "yyyyMMddHHmmss").log"
 
 			Write-Host "`n   $($lang.SaveTo)"
 			Write-Host "   $($TempSaveTo)" -ForegroundColor Green

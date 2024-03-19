@@ -995,41 +995,45 @@ if ($lang) {
 
 function Solutions_Reset
 {
+	Write-host "`n   $($Script:Lang.Reset)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"	
+
 	$Path = "HKCU:\SOFTWARE\Yi\Solutions"
 	Remove-Item -Path $Path -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
-	Clear-Host
 
-	Write-host "`n  $($Script:lang.Reset)"
-	write-host "  $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
+	write-host "   $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
 }
 
 function Mount_Fix_Bad
 {
+	Write-host "`n   $($Script:Lang.Clear_Bad_Mount)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"	
+
 	dism /cleanup-wim | Out-Null
 	Clear-WindowsCorruptMountPoint -ErrorAction SilentlyContinue | Out-Null
-	Clear-Host
 
-	Write-host "`n  $($Script:lang.Clear_Bad_Mount)"
-	write-host "  $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
+	write-host "   $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
 }
 
 function Mount_Fix_Dism
 {
-	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\WIMMount\Mounted Images\*" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
-	Clear-Host
+	Write-host "`n   $($Script:Lang.HistoryClearDismSave)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"	
 
-	Write-host "`n  $($Script:lang.HistoryClearDismSave)"
-	write-host "  $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
+	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\WIMMount\Mounted Images\*" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
+
+	write-host "   $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
 }
 
 function Solutions_Clear_Hostiry
 {
-	Clear-History
-	Remove-Item (Get-PSReadlineOption).HistorySavePath;
-	Clear-Host
+	Write-host "`n   $($Script:Lang.History)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"	
 
-	Write-host "`n  $($Script:lang.History)"
-	write-host "  $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
+	Clear-History
+	Remove-Item  -Path (Get-PSReadlineOption).HistorySavePath -ErrorAction SilentlyContinue
+
+	write-host "   $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
 }
 
 function System_Env
@@ -1040,6 +1044,9 @@ function System_Env
 		[switch]$Remove
 	)
 
+	Write-host "`n   $($Script:Lang.Add)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"	
+
 	$Current_Folder = Convert-Path -Path $PSScriptRoot -ErrorAction SilentlyContinue
 	$regLocation = "Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment"
 	$path = (Get-ItemProperty -Path $regLocation -Name PATH).path
@@ -1048,13 +1055,13 @@ function System_Env
 		$windows_path = $path -split ';'
 
 		if ($windows_path -Contains $Current_Folder) {
-			write-host "`n  $($Script:Lang.AddOK)`n" -ForegroundColor Green
+			write-host "   $($Script:Lang.AddOK)`n" -ForegroundColor Green
 		} else {
 			$path = "$($path);$($Current_Folder)"
 			Set-ItemProperty -Path $regLocation -Name PATH -Value $path
 			$Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
 
-			write-host "`n   $($Script:Lang.AddDone)`n" -ForegroundColor Green
+			write-host "   $($Script:Lang.AddDone)`n" -ForegroundColor Green
 		}
     }
 
@@ -1063,7 +1070,7 @@ function System_Env
 		Set-ItemProperty -Path $regLocation -Name PATH -Value $path
 		$Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
 
-		write-host "`n  $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
+		write-host "   $($Script:Lang.RemoveDone)`n" -ForegroundColor Green
     }
 }
 
@@ -1085,7 +1092,7 @@ Function Help
 
       U    $($PSscript.BaseName) -Update  | $($Script:Lang.ChkUpdate)
       C    $($PSscript.BaseName) -CU      | $($Script:Lang.CreateUP)
-	  T    $($PSscript.BaseName) -CT      | $($Script:Lang.CreateUP)
+      T    $($PSscript.BaseName) -CT      | $($Script:Lang.CreateUP)
 
       1    $($PSscript.BaseName) -Add     | $($Script:Lang.Add)
       2    $($PSscript.BaseName) -Remove  | $($Script:Lang.Remove)
@@ -1102,7 +1109,7 @@ Function Help
      12    $($PSscript.BaseName) -FixDism | $($Script:Lang.HistoryClearDismSave)
      13    $($PSscript.BaseName) -FixBad  | $($Script:Lang.Clear_Bad_Mount)`n`n"
 
-	switch (Read-Host "  $($Script:Lang.Choose)")
+	switch (Read-Host "   $($Script:Lang.Choose)")
 	{
 		'u' {
 			powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function "Update"

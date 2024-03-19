@@ -1240,7 +1240,7 @@ Function Image_Get_Installed_Drive
 
 		$Get_Index_Now = Image_Get_Mount_Index
 		Check_Folder -chkpath $Save
-		$TempSaveTo = "$($Save)\Index.$($Get_Index_Now).Drive.$(Get-Date -Format "yyyyMMddHHmmss").$($Global:EventProcessGuid).csv"
+		$TempSaveTo = "$($Save)\Index.$($Get_Index_Now).Drive.$(Get-Date -Format "yyyyMMddHHmmss").csv"
 
 		Write-Host "`n   $($lang.SaveTo)"
 		Write-Host "   $($TempSaveTo)" -ForegroundColor Green

@@ -853,7 +853,7 @@ Function InBox_Apps_Add_UI
 
 					$Get_Index_Now = Image_Get_Mount_Index
 					Check_Folder -chkpath "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report\InBox.Apps"
-					$TempSaveTo = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report\InBox.Apps\Index.$($Get_Index_Now).$(Get-Date -Format "yyyyMMddHHmmss").$($Global:EventProcessGuid).csv"
+					$TempSaveTo = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Report\InBox.Apps\Index.$($Get_Index_Now).$(Get-Date -Format "yyyyMMddHHmmss").csv"
 
 					$custom_array | Export-CSV -NoType -Path $TempSaveTo
 

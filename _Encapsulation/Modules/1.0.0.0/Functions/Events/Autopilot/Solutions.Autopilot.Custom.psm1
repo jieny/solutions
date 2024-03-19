@@ -1226,10 +1226,6 @@ Function Image_Assign_Autopilot_Master
 			margin         = "54,0,0,25"
 			Text           = "$($lang.Event_Allow_Update_To_All_Tips -f $ImageName, $Master, "$($Master);$($Master);")"
 		}
-		$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
-			Height         = 30
-			Width          = 442
-		}
 
 		switch ($Uid) {
 			#region boot;boot;wim;
@@ -2150,7 +2146,8 @@ Function Image_Assign_Autopilot_Master
 			$MainUid,
 			$ImageFilePath,
 			$Tasks,
-			$NewTasksFull
+			$NewTasksFull,
+			$SelectUid
 		)
 
 		<#
@@ -2175,7 +2172,6 @@ Function Image_Assign_Autopilot_Master
 			Width          = 450
 			Padding        = "16,0,0,0"
 			Text           = "$($lang.Event_Group): $($Master);$($Master)`n$($lang.Unique_Name): $($Uid)"
-			Checked        = $True
 			add_Click      = {
 				if ($This.Checked) {
 					$UI_Main_Export_Event_Custom_Menu.Controls | ForEach-Object {
@@ -2212,6 +2208,7 @@ Function Image_Assign_Autopilot_Master
 				}
 			}
 		}
+
 		$paneel.controls.AddRange($GUIImageSelectGroup)
 
 		$Group_Image_Sources_Console = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
@@ -2223,6 +2220,14 @@ Function Image_Assign_Autopilot_Master
 			Name           = "ImageSourcesConsole"
 		}
 		$paneel.controls.AddRange($Group_Image_Sources_Console)
+
+		if ($SelectUid -contains $Uid) {
+			$GUIImageSelectGroup.Checked = $True
+			$Group_Image_Sources_Console.Enabled = $True
+		} else {
+			$GUIImageSelectGroup.Checked = $False
+			$Group_Image_Sources_Console.Enabled = $False
+		}
 
 		<#
 			.组，有新的挂载映像时
@@ -2802,6 +2807,12 @@ Function Image_Assign_Autopilot_Master
 
 		$Group_Image_Sources_Console.ContextMenuStrip = $UI_Main_Select_Assign_MultitaskingSelectMenu
 		$UI_Main_Export_Event_Custom_Menu.controls.AddRange($paneel)
+		
+		$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
+			Height         = 20
+			Width          = 410
+		}
+		$UI_Main_Export_Event_Custom_Menu.controls.AddRange($UI_Add_End_Wrap)
 	}
 
 	<#
@@ -4080,7 +4091,12 @@ Function Image_Assign_Autopilot_Master
 					Padding        = "16,0,0,0"
 					Text           = "$($lang.Convert_Only), $($lang.Conver_Merged), $($lang.Conver_Split_To_Swm)"
 					Tag            = "Image_Convert_UI"
-					Checked        = $True
+				}
+
+				if ($Autopilot.Deploy.ImageSource.Tasks.IsAutoSelect -contains "Convert") {
+					$Autopilot_Assign_Menu_Convert_Image.Checked = $True
+				} else {
+					$Autopilot_Assign_Menu_Convert_Image.Checked = $False
 				}
 
 				$UI_Main_Export_Event_Custom_Menu.controls.AddRange($Autopilot_Assign_Menu_Convert_Image)
@@ -4185,7 +4201,12 @@ Function Image_Assign_Autopilot_Master
 					Padding        = "16,0,0,0"
 					Text           = "$($lang.Solution): $($lang.IsCreate), ISO"
 					Tag            = "Solutions_Create_UI"
-					Checked        = $True
+				}
+
+				if ($Autopilot.Deploy.ImageSource.Tasks.IsAutoSelect -contains "Solutions") {
+					$Autopilot_Assign_Menu_Solution_IsCreate.Checked = $True
+				} else {
+					$Autopilot_Assign_Menu_Solution_IsCreate.Checked = $False
 				}
 
 				$UI_Main_Export_Event_Custom_Menu.controls.AddRange($Autopilot_Assign_Menu_Solution_IsCreate)
@@ -4214,9 +4235,9 @@ Function Image_Assign_Autopilot_Master
 			if ($item.Main.Suffix -eq "wim") {
 				if ($Wait_Sync_Some_Select -contains $item.Main.uid) {
 					if (-not [string]::IsNullOrEmpty($Autopilot.Deploy.Mount.Tasks)) {
-						foreach ($itemDeploy in $Autopilot.Deploy.Mount) {
+						foreach ($itemDeploy in $Autopilot.Deploy.Mount.Tasks) {
 							if ($itemDeploy.Uid -eq $item.Main.uid) {
-								Refresh_Config_Rule_Global -Master $item.Main.ImageFileName -ImageName $item.Main.ImageFileName -Uid $item.Main.Uid -MainUid $item.Main.Uid -ImageFilePath $NewFileFullPathMain -NewTasks $itemDeploy -NewTasksFull $itemDeploy
+								Refresh_Config_Rule_Global -Master $item.Main.ImageFileName -ImageName $item.Main.ImageFileName -Uid $item.Main.Uid -MainUid $item.Main.Uid -ImageFilePath $NewFileFullPathMain -NewTasks $itemDeploy -NewTasksFull $itemDeploy -SelectUid $Autopilot.Deploy.Mount.IsAutoSelect
 							}
 						}
 					}
@@ -4226,9 +4247,9 @@ Function Image_Assign_Autopilot_Master
 					ForEach ($Expand in $item.Expand) {
 						if ($Wait_Sync_Some_Select -contains $Expand.uid) {
 							if (-not [string]::IsNullOrEmpty($Autopilot.Deploy.Mount.Tasks)) {
-								foreach ($itemDeploy in $Autopilot.Deploy.Mount) {
+								foreach ($itemDeploy in $Autopilot.Deploy.Mount.Tasks) {
 									if ($itemDeploy.Uid -eq $Expand.uid) {
-										Refresh_Config_Rule_Global -Master $item.Main.ImageFileName -ImageName $Expand.ImageFileName -Uid $Expand.Uid -MainUid $item.Main.Uid -ImageFilePath $NewFileFullPathExpand -NewTasks $itemDeploy -NewTasksFull $itemDeploy
+										Refresh_Config_Rule_Global -Master $item.Main.ImageFileName -ImageName $Expand.ImageFileName -Uid $Expand.Uid -MainUid $item.Main.Uid -ImageFilePath $NewFileFullPathExpand -NewTasks $itemDeploy -NewTasksFull $itemDeploy -SelectUid $Autopilot.Deploy.Mount.IsAutoSelect
 									}
 								}
 							}
@@ -4258,7 +4279,8 @@ Function Image_Assign_Autopilot_Master
 			$MainUid,
 			$ImageFilePath,
 			$NewTasks,
-			$NewTasksFull
+			$NewTasksFull,
+			$SelectUid
 		)
 
 		$Wait_Assign_To_New_Button = @()
@@ -4424,7 +4446,7 @@ Function Image_Assign_Autopilot_Master
 		}
 
 		if ($Wait_Assign_To_New_Button.Count -gt 0) {
-			Image_Select_Refresh_Install_Boot_WinRE_Autopilot_Export_Add -Master $Master -ImageName $ImageName -Uid $Uid -MainUid $MainUid -ImageFilePath $ImageFilePath -Tasks $Wait_Assign_To_New_Button -NewTasksFull $NewTasksFull
+			Image_Select_Refresh_Install_Boot_WinRE_Autopilot_Export_Add -Master $Master -ImageName $ImageName -Uid $Uid -MainUid $MainUid -ImageFilePath $ImageFilePath -Tasks $Wait_Assign_To_New_Button -NewTasksFull $NewTasksFull -SelectUid $SelectUid
 		}
 	}
 
@@ -4617,7 +4639,7 @@ Function Image_Assign_Autopilot_Master
 				if ($item.Main.Suffix -eq "wim") {
 					foreach ($itemVerify in $Wait_Sync_Some_Select_Group) {
 						if ($itemVerify.Uid -eq $item.Main.uid) {
-							foreach ($itemDeploy in $Autopilot.Deploy.Mount) {
+							foreach ($itemDeploy in $Autopilot.Deploy.Mount.Tasks) {
 								if ($itemDeploy.Uid -eq $item.Main.uid) {
 									Image_Set_Global_Primary_Key -Uid $item.Main.uid -Silent -DevCode "Autopilot - 5000"
 									Autopilot_Refresh_Export_Event_To_WIM -Master $item.Main.ImageFileName -ImageName $item.Main.ImageFileName -ImageFile "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -ImageUid $item.Main.Uid -Suffix $item.Main.Suffix -SelectEvent $itemVerify.SelectTasks -NewTasks $itemDeploy
@@ -4630,7 +4652,7 @@ Function Image_Assign_Autopilot_Master
 						ForEach ($Expand in $item.Expand) {
 							foreach ($itemVerify in $Wait_Sync_Some_Select_Group) {
 								if ($itemVerify.Uid -eq $Expand.uid) {
-									foreach ($itemDeploy in $Autopilot.Deploy.Mount) {
+									foreach ($itemDeploy in $Autopilot.Deploy.Mount.Tasks) {
 										if ($itemDeploy.Uid -eq $Expand.uid) {
 											Image_Set_Global_Primary_Key -Uid $Expand.uid -Silent -DevCode "Autopilot - 5200"
 											Autopilot_Refresh_Export_Event_To_WIM -Master $item.Main.ImageFileName -ImageName $Expand.ImageFileName -ImageFile "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -ImageUid $Expand.Uid -Expand -Suffix $Expand.Suffix -SelectEvent $itemVerify.SelectTasks -NewTasks $itemDeploy

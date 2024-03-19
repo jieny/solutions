@@ -1278,7 +1278,7 @@ Function Image_Convert_Process
 				.拆分前重建 install.wim
 			#>
 			Write-Host "`n   $($lang.Rebuild)"
-			if ($Global:Queue_Convert_Tasks.PreMission.Rebuild) {
+			if ($Global:Queue_Convert_Tasks.Rebuild) {
 				Write-Host "   $($lang.Operable)" -ForegroundColor Green
 				Rebuild_Image_File -Filename $Install_wim
 
@@ -1368,7 +1368,7 @@ Function Image_Convert_Process
 				.拆分前重建 install.wim
 			#>
 			Write-Host "`n   $($lang.Rebuild)"
-			if ($Global:Queue_Convert_Tasks.PreMission.Rebuild) {
+			if ($Global:Queue_Convert_Tasks.Rebuild) {
 				Write-Host "   $($lang.Operable)" -ForegroundColor Green
 				Rebuild_Image_File -Filename $Install_wim
 

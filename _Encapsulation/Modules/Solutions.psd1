@@ -15,7 +15,7 @@
 	PrivateData = @{
 		PSData = @{
 			Tags = @("Yi's Solutions")
-			# LicenseUri   = ''
+			LicenseUri   = 'https://opensource.org/license/artistic-2-0'
 			ProjectUri   = 'https://github.com/ilikeyi/solutions'
 			# IconUri      = ''
 			# ReleaseNotes = ''
