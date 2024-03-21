@@ -99,266 +99,266 @@ $Global:Pre_Config_Rules = @(
 		
 					#region Windows 11 23H2 Business
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_11_business_editions_version_23h2_x64_dvd_a9092734.iso"
+						ISO = "en-us_windows_11_business_editions_version_23h2_x64_dvd_a9092734.iso"
 						CRCSHA = @{
 							SHA256 = "c5aaefe5e1571017ca571f072f6cb4922668d98702d1abad34b078682e09703a"
 							SHA512 = "76d9b8e6003564f5f989021ea7a0fb39f3d34e82fccc4995919720840fc6484476266e6163b8de3b4c4661f5784731a92716e91ef8920bf8938e3d958dcf327a"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ar-sa_windows_11_business_editions_version_23h2_x64_dvd_90df2506.iso"
+						ISO = "ar-sa_windows_11_business_editions_version_23h2_x64_dvd_90df2506.iso"
 						CRCSHA = @{
 							SHA256 = "3865f4f87bb02976fd0314183c71103f57f2642ed29dc05967aad27c1fb15deb"
 							SHA512 = "3d57b2bbb6fcf25d7079f7190c385685336fb5ece4ca9bf976e1f40bfc55b476d631f4e8ff144cc9dbe1f51ab40d08d45dd2ff553f1fd90127c1ae7e46322c60"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/bg-bg_windows_11_business_editions_version_23h2_x64_dvd_31159385.iso"
+						ISO = "bg-bg_windows_11_business_editions_version_23h2_x64_dvd_31159385.iso"
 						CRCSHA = @{
 							SHA256 = "e36d64226a4203959c2802497456bb3ea23298a84170b2aed4d7dd8f5598ec02"
 							SHA512 = "6f82cce103a82c60ea951a702828d42f9628fb7dc2f3a3f197ad2370e793c840a604ba5c62d6f7b055277e7339f2a91f59523e4e6d0733c0d7d628ee9f76865f"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/cs-cz_windows_11_business_editions_version_23h2_x64_dvd_b7709420.iso"
+						ISO = "cs-cz_windows_11_business_editions_version_23h2_x64_dvd_b7709420.iso"
 						CRCSHA = @{
 							SHA256 = "9208890eaacc8ea95ad06e63f8e590c1bc88d7037bd8ee458e19e26490fb7a7e"
 							SHA512 = "5e03d9bb324391bdca99049fe96d2fb87bee76d6c1e5420d4cf1d622817cf288eb06e0a80198aa80d16b6a7f318400cec1ea899e68390a7b93a12e63d3349ba5"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/da-dk_windows_11_business_editions_version_23h2_x64_dvd_b8eee9f7.iso"
+						ISO = "da-dk_windows_11_business_editions_version_23h2_x64_dvd_b8eee9f7.iso"
 						CRCSHA = @{
 							SHA256 = "6853c38146c0f037e92e5a7248dfea6f9c12e2d6d62f02702e44bebba0a44baf"
 							SHA512 = "26d1d4ccfec95a5c7143b5a0a5dcd8fdc132a5a43c667f3b1c10637760702db8ac82fdc7b279114f28632a7a9b16cf6f7f337b483024cc4836242975955a721a"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/de-de_windows_11_business_editions_version_23h2_x64_dvd_04ef30fe.iso"
+						ISO = "de-de_windows_11_business_editions_version_23h2_x64_dvd_04ef30fe.iso"
 						CRCSHA = @{
 							SHA256 = "1def237a0f22f884061d28167760e953ba29378a5a839add7d4f17197f705671"
 							SHA512 = "3c71ab028977308a8a3ed827e53978715bdb212cca303d2ce041df4532fdfb9f4f7c56c4ff489b202c619b6c3cc47db59bdfef6668af22f342a7a70ae617892b"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/el-gr_windows_11_business_editions_version_23h2_x64_dvd_99b80cf1.iso"
+						ISO = "el-gr_windows_11_business_editions_version_23h2_x64_dvd_99b80cf1.iso"
 						CRCSHA = @{
 							SHA256 = "c953771803a18bbc0af09236ccd084457a32332dbe034a98925d119ef990c52e"
 							SHA512 = "5524e6e904e17497aa2433dd5bcd73d30f325b666e892f5ab8e6f4d45f2376f69f41f4c5fe29d0e8bece3cdfa3dc52910c367209b27cbcb0a3e4840c97a52cc1"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/en-gb_windows_11_business_editions_version_23h2_x64_dvd_2eed2cb1.iso"
+						ISO = "en-gb_windows_11_business_editions_version_23h2_x64_dvd_2eed2cb1.iso"
 						CRCSHA = @{
 							SHA256 = "c8984945b82a5590e00766b9f9ac6787ddad629d053033801f9ab195d5f3d30c"
 							SHA512 = "bb11e395b081e6ac813ac47dc5206b21aa5806f6549658e2d894eb75c23e79e3e22eacd31e8ae19abc1d2e4ee8e5be0eda0acf939b4a3e5b7880ebc7d5733695"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/es-es_windows_11_business_editions_version_23h2_x64_dvd_634232b4.iso"
+						ISO = "es-es_windows_11_business_editions_version_23h2_x64_dvd_634232b4.iso"
 						CRCSHA = @{
 							SHA256 = "8397b303993c7ead8550472102526ddaae7f4c7830008639df397351c4d71319"
 							SHA512 = "91ba41568ca86694238213476f0b8f414a218c73a195eee11d244b6a7ce8b03c6b08b155d43e7cf25b23dce72182e68cd42802464985e54bc269238cbbdedccc"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/es-mx_windows_11_business_editions_version_23h2_x64_dvd_7e397ec8.iso"
+						ISO = "es-mx_windows_11_business_editions_version_23h2_x64_dvd_7e397ec8.iso"
 						CRCSHA = @{
 							SHA256 = "b8975a777a29a95c8be9335dbfe25c00dc1bb5a5aaa16d63eea1278f16022c1"
 							SHA512 = "cd3eac3e86dae0c551d50756db525bb546e7632f127ce57e0bf8cd354bba367c8f9f846c997960cb6e1d0ab5f12620bb10276037dcca65328aaff2bd32920a4"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/et-ee_windows_11_business_editions_version_23h2_x64_dvd_fbee65a6.iso"
+						ISO = "et-ee_windows_11_business_editions_version_23h2_x64_dvd_fbee65a6.iso"
 						CRCSHA = @{
 							SHA256 = "5a2f9d5154d28a0a3e1c9586272d1f93d71a77c2162cf6c3d2b1e0ac27f5bf46"
 							SHA512 = "e41fb393b284aca54eebcd46032e08cb99c4b4366159b591b222e6c38a71cd1822ddb593cc0031d3250a6112420f854351e345350bfb79343ef54c4a44499c76"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/fi-fi_windows_11_business_editions_version_23h2_x64_dvd_716d1495.iso"
+						ISO = "fi-fi_windows_11_business_editions_version_23h2_x64_dvd_716d1495.iso"
 						CRCSHA = @{
 							SHA256 = "1dcaffae05c8c07eb16d4f75ae13e5f8c47a9934d440abc46d7434c942f90463"
 							SHA512 = "524240d1d8f665fc2dee57545c59532695f62d089d082f8adc7b8ec71edd6e25a8de07fa21cfc4ad8df4dd25c2b2e7f16c35d77a448bfc910302753ef1f18f26"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/fr-ca_windows_11_business_editions_version_23h2_x64_dvd_225f4375.iso"
+						ISO = "fr-ca_windows_11_business_editions_version_23h2_x64_dvd_225f4375.iso"
 						CRCSHA = @{
 							SHA256 = "5cdbd866a297826b26705e393bf84f20efa76f72cfc9ea804846f8dab433b11b"
 							SHA512 = "077d86863c08ddcc8bc5e983aacdcc98d40627695d8e3d8249dc25227e83090393990e10a3e582aeaf38e6a5d67808ce5f80e516c11f6e78503fd2c9a48c26b7"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/fr-fr_windows_11_business_editions_version_23h2_x64_dvd_7108659c.iso"
+						ISO = "fr-fr_windows_11_business_editions_version_23h2_x64_dvd_7108659c.iso"
 						CRCSHA = @{
 							SHA256 = "5d95e3bd1bffbf61b4531d1ba23cf40aff26506357697a53fa8b5b3abddcd535"
 							SHA512 = "caac34cded50e6a156e5e59a5dcf16f3fbb907c3601301d6a5a47d9fd339873d4481175483e2716204736804850e478afc14db02106147967eecb2d7de18263c"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/he-il_windows_11_business_editions_version_23h2_x64_dvd_c9e58a4c.iso"
+						ISO = "he-il_windows_11_business_editions_version_23h2_x64_dvd_c9e58a4c.iso"
 						CRCSHA = @{
 							SHA256 = "13d2d1d7674b7a2a3728478bcc5f925eedc8b11b486d63e11980b01e0cac4cce"
 							SHA512 = "dbf2926bedfef29ba12b8e5c693820e387a1ea4dddff7087a279dcd65917dc19f29bb9b47f43dfe584b8957fa8ee8c1c2264476b3c8ab348486320c11b52d5e2"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/hr-hr_windows_11_business_editions_version_23h2_x64_dvd_0e395032.iso"
+						ISO = "hr-hr_windows_11_business_editions_version_23h2_x64_dvd_0e395032.iso"
 						CRCSHA = @{
 							SHA256 = "d79ceca9e69ab6041d63c1aadc0f8c8e4995626268af7eed43517cc3b86e7493"
 							SHA512 = "48eb8f36ea2b007f0cd2125203e35ae02b8b8ba8cb9e3b4a294fc9b483937911b99bca3e251fa1d7b95136298e67d6d12c1be72a17c3f379e81afa4ef3fbd355"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/hu-hu_windows_11_business_editions_version_23h2_x64_dvd_36fc4c48.iso"
+						ISO = "hu-hu_windows_11_business_editions_version_23h2_x64_dvd_36fc4c48.iso"
 						CRCSHA = @{
 							SHA256 = "59532a66e807fd42f5482720124291c5388bb0c21cd6205ca208d24d711e0514"
 							SHA512 = "8ad6cbbccaa6b4ca8cdda753c884b7bd26bdb437117376b6010ec0a93b51cabcd6ec0e8fb98af503a779278e441348f181bb85ef5b8d4e7e83352f82f46511d9"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/it-it_windows_11_business_editions_version_23h2_x64_dvd_95691843.iso"
+						ISO = "it-it_windows_11_business_editions_version_23h2_x64_dvd_95691843.iso"
 						CRCSHA = @{
 							SHA256 = "00d760d68ef26436b638ea65455ddab046ad8b927d65dbc8be88b695ffbd9e0f"
 							SHA512 = "b56bf44c97ca0ed2fe46b00fb666dc6c25756cc944da85ccdaa5904e4945c49abd1f7c37f73528b42e07e7959a302959d6b51187669f181985722f7709eca6a4"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ja-jp_windows_11_business_editions_version_23h2_x64_dvd_b9815aed.iso"
+						ISO = "ja-jp_windows_11_business_editions_version_23h2_x64_dvd_b9815aed.iso"
 						CRCSHA = @{
 							SHA256 = "67346732518f712eec4e800a2c61c7970d6832b5eaf1fcda4bd8b4727351bded"
 							SHA512 = "7469f7a8ee6078051bfab920b3768692c0915adda77b3fe74e9f34c39121dc29ff350479eae4af2b6ba14ac332573b64cc5df661da62a0151b1f6c86bdcad541"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ko-kr_windows_11_business_editions_version_23h2_x64_dvd_a65d95fd.iso"
+						ISO = "ko-kr_windows_11_business_editions_version_23h2_x64_dvd_a65d95fd.iso"
 						CRCSHA = @{
 							SHA256 = "31f33e5c5ad555a3bd333395f3f438322bcd827e9d7b966e1c695992065ef1b2"
 							SHA512 = "3e11581440efab3112a4868484a16ec31213275111d7a28ab657300759cb9c8c40660bad9fa8bd9bf88e42006745250ad301f8305667277d3990f42245404fd6"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/lt-lt_windows_11_business_editions_version_23h2_x64_dvd_85df48c5.iso"
+						ISO = "lt-lt_windows_11_business_editions_version_23h2_x64_dvd_85df48c5.iso"
 						CRCSHA = @{
 							SHA256 = "d125383b431aa45814ba6582dc28c402fa023f5d7612a2b73a9e2d4c2adb8f8c"
 							SHA512 = "e680f8d6d740476e9b000c052090e65afc52ae4b93987ca0d928dbe66f6bfc106741a4a53d2017842172f9db9fc26bfe5c1dfa967c6731b62318281f44cde479"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/lv-lv_windows_11_business_editions_version_23h2_x64_dvd_d2004ed4.iso"
+						ISO = "lv-lv_windows_11_business_editions_version_23h2_x64_dvd_d2004ed4.iso"
 						CRCSHA = @{
 							SHA256 = "846da7e8012819062bf809af7765c57be766e415d38bd3ea67c4dcbe831f64dd"
 							SHA512 = "894ca29bc5d474d98d87c0d4ffe85874b935558215e3f438e6b80799ac8bfa81e5393817e42753bd2f4937a1b60b96847f84ebda9a76c21ac980e70bd9f36738"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/nb-no_windows_11_business_editions_version_23h2_x64_dvd_9d18e125.iso"
+						ISO = "nb-no_windows_11_business_editions_version_23h2_x64_dvd_9d18e125.iso"
 						CRCSHA = @{
 							SHA256 = "31c326179bcbf01e5566c8c922b97daf18ff8e1fb4ab9204bc8b632e3a09130a"
 							SHA512 = "0f2a6b45cc682d99852c0d947e829844cdf22be3a8b0d8f6bb0be6e8d4ce98b72578ebbcf44fabd4c52c2f445c9d34c2cb2220f97ff85508f27b4c5e91c2a57d"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/nl-nl_windows_11_business_editions_version_23h2_x64_dvd_adbc4a30.iso"
+						ISO = "nl-nl_windows_11_business_editions_version_23h2_x64_dvd_adbc4a30.iso"
 						CRCSHA = @{
 							SHA256 = "c11f2a84d96da9293b88425997d0b769ea5928984f3740e88852651002080b55"
 							SHA512 = "5f62d9f6e438314103923db38ba7349b790f2e313417756d04472203555302c28ccdabe07a7907ca6cdf7134b5b34556be65639f0632945f38b23106c0baaf70"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/pl-pl_windows_11_business_editions_version_23h2_x64_dvd_d0b744db.iso"
+						ISO = "pl-pl_windows_11_business_editions_version_23h2_x64_dvd_d0b744db.iso"
 						CRCSHA = @{
 							SHA256 = "88f2d72b1201321cfe9cac6a146ce5123bd67aa52f8304d16499ea5ceccf3412"
 							SHA512 = "4b8a27057673ab4076a95f4659349f846337dfd147a3243f285d61cadc11aaafc7cdfd766af09b40b697606b3c533f94ceb654293a8b9169472f1ea271144a56"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/pt-br_windows_11_business_editions_version_23h2_x64_dvd_0c39b1c0.iso"
+						ISO = "pt-br_windows_11_business_editions_version_23h2_x64_dvd_0c39b1c0.iso"
 						CRCSHA = @{
 							SHA256 = "fd7b9412c2df3d756700c9297d5fd0ce59a2365e8945c3c3b567d61f69d0ab59"
 							SHA512 = "c05f32ad1516ea5085fd642dcf9ddda1974bc468a525bd2b3a4b66cc3293630cf3174b12b79aa1ab708cd51f010dba9747ee530edb32c166600c3d2ed837b49c"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/pt-pt_windows_11_business_editions_version_23h2_x64_dvd_524ce318.iso"
+						ISO = "pt-pt_windows_11_business_editions_version_23h2_x64_dvd_524ce318.iso"
 						CRCSHA = @{
 							SHA256 = "bece60eb91c9e2a14987bf9c95d660408e3a6e80afc77dbe72c13108a5f2f9e2"
 							SHA512 = "bae1fe9871df28ba96bf48f7016be343fc0f9c678374e91a343b536465fd18b3b5e0a219d4d5dcf591ceb723f8ac7e06e00a0a06a8e078873a0073876923165a"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ro-ro_windows_11_business_editions_version_23h2_x64_dvd_9e025646.iso"
+						ISO = "ro-ro_windows_11_business_editions_version_23h2_x64_dvd_9e025646.iso"
 						CRCSHA = @{
 							SHA256 = "7918d98e76466c0487053facf982101351fd517a85fff3cbad0b508f7104b5e4"
 							SHA512 = "b611cdfd403022a43acd2ac90212d61218c5bf898a0d08e336425aa6defce05c124405cb72dfda8f0cf0ab23cf26962a1f9f9c662cf48f19031e008f2b5e7061"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ru-ru_windows_11_business_editions_version_23h2_x64_dvd_bcc01258.iso"
+						ISO = "ru-ru_windows_11_business_editions_version_23h2_x64_dvd_bcc01258.iso"
 						CRCSHA = @{
 							SHA256 = "e95b1fb95178841df1fd90f7daa28a3894d348486129b26322d92142323fba24"
 							SHA512 = "b028e0f25752b10228c298471befc78430810f5156e0cea5d4865211580a8be9963aabd4da1485f5b5615800c25dcb78d544f4cbb141420df1ec59f7de363d05"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sk-sk_windows_11_business_editions_version_23h2_x64_dvd_0460dfed.iso"
+						ISO = "sk-sk_windows_11_business_editions_version_23h2_x64_dvd_0460dfed.iso"
 						CRCSHA = @{
 							SHA256 = "a4a7cb48e70c9d88f810df8c078c3614c6cc8e58188439aac8dacf966887e24b"
 							SHA512 = "5e5492a196b0549712ecc736d0f688eed3c2a287177bd4d0edcb4af6c8d3f92c0131ee1570bc6b6c92839ea664d75b72ebaed35844bca20c53839c3147a42df8"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sl-si_windows_11_business_editions_version_23h2_x64_dvd_f9cce4cc.iso"
+						ISO = "sl-si_windows_11_business_editions_version_23h2_x64_dvd_f9cce4cc.iso"
 						CRCSHA = @{
 							SHA256 = "fc02cf2b7cb60043346d954d94ef1ae59aa364b7c6ed0594ba8fc76ef3470f58"
 							SHA512 = "a17f6a3dee706f1a8eb43a17452affbe9ce3d29f1cb5a9c22afd141c4dbdb7e33af6120490f1a6b825bcc7b843fe4e983ea115e88eb233c126c30894d283c421"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sr-latn-rs_windows_11_business_editions_version_23h2_x64_dvd_12e05473.iso"
+						ISO = "sr-latn-rs_windows_11_business_editions_version_23h2_x64_dvd_12e05473.iso"
 						CRCSHA = @{
 							SHA256 = "22a9289fc3b8a1a74c45aea6bfec983d0ec2bca1e5ddd39c6c1d5673bdc25fe9"
 							SHA512 = "606c2aa5bf4afe626b8493fac3e4b66a88cda18ae81e5f77a76ae53570eb0daf154be7a07350514f14b12bb05aeaaafbfe6560f770dcf3cad76da97d0f11759a"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sv-se_windows_11_business_editions_version_23h2_x64_dvd_1dfe7a6d.iso"
+						ISO = "sv-se_windows_11_business_editions_version_23h2_x64_dvd_1dfe7a6d.iso"
 						CRCSHA = @{
 							SHA256 = "879cf98f82153293b5e3faf57ace62172ce2065c6ab89546697a835a14321ac0"
 							SHA512 = "518713ace99cce69e44b34e390290b34b3048072b6d0c5656ec9cf9431f8196c32c7ca7d04f23fd36ac3d8877ce824d5bfa88b7899c8a0aa14d3a3147c8930c1"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/th-th_windows_11_business_editions_version_23h2_x64_dvd_f22b2291.iso"
+						ISO = "th-th_windows_11_business_editions_version_23h2_x64_dvd_f22b2291.iso"
 						CRCSHA = @{
 							SHA256 = "d13e3246e3dba3c6408b7e945359f70428f22c5b528615c02d42707a5e326fc1"
 							SHA512 = "692e80bd1f2b19efa90c27f692c0d703ac2620524790c5bcebc5c17bf14cb8547b06162878170521bbb347fae5d988f175b6866525402adcba42ff91276d2819"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/tr-tr_windows_11_business_editions_version_23h2_x64_dvd_9877fa3a.iso"
+						ISO = "tr-tr_windows_11_business_editions_version_23h2_x64_dvd_9877fa3a.iso"
 						CRCSHA = @{
 							SHA256 = "5243b830023c9017941d86a91ad10b69f399495aa0178b77c9757704636571a0"
 							SHA512 = "917710a2e4723c34982f54090e3b664ecc703bbbe8cfbaf39e88b4ed40ff7f4efe47819845ec6f6febcff8fc02fb0f902d55dbad8ccc754eaea08cfc3e005bf6"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/uk-ua_windows_11_business_editions_version_23h2_x64_dvd_e16b3cfa.iso"
+						ISO = "uk-ua_windows_11_business_editions_version_23h2_x64_dvd_e16b3cfa.iso"
 						CRCSHA = @{
 							SHA256 = "3e342d3ce7e5e71b9c8a99ef6b0a766f3111c5412bbe4faf10e8d5db597f5aa2"
 							SHA512 = "c03f5ea7ee898b3875f60bc9b479b7d9486a896ed6071440fff950f594161ad3b70f1f0dc07f6c5eb46df8b52590c0f771c6f303e95406c5c5203509848a6109"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/zh-cn_windows_11_business_editions_version_23h2_x64_dvd_2a79e0f1.iso"
+						ISO = "zh-cn_windows_11_business_editions_version_23h2_x64_dvd_2a79e0f1.iso"
 						CRCSHA = @{
 							SHA256 = "b4f4caa4ba52b4bcd59072d5361dbdb287856c48ce7c9ee39008dc294f3111df"
 							SHA512 = "fe240279246c7d7e1a712569eafc07395501e1d29edd38080c9ad1df789a91d18591210070c017d97170cc4a1718d2293b10c1c50270a34b4d5e80e8cc0d5f4b"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/zh-tw_windows_11_business_editions_version_23h2_x64_dvd_a242adb5.iso"
+						ISO = "zh-tw_windows_11_business_editions_version_23h2_x64_dvd_a242adb5.iso"
 						CRCSHA = @{
 							SHA256 = "13dc9354594863e7dd5c3fbdbeae81ab79e3f6a26507274d3f5684bac4115266"
 							SHA512 = "ac6b027f9b98e2a61690b2de5709c689387bcf6af739fef8b462c94dc3fa0cfa0e21bd43df7e55b1bd0f066d62993b1975c2eb0d03b4dfa3156ba08d95545ade"
@@ -368,266 +368,266 @@ $Global:Pre_Config_Rules = @(
 		
 					#region Windows 11 23H2 Consumer
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_11_consumer_editions_version_23h2_x64_dvd_8ea907fb.iso"
+						ISO = "en-us_windows_11_consumer_editions_version_23h2_x64_dvd_8ea907fb.iso"
 						CRCSHA = @{
 							SHA256 = "71a7ae6974866603d366a911b0c00eace476e0b49d12205d7529765cc50b4b39"
 							SHA512 = "4385997d2cf495b7d5133a1fc1c08d7d6cb12d1722fddad182bf633ceefdd9b15f8961bab2b606d7ccbda76c6c5cee2f64d5e72b03e1aa622f667a74fd005ddc"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ar-sa_windows_11_consumer_editions_version_23h2_x64_dvd_b507f164.iso"
+						ISO = "ar-sa_windows_11_consumer_editions_version_23h2_x64_dvd_b507f164.iso"
 						CRCSHA = @{
 							SHA256 = "3247e69df44be778c6b8955787a71e16ca263b30c5bb64aec9a1f466e5be6ddd"
 							SHA512 = "a0055a9add9d6f5021564865f8d70a9575910b53613903733cc0df721db47bfc8400558381cae5f9485c9b09d82c7075355d27b436d38a9a09bc32e571328532"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/bg-bg_windows_11_consumer_editions_version_23h2_x64_dvd_56baae7b.iso"
+						ISO = "bg-bg_windows_11_consumer_editions_version_23h2_x64_dvd_56baae7b.iso"
 						CRCSHA = @{
 							SHA256 = "65dee1bd98a670aa3c78e5f032524dd51bfcbd69e832bbaea081973dda056e0c"
 							SHA512 = "efccfcd1d23e292e391fd0ebc5dbbfa0dff840110f8c97bb5ab4f73199c3fdebcfe854cbbab535301f01a7f523396eb2b1156ef5b1fdbe356f797c7fa43cdc4d"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/cs-cz_windows_11_consumer_editions_version_23h2_x64_dvd_c4b740b5.iso"
+						ISO = "cs-cz_windows_11_consumer_editions_version_23h2_x64_dvd_c4b740b5.iso"
 						CRCSHA = @{
 							SHA256 = "ae5594f1fdd23a228dd77631be3febb630c38d51058d514897d9a40b8527e788"
 							SHA512 = "1a907e7c8629a83b57093618fe192d8ee839acdb5e8fbd0ed7448a278f1614554529e9820651d9b941a4efd0c03ff2f239165f5929cd48dec52708feaf6e7424"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/da-dk_windows_11_consumer_editions_version_23h2_x64_dvd_e42ed441.iso"
+						ISO = "da-dk_windows_11_consumer_editions_version_23h2_x64_dvd_e42ed441.iso"
 						CRCSHA = @{
 							SHA256 = "cf5bcdec23a98e528e3aad6f55d8df7b8396bac01394ffd7da7c1c48a59e02e3"
 							SHA512 = "1f47cdc352741ec711131b1d499524efc41a6d0ef6dc4c6351939cc60740e7c66249c56a4cfa4819b39c14df2c526ed19a6c616331ccf36f33aa834f0831a4f1"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/de-de_windows_11_consumer_editions_version_23h2_x64_dvd_dd5bdd4c.iso"
+						ISO = "de-de_windows_11_consumer_editions_version_23h2_x64_dvd_dd5bdd4c.iso"
 						CRCSHA = @{
 							SHA256 = "e1db6c0b5aa9a8f33616455cfa6e47cc469f178f50997f368f2255acfda5d133"
 							SHA512 = "23430afb466bed61cd4636f00a2cfefa1ded5ee79d05d72b529214fdba773c0790485dd22aeb1a7cfbcb6eb9bc6370fe49282ba89f104e33df0793a464339563"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/el-gr_windows_11_consumer_editions_version_23h2_x64_dvd_1fe13d86.iso"
+						ISO = "el-gr_windows_11_consumer_editions_version_23h2_x64_dvd_1fe13d86.iso"
 						CRCSHA = @{
 							SHA256 = "3cfea3232c6d932d184757c72584d92dc0a0bea0f2354397b9699eab5a34c8cd"
 							SHA512 = "114136bfe30c85b96471de496e2750ad26aa33917cdd266a141adf30d22cacf49c9c9dd7aafefa40256726511293b4e619f427a978813b262e9c378c5089a34f"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/en-gb_windows_11_consumer_editions_version_23h2_x64_dvd_df20f81a.iso"
+						ISO = "en-gb_windows_11_consumer_editions_version_23h2_x64_dvd_df20f81a.iso"
 						CRCSHA = @{
 							SHA256 = "0eea13c537e39cd1631b1758cd98847cf0d88bd0c32a8d69d9a02723ae79a612"
 							SHA512 = "547981f994c9771f28fba8795309a7ecbf8c4e13c13128337206092c961cc016e8e54b3d60b0ad37a0dd780b3cf2ee081987049e60df254f7fc5b0387e71e1a3"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/es-es_windows_11_consumer_editions_version_23h2_x64_dvd_48270ddc.iso"
+						ISO = "es-es_windows_11_consumer_editions_version_23h2_x64_dvd_48270ddc.iso"
 						CRCSHA = @{
 							SHA256 = "ee4a40ae5ec3ea15153cdf020b3d38cd4f5008716e521906c28af0fff01e4bb8"
 							SHA512 = "857e04fd9fd9bfcc67037e759884f502ec0f493061fecddc77cadd751c3a22455e406265d05a473907eb22eaa0de6c966d796214c07302797f4bcc18c25a8c9a"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/es-mx_windows_11_consumer_editions_version_23h2_x64_dvd_8ab46526.iso"
+						ISO = "es-mx_windows_11_consumer_editions_version_23h2_x64_dvd_8ab46526.iso"
 						CRCSHA = @{
 							SHA256 = "4fafb129ac83715d5cd1aefe562f9f2d2273282210d82d1efbce0a219ad4a268"
 							SHA512 = "220b1535bab0b8c00099babfee87138e0ebadc0984027e76a2de59b9e65286ec91735cb5b9abfc04ac422980a72d7daa26f2dc60539d369736707c872005ca6c"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/et-ee_windows_11_consumer_editions_version_23h2_x64_dvd_7705741e.iso"
+						ISO = "et-ee_windows_11_consumer_editions_version_23h2_x64_dvd_7705741e.iso"
 						CRCSHA = @{
 							SHA256 = "3a1453918b24ba2eea4c47923841e43da08b980cdba47fed59e9b2f25dca9e60"
 							SHA512 = "9f6c9bad3094eb4deafa3318b79403353ad8dad692b6908185b46e229e08c45d2f5ea003c74501bef5ca4ed484688710e7fec87cfb8d8d9be0a913fe686bd7ef"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/fi-fi_windows_11_consumer_editions_version_23h2_x64_dvd_716366d0.iso"
+						ISO = "fi-fi_windows_11_consumer_editions_version_23h2_x64_dvd_716366d0.iso"
 						CRCSHA = @{
 							SHA256 = "6554f40aac818b949aac540beb63683e78f5de97e022aaa79a292e67d3bcca1e"
 							SHA512 = "806168146c58d9f1f1f180dee8ad43e9c348337df019984f6a00110b6999ab00cab5ebef4d74da8d8ee7cd1f0d6716cef6d5a1186a0e8f9c798b14aa6e61fe4c"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/fr-ca_windows_11_consumer_editions_version_23h2_x64_dvd_8acc222b.iso"
+						ISO = "fr-ca_windows_11_consumer_editions_version_23h2_x64_dvd_8acc222b.iso"
 						CRCSHA = @{
 							SHA256 = "43a6d4099a126dc9bb2d14ce8938d3cf8cbbb2229df5e2ab3219d29654f0179a"
 							SHA512 = "9528b019bf0a88c47c3323f06760f7efed0de749011486eebe9abb9530bdc73c7f13d14d953473871c6e05eae3013941548ce2f11302b95997a249f205f4acd9"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/fr-fr_windows_11_consumer_editions_version_23h2_x64_dvd_00e64a18.iso"
+						ISO = "fr-fr_windows_11_consumer_editions_version_23h2_x64_dvd_00e64a18.iso"
 						CRCSHA = @{
 							SHA256 = "c9f233d6b9d411cfdfd682b82d3250c769beb15890c2ab55f6cdaa2ae0fbe550"
 							SHA512 = "70eadb79123120763ebfc57175f49642d7be603dd5a03e3d9dbbe5cb6e511a9bc03ae28e6dae43ee58ebd1d9a385fedc3aa3b773189459964364567251b84c00"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/he-il_windows_11_consumer_editions_version_23h2_x64_dvd_5657fb63.iso"
+						ISO = "he-il_windows_11_consumer_editions_version_23h2_x64_dvd_5657fb63.iso"
 						CRCSHA = @{
 							SHA256 = "2c30c39b7c0c28eef597a89d98921da2be0078393debb00e31aeb924a6f4d914"
 							SHA512 = "058e9f2d7e2855a65b24f16f223dbbd80c2571dab25d20d98507e10b436f4ed54ee46e1a02f73afcdcd8c42187b236ea9631fc8f1138e9575e1d1268266bda72"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/hr-hr_windows_11_consumer_editions_version_23h2_x64_dvd_ba5a9937.iso"
+						ISO = "hr-hr_windows_11_consumer_editions_version_23h2_x64_dvd_ba5a9937.iso"
 						CRCSHA = @{
 							SHA256 = "d5d6aba3c8e6dc386371246023276bc080f204da8c10ed58e396d25dc6e5c81b"
 							SHA512 = "cfdd6bdee6855a885d7645dd75cee03f3adf37cc995bbe33486505e294ec6bf1f15df064fe7b5d9514ba0bedcfc44c24ba23d295da74ebd869a2e33334941def"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/hu-hu_windows_11_consumer_editions_version_23h2_x64_dvd_d557d6f2.iso"
+						ISO = "hu-hu_windows_11_consumer_editions_version_23h2_x64_dvd_d557d6f2.iso"
 						CRCSHA = @{
 							SHA256 = "f0cbc2467fe506d61e4f88bafce9bb57994b0e2d5eb71ae5e983ee0b71f0643f"
 							SHA512 = "8aa4841cb8bcd777896d0aef6d7802a33ee86fd6904ff22e9198c18423017c321dd2d851837b2bc3b52c3b6874d9b9a843d8d88ae511dbdd80dfcf8e3d4a8263"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/it-it_windows_11_consumer_editions_version_23h2_x64_dvd_129624bb.iso"
+						ISO = "it-it_windows_11_consumer_editions_version_23h2_x64_dvd_129624bb.iso"
 						CRCSHA = @{
 							SHA256 = "a7a50c75f4746fda655097c8af7ca0ac577cc958987a83a6322f297e9b69fca1"
 							SHA512 = "57966bc5463ce15b36c4d863f84dd207fd536cdb50f3ae330d8d36adcee87d69f86cb12666388c050374cdd042c5dd06fc0b588edcc9a5abb53f2627fdf49079"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ja-jp_windows_11_consumer_editions_version_23h2_x64_dvd_ef3e93b3.iso"
+						ISO = "ja-jp_windows_11_consumer_editions_version_23h2_x64_dvd_ef3e93b3.iso"
 						CRCSHA = @{
 							SHA256 = "d06810dd8acf57c04c74df4b4c6c36bafdc42528907e20fb06bbe86752ea4863"
 							SHA512 = "ce1548e5d0966e7f4262b0d83796f60db28f091b6d5f7cd235191260c6aa5d369ba7e0f0b25e7397f85e0fc9a87fe746d7fa24e6a941f9afac442e56e00b53a3"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ko-kr_windows_11_consumer_editions_version_23h2_x64_dvd_0ca298a2.iso"
+						ISO = "ko-kr_windows_11_consumer_editions_version_23h2_x64_dvd_0ca298a2.iso"
 						CRCSHA = @{
 							SHA256 = "03aeb2ebe8e416f2d73d544273e7186f9f9973f7a4146e3b61e56fca59e16b7e"
 							SHA512 = "508ddc8b8ef548bc2107a076cf92acc20342a54edda2bf161e66e686e68554e63b3510f8c1f6ae11c310d5a73dc0e9164644f38f6447ac7ac470671b11c9418a"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/lt-lt_windows_11_consumer_editions_version_23h2_x64_dvd_4ec6a1ba.iso"
+						ISO = "lt-lt_windows_11_consumer_editions_version_23h2_x64_dvd_4ec6a1ba.iso"
 						CRCSHA = @{
 							SHA256 = "b7e25e7e55dbc75cba074b9cc3c3867fbb30484e7176c42e3b61038cf0498946"
 							SHA512 = "0532289f0e44d2f6dda9e456d0ad8101d1f4277838098eaffd404fba6195bd4f3667cd8293fe93cabaaab28795ec681144579b647e82d6a6243abb1a06a3ed85"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/lv-lv_windows_11_consumer_editions_version_23h2_x64_dvd_9123eb14.iso"
+						ISO = "lv-lv_windows_11_consumer_editions_version_23h2_x64_dvd_9123eb14.iso"
 						CRCSHA = @{
 							SHA256 = "cc127ebc4b36e9720043f00be371e849079402b069b539a6d9e575323d53cfcd"
 							SHA512 = "854d273f67e6f88aa95a52a1ebd0b6165f57f71749549338e35ad1c5272b5fc19ad703edf472d2b612cefb5f32730079c916c214e93244c1a673df6ca157084b"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/nb-no_windows_11_consumer_editions_version_23h2_x64_dvd_f501bd58.iso"
+						ISO = "nb-no_windows_11_consumer_editions_version_23h2_x64_dvd_f501bd58.iso"
 						CRCSHA = @{
 							SHA256 = "35a672cfe01f9a3efc35bd06d4da24c9ccd710e35243f454a0ede35a57a7d61e"
 							SHA512 = "20aea871dea5fb6048d9e78db6b0f4da85e03f552a87059b076273aac8379fed6306b80d74eda4981977a8eba48b84d0f6b14ad2b2aa45590d54fb835f27ad22"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/nl-nl_windows_11_consumer_editions_version_23h2_x64_dvd_5ded48b8.iso"
+						ISO = "nl-nl_windows_11_consumer_editions_version_23h2_x64_dvd_5ded48b8.iso"
 						CRCSHA = @{
 							SHA256 = "0ae7bf4cd29bd88ffbc1469664ae2f169fd3cc17b9d7b448ceb3e5cdedb3e8fc"
 							SHA512 = "f9326adea8796333246eb84b4630d7162ac1177da972a7b58927b706d23465bb4e99ef2b880e395b83ccbd221f41e6831ed5ceb60f73aea9408e5571adbf99d1"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/pl-pl_windows_11_consumer_editions_version_23h2_x64_dvd_0e50a870.iso"
+						ISO = "pl-pl_windows_11_consumer_editions_version_23h2_x64_dvd_0e50a870.iso"
 						CRCSHA = @{
 							SHA256 = "0034c99eee6cbed811545ee0f6642e2e00792a8e39793f8042fe121c5cfb8cb8"
 							SHA512 = "252e6d33bad2dcee05989309502f4778dc1f3bf1339f858365fdfcc713c39a2cd1c1fb5ca1a14c4fb09cc5b1a1c48b0d4e3971d33ecba2e28e281e11d0c65ef2"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/pt-br_windows_11_consumer_editions_version_23h2_x64_dvd_5814829a.iso"
+						ISO = "pt-br_windows_11_consumer_editions_version_23h2_x64_dvd_5814829a.iso"
 						CRCSHA = @{
 							SHA256 = "debd6204ab9fae4221bc9f8facd0a907ef7931a2a3a07310b8b293bdf45cbb26"
 							SHA512 = "392175e2216e6bc6be110d794af12c6ea0e24d78221061e5b845e51133332c0bdfaf5b341d20e48ee550ad3dec989f5522cad91629de3239fc2ef94edf27d182"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/pt-pt_windows_11_consumer_editions_version_23h2_x64_dvd_0dba3b5d.iso"
+						ISO = "pt-pt_windows_11_consumer_editions_version_23h2_x64_dvd_0dba3b5d.iso"
 						CRCSHA = @{
 							SHA256 = "39736928ddc0bba5b49669587f74e6c5364e300fb17a49c8df32c3d0a690dea2"
 							SHA512 = "cac548c4c8e0125f5c92206479c1320950825443d8750d881b7800a10deeb6a21d213a099fcfc6e43acceaf2be7f1096c3777280c6836c9bf6f3ff8cdd49ea17"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ro-ro_windows_11_consumer_editions_version_23h2_x64_dvd_9e643b73.iso"
+						ISO = "ro-ro_windows_11_consumer_editions_version_23h2_x64_dvd_9e643b73.iso"
 						CRCSHA = @{
 							SHA256 = "e9b04da3ac1c5768cba46f13d4c76e55c109e2ebcf6c8b81a1d05c1bdbbc19c2"
 							SHA512 = "6fb72e40d980b23778197d00d874a2a75359e27b2d0c984e1641310de271ed06a5866390f980096824ad446edd4f844aea01a6b982a969281ecc561d2be76528"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/ru-ru_windows_11_consumer_editions_version_23h2_x64_dvd_c8fdbd88.iso"
+						ISO = "ru-ru_windows_11_consumer_editions_version_23h2_x64_dvd_c8fdbd88.iso"
 						CRCSHA = @{
 							SHA256 = "faa50189044ed73543902b007e36ef74103b4d191e6880235c993c9240d5d086"
 							SHA512 = "9281990e7a8eabfe50b36ddcf96de64992346c0fff07abb721913d93c970a4a7b66a6c973afeced10507efdda13ce4bd14adf622fbff5dcfcff0a3dc543169e5"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sk-sk_windows_11_consumer_editions_version_23h2_x64_dvd_a21eec49.iso"
+						ISO = "sk-sk_windows_11_consumer_editions_version_23h2_x64_dvd_a21eec49.iso"
 						CRCSHA = @{
 							SHA256 = "9d2a3a65a3b0b3f8032195b9460efa3a4cc59fb2da97d0ba7d1397fb804219a6"
 							SHA512 = "3552dec545f32293408c5c44fe355ba6d26b4614948b5687619f03d7add87177e0cabfeb1eaad28cef7a16bc6d0307f279c4a647b50e8b7b141eaa76b25e1c54"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sl-si_windows_11_consumer_editions_version_23h2_x64_dvd_8efad64b.iso"
+						ISO = "sl-si_windows_11_consumer_editions_version_23h2_x64_dvd_8efad64b.iso"
 						CRCSHA = @{
 							SHA256 = "635dd4ebee9e0171ebe22e09c9fe44e73696cd663eeb81f984dfd3cfe3b49a06"
 							SHA512 = "62c0f4cd6cfc9aa8f369f8edd2369582d0afb99b6c6692dbd8a0beccf7e0cb15e96e90a6d5929a3d9f1590232feeaa690bdc868f55a53263e20b40800bcbd4a4"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sr-latn-rs_windows_11_consumer_editions_version_23h2_x64_dvd_930bda7e.iso"
+						ISO = "sr-latn-rs_windows_11_consumer_editions_version_23h2_x64_dvd_930bda7e.iso"
 						CRCSHA = @{
 							SHA256 = "e782ef8644ab97df773baa643add12da0278fe44667ab41cbc27dcace829eb79"
 							SHA512 = "05491f4a5f50e603d12fcbd17dd1c84818bb9ea336dc289a2b44ba0e08f3ee3e173ed6c209e80101d8ad056dd4455da741b8756db06d96b64aee03435db3b069"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/sv-se_windows_11_consumer_editions_version_23h2_x64_dvd_1e807145.iso"
+						ISO = "sv-se_windows_11_consumer_editions_version_23h2_x64_dvd_1e807145.iso"
 						CRCSHA = @{
 							SHA256 = "28d8b08fb2c870cf73a8a9150ef7b855138901d1bfe6af4651bd0b7a822eb2bf"
 							SHA512 = "ee9f0723fa2a85a717869e3616a64b8bd35d779812a7c9d0a64fb499f602af5c12d55575fc691842b672e4be40d0851ef00c7da2486fc125e534de38162b0831"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/th-th_windows_11_consumer_editions_version_23h2_x64_dvd_95320a54.iso"
+						ISO = "th-th_windows_11_consumer_editions_version_23h2_x64_dvd_95320a54.iso"
 						CRCSHA = @{
 							SHA256 = "1af88468b1b56299fbb3124f28122bbd94158ca029f523a13e1ff246c6951e0c"
 							SHA512 = "4b70b648df7af18b9c7b15aa17c5c3527d334e9fa4db9b8f3aec4fc9b50712fd7360229192ebd39eff62139c6fd2f0e27b1abc77e9ce54bb78af5576810698b3"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/tr-tr_windows_11_consumer_editions_version_23h2_x64_dvd_da46beef.iso"
+						ISO = "tr-tr_windows_11_consumer_editions_version_23h2_x64_dvd_da46beef.iso"
 						CRCSHA = @{
 							SHA256 = "d9a8a771d23f3523c0dbbb3012e978fd132946e48625d779c27c80ff3f1d32e5"
 							SHA512 = "2dd7dd16259fb796d416a79229be9074d44989e5964b77947fc8a2981afdef869ac98786191fdf4c0a57448604acb46d579b7a81536699b57e68f95ba0d7d21e"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/uk-ua_windows_11_consumer_editions_version_23h2_x64_dvd_411eb8b5.iso"
+						ISO = "uk-ua_windows_11_consumer_editions_version_23h2_x64_dvd_411eb8b5.iso"
 						CRCSHA = @{
 							SHA256 = "52c47ca749a1fb35a8e0341fa6730e946046e3a72e2f69b79d50dade27950604"
 							SHA512 = "efafa031d0e512423dedf7b08305d9809401495fca795eb5e5850c0ac24d6717bbde89fd2066d0c38c21fac560fdd20e53fd94190ff67ef9fe7ee0f6907c98ca"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/zh-cn_windows_11_consumer_editions_version_23h2_x64_dvd_91207780.iso"
+						ISO = "zh-cn_windows_11_consumer_editions_version_23h2_x64_dvd_91207780.iso"
 						CRCSHA = @{
 							SHA256 = "86533155b48398556014de1aa03917a4c243686bb1e8d6b6d878ec5b9c8638fa"
 							SHA512 = "e3cf0b18353148fa2d90d5f7e4ce9765c515b5bdf5fd923ec7a7fc1a8caa72c5375d27b002a6b9e0de1e21fc5642bdd695ea65bcc3a0d6f5b158bd8171d4172e"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/zh-tw_windows_11_consumer_editions_version_23h2_x64_dvd_7ef3a40b.iso"
+						ISO = "zh-tw_windows_11_consumer_editions_version_23h2_x64_dvd_7ef3a40b.iso"
 						CRCSHA = @{
 							SHA256 = "72aa96fd49a3c3b23b3bfb74c891a7b6e382d18091c8c80f9e74d2813c59bb92"
 							SHA512 = "504c7e69e2e1370bf380b727c51dacf1df18d69dcddc78951757924388403106a47d1b9014794221a182278da35755a9101c20917ea0bf32b253da51621c225f"
@@ -637,14 +637,14 @@ $Global:Pre_Config_Rules = @(
 		
 					#region Windows 11 IoT Enterprise 23H2
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_11_iot_enterprise_version_23h2_x64_dvd_fb37549c.iso"
+						ISO = "en-us_windows_11_iot_enterprise_version_23h2_x64_dvd_fb37549c.iso"
 						CRCSHA = @{
 							SHA256 = "5d9b86ad467bc89f488d1651a6c5ad3656a7ea923f9f914510657a24c501bb86"
 							SHA512 = "7b4d4b4a535a94fe0a01064be5cd3a418ce4b0715eeca7f02fe6ab2b197ee5512483667400dbd6b3f880e055db24236fd868867e5c5e19f55c6c7f3789db5003"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_11_iot_enterprise_version_23h2_arm64_dvd_6cc52d75.iso"
+						ISO = "en-us_windows_11_iot_enterprise_version_23h2_arm64_dvd_6cc52d75.iso"
 						CRCSHA = @{
 							SHA256 = "b468c15425514a2bca8627cecb2effdb0c0a47156c76b4466f3954a03c0de06d"
 							SHA512 = "23da9bfcb6860505975b623da7ac8b8420186bad2f043c8dfeb68be51d0c7a26317deef333af6a7c691b58b469fd7ad46021ba90a772f0e43f15e98cd8e272c0"
@@ -3324,14 +3324,14 @@ $Global:Pre_Config_Rules = @(
 		
 					#region Windows 10 IoT Enterprise 22H2
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_10_iot_enterprise_version_22h2_x64_dvd_51cc370f.iso"
+						ISO = "en-us_windows_10_iot_enterprise_version_22h2_x64_dvd_51cc370f.iso"
 						CRCSHA = @{
 							SHA256 = "2070c6eb71143a1207805f264d756b25f985769452f0bafccadf393c85d47f30"
 							SHA512 = "2cdd3533a63a764bc1b98b7c43857d4a3ca95be069fecef565f9610f52cdb16b2f4e5abcbb2fc45daa6678720e0e6a4dfb17ee354640a2c7f5a5167897c7ac27"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_10_iot_enterprise_version_22h2_arm64_dvd_39566b6b.iso"
+						ISO = "en-us_windows_10_iot_enterprise_version_22h2_arm64_dvd_39566b6b.iso"
 						CRCSHA = @{
 							SHA256 = "aad4fff6702e681c3238dfc64da6a58beefc8246e8b75170b30b52af31d20f0b"
 							SHA512 = "76260e42fdce2dbea403e38ac65e39840f7e165f7cfd6c166e17fa7df342166e44ddcc0b4915fd00bf1d2fc2bc41e3c456ecfac6bbbceac9d7952d7d681666ad"
@@ -3357,14 +3357,14 @@ $Global:Pre_Config_Rules = @(
 					
 					#region Windows 10 Iot Enterprise LTSC 2021
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso"
+						ISO = "en-us_windows_10_iot_enterprise_ltsc_2021_x64_dvd_257ad90f.iso"
 						CRCSHA = @{
 							SHA256 = "a0334f31ea7a3e6932b9ad7206608248f0bd40698bfb8fc65f14fc5e4976c160"
 							SHA512 = "640942d93daf8cd183d06e35d5d753a4b93c952c3196c3e3fa7876295b39d8bfef5df8ef2a3b420b5247905fe396606f94ccf093982ee999e503d09e69850143"
 						}
 					}
 					@{
-						ISO = "https://drive.massgrave.dev/en-us_windows_10_iot_enterprise_ltsc_2021_arm64_dvd_e8d4fc46.iso"
+						ISO = "en-us_windows_10_iot_enterprise_ltsc_2021_arm64_dvd_e8d4fc46.iso"
 						CRCSHA = @{
 							SHA256 = "d265df49b30a1477d010c79185a7bc88591a1be4b3eb690c994bed828ea17c00"
 							SHA512 = "cbf5196a0a539f5285b8c98eea093823bd396cad8d7d34e25936bfc5936a1c86d040d938c6ae49bd8483325e0f2a87c231f005a3a01edb353adea82dfb006720"

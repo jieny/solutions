@@ -92,23 +92,13 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 <ul>
   <dl>
     <dd>
-      <p>1.&nbsp;&nbsp;Autopilot</p>
+      <p>1.&nbsp;&nbsp;Packaging tutorial</p>
       <dl>
-        <dd>1.1.&nbsp;&nbsp;Windows 11 23H2: Autonomous driving package
+        <dd>1.1.&nbsp;&nbsp;Windows 11 23H2: Practical packaging tutorial
             <dl>
                <dd>
 
-[Youtube](http://fengyi.tel) | [Bilibili](http://fengyi.tel) | [Tencent Video](http://fengyi.tel) | [Watermelon video](http://fengyi.tel)
-               </dd>
-            </dl>
-         </dd>
-
-<br>
-        <dd>1.2.&nbsp;&nbsp;Windows 10 22H2: Autonomous driving package
-            <dl>
-               <dd>
-
-[Youtube](http://fengyi.tel) | [Bilibili](http://fengyi.tel) | [Tencent Video](http://fengyi.tel) | [Watermelon video](http://fengyi.tel)
+[Youtube](https://youtu.be/e6mzybgMHF0) | [Bilibili](https://www.bilibili.com/video/BV1sj421R7uj/) | [Tencent Video](https://v.qq.com/x/page/j3543gs3pv7.html) | [Watermelon video](https://www.ixigua.com/7348909159569424946?utm_source=Github)
                </dd>
             </dl>
          </dd>
@@ -117,23 +107,13 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 
 <br>
     <dd>
-      <p>2. Custom distribution of encapsulated events</p>
+      <p>2. Custom encapsulated events</p>
       <dl>
-         <dd>2.1.&nbsp;&nbsp;Windows 11 23H2: Custom allocation of encapsulated events
+         <dd>2.1.&nbsp;&nbsp;Windows 11 23H2: Custom encapsulated events
             <dl>
                <dd>
 
-[Youtube](http://fengyi.tel) | [Bilibili](http://fengyi.tel) | [Tencent Video](http://fengyi.tel) | [Watermelon video](http://fengyi.tel)
-               </dd>
-            </dl>
-         </dd>
-
-<br>
-        <dd>2.2.&nbsp;&nbsp;Windows 10 22H2: Custom allocation of encapsulated events
-            <dl>
-               <dd>
-
-[Youtube](http://fengyi.tel) | [Bilibili](http://fengyi.tel) | [Tencent Video](http://fengyi.tel) | [Watermelon video](http://fengyi.tel)
+[Youtube](https://youtu.be/L1AxyoAhNMY) | [Bilibili](https://www.bilibili.com/video/BV1HK421e7AV/) | [Tencent Video](https://v.qq.com/x/page/c3543pyggh0.html) | [Watermelon video](https://www.ixigua.com/7348904251847868966?utm_source=Github)
                </dd>
             </dl>
          </dd>
@@ -142,23 +122,13 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
 
 <br>
     <dd>
-      <p>3.&nbsp;&nbsp;Manual packaging</p>
+      <p>3.&nbsp;&nbsp;Autopilot</p>
       <dl>
-        <dd>3.1.&nbsp;&nbsp;Windows 11 23H2: Manual packaging
+        <dd>3.1.&nbsp;&nbsp;Windows 11 23H2: Autopilot encapsulation
             <dl>
                <dd>
 
-[Youtube](http://fengyi.tel) | [Bilibili](http://fengyi.tel) | [Tencent Video](http://fengyi.tel) | [Watermelon video](http://fengyi.tel)
-               </dd>
-            </dl>
-         </dd>
-
-<br>
-        <dd>3.2.&nbsp;&nbsp;Windows 10 22H2: Manual packaging
-            <dl>
-               <dd>
-
-[Youtube](http://fengyi.tel) | [Bilibili](http://fengyi.tel) | [Tencent Video](http://fengyi.tel) | [Watermelon video](http://fengyi.tel)
+[Youtube](https://youtu.be/BbS_T2d9Ifc) | [Bilibili](https://www.bilibili.com/video/BV1Mt421G7Uf/) | [Tencent Video](https://v.qq.com/x/page/l35436bsird.html) | [Watermelon video](https://www.ixigua.com/7348896802180956683?utm_source=Github)
                </dd>
             </dl>
          </dd>
