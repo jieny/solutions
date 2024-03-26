@@ -27,7 +27,7 @@
                 Write-host "   Installing".PadRight(22) -NoNewline
 
                 try {
-    #               Add-AppxProvisionedPackage -Path $Mount -PackagePath $File -LicensePath $License -ErrorAction SilentlyContinue | Out-Null
+                   Add-AppxProvisionedPackage -Path $Mount -PackagePath $File -LicensePath $License -ErrorAction SilentlyContinue | Out-Null
                    Write-Host "Done" -ForegroundColor Green
                 } catch {
                     Write-Host "Failed" -ForegroundColor Red

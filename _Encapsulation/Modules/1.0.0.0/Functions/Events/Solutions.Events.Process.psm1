@@ -96,7 +96,7 @@ Function Event_Process_Task_Need_Mount
 	Write-Host "`n   $($lang.Solution)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_Solutions_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		Write-Host " sssss  $($lang.Operable)" -ForegroundColor Green
+		Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
 		<#
 			.批量操作，挂载所有映像源，并添加

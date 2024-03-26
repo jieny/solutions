@@ -1,9 +1,7 @@
 ﻿$Oscdimg = "D:\Oscdimg.exe"
-
 $ISO = "D:\OS_10"
 $Volume = "OS_10"
 $FileName = "D:\OS_10.iso"
-
 $Arguments = @(
     "-m",
     "-o",
@@ -14,5 +12,4 @@ $Arguments = @(
     $ISO,
     $FileName
 )
-
 Start-Process -FilePath $Oscdimg -ArgumentList $Arguments -wait -nonewwindow

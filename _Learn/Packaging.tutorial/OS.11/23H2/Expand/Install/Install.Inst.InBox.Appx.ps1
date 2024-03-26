@@ -1,12 +1,12 @@
-﻿# Inbox appx 来源
-# Auto = 自动搜索本地所有磁盘，默认；
-# 自定义路径，例如指定为 F 盘：$ISO = "F:\packages"
+﻿# Inbox appx Source
+# Auto = automatically search all local disks, default;
+# Customize the path, for example, specify the F drive: $ISO = "F:\packages"
 $ISO = "Auto"
 
-# 挂载 Install 到
+# Mount Install to
 $Mount = "D:\OS_11_Custom\Install\Install\Mount"
 
-# 架构
+# Architecture
 $Arch = "x64"
 
 try {
@@ -23,7 +23,9 @@ $Pre_Config_Rules = @{
     Edition = @(
         #region CloudEdition
         @{
-            Name = @( "CloudEdition"; )
+            Name = @(
+                "CloudEdition"
+            )
             Apps = @(
                 "Microsoft.UI.Xaml.2.3"
                 "Microsoft.UI.Xaml.2.4"
@@ -371,7 +373,7 @@ Function Match_InBox_Apps_Install_Pack
     param ( $NewPath )
 
     <#
-        .转换变量
+        .Transform variables
     #>
     $NewArch  = $Arch
     $NewArchC = $Arch.Replace("AMD64", "x64")
@@ -385,7 +387,7 @@ Function Match_InBox_Apps_Install_Pack
             $InstallPackerCert = ""
 
             <#
-                .替换变量
+                .Substitute variables
             #>
             $SearchNewStructure = $itemInBoxApps.Match.Replace("{ARCH}", $NewArch).Replace("{ARCHC}", $NewArchC).Replace("{ARCHTag}", $NewArchCTag)
             $SearchNewLicense = $itemInBoxApps.License.Replace("{ARCH}", $NewArch).Replace("{ARCHC}", $NewArchC).Replace("{ARCHTag}", $NewArchCTag)

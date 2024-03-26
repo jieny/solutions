@@ -1,5 +1,4 @@
 ﻿$Lang = "zh-CN"
-
 Get-AppXProvisionedPackage -Path "D:\OS_11_Custom\Install\Install\Mount" | Foreach-object {
     if ($_.DisplayName -Like "*LanguageExperiencePack*$($Lang)*") {
         Write-host "   $($_.DisplayName)"

@@ -2155,7 +2155,11 @@ Function Image_Select
 					return
 				} else {
 					if (Test-Path -Path "$($Global:Mount_To_Route)\$($Master)\$($ImageName)\Mount" -PathType Container) {
-						$GUIImageSelectInstallTips.Text = $lang.MountedIndexError
+						if((Get-ChildItem "$($Global:Mount_To_Route)\$($Master)\$($ImageName)\Mount" -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+							$GUIImageSelectInstallTips.Text = $lang.MountedIndexError
+						} else {
+							$GUIImageSelectInstallTips.Text = $lang.NotMounted
+						}
 					} else {
 						$GUIImageSelectInstallTips.Text = $lang.NotMounted
 					}

@@ -178,11 +178,6 @@
         }
     )
 
-    <#
-        {Lang}  = 语言标记
-        {ARCH}  = 架构：原始 amd64
-        {ARCHC} = 架构：转换后的结果：x64
-    #>
     $NewFonts = Match_Required_Fonts -Lang $NewLang
     $SpecificPackage = Match_Other_Region_Specific_Requirements -Lang $NewLang
     $NewArchC = $NewArch.Replace("AMD64", "x64")
@@ -202,7 +197,7 @@
     }
 }
 
-# 提取添加、删除
+# Extract add, delete
 $Extract_language_Pack = @(
     @{ Tag = "zh-CN"; Arch = "AMD64"; Act = "Add"; Scope = @("Install\Install"; "Install\WinRE"; "Boot\Boot") }
     @{ Tag = "en-US"; Arch = "AMD64"; Act = "Del"; Scope = @( "Install\Install"; "Install\WinRE"; "Boot\Boot" ) }

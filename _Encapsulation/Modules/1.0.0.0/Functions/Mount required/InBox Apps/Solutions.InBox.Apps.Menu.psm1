@@ -45,7 +45,11 @@
 		Write-Host "`n   $($lang.InboxAppsManager)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 		if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
-			Write-Host "   $($lang.MountedIndexError)" -ForegroundColor Red
+			if((Get-ChildItem "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+				Write-Host "   $($lang.MountedIndexError)" -ForegroundColor Red
+			} else {
+				Write-Host "   $($lang.NotMounted)" -ForegroundColor Red
+			}
 		} else {
 			Write-host "   $($lang.Mounted_Status)" -ForegroundColor Yellow
 			Write-Host "   $($lang.NotMounted)" -ForegroundColor Red

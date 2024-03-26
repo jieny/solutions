@@ -707,6 +707,7 @@ Function Mainpage
 #			$Autopilot = Get-Content -Raw -Path "D:\Yi.Solutions\_Encapsulation\_Autopilot\Windows 10 22H2\_Custom\_ISO\Multilingual\ISO.Multilingual.json" | ConvertFrom-Json
 #			ISO_Create_UI -Autopilot $Autopilot.Deploy.ImageSource.Tasks.ISO -ISO
 
+			Create_Template
 
 
 #			Event_Assign_Task

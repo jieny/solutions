@@ -298,7 +298,11 @@ Function Image_Get_Mount_Status_New
 								Write-Host "   $($lang.MountedIndex): $($ImageName)" -NoNewline -ForegroundColor Yellow
 
 								if (Test-Path -Path "$($Global:Mount_To_Route)\$($ImageMaster)\$($ImageName)\Mount" -PathType Container) {
-									Write-Host "    $($lang.MountedIndexError)" -ForegroundColor Red
+									if((Get-ChildItem "$($Global:Mount_To_Route)\$($ImageMaster)\$($ImageName)\Mount" -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+										Write-Host "    $($lang.MountedIndexError)" -ForegroundColor Red
+									} else {
+										Write-Host "    $($lang.NotMounted)" -ForegroundColor Red
+									}
 								} else {
 									Write-Host "    $($lang.NotMounted)" -ForegroundColor Red
 								}
@@ -312,7 +316,11 @@ Function Image_Get_Mount_Status_New
 								Write-Host "   $($lang.MountedIndex): $($ImageName)" -NoNewline -ForegroundColor Yellow
 
 								if (Test-Path -Path "$($Global:Mount_To_Route)\$($ImageMaster)\$($ImageName)\Mount" -PathType Container) {
-									Write-Host "    $($lang.MountedIndexError)" -ForegroundColor Red
+									if((Get-ChildItem "$($Global:Mount_To_Route)\$($ImageMaster)\$($ImageName)\Mount" -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+										Write-Host "    $($lang.MountedIndexError)" -ForegroundColor Red
+									} else {
+										Write-Host "    $($lang.NotMounted)" -ForegroundColor Red
+									}
 								} else {
 									Write-Host "    $($lang.NotMounted)" -ForegroundColor Red
 								}

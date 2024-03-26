@@ -1,138 +1,4 @@
 ﻿<#
-	.Language packs, search for file types
-	.语言包，搜索文件类型
-#>
-$Global:Search_Language_File_Type = @(
-	"*.esd"
-	"*.cab"
-)
-
-$Global:Search_File_Order = @{
-	<#
-		.字体
-	#>
-	Fonts = @(
-		"*LanguageFeatures-Fonts*"
-		"*WinPE-FontSupport*"
-	)
-
-	<#
-		.基本
-	#>
-	Basic = @(
-		<#
-			.新版文件名称
-		#>
-		"*Windows-Server-Language-Pack*"
-		"*Windows-Client-Language-Pack*"
-		"*Windows-Lip-Language-Pack*"
-
-		<#
-			.过时的，旧版
-		#>
-		"*LanguageFeatures-Basic*"
-		"*WinPE-Setup*"
-		"*lp.cab*"
-	)
-
-	<#
-		.特定包
-		 https://learn.microsoft.com/en-us/windows-hardware/manufacture/desktop/features-on-demand-language-fod?view=windows-11#other-region-specific-Prerequisite
-	#>
-	RegionSpecific = @(
-		"*InternationalFeatures*"
-	)
-
-	<#
-		.光学字符识别
-	#>
-	OCR = @(
-		"*LanguageFeatures-OCR*"
-	)
-
-	<#
-		.手写内容识别
-	#>
-	Handwriting = @(
-		"*LanguageFeatures-Handwriting*"
-	)
-
-	<#
-		.文本转语音
-	#>
-	TextToSpeech = @(
-		"*LanguageFeatures-TextToSpeech*"
-	)
-
-	<#
-		.语音识别
-	#>
-	Speech = @(
-		"*LanguageFeatures-Speech*"
-	)
-
-	<#
-		.按需功能
-	#>
-	Features_On_Demand = @(
-		<#
-			.Install
-		#>
-		"*InternetExplorer*"
-		"*MSPaint*"
-		"*Notepad*"
-		"*MediaPlayer*"
-		"*PowerShell*ISE*"
-		"*StepsRecorder*"
-		"*SnippingTool*"
-		"*WMIC*"
-		"*WordPad*"
-		"*Printing-WFS*"
-		"*Printing-PMCPPC*"
-		"*Telnet-Client*"
-		"*TFTP-Client*"
-		"*VBSCRIPT*"
-		"*WinOcr-FOD-Package*"
-		"*ProjFS-OptionalFeature-FOD-Package*"
-
-			<#	
-				.WinRE
-			#>
-			"*winpe-appxdeployment*"
-			"*winpe-appxpackaging*"
-			"*winpe-storagewmi*"
-			"*winpe-wifi*"
-			"*winpe-windowsupdate*"
-			"*winpe-rejuv*"
-			"*winpe-opcservices*"
-			"*winpe-hta*"
-
-		<#
-			.Boot
-		#>
-		"*winpe-securestartup*"
-		"*winpe-atbroker*"
-		"*winpe-audiocore*"
-		"*winpe-audiodrivers*"
-		"*winpe-enhancedstorage*"
-		"*winpe-narrator*"
-		"*winpe-scripting*"
-		"*winpe-speech-tts*"
-		"*winpe-srh*"
-		"*winpe-srt*"
-		"*winpe-wds*"
-		"*winpe-wmi*"
-	)
-
-	<#
-		.零售演示体验
-	#>
-	Retail = @(
-		"*RetailDemo*"
-	)
-}
-
-<#
 	.搜索机制
 
 	{Lang}  = 语言标记
@@ -142,19 +8,19 @@ $Global:Search_File_Order = @{
 	.排序：内核、系统类型、boot 或 Install、所需文件、文件路径
 #>
 $Global:Preconfigured_Rule_Language = @(
-	#region Windows Server vNext
+	#region Windows Server 2025
 	@{
 		GUID        = "03adbaf0-80f0-4308-a660-2d9d065b181f"
 		Author      = 'Yi'
 		Copyright   = 'FengYi, Inc. All rights reserved.'
-		Name        = "Microsoft Windows Server vNext"
+		Name        = "Microsoft Windows Server vNext 2025"
 		Description = ""
 		Autopilot   = @{
 			Prerequisite = @{
 				x64 = @{
 					ISO = @{
 						Language  = @(
-							"Microsoft_Server_InsiderPreview_LangPack_FOD_26010.iso"
+							"Microsoft_Server_InsiderPreview_LangPack_FOD_26080.iso"
 						)
 						InBoxApps = @()
 					}
@@ -163,7 +29,7 @@ $Global:Preconfigured_Rule_Language = @(
 		}
 		ISO         = @(
 			@{
-				ISO = "Windows_InsiderPreview_Server_vNext_en-us_26010.iso"
+				ISO = "Windows_InsiderPreview_Server_vNext_en-us_26080.iso"
 				CRCSHA = @{
 					SHA256 = ""
 					SHA512 = ""
@@ -179,7 +45,7 @@ $Global:Preconfigured_Rule_Language = @(
 		Language = @{
 			ISO = @(
 				@{
-					ISO = "Microsoft_Server_InsiderPreview_LangPack_FOD_26010.iso"
+					ISO = "Microsoft_Server_InsiderPreview_LangPack_FOD_26080.iso"
 					CRCSHA = @{
 						SHA256 = ""
 						SHA512 = ""
@@ -232,8 +98,6 @@ $Global:Preconfigured_Rule_Language = @(
 						@{ Match = "Microsoft-Windows-SnippingTool-FoD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";               Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-WMIC-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                        Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-WMIC-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                        Structure = "LanguagesAndOptionalFeatures"; }
-						@{ Match = "Microsoft-Windows-WordPad-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-						@{ Match = "Microsoft-Windows-WordPad-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-ProjFS-OptionalFeature-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";     Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-Telnet-Client-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";              Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-TFTP-Client-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                Structure = "LanguagesAndOptionalFeatures"; }
@@ -241,6 +105,19 @@ $Global:Preconfigured_Rule_Language = @(
 						@{ Match = "Microsoft-Windows-VBSCRIPT-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                    Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-WinOcr-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                      Structure = "LanguagesAndOptionalFeatures"; }
 						@{ Match = "Microsoft-Windows-WinOcr-FOD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                      Structure = "LanguagesAndOptionalFeatures"; }
+
+						@{ Match = "Microsoft-Windows-EnterpriseClientSync-Host-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";   Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-EnterpriseClientSync-Host-FOD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";   Structure = "LanguagesAndOptionalFeatures"; }
+
+						@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-BitmapFonts-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";     Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-MinConsoleFonts-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab"; Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-Support-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";         Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-TrueType-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";        Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-UAPFonts-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";        Structure = "LanguagesAndOptionalFeatures"; }
+
+						@{ Match = "Microsoft-Windows-SenseClient-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                 Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-SimpleTCP-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                   Structure = "LanguagesAndOptionalFeatures"; }
+						@{ Match = "Microsoft-Windows-SmbDirect-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                   Structure = "LanguagesAndOptionalFeatures"; }
 					)
 				}
 				@{
