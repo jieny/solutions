@@ -252,7 +252,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 </dd>
     <dd>3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
-    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: <code>& "D:\ Yi.Solutions\_Encapsulation\_SIP.ps1"</code></dd>
+    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: <code>& "D:\ YiSolutions\_Encapsulation\_SIP.ps1"</code></dd>
   </dl>
 
 <br>
@@ -268,7 +268,7 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-irm https://fengyi.tel/get.ps1 | iex
+irm https://fengyi.tel/gs | iex
 ```
 <p>Priority is to download from the official website, and after the download is complete: add the routing function. Run the wrapper script.</p>
 	    </dd>
