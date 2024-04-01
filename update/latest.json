@@ -9,7 +9,7 @@
 		"minau":       "1.0.0.0"
 	},
 	"changelog": {
-		"title": "Yi's Solutions - new autoupdate system",
+		"title": "Yi's Solutions - Change log",
 		"log":   "   - Added [ Yi -CT ] to create template function *New"
 	},
 	"url": "https://github.com/ilikeyi/solutions/raw/main/update/latest.zip"
