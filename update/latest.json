@@ -4,13 +4,13 @@
 		"url":  "https://fengyi.tel"
 	},
 	"version": {
-		"buildstring": "1.0.0.0.bs_release.240418",
-		"version":     "1.0.0.0",
+		"buildstring": "1.0.0.1.bs_release.240418",
+		"version":     "1.0.0.1",
 		"minau":       "1.0.0.0"
 	},
 	"changelog": {
 		"title": "Yi's Solutions - new autoupdate system",
-		"log":   "   - Latest *Update"
+		"log":   "   - Added [ Yi -CT ] to create template function *New"
 	},
 	"url": "https://github.com/ilikeyi/solutions/raw/main/update/latest.zip"
 }
