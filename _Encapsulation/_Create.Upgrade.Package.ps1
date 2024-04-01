@@ -598,7 +598,7 @@ Function Update_Create_Version
 	},
 	"changelog": {
 		"title": "$((Get-Module -Name Solutions).Author)'s Solutions - new autoupdate system",
-		"log":   "   - Latest *Update"
+		"log":   "   - Added [ Yi -CT ] to create template function *New"
 	},
 	"url": "$((Get-Module -Name Solutions).HelpInfoURI)/download/solutions/update/latest.zip"
 }
