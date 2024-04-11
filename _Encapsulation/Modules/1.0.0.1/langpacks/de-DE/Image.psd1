@@ -35,7 +35,7 @@
 	SettingImageNewPath             = Wählen Sie, um die Festplatte zu mounten
 	SettingImageNewPathTips         = Es wird empfohlen, es auf einer Speicherdiskette zu mounten, die die schnellste ist, die Sie verwenden können: Ultra RAMDisk, ImDisk und andere virtuelle Speichersoftware.
 	SelectImageSource               = Engine Lösung bereitstellen ist ausgewählt, klicken Sie auf OK.
-	NoImagePreSource                = Wenn keine Quellen verfügbar sind, sollten Sie: \n\n     1. Fügen Sie weitere Bildquellen hinzu zu: \n          {0}\n\n     2. Wählen Sie "Einstellungen", um die Bildquellen-Suchdiskette erneut auszuwählen.\n\n     3. Wählen Sie "ISO extrahieren".
+	NoImagePreSource                = Wenn keine Quellen verfügbar sind, sollten Sie: \n\n     1. Fügen Sie weitere Bildquellen hinzu zu: \n          {0}\n\n     2. Wählen Sie "Einstellungen", um die Bildquellen-Suchdiskette erneut auszuwählen.\n\n     3. Wählen Sie „ISO“ und wählen Sie die zu dekomprimierende ISO, die zu mountenden Elemente usw. aus.
 	NoImageOtherSource              = Klicken Sie auf "Hinzufügen" eines weiteren Pfads oder "Ziehen Sie ein Verzeichnis" in das aktuelle Fenster.
 	SearchImageSource               = Suchdiskette für Bildquellen
 	Kernel                          = Kern

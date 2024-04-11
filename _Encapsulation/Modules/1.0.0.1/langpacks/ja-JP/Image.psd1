@@ -35,7 +35,7 @@
 	SettingImageNewPath             = ディスクのマウントを選択します
 	SettingImageNewPathTips         = Ultra RAMDisk、ImDisk、およびその他の仮想メモリソフトウェアを使用できる最速のメモリディスクにマウントすることをお勧めします。
 	SelectImageSource               = [展開エンジン解決シナリオ] が選択され、ポイントで決定できます。
-	NoImagePreSource                = 利用可能なソースは見つかりませんでした：\n\n     1. より多くのイメージ ソースを追加します：\n          {0}\n\n     2. [設定] を選択して、イメージ ソース検索ディスクを再選択します。\n\n     3. 「ISOを抽出」を選択します。
+	NoImagePreSource                = 利用可能なソースは見つかりませんでした：\n\n     1. より多くのイメージ ソースを追加します：\n          {0}\n\n     2. [設定] を選択して、イメージ ソース検索ディスクを再選択します。\n\n     3.「ISO」を選択し、解凍するISOやマウントする項目などを選択します。
 	NoImageOtherSource              = クリックして別のパスを「追加」するか、現在のウィンドウに「ディレクトリをドラッグ」します。
 	SearchImageSource               = 画像ソース検索ディスク
 	Kernel                          = カーネル

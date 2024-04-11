@@ -35,7 +35,7 @@
 	SettingImageNewPath             = Select mount disk
 	SettingImageNewPathTips         = It is recommended that you mount it to a RAM disk, which is the fastest. You can use: Ultra RAMDisk, ImDisk and other virtual memory software.
 	SelectImageSource               = "Deployment Engine Solution" has been selected, click OK.
-	NoImagePreSource                = If no sources are found available, you should: \n\n     1. Add more image sources to:\n          {0}\n\n     2. Select "Settings" to reselect the image source search disk;\n\n     3. Select "Extract ISO".
+	NoImagePreSource                = If no sources are found available, you should: \n\n     1. Add more image sources to:\n          {0}\n\n     2. Select "Settings" to reselect the image source search disk;\n\n     3. Select "ISO" and select the ISO to be decompressed, items to be mounted, etc.
 	NoImageOtherSource              = Click to "Add" another path or "Drag a directory" to the current window.
 	SearchImageSource               = Image source search disk
 	Kernel                          = Kernel

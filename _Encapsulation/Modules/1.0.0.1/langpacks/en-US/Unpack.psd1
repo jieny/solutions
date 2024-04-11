@@ -5,7 +5,6 @@
 	ASCStatus                       = Gpg4win is not installed.
 	Deploy                          = Deploy
 	UpdateCreate                    = Create upgrade package
-	UnpackUpdateCurrent             = Current version: \
 	UpdateLow                       = Minimum requirement: \
 	UpCreateRear                    = What needs to be done after creation
 	UpCreateASC                     = Add PGP signature to the upgrade package, certificate password:

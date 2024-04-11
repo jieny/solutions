@@ -35,7 +35,7 @@
 	SettingImageNewPath             = 選擇掛載磁盤
 	SettingImageNewPathTips         = 推薦你掛載到內存磁盤，這樣速度最快，可使用：Ultra RAMDisk, ImDisk 等虛擬內存軟件。
 	SelectImageSource               = 已選擇“部署引擎解決方案”，可點確定。
-	NoImagePreSource                = 未發現有可用的來源，你應該：\n\n     1. 將更多的映射源新增到：\n          {0}\n\n     2. 選擇「設置」，重新選擇映射源搜索盤;\n\n     3. 選擇“解壓 ISO”。
+	NoImagePreSource                = 未發現有可用的來源，你應該：\n\n     1. 將更多的映射源新增到：\n          {0}\n\n     2. 選擇「設置」，重新選擇映射源搜索盤;\n\n     3. 選擇“ISO”，選擇待解壓縮的 ISO、待掛載項等。
 	NoImageOtherSource              = 點我“添加”其他路徑或“拖動目錄”到當前窗口。
 	SearchImageSource               = 映像源搜索盤
 	Kernel                          = 內核

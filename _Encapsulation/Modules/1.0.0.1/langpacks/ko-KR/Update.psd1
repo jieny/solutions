@@ -19,7 +19,7 @@
 	UpdateDownloadAddress     = 다운로드 주소:
 	UpdateAvailable           = 사용 가능
 	UpdateUnavailable         = 사용할 수 없음
-	UpdateCurrent             = 현재 버전:: \
+	UpdateCurrent             = 현재 버전: \
 	UpdateLatest              = 사용 가능한 최신 버전: \
 	UpdateNewLatest           = 사용 가능한 새 버전을 찾았습니다!
 	UpdateSkipUpdateCheck     = 자동 업데이트가 처음 실행되는 것을 허용하지 않는 사전 구성된 정책입니다.

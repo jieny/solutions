@@ -19,7 +19,7 @@
 	UpdateDownloadAddress     = Download Adresse:
 	UpdateAvailable           = verfügbar
 	UpdateUnavailable         = Nicht verfügbar
-	UpdateCurrent             = aktuelle Version: \
+	UpdateCurrent             = Aktuelle Version: \
 	UpdateLatest              = Neueste verfügbare Version: \
 	UpdateNewLatest           = Neue verfügbare Version gefunden!
 	UpdateSkipUpdateCheck     = Vorkonfigurierte Richtlinie, die das erstmalige Ausführen einer automatischen Aktualisierung nicht zulässt.

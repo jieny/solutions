@@ -19,7 +19,7 @@
 	UpdateDownloadAddress     = Download link: \
 	UpdateAvailable           = Available
 	UpdateUnavailable         = Unavailable
-	UpdateCurrent             = \  Currently used version: \
+	UpdateCurrent             = Currently used version: \
 	UpdateLatest              = Latest version available: \
 	UpdateNewLatest           = Found a new version available!
 	UpdateSkipUpdateCheck     = The pre-configured policy does not allow automatic updates to be run for the first time.

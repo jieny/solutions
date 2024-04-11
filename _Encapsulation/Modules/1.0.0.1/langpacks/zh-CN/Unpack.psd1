@@ -5,7 +5,6 @@
 	ASCStatus                       = 未安装 Gpg4win。
 	Deploy                          = 部署
 	UpdateCreate                    = 创建升级包
-	UpdateCurrent                   = 当前版本: \
 	UpdateLow                       = 最低要求: \
 	UpCreateRear                    = 创建后需要做些什么
 	UpCreateASC                     = 给升级包添加 PGP 签名

@@ -5,7 +5,6 @@
 	ASCStatus                       = Gpg4win 이 설치되어 있지 않습니다.
 	Deploy                          = 전개하다
 	UpdateCreate                    = 업그레이드 패키지 만들기
-	UpdateCurrent                   = 현재 버전: \
 	UpdateLow                       = 최소 요구 조건: \
 	UpCreateRear                    = 생성 후 해야 할 일
 	UpCreateASC                     = 패키지 업그레이드에 PGP 서명 추가

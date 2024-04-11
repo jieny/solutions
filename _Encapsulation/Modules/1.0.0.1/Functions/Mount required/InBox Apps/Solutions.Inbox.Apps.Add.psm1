@@ -1588,7 +1588,7 @@ Function InBox_Apps_Add_To_Process
 	<#
 		.获取当前离线版本：识别码
 	#>
-	Write-Host "`n   $($lang.UnpackUpdateCurrent)" -ForegroundColor Yellow
+	Write-Host "`n   $($lang.UpdateCurrent)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 
 	try {

@@ -35,7 +35,7 @@
 	SettingImageNewPath             = 디스크 마운트 선택
 	SettingImageNewPathTips         = Ultra RAMDisk, ImDisk 및 기타 가상 메모리 소프트웨어를 사용할 수 있는 가장 빠른 메모리 디스크에 마운트하는 것이 좋습니다.
 	SelectImageSource               = "엔진 솔루션 배포"를 선택하고 확인을 클릭합니다.
-	NoImagePreSource                = 사용할 수 있는 소스를 찾을 수 없습니다: \n\n     1. 다음에 더 많은 이미지 원본 추가: \n          {0}\n\n     2. 설정을 선택하고 이미지 원본 검색 디스크를 다시 선택합니다.\n\n     3. "ISO 추출"을 선택합니다.
+	NoImagePreSource                = 사용할 수 있는 소스를 찾을 수 없습니다: \n\n     1. 다음에 더 많은 이미지 원본 추가: \n          {0}\n\n     2. 설정을 선택하고 이미지 원본 검색 디스크를 다시 선택합니다.\n\n     3. "ISO" 를 선택하고 압축을 풀 ISO, 마운트할 항목 등을 선택합니다.
 	NoImageOtherSource              = 다른 경로를 "추가" 하려면 클릭하거나 현재 창으로 "디렉토리를 드래그" 하십시오.
 	SearchImageSource               = 이미지 소스 검색 디스크
 	Kernel                          = 커널
