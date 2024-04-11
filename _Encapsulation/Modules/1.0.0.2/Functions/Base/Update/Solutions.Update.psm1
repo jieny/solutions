@@ -1,38 +1,11 @@
 ﻿<#
-	.Update minimum version requirements
-	.更新最低版本要求
-#>
-$Script:ChkLocalver = "1.0.0.0"
-
-<#
 	.Server test
 	.服务器测试
 #>
 $ServerTest     = $false
 $IsCorrectAuVer = $false
 
-<#
-	.Available servers
-	.可用的服务器
-
-	Usage:
-	用法：
-
-       Only one URL address must be added in front of the, number, multiple addresses do not need to be added, example:
-       只有一个 URL 地址必须在前面添加 , 号，多地址不用添加，示例：
-
-	$PreServerList = @(
-		,("$((Get-Module -Name Solutions).Version)",
-		  "/download/solutions/update/Yi.Optimiz.Private/latest.json")
-	)
-#>
 $Script:ServerList = @()
-$PreServerList = @(
-	("$((Get-Module -Name Solutions).HelpInfoURI)",
-	 "/download/solutions/update/latest.json"),
-	("https://github.com",
-	 "/ilikeyi/solutions/raw/main/update/latest.json")
-)
 
 <#
 	.Update the user interface
@@ -57,9 +30,8 @@ Function Update
 	Logo -Title $lang.ChkUpdate
 	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
 
-	if ($Auto)
-	{
-		ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
+	if ($Auto) {
+		ForEach ($item in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
 			$Script:ServerList += $item[0] + $item[1]
 		}
 
@@ -171,8 +143,8 @@ Function Update_Setting_UI
 
 			if ($UI_Main_Auto_Select.Checked) {
 				$UI_Main.Hide()
-				ForEach ($item in $PreServerList | Sort-Object { Get-Random } ) {
-					$Script:ServerList += $item[0] + $item[1]
+				ForEach ($item in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
+					$Script:ServerList += $item
 				}
 				Update_Process
 				$UI_Main.Close()
@@ -224,13 +196,14 @@ Function Update_Setting_UI
 		$UI_Main_Canel
 	))
 
-	ForEach ($list in $PreServerList) {
-		$fullurl = $list[0] + $list[1]
+	ForEach ($list in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer) {
+		$url2 = $list.split("/")
+
 		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height  = 35
 			Width   = 395
-			Text    = $list[0]
-			Tag     = $fullurl
+			Text    = "$($url2[0])//$($url2[2])"
+			Tag     = $list
 			Checked = $true
 		}
 		$UI_Main_Menu.controls.AddRange($CheckBox)

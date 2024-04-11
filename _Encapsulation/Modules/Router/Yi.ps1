@@ -1155,7 +1155,7 @@ Function Help
 			powershell -file "$($PSScriptRoot)\..\..\_Create.Upgrade.Package.ps1"
 		}
 		't' {
-			powershell -file "$($PSScriptRoot)\..\..\_Create.Public.Template.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_Create.Template.ps1"
 		}
 		'1' {
 			System_Env -Add
@@ -1214,7 +1214,7 @@ if ($CU) {
 }
 
 if ($CT) {
-	powershell -file "$($PSScriptRoot)\..\..\_Create.Public.Template.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Create.Template.ps1"
 	return
 }
 

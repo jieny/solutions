@@ -12,7 +12,7 @@
 					"Structure":  {
 						"InstallType":    true,
 						"UniqueName":     true,
-						"Group":          "Windows 10 22H2",
+						"Group":          "Windows Server 2022",
 						"Event":           false,
 						"EngineVersion":  ""
 					},
@@ -28,7 +28,7 @@
 					"WindowsCode": {
 						"Enable":         true,
 						"Code":           "Auto",
-						"InitialCode":    "22h2"
+						"InitialCode":    "2022"
 					},
 					"Random":             false,
 					"ImageLanguage":      false,

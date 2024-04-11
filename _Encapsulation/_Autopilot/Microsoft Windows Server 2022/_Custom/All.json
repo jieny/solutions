@@ -260,8 +260,6 @@
 					"IsAutoSelect": [
 						"Image_source_selection",
 						"Language_Add_UI",
-						"InBox_Apps_Mark_UI",
-						"InBox_Apps_Add_UI",
 						"Update_Add_UI",
 						"Drive_Add_UI",
 						"Feature_More_UI"
@@ -435,54 +433,6 @@
 								"en-US"
 							]
 						},
-						"InBoxApps": {
-							"Mark": {
-								"Schome": "Skip",
-								"Skip": {
-									"RemoveAll": {
-										"IsDel": true,
-										"IsExclude": true
-									}
-								},
-								"Custom": {
-									"SkipenUS": true,
-									"RemoveAll": {
-										"IsDel": true,
-										"IsExclude": true
-									},
-									"Version": "19041",
-									"Region": [
-										"zh-CN"
-									]
-								}
-							},
-							"Add": {
-								"Schome": "Custom",
-								"Custom": {
-									"AutoSearch": true,
-									"OptimizeHardLink": true,
-									"Source": "auto",
-									"Guid": "a70389a7-bb7b-4774-91c7-2507c1472db0",
-									"Apps": "auto"
-								},
-								"Assign": {}
-							},
-							"Update": {
-								"Sources": "Auto",
-								"Region": [
-									"zh-CN"
-								]
-							},
-							"Remove": {
-								"Region": [
-									"zh-CN"
-								]
-							},
-							"MatchRemove": {
-								"Guid": "a70389a7-bb7b-4774-91c7-2507c1472db0",
-								"Apps": ""
-							}
-						},
 						"CumulativeUpdate": {
 							"Add": {
 								"Schome": "Auto",
@@ -554,7 +504,7 @@
 							},
 							"Healthy": true,
 							"Report": {
-								"InboxApps": true,
+								"InboxApps": false,
 								"Components": true,
 								"Drive": true,
 								"ImageLangue": true
