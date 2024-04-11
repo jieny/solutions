@@ -372,7 +372,7 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 <br>
           <p>2.5.&nbsp;&nbsp;Create templates
             <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Ct.ps1</code>, when routing function is available: <code>Yi -CT</code></dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Template.ps1</code>, when routing function is available: <code>Yi -CT</code></dd>
             </dl>
           </p>
         </dd>
