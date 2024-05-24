@@ -3,8 +3,8 @@ Yis Solutions update history
 Release Date: 4/18/2024
 Version: 1.0.0.2
 -------------------------------------------
-- Windows 11 24H2: Packaging tutorials, video tutorials, rules, autonomous driving solutions, etc. *New
-
+Fix the problem encountered when reopening the script when specifying the mount path *Fix
+When obtaining the disk, when encountering the disk format REFS, you can optionally exclude *New"
 
 
 Release Date: 4/5/2024
