@@ -331,7 +331,7 @@ $New_Root_Disk_Full_Solutions = "$($New_Root_Disk)YiSolutions"
 
 write-host "`n   Save to: " -ForegroundColor Yellow
 Write-Host "   $('-' * 80)"
-Write-host "$($New_Root_Disk_Full_Solutions)`n" -ForegroundColor Green
+Write-host "   $($New_Root_Disk_Full_Solutions)`n" -ForegroundColor Green
 
 if (Test-Path $New_Root_Disk_Full_Solutions -PathType Container) {
 	if((Get-ChildItem $New_Root_Disk_Full_Solutions -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
