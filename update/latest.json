@@ -10,7 +10,8 @@
 	},
 	"changelog": {
 		"title": "Yi's Solutions - Change log",
-		"log":   "   - Added [ Yi -CT ] to create template function *New"
+		"log":   "   - Fix the problem encountered when reopening the script when specifying the mount path *Fix
+When obtaining the disk, when encountering the disk format REFS, you can optionally exclude *New"
 	},
 	"url": "https://github.com/ilikeyi/solutions/raw/main/update/latest.zip"
 }
