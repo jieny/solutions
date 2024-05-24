@@ -349,28 +349,21 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
           </p>
 
 <br>
-          <p>2.2.&nbsp;&nbsp;Create upgrade package
-            <dl>
-              <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Upgrade.Package.ps1</code>, when routing function is available: <code>Yi -CU</code></dd>
-            </dl>
-          </p>
-
-<br>
-          <p>2.3.&nbsp;&nbsp;Create a deployment engine upgrade package
+          <p>2.2.&nbsp;&nbsp;Create a deployment engine upgrade package
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1</code>, when routing function is available: <code>Yi -CEUP</code></dd>
             </dl>
           </p>
 
 <br>
-          <p>2.4.&nbsp;&nbsp;Convert all software into compressed packages
+          <p>2.3.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Zip.ps1</code>, when routing function is available: <code>Yi -Zip</code></dd>
             </dl>
           </p>
 
 <br>
-          <p>2.5.&nbsp;&nbsp;Create templates
+          <p>2.4.&nbsp;&nbsp;Create templates
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Template.ps1</code>, when routing function is available: <code>Yi -CT</code></dd>
             </dl>
