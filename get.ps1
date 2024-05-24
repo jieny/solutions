@@ -47,12 +47,12 @@ if (([System.Security.Principal.WindowsIdentity]::GetCurrent()).groups -match "S
        Only one URL address must be added in front of the, number, multiple addresses do not need to be added, example:
 
 	$Script:PreServerList = @(
-        ,"https://github.com/ilikeyi/Solutions/Update/latest.full.zip"
+        ,"https://github.com/ilikeyi/Solutions/Update/latest.zip"
 	)
 #>
 $Script:PreServerList = @(
-	"https://github.com/ilikeyi/Solutions/raw/main/update/latest.full.zip"
-	"https://fengyi.tel/download/solutions/latest.full.zip"
+	"https://github.com/ilikeyi/Solutions/raw/main/update/latest.zip"
+	"https://fengyi.tel/download/solutions/latest.zip"
 )
 
 $RandomGuid = [guid]::NewGuid()
