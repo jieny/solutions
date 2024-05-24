@@ -304,7 +304,7 @@ Function LXPs_Download
 				.判断：1. 空值
 			#>
 			if ([string]::IsNullOrEmpty($UI_Main_Download_Match_Version_Select.Text)) {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.NoSetLabel))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.NoSetLabel
 				return
 			}
 
@@ -313,7 +313,7 @@ Function LXPs_Download
 				.判断：2. 前缀不能带空格
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '^\s') {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 				return
 			}
 
@@ -322,7 +322,7 @@ Function LXPs_Download
 				.判断：3. 后缀不能带空格
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '\s$') {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 				return
 			}
 
@@ -331,7 +331,7 @@ Function LXPs_Download
 				.判断：4. 后缀不能带多空格
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '\s{2,}$') {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 				return
 			}
 
@@ -340,7 +340,7 @@ Function LXPs_Download
 				.判断：5. 中间不能含有二个空格
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '\s{1,}') {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 				return
 			}
 
@@ -349,7 +349,7 @@ Function LXPs_Download
 				.判断：6. 不能包含：字母 A-Z
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '[A-Za-z]+') {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorAZ))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorAZ
 				return
 			}
 
@@ -358,7 +358,7 @@ Function LXPs_Download
 				.判断：7, 不能包含：\\ / : * ? "" < > |
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '[~#$@!%&*{}<>?/|+".]') {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorOther))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorOther
 				return
 			}
 
@@ -367,7 +367,7 @@ Function LXPs_Download
 				.判断：8. 不能小于 5 字符
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text.length -lt 5) {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISOShortError -f "5"))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $($lang.ISOShortError -f "5")
 				return
 			}
 
@@ -376,7 +376,7 @@ Function LXPs_Download
 				.判断：9. 不能大于 16 字符
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text.length -gt 16) {
-				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError -f $($lang.ISOLengthError -f "16"))"
+				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $($lang.ISOLengthError -f "16")
 				return
 			}
 
@@ -1048,7 +1048,7 @@ Function LXPs_Download
 			if ($Script:Queue_Language_Download_Select.count -gt 0) {
 				Save_Dynamic -regkey "LXPs" -name "Select_Download_Language" -value $Script:Queue_Language_Download_Select -Multi
 			} else {
-				$UI_Main_Error.Text = "$($lang.SelectFromError -f $($lang.Not_Select))"
+				$UI_Main_Error.Text = $lang.SelectFromError -f $lang.Not_Select
 				return
 			}
 
@@ -1060,7 +1060,7 @@ Function LXPs_Download
 				$Script:IsDownload = $True
 			} else {
 				if ([string]::IsNullOrEmpty($Script:Version)) {
-					$UI_Main_Error.Text = "$($lang.SelectFromError -f $($lang.OSVersion))"
+					$UI_Main_Error.Text = $lang.SelectFromError -f $lang.OSVersion
 					return
 				}
 

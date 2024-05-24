@@ -4,7 +4,6 @@ param
 	$Lang,
 	[switch]$Help,
 	[switch]$Update,
-	[switch]$CU,
 	[switch]$Ct,
 	[switch]$Add,
 	[switch]$Remove,
@@ -1205,11 +1204,6 @@ if ($Help) {
 
 if ($Update) {
 	powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function "Update"
-	return
-}
-
-if ($CU) {
-	powershell -file "$($PSScriptRoot)\..\..\_Create.Upgrade.Package.ps1"
 	return
 }
 

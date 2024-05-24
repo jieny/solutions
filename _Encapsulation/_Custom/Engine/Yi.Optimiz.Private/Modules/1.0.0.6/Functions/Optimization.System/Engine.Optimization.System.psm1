@@ -934,7 +934,7 @@ Function Optimization_System_UI
 	$GUIToThisPC       = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ExplorerTo -f $($lang.ExplorerToThisPC))"
+		Text           = $lang.ExplorerTo -f $lang.ExplorerToThisPC
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
@@ -1009,49 +1009,49 @@ Function Optimization_System_UI
 	$GUIThisPCDesktop  = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.LocationDesktop))"
+		Text           = $lang.ThisPCRemove -f $lang.LocationDesktop
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
 	$GUIThisPCDocument = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.LocationDocuments))"
+		Text           = $lang.ThisPCRemove -f $lang.LocationDocuments
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
 	$GUIThisPCDownload = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.LocationDownloads))"
+		Text           = $lang.ThisPCRemove -f $lang.LocationDownloads
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
 	$GUIThisPCMusic    = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.LocationMusic))"
+		Text           = $lang.ThisPCRemove -f $lang.LocationMusic
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
 	$GUIThisPCPicture  = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.LocationPictures))"
+		Text           = $lang.ThisPCRemove -f $lang.LocationPictures
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
 	$GUIThisPCVideo    = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.LocationVideos))"
+		Text           = $lang.ThisPCRemove -f $lang.LocationVideos
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
 	$GUIThisPC3D       = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 35
 		Width          = 410
-		Text           = "$($lang.ThisPCRemove -f $($lang.Location3D))"
+		Text           = $lang.ThisPCRemove -f $lang.Location3D
 		Checked        = $true
 		ForeColor      = "#008000"
 	}
@@ -1062,7 +1062,7 @@ Function Optimization_System_UI
 	$GUINotification   = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 410
-		Text           = "$($lang.Notification)"
+		Text           = $lang.Notification
 		ForeColor      = "#008000"
 		Checked        = $True
 		Margin         = "2,22,0,0"

@@ -1,6 +1,6 @@
 ﻿@{
 	RootModule        = 'Solutions.psm1'
-	ModuleVersion     = '1.0.0.1'
+	ModuleVersion     = '1.0.0.2'
 	GUID              = '1e1ad755-d5e1-4769-af9b-7134001c8daf'
 	Author            = 'Yi'
 	Copyright         = 'FengYi, Inc. All rights reserved.'
@@ -21,7 +21,7 @@
 			# ReleaseNotes = ''
 			MinimumVersion = '1.0.0.0'
 			UpdateServer = @(
-				"https://fengyi.tel/download/solutions/update/latest.json"
+				"https://fengyi.tel/download/solutions/latest.json"
 				"https://github.com/ilikeyi/solutions/raw/main/update/latest.json"
 			)
 		}

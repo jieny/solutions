@@ -95,7 +95,7 @@
 							.判断：1. 空值
 						#>
 						if ([string]::IsNullOrEmpty($GUILocationCustomizeShow.Text)) {
-							$GUILocationErrorMsg.Text = "$($lang.SelectFromError -f $($lang.NoSetFolderLabel))"
+							$GUILocationErrorMsg.Text = $lang.SelectFromError -f $lang.NoSetFolderLabel
 							return
 						}
 
@@ -104,7 +104,7 @@
 							.判断：2. 前缀不能带空格
 						#>
 						if ($GUILocationCustomizeShow.Text -match '^\s') {
-							$GUILocationErrorMsg.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+							$GUILocationErrorMsg.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 							return
 						}
 
@@ -113,7 +113,7 @@
 							.判断：3. 前缀不能带空格
 						#>
 						if ($GUILocationCustomizeShow.Text -match '\s$') {
-							$GUILocationErrorMsg.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+							$GUILocationErrorMsg.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 							return
 						}
 
@@ -122,7 +122,7 @@
 							.判断：4. 中间不能含有二个空格
 						#>
 						if ($GUILocationCustomizeShow.Text -match '\s{2,}') {
-							$GUILocationErrorMsg.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorSpace))"
+							$GUILocationErrorMsg.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
 							return
 						}
 
@@ -131,7 +131,7 @@
 							.判断：5, 不能包含：\\ / : * ? "" < > |
 						#>
 						if ($GUILocationCustomizeShow.Text -match '[~#$@!%&*{}\\:<>?/|+"]') {
-							$GUILocationErrorMsg.Text = "$($lang.SelectFromError -f $($lang.ISO9660TipsErrorOther))"
+							$GUILocationErrorMsg.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorOther
 							return
 						}
 						<#
@@ -139,7 +139,7 @@
 							.判断：6. 不能大于 260 字符
 						#>
 						if ($GUILocationCustomizeShow.Text.length -gt 128) {
-							$GUILocationErrorMsg.Text = "$($lang.SelectFromError -f $($lang.ISOLengthError -f "260"))"
+							$GUILocationErrorMsg.Text = $lang.SelectFromError -f $($lang.ISOLengthError -f "260")
 							return
 						}
 

@@ -307,7 +307,7 @@ Function Update_Create_UI
 			if ($GUIUpdateCreateASC.Enabled) {
 				if ($GUIUpdateCreateASC.Checked) {
 					if ([string]::IsNullOrEmpty($GUIUpdateCreateASCSign.Text)) {
-						$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError -f $($lang.CreateASCAuthorTips))"
+						$GUIUpdateErrorMsg.Text = $lang.SelectFromError -f $lang.CreateASCAuthorTips
 						return
 					} else {
 						Save_Dynamic -regkey "LXPs" -name "PGP" -value $GUIUpdateCreateASCSign.Text -String
