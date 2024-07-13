@@ -345,6 +345,7 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
           <p>2.1.&nbsp;&nbsp;Backup
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Unpack.ps1</code>, when routing function is available: <code>Yi -unpack</code></dd>
+              <dd>&nbsp;&nbsp;&nbsp;&nbsp;When the package script performs a check for updates, the backed-up file can be used as an upgrade package.</dd>
             </dl>
           </p>
 
