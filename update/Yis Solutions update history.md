@@ -1,7 +1,10 @@
 Yis Solutions update history
 
+<br>
+<br>
 Release Date: 10/22/2024
 Version: 1.0.0.4
+<br>
 -------------------------------------------
 <br>
 Added Windows 11 24H2 autonomous driving solutions, packaging tutorials, video tutorials, rules, etc. * New
