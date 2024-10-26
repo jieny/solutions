@@ -493,7 +493,6 @@ Function InBox_Apps_Offline_Delete_Process
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)56" -ForegroundColor Green
 						Write-host "   $('-' * 80)"
 						write-host "   Remove-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackageName ""$($item)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"
@@ -502,6 +501,7 @@ Function InBox_Apps_Offline_Delete_Process
 					Remove-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Remove-AppxProvisionedPackage.log" -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PackageName $item -ErrorAction SilentlyContinue | Out-Null
 					Write-Host $lang.Done -ForegroundColor Green
 				} catch {
+					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 					Write-Host $_
 					Write-Host "   $($lang.Failed)" -ForegroundColor Red
 				}

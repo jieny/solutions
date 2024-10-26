@@ -1206,10 +1206,13 @@ Function Image_Select_Index_UI
 									Write-Host "   $($lang.MountedIndex): " -NoNewline
 									Write-Host $item.ImageIndex -ForegroundColor Yellow
 
+									if ($Global:Developers_Mode) {
+										Write-host "`n   $($lang.Developers_Mode_Location): 90`n" -ForegroundColor Green
+									}
+
 									if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 										if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 											Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-											Write-host "   $($lang.Developers_Mode_Location)90" -ForegroundColor Green
 											Write-host "   $('-' * 80)"
 											write-host "   Repair-WindowsImage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -RestoreHealth" -ForegroundColor Green
 											Write-host "   $('-' * 80)`n"
@@ -1223,10 +1226,15 @@ Function Image_Select_Index_UI
 
 									Check_Folder -chkpath "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 
+									if ($Global:Developers_Mode) {
+										Write-host "`n   $($lang.Developers_Mode_Location): 91`n" -ForegroundColor Green
+									}
+
 									if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-										Write-Host "`n   $($lang.Command), $($lang.Developers_Mode_Location)91" -ForegroundColor Green
+										Write-Host "`n   $($lang.Command)" -ForegroundColor Green
 										Write-host "   $('-' * 80)"
-										write-host "   Mount-WindowsImage -ImagePath ""$($Global:Primary_Key_Image.FullPath)"" -Index ""$($_.Tag)"" -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""`n" -ForegroundColor Green
+										write-host "   Mount-WindowsImage -ImagePath ""$($Global:Primary_Key_Image.FullPath)"" -Index ""$($_.Tag)"" -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""" -ForegroundColor Green
+										Write-host "   $('-' * 80)`n"
 									}
 
 									Write-Host "   $($lang.Mount)".PadRight(28) -NoNewline
@@ -1638,9 +1646,12 @@ Function Image_Select_Mul_UI
 
 	$TempQueueProcessImageSelect = @()
 	if (Test-Path $ImageFileName -PathType Leaf) {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 92`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)92" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsImage -ImagePath ""$($ImageFileName)""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"

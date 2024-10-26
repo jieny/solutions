@@ -510,20 +510,18 @@ Function InBox_Apps_LIPs_Delete_Process
 		Write-host "   $('-' * 80)"
 		ForEach ($item in $Temp_LXPs_Delete) {
 			$New_wait_delete_match = @()
-
-			Write-Host "   $($item)".PadRight(28) -NoNewline -ForegroundColor Yellow
-			Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
+			Write-Host "   $($item)" -ForegroundColor Yellow
 
 			if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)61" -ForegroundColor Green
 						Write-host "   $('-' * 80)"
 						write-host "   Get-AppXProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" | Where-Object DisplayName -Like ""*LanguageExperiencePack*$($item)*"" | Remove-AppxProvisionedPackage" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"
 					}
 
+					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 					Get-appxprovisionedpackage -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" | where-object {
 						if ($_.packagename –like "*LanguageExperiencePack*$($item)*") {
 							$New_wait_delete_match += $_.packagename
@@ -540,6 +538,7 @@ Function InBox_Apps_LIPs_Delete_Process
 						Write-Host $lang.NoWork -ForegroundColor Red
 					}
 				} catch {
+					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 					Write-Host $_
 					Write-Host "   $($lang.Failed)" -ForegroundColor Red
 				}

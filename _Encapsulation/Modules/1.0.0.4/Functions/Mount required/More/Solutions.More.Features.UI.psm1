@@ -1273,7 +1273,6 @@ Function Image_Clear_Superseded
 				if ($InitlClearSupersededExclude -notContains $item) {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)38" -ForegroundColor Green
 						Write-host "   $('-' * 80)"
 						write-host "   Remove-WindowsPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackageName ""$($item)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"
@@ -1281,8 +1280,8 @@ Function Image_Clear_Superseded
 
 					Write-Host "   $($lang.RuleFileType): " -NoNewline -ForegroundColor Yellow
 					Write-host $item -ForegroundColor Red
-					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 
+					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 					try {
 						Remove-WindowsPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Remove.log" -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PackageName $item -ErrorAction SilentlyContinue | Out-Null
 						Write-Host $lang.Done -ForegroundColor Green

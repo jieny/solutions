@@ -894,10 +894,8 @@ Function Image_Set_Global_Primary_Key
 		[switch]$Silent
 	)
 
-	if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-		Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-		Write-host "   $($lang.Developers_Mode_Location)$($DevCode)" -ForegroundColor Green
-		Write-host "   $('-' * 80)`n"
+	if ($Global:Developers_Mode) {
+		Write-host "   $($lang.Developers_Mode_Location): $($DevCode)" -ForegroundColor Green
 	}
 
 	$Global:Primary_Key_Image = @()
@@ -952,9 +950,12 @@ Function Image_Set_Global_Primary_Key
 						}
 					} else {
 						try {
+							if ($Global:Developers_Mode) {
+								Write-host "   $($lang.Developers_Mode_Location): 29" -ForegroundColor Green
+							}
+
 							if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 								Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-								Write-host "   $($lang.Developers_Mode_Location)29" -ForegroundColor Green
 								Write-host "   $('-' * 80)"
 								write-host "   Get-WindowsImage -ImagePath ""$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)""" -ForegroundColor Green
 								Write-host "   $('-' * 80)`n"
@@ -963,7 +964,6 @@ Function Image_Set_Global_Primary_Key
 							Get-WindowsImage -ImagePath "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -ErrorAction SilentlyContinue | ForEach-Object {
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)30" -ForegroundColor Green
 									Write-host "   $('-' * 80)"
 									write-host "   Get-WindowsImage -ImagePath ""$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"" -index ""$($_.ImageIndex)""" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
@@ -1033,7 +1033,6 @@ Function Image_Set_Global_Primary_Key
 							try {
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)31" -ForegroundColor Green
 									Write-host "   $('-' * 80)"
 									write-host "   Get-WindowsImage -ImagePath ""$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)""" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"

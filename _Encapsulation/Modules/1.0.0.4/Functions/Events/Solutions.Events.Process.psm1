@@ -946,9 +946,12 @@ Function Event_Process_Task_Need_Mount
 		Write-host " $($Script:CuringUpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 		Write-Host "   $('-' * 80)"
 
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location)11`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)11" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Dism /Image:""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" /cleanup-image /StartComponentCleanup /ResetBase" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -1091,9 +1094,12 @@ Function Event_Process_Task_Need_Mount
 		if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 12`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)12" -ForegroundColor Green
 				Write-host "   $('-' * 77)"
 				write-host "   Dism.exe /Image:""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" /Get-Intl" -ForegroundColor Green
 				Write-host "   $('-' * 77)`n"
@@ -1296,9 +1302,12 @@ Function Event_Process_Task_Need_Mount
 							Write-host "   $('-' * 80)"
 							Write-host "   $($Temp_Do_Not_Save_Path)" -ForegroundColor Green
 							if ((Get-Variable -Scope global -Name "Queue_Expand_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)").Value) {
+								if ($Global:Developers_Mode) {
+									Write-host "`n   $($lang.Developers_Mode_Location): 15`n" -ForegroundColor Green
+								}
+
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)15" -ForegroundColor Green
 									Write-host "   $('-' * 80)"
 									write-host "   Save-WindowsImage -Path ""$($Global:Mount_To_Route)\$($item.Main.ImageFileName)\$($itemExpandNew.ImageFileName)\Mount""" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
@@ -1331,9 +1340,12 @@ Function Event_Process_Task_Need_Mount
 							}
 
 							if ($Mark_Is_Unmount_Current_Image) {
+								if ($Global:Developers_Mode) {
+									Write-host "`n   $($lang.Developers_Mode_Location): 16`n" -ForegroundColor Green
+								}
+
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)16" -ForegroundColor Green
 									Write-host "   $('-' * 80)"
 									write-host "   Dismount-WindowsImage -Path ""$($Temp_Do_Not_Save_Path)"" -Discard" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
@@ -1346,9 +1358,12 @@ Function Event_Process_Task_Need_Mount
 									.检查了已挂载后，判断目录是否存在，再次删除。
 								#>
 								if (Test-Path $Temp_Do_Not_Save_Path -PathType Container) {
+									if ($Global:Developers_Mode) {
+										Write-host "`n   $($lang.Developers_Mode_Location): 18`n" -ForegroundColor Green
+									}
+
 									if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 										Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-										Write-host "   $($lang.Developers_Mode_Location)18" -ForegroundColor Green
 										Write-host "   $('-' * 80)"
 										write-host "   Dismount-WindowsImage -Path ""$($Temp_Do_Not_Save_Path)"" -Discard" -ForegroundColor Green
 										Write-host "   $('-' * 80)`n"
@@ -1393,9 +1408,12 @@ Function Event_Process_Task_Need_Mount
 		Write-Host "   $('-' * 80)"
 		Write-host "   $($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -ForegroundColor Green
 
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 19`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)19" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Save-WindowsImage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -1485,16 +1503,16 @@ Function Event_Process_Task_Need_Mount
 								.判断是否已挂载
 							#>
 							if ((Get-Variable -Scope global -Name "Mark_Is_Mount_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)").Value) {
-								Write-Host "   $($lang.Mounted)"
-								Write-Host "   $('-' * 80)"
-
-								Write-Host "   $($lang.DoNotSave)" -ForegroundColor Yellow
+								Write-Host "   $($lang.Mounted), $($lang.DoNotSave)" -ForegroundColor Yellow
 								Write-host "   $('-' * 80)"
 								Write-host "   $($Temp_Do_Not_Save_Path)" -ForegroundColor Green
 
+								if ($Global:Developers_Mode) {
+									Write-host "`n   $($lang.Developers_Mode_Location): 20`n" -ForegroundColor Green
+								}
+
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)20" -ForegroundColor Green
 									Write-host "   $('-' * 80)"
 									write-host "   Dismount-WindowsImage -Path ""$($Temp_Do_Not_Save_Path)"" -Discard" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
@@ -1505,9 +1523,12 @@ Function Event_Process_Task_Need_Mount
 							}
 
 							if (Test-Path $Temp_Do_Not_Save_Path -PathType Container) {
+								if ($Global:Developers_Mode) {
+									Write-host "`n   $($lang.Developers_Mode_Location): 21`n" -ForegroundColor Green
+								}
+
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)21" -ForegroundColor Green
 									Write-host "   $('-' * 80)"
 									write-host "   Dismount-WindowsImage -Path ""$($Temp_Do_Not_Save_Path)"" -Discard" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
@@ -1549,9 +1570,12 @@ Function Event_Process_Task_Need_Mount
 		if ((Get-Variable -Scope global -Name "Mark_Is_Mount_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)").Value) {
 			Write-Host "   $($lang.Mounted)"
 
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 22`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)22" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Dismount-WindowsImage -Path ""$($Temp_Do_Not_Save_Path)"" -Discard" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -1565,9 +1589,12 @@ Function Event_Process_Task_Need_Mount
 			.检查了已挂载后，判断目录是否存在，再次删除。
 		#>
 		if (Test-Path $Temp_Do_Not_Save_Path -PathType Container) {
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 23`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)23" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Dismount-WindowsImage -Path ""$($Temp_Do_Not_Save_Path)"" -Discard" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -1927,9 +1954,12 @@ Function Healthy_Check_Process
 	)
 	
 	if (Test-Path $NewPath -PathType Container) {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 26`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)26" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Repair-WindowsImage -Path ""$($NewPath)"" -ScanHealth).ImageHealthState" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"

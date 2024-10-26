@@ -7324,9 +7324,12 @@ Function Solutions_Index_UI
 
 	$Install_wim = "$($Global:Image_source)\sources\install.wim"
 	if (Test-Path $Install_wim -PathType Leaf) {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 8`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)8" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsImage -ImagePath ""$($Install_wim)""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -7360,9 +7363,12 @@ Function Solutions_Index_UI
 
 	$Install_ESD = "$($Global:Image_source)\sources\install.esd"
 	if (Test-Path $Install_ESD -PathType Leaf) {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 9`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)9" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsImage -ImagePath ""$($Install_ESD)""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -7396,9 +7402,12 @@ Function Solutions_Index_UI
 
 	$Install_SWM = "$($Global:Image_source)\sources\install.swm"
 	if (Test-Path $Install_SWM -PathType Leaf) {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 10`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)10" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsImage -ImagePath ""$($Install_SWM)""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"

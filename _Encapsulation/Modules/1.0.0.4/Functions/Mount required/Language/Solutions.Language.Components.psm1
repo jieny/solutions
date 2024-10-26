@@ -485,7 +485,6 @@ Function Cleanup_Components_Process
 		try {
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)63" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"

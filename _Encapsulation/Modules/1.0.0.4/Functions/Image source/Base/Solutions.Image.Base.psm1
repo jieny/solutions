@@ -75,9 +75,12 @@ Function Image_Mount_Check
 				.强行卸载，不保存
 				.Forcibly uninstall, do not save
 			#>
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 80`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)80" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Dismount-WindowsImage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -Discard" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -90,9 +93,12 @@ Function Image_Mount_Check
 		Check_Folder -chkpath "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 
 		if (Test-Path $MountFileName -PathType Leaf) {
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 81`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)81" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Mount-WindowsImage -ImagePath ""$($MountFileName)"" -Index ""$($Index)"" -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"

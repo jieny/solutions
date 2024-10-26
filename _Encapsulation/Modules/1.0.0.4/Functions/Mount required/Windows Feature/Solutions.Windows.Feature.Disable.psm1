@@ -828,7 +828,7 @@ Function Feature_Disable_Process
 		Write-host "   $('-' * 80)"
 		ForEach ($item in $Temp_Queue_Is_Feature_Disable_Custom_Select) {
 			Write-Host "   $($item)"
-			Write-Host "   $($lang.Disable)".PadRight(28) -NoNewline
+
 			if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows" -PathType Container) {
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 					Write-Host "`n   $($lang.Command)" -ForegroundColor Green
@@ -838,6 +838,7 @@ Function Feature_Disable_Process
 					Write-host "   $('-' * 80)`n"
 				}
 
+				Write-Host "   $($lang.Disable)".PadRight(28) -NoNewline
 				Disable-WindowsOptionalFeature -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -FeatureName $item | Out-Null
 			} else {
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
@@ -848,6 +849,7 @@ Function Feature_Disable_Process
 					Write-host "   $('-' * 80)`n"
 				}
 
+				Write-Host "   $($lang.Disable)".PadRight(28) -NoNewline
 				Disable-WindowsOptionalFeature -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -FeatureName $item | Out-Null
 			}
 			Write-Host "   $($lang.Done)" -ForegroundColor Green

@@ -2103,7 +2103,9 @@ Function Language_Add_File_Type_Process
 
 	if ($Script:Init_Exclude_File -contains $FileName) {
 		Write-Host "   $($lang.FileName): " -NoNewline -ForegroundColor Yellow
-		Write-host "$($lang.ExcludeItem)`n" -ForegroundColor Red
+		Write-Host $FileName -ForegroundColor Green
+		Write-Host "   $('-' * 80)"
+		Write-host "   $($lang.ExcludeItem)`n" -ForegroundColor Red
 	} else {
 		<#
 			.初始化每任务运行时间
@@ -2129,7 +2131,7 @@ Function Language_Add_File_Type_Process
 			write-host "   $($CommandNewPrint)`n" -ForegroundColor Green
 		}
 
-		Write-Host "   $($lang.AddTo)".PadRight(28) -NoNewline
+		Write-Host "   $($lang.AddTo)".PadRight(21) -NoNewline
 		try {
 			Invoke-Expression -Command $CommandNew
 			Write-Host $lang.Done -ForegroundColor Green

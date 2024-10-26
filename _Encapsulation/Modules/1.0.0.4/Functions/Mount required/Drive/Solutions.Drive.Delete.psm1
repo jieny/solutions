@@ -1170,7 +1170,6 @@ Function Drive_Delete_Process
 					if (Test-Path $_.FullName -PathType Leaf) {
 						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 							Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-							Write-host "   $($lang.Developers_Mode_Location)35" -ForegroundColor Green
 							Write-host "   $('-' * 80)"
 							write-host "   Remove-WindowsDriver -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -Driver ""$($_.FullName)""" -ForegroundColor Green
 							Write-host "   $('-' * 80)`n"

@@ -130,15 +130,6 @@ Function Image_Select_Export_UI
 										Write-Host "   $($lang.AddTo)".PadRight(28) -NoNewline
 
 										try {
-											if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-												Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-												Write-host "   $($lang.Developers_Mode_Location)86" -ForegroundColor Green
-												Write-host "   $('-' * 80)"
-
-												dism /ScratchDir:"""$(Get_Mount_To_Temp)""" /LogPath:"$(Get_Mount_To_Logs)\Export.log" /export-image /SourceImageFile:"""$($Global:Primary_Key_Image.FullPath)""" /swmfile:"""$($Global:Primary_Key_Image.Path)\$($Global:Primary_Key_Image.ImageFileName)*.$($Global:Primary_Key_Image.Suffix)""" /SourceIndex:"""$($itemDetail.ImageIndex)""" /DestinationImageFile:"""$($FileBrowser.FileName)""" /Compress:max /CheckIntegrity
-												Write-host "   $('-' * 80)`n"
-											}
-
 											dism /ScratchDir:"""$(Get_Mount_To_Temp)""" /LogPath:"$(Get_Mount_To_Logs)\Export.log" /export-image /SourceImageFile:"""$($Global:Primary_Key_Image.FullPath)""" /swmfile:"""$($Global:Primary_Key_Image.Path)\$($Global:Primary_Key_Image.ImageFileName)*.$($Global:Primary_Key_Image.Suffix)""" /SourceIndex:"""$($itemDetail.ImageIndex)""" /DestinationImageFile:"""$($FileBrowser.FileName)""" /Compress:max /CheckIntegrity
 
 											Write-Host $lang.Done -ForegroundColor Green
@@ -176,20 +167,17 @@ Function Image_Select_Export_UI
 										Write-Host "   $($lang.MountedIndex): " -NoNewline
 										Write-Host $itemDetail.ImageIndex -ForegroundColor Yellow
 
+										if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+											Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+											Write-host "   $('-' * 80)"
+											write-host "   Export-WindowsImage -SourceImagePath ""$($Global:Primary_Key_Image.FullPath)"" -SourceIndex ""$($item)"" -DestinationImagePath ""$($FileBrowser.FileName)"" -CompressionType max -CheckIntegrity" -ForegroundColor Green
+											Write-host "   $('-' * 80)`n"
+										}
+
+
 										Write-Host "   $($lang.Export_Image)".PadRight(28) -NoNewline
-
 										try {
-											if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-												Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-												Write-host "   $($lang.Developers_Mode_Location)86" -ForegroundColor Green
-												Write-host "   $('-' * 80)"
-
-												write-host "   Export-WindowsImage -SourceImagePath ""$($Global:Primary_Key_Image.FullPath)"" -SourceIndex ""$($item)"" -DestinationImagePath ""$($FileBrowser.FileName)"" -CompressionType max -CheckIntegrity" -ForegroundColor Green
-												Write-host "   $('-' * 80)`n"
-											}
-
 											Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath "$($Global:Primary_Key_Image.FullPath)" -SourceIndex $item -DestinationImagePath $FileBrowser.FileName -CompressionType max -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
-
 											Write-Host $lang.Done -ForegroundColor Green
 										} catch {
 											Write-Host $_
@@ -221,18 +209,17 @@ Function Image_Select_Export_UI
 									Write-Host "   $($lang.MountedIndex): " -NoNewline
 									Write-Host $itemDetail.ImageIndex -ForegroundColor Yellow	
 
+									if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+										Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+										Write-host "   $($lang.Developers_Mode_Location)86" -ForegroundColor Green
+										Write-host "   $('-' * 80)"
+	
+										write-host "   Export-WindowsImage -SourceImagePath ""$($Global:Primary_Key_Image.FullPath)"" -SourceIndex ""$($item)"" -DestinationImagePath ""$($Global:Image_source)\sources\ReBuild.wim"" -CompressionType max -CheckIntegrity" -ForegroundColor Green
+										Write-host "   $('-' * 80)`n"
+									}
+	
 									Write-Host "   $($lang.Export_Image)".PadRight(28) -NoNewline
-	
 									try {
-										if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-											Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-											Write-host "   $($lang.Developers_Mode_Location)86" -ForegroundColor Green
-											Write-host "   $('-' * 80)"
-	
-											write-host "   Export-WindowsImage -SourceImagePath ""$($Global:Primary_Key_Image.FullPath)"" -SourceIndex ""$($item)"" -DestinationImagePath ""$($Global:Image_source)\sources\ReBuild.wim"" -CompressionType max -CheckIntegrity" -ForegroundColor Green
-											Write-host "   $('-' * 80)`n"
-										}
-	
 										Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath "$($Global:Primary_Key_Image.FullPath)" -SourceIndex $($item) -DestinationImagePath "$($Global:Image_source)\sources\ReBuild.wim" -CompressionType max -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
 
 										Write-Host $lang.Done -ForegroundColor Green

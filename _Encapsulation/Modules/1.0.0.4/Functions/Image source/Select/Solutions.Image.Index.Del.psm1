@@ -115,17 +115,19 @@ Function Image_Select_Del_UI
 							Write-Host "   $($lang.MountedIndex): " -NoNewline
 							Write-Host $itemDetail.ImageIndex -ForegroundColor Yellow
 
+							if ($Global:Developers_Mode) {
+								Write-host "`n   $($lang.Developers_Mode_Location): 86`n" -ForegroundColor Green
+							}
+
+							if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+								Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+								Write-host "   $('-' * 80)"
+								write-host "   Remove-WindowsImage -ImagePath ""$($Global:Primary_Key_Image.FullPath)"" -Index ""$($item)"" -CheckIntegrity" -ForegroundColor Green
+								Write-host "   $('-' * 80)`n"
+							}
+
 							Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
-
 							try {
-								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-									Write-host "   $($lang.Developers_Mode_Location)86" -ForegroundColor Green
-									Write-host "   $('-' * 80)"
-									write-host "   Remove-WindowsImage -ImagePath ""$($Global:Primary_Key_Image.FullPath)"" -Index ""$($item)"" -CheckIntegrity" -ForegroundColor Green
-									Write-host "   $('-' * 80)`n"
-								}
-
 								Remove-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Remove.log" -ImagePath "$($Global:Primary_Key_Image.FullPath)" -Index $item -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
 								Write-Host $lang.Done -ForegroundColor Green
 							} catch {

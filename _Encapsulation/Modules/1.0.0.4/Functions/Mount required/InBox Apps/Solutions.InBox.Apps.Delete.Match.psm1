@@ -1062,9 +1062,12 @@ Function InBox_Apps_Match_Delete_Process
 	Write-Host "   $($lang.GetImageUWP)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
 	try {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 53`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)53" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -1104,23 +1107,22 @@ Function InBox_Apps_Match_Delete_Process
 		ForEach ($item in $InitlUWPPreDeleteSelectPakcageDelete) {
 			Write-Host "   $($lang.RuleFileType): " -NoNewline -ForegroundColor Yellow
 			Write-Host $item -ForegroundColor Yellow
-			Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 			
 			if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)55" -ForegroundColor Green
 						Write-host "   $('-' * 80)"
 						write-host "   Remove-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackageName ""$($item)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"
 					}
 
+					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 					Remove-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Remove-AppxProvisionedPackage.log" -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PackageName $item -ErrorAction SilentlyContinue | Out-Null
 					Write-Host $lang.Done -ForegroundColor Green
 				} catch {
+					Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 					Write-Host $_ -ForegroundColor Yellow
-					Write-Host "   $($lang.Del), $($lang.Failed)" -ForegroundColor Red
 				}
 			} else {
 				Write-Host $lang.NotMounted -ForegroundColor Red

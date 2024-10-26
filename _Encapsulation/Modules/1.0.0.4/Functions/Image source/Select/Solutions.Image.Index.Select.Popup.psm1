@@ -169,9 +169,12 @@ Function Image_Select_Popup_UI
 
 	$Script:TempQueueProcessImageSelect = @()
 	if (Test-Path $ImageFileName -PathType Leaf) {
+		if ($Global:Developers_Mode) {
+			Write-host "`n   $($lang.Developers_Mode_Location): 88`n" -ForegroundColor Green
+		}
+
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)88" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsImage -ImagePath ""$($ImageFileName)""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"

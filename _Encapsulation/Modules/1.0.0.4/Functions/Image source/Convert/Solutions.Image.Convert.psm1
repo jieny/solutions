@@ -1149,9 +1149,12 @@ Function Image_Convert_Process
 				Remove_Tree -Path $Install_wim
 			}
 
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 6`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)6" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsImage -ImagePath ""$($Install_ESD)""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -1214,9 +1217,12 @@ Function Image_Convert_Process
 					if (Test-Path $Install_wim -PathType leaf) {
 						Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
+						if ($Global:Developers_Mode) {
+							Write-host "`n   $($lang.Developers_Mode_Location): 7`n" -ForegroundColor Green
+						}
+
 						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 							Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-							Write-host "   $($lang.Developers_Mode_Location)7" -ForegroundColor Green
 							Write-host "   $('-' * 80)"
 							write-host "   Split-WindowsImage -ImagePath "$($Install_wim)" -SplitImagePath "$($Install_SWM)" -FileSize ""$($Global:Queue_Convert_Tasks.Split.Size)"" -CheckIntegrity" -ForegroundColor Green
 							Write-host "   $('-' * 80)`n"
@@ -1292,9 +1298,13 @@ Function Image_Convert_Process
 			}
 
 			Write-Host "   $($lang.Operable)" -ForegroundColor Green
+
+			if ($Global:Developers_Mode) {
+				Write-host "`n   $($lang.Developers_Mode_Location): 2`n" -ForegroundColor Green
+			}
+
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)2" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsImage -ImagePath ""$($Install_wim)""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -1398,9 +1408,12 @@ Function Image_Convert_Process
 				if (Test-Path $Install_wim -PathType leaf) {
 					Write-Host "   $($lang.Operable)" -ForegroundColor Green
 
+					if ($Global:Developers_Mode) {
+						Write-host "`n   $($lang.Developers_Mode_Location): 7`n" -ForegroundColor Green
+					}
+
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)7" -ForegroundColor Green
 						Write-host "   $('-' * 80)"
 						write-host "   Split-WindowsImage -ImagePath "$($Install_wim)" -SplitImagePath "$($Install_SWM)" -FileSize ""$($Global:Queue_Convert_Tasks.Split.Size)"" -CheckIntegrity" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"

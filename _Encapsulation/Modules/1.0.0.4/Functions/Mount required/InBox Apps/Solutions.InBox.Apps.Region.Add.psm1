@@ -1915,7 +1915,7 @@ Function InBox_Apps_LIPs_Clean_Process
 						Write-Host $item -ForegroundColor Green
 
 						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-							Write-Host "`n   $($lang.Command), $($lang.Developers_Mode_Location)57" -ForegroundColor Green
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Green
 							Write-host "   $('-' * 80)"
 							write-host "   Remove-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackageName ""$($item)""`n" -ForegroundColor Green
 						}
@@ -2000,7 +2000,6 @@ Function InBox_Apps_Add_Mark_Process
 
 	if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 		Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-		Write-host "   $($lang.Developers_Mode_Location)58" -ForegroundColor Green
 		Write-host "   $('-' * 80)"
 		write-host "   Get-ChildItem ""$($Path)\LanguageExperiencePack.*.appx""" -ForegroundColor Green
 		Write-host "   $('-' * 80)`n"
@@ -2012,7 +2011,6 @@ Function InBox_Apps_Add_Mark_Process
 		if (Test-Path -Path "$($Path)\License.xml" -PathType Leaf) {
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)59" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Add-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackagePath ""$($_.FullName)"" -LicensePath ""$($Path)\License.xml""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -2027,7 +2025,6 @@ Function InBox_Apps_Add_Mark_Process
 		} else {
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)60" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Add-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackagePath ""$($_.FullName)"" -SkipLicense" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"

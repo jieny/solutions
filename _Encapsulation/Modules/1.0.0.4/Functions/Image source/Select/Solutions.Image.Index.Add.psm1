@@ -55,9 +55,12 @@ Function Image_Select_Add_UI
 				$Script:TempSourcesFile = $FileBrowser.FileName
 				$UI_Main_Select_Custom_File.Text = "$($lang.SelFile): `n`n$($FileBrowser.FileName)"
 
+				if ($Global:Developers_Mode) {
+					Write-host "`n   $($lang.Developers_Mode_Location): 82" -ForegroundColor Green
+				}
+
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 					Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-					Write-host "   $($lang.Developers_Mode_Location)82" -ForegroundColor Green
 					Write-host "   $('-' * 80)"
 					write-host "   Get-WindowsImage -ImagePath ""$($FileBrowser.FileName)""" -ForegroundColor Green
 					Write-host "   $('-' * 80)`n"

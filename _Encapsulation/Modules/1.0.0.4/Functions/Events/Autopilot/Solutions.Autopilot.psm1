@@ -502,9 +502,13 @@ Function Run_Expand
 
 				$TempQueueProcessImageSelect = @()
 				try {
+					if ($Global:Developers_Mode) {
+						Write-host "`n   $($lang.Developers_Mode_Location): 28`n"
+					}
+
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)28`n   $('-' * 80)"
+						Write-host "   $('-' * 80)"
 						write-host "   Get-WindowsImage -ImagePath ""$($NewExpand.Path)\$($NewExpand.ImageFileName).$($NewExpand.Suffix)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"
 					}
@@ -588,9 +592,13 @@ Function Run_Expand
 
 						$TempQueueProcessImageSelect = @()
 						try {
+							if ($Global:Developers_Mode) {
+								Write-host "`n   $($lang.Developers_Mode_Location)28`n"
+							}
+
 							if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 								Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-								Write-host "   $($lang.Developers_Mode_Location)28`n   $('-' * 80)"
+								Write-host "   $('-' * 80)"
 								write-host "   Get-WindowsImage -ImagePath ""$($NewExpand.Path)\$($NewExpand.ImageFileName).$($NewExpand.Suffix)""" -ForegroundColor Green
 								Write-host "   $('-' * 80)`n"
 							}

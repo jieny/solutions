@@ -42,6 +42,8 @@ Function Wimlib_Extract_And_Update
 		#>
 		[int]$InitControlHeight = 40
 
+		$AutoSelect_Path_Rule = "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Update\Wimlib"
+
 		foreach ($item in $Search_Folder_Multistage_Rule) {
 			$InitLength = $item.Length
 			if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
@@ -57,6 +59,13 @@ Function Wimlib_Extract_And_Update
 					$UI_Main_Mask_Report_Error_Icon.Image = $null
 					$UI_Main_Mask_Report_Save_To.Text = $This.Tag
 				}
+			}
+
+			if ($item -eq $AutoSelect_Path_Rule) {
+				$UI_Main_Folder_Flow_Custom.Checked = $True
+				$UI_Main_Mask_Report_Save_To.Text = $item
+			} else {
+				$UI_Main_Folder_Flow_Custom.Checked = $False
 			}
 
 			$UI_Main_Mask_Report_Sources_Name_Tips.controls.AddRange($UI_Main_Folder_Flow_Custom)
@@ -963,7 +972,6 @@ Function Image_Queue_Wimlib_Process_Wim_Main
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-						Write-host "   $($lang.Developers_Mode_Location)100" -ForegroundColor Green
 						Write-host "   $('-' * 80)"
 						write-host "   Get-WindowsImage -ImagePath ""$($MasterFile)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"

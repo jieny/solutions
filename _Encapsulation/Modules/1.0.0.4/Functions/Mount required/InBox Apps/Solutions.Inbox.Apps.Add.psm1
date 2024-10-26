@@ -1714,7 +1714,6 @@ Function InBox_Apps_Add_To_Process
 	try {
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)39" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsEdition -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"").Edition" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -1780,7 +1779,6 @@ Function InBox_Apps_Add_To_Process
 						try {
 							if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 								Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-								Write-host "`n   $($lang.Developers_Mode_Location)50" -ForegroundColor Green
 								Write-host "   $('-' * 80)"
 								write-host "   Add-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackagePath ""$($SearchTempFile)"" -SkipLicense -Region ""$($Region)""" -ForegroundColor Green
 								Write-host "   $('-' * 80)`n"
@@ -2016,9 +2014,12 @@ Function InBox_Apps_Add_Match_Process
 
 Function Inbox_Apps_Hard_Links_Optimize
 {
+	if ($Global:Developers_Mode) {
+		Write-host "`n   $($lang.Developers_Mode_Location): 52`n" -ForegroundColor Green
+	}
+
 	if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 		Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-		Write-host "   $($lang.Developers_Mode_Location)52" -ForegroundColor Green
 		Write-host "   $('-' * 80)"
 		write-host "   Dism.exe /Image:""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" /Optimize-ProvisionedAppxPackages" -ForegroundColor Green
 		Write-host "   $('-' * 80)`n"

@@ -863,7 +863,7 @@ Function Update_Create_Version
 		"url":  "$((Get-Module -Name Solutions).HelpInfoURI)"
 	},
 	"version": {
-		"buildstring": "$($CurrentVersion).bs_release.2024.04.18",
+		"buildstring": "$($CurrentVersion).bs_release.2024.10.18",
 		"version":     "$($CurrentVersion)",
 		"minau":       "$($LowVer)"
 	},

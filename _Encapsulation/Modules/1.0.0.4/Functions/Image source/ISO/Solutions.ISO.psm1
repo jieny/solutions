@@ -3881,7 +3881,7 @@ Function ISO_Create_Process
 			#>
 			$OSCDIMGArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
 
-			Write-Host "`n   $($lang.Running)" -ForegroundColor Yellow
+			Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
 			if (Test-Path $OSCDIMGArch -PathType Leaf) {
 				Write-Host "   $($OSCDIMGArch)"
@@ -3958,9 +3958,9 @@ Function ISO_Create_Process
 			Write-Host "`n   $($lang.CreateSHA256)" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
 			if ($Global:CreateSHA256) {
-				Write-Host "   $($lang.Operable)" -ForegroundColor Green
+				Write-Host "   $($Global:ISOSaveToFullName).sha256" -ForegroundColor Green
 
-				Write-Host "   * $($lang.Uping)`n     $($Global:ISOSaveToFullName).sha256"
+				Write-Host "   $($lang.Uping)".PadRight(28) -NoNewline
 
 				<#
 					.删除旧文件 .sha256
@@ -3974,9 +3974,9 @@ Function ISO_Create_Process
 				"$($calchash.Hash)  $($Global:ISOSaveToFileName)" | Out-File -FilePath "$($Global:ISOSaveToFullName).sha256" -Encoding ASCII -ErrorAction SilentlyContinue | Out-Null
 
 				if (Test-Path -Path "$($Global:ISOSaveToFullName).sha256" -PathType Leaf) {
-					Write-Host "   $($lang.Done)" -ForegroundColor Green
+					Write-Host $lang.Done -ForegroundColor Green
 				} else {
-					Write-Host "   $($lang.FailedCreateFile)$($Global:ISOSaveToFullName).sha256" -ForegroundColor Red
+					Write-Host "$($lang.FailedCreateFile)$($Global:ISOSaveToFullName).sha256" -ForegroundColor Red
 				}
 			} else {
 				Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
@@ -3991,13 +3991,13 @@ Function ISO_Create_Process
 			if ($Global:EmptyDirectory) {
 				Write-Host "   $($lang.Operable)" -ForegroundColor Green
 				Remove_Tree $Global:Image_source
-				Write-Host "   $($lang.Done)`n" -ForegroundColor Green
+				Write-Host "   $($lang.Done)" -ForegroundColor Green
 			} else {
-				Write-Host "   $($lang.Inoperable)`n" -ForegroundColor Red
+				Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 			}
 		} else {
 			Write-Host "   $($lang.FailedCreateFolder)"
-			Write-Host "   $($Global:ISOSaveToFolder)`n" -ForegroundColor Red
+			Write-Host "   $($Global:ISOSaveToFolder)" -ForegroundColor Red
 			return
 		}
 	} else {

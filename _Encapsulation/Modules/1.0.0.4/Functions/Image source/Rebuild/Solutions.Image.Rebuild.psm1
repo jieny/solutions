@@ -18,7 +18,6 @@ Function Rebuild_Image_File
 	if (Test-Path $Filename -PathType Leaf) {
 		if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-			Write-host "   $($lang.Developers_Mode_Location)93" -ForegroundColor Green
 			Write-host "   $('-' * 80)"
 			write-host "   Get-WindowsImage -ImagePath ""$($Filename)""" -ForegroundColor Green
 			Write-host "   $('-' * 80)`n"
@@ -48,16 +47,14 @@ Function Rebuild_Image_File
 			Write-Host "   $($lang.MountedIndex): " -NoNewline
 			Write-Host $_.ImageIndex -ForegroundColor Yellow
 
-			Write-Host "   $($lang.Rebuilding)".PadRight(28) -NoNewline
-
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
-				Write-host "   $($lang.Developers_Mode_Location)94" -ForegroundColor Green
 				Write-host "   $('-' * 80)"
 				write-host "   Export-WindowsImage -SourceImagePath ""$($Filename)"" -SourceIndex ""$($_.ImageIndex)"" -DestinationImagePath ""$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim"" -CompressionType max" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
 			}
 
+			Write-Host "   $($lang.Rebuilding)".PadRight(28) -NoNewline
 			try {
 				Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath "$($Filename)" -SourceIndex "$($_.ImageIndex)" -DestinationImagePath "$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim" -CompressionType max -ErrorAction SilentlyContinue | Out-Null	
 				Write-Host $lang.Done -ForegroundColor Green
