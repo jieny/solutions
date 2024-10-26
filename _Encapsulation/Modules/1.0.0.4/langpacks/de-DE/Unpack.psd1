@@ -16,5 +16,6 @@
 	UpPgpPwd                        = Zertifikatskennwort
 	UpdateServerNoSelect            = Bitte wählen Sie ein zu durchsuchendes Verzeichnis aus
 	SkipCreate                      = Build überspringen, nicht gefunden
+	LevelLatest                     = Auf Latest.zip hochstufen
 	UnpackFolderUse                 = _Backup Sicherungsverzeichnis kann nicht geschrieben werden.
 '@

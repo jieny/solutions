@@ -282,6 +282,13 @@ Function UnPack_Create_UI
 			}
 		}
 	}
+	
+	$UI_Create_Latest_Zip = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 360
+		Text           = $lang.LevelLatest
+		Location       = '15,600'
+	}
 	$GUIUnPackBackup   = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "8,635"
@@ -394,15 +401,15 @@ Function UnPack_Create_UI
 	}
 
 	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
-		Location       = "15,598"
+		Location       = "415,598"
 		Height         = 20
 		Width          = 20
 		SizeMode       = "StretchImage"
 	}
 	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "40,600"
+		Location       = "440,600"
 		Height         = 30
-		Width          = 875
+		Width          = 460
 		Text           = ""
 	}
 	$UI_Main_OK        = New-Object system.Windows.Forms.Button -Property @{
@@ -511,15 +518,15 @@ Function UnPack_Create_UI
 		$UI_Main_View_Detailed,
 		$GUIUnPackSources,
 		$GUIUnPackShow,
+		$UI_Create_Latest_Zip,
 		$GUIUnPackBackup,
 		$GUIUnPackBackupTips,
+		$GUIUnPackBackupExclude,
+		$GUIUnPackBackupExcludeView,
 		$GUIUnPackRearTips,
 		$GUIUnPackGroupGPG,
 		$GUIUnPackCreateSHA256,
 		$GUIUnPackCreateSHA256Clean,
-		$GUIUnPackBackupExclude,
-		$GUIUnPackBackupExcludeView,
-		$GUIUnPackBackup,
 		$UI_Main_Error_Icon,
 		$UI_Main_Error,
 		$UI_Main_OK,
@@ -688,66 +695,75 @@ Function UnPack_Compression_Create_Format
 
 		switch ($Type) {
 			"z7" {
-				Write-Host "   * $UnPackName.7z, 3GB"
+				Write-Host "   * $($UnPackName).7z, 3GB"
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
 				if ($Script:BackupSoluionsExclude) {
-					$arguments = "a", "-m0=lzma2", "-v3072M", "$TempFolderUnPack\$UnPackName.7z", "$ArchiveExcludeUnPack", "*.*", "-mcu=on", "-mx9";
+					$arguments = "a", "-m0=lzma2", "-v3072M", "$($TempFolderUnPack)\$UnPackName.7z", "$ArchiveExcludeUnPack", "*.*", "-mcu=on", "-mx9";
 				} else {
-					$arguments = "a", "-m0=lzma2", "-v3072M", "$TempFolderUnPack\$UnPackName.7z", "*.*", "-mcu=on", "-mx9";
+					$arguments = "a", "-m0=lzma2", "-v3072M", "$($TempFolderUnPack)\$UnPackName.7z", "*.*", "-mcu=on", "-mx9";
 				}
-				Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 				Write-Host $lang.Done -ForegroundColor Green
 
 				Write-Host
 			}
 			"zip" {
-				Write-Host "   * $UnPackName.zip"
+				Write-Host "   * $($UnPackName).zip"
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
 				if ($Script:BackupSoluionsExclude) {
-					$arguments = "a", "-tzip", "$TempFolderUnPack\$UnPackName.zip", "$ArchiveExcludeUnPack", "*.*", "-mcu=on", "-r", "-mx9";
+					$arguments = "a", "-tzip", "$($TempFolderUnPack)\$($UnPackName).zip", "$ArchiveExcludeUnPack", "*.*", "-mcu=on", "-r", "-mx9";
 				} else {
-					$arguments = "a", "-tzip", "$TempFolderUnPack\$UnPackName.zip", "*.*", "-mcu=on", "-r", "-mx9";
+					$arguments = "a", "-tzip", "$($TempFolderUnPack)\$($UnPackName).zip", "*.*", "-mcu=on", "-r", "-mx9";
 				}
-				Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 				Write-Host $lang.Done -ForegroundColor Green
+
+				Write-Host "`n   * latest.zip"
+				if ($UI_Create_Latest_Zip.Checked) {
+					Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
+					Copy-Item "$($TempFolderUnPack)\$($UnPackName).zip" -Destination "$($TempFolderUnPack)\latest.zip" -ErrorAction SilentlyContinue
+					Write-Host $lang.Done -ForegroundColor Green
+				} else {
+					Write-Host "     $($lang.SkipCreate): latest.zip"
+				}
 
 				Write-Host
 			}
 			"tar" {
-				Write-Host "   * $UnPackName.tar"
+				Write-Host "   * $($UnPackName).tar"
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
 				if ($Script:BackupSoluionsExclude) {
-					$arguments = "a", "$TempFolderUnPack\$UnPackName.tar", "$ArchiveExcludeUnPack", "*.*", "-r";
+					$arguments = "a", "$($TempFolderUnPack)\$UnPackName.tar", "$ArchiveExcludeUnPack", "*.*", "-r";
 				} else {
-					$arguments = "a", "$TempFolderUnPack\$UnPackName.tar", "*.*", "-r";
+					$arguments = "a", "$($TempFolderUnPack)\$UnPackName.tar", "*.*", "-r";
 				}
-				Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Minimized
+				Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 				Write-Host $lang.Done -ForegroundColor Green
 
 				Write-Host
 			}
 			"xz" {
-				Write-Host "   * $UnPackName.tar.xz"
+				Write-Host "   * $($UnPackName).tar.xz"
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
-				if (Test-Path -Path "$TempFolderUnPack\$UnPackName.tar") {
-					$arguments = "a", "$TempFolderUnPack\$UnPackName.tar.xz", "$TempFolderUnPack\$UnPackName.tar", "-mf=bcj", "-mx9";
-					Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Minimized
+				if (Test-Path -Path "$($TempFolderUnPack)\$UnPackName.tar") {
+					$arguments = "a", "$($TempFolderUnPack)\$UnPackName.tar.xz", "$($TempFolderUnPack)\$UnPackName.tar", "-mf=bcj", "-mx9";
+					Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 					Write-Host $lang.Done -ForegroundColor Green
 				} else {
-					Write-Host "$($lang.SkipCreate) $UnPackName.tar"
+					Write-Host "$($lang.SkipCreate): $UnPackName.tar"
 				}
 
 				Write-Host
 			}
 			"gz" {
-				Write-Host "   * $UnPackName.tar.gz"
+				Write-Host "   * $($UnPackName).tar.gz"
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
-				if (Test-Path -Path "$TempFolderUnPack\$UnPackName.tar") {
-					$arguments = "a", "-tgzip", "$TempFolderUnPack\$UnPackName.tar.gz", "$TempFolderUnPack\$UnPackName.tar", "-mx9";
-					Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Minimized
+				if (Test-Path -Path "$($TempFolderUnPack)\$UnPackName.tar") {
+					$arguments = "a", "-tgzip", "$($TempFolderUnPack)\$UnPackName.tar.gz", "$($TempFolderUnPack)\$UnPackName.tar", "-mx9";
+					Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 					Write-Host $lang.Done -ForegroundColor Green
 				} else {
-					Write-Host "$($lang.SkipCreate) $UnPackName.tar"
+					Write-Host "$($lang.SkipCreate): $UnPackName.tar"
 				}
 
 				Write-Host
@@ -804,9 +820,9 @@ Function UnPack_Create_SHA256_GPG
 					Remove-Item -path $fullnewpathasc -Force -ErrorAction SilentlyContinue
 
 					if ([string]::IsNullOrEmpty($Global:secure_password)) {
-						Start-Process $Verify_Install_Path -argument "--local-user ""$Global:SignGpgKeyID"" --output ""$fullnewpathasc"" --detach-sign ""$fullnewpath""" -Wait -WindowStyle Minimized
+						Start-Process $Verify_Install_Path -argument "--local-user ""$($Global:SignGpgKeyID)"" --output ""$($fullnewpathasc)"" --detach-sign ""$($fullnewpath)""" -Wait -WindowStyle Minimized
 					} else {
-						Start-Process $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$Global:secure_password"" --local-user ""$Global:SignGpgKeyID"" --output ""$fullnewpathasc"" --detach-sign ""$fullnewpath""" -Wait -WindowStyle Minimized
+						Start-Process $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$Global:secure_password"" --local-user ""$($Global:SignGpgKeyID)"" --output ""$($fullnewpathasc)"" --detach-sign ""$($fullnewpath)""" -Wait -WindowStyle Minimized
 					}
 
 					if (Test-Path $fullnewpathasc -PathType Leaf) {
@@ -891,7 +907,7 @@ Function UnPack_Move_To
 	Check_Folder -chkpath $NewPath
 
 	Get-ChildItem $OldPath -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
-		Move-Item -Path $_.FullName -Destination $NewPath -ErrorAction SilentlyContinue | Out-Null
+		Move-Item -Path $_.FullName -Destination $NewPath -ErrorAction SilentlyContinue -force | Out-Null
 	}
 	remove-item -path $OldPath -Recurse -force -ErrorAction SilentlyContinue
 }

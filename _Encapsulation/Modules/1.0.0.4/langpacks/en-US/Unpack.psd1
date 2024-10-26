@@ -15,5 +15,6 @@
 	UpBackupExclude                 = When backing up, exclude items that are not included
 	UpPgpPwd                        = Certificate password
 	SkipCreate                      = Skip generation, not found
+	LevelLatest                     = Promoted to Latest.zip
 	UnpackFolderUse                 = _Backup Backup directory cannot be written.
 '@

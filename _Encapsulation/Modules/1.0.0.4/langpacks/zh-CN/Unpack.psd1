@@ -16,5 +16,6 @@
 	UpPgpPwd                        = 证书密码
 	UpdateServerNoSelect            = 请选择搜索的目录
 	SkipCreate                      = 跳过生成，未找到
+	LevelLatest                     = 提升为 Latest.zip
 	UnpackFolderUse                 = _Backup 备份目录无法写入。
 '@

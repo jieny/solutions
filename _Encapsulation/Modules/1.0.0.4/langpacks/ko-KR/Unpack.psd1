@@ -16,5 +16,6 @@
 	UpPgpPwd                        = 인증서 비밀번호
 	UpdateServerNoSelect            = 검색할 디렉토리를 선택하세요
 	SkipCreate                      = 빌드 건너뛰기, 찾을 수 없음
+	LevelLatest                     = 승진하다 Latest.zip
 	UnpackFolderUse                 = _Backup 백업 디렉토리를 쓸 수 없습니다.
 '@

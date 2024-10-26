@@ -16,5 +16,6 @@
 	UpPgpPwd                        = 証明書のパスワード
 	UpdateServerNoSelect            = 検索するディレクトリを選択してください
 	SkipCreate                      = ビルドをスキップし、見つかりませんでした
+	LevelLatest                     = 승진하다 Latest.zip
 	UnpackFolderUse                 = _Backup バックアップ ディレクトリを書き込めませんでした。
 '@
