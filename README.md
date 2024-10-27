@@ -52,7 +52,7 @@ Component
 -
 
 <h4><pre>A.&nbsp;&nbsp;Packaging Tutorial</pre></h4>
-<ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 23H2, 22H2, Windows 10, and Windows Server 2022. Different packaging versions are available.</ol>
+<ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 24H2, 23H2, Windows 10 22H2, and Windows Server 2025, 2022. Different packaging versions are available.</ol>
 
 <h4><pre>B.&nbsp;&nbsp;Encapsulation Script</pre></h4>
 <ol>Developed using the PowerShell language, it follows an open source license and can be distributed arbitrarily without copyright restrictions.</ol>
@@ -101,11 +101,12 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
     <dd>
       <p>1.&nbsp;&nbsp;Packaging tutorial</p>
       <dl>
-        <dd>1.1.&nbsp;&nbsp;Windows 11 23H2: Practical packaging tutorial
+        <dd>1.1.&nbsp;&nbsp;Windows 11 24H2: Practical packaging tutorial, offline packaging multi-language
+		<p>Explain how to encapsulate multi-language processes in an offline state. Task objectives include: extracting language packs, installing language packs, installing InBox Apps, adding cumulative updates, generating solutions, etc. All predetermined goals can be easily achieved through learning.</p>
             <dl>
                <dd>
 
-[Youtube](https://youtu.be/e6mzybgMHF0) | [Bilibili](https://www.bilibili.com/video/BV1sj421R7uj/) | [Tencent Video](https://v.qq.com/x/page/j3543gs3pv7.html) | [Watermelon video](https://www.ixigua.com/7348909159569424946?utm_source=Github)
+[Youtube](https://youtu.be/BICApBc7wlY) | [Bilibili](https://www.bilibili.com/video/BV1cyymYsEHe/) | [Tencent Video](https://v.qq.com/x/page/i35683hz3yj.html) | [iQiyi](http://www.iqiyi.com/v_1rfq8du8qho.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586031095.shtml) | [YuKu](https://v.youku.com/v_show/id_XNjQzMzQxMTcxMg==.html)
                </dd>
             </dl>
          </dd>
@@ -116,11 +117,11 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
     <dd>
       <p>2. Custom encapsulated events</p>
       <dl>
-         <dd>2.1.&nbsp;&nbsp;Windows 11 23H2: Custom encapsulated events
+         <dd>2.1.&nbsp;&nbsp;Windows 11 24H2: Custom encapsulated events, offline packaging multi-language
             <dl>
                <dd>
 
-[Youtube](https://youtu.be/L1AxyoAhNMY) | [Bilibili](https://www.bilibili.com/video/BV1HK421e7AV/) | [Tencent Video](https://v.qq.com/x/page/c3543pyggh0.html) | [Watermelon video](https://www.ixigua.com/7348904251847868966?utm_source=Github)
+[Youtube](https://youtu.be/rs9IBLcZFUc) | [Bilibili](https://www.bilibili.com/video/BV1Uj1sYMEiR/) | [Tencent Video](https://v.qq.com/x/page/z3568356sdn.html) | [iQiyi](https://www.iqiyi.com/v_1va9thxbrpk.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586048434.shtml) | [YuKu](https://v.youku.com/v_show/id_XNjQzMzQwODUxNg==.html)
                </dd>
             </dl>
          </dd>
@@ -131,11 +132,11 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
     <dd>
       <p>3.&nbsp;&nbsp;Autopilot</p>
       <dl>
-        <dd>3.1.&nbsp;&nbsp;Windows 11 23H2: Autopilot encapsulation
+        <dd>3.1.&nbsp;&nbsp;Windows 11 24H2: Autopilot encapsulation, offline packaging multi-language
             <dl>
                <dd>
 
-[Youtube](https://youtu.be/BbS_T2d9Ifc) | [Bilibili](https://www.bilibili.com/video/BV1Mt421G7Uf/) | [Tencent Video](https://v.qq.com/x/page/l35436bsird.html) | [Watermelon video](https://www.ixigua.com/7348896802180956683?utm_source=Github)
+[Youtube](https://youtu.be/OK-5-y_dOTg) | [Bilibili](https://www.bilibili.com/video/BV1krymYxELk/) | [Tencent Video](https://v.qq.com/x/page/g3568so5957.html) | [iQiyi](http://www.iqiyi.com/v_1gduum87i2o.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586041313.shtml) | [YuKu](https://v.youku.com/v_show/id_XNjQzMzQxMTk3Mg==.html)
                </dd>
             </dl>
          </dd>
@@ -296,14 +297,6 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
 <p>Prioritize downloads from the Github website, and after the download is complete: add routing features and run the wrapper script.</p>
-	    </dd>
-
-<br>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
-		    <dl>
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
-		    </dl>
 	    </dd>
           </dl>
         </dd>
