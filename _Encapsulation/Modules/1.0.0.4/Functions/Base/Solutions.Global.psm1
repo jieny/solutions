@@ -222,7 +222,7 @@ Function Archive
 
 	$filename = Convert-Path $filename -ErrorAction SilentlyContinue
 
-	if (Test-Path -Path $to -PathType leaf) {
+	if (Test-Path -Path $to -PathType Container) {
 		$to = Convert-Path $to -ErrorAction SilentlyContinue
 	}
 
@@ -237,10 +237,11 @@ Function Archive
 				"x",
 				"-r",
 				"-tzip",
-				$filename,
+				"""$($filename)""",
 				"-o""$($to)""",
 				"-y";
 			)
+
 
 			Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 		} else {
@@ -249,7 +250,7 @@ Function Archive
 				"-p$($Password)"
 				"-r",
 				"-tzip",
-				$filename,
+				"""$($filename)""",
 				"-o""$($to)""",
 				"-y";
 			)

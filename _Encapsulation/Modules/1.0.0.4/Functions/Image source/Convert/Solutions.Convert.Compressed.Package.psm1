@@ -21,6 +21,18 @@ Function Image_Convert_Create_Info_Process
 	}
 }
 "@ | Out-File -FilePath "$($SaveTo)\install.json" -Encoding Ascii -ErrorAction SilentlyContinue
+
+	Write-Host "`n   $($lang.Wim_Rule_Check)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+	write-host "   $($SaveTo)\install.json"
+
+	Write-Host "`n   $($lang.Wim_Rule_Verify)".PadRight(28) -NoNewline
+	try {
+		$Autopilot = Get-Content -Raw -Path "$($SaveTo)\install.json" | ConvertFrom-Json
+		Write-host $lang.Done -ForegroundColor Green
+	} catch {
+		Write-host $lang.Failed -ForegroundColor Red
+	}
 }
 
 <#

@@ -40,6 +40,7 @@ $ArchiveExcludeUnPack = @(
 	"-xr-!_Encapsulation\Logs"
 	"""-xr-!_Encapsulation\_Custom\Software\00\Google Chrome"""
 	"""-xr-!_Encapsulation\_Custom\Software\00\Google Chrome Canary"""
+	"-xr-!_Encapsulation\_Custom\Fonts\fzxbs.ttf"
 	"-xr-!_Encapsulation\_Custom\Engine\LXPs\Logs"
 	"-xr-!_Encapsulation\_Custom\Engine\LXPs\Download"
 	"-xr-!_Encapsulation\_Custom\Engine\Multilingual\Logs"
@@ -890,6 +891,18 @@ Function Update_Create_Version
 	"url": "$((Get-Module -Name Solutions).HelpInfoURI)/download/solutions/latest.zip"
 }
 "@ | Out-File -FilePath "$($SaveTo)\latest.json" -Encoding Ascii
+
+	Write-Host "`n   $($lang.Wim_Rule_Check)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+	write-host "   $($SaveTo)\latest.json"
+
+	Write-Host "`n   $($lang.Wim_Rule_Verify)".PadRight(28) -NoNewline
+	try {
+		$Autopilot = Get-Content -Raw -Path "$($SaveTo)\latest.json" | ConvertFrom-Json
+		Write-host $lang.Done -ForegroundColor Green
+	} catch {
+		Write-host $lang.Failed -ForegroundColor Red
+	}
 }
 
 Function UnPack_Move_To

@@ -1274,7 +1274,7 @@ Function Archive
 
 	$filename = Convert-Path $filename -ErrorAction SilentlyContinue
 
-	if (Test-Path -Path $to -PathType leaf) {
+	if (Test-Path -Path $to -PathType Container) {
 		$to = Convert-Path $to -ErrorAction SilentlyContinue
 	}
 
@@ -1289,7 +1289,7 @@ Function Archive
 				"x",
 				"-r",
 				"-tzip",
-				$filename,
+				"""$($filename)""",
 				"-o""$($to)""",
 				"-y";
 			)
@@ -1301,7 +1301,7 @@ Function Archive
 				"-p$($Password)"
 				"-r",
 				"-tzip",
-				$filename,
+				"""$($filename)""",
 				"-o""$($to)""",
 				"-y";
 			)

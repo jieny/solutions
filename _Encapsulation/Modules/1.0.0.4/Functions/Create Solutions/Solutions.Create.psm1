@@ -7776,6 +7776,18 @@ Function Solutions_Create_Deploy_Report
 	}
 }
 "@ | Out-File -FilePath "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy.json" -Encoding Ascii -ErrorAction SilentlyContinue
+
+	Write-Host "`n   $($lang.Wim_Rule_Check)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
+	write-host "   $($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy.json"
+
+	Write-Host "`n   $($lang.Wim_Rule_Verify)".PadRight(28) -NoNewline
+	try {
+		$Autopilot = Get-Content -Raw -Path "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy.json" | ConvertFrom-Json
+		Write-host $lang.Done -ForegroundColor Green
+	} catch {
+		Write-host $lang.Failed -ForegroundColor Red
+	}
 }
 
 <#
