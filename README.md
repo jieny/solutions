@@ -267,54 +267,45 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
   <p>III.&nbsp;&nbsp;Get the package script</p>
   <dl>
     <dd>
-      <p>1.&nbsp;&nbsp;Project address</p>
-      <dl>
-        <dd>
-          <p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
-          <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
+	<p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
+	<dl>
+		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://fengyi.tel/gs | iex
 ```
-<p>Priority is to download from the official website, and after the download is complete: add the routing function. Run the wrapper script.</p>
-	    </dd>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Priority is to download from the official website, and after the download is complete: add the routing function. Run the wrapper script.</p>
+		</dd>
 
 <br>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
-		<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
-	    </dd>
-          </dl>
+		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
+			<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
+		</dd>
+	</dl>
 
 <br>
-          <p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub</p>
-          <dl>
-            <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
+	<p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub</p>
+	<dl>
+		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.1.&nbsp;&nbsp;Automatic downloads
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
 <p>Prioritize downloads from the Github website, and after the download is complete: add routing features and run the wrapper script.</p>
+		</dd>
+
+<br>
+		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.2.&nbsp;&nbsp;Manual download
+			<dl>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
+			</dl>
 	    </dd>
           </dl>
         </dd>
       </dl>
-
-<br>
-      <p>2.&nbsp;&nbsp;Netdisk download</p>
-      <dl>
-        <dd>
-			<p>2.1.&nbsp;&nbsp;Alibaba cloud network disk | https://www.alipan.com/s/sFU4uaJ6uV3</p>
-			<p>2.2.&nbsp;&nbsp;123 network disk | https://www.123pan.com/s/zitA-QU9l.html</p>
-			<p>2.3.&nbsp;&nbsp;Google Drive | https://drive.google.com/drive/folders/1qTgFvbETlk23v_RGw_rXQPcZvIVirO-O?usp=sharing</p>
-        </dd>
-      </dl>
-
-<br>
-      <p>3.&nbsp;&nbsp;After the download is complete, unzip the downloaded file to: D:\Yi.Solutions</p>
-    </dd>
   </dl>
 
 <br>
