@@ -106,7 +106,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
             <dl>
                <dd>
 
-[Youtube](https://youtu.be/BICApBc7wlY) | [Bilibili](https://www.bilibili.com/video/BV1cyymYsEHe/) | [Tencent Video](https://v.qq.com/x/page/i35683hz3yj.html) | [iQiyi](http://www.iqiyi.com/v_1rfq8du8qho.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586031095.shtml) | [YuKu](https://v.youku.com/v_show/id_XNjQzMzQxMTcxMg==.html)
+[Youtube](https://youtu.be/BICApBc7wlY) | [Bilibili](https://www.bilibili.com/video/BV1cyymYsEHe/) | [Tencent Video](https://v.qq.com/x/page/i35683hz3yj.html) | [iQiyi](http://www.iqiyi.com/v_1rfq8du8qho.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586031095.shtml) | [YouKu](https://v.youku.com/v_show/id_XNjQzMzQxMTcxMg==.html)
                </dd>
             </dl>
          </dd>
@@ -121,7 +121,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
             <dl>
                <dd>
 
-[Youtube](https://youtu.be/rs9IBLcZFUc) | [Bilibili](https://www.bilibili.com/video/BV1Uj1sYMEiR/) | [Tencent Video](https://v.qq.com/x/page/z3568356sdn.html) | [iQiyi](https://www.iqiyi.com/v_1va9thxbrpk.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586048434.shtml) | [YuKu](https://v.youku.com/v_show/id_XNjQzMzQwODUxNg==.html)
+[Youtube](https://youtu.be/rs9IBLcZFUc) | [Bilibili](https://www.bilibili.com/video/BV1Uj1sYMEiR/) | [Tencent Video](https://v.qq.com/x/page/z3568356sdn.html) | [iQiyi](https://www.iqiyi.com/v_1va9thxbrpk.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586048434.shtml) | [YouKu](https://v.youku.com/v_show/id_XNjQzMzQwODUxNg==.html)
                </dd>
             </dl>
          </dd>
@@ -136,7 +136,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
             <dl>
                <dd>
 
-[Youtube](https://youtu.be/OK-5-y_dOTg) | [Bilibili](https://www.bilibili.com/video/BV1krymYxELk/) | [Tencent Video](https://v.qq.com/x/page/g3568so5957.html) | [iQiyi](http://www.iqiyi.com/v_1gduum87i2o.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586041313.shtml) | [YuKu](https://v.youku.com/v_show/id_XNjQzMzQxMTk3Mg==.html)
+[Youtube](https://youtu.be/OK-5-y_dOTg) | [Bilibili](https://www.bilibili.com/video/BV1krymYxELk/) | [Tencent Video](https://v.qq.com/x/page/g3568so5957.html) | [iQiyi](http://www.iqiyi.com/v_1gduum87i2o.html) | [Sohu](http://my.tv.sohu.com/us/201441345/586041313.shtml) | [YouKu](https://v.youku.com/v_show/id_XNjQzMzQxMTk3Mg==.html)
                </dd>
             </dl>
          </dd>
