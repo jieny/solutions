@@ -1320,8 +1320,8 @@ Function Help
 	$PSscript = PSscript
 
 	$Host.UI.RawUI.WindowTitle = "Yi's Solutions"
-	Write-Host "`n   Yi's Solutions, v1.0.0.0"
-	Write-host "   https://fengyi.tel/solutions`n" -ForegroundColor Yellow
+	Write-Host "`n   Yi's Solutions, v1.0.0.5"
+	Write-host "   https://fengyi.tel/solutions https://github.com/ilikeyi/solutions`n" -ForegroundColor Yellow
 
 	Write-Host "   $($Script:Lang.Usage)
    ---------------------------------------------------------------------------

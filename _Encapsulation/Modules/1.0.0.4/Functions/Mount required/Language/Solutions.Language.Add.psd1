@@ -16,7 +16,10 @@
 		PSData = @{
 			# Tags = @()
 			LicenseUri   = 'https://opensource.org/license/artistic-2-0'
-			ProjectUri   = 'https://github.com/ilikeyi/Solutions'
+			ProjectUri   = @(
+				'https://fengyi.tel/solutions'
+				'https://github.com/ilikeyi/solutions'
+			)
 			# IconUri      = ''
 			# ReleaseNotes = ''
 		}
