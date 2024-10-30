@@ -515,7 +515,7 @@ Function InBox_Apps_LIPs_Delete_Process
 			if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+						Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 						Write-host "   $('-' * 80)"
 						write-host "   Get-AppXProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" | Where-Object DisplayName -Like ""*LanguageExperiencePack*$($item)*"" | Remove-AppxProvisionedPackage" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"

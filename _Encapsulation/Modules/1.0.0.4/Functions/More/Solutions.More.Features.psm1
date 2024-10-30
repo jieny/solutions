@@ -156,7 +156,7 @@ Function Feature_More
 			Write-Host "`n   $($lang.ViewMounted)" -ForegroundColor Green
 
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+				Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsImage -Mounted" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -425,7 +425,7 @@ Function Image_Get_Detailed
 
 		try {
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+				Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsImage -ImagePath ""$($Filename)""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -435,7 +435,7 @@ Function Image_Get_Detailed
 				$SetCurreltIndex = $_.ImageIndex
 
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-					Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+					Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 					Write-host "   $('-' * 80)"
 					write-host "   Get-WindowsImage -ImagePath ""$($Filename)"" -index ""$($SetCurreltIndex)""" -ForegroundColor Green
 					Write-host "   $('-' * 80)`n"

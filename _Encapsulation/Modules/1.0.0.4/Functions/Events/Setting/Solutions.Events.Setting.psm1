@@ -910,7 +910,6 @@ Function Image_Set_Global_Primary_Key
 			}
 
 			if ($Detailed) {
-				Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 				if (Test-Path -Path "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -PathType Leaf) {
 					$RandomGuid = [guid]::NewGuid()
 					$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
@@ -918,6 +917,15 @@ Function Image_Set_Global_Primary_Key
 					$Export_To_New_Xml = "$($env:TEMP)\$($RandomGuid).xml"
 					if (Test-Path $wimlib -PathType Leaf) {
 						$Arguments = "info ""$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"" --extract-xml ""$($Export_To_New_Xml)"""
+
+						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+							Write-host "   $('-' * 80)"
+							write-host "   Start-Process -FilePath '$($wimlib)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
+							Write-host "   $('-' * 80)`n"
+						}
+
+						Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 						Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
 
 						if (Test-Path $Export_To_New_Xml -PathType Leaf) {
@@ -955,15 +963,16 @@ Function Image_Set_Global_Primary_Key
 							}
 
 							if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-								Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+								Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 								Write-host "   $('-' * 80)"
 								write-host "   Get-WindowsImage -ImagePath ""$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)""" -ForegroundColor Green
 								Write-host "   $('-' * 80)`n"
 							}
 
+							Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 							Get-WindowsImage -ImagePath "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -ErrorAction SilentlyContinue | ForEach-Object {
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+									Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 									Write-host "   $('-' * 80)"
 									write-host "   Get-WindowsImage -ImagePath ""$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"" -index ""$($_.ImageIndex)""" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
@@ -987,11 +996,13 @@ Function Image_Set_Global_Primary_Key
 
 							Write-Host $lang.Done -ForegroundColor Green
 						} catch {
+							Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 							Write-Host $_
 							Write-Host "   $($lang.Failed)" -ForegroundColor Red
 						}
 					}
 				} else {
+					Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 					Write-Host $lang.SelectFromError -ForegroundColor Red
 					Write-Host "   $($lang.NoInstallImage)"
 					Write-host "   $($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -ForegroundColor Red
@@ -1028,16 +1039,16 @@ Function Image_Set_Global_Primary_Key
 					}
 
 					if ($Detailed) {
-						Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 						if (Test-Path -Path "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -PathType Leaf) {
 							try {
 								if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-									Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+									Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 									Write-host "   $('-' * 80)"
 									write-host "   Get-WindowsImage -ImagePath ""$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)""" -ForegroundColor Green
 									Write-host "   $('-' * 80)`n"
 								}
 
+								Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 								Get-WindowsImage -ImagePath "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -ErrorAction SilentlyContinue | ForEach-Object {
 									Get-WindowsImage -ImagePath "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)" -index $_.ImageIndex -ErrorAction SilentlyContinue | ForEach-Object {
 										$custom_array += @{
@@ -1051,6 +1062,7 @@ Function Image_Set_Global_Primary_Key
 
 								Write-Host $lang.Done -ForegroundColor Green
 							} catch {
+								Write-Host "   $($lang.Refresh)".PadRight(28) -NoNewline
 								Write-Host $_
 								Write-Host "   $($lang.Failed)" -ForegroundColor Red
 								return

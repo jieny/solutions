@@ -478,8 +478,13 @@ Function Test_URI
 #>
 Function Unzip_Done_Refresh_Process
 {
-	$PPocess  = "$($PSScriptRoot)\..\..\..\..\..\..\Post.Processing.bat"
-	$PsPocess = "$($PSScriptRoot)\..\..\..\..\..\..\Post.Processing.ps1"
+	$to = "$($PSScriptRoot)\..\..\.."
+	if (Test-Path -Path $to -PathType Container) {
+		$to = Convert-Path $to -ErrorAction SilentlyContinue
+	}
+
+	$PPocess  = "$($to)\Post.Processing.bat"
+	$PsPocess = "$($to)\Post.Processing.ps1"
 
 	<#
 		.Execute function processing, after the update is complete

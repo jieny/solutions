@@ -493,7 +493,7 @@ Function Feature_Enabled_Match_Process
 			Write-Host "   $($lang.Enable)".PadRight(28) -NoNewline
 			if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows" -PathType Container) {
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-					Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+					Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 					Write-host "`n   $($lang.Developers_Mode_Location)2236" -ForegroundColor Green
 					Write-host "   $('-' * 80)"
 					write-host "   Enable-WindowsOptionalFeature -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -FeatureName ""$($item)"" -Source ""$($Global:Image_source)\sources\sxs"", ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows"" -All -LimitAccess" -ForegroundColor Green
@@ -503,7 +503,7 @@ Function Feature_Enabled_Match_Process
 				Enable-WindowsOptionalFeature -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -FeatureName $item -Source "$($Global:Image_source)\sources\sxs", "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows" -All -LimitAccess | Out-Null
 			} else {
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-					Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+					Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 					Write-host "   $($lang.Developers_Mode_Location)2237" -ForegroundColor Green
 					Write-host "   $('-' * 80)"
 					write-host "   Enable-WindowsOptionalFeature -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -FeatureName ""$($item)"" -Source ""$($Global:Image_source)\sources\sxs"" -All -LimitAccess" -ForegroundColor Green

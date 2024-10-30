@@ -105,7 +105,6 @@ Function Covert_Software_Package_Unpack
 			$arguments = "a", "-tzip", """$($TempFolderUpdate)\$($item.Name).zip""", "*.*", "-mcu=on", "-r", "-mx9";
 			Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Minimized
 
-
 			Write-Host "   $fullnewpathsha256"
 			Write-Host "   $($lang.Uping)".PadRight(28) -NoNewline
 			Remove-Item -Path $fullnewpathsha256 -Force -ErrorAction SilentlyContinue

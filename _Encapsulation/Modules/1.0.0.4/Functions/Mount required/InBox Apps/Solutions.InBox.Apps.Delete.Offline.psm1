@@ -492,7 +492,7 @@ Function InBox_Apps_Offline_Delete_Process
 			if (Test-Path -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -PathType Container) {
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+						Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 						Write-host "   $('-' * 80)"
 						write-host "   Remove-AppxProvisionedPackage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -PackageName ""$($item)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"

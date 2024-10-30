@@ -971,7 +971,7 @@ Function Image_Queue_Wimlib_Process_Wim_Main
 				$TempQueueProcessImageSelect = @()
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+						Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 						Write-host "   $('-' * 80)"
 						write-host "   Get-WindowsImage -ImagePath ""$($MasterFile)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"

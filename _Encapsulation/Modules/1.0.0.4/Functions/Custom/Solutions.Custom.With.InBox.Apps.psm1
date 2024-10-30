@@ -93,6 +93,9 @@ $Global:Pre_Config_Rules = @(
 					#region Windows 11 24H2 Business
 					@{
 						ISO = "en-us_windows_11_business_editions_version_24h2_x64_dvd_59a1851e.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_Win_Pro_11_24H2_64BIT_English_Pro_Ent_EDU_N_MLF_X23-69812.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/4bfa831a-0073-3bb4-5dde-6c07df68d7e3"
 						CRCSHA = @{
 							SHA256 = "d0dca325314322518ae967d58c3061bcae57ee9743a8a1cf374aad8637e5e8ac"
@@ -101,6 +104,9 @@ $Global:Pre_Config_Rules = @(
 					}
 					@{
 						ISO = "en-us_windows_11_business_editions_version_24h2_arm64_dvd_ad92e9d8.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_Win_Pro_11_24H2_Arm64_English_Pro_Ent_EDU_N_MLF_X23-69850.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/cfb08972-7f11-f3a5-ae7c-8f084dc1996e"
 						CRCSHA = @{
 							SHA256 = "15ff94a99e89846c54316275f60ea697c9517e5dea7b3a963157a4c632524f72"
@@ -112,6 +118,9 @@ $Global:Pre_Config_Rules = @(
 					#region Windows 11 24H2 Consumer editions
 					@{
 						ISO = "en-us_windows_11_consumer_editions_version_24h2_x64_dvd_1d5fcad3.iso"
+						AlternativeFilenames = @(
+							"X23-81971_26100.1742.240906-0331.ge_release_svc_refresh_CLIENT_CONSUMER_x64FRE_en-us.iso"
+						)
 						FileList = "https://files.rg-adguard.net/file/1ebf9c88-803f-636e-ad8a-5b60966dcd64"
 						CRCSHA = @{
 							SHA256 = "b56b911bf18a2ceaeb3904d87e7c770bdf92d3099599d61ac2497b91bf190b11"
@@ -120,6 +129,9 @@ $Global:Pre_Config_Rules = @(
 					}
 					@{
 						ISO = "en-us_windows_11_consumer_editions_version_24h2_arm64_dvd_4cc70bf6.iso"
+						AlternativeFilenames = @(
+							"X23-81973_26100.1742.240906-0331.ge_release_svc_refresh_CLIENT_CONSUMER_A64FRE_en-us.iso"
+						)
 						FileList = "https://files.rg-adguard.net/file/9f751f60-0919-4a5a-8fb5-7bd6340a5df6"
 						CRCSHA = @{
 							SHA256 = "57d1dfb2c6690a99fe99226540333c6c97d3fd2b557a50dfe3d68c3f675ef2b0"
@@ -131,6 +143,9 @@ $Global:Pre_Config_Rules = @(
 					#region Windows 11 IoT Enterprise, version 24H2
 					@{
 						ISO = "en-us_windows_11_iot_enterprise_version_24h2_x64_dvd_3a99b72b.iso"
+						AlternativeFilenames = @(
+							"X23-81952_26100.1742.240906-0331.ge_release_svc_refresh_CLIENTENTERPRISE_OEM_x64FRE_en-us.iso"
+						)
 						FileList = "https://files.rg-adguard.net/file/d8ee9445-b9eb-5f45-f75e-e92a057820bf"
 						CRCSHA = @{
 							SHA256 = "eceb8dc167077e07f9a9bd04e472ea542944974b81b2ebc25477772a71bdbb69"
@@ -139,6 +154,9 @@ $Global:Pre_Config_Rules = @(
 					}
 					@{
 						ISO = "en-us_windows_11_iot_enterprise_version_24h2_arm64_dvd_e9155a10.iso"
+						AlternativeFilenames = @(
+							"X23-81976_26100.1742.240906-0331.ge_release_svc_refresh_CLIENTENTERPRISE_OEM_A64FRE_en-us.iso"
+						)
 						FileList = "https://files.rg-adguard.net/file/bacf17e5-a307-5a01-1a35-71268dc0c2e3"
 						CRCSHA = @{
 							SHA256 = "a931b791cadd12e0d38aac2d765d389a06bcba3154a4164afeacc839a3bdbc0d"
@@ -150,6 +168,9 @@ $Global:Pre_Config_Rules = @(
 					#region Windows 11 Enterprise LTSC 2024
 					@{
 						ISO = "en-us_windows_11_enterprise_ltsc_2024_x64_dvd_965cfb00.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_WIN_ENT_LTSC_2024_64-bit_English_MLF_X23-70046.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/142ca376-487f-e858-a606-e120e70b9d02"
 						CRCSHA = @{
 							SHA256 = "157d8365a517c40afeb3106fdd74d0836e1025debbc343f2080e1a8687607f51"
@@ -161,6 +182,9 @@ $Global:Pre_Config_Rules = @(
 					#region Windows 11 IoT Enterprise LTSC 2024
 					@{
 						ISO = "en-us_windows_11_iot_enterprise_ltsc_2024_x64_dvd_f6b14814.iso"
+						AlternativeFilenames = @(
+							"X23-81951_26100.1742.240906-0331.ge_release_svc_refresh_CLIENT_ENTERPRISES_OEM_x64FRE_en-us.iso"
+						)
 						FileList = "https://files.rg-adguard.net/file/9160d5cf-f480-a1c9-a62c-b75ab0708d2c"
 						CRCSHA = @{
 							SHA256 = "4f59662a96fc1da48c1b415d6c369d08af55ddd64e8f1c84e0166d9e50405d7a"
@@ -169,6 +193,9 @@ $Global:Pre_Config_Rules = @(
 					}
 					@{
 						ISO = "en-us_windows_11_iot_enterprise_ltsc_2024_arm64_dvd_ec517836.iso"
+						AlternativeFilenames = @(
+							"X23-81950_26100.1742.240906-0331.ge_release_svc_refresh_CLIENT_ENTERPRISES_OEM_A64FRE_en-us.iso"
+						)
 						FileList = "https://files.rg-adguard.net/file/de2234af-1514-ff50-50af-5a3395549c42"
 						CRCSHA = @{
 							SHA256 = "f8f068cdc90c894a55d8c8530db7c193234ba57bb11d33b71383839ac41246b4"
@@ -332,9 +359,9 @@ $Global:Pre_Config_Rules = @(
 								"IoTEnterpriseK"
 								"ServerRdsh"
 
-		#						"ServerStandardCore"
+#								"ServerStandardCore"
 								"ServerStandard"
-		#						"ServerDataCenterCore"
+#								"ServerDataCenterCore"
 								"ServerDatacenter"
 							)
 							Apps = @(
@@ -1361,6 +1388,9 @@ $Global:Pre_Config_Rules = @(
 					#region x64
 					@{
 						ISO = "en-us_windows_10_business_editions_version_22h2_x64_dvd_8cf17b79.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_Win_Pro_10_22H2_64BIT_English_Pro_Ent_EDU_N_MLF_X23-20019.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/b4901318-96a5-3755-c26d-c8cb5c816092"
 						CRCSHA = @{
 							SHA256 = "18a84e0da1043d7c1d3cf46ee127e8f637d425ad57e115ee862af203fa4932a8"
@@ -1372,6 +1402,9 @@ $Global:Pre_Config_Rules = @(
 					#region x86
 					@{
 						ISO = "en-us_windows_10_business_editions_version_22h2_x86_dvd_186a68c3.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_Win_Pro_10_22H2_32BIT_English_Pro_Ent_EDU_N_MLF_X23-19943.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/19fd5653-1ca5-2160-7572-7e3313babacf"
 						CRCSHA = @{
 							SHA256 = "9319bdd9e09bef723e09536519a082618caf7aa8dc1a4135520d7a5a8a8893a4"
@@ -1423,6 +1456,9 @@ $Global:Pre_Config_Rules = @(
 
 					@{
 						ISO = "en-us_windows_10_enterprise_ltsc_2021_x64_dvd_d289cf96.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_WIN_ENT_LTSC_2021_64BIT_English_MLF_X22-84414.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/19a36b7b-269b-ebf8-105b-a375f70b7ae2"
 						CRCSHA = @{
 							SHA256 = "c90a6df8997bf49e56b9673982f3e80745058723a707aef8f22998ae6479597d"
@@ -1431,6 +1467,9 @@ $Global:Pre_Config_Rules = @(
 					}
 					@{
 						ISO = "en-us_windows_10_enterprise_ltsc_2021_x86_dvd_9f4aa95f.iso"
+						AlternativeFilenames = @(
+							"SW_DVD9_WIN_ENT_LTSC_2021_32BIT_English_MLF_X22-84413.ISO"
+						)
 						FileList = "https://files.rg-adguard.net/file/dad92dcb-222d-c6ca-ebe2-3e12c6bcb22b"
 						CRCSHA = @{
 							SHA256 = "3276d60fa27f513b411224cd474278a9abe406159ba47776747862c7080292bc"
@@ -1685,11 +1724,14 @@ $Global:Pre_Config_Rules = @(
 						}
 						@{
 							ISO = "https://software-static.download.prss.microsoft.com/pr/download/19041.1.191206-1406.vb_release_x86fre_FOD-PACKAGES_OEM_PT1_x86fre_MULTI.iso";
-							AlternativeFilenames = @()
-							FileList = ""
+							AlternativeFilenames = @(
+								"en_windows_10_features_on_demand_part_1_version_2004_x86_dvd_ae6dc6f7.iso"
+								"SW_DVD9_NTRL_Win_10_2004_W32_MultiLang_FOD_1_X22-21312.ISO"
+							)
+							FileList = "https://files.rg-adguard.net/file/7758afd0-e097-e9f3-86ee-ebef4deff834"
 							CRCSHA = @{
-								SHA256 = "";
-								SHA512 = ""
+								SHA256 = "6db431827d5ce782c09e9092eb1c8cd7ba873012e6599b997462f91be2a60f51";
+								SHA512 = "ba6887ad9df29ec5fa4b47d4907363af74828614deb2748bf8a03b336d38c7a01b81cf314cc20c956ee060940019c3af32798ec66a15917e38d67f6d94a63e46"
 							}
 						}
 					)

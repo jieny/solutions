@@ -1154,7 +1154,7 @@ Function Image_Convert_Process
 			}
 
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+				Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsImage -ImagePath ""$($Install_ESD)""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -1222,7 +1222,7 @@ Function Image_Convert_Process
 						}
 
 						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-							Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 							Write-host "   $('-' * 80)"
 							write-host "   Split-WindowsImage -ImagePath "$($Install_wim)" -SplitImagePath "$($Install_SWM)" -FileSize ""$($Global:Queue_Convert_Tasks.Split.Size)"" -CheckIntegrity" -ForegroundColor Green
 							Write-host "   $('-' * 80)`n"
@@ -1304,7 +1304,7 @@ Function Image_Convert_Process
 			}
 
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-				Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+				Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 				Write-host "   $('-' * 80)"
 				write-host "   Get-WindowsImage -ImagePath ""$($Install_wim)""" -ForegroundColor Green
 				Write-host "   $('-' * 80)`n"
@@ -1413,7 +1413,7 @@ Function Image_Convert_Process
 					}
 
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-						Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+						Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 						Write-host "   $('-' * 80)"
 						write-host "   Split-WindowsImage -ImagePath "$($Install_wim)" -SplitImagePath "$($Install_SWM)" -FileSize ""$($Global:Queue_Convert_Tasks.Split.Size)"" -CheckIntegrity" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"

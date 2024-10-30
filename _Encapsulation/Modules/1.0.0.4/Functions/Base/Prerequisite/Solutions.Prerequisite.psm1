@@ -82,6 +82,7 @@ Function Prerequisite
 					MountStatus = $_.MountStatus
 				}
 			}
+
 			if ($_.MountStatus -eq "NeedsRemount") {
 				$MarkErrorMounted += @{
 					Path        = $_.Path

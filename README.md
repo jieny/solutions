@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
-Yi’s soultions
+Yi�s soultions
 -
-It consists of multiple parts: packaging script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi’s optimization script, etc.
+It consists of multiple parts: packaging script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi�s optimization script, etc.
 
 To help you solve the difficult problem of packaging multilingual versions, the production method provided by Yi and the deployment engine can perfectly solve this problem. You can initiate this packaging journey at will and end this "unpackageable journey".
 
@@ -42,7 +42,7 @@ Detailed introduction
 
  * United States - English | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwT_T2mia6W8CUFF?e=Kg9xRp">OneDrive</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
  
- * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwXwL5P7HzAK7ZLi?e=ItsqXl">OneDrive</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
+ * ???? - ?? | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwXwL5P7HzAK7ZLi?e=ItsqXl">OneDrive</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, please view the full version for more information.</p>
 
@@ -68,7 +68,7 @@ Component
 <ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
 <ol>Project address: https://github.com/ilikeyi/Multilingual, included in the full version: <code>\_Encapsulation\_Custom\Engine\Multilingual</code></ol>
 
-<h4><pre>F.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
+<h4><pre>F.&nbsp;&nbsp;Yi�s optimization script</pre></h4>
 <ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
 <ol>Project address: https://github.com/ilikeyi/Yi.Optimiz.Private, included in the full version: <code>\_Encapsulation\_Custom\Engine\Yi.Optimiz.Private</code></ol>
@@ -155,7 +155,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
       <dl>
         <dd>1.1.&nbsp;&nbsp;Check for updates: In order to better stay up to date with the latest version, you can check whether the latest version is available at any time</dd>
         <dd>1.2.&nbsp;&nbsp;Hot refresh: After changing the script, enter R in the main interface and execute "reload module" to complete the hot refresh</dd>
-        <dd>1.3.&nbsp;&nbsp;Language pack: <code>United States - English</code>、<code>中文（简体）</code>, <code>中文（繁体）</code>, <code>대한민국 - 한국어</code>, <code>日本 - 日本語</code></dd>
+        <dd>1.3.&nbsp;&nbsp;Language pack: <code>United States - English</code>?<code>??(??)</code>, <code>??(??)</code>, <code>???? - ???</code>, <code>?? - ???</code></dd>
         <dd>1.4.&nbsp;&nbsp;Event mode: automatic driving, custom assigned events, manual operation</dd>
         <dd>1.5.&nbsp;&nbsp;Descending order: Automatically identify ARM64, x64, and x86 architectures, and automatically select dependent programs in descending order according to the architecture.</dd>
         <dd>1.6.&nbsp;&nbsp;ISO: Automatically identify ISO tag names and initialize rules (supports inclusion class matching), decompress, mount, pop up, verify hash, display corresponding ISO files according to rules, search, automatically classify: files, language packages, function packages , InBox Apps</dd>

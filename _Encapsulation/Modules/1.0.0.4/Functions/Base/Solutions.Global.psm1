@@ -242,7 +242,6 @@ Function Archive
 				"-y";
 			)
 
-
 			Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
 		} else {
 			$arguments = @(

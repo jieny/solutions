@@ -168,12 +168,11 @@ Function Image_Select_Export_UI
 										Write-Host $itemDetail.ImageIndex -ForegroundColor Yellow
 
 										if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-											Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+											Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 											Write-host "   $('-' * 80)"
 											write-host "   Export-WindowsImage -SourceImagePath ""$($Global:Primary_Key_Image.FullPath)"" -SourceIndex ""$($item)"" -DestinationImagePath ""$($FileBrowser.FileName)"" -CompressionType max -CheckIntegrity" -ForegroundColor Green
 											Write-host "   $('-' * 80)`n"
 										}
-
 
 										Write-Host "   $($lang.Export_Image)".PadRight(28) -NoNewline
 										try {
@@ -210,7 +209,7 @@ Function Image_Select_Export_UI
 									Write-Host $itemDetail.ImageIndex -ForegroundColor Yellow	
 
 									if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-										Write-Host "`n   $($lang.Command)" -ForegroundColor Green
+										Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 										Write-host "   $($lang.Developers_Mode_Location)86" -ForegroundColor Green
 										Write-host "   $('-' * 80)"
 	

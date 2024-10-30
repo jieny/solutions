@@ -6894,8 +6894,16 @@ Function Image_Select
 					$Arguments = @(
 						"x",
 						"""$($UIUnzipPanel_To_Path.Text)""",
-						"-o""$($Full_New_Path)"""
+						"-o""$($Full_New_Path)""",
+						"-y"
 					)
+
+					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+						Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+						Write-host "   $('-' * 80)"
+						write-host "   Start-Process -FilePath '$($Verify_Install_Path)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
+						Write-host "   $('-' * 80)`n"
+					}
 
 					Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -WindowStyle Minimized
 				} else {

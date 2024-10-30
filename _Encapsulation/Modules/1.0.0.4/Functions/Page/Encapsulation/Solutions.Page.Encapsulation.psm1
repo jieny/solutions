@@ -435,6 +435,13 @@ Function Mainpage
 					if (Verify_Is_Current_Same) {
 						Write-Host "   $($lang.Mounted)" -ForegroundColor Green
 
+						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+							Write-host "   $('-' * 80)"
+							write-host "   Dismount-WindowsImage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"" -Discard" -ForegroundColor Green
+							Write-host "   $('-' * 80)`n"
+						}
+
 						Dismount-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Dismount.log" -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" -Discard -ErrorAction SilentlyContinue | Out-Null
 						Image_Mount_Force_Del -NewPath "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 						Write-Host "   $($lang.Done)" -ForegroundColor Green
@@ -633,6 +640,13 @@ Function Mainpage
 					Write-host "   $('-' * 80)"
 	
 					if (Verify_Is_Current_Same) {
+						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+							Write-host "   $('-' * 80)"
+							write-host "   Save-WindowsImage -Path ""$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount""" -ForegroundColor Green
+							Write-host "   $('-' * 80)`n"
+						}
+
 						Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path "$($Global:Mount_To_Route)\$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount" | Out-Null
 						Write-Host "   $($lang.Done)" -ForegroundColor Green
 						Get_Next
@@ -689,7 +703,26 @@ Function Mainpage
 				.快捷指令：修复 DISM 挂载
 			#>
 			'Fix' {
+				Write-host "   $($lang.Repair): "
+				Write-host "   $('-' * 80)"
+
+				Write-host "   * $($lang.HistoryClearDismSave)" -ForegroundColor Green
+				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+					Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+					Write-host "   $('-' * 80)"
+					write-host "   Remove-Item -Path ""HKLM:\SOFTWARE\Microsoft\WIMMount\Mounted Images\*"" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null" -ForegroundColor Green
+					Write-host "   $('-' * 80)`n"
+				}
 				Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\WIMMount\Mounted Images\*" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
+
+				Write-host "   * $($lang.Clear_Bad_Mount)" -ForegroundColor Green
+				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+					Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+					Write-host "   $('-' * 80)"
+					write-host "   dism /cleanup-wim" -ForegroundColor Green
+					write-host "   Clear-WindowsCorruptMountPoint" -ForegroundColor Green
+					Write-host "   $('-' * 80)`n"
+				}
 
 				dism /cleanup-wim | Out-Null
 				Clear-WindowsCorruptMountPoint -LogPath "$(Get_Mount_To_Logs)\Clear.log" -ErrorAction SilentlyContinue | Out-Null
@@ -738,7 +771,7 @@ Function Mainpage
 			$Global:EventQueueMode = $True
 			$Global:AutopilotMode = $True
 
-#			$Autopilot = Get-Content -Raw -Path "$($PSScriptRoot)\..\..\..\..\..\_Autopilot\Microsoft Windows 11\23H2\1.zh-CN.json" | ConvertFrom-Json
+#			$Autopilot = Get-Content -Raw -Path "$($PSScriptRoot)\..\..\..\..\..\_Autopilot\Microsoft Windows 11\24H2\1.zh-CN.json" | ConvertFrom-Json
 #			ISO_Create_UI -Autopilot $Autopilot.Deploy.ImageSource.Tasks.ISO -ISO
 
 #			Event_Assign_Task
