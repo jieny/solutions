@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
-Yi�s soultions
+Yi’s soultions
 -
-It consists of multiple parts: packaging script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi�s optimization script, etc.
+It consists of multiple parts: packaging script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi’s optimization script, etc.
 
 To help you solve the difficult problem of packaging multilingual versions, the production method provided by Yi and the deployment engine can perfectly solve this problem. You can initiate this packaging journey at will and end this "unpackageable journey".
 
@@ -42,7 +42,7 @@ Detailed introduction
 
  * United States - English | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwT_T2mia6W8CUFF?e=Kg9xRp">OneDrive</a> | <a href="https://drive.google.com/file/d/1-si261nU8mcRel1YXCCGqiJmXAaHWazt/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.pdf">Yi</a>
  
- * ???? - ?? | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwXwL5P7HzAK7ZLi?e=ItsqXl">OneDrive</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
+ * 简体中文 - 中国 | <a href="https://github.com/ilikeyi/Solutions/blob/main/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Github</a> | <a href="https://1drv.ms/b/s!AvzHt7zW9SRZqwXwL5P7HzAK7ZLi?e=ItsqXl">OneDrive</a> | <a href="https://drive.google.com/file/d/1mBFfuXqAEehzIVcH4aayy8TXoy5SGID1/view?usp=sharing">Google Docs</a> | <a href="https://fengyi.tel/download/solutions/_Learn/Readme/Readme.Detailed.zh-CN.pdf">Yi</a>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;You are viewing part of the introduction, please view the full version for more information.</p>
 
@@ -68,7 +68,7 @@ Component
 <ol>Automatically obtain installed languages and add them automatically, support full deployment tags, customize the deployment process, and not include others.</ol>
 <ol>Project address: https://github.com/ilikeyi/Multilingual, included in the full version: <code>\_Encapsulation\_Custom\Engine\Multilingual</code></ol>
 
-<h4><pre>F.&nbsp;&nbsp;Yi�s optimization script</pre></h4>
+<h4><pre>F.&nbsp;&nbsp;Yi’s optimization script</pre></h4>
 <ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
 <ol>Project address: https://github.com/ilikeyi/Yi.Optimiz.Private, included in the full version: <code>\_Encapsulation\_Custom\Engine\Yi.Optimiz.Private</code></ol>
@@ -102,7 +102,7 @@ Chapter 1&nbsp;&nbsp;&nbsp;&nbsp;Introduction to components
       <p>1.&nbsp;&nbsp;Packaging tutorial</p>
       <dl>
         <dd>1.1.&nbsp;&nbsp;Windows 11 24H2: Practical packaging tutorial, offline packaging multi-language
-		<p>Explain how to encapsulate multi-language processes in an offline state. Task objectives include: extracting language packs, installing language packs, installing InBox Apps, adding cumulative updates, generating solutions, etc. All predetermined goals can be easily achieved through learning.</p>
+        <p>Explain how to encapsulate multi-language processes in an offline state. Task objectives include: extracting language packs, installing language packs, installing InBox Apps, adding cumulative updates, generating solutions, etc. All predetermined goals can be easily achieved through learning.</p>
             <dl>
                <dd>
 
@@ -267,42 +267,42 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
   <p>III.&nbsp;&nbsp;Get the package script</p>
   <dl>
     <dd>
-	<p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
-	<dl>
-		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
+    <p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
+    <dl>
+        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://fengyi.tel/gs | iex
 ```
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Priority is to download from the official website, and after the download is complete: add the routing function. Run the wrapper script.</p>
-		</dd>
+        </dd>
 
 <br>
-		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
-			<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
-		</dd>
-	</dl>
+        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
+        </dd>
+    </dl>
 
 <br>
-	<p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub</p>
-	<dl>
-		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.1.&nbsp;&nbsp;Automatic downloads
+    <p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub</p>
+    <dl>
+        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.1.&nbsp;&nbsp;Automatic downloads
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
 ```
 <p>Prioritize downloads from the Github website, and after the download is complete: add routing features and run the wrapper script.</p>
-		</dd>
+        </dd>
 
 <br>
-		<dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.2.&nbsp;&nbsp;Manual download
-			<dl>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
-				<p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
-			</dl>
-	    </dd>
+        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.2.&nbsp;&nbsp;Manual download
+            <dl>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
+            </dl>
+        </dd>
           </dl>
         </dd>
       </dl>
