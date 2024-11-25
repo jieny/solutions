@@ -13,7 +13,7 @@ param
 	[switch]$History,
 	[switch]$SIP,
 	[switch]$Unpack,
-	[switch]$CEUP,
+	[switch]$Ceup,
 	[switch]$zip,
 	[switch]$Fix,
 	[switch]$FixDism,
@@ -1518,7 +1518,7 @@ if ($Unpack) {
 	return
 }
 
-if ($CEUP) {
+if ($Ceup) {
 	powershell -file "$($PSScriptRoot)\..\..\_Create.Custom.Engine.upgrade.package.ps1"
 	return
 }
