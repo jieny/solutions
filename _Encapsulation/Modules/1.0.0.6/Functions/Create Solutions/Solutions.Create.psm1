@@ -246,7 +246,11 @@ Function Solutions_Create_UI
 	if ($ISO) {
 		$Script:init_To_GPS = "ISO"
 	} else {
-		$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+		if (Image_Is_Select_IAB) {
+			$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+		} else {
+			$Script:init_To_GPS = "ISO"
+		}
 	}
 
 	Add-Type -AssemblyName System.Windows.Forms
@@ -306,6 +310,21 @@ Function Solutions_Create_UI
 			[switch]$Unattend,
 			[switch]$Collection
 		)
+
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+
+		if ($SolutionsToMount.Enabled) {
+			if ($SolutionsToMount.Checked) {
+				$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+			}
+		}
+
+		if ($SolutionsToSources.Enabled) {
+			if ($SolutionsToSources.Checked) {
+				$Script:init_To_GPS = "ISO"
+			}
+		}
 
 		if ($All) {
 			New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $False -Force
@@ -1052,11 +1071,13 @@ volume
 			}
 		}
 
+		Solutions_Event_Clear -All
+
 		if ($init_Is_Select_Add_To) {
 
 		} else {
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-			$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.SolutionsTo) )"
+			$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.SolutionsTo)"
 			return $False
 		}
 
@@ -1251,6 +1272,8 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.OOBE_init_Specified)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
+
+								Refres_Event_Tasks_Solutions_Add
 								return $False
 							}
 
@@ -1262,6 +1285,8 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
+
+								Refres_Event_Tasks_Solutions_Add
 								return $False
 							}
 
@@ -1273,6 +1298,8 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
+
+								Refres_Event_Tasks_Solutions_Add
 								return $False
 							}
 
@@ -1284,6 +1311,8 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
+
+								Refres_Event_Tasks_Solutions_Add
 								return $False
 							}
 
@@ -1295,6 +1324,8 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
+
+								Refres_Event_Tasks_Solutions_Add
 								return $False
 							}
 
@@ -1306,6 +1337,8 @@ volume
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 								$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISOLengthError -f "20")"
 								$SolutionsOther_Specified_Expand_UserName_Custom.BackColor = "LightPink"
+
+								Refres_Event_Tasks_Solutions_Add
 								return $False
 							}
 
@@ -1320,7 +1353,8 @@ volume
 				}
 			} else {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.OOBE_init_Create), $($lang.OOBE_init_Specified) )"
+				$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.OOBE_init_Create), $($lang.OOBE_init_Specified)"
+				Refres_Event_Tasks_Solutions_Add
 				return $False
 			}
 
@@ -1376,8 +1410,6 @@ volume
 				<#
 					打开队列功能
 				#>
-				New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $True -Force
-				New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $True -Force
 				New-Variable -Scope global -Name "QueueDeployLanguageExclue_$($Script:init_To_GPS)" -Value "" -Force
 
 				$QueueDeployLanguageExclue = @()
@@ -1396,16 +1428,20 @@ volume
 						$GUISolutionsCollectionChange_Error.Text = ""
 						$GUISolutionsCollectionChange_Error_Icon.Image = $null
 						$GUISolutionsCollectionChange.visible = $True
+
+						Refres_Event_Tasks_Solutions_Add
 						return $False
 					}
 				} else {
-					New-Variable -Scope global -Name "SolutionsLang_$($Script:init_To_GPS)" -Value "Single" -Force
-
 					if ([string]::IsNullOrEmpty($SchemeLangSingle.Text)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = $lang.UnattendLangPack
+
+						Refres_Event_Tasks_Solutions_Add
 						return $False
 					}
+
+					New-Variable -Scope global -Name "SolutionsLang_$($Script:init_To_GPS)" -Value "Single" -Force
 				}
 
 				New-Variable -Scope global -Name "SolutionsLangDefault_$($Script:init_To_GPS)" -Value $SchemeLangSingle.Text -Force
@@ -1416,11 +1452,11 @@ volume
 				if ($ArchitectureX86.Checked) { $Global:ArchitecturePack = "x86" }
 
 				if ($SolutionsOffice.Checked) {
-					New-Variable -Scope global -Name "SolutionsDeployOfficeInstall_$($Script:init_To_GPS)" -Value $True -Force
-
 					if ([string]::IsNullOrEmpty($Solutions_Office_Select.Text)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = $lang.SolutionsDeployOfficeNoSelect
+
+						Refres_Event_Tasks_Solutions_Add
 						return $False
 					} else {
 						New-Variable -Scope global -Name "DeployOfficeVersion_$($Script:init_To_GPS)" -Value $Solutions_Office_Select.Text -Force
@@ -1433,6 +1469,8 @@ volume
 						$GUISolutionsCollectionChange_Error.Text = ""
 						$GUISolutionsCollectionChange_Error_Icon.Image = $null
 						$GUISolutionsOfficeChange.visible = $True
+
+						Refres_Event_Tasks_Solutions_Add
 						return $False
 					}
 
@@ -1454,12 +1492,14 @@ volume
 							}
 						}
 					}
+
+					New-Variable -Scope global -Name "SolutionsDeployOfficeInstall_$($Script:init_To_GPS)" -Value $True -Force
 					New-Variable -Scope global -Name "QueueDeployLanguageExclue_$($Script:init_To_GPS)" -Value $QueueDeployLanguageExclue -Force
+				} else {
+					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "False" -String
 				}
 
 				if ($SolutionsPackage.Checked) {
-					New-Variable -Scope global -Name "SolutionsDeployPackageInstall_$($Script:init_To_GPS)" -Value $True -Force
-
 					if ($SolutionsPackageToRoot.Checked) {
 						New-Variable -Scope global -Name "DeployPackageTo_$($Script:init_To_GPS)" -Value "1" -Force
 					}
@@ -1488,9 +1528,12 @@ volume
 						}
 					}
 
-					if (-not ($MarkCheckPackageSel)) {
+					if ($MarkCheckPackageSel) {
+						New-Variable -Scope global -Name "SolutionsDeployPackageInstall_$($Script:init_To_GPS)" -Value $True -Force
+					} else {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.DeployPackageSelect)"
+						Refres_Event_Tasks_Solutions_Add
 						return $False
 					}
 				}
@@ -1546,6 +1589,9 @@ volume
 					New-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -Value @() -Force
 					New-Variable -Scope global -Name "QueueFontsNoSelect_$($Script:init_To_GPS)" -Value @() -Force
 				}
+
+				New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $True -Force
+				New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $True -Force
 			} else {
 				New-Variable -Scope global -Name "DeployFonts_$($Script:init_To_GPS)" -Value $False -Force
 			}
@@ -1561,6 +1607,7 @@ volume
 			if ([string]::IsNullOrEmpty($Unattend_Version_Select.Text)) {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISOAddEICFG)"
+				Refres_Event_Tasks_Solutions_Add
 				return $False
 			} else {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Unattend" -name "$($Script:init_To_GPS)_Scheme" -value $Unattend_Version_Select.Text -Multi
@@ -1661,9 +1708,6 @@ volume
 
 			New-Variable -Scope global -Name "Queue_Command_WinSetup_$($Script:init_To_GPS)" -Value $Temp_Save_Windows_Setup -Force
 			New-Variable -Scope global -Name "Queue_Command_WinPE_$($Script:init_To_GPS)" -Value $Temp_Save_Windows_PE -Force
-
-			New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $True -Force
-			New-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -Value $True -Force
 
 			if ($GUISolutionsVerifySync.Enabled) {
 				if ($GUISolutionsVerifySync.Checked) {
@@ -1804,6 +1848,9 @@ volume
 			} else {
 				New-Variable -Scope global -Name "OOBETimZone_$($Script:init_To_GPS)" -Value $False -Force
 			}
+
+			New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $True -Force
+			New-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -Value $True -Force
 		} else {
 			New-Variable -Scope global -Name "SolutionsUnattend_$($Script:init_To_GPS)" -Value $False -Force
 			New-Variable -Scope global -Name "SolutionsCreateUnattendISO_$($Script:init_To_GPS)" -Value $False -Force
@@ -1821,18 +1868,10 @@ volume
 			if ([string]::IsNullOrEmpty($GroupMainVerList.Text)) {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.SolutionsScript)"
+
+				Refres_Event_Tasks_Solutions_Add
 				return $False
 			} else {
-				<#
-					打开队列功能
-				#>
-				New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $True -Force
-
-				<#
-					打开主引擎总添加方案
-				#>
-				New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $True -Force
-
 				<#
 					获得用户选择的版本
 				#>
@@ -2041,6 +2080,16 @@ volume
 				New-Variable -Scope global -Name "QueueDeploySelect_$($Script:init_To_GPS)" -Value $QueueDeploySelect -Force
 
 				$MarkolutionsEngine = $True
+				
+				<#
+					打开队列功能
+				#>
+				New-Variable -Scope global -Name "Queue_Is_Solutions_$($Script:init_To_GPS)" -Value $True -Force
+
+				<#
+					打开主引擎总添加方案
+				#>
+				New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $True -Force
 			}
 		} else {
 			New-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -Value $False -Force
@@ -2059,6 +2108,8 @@ volume
 		} else {
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.SolutionsScript)"
+
+			Refres_Event_Tasks_Solutions_Add
 			return $False
 		}
 	}
@@ -2674,7 +2725,7 @@ volume
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 
-			if ($this.Checked) {
+			if ($SolutionsOffice.Checked) {
 				$SolutionsOfficeShow.Enabled = $True
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -name "$($Script:init_To_GPS)_AllowDeploy" -value "True" -String
 			} else {
@@ -2735,6 +2786,7 @@ volume
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
+
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue) {
 		$SolutionsOfficeKeepShow.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue
 	} else {
@@ -4072,6 +4124,14 @@ volume
 		add_Click      = { Solutions_Create_Refresh_Add_To_Path }
 	}
 
+	if ($ISO) {
+		$SolutionsToSources.Checked = $True
+	} else {
+		$SolutionsToMount.Checked = $True
+	}
+
+	write-host $Script:init_To_GPS
+
 	# 4 选择主引擎
 	$SolutionsEngine   = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -5177,12 +5237,6 @@ volume
 		$FirstExpFinishRebootTips
 	))
 
-
-	<#
-		刷新添加解决方案到，复选框
-	#>
-	Solutions_Create_Refresh_Add_To_Path
-
 	if ($ISO) {
 		$SolutionsToMount.Enabled = $False
 		$SolutionsToMount.Checked = $False
@@ -5275,6 +5329,11 @@ volume
 			}
 		}
 	}
+
+	<#
+		刷新添加解决方案到，复选框
+	#>
+	Solutions_Create_Refresh_Add_To_Path
 
 	<#
 		.获取主引擎版本
@@ -5496,7 +5555,14 @@ volume
 		.Microsoft Office
 	#>
 	$Region = Language_Region
-	$GetOfficeLanguageOnlyArray = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue
+
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue) {
+		$GetTempSelectPacker = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Office" -Name "$($Script:init_To_GPS)_Reserved_Language" -ErrorAction SilentlyContinue
+		$GetOfficeLanguageOnlyArray = $GetTempSelectPacker
+	} else {
+		$GetOfficeLanguageOnlyArray = ""
+	}
+
 	ForEach ($itemRegion in $Region) {
 		$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height    = 55
@@ -6925,13 +6991,13 @@ Function Solutions_Copy_Prerequisite
 	#>
 	if ($Global:ArchitecturePack -eq "arm64") {
 		if (Test-Path -Path "$($path)\arm64" -PathType Container) {
-			Solutions_Copy_Files_To_Prerequisite -From "$($path)\arm64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+			Solutions_Copy_Files_To_Prerequisite -From "$($path)\arm64" -ShortPath $ShortPath -To $Script:CopySolutionsToRoot
 		} else {
 			if (Test-Path -Path "$($path)\AMD64" -PathType Container) {
-				Solutions_Copy_Files_To_Prerequisite -From "$($path)\AMD64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+				Solutions_Copy_Files_To_Prerequisite -From "$($path)\AMD64" -ShortPath $ShortPath -To $Script:CopySolutionsToRoot
 			} else {
 				if (Test-Path -Path "$($path)\x86" -PathType Container) {
-					Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+					Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To $Script:CopySolutionsToRoot
 				} else {
 					Write-Host "   $($lang.NoInstallImage)"
 					Write-host "   $($path)\x86" -ForegroundColor Red
@@ -6946,10 +7012,10 @@ Function Solutions_Copy_Prerequisite
 	#>
 	if ($Global:ArchitecturePack -eq "AMD64") {
 		if (Test-Path -Path "$($path)\AMD64" -PathType Container) {
-			Solutions_Copy_Files_To_Prerequisite -From "$($path)\AMD64" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+			Solutions_Copy_Files_To_Prerequisite -From "$($path)\AMD64" -ShortPath $ShortPath -To $Script:CopySolutionsToRoot
 		} else {
 			if (Test-Path -Path "$($path)\x86" -PathType Container) {
-				Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+				Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To $Script:CopySolutionsToRoot
 			} else {
 				Write-Host "   $($lang.NoInstallImage)"
 				Write-host "   $($path)\x86" -ForegroundColor Red
@@ -6963,7 +7029,7 @@ Function Solutions_Copy_Prerequisite
 	#>
 	if ($Global:ArchitecturePack -eq "x86") {
 		if (Test-Path -Path "$($path)\x86" -PathType Container) {
-			Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To "$($Script:CopySolutionsToRoot)"
+			Solutions_Copy_Files_To_Prerequisite -From "$($path)\x86" -ShortPath $ShortPath -To $Script:CopySolutionsToRoot
 		} else {
 			Write-Host "   $($lang.NoInstallImage)"
 			Write-host "   $($path)\x86" -ForegroundColor Red
@@ -6993,13 +7059,22 @@ Function Solutions_Copy_Files_To_Prerequisite
 
 			if (Test-Path -Path "$($From)\$($OSDefaultSolutionsLangDefault)" -PathType Container) {
 				Check_Folder -chkpath $NewPathTo
+				Write-Host "   $($lang.SaveTo): " -noNewline -ForegroundColor Yellow
+				Write-Host $NewPathTo -ForegroundColor Green
+
 				Copy-Item -Path "$($From)\$($OSDefaultSolutionsLangDefault)\*" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 			} else {
 				if (Test-Path -Path "$($From)\en-US" -PathType Container) {
 					Check_Folder -chkpath $NewPathTo
+					Write-Host "   $($lang.SaveTo): " -noNewline -ForegroundColor Yellow
+					Write-Host $NewPathTo -ForegroundColor Green
+
 					Copy-Item -Path "$($From)\en-US\*" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 				} else {
 					Check_Folder -chkpath $NewPathTo
+					Write-Host "   $($lang.SaveTo): " -noNewline -ForegroundColor Yellow
+					Write-Host $NewPathTo -ForegroundColor Green
+
 					Copy-Item -Path "$($From)\*" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 				}
 			}
@@ -7008,7 +7083,11 @@ Function Solutions_Copy_Files_To_Prerequisite
 			ForEach ($item in (Get-Variable -Scope global -Name "DeployCollectionLanguageOnly_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 				$NewPathTo = Join-Path -Path $To -ChildPath "$($OSDefaultUser)\$($ShortPath)" -ErrorAction SilentlyContinue
 				Check_Folder -chkpath $NewPathTo
+
 				if (Test-Path -Path "$($From)\$($item)" -PathType Container) {
+					Write-Host "   $($lang.SaveTo): " -noNewline -ForegroundColor Yellow
+					Write-Host $NewPathTo -ForegroundColor Green
+
 					Copy-Item -Path "$($From)\$($item)" -Destination $NewPathTo -Recurse -Force -ErrorAction SilentlyContinue
 				}
 			}
@@ -7023,7 +7102,12 @@ Function Solutions_Copy_Fonts_Prerequisite
 	ForEach ($item in (Get-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 		Write-Host "   $($item.Name)" -ForegroundColor Green
 		$NewPathTo = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Fonts"
+
 		Check_Folder -chkpath $NewPathTo
+
+		Write-Host "   $($lang.SaveTo): " -noNewline -ForegroundColor Yellow
+		Write-Host $NewPathTo -ForegroundColor Green
+
 		Copy-Item -Path $item.Path -Destination $NewPathTo -Force -ErrorAction SilentlyContinue
 	}
 }
@@ -8121,7 +8205,7 @@ Function Solutions_Generate_Prerequisite
 			Remove_Tree $WaitCleanFolder
 
 			if (Test-Path -Path $WaitCleanFolder -PathType Container) {
-				Write-Host "   $($lang.Del), $($lang.Failed): $($WaitCleanFolder) )" -ForegroundColor Red
+				Write-Host "   $($lang.Del), $($lang.Failed): $($WaitCleanFolder)" -ForegroundColor Red
 			}
 		}
 	}
@@ -8174,22 +8258,24 @@ Function Solutions_Generate_Prerequisite
 		Write-Host "`n   $($lang.AddSources)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
 		ForEach ($item in $PrintQueueSoftwareSelect) {
-			Write-Host "   $($lang.RuleFileType): " -noNewline
-			Write-Host $item.Name -ForegroundColor Yellow
+			Write-Host "   $($lang.RuleFileType): " -noNewline -ForegroundColor Yellow
+			Write-Host $item.Name -ForegroundColor Green
 		}
 
 		Write-Host "`n   $($lang.AddQueue)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
+
+		$Temp_New_Software_Path = Join-Path -Path $(Convert-Path "$($PSScriptRoot)\..\..\..\.." -ErrorAction SilentlyContinue) -ChildPath "_Custom\Software" -ErrorAction SilentlyContinue
 		ForEach ($item in $PrintQueueSoftwareSelect) {
-			Write-Host "   $($lang.RuleFileType): " -noNewline
-			Write-Host $item.Name -ForegroundColor Yellow
+			$Latest_Temp_New_Software_Path = Join-Path -Path $Temp_New_Software_Path -ChildPath $item.Path -ErrorAction SilentlyContinue
 
-			Write-Host "   $($lang.SaveTo): " -noNewline
-			Write-Host $item.Path -ForegroundColor Yellow
+			Write-Host "   $($lang.RuleFileType): " -noNewline -ForegroundColor Yellow
+			Write-Host $item.Name -ForegroundColor Green
 
-			Write-host
+			Write-Host "   $($lang.AddSources): " -noNewline -ForegroundColor Yellow
+			Write-Host $item.Path -ForegroundColor Green
 
-			Solutions_Copy_Prerequisite -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Software\$($item.Path)" -ShortPath $item.Path
+			Solutions_Copy_Prerequisite -Path $Latest_Temp_New_Software_Path -ShortPath $item.Path
 		}
 
 		Write-Host "`n   $($lang.SolutionsFontsList)" -ForegroundColor Yellow

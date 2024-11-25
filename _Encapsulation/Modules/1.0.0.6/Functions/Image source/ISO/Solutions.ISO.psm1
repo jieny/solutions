@@ -76,7 +76,11 @@ Function ISO_Create_UI
 	if ($ISO) {
 		$Script:init_To_GPS = "ISO"
 	} else {
-		$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+		if (Image_Is_Select_IAB) {
+			$Script:init_To_GPS = "$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)"
+		} else {
+			$Script:init_To_GPS = "ISO"
+		}
 	}
 
 	Add-Type -AssemblyName System.Windows.Forms
