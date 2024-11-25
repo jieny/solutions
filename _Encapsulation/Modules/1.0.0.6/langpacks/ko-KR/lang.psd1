@@ -14,7 +14,7 @@
 	Copy                            = 복사
 	Rename                          = 이름 바꾸기
 	Refresh                         = 새로 고치다
-	RefreshModules                  = 모듈을 다시 로드
+	RefreshModules                  = 모든 모듈을 핫 리프레시
 	Done                            = 마치다
 	OK                              = 확신하는
 	Cancel                          = 취소

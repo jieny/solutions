@@ -11,7 +11,7 @@
 	Operable                  = Operable
 	Inoperable                = Inoperable
 	SwitchLanguage            = Switch language
-	RefreshModules            = Reload the module
+	RefreshModules            = Hot refresh all modules
 	PleaseChoose              = Please select
 	FailedCreateFolder        = Failed to create directory: \
 	ToMsg                     = \n   Automatically return to the main menu after {0} seconds.

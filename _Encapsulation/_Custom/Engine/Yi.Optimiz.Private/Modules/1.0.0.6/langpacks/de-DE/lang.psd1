@@ -26,7 +26,7 @@
 	AllSel                    = alles auswählen
 	AllClear                  = Alles löschen
 	Refresh                   = auffrischen
-	RefreshModules            = Module neu laden
+	RefreshModules            = Hot-Refresh aller Module
 	ForceUpdate               = Prüfung und Aktualisierung erzwingen
 	Necessary                 = Notwendige Software
 	System                    = System

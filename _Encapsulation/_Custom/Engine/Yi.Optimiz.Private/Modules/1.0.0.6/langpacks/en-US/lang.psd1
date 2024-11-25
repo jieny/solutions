@@ -26,7 +26,7 @@
 	AllSel                    = Select all
 	AllClear                  = Clear all
 	Refresh                   = Refresh
-	RefreshModules            = Reload the modulek and update
+	RefreshModules            = Hot refresh all modules
 	ForceUpdate               = Forcibly chec
 	Necessary                 = Necessary software
 	System                    = System

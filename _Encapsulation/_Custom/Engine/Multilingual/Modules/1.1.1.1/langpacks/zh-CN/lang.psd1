@@ -13,7 +13,7 @@
 	Operable                  = 可操作
 	Inoperable                = 不可操作
 	SwitchLanguage            = 切换语言
-	RefreshModules            = 重新加载模块
+	RefreshModules            = 热刷新所有模块
 	PleaseChoose              = 请选择
 	FailedCreateFolder        = 创建目录失败：
 	ToMsg                     = \n   {0} 秒后自动返回到主菜单。

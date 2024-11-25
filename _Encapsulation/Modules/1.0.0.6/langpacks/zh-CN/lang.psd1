@@ -14,7 +14,7 @@
 	Copy                            = 复制
 	Rename                          = 重命名
 	Refresh                         = 刷新
-	RefreshModules                  = 重新加载模块
+	RefreshModules                  = 热刷新所有模块
 	Done                            = 完成
 	OK                              = 确定
 	Cancel                          = 取消

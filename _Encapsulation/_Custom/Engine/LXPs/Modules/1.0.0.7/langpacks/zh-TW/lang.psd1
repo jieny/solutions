@@ -11,7 +11,7 @@
 	Operable                  = 可操作
 	Inoperable                = 不可操作
 	SwitchLanguage            = 切換語言
-	RefreshModules            = 重新加載模塊
+	RefreshModules            = 熱刷新所有模組
 	PleaseChoose              = 請選擇
 	FailedCreateFolder        = 創建目錄失敗：
 	ToMsg                     = \n   {0} 秒後自動返回到主菜單。

@@ -26,7 +26,7 @@
 	AllSel                    = 選擇所有
 	AllClear                  = 清除所有
 	Refresh                   = 刷新
-	RefreshModules            = 重新加載模塊
+	RefreshModules            = 熱刷新所有模組
 	ForceUpdate               = 強行檢查並更新
 	Necessary                 = 必備軟件
 	System                    = 系統

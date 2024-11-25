@@ -14,7 +14,7 @@
 	Copy                            = Copy
 	Rename                          = Rename
 	Refresh                         = Refresh
-	RefreshModules                  = Reload the module
+	RefreshModules                  = Hot refresh all modules
 	Done                            = Complete
 	OK                              = Ok
 	Cancel                          = Cancel

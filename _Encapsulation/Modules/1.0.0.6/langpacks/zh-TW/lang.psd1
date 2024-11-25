@@ -14,7 +14,7 @@
 	Copy                            = 复制
 	Rename                          = 重新命名
 	Refresh                         = 刷新
-	RefreshModules                  = 重新加載模塊
+	RefreshModules                  = 熱刷新所有模組
 	Done                            = 完成
 	OK                              = 確定
 	Cancel                          = 取消

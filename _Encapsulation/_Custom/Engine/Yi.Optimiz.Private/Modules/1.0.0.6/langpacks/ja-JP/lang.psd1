@@ -26,7 +26,7 @@
 	AllSel                    = すべて選択
 	AllClear                  = すべてクリア
 	Refresh                   = 更新
-	RefreshModules            = モジュールをリロードします
+	RefreshModules            = すべてのモジュールをホットリフレッシュします
 	ForceUpdate               = チェックと更新を強制します
 	Necessary                 = 必要なソフトウェア
 	System                    = システム

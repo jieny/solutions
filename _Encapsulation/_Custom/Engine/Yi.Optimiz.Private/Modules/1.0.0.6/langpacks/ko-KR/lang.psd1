@@ -26,7 +26,7 @@
 	AllSel                    = 모두 선택
 	AllClear                  = 모두 지우기
 	Refresh                   = 새로고침
-	RefreshModules            = 모듈 다시 로드
+	RefreshModules            = 모든 모듈을 핫 리프레시
 	ForceUpdate               = 강제 확인 및 업데이트
 	Necessary                 = 필요한 소프트웨어
 	System                    = 체계

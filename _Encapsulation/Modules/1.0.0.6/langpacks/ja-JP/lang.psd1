@@ -14,7 +14,7 @@
 	Copy                            = コピー
 	Rename                          = 名前の変更
 	Refresh                         = リフレッシュ
-	RefreshModules                  = モジュールをリロード
+	RefreshModules                  = すべてのモジュールをホットリフレッシュします
 	Done                            = 終了
 	OK                              = もちろん
 	Cancel                          = キャンセル

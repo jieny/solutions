@@ -26,7 +26,7 @@
 	AllSel                    = 选择所有
 	AllClear                  = 清除所有
 	Refresh                   = 刷新
-	RefreshModules            = 重新加载模块
+	RefreshModules            = 热刷新所有模块
 	ForceUpdate               = 强行检查并更新
 	Necessary                 = 必备软件
 	System                    = 系统

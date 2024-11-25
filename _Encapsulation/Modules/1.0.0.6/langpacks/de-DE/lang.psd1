@@ -14,7 +14,7 @@
 	Copy                            = Kopieren
 	Rename                          = Umbenennen
 	Refresh                         = Aktualisierung
-	RefreshModules                  = Modul neu laden
+	RefreshModules                  = Hot-Refresh aller Module
 	Done                            = Ziel
 	OK                              = Sicher
 	Cancel                          = Stornieren

@@ -11,7 +11,7 @@
 	Operable                  = 操作可能
 	Inoperable                = 動作不能
 	SwitchLanguage            = 言語を切り替える
-	RefreshModules            = モジュールをリロードします
+	RefreshModules            = すべてのモジュールをホットリフレッシュします
 	PleaseChoose              = 選んでください
 	FailedCreateFolder        = ディレクトリの作成に失敗しました:
 	ToMsg                     = \n   {0} 数秒後、自動的にメインメニューに戻ります。
