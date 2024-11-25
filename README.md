@@ -231,7 +231,7 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
 <h4><pre>A.&nbsp;&nbsp;Prerequisites</pre></h4>
 
 <ul>
-  <p>I.&nbsp;&nbsp;Require</p>
+  <p>1.&nbsp;&nbsp;Require</p>
   <dl>
     <dd>
       <p>PowerShell Version</p>
@@ -253,20 +253,22 @@ Chapter 2&nbsp;&nbsp;&nbsp;&nbsp;Start the packaging journey
 <br>
 
 <br>
-  <p>II.&nbsp;&nbsp;Command Line</p>
+  <p>2.&nbsp;&nbsp;Command Line</p>
   <dl>
-    <dd>1.&nbsp;&nbsp;You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
-    <dd>2.&nbsp;&nbsp;Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
+    <dd>2.1.&nbsp;&nbsp;You can choose "Terminal" or "PowerShell ISE". If "Terminal" is not installed, please go to https://github.com/microsoft/terminal/releases to download;</dd>
+    <dd>2.2.&nbsp;&nbsp;Open "Terminal" or "PowerShell ISE" as an administrator, set PowerShell execution policy: Bypass, PS command line:
 
 ```
 Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
 ```
 
 </dd>
-    <dd>3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
-    <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: <code>& "D:\YiSolutions\_Encapsulation\_SIP.ps1"</code></dd>
-  </dl>
+    <dd>2.3.&nbsp;&nbsp;In this article, the green part belongs to the PS command line. Please copy it, paste it into the "Terminal" dialog box, and press Enter to start running;</dd>
+    <dd>2.4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: <code>& "D:\YiSolutions\_Encapsulation\_SIP.ps1"</code></dd>
 
+</ul>
+
+<br>
 <h4><pre>B.&nbsp;&nbsp;Get the package script</pre></h4>
 <p>After using the quick download guide</p>
 
