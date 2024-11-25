@@ -13,8 +13,8 @@
 
 	.EXAMPLE
 	.示例
-	 PS C:\> .\_CT.ps1
-	 PS C:\> .\_CT.ps1 -Function "Function1 -Param", "Function2 -Param"
+	 PS C:\> .\_Create.Template.ps1
+	 PS C:\> .\_Create.Template.ps1 -Function "Function1 -Param", "Function2 -Param"
 
 	.LINK
 	 https://github.com/ilikeyi/Solutions

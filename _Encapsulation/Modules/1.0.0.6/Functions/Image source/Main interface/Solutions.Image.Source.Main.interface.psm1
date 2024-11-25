@@ -2052,7 +2052,7 @@ Function Image_Select
 					#>
 					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -Name "Label" -ErrorAction SilentlyContinue) {
 						$GetSaveLabelSelect = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -Name "Label" -ErrorAction SilentlyContinue
-						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageCodename) ( $($GetSaveLabelSelect), $($lang.SaveMode) )"
+						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageCodename) ( $($GetSaveLabelSelect), $($lang.Save) )"
 					} else {
 						$MarkCodename = $False
 						ForEach ($item in $Global:OSCodename) {
@@ -7746,11 +7746,11 @@ Function Image_Select
 
 						Write-Host "`n   $($lang.Ok_Go_To)" -ForegroundColor Yellow
 						Write-host "   $('-' * 80)"
-						if ([string]::IsNullOrEmpty($UI_Main_To.SelectedItem.OKGoToNew)) {
+						if ([string]::IsNullOrEmpty($UI_Main_To.SelectedItem.Path)) {
 							write-host "   $($lang.Ok_Go_To_No)" -ForegroundColor Red
 						} else {
 							write-host "   $($UI_Main_To.SelectedItem.Lang)" -ForegroundColor Green
-							Invoke-Expression -Command $UI_Main_To.SelectedItem.OKGoToNew
+							Invoke-Expression -Command $UI_Main_To.SelectedItem.Path
 						}
 
 						ToWait -wait 2
@@ -8252,7 +8252,7 @@ Function ISO_Verify_Kernel
 {
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel" -ErrorAction SilentlyContinue) {
 		$TempSelectAraayKernelRegedit = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel"
-		$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.SelLabel) ( $($TempSelectAraayKernelRegedit), $($lang.SaveMode) )"
+		$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.SelLabel) ( $($TempSelectAraayKernelRegedit), $($lang.Save) )"
 		return
 	}
 
@@ -8287,15 +8287,15 @@ Function ISO_Verify_Arch
 		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)" -Name "Architecture" -ErrorAction SilentlyContinue) {
 			"arm64" {
 				$GUIImageSourceArchitectureARM64.Checked = $True
-				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Architecture) ( Arm64, $($lang.SaveMode) )"
+				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Architecture) ( Arm64, $($lang.Save) )"
 			}
 			"AMD64" {
 				$GUIImageSourceArchitectureAMD64.Checked = $True
-				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Architecture) ( x64, $($lang.SaveMode) )"
+				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Architecture) ( x64, $($lang.Save) )"
 			}
 			"x86" {
 				$GUIImageSourceArchitectureX86.Checked = $True
-				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Architecture) ( x86, $($lang.SaveMode) )"
+				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Architecture) ( x86, $($lang.Save) )"
 			}
 		}
 	} else {
@@ -8352,11 +8352,11 @@ Function ISO_Verify_Install_Type
 		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)" -Name "ImageType" -ErrorAction SilentlyContinue) {
 			"Desktop" {
 				$GUISelectTypeDesktop.Checked = $True
-				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageLevel) ( $($lang.LevelDesktop), $($lang.SaveMode) )"
+				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageLevel) ( $($lang.LevelDesktop), $($lang.Save) )"
 			}
 			"Server"  {
 				$GUISelectTypeServer.Checked  = $True
-				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageLevel) ( $($lang.LevelServer), $($lang.SaveMode) )"
+				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageLevel) ( $($lang.LevelServer), $($lang.Save) )"
 			}
 		}
 	} else {
@@ -8407,7 +8407,7 @@ Function ISO_Verify_Sources_Language
 					$Global:MainImageLang      = $itemRegion.Region
 					$Global:MainImageLangShort = $itemRegion.Tag
 					$Global:MainImageLangName  = $itemRegion.Name
-					$GUIImageSourceLanguageInfo.Text = "$($Global:MainImageLangName), $($lang.LanguageCode) ( $($Global:MainImageLang) ), $($lang.LanguageShort) ( $($Global:MainImageLangShort) ), $($lang.SaveMode)"
+					$GUIImageSourceLanguageInfo.Text = "$($Global:MainImageLangName), $($lang.LanguageCode) ( $($Global:MainImageLang) ), $($lang.LanguageShort) ( $($Global:MainImageLangShort) ), $($lang.Save)"
 					
 					return
 				}

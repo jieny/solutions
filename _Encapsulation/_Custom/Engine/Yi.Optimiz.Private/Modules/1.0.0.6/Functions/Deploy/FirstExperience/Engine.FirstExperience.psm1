@@ -1056,18 +1056,18 @@ Function FirstExperience_Deploy
 			.Install common software
 			.安装常用软件
 		#>
-		if (Test-Path $DynamicInstl -PathType Leaf) {
-			$init_Install_App = @(
+#		if (Test-Path $DynamicInstl -PathType Leaf) {
+#			$init_Install_App = @(
 #				"5512e164-3969-488f-a48e-1dd24145c633"    # QQ
 #				"1da42d07-876c-4134-9b22-c2608634e8d8"    # Weixin
 #				"45bf2c42-ec67-440a-8403-0ad31864f47a"    # Google Chrome
 #				"a1f51cf8-32c8-431c-8b2e-f7f8ad208863"    # 7Zip
-			)
+#			)
 
-			& $DynamicInstl -App $init_Install_App
-		} else {
-			Write-Host "`n   $($lang.InstlNo)$DynamicInstl" -ForegroundColor Red
-		}
+#			& $DynamicInstl -App $init_Install_App
+#		} else {
+#			Write-Host "`n   $($lang.InstlNo)$DynamicInstl" -ForegroundColor Red
+#		}
 	} else {
 		Write-Host "   $($lang.Inoperable)" -ForegroundColor Red
 	}

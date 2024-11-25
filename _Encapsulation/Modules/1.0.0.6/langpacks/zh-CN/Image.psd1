@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Translator                    = Yi
 
-	SaveMode                        = 保存
 	SaveModeClear                   = 清除已选择的历史记录
 	SaveModeTipsClear               = 已保存历史记录，可清理
 	SelectTips                      = 提示\n\n    1、请选择需要处理的映像名称；\n    2、您取消后，需要“挂载”后才操作的任务，将不再生效。

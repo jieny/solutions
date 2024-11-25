@@ -38,8 +38,6 @@ $TempFolderUnPack = "$(Convert-Path "$($PSScriptRoot)\..\..\..\..\..\.." -ErrorA
 $ArchiveExcludeUnPack = @(
 	"-xr-!_Backup"
 	"-xr-!_Encapsulation\Logs"
-	"""-xr-!_Encapsulation\_Custom\Software\Recommend\Google Chrome"""
-	"-xr-!_Encapsulation\_Custom\Fonts\fzxbs.ttf"
 	"-xr-!_Encapsulation\_Custom\Engine\LXPs\Logs"
 	"-xr-!_Encapsulation\_Custom\Engine\LXPs\Download"
 	"-xr-!_Encapsulation\_Custom\Engine\Multilingual\Logs"

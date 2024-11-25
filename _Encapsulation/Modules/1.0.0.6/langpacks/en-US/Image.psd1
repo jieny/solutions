@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Translator                    = Yi
 
-	SaveMode                        = Save
 	SaveModeClear                   = Clear selected history
 	SaveModeTipsClear               = History has been saved and can be cleaned up
 	SelectTips                      = Tips\n\n    1. Please select the image name to be processed;\n    2. After you cancel, the tasks that need to be "mounted" will no longer take effect.

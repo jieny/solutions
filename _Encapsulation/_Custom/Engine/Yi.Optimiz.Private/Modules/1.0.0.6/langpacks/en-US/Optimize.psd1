@@ -5,10 +5,6 @@
 	FDPermissions             = Folder hiding and permissions
 	Shortcut                  = Shortcuts, including the start menu
 
-	# ICON
-	InstlPacker               = Installation package
-	MostUsedSoftware          = Most Popular Software
-
 	# Install
 	DownloadLinkError         = The download address is invalid.
 	PreferredDownload         = Preferred download address

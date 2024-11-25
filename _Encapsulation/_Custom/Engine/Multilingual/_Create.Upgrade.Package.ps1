@@ -184,7 +184,7 @@ Function Update_Create_UI
 	Write-Host "`n   Author: $((Get-Module -Name Engine).Author) ( $((Get-Module -Name Engine).HelpInfoURI) )
 
    From: $((Get-Module -Name Engine).Author)'s Solutions
-   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.2024.04.18`n"
+   buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.2024.12.08`n"
 
 	Write-Host "   $($lang.UpdateCreate)`n   $('-' * 80)"
 
@@ -591,7 +591,7 @@ Function Update_Create_Version
 		"url":  "$((Get-Module -Name Engine).HelpInfoURI)"
 	},
 	"version": {
-		"buildstring": "$($CurrentVersion).bs_release.2024.04.18",
+		"buildstring": "$($CurrentVersion).bs_release.2024.12.08",
 		"version":     "$($CurrentVersion)",
 		"minau":       "$($LowVer)"
 	},

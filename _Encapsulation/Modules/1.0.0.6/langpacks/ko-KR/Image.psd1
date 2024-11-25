@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Translator                    = Yi
 
-	SaveMode                        = 저장
 	SaveModeClear                   = 선택한 기록 지우기
 	SaveModeTipsClear               = 기록 저장, 정리 가능
 	SelectTips                      = 힌트\n\n    1. 처리할 이미지 이름을 선택하십시오.\n    2. 취소한 후에는 "마운트"해야 하는 작업이 더 이상 적용되지 않습니다.

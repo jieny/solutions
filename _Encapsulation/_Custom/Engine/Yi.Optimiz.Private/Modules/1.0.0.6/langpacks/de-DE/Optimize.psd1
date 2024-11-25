@@ -5,10 +5,6 @@
 	FDPermissions             = Ordner ausblenden und Berechtigungen
 	Shortcut                  = Shortcut, einschließlich des Startmenüs
 
-	# ICON
-	InstlPacker               = Installationspaket
-	MostUsedSoftware          = MostUsed Software
-
 	# Install
 	DownloadLinkError         = Die Download Adresse ist ungültig.
 	PreferredDownload         = Bevorzugte Downloadadresse

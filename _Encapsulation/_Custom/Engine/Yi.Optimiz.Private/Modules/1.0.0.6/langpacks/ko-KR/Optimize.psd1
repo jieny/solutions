@@ -5,10 +5,6 @@
 	FDPermissions             = 폴더 숨기기 및 권한
 	Shortcut                  = 시작 메뉴를 포함한 바로 가기
 
-	# ICON
-	InstlPacker               = 설치 패키지
-	MostUsedSoftware          = 가장 많이 사용하는 소프트웨어
-
 	# Install
 	DownloadLinkError         = 다운로드 주소가 잘못되었습니다.
 	PreferredDownload         = 기본 다운로드 주소

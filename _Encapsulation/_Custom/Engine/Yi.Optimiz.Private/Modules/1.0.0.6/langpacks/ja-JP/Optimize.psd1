@@ -5,10 +5,6 @@
 	FDPermissions             = フォルダーの非表示とアクセス許可
 	Shortcut                  = スタートメニューを含むショートカット
 
-	# ICON
-	InstlPacker               = インストールパッケージ
-	MostUsedSoftware          = 最も使用されるソフトウェア
-
 	# Install
 	DownloadLinkError         = ダウンロードアドレスが無効です。
 	PreferredDownload         = 優先ダウンロードアドレス

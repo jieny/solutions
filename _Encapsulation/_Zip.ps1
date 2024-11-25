@@ -13,8 +13,8 @@
 
 	.EXAMPLE
 	.示例
-	 PS C:\> .\_Compressed.Package.ps1
-	 PS C:\> .\_Compressed.Package.ps1 -Function "Function1 -Param", "Function2 -Param"
+	 PS C:\> .\_Zip.ps1
+	 PS C:\> .\_Zip.ps1 -Function "Function1 -Param", "Function2 -Param"
 
 	.LINK
 	 https://github.com/ilikeyi/Solutions

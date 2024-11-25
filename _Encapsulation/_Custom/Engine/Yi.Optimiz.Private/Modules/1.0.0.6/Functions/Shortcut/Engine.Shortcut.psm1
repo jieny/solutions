@@ -10,7 +10,6 @@ Function Shortcut_Process
 	#>
 	$Shortcut  = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Shortcut")\Shortcut.exe"
 	$syspin    = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\syspin")\syspin.exe"
-	$DeskEdit  = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\DeskEdit")\DeskEdit.exe"
 	$StartMenu = "$($env:SystemDrive)\ProgramData\Microsoft\Windows\Start Menu\Programs\$((Get-Module -Name Engine).Author)'s Solutions"
 
 	<#
@@ -82,17 +81,6 @@ Function Shortcut_Process
 		Start-Process -FilePath $Shortcut -ArgumentList "/f:""$($Global:UniqueMainFolder)\$((Get-Module -Name Engine).Author)'s Solutions.lnk"" /a:c /t:""powershell"" /p:""-Command \""Start-Process 'Powershell.exe' -Argument '-File \""$((Convert-Path -Path "$($PSScriptRoot)\..\..\..\..\Engine.ps1" -ErrorAction SilentlyContinue))\""' -Verb RunAs"" /i:""$($IconFolder)\Assets\icons\MainPanel.ico""" -WindowStyle Hidden
 
 		Pin_To_Start
-	}
-
-	$FlagFolder00 = "$($PSScriptRoot)\..\..\..\..\..\Recommend"
-	if (Test-Path $FlagFolder00 -PathType Container) {
-		$FlagFolder00 = Convert-Path -Path "$($PSScriptRoot)\..\..\..\..\..\Recommend" -ErrorAction SilentlyContinue
-
-		if ($FlagsClearSolutionsRule) {
-			Move-Item $FlagFolder00 "$($UniqueMainFolder)\$($lang.InstlPacker)" -Force -ErrorAction SilentlyContinue
-		} else {
-			Start-Process -FilePath $DeskEdit -ArgumentList "/F=""$($FlagFolder00)"" /S=.ShellClassInfo /L=LocalizedResourceName=""$($lang.InstlPacker)"""
-		}
 	}
 
 	Wait-Process -Name "Shortcut" -ErrorAction SilentlyContinue

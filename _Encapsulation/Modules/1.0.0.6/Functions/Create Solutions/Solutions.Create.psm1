@@ -1056,7 +1056,7 @@ volume
 
 		} else {
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-			$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoChoose) ( $($lang.SolutionsTo) )"
+			$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.SolutionsTo) )"
 			return $False
 		}
 
@@ -1320,7 +1320,7 @@ volume
 				}
 			} else {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoChoose) ( $($lang.OOBE_init_Create), $($lang.OOBE_init_Specified) )"
+				$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.OOBE_init_Create), $($lang.OOBE_init_Specified) )"
 				return $False
 			}
 
@@ -1739,7 +1739,7 @@ volume
 					if ($SchemeDiskSpecifiedIndex.Checked) {
 						if ([string]::IsNullOrEmpty($Global:UnattendSelectIndex)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-							$UI_Main_Error.Text = "$($lang.NoChoose) ( $($lang.MountedIndex) )"
+							$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.MountedIndex)"
 #							Solutions_Index_UI
 							return $False
 						} else {
@@ -1753,7 +1753,7 @@ volume
 					if ($SchemeDiskSpecifiedKEY.Checked) {
 						if ([string]::IsNullOrEmpty($Global:ProductKey)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoChoose) ( $($lang.KMSKey) )"
+							$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.KMSKey)"
 #							KMSkeys
 							return $False
 						} else {
@@ -3413,7 +3413,7 @@ volume
 
 			if ([string]::IsNullOrEmpty($Global:UnattendSelectIndex)) {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoChoose) ( $($lang.MountedIndex) )"
+				$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.MountedIndex)"
 			} else {
 				$SchemeDiskSpecifiedIndexShow.Text = $Global:UnattendSelectIndex.Name
 			}
@@ -3489,7 +3489,7 @@ volume
 
 			if ([string]::IsNullOrEmpty($Global:ProductKey)) {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoChoose) ( $($lang.KMSKey) )"
+				$UI_Main_Error.Text = "$($lang.NoChoose): $($lang.KMSKey)"
 			} else {
 				$SchemeDiskSpecifiedKEYShow.Text = $Global:ProductKey
 			}
@@ -3945,7 +3945,7 @@ volume
 			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Create" -name "$($Script:init_To_GPS)_Is_Auto_Fix_Command" -value "True" -String
 
 			$UIUnzipPanel_Error_Unattend_Auto_Fix_Next.Visible = $False
-			$UIUnzipPanel_Error.Text = "$($lang.Choose) ( $($lang.Unattend_Auto_Fix) )"
+			$UIUnzipPanel_Error.Text = "$($lang.Choose): $($lang.Unattend_Auto_Fix)"
 		}
 	}
 
@@ -7024,7 +7024,7 @@ Function Solutions_Copy_Fonts_Prerequisite
 		Write-Host "   $($item.Name)" -ForegroundColor Green
 		$NewPathTo = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Fonts"
 		Check_Folder -chkpath $NewPathTo
-		Copy-Item -Path "$($item.Path)" -Destination $NewPathTo -Force -ErrorAction SilentlyContinue
+		Copy-Item -Path $item.Path -Destination $NewPathTo -Force -ErrorAction SilentlyContinue
 	}
 }
 
@@ -8118,7 +8118,7 @@ Function Solutions_Generate_Prerequisite
 			$WaitCleanFolder = Join-Path -Path $Global:Image_source -ChildPath $item -ErrorAction SilentlyContinue
 
 			Write-Host "   $($WaitCleanFolder)" -ForegroundColor Green
-			Remove_Tree "$($WaitCleanFolder)"
+			Remove_Tree $WaitCleanFolder
 
 			if (Test-Path -Path $WaitCleanFolder -PathType Container) {
 				Write-Host "   $($lang.Del), $($lang.Failed): $($WaitCleanFolder) )" -ForegroundColor Red
@@ -8148,7 +8148,7 @@ Function Solutions_Generate_Prerequisite
 					Remove_Tree "$($Script:CopySolutionsToRoot)\$($item)"
 
 					if (Test-Path -Path "$($Script:CopySolutionsToRoot)\$($item)" -PathType Container) {
-						Write-Host "   $($lang.Del), $($lang.Failed) ( $($Script:CopySolutionsToRoot)\$($item) )" -ForegroundColor Red
+						Write-Host "   $($lang.Del), $($lang.Failed): $($Script:CopySolutionsToRoot)\$($item)" -ForegroundColor Red
 					}
 				}
 			} else {
@@ -8189,7 +8189,7 @@ Function Solutions_Generate_Prerequisite
 
 			Write-host
 
-			Solutions_Copy_Prerequisite -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Software\$($item.Path)" -ShortPath "$($item.Path)"
+			Solutions_Copy_Prerequisite -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Software\$($item.Path)" -ShortPath $item.Path
 		}
 
 		Write-Host "`n   $($lang.SolutionsFontsList)" -ForegroundColor Yellow
@@ -8406,10 +8406,12 @@ Function Solutions_Generate_Prerequisite
 		#>
 		$GroupCleanDIY = @(
 			"Engine\Logs"
+			"Engine\get.ps1"
 		)
 
 		ForEach ($item in $GroupCleanDIY) {
-			Remove_Tree Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\$($item)" -ErrorAction SilentlyContinue
+			$DelNewItem = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\$($item)" -ErrorAction SilentlyContinue
+			Remove_Tree $DelNewItem
 		}
 	} else {
 		Write-Host "`n   $($lang.EnabledEnglish)" -ForegroundColor Yellow

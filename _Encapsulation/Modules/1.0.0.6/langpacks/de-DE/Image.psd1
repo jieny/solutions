@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Translator                    = Yi
 
-	SaveMode                        = Sparen
 	SaveModeClear                   = Ausgewählten Verlauf löschen
 	SaveModeTipsClear               = Verlauf gespeichert, kann bereinigt werden
 	SelectTips                      = Hinweis\n\n    1. Bitte wählen Sie den zu verarbeitenden Bildnamen aus;\n    2. Nach dem Abbrechen werden die Aufgaben, die "gemountet" werden müssen, nicht mehr wirksam.

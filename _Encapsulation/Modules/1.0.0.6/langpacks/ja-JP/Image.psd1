@@ -1,7 +1,6 @@
 ﻿ConvertFrom-StringData -StringData @'
 	# Translator                    = Yi
 
-	SaveMode                        = 保存する
 	SaveModeClear                   = 選択した履歴をクリアする
 	SaveModeTipsClear               = 保存された履歴、クリーンアップできます
 	SelectTips                      = ヒント\n\n    1、処理する必要があるイメージ名を選択してください。\n    2、キャンセル後、タスクを操作する前に「マウント」する必要があり、もはや有効になりません。

@@ -5,10 +5,6 @@
 	FDPermissions             = 文件夹隐藏及权限
 	Shortcut                  = 快捷方式，包括开始菜单
 
-	# ICON
-	InstlPacker               = 安装包
-	MostUsedSoftware          = 常用软件
-
 	# Install
 	DownloadLinkError         = 下载地址无效。
 	PreferredDownload         = 优先选择下载地址
