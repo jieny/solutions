@@ -267,56 +267,14 @@ Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
     <dd>4.&nbsp;&nbsp;When there is .ps1, right-click the file and select Run as PowerShell, or copy the path and paste it into "Terminal" or "PowerShell ISE" to run. For the path with a colon, add the & character in the command line, example: <code>& "D:\YiSolutions\_Encapsulation\_SIP.ps1"</code></dd>
   </dl>
 
+<h4><pre>B.&nbsp;&nbsp;Get the package script</pre></h4>
+<p>After using the quick download guide</p>
+
 <br>
-  <p>III.&nbsp;&nbsp;Get the package script</p>
+  <p>1.&nbsp;&nbsp;PowerShell script</p>
   <dl>
     <dd>
-    <p>&nbsp;&nbsp;1.1.&nbsp;&nbsp;Official website</p>
-    <dl>
-        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.1.&nbsp;&nbsp;Automatic downloads
-
-```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-irm https://fengyi.tel/gs | iex
-```
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Priority is to download from the official website, and after the download is complete: add the routing function. Run the wrapper script.</p>
-        </dd>
-
-<br>
-        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1.2.&nbsp;&nbsp;Manual download
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://fengyi.tel/solutions to view downloads, or open https://fengyi.tel/go/solutions to download directly.</p>
-        </dd>
-    </dl>
-
-<br>
-    <p>&nbsp;&nbsp;1.2.&nbsp;&nbsp;Gihtub</p>
-    <dl>
-        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.1.&nbsp;&nbsp;Automatic downloads
-
-```
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Force
-irm https://github.com/ilikeyi/Solutions/raw/main/get.ps1 | iex
-```
-<p>Prioritize downloads from the Github website, and after the download is complete: add routing features and run the wrapper script.</p>
-        </dd>
-
-<br>
-        <dd>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.2.2.&nbsp;&nbsp;Manual download
-            <dl>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;Go to https://github.com/ilikeyi/solutions and select "Code", then select Download ZIP.</p>
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;Or go to https://github.com/ilikeyi/solutions/releases, select the available version you want to download, and click to download the source code (zip, tar.gz).</p>
-            </dl>
-        </dd>
-          </dl>
-        </dd>
-      </dl>
-  </dl>
-
-<br>
-  <p>IV.&nbsp;&nbsp;PowerShell script</p>
-  <dl>
-    <dd>
-      <p>1.&nbsp;&nbsp;Prerequisites: Once met, run the package main script</p>
+      <p>1.1.&nbsp;&nbsp;Encapsulation Script</p>
 
 ```
 D:\Yi.Solutions\_Encapsulation\_SIP.ps1
@@ -327,10 +285,10 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 
 <br>
     <dd>
-      <p>2.&nbsp;&nbsp;Other items</p>
+      <p>1.2.&nbsp;&nbsp;Other items</p>
       <dl>
         <dd>
-          <p>2.1.&nbsp;&nbsp;Backup
+          <p>1.2.1.&nbsp;&nbsp;Backup
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Unpack.ps1</code>, when routing function is available: <code>Yi -unpack</code></dd>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;When the package script performs a check for updates, the backed-up file can be used as an upgrade package.</dd>
@@ -338,21 +296,21 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
           </p>
 
 <br>
-          <p>2.2.&nbsp;&nbsp;Create a deployment engine upgrade package
+          <p>1.2.2.&nbsp;&nbsp;Create a deployment engine upgrade package
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Custom.Engine.upgrade.package.ps1</code>, when routing function is available: <code>Yi -CEUP</code></dd>
             </dl>
           </p>
 
 <br>
-          <p>2.3.&nbsp;&nbsp;Convert all software into compressed packages
+          <p>1.2.3.&nbsp;&nbsp;Convert all software into compressed packages
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Zip.ps1</code>, when routing function is available: <code>Yi -Zip</code></dd>
             </dl>
           </p>
 
 <br>
-          <p>2.4.&nbsp;&nbsp;Create templates
+          <p>1.2.4.&nbsp;&nbsp;Create templates
             <dl>
               <dd>&nbsp;&nbsp;&nbsp;&nbsp;<code>D:\YiSolutions\_Encapsulation\_Create.Template.ps1</code>, when routing function is available: <code>Yi -CT</code></dd>
             </dl>
