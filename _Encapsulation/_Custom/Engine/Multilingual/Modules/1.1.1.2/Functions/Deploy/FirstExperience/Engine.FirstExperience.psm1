@@ -9,8 +9,9 @@ Function FirstExperience
 		[switch]$Force
 	)
 
-	Logo -Title $($lang.FirstDeployment)
-	Write-Host "   $($lang.FirstDeployment)`n   $('-' * 80)"
+	Logo -Title $lang.FirstDeployment
+	Write-Host "   $($lang.FirstDeployment)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
 
 	if ($Force) {
 		if (Deploy_Sync -Mark "Auto_Update") {
@@ -486,8 +487,9 @@ Function FirstExperience_Deploy
 		[switch]$Quit
 	)
 
-	Logo -Title $($lang.FirstDeployment)
-	Write-Host "   $($lang.FirstDeployment)`n   $('-' * 80)"
+	Logo -Title $lang.FirstDeployment
+	Write-Host "   $($lang.FirstDeployment)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
 
 	<#
 		.Prerequisite deployment rules

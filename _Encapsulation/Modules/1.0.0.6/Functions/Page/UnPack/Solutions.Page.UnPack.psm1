@@ -41,7 +41,7 @@ $ArchiveExcludeUnPack = @(
 	"-xr-!_Encapsulation\_Custom\Engine\LXPs\Logs"
 	"-xr-!_Encapsulation\_Custom\Engine\LXPs\Download"
 	"-xr-!_Encapsulation\_Custom\Engine\Multilingual\Logs"
-	"-xr-!_Encapsulation\_Custom\Engine\Yi.Optimiz.Private\Logs"
+	"-xr-!_Encapsulation\_Custom\Engine\Yi.Suite\Logs"
 	"-xr-!_Encapsulation\_Custom\Office\Setup.exe"
 	"-xr-!_Encapsulation\_Custom\Office\2024\amd64\Office\Data"
 	"-xr-!_Encapsulation\_Custom\Office\2024\x86\Office\Data"

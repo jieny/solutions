@@ -2083,7 +2083,9 @@ Function Language_Add_Process
 			ForEach ($item in $Temp_Language_Add_Custom_Select) {
 				Get-ChildItem -Path $item -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | ForEach-Object {
 					if (Test-Path -Path $_.FullName -PathType Leaf) {
-						Write-Host "   $($_.FullName)" -ForegroundColor Green
+						Write-host "   $($lang.FileName): " -NoNewline -ForegroundColor Yellow
+						Write-Host $_.FullName -ForegroundColor Green
+
 						Language_Add_File_Type_Process -FileName $_.FullName
 					}
 				}

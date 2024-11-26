@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Mainname                  = Solutions
+	Mainname                  = Deployment Engine: Automatically add languages installed on Windows systems
 	AddTo                     = Add
 	Disable                   = Disabled
 	Enabled                   = Enabled

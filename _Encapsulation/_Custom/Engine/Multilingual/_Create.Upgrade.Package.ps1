@@ -186,7 +186,8 @@ Function Update_Create_UI
    From: $((Get-Module -Name Engine).Author)'s Solutions
    buildstring: $((Get-Module -Name Engine).Version.ToString()).bs_release.2024.12.08`n"
 
-	Write-Host "   $($lang.UpdateCreate)`n   $('-' * 80)"
+	Write-Host "   $($lang.UpdateCreate)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
 
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing

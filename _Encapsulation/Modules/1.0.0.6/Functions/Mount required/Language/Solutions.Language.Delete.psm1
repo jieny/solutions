@@ -1924,7 +1924,9 @@ Function Language_Delete_Process
 
 				Get-ChildItem $item -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Sort-Object -Descending | ForEach-Object {
 					if (Test-Path -Path $_.FullName -PathType Leaf) {
-						Write-Host "   $($_.FullName)" -ForegroundColor Green
+						Write-host "   $($lang.FileName): " -NoNewline -ForegroundColor Yellow
+						Write-Host $_.FullName -ForegroundColor Green
+
 						Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 
 						try {
@@ -1943,7 +1945,9 @@ Function Language_Delete_Process
 
 				Get-ChildItem $item -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | ForEach-Object {
 					if (Test-Path -Path $_.FullName -PathType Leaf) {
-						Write-Host "   $($_.FullName)" -ForegroundColor Green
+						Write-host "   $($lang.FileName): " -NoNewline -ForegroundColor Yellow
+						Write-Host $_.FullName -ForegroundColor Green
+
 						Write-Host "   $($lang.Del)".PadRight(28) -NoNewline
 
 						try {

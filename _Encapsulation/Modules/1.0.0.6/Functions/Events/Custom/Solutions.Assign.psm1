@@ -942,7 +942,8 @@ Function Run_Expand
 				try {
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
-						Write-host "   $($lang.Developers_Mode_Location)28`n   $('-' * 80)"
+						Write-host "   $($lang.Developers_Mode_Location)28" -ForegroundColor Yellow
+						Write-host "   $('-' * 80)"
 						write-host "   Get-WindowsImage -ImagePath ""$($NewExpand.Path)\$($NewExpand.ImageFileName).$($NewExpand.Suffix)""" -ForegroundColor Green
 						Write-host "   $('-' * 80)`n"
 					}

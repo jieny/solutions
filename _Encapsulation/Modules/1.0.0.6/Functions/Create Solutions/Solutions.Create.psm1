@@ -8424,7 +8424,9 @@ Function Solutions_Generate_Prerequisite
 		ForEach ($item in $ClearArchSoftware) {
 			Write-Host "   $($item)" -ForegroundColor Green
 			Get-ChildItem $item -directory -ErrorAction SilentlyContinue | ForEach-Object {
-				Write-Host "   $($_.FullName)" -ForegroundColor Green
+				Write-host "   $($lang.FileName): " -NoNewline -ForegroundColor Yellow
+				Write-Host $_.FullName -ForegroundColor Green
+
 				Clear_Arch_Path -Path $_.FullName
 			}
 		}

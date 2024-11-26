@@ -17,7 +17,7 @@
 	UpdateConnectFailed       = 원격 서버에 연결할 수 없습니다. 업데이트가 중단되었는지 확인하십시오.
 	UpdateMinimumVersion      = 최소 업데이트 프로그램 버전 요구 사항, 최소 필수 버전을 충족합니다: {0}
 	UpdateVerifyAvailable     = 주소를 사용할 수 있는지 확인
-	UpdateDownloadAddress     = 다운로드 링크:
+	UpdateDownloadAddress     = 다운로드 링크
 	UpdateAvailable           = 유효한
 	UpdateUnavailable         = 없는
 	UpdateCurrent             = 현재 버전 : \

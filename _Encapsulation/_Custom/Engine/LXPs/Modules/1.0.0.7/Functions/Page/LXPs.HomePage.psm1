@@ -22,8 +22,9 @@ Function Logo
 #>
 Function Mainpage
 {
-	Logo -Title $($lang.LXPs)
-	Write-Host "   $($lang.Menu)`n   $('-' * 80)"
+	Logo -Title $lang.LXPs
+	Write-Host "   $($lang.Menu)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
 
 	write-host "      1   $($lang.ChkUpdate)
       2   $($lang.LXPs)" -ForegroundColor Green

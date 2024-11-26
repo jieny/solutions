@@ -2058,7 +2058,8 @@ Function InBox_Apps_Add_Mark_Process
 	}
 
 	Get-ChildItem "$($Path)\LanguageExperiencePack.*.appx" -ErrorAction SilentlyContinue | ForEach-Object {
-		Write-Host "   $($_.FullName)" -ForegroundColor Green
+		Write-host "   $($lang.FileName): " -NoNewline -ForegroundColor Yellow
+		Write-Host $_.FullName -ForegroundColor Green
 
 		if (Test-Path -Path "$($Path)\License.xml" -PathType Leaf) {
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {

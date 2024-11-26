@@ -17,7 +17,7 @@
 	UpdateConnectFailed       = 無法連接到遠程服務器，檢查更新已中止。
 	UpdateMinimumVersion      = 滿足最低更新程序版本要求，最低要求版本：{0}
 	UpdateVerifyAvailable     = 驗證地址是否可用
-	UpdateDownloadAddress     = 下載地址：
+	UpdateDownloadAddress     = 下載地址
 	UpdateAvailable           = 可用
 	UpdateUnavailable         = 不可用
 	UpdateCurrent             = 當前使用版本: \

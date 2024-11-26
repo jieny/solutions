@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Mainname                  = 問題解決
+	Mainname                  = 展開エンジン: Windows システムにインストールされている言語を完全に自動的に追加します
 	AddTo                     = 追加
 	Disable                   = 無効にする
 	Enabled                   = 有効

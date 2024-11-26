@@ -1356,7 +1356,7 @@ Function Help
                          $($Current_Folder)\_Custom\Engine\
      31    $($PSscript.BaseName) -LXPs    | LXPs\LXPs.ps1
      32    $($PSscript.BaseName) -Mul     | Multilingual\Engine.ps1
-     33    $($PSscript.BaseName) -Yio     | Yi.Optimiz.Private\Engine.ps1`n`n"
+     33    $($PSscript.BaseName) -Yio     | Yi.Suite\Engine.ps1`n`n"
 
 	switch (Read-Host "   $($Script:Lang.Choose)")
 	{
@@ -1418,7 +1418,7 @@ Function Help
 			powershell -file "$($PSScriptRoot)\..\..\_Custom\Engine\Multilingual\Engine.ps1"
 		}
 		"33" {
-			powershell -file "$($PSScriptRoot)\..\..\_Custom\Engine\Yi.Optimiz.Private\Engine.ps1"
+			powershell -file "$($PSScriptRoot)\..\..\_Custom\Engine\Yi.Suite\Engine.ps1"
 		}
 		default {
 			Write-host
@@ -1544,7 +1544,7 @@ if ($Mul) {
 }
 
 if ($Yio) {
-	powershell -file "$($PSScriptRoot)\..\..\_Custom\Engine\Yi.Optimiz.Private\Engine.ps1"
+	powershell -file "$($PSScriptRoot)\..\..\_Custom\Engine\Yi.Suite\Engine.ps1"
 	return
 }
 

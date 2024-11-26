@@ -1225,6 +1225,7 @@ Function Download_Process
 	ForEach ($item in $Script:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress): " -NoNewline -ForegroundColor Yellow
 		Write-Host $item -ForegroundColor Green
+
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true

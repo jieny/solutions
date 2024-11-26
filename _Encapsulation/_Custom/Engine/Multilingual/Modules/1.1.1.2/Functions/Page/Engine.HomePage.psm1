@@ -22,8 +22,9 @@ Function Logo
 #>
 Function Mainpage
 {
-	Logo -Title $($lang.Mainname)
-	Write-Host "   $($lang.Mainname)`n   $('-' * 80)"
+	Logo -Title $lang.Mainname
+	Write-Host "   $($lang.Mainname)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
 
 	write-host "     1  $($lang.ChkUpdate)
      2. $($lang.FirstDeployment)" -ForegroundColor Green

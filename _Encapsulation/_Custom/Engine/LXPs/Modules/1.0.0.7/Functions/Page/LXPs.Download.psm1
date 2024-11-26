@@ -449,20 +449,21 @@ Function LXPs_Download
 	}
 
 	$UI_Main_Download_Menu = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Padding        = "12,0,0,0"
+		Padding        = "16,0,0,0"
 		margin         = "0,0,0,30"
 		BorderStyle    = 0
 		autoSize       = 1
 		autoSizeMode   = 1
+		autoScroll     = $False
 	}
 	$UI_Main_Download_Match_Filter = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 35
-		Width          = 395
+		Width          = 450
 		Text           = $lang.LXPsFilter
 	}
 	$UI_Main_Download_Match_Filter_Results = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 40
-		Width          = 395
+		Width          = 450
 		Padding        = "16,0,0,0"
 		Text           = ""
 		LinkColor      = "GREEN"
@@ -472,7 +473,7 @@ Function LXPs_Download
 	}
 	$UI_Main_Download_Match_Filter_Setting = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 40
-		Width          = 395
+		Width          = 450
 		Padding        = "16,0,0,0"
 		Text           = $lang.OSVersion
 		LinkColor      = "GREEN"
@@ -488,7 +489,7 @@ Function LXPs_Download
 
 	$UI_Main_Download_Rename = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 40
-		Width          = 385
+		Width          = 430
 		margin         = "22,20,0,0"
 		Text           = $lang.LXPsRename
 		Checked        = $True
@@ -502,7 +503,7 @@ Function LXPs_Download
 
 	$UI_Main_Download_Licence = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 40
-		Width          = 385
+		Width          = 430
 		margin         = "22,20,0,0"
 		Text           = $lang.LicenseCreate
 		Checked        = $True
@@ -780,26 +781,30 @@ Function LXPs_Download
 		autoScroll     = $True
 	}
 	$UI_Main_Mask_Report_Sources_Name = New-Object System.Windows.Forms.Label -Property @{
-		Height         = 35
+		Height         = 30
 		Width          = 480
 		Text           = $lang.AdvAppsDetailed
 	}
 	$UI_Main_Mask_Report_Sources_Name_Tips = New-Object system.Windows.Forms.Label -Property @{
 		autoSize       = 1
 		Padding        = "16,0,0,0"
-		margin         = "0,0,0,20"
 		Text           = $lang.AdvAppsDetailedTips
 	}
 
+	$UI_Main_Mask_Report_Sources_Wrap = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 480
+	}
+
 	$UI_Main_Mask_Report_Sources_Path_Name = New-Object System.Windows.Forms.Label -Property @{
-		Height         = 35
+		Height         = 30
 		Width          = 480
 		Text           = $lang.ProcessSources
 	}
 	$UI_Main_Mask_Report_Sources_Path = New-Object System.Windows.Forms.TextBox -Property @{
-		Height         = 35
+		Height         = 30
 		Width          = 450
-		margin         = "18,5,0,15"
+		margin         = "18,0,0,18"
 		Text           = ""
 		ReadOnly       = $True
 		add_Click      = {
@@ -937,20 +942,24 @@ Function LXPs_Download
 		}
 	}
 
+	$UI_Main_Mask_Report_Sources_Path_Wrap = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 480
+	}
+
 	<#
 		.The report is saved to
 		.报告保存到
 	#>
 	$UI_Main_Mask_Report_Save_To_Name = New-Object System.Windows.Forms.Label -Property @{
-		Height         = 35
+		Height         = 30
 		Width          = 480
-		margin         = "0,30,0,0"
 		Text           = $lang.SaveTo
 	}
 	$UI_Main_Mask_Report_Save_To = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 35
 		Width          = 450
-		margin         = "20,5,0,15"
+		margin         = "20,0,0,18"
 		Text           = ""
 		ReadOnly       = $True
 		add_Click      = {
@@ -1273,12 +1282,16 @@ Function LXPs_Download
 	$UI_Main_Mask_Report_Menu.controls.AddRange((
 		$UI_Main_Mask_Report_Sources_Name,
 		$UI_Main_Mask_Report_Sources_Name_Tips,
+		$UI_Main_Mask_Report_Sources_Wrap,
+
 		$UI_Main_Mask_Report_Sources_Path_Name,
 		$UI_Main_Mask_Report_Sources_Path,
 		$UI_Main_Mask_Report_Sources_Select_Folder,
 		$UI_Main_Mask_Report_Sources_Open_Folder,
 		$UI_Main_Mask_Report_Sources_Paste,
 		$UI_Main_Mask_Report_Sources_Sync,
+
+		$UI_Main_Mask_Report_Sources_Path_Wrap,
 		$UI_Main_Mask_Report_Save_To_Name,
 		$UI_Main_Mask_Report_Save_To,
 		$UI_Main_Mask_Report_Select_Folder,

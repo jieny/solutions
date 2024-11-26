@@ -17,7 +17,7 @@
 	UpdateConnectFailed       = Unable to connect to remote server, check update has been aborted.
 	UpdateMinimumVersion      = Meet the minimum update program version requirements,\n   the minimum required version: {0}
 	UpdateVerifyAvailable     = Verify that the address is available
-	UpdateDownloadAddress     = Download link: \
+	UpdateDownloadAddress     = Download link
 	UpdateAvailable           = Available
 	UpdateUnavailable         = Unavailable
 	UpdateCurrent             = \  Currently used version: \

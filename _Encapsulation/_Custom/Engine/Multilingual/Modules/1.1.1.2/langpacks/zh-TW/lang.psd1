@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Mainname                  = 解決方案
+	Mainname                  = 部署引擎：全自動新增 Windows 系統已安裝的語言
 	AddTo                     = 添加
 	Disable                   = 禁用
 	Enabled                   = 啟用

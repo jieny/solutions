@@ -1,5 +1,5 @@
 ﻿ConvertFrom-StringData -StringData @'
-	Mainname                  = 해결책
+	Mainname                  = 배포 엔진: Windows 시스템에 설치된 언어를 완전 자동으로 추가합니다
 	AddTo                     = 에 추가
 	Disable                   = 비활성화
 	Enabled                   = 할 수있게하다

@@ -68,11 +68,15 @@ Function Check_Folder
 		[string]$chkpath
 	)
 
-	if (-not (Test-Path $chkpath -PathType Container)) {
+	if (Test-Path -Path $chkpath -PathType Container) {
+
+	} else {
 		New-Item -Path $chkpath -ItemType Directory -ErrorAction SilentlyContinue | Out-Null
-		if (-not (Test-Path $chkpath -PathType Container))
-		{
-			Write-Host "   $($lang.FailedCreateFolder)"
+
+		if (Test-Path -Path $chkpath -PathType Container) {
+
+		} else {
+			Write-Host "`n   $($lang.FailedCreateFolder)"
 			Write-Host "   $($chkpath)" -ForegroundColor Red
 			return
 		}

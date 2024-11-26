@@ -17,7 +17,7 @@
 	UpdateConnectFailed       = リモート サーバーに接続できません。更新が中止されたことを確認してください。
 	UpdateMinimumVersion      = 更新プログラムの最小バージョン要件を満たしている、最小必要バージョン: {0}
 	UpdateVerifyAvailable     = アドレスが使用可能であることを確認します
-	UpdateDownloadAddress     = ダウンロードリンク:
+	UpdateDownloadAddress     = ダウンロードリンク
 	UpdateAvailable           = 利用可能
 	UpdateUnavailable         = 利用不可
 	UpdateCurrent             = 現行版: \

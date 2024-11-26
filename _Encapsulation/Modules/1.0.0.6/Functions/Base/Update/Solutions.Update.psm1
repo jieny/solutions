@@ -28,7 +28,8 @@ Function Update
 	}
 
 	Logo -Title $lang.ChkUpdate
-	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
+	Write-Host "   $($lang.ChkUpdate)" -ForegroundColor Yellow
+	Write-host "   $('-' * 80)"
 
 	if ($Auto) {
 		ForEach ($item in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
@@ -277,6 +278,7 @@ Function Update_Process
 	ForEach ($item in $Script:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress): " -NoNewline -ForegroundColor Yellow
 		Write-Host $item -ForegroundColor Green
+
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
@@ -333,8 +335,11 @@ Function Update_Process
 		}
 
 		if ($IsUpdateAvailable) {
-			Write-host "`n   $($lang.UpdateVerifyAvailable)`n   $('-' * 80)"
-			Write-Host "   * $($lang.UpdateDownloadAddress): $($url)"
+			Write-host "`n   $($lang.UpdateVerifyAvailable)" -ForegroundColor Yellow
+			Write-host "   $('-' * 80)"
+			Write-Host "   * $($lang.UpdateDownloadAddress): " -NoNewline -ForegroundColor Yellow
+			Write-host $url -ForegroundColor Green
+
 			if (Test_URI $url) {
 				Write-Host "     $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "   $('-' * 80)"
@@ -387,8 +392,11 @@ $($getSerVer.changelog.log)`n"
 			}
 		} else {
 			if ($Script:UpdateAvailableReset) {
-				Write-host "`n   $($lang.UpdateVerifyAvailable)`n   $('-' * 80)"
-				Write-Host "   * $($lang.UpdateDownloadAddress): $($url)"
+				Write-host "`n   $($lang.UpdateVerifyAvailable)" -ForegroundColor Yellow
+				Write-host "   $('-' * 80)"
+				Write-Host "   * $($lang.UpdateDownloadAddress): " -NoNewline -ForegroundColor Yellow
+				Write-host $url -ForegroundColor Green
+
 				if (Test_URI $url) {
 					Write-Host "     $($lang.UpdateAvailable)" -ForegroundColor Green
 					Write-Host "   $('-' * 80)"

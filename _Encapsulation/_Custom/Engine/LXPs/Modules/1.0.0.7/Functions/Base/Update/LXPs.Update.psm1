@@ -27,7 +27,7 @@ Function Update
 		$Script:IsProcess = $False
 	}
 
-	Logo -Title $($lang.ChkUpdate)
+	Logo -Title $lang.ChkUpdate
 	Write-Host "   $($lang.ChkUpdate)"
 	Write-Host "   $('-' * 80)"
 
@@ -281,6 +281,7 @@ Function Update_Process
 	ForEach ($item in $Script:ServerList) {
 		Write-Host "   * $($lang.UpdateServerAddress): " -NoNewline -ForegroundColor Yellow
 		Write-Host $item -ForegroundColor Green
+
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
