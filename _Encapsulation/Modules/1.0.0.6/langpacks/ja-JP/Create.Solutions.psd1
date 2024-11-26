@@ -95,6 +95,7 @@
 	DeployTimeZoneChange            = 時間領域を変更します
 	DeployTimeZoneChangeTips        = 言語ゾーン別に、事前回答する既定の時間領域を設定します。
 
+	Deploy_Tags                     = デプロイメントタグ
 	FirstExpProcess                 = 最初のエクスペリエンス、展開の前提条件プロセス:
 	FirstExpProcessTips             = 前提条件が完了したら、コンピュータを再起動して、再起動が有効になる必要がある問題を解決します。
 	FirstExpFinish                  = 前提条件を完了した後の初めてのエクスペリエンス

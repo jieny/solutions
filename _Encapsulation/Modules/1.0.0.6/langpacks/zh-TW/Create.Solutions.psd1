@@ -95,6 +95,7 @@
 	DeployTimeZoneChange            = 更改時間區域
 	DeployTimeZoneChangeTips        = 設置應預答默認時間區域，按語言區域。
 
+	Deploy_Tags                     = 部署標記
 	FirstExpProcess                 = 首次體驗，部署先決條件過程中：
 	FirstExpProcessTips             = 完成先決條件後重啟計算機，解決需重啟才生效問題。
 	FirstExpFinish                  = 首次體驗，完成先決條件後

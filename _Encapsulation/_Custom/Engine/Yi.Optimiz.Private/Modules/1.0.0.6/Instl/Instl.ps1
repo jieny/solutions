@@ -888,25 +888,6 @@ Function Check_Folder
 	}
 }
 
-Function Join_Url
-{
-	param
-	(
-		[parameter(Mandatory=$True, HelpMessage="Base Path")]
-		[ValidateNotNullOrEmpty()]
-		[string]$Path,
-		[parameter(Mandatory=$True, HelpMessage="Child Path or Item Name")]
-		[ValidateNotNullOrEmpty()]
-		[string]$ChildPath
-	)
-	if ($Path.EndsWith('/'))
-	{
-		return "$($Path)"+"$($ChildPath)"
-	} else {
-		return "$($Path)/$($ChildPath)"
-	}
-}
-
 Function Join_MainFolder
 {
 	param
@@ -999,17 +980,17 @@ Function Install_Process
 				$tempoutputfoldoer = Join-Path -Path $TempRootPath -ChildPath $structure
 				Get-ChildItem -Path $tempoutputfoldoer -Filter "*$($filename)*$((Get-Culture).Name)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
 					$OutTo = Join-Path -Path $TempRootPath -ChildPath $structure
-					$OutAny = $($_.fullname)
+					$OutAny = $_.fullname
 					break
 				}
 				Get-ChildItem -Path $tempoutputfoldoer -Filter "*$($filename)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
 					$OutTo = Join-Path -Path $TempRootPath -ChildPath $structure
-					$OutAny = $($_.fullname)
+					$OutAny = $_.fullname
 					break
 				}
 				Get-ChildItem -Path $tempoutputfoldoer -Filter "*$($packer)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
 					$OutTo = Join-Path -Path $TempRootPath -ChildPath $structure
-					$OutAny = $($_.fullname)
+					$OutAny = $_.fullname
 					break
 				}
 				$OutTo = Join-Path -Path $Global:FreeDiskTo -ChildPath $structure
@@ -1021,15 +1002,15 @@ Function Install_Process
 			$OutTo = Join-Path -Path $PSScriptRoot -ChildPath $structure
 			$OutAny = Join-Path -Path $PSScriptRoot -ChildPath "$($structure)\$($SaveToName)"
 			Get-ChildItem -Path $OutTo -Filter "*$($filename)*$((Get-Culture).Name)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
-				$OutAny = $($_.fullname)
+				$OutAny = $_.fullname
 				break
 			}
 			Get-ChildItem -Path $OutTo -Filter "*$($filename)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
-				$OutAny = $($_.fullname)
+				$OutAny = $_.fullname
 				break
 			}
 			Get-ChildItem -Path $OutTo -Filter "*$($packer)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
-				$OutAny = $($_.fullname)
+				$OutAny = $_.fullname
 				break
 			}
 		}
@@ -1038,15 +1019,15 @@ Function Install_Process
 			$OutTo = Join-Path -Path $todisk -ChildPath $structure
 			$OutAny = Join-Path -Path $todisk -ChildPath "$($structure)\$($SaveToName)"
 			Get-ChildItem -Path $OutTo -Filter "*$($filename)*$((Get-Culture).Name)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
-				$OutAny = $($_.fullname)
+				$OutAny = $_.fullname
 				break
 			}
 			Get-ChildItem -Path $OutTo -Filter "*$($filename)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
-				$OutAny = $($_.fullname)
+				$OutAny = $_.fullname
 				break
 			}
 			Get-ChildItem -Path $OutTo -Filter "*$($packer)*" -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
-				$OutAny = $($_.fullname)
+				$OutAny = $_.fullname
 				break
 			}
 		}

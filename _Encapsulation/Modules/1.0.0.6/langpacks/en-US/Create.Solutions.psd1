@@ -95,6 +95,7 @@
 	DeployTimeZoneChange            = Change time zone
 	DeployTimeZoneChangeTips        = Set the default time zone for pre-answer, press the locale.
 
+	Deploy_Tags                     = Deployment Tags
 	FirstExpProcess                 = First experience, during the deployment of prerequisites:
 	FirstExpProcessTips             = Restart the computer after completing the prerequisites to solve the problem that requires a restart to take effect.
 	FirstExpFinish                  = First time experience, after completing prerequisites

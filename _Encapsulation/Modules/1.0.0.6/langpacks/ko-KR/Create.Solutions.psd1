@@ -95,6 +95,7 @@
 	DeployTimeZoneChange            = 시간대 변경
 	DeployTimeZoneChangeTips        = 언어 영역별로 사전 응답의 기본 시간대를 설정합니다.
 
+	Deploy_Tags                     = 배포 태그
 	FirstExpProcess                 = 배포 전제 조건 중 처음 경험:
 	FirstExpProcessTips             = 적용하려면 다시 시작해야 하는 문제를 해결하려면 전제 조건을 완료한 후 컴퓨터를 다시 시작하십시오.
 	FirstExpFinish                  = 첫 경험, 전제 조건 완료 후

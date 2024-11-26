@@ -1135,7 +1135,7 @@ Function FirstExperience_Deploy
 		Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | ForEach-Object {
 			$TempFilePath = Join-Path -Path $_.Root -ChildPath $item -ErrorAction SilentlyContinue
 
-			Write-Host "   $TempFilePath"
+			Write-Host "   $($TempFilePath)"
 			if (Test-Path $TempFilePath -PathType Leaf) {
 				write-host	"   $($lang.DiskSearchFind -f $($TempFilePath))`n" -ForegroundColor Gray
 				Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($TempFilePath)""" -Wait -WindowStyle Minimized

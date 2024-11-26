@@ -1073,6 +1073,49 @@ volume
 
 		Solutions_Event_Clear -All
 
+		<#
+			.多重初始变量
+		#>
+		New-Variable -Scope global -Name "Name_Engine_$($Script:init_To_GPS)" -Value $GUISolutionsCustomizeName.Text -Force
+
+		New-Variable -Scope global -Name "QueueDeploySelect_$($Script:init_To_GPS)" -Value "" -Force
+		New-Variable -Scope global -Name "DeployOfficeSyncConfig_$($Script:init_To_GPS)" -Value $False -Force
+		New-Variable -Scope global -Name "DeployOfficeTo_$($Script:init_To_GPS)" -Value "0" -Force
+		New-Variable -Scope global -Name "DeployPackageTo_$($Script:init_To_GPS)" -Value "0" -Force
+
+		<#
+			.添加软件
+		#>
+		New-Variable -Scope global -Name "QueueSoftwareSelect_$($Script:init_To_GPS)" -Value @() -Force
+		New-Variable -Scope global -Name "QueueSoftwareNoSelect_$($Script:init_To_GPS)" -Value @() -Force
+
+		New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $False -Force
+		New-Variable -Scope global -Name "SolutionsInstallMode_$($Script:init_To_GPS)" -Value "0" -Force
+		New-Variable -Scope global -Name "SolutionsReport_$($Script:init_To_GPS)" -Value $False -Force
+
+		<#
+			.添加字体
+		#>
+		New-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -Value @() -Force
+		New-Variable -Scope global -Name "QueueFontsNoSelect_$($Script:init_To_GPS)" -Value @() -Force
+
+		<#
+			.部署 Office
+		#>
+		New-Variable -Scope global -Name "SolutionsDeployOfficeInstall_$($Script:init_To_GPS)" -Value $False -Force
+		New-Variable -Scope global -Name "SolutionsDeployPackageInstall_$($Script:init_To_GPS)" -Value $False -Force
+
+		<#
+			.初始化命令行
+		#>
+		New-Variable -Scope global -Name "Queue_Command_WinSetup_$($Script:init_To_GPS)" -Value @() -Force
+		New-Variable -Scope global -Name "Queue_Command_WinPE_$($Script:init_To_GPS)" -Value @() -Force
+
+		<#
+			.重新验证时刷新事件状态
+		#>
+		Refres_Event_Tasks_Solutions_Add
+
 		if ($init_Is_Select_Add_To) {
 
 		} else {
@@ -1153,44 +1196,6 @@ volume
 			$GUISolutionsCustomizeName.BackColor = "LightPink"
 			return $False
 		}
-
-		<#
-			.多重初始变量
-		#>
-		New-Variable -Scope global -Name "Name_Engine_$($Script:init_To_GPS)" -Value $GUISolutionsCustomizeName.Text -Force
-
-		New-Variable -Scope global -Name "QueueDeploySelect_$($Script:init_To_GPS)" -Value "" -Force
-		New-Variable -Scope global -Name "DeployOfficeSyncConfig_$($Script:init_To_GPS)" -Value $False -Force
-		New-Variable -Scope global -Name "DeployOfficeTo_$($Script:init_To_GPS)" -Value "0" -Force
-		New-Variable -Scope global -Name "DeployPackageTo_$($Script:init_To_GPS)" -Value "0" -Force
-
-		<#
-			.添加软件
-		#>
-		New-Variable -Scope global -Name "QueueSoftwareSelect_$($Script:init_To_GPS)" -Value @() -Force
-		New-Variable -Scope global -Name "QueueSoftwareNoSelect_$($Script:init_To_GPS)" -Value @() -Force
-
-		New-Variable -Scope global -Name "SolutionsSoftwarePacker_$($Script:init_To_GPS)" -Value $False -Force
-		New-Variable -Scope global -Name "SolutionsInstallMode_$($Script:init_To_GPS)" -Value "0" -Force
-		New-Variable -Scope global -Name "SolutionsReport_$($Script:init_To_GPS)" -Value $False -Force
-
-		<#
-			.添加字体
-		#>
-		New-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -Value @() -Force
-		New-Variable -Scope global -Name "QueueFontsNoSelect_$($Script:init_To_GPS)" -Value @() -Force
-
-		<#
-			.部署 Office
-		#>
-		New-Variable -Scope global -Name "SolutionsDeployOfficeInstall_$($Script:init_To_GPS)" -Value $False -Force
-		New-Variable -Scope global -Name "SolutionsDeployPackageInstall_$($Script:init_To_GPS)" -Value $False -Force
-
-		<#
-			.初始化命令行
-		#>
-		New-Variable -Scope global -Name "Queue_Command_WinSetup_$($Script:init_To_GPS)" -Value @() -Force
-		New-Variable -Scope global -Name "Queue_Command_WinPE_$($Script:init_To_GPS)" -Value @() -Force
 
 		<#
 			.判断：开箱体验时初始化账号
@@ -4129,8 +4134,6 @@ volume
 	} else {
 		$SolutionsToMount.Checked = $True
 	}
-
-	write-host $Script:init_To_GPS
 
 	# 4 选择主引擎
 	$SolutionsEngine   = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -7101,8 +7104,8 @@ Function Solutions_Copy_Fonts_Prerequisite
 
 	ForEach ($item in (Get-Variable -Scope global -Name "QueueFontsSelect_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 		Write-Host "   $($item.Name)" -ForegroundColor Green
-		$NewPathTo = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Fonts"
 
+		$NewPathTo = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Fonts" -ErrorAction SilentlyContinue
 		Check_Folder -chkpath $NewPathTo
 
 		Write-Host "   $($lang.SaveTo): " -noNewline -ForegroundColor Yellow
@@ -7213,9 +7216,9 @@ Function Solutions_Office_Copy_Prerequisite
 
 	switch ((Get-Variable -Scope global -Name "DeployOfficeTo_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 		1 {
-			$NewPathTo = "$($Script:CopySolutionsToRoot)\Users\Public\Desktop\Office"
 			Write-host "`n   $($lang.SolutionsDeployOfficeTo)" -ForegroundColor Yellow
 			Write-Host "   $('-' * 80)"
+			$NewPathTo = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "Users\Public\Desktop\Office" -ErrorAction SilentlyContinue
 			Write-host "   $($NewPathTo)" -ForegroundColor Green
 
 			Remove_Tree $NewPathTo
@@ -7233,9 +7236,9 @@ Function Solutions_Office_Copy_Prerequisite
 			}
 		}
 		2 {
-			$NewPathTo = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Office"
 			Write-host "   $($lang.SolutionsDeployOfficeTo)" -ForegroundColor Yellow
 			Write-Host "   $('-' * 80)"
+			$NewPathTo = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Office" -ErrorAction SilentlyContinue
 			Write-host "   $($NewPathTo)" -ForegroundColor Green
 
 			Remove_Tree $NewPathTo
@@ -7266,19 +7269,19 @@ Function Solutions_Copy_Package_Prerequisite
 
 	switch ((Get-Variable -Scope global -Name "DeployPackageTo_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 		1 {
-			$NewPathTo = "$($Script:CopySolutionsToRoot)\Package"
+			$NewPathTo = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "Package" -ErrorAction SilentlyContinue
 			Remove_Tree $NewPathTo
 			Check_Folder -chkpath $NewPathTo
 			Start-Process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$($NewPathTo)`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
 		}
 		2 {
-			$NewPathTo = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Package"
+			$NewPathTo = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Package" -ErrorAction SilentlyContinue
 			Remove_Tree $NewPathTo
 			Check_Folder -chkpath $NewPathTo
 			Start-Process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$($NewPathTo)`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
 		}
 		3 {
-			$NewPathTo = "$($Script:CopySolutionsToRoot)\Users\Public\Desktop\Package"
+			$NewPathTo = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "Users\Public\Desktop\Package" -ErrorAction SilentlyContinue
 			Remove_Tree $NewPathTo
 			Check_Folder -chkpath $NewPathTo
 			Start-Process "robocopy.exe" -argumentlist "`"$($OSDefaultDeployPackerVersion)`" `"$($NewPathTo)`" /E /XO /W:1 /R:1" -wait -WindowStyle Minimized
@@ -7817,7 +7820,9 @@ Function Solutions_Create_Deploy_Report
 		$QueueFontsSelectPrint += "$($item.Name);"
 	}
 
-	Check_Folder -chkpath "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine"
+	$Save_engine_to_new_path = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Engine" -ErrorAction SilentlyContinue
+	$Save_engine_to_new_path_json = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Engine\Deploy.json" -ErrorAction SilentlyContinue
+	Check_Folder -chkpath $Save_engine_to_new_path
 
 @"
 {
@@ -7867,15 +7872,15 @@ Function Solutions_Create_Deploy_Report
 		"Time":           "$(Get-Date -Format "MM/dd/yyyy hh:mm:ss")"
 	}
 }
-"@ | Out-File -FilePath "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy.json" -Encoding Ascii -ErrorAction SilentlyContinue
+"@ | Out-File -FilePath $Save_engine_to_new_path_json -Encoding Ascii -ErrorAction SilentlyContinue
 
 	Write-Host "`n   $($lang.Wim_Rule_Check)" -ForegroundColor Yellow
 	Write-host "   $('-' * 80)"
-	write-host "   $($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy.json"
+	write-host "   $($Save_engine_to_new_path_json)"
+	Write-Host "   $($lang.Wim_Rule_Verify)".PadRight(28) -NoNewline
 
-	Write-Host "`n   $($lang.Wim_Rule_Verify)".PadRight(28) -NoNewline
 	try {
-		$Autopilot = Get-Content -Raw -Path "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy.json" | ConvertFrom-Json
+		$Autopilot = Get-Content -Raw -Path $Save_engine_to_new_path_json | ConvertFrom-Json
 		Write-host $lang.Done -ForegroundColor Green
 	} catch {
 		Write-host $lang.Failed -ForegroundColor Red
@@ -8228,11 +8233,13 @@ Function Solutions_Generate_Prerequisite
 				)
 
 				ForEach ($item in $GroupCleanMountTo) {
-					Write-Host "   $($Script:CopySolutionsToRoot)\$($item)" -ForegroundColor Green
-					Remove_Tree "$($Script:CopySolutionsToRoot)\$($item)"
+					$TestNewItem = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue
 
-					if (Test-Path -Path "$($Script:CopySolutionsToRoot)\$($item)" -PathType Container) {
-						Write-Host "   $($lang.Del), $($lang.Failed): $($Script:CopySolutionsToRoot)\$($item)" -ForegroundColor Red
+					Write-Host "   $($TestNewItem)" -ForegroundColor Green
+					Remove_Tree $TestNewItem
+
+					if (Test-Path -Path $TestNewItem -PathType Container) {
+						Write-Host "   $($lang.Del), $($lang.Failed): $($TestNewItem)" -ForegroundColor Red
 					}
 				}
 			} else {
@@ -8323,17 +8330,17 @@ Function Solutions_Generate_Prerequisite
 		switch ($Global:ArchitecturePack) {
 			"arm64" {
 				ForEach ($item in $GroupCleanArm64) {
-					Remove_Tree Join-Path -Path $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue
+					Remove_Tree $(Join-Path -Path $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue)
 				}
 			}
 			"AMD64" {
 				ForEach ($item in $GroupCleanAMD64) {
-					Remove_Tree Join-Path -Path $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue
+					Remove_Tree $(Join-Path -Path $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue)
 				}
 			}
 			"x86" {
 				ForEach ($item in $GroupCleanx86) {
-					Remove_Tree $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue
+					Remove_Tree $(Join-Path -Path $Script:CopySolutionsToRoot -ChildPath $item -ErrorAction SilentlyContinue)
 				}
 			}
 		}
@@ -8399,18 +8406,20 @@ Function Solutions_Generate_Prerequisite
 	if ((Get-Variable -Scope global -Name "Queue_Is_Solutions_Engine_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value) {
 		Write-Host "`n   $($lang.EnabledEnglish)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-		Check_Folder -chkpath "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine"
+
+		$Save_engine_to_new_path = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Engine" -ErrorAction SilentlyContinue
+		Check_Folder -chkpath $Save_engine_to_new_path
 
 		$OSDefaultSelectSolutionVersion = (Get-Variable -Scope global -Name "SelectSolutionVersion_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value
 
-		Copy-Item -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Engine\$($OSDefaultSelectSolutionVersion)\*" -Destination "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine" -Recurse -Force -ErrorAction SilentlyContinue
+		Copy-Item -Path "$($PSScriptRoot)\..\..\..\..\_Custom\Engine\$($OSDefaultSelectSolutionVersion)\*" -Destination $Save_engine_to_new_path -Recurse -Force -ErrorAction SilentlyContinue
 
 		<#
 			.清理“主引擎”里的不同软件包软件
 			.Clean up different SoftwarePackages in the "main engine"
 		#>
 		$ClearArchSoftware = @(
-			"$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\AIO"
+			Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Engine\AIO" -ErrorAction SilentlyContinue
 		)
 		ForEach ($item in $ClearArchSoftware) {
 			Write-Host "   $($item)" -ForegroundColor Green
@@ -8431,15 +8440,13 @@ Function Solutions_Generate_Prerequisite
 		<#
 			.根据功能选择：生成部署所需的标记
 		#>
-		$Create_Mark_Deploy_Allow  = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy\Allow"
-		$Create_Mark_Deploy_Region = "$($Script:CopySolutionsToRoot)\$($OSDefaultUser)\Engine\Deploy\Region"
+		$Create_Mark_Deploy_Allow  = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Engine\Deploy\Allow" -ErrorAction SilentlyContinue
+		$Create_Mark_Deploy_Region = Join-Path -Path $Script:CopySolutionsToRoot -ChildPath "$($OSDefaultUser)\Engine\Deploy\Region" -ErrorAction SilentlyContinue
 		Check_Folder -chkpath $Create_Mark_Deploy_Allow
-		Check_Folder -chkpath $Create_Mark_Deploy_Region
 
-		Write-host "`n   $($lang.FirstExpPrerequisite)"
+		Write-host "`n   $($lang.Deploy_Tags), $($lang.SaveTo)" -ForegroundColor Yellow
 		Write-host "   $('-' * 80)"
-		Write-Host "   $($lang.SaveTo): " -NoNewline
-		Write-Host $Create_Mark_Deploy_Allow -ForegroundColor Green
+		Write-Host "   $($Create_Mark_Deploy_Allow)" -ForegroundColor Green
 
 		Write-host "`n   $($lang.LXPsWaitAdd)"
 		Write-host "   $('-' * 80)"

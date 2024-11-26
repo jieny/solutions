@@ -95,6 +95,7 @@
 	DeployTimeZoneChange            = Zeitzone ändern
 	DeployTimeZoneChangeTips        = Legen Sie die Standardzeitzone für die Vorabantwort nach Sprachzone fest.
 
+	Deploy_Tags                     = Bereitstellungs-Tag
 	FirstExpProcess                 = Erstmalige Erfahrung während der Bereitstellung Voraussetzungen:
 	FirstExpProcessTips             = Starten Sie den Computer neu, nachdem Sie die Voraussetzungen erfüllt haben, um das Problem zu lösen, dass ein Neustart erforderlich ist, um wirksam zu werden.
 	FirstExpFinish                  = Erste Erfahrungen nach Erfüllung der Voraussetzungen
