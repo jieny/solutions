@@ -78,7 +78,7 @@ Function Optimization_Service_UI
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($_.Checked) {
 						Write-Host "   $($_.Text)"
-						Write-Host "   $($lang.SettingTo -f $($lang.Auto))" -ForegroundColor Green
+						Write-Host "   $($lang.SettingTo -f $lang.Auto)" -ForegroundColor Green
 						Get-Service -Name $_.Tag | Set-Service -StartupType Automatic -ErrorAction SilentlyContinue | Out-Null
 						if ($GUIServerStatus.Checked) {
 							Write-Host "   $($lang.Enabled)" -ForegroundColor Green
@@ -103,7 +103,7 @@ Function Optimization_Service_UI
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($_.Checked) {
 						Write-Host "   $($_.Text)"
-						Write-Host "   $($lang.SettingTo -f $($lang.Disable))" -ForegroundColor Green
+						Write-Host "   $($lang.SettingTo -f $lang.Disable)" -ForegroundColor Green
 						Get-Service -Name $_.Tag | Set-Service -StartupType Disabled -ErrorAction SilentlyContinue | Out-Null
 						if ($GUIServerStatus.Checked) {
 							Write-Host "   $($lang.Close)" -ForegroundColor Green

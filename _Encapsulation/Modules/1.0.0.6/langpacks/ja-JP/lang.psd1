@@ -36,7 +36,7 @@
 	DeDuplication_Unlock            = 無効化された重複のロック解除
 	Existed                         = 存在した
 	FailedCreateFolder              = ディレクトリの作成に失敗しました
-	FailedCreateFile                = ファイルの作成に失敗しました： \
+	FailedCreateFile                = ファイルの作成に失敗しました
 	ToMsg                           = \n   {0} 秒後に自動的にメインメニューに戻ります。
 	ToQuit                          = \n   {0} 秒後にメインパネルを終了します。
 	OnDemandPlanTask                = 既知のイベントのカスタム割り当て

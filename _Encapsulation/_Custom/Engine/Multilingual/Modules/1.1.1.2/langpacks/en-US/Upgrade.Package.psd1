@@ -7,7 +7,7 @@
 	CreateASCAuthor           = Signatory
 	CreateASCAuthorTips       = No signers selected.
 	UpCreateSHA256            = Generate .SHA-256 for the upgrade package
-	SelectFromError           = Error: {0}
+	SelectFromError           = Error
 	Uping                     = Generating
 	SkipCreate                = Skip generation, not found
 	ZipStatus                 = 7-Zip is not installed.

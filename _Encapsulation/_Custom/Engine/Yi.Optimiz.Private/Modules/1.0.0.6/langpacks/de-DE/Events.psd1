@@ -8,6 +8,7 @@
 
 	AssignTask                      = Weisen Sie verfügbare Ereignisaufgaben zu
 	AssignTips                      = Bitte wählen Sie eine zuweisbare Ereignisaufgabe aus
+	AssignMulTask                   = Erstellen Sie einen Systemwiederherstellungspunkt, bevor Sie Zuweisungen anpassen, Speicherorte von Benutzerordnern ändern, das System optimieren, Dienste optimieren oder UWP-Anwendungen löschen.
 	QueueMode                       = On-Demand-Modus
 	NoWork                          = Nicht fragen
 '@

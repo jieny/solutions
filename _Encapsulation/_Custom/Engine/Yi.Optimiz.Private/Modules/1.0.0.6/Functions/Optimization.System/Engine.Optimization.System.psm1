@@ -2883,14 +2883,14 @@ Function Explorer_Open_To
 	)
 
 	if ($ThisPC) {
-		Write-Host "   $($lang.ExplorerTo -f $($lang.ExplorerToThisPC))"
+		Write-Host "   $($lang.ExplorerTo -f $lang.ExplorerToThisPC)"
 		Write-Host "   $($lang.Setting)".PadRight(22) -NoNewline
 		New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -PropertyType DWord -Value 2 -Force -ErrorAction SilentlyContinue | Out-Null
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
 	}
 
 	if ($QuickAccess) {
-		Write-Host "   $($lang.ExplorerTo -f $($lang.ExplorerToQuickAccess))"
+		Write-Host "   $($lang.ExplorerTo -f $lang.ExplorerToQuickAccess)"
 		Write-Host "   $($lang.Setting)".PadRight(22) -NoNewline
 		New-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" -Name "LaunchTo" -PropertyType DWord -Value 1 -Force -ErrorAction SilentlyContinue | Out-Null
 		Write-Host "$($lang.Done)`n" -ForegroundColor Green
@@ -5836,7 +5836,7 @@ Function Desktop_Icon_ThisPC
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.LocationDesktop))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.LocationDesktop)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{B4BFCC3A-DB2C-424C-B029-7FE99A87C641}" -ErrorAction SilentlyContinue | Out-Null
@@ -5864,7 +5864,7 @@ Function Desktop_Icon_Document
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.LocationDocuments))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.LocationDocuments)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A8CDFF1C-4878-43be-B5FD-F8091C1C60D0}" -ErrorAction SilentlyContinue | Out-Null
@@ -5897,7 +5897,7 @@ Function Desktop_Icon_Download
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.LocationDownloads))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.LocationDownloads)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{374DE290-123F-4565-9164-39C4925E467B}" -ErrorAction SilentlyContinue | Out-Null
@@ -5929,7 +5929,7 @@ Function Desktop_Icon_Music
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.LocationMusic))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.LocationMusic)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{1CF1260C-4DD0-4ebb-811F-33C572699FDE}" -ErrorAction SilentlyContinue | Out-Null
@@ -5961,7 +5961,7 @@ Function Desktop_Icon_Picture
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.LocationPictures))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.LocationPictures)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{3ADD1653-EB32-4cb0-BBD7-DFA0ABB5ACCA}" -ErrorAction SilentlyContinue | Out-Null
@@ -5993,7 +5993,7 @@ Function Desktop_Icon_Video
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.LocationVideos))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.LocationVideos)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{A0953C92-50DC-43bf-BE83-3742FED03C9C}" -ErrorAction SilentlyContinue | Out-Null
@@ -6025,7 +6025,7 @@ Function Desktop_Icon_3D
 		[switch]$Disable
 	)
 
-	Write-Host "   $($lang.ThisPCRemove -f $($lang.Location3D))"
+	Write-Host "   $($lang.ThisPCRemove -f $lang.Location3D)"
 	if ($Enabled) {
 		Write-Host "   $($lang.Enabled)".PadRight(22) -NoNewline
 		New-Item -Path "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\MyComputer\NameSpace\{0DB7E03F-FC29-4DC6-9020-FF41B59E513A}" -ErrorAction SilentlyContinue | Out-Null

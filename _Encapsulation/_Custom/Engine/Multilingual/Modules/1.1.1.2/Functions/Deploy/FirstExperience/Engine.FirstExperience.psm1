@@ -566,8 +566,8 @@ Function FirstExperience_Deploy
 		.搜索本地部署：Bat
 	#>
 	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\bat" -Filter "*.bat" -ErrorAction SilentlyContinue | ForEach-Object {
-		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
-		Start-Process -FilePath "$($_.Fullname)"  -wait -WindowStyle Minimized
+		write-host	"   $($lang.DiskSearchFind -f $_.Fullname)`n" -ForegroundColor Green
+		Start-Process -FilePath $_.Fullname -wait -WindowStyle Minimized
 	}
 
 	<#
@@ -575,7 +575,7 @@ Function FirstExperience_Deploy
 		.搜索本地部署：ps1
 	#>
 	Get-ChildItem -Path "$($PSScriptRoot)\..\..\..\..\..\Deploy\ps1" -Filter "*.ps1" -ErrorAction SilentlyContinue | ForEach-Object {
-		write-host	"   $($lang.DiskSearchFind -f $($_.Fullname))`n" -ForegroundColor Green
+		write-host	"   $($lang.DiskSearchFind -f $_.Fullname)`n" -ForegroundColor Green
 		Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($_.Fullname)""" -Wait -WindowStyle Minimized
 	}
 
@@ -595,8 +595,8 @@ Function FirstExperience_Deploy
 
 			Write-Host "   $($TempFilePath)"
 			if (Test-Path $TempFilePath -PathType Leaf) {
-				write-host	"   $($lang.DiskSearchFind -f $($TempFilePath))`n" -ForegroundColor Gray
-				Start-Process -FilePath "$($TempFilePath)" -wait -WindowStyle Minimized
+				write-host	"   $($lang.DiskSearchFind -f $TempFilePath)`n" -ForegroundColor Gray
+				Start-Process -FilePath $TempFilePath -wait -WindowStyle Minimized
 			}
 		}
 	}
@@ -617,7 +617,7 @@ Function FirstExperience_Deploy
 
 			Write-Host "   $TempFilePath"
 			if (Test-Path $TempFilePath -PathType Leaf) {
-				write-host	"   $($lang.DiskSearchFind -f $($TempFilePath))`n" -ForegroundColor Gray
+				write-host	"   $($lang.DiskSearchFind -f $TempFilePath)`n" -ForegroundColor Gray
 				Start-Process "powershell" -ArgumentList "-ExecutionPolicy ByPass -file ""$($TempFilePath)""" -Wait -WindowStyle Minimized
 			}
 		}

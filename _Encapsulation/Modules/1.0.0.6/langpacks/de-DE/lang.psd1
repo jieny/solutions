@@ -36,7 +36,7 @@
 	DeDuplication_Unlock            = Deaktivierte Duplikate freischalten
 	Existed                         = Existierte
 	FailedCreateFolder              = Verzeichnis konnte nicht erstellt werden
-	FailedCreateFile                = Erstellen der Datei fehlgeschlagen: \
+	FailedCreateFile                = Erstellen der Datei fehlgeschlagen
 	ToMsg                           = \n   {0} Kehrt nach Sekunden automatisch zum Hauptmenü zurück.
 	ToQuit                          = \n   {0} Verlassen Sie das Hauptfenster nach Sekunden.
 	OnDemandPlanTask                = Bekannte Ereignisse benutzerdefiniert zuweisen

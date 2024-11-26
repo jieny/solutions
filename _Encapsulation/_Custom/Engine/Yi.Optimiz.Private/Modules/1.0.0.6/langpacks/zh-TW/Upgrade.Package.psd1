@@ -7,7 +7,7 @@
 	CreateASCAuthor           = 簽署者
 	CreateASCAuthorTips       = 未選擇簽署者。
 	UpCreateSHA256            = 給升級包生成 .SHA-256
-	SelectFromError           = 錯誤：{0}
+	SelectFromError           = 錯誤
 	Uping                     = 正在生成
 	SkipCreate                = 跳過生成，未找到
 	ZipStatus                 = 未安裝 7-Zip。

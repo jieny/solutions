@@ -66,7 +66,7 @@ Function Update_Setting_UI
 	$UI_Main_Auto_Select = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 505
-		Location       = '10,6'
+		Location       = '10,15'
 		Text           = $lang.UpdateServerSelect
 		Checked        = $True
 		add_Click      = {
@@ -80,7 +80,7 @@ Function Update_Setting_UI
 	$UI_Main_Menu      = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 365
 		Width          = 530
-		Location       = "0,40"
+		Location       = "0,45"
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
@@ -196,15 +196,17 @@ Function Update_Setting_UI
 		$UI_Main_Canel
 	))
 
-	ForEach ($list in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer) {
-		$url2 = $list.split("/")
-
-		$CheckBox   = New-Object System.Windows.Forms.CheckBox -Property @{
-			Height  = 35
-			Width   = 395
-			Text    = "$($url2[0])//$($url2[2])"
-			Tag     = $list
-			Checked = $true
+	ForEach ($item in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer) {
+		$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
+			Height    = 35
+			Width     = 485
+			Text      = $item
+			Tag       = $item
+			Checked   = $true
+			add_Click = {
+				$UI_Main_Error.Text = ""
+				$UI_Main_Error_Icon.Image = $null
+			}
 		}
 		$UI_Main_Menu.controls.AddRange($CheckBox)
 	}
@@ -215,6 +217,9 @@ Function Update_Setting_UI
 	#>
 	$UI_Main_Menu_Select = New-Object System.Windows.Forms.ContextMenuStrip
 	$UI_Main_Menu_Select.Items.Add($lang.AllSel).add_Click({
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+
 		$UI_Main_Menu.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
 				if ($_.Enabled) {
@@ -224,6 +229,9 @@ Function Update_Setting_UI
 		}
 	})
 	$UI_Main_Menu_Select.Items.Add($lang.AllClear).add_Click({
+		$UI_Main_Error.Text = ""
+		$UI_Main_Error_Icon.Image = $null
+
 		$UI_Main_Menu.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
 				if ($_.Enabled) {
@@ -294,7 +302,7 @@ Function Update_Process
 	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -TimeoutSec 15 -ErrorAction stop }
 
 	if ($error.Count -eq 0) {
-		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
+		Write-Host "`n   $($lang.UpdateQueryingTime -f $time.TotalMilliseconds)"
 	} else {
 		Write-host "`n   $($lang.UpdateConnectFailed)"
 		return

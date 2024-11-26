@@ -36,7 +36,7 @@
 	DeDuplication_Unlock            = 解锁已禁用重复项
 	Existed                         = 已存在
 	FailedCreateFolder              = 創建目錄失敗
-	FailedCreateFile                = 創建文件失敗：
+	FailedCreateFile                = 創建文件失敗
 	ToMsg                           = \n   {0} 秒後自動返回到主菜單。
 	ToQuit                          = \n   {0} 秒後退出主面板。
 	OnDemandPlanTask                = 自定義分配已知事件

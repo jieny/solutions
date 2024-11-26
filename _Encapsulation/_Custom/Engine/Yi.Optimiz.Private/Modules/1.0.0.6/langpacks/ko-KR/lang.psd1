@@ -29,6 +29,7 @@
 	RefreshModules            = 모든 모듈을 핫 리프레시
 	ForceUpdate               = 강제 확인 및 업데이트
 	Necessary                 = 필요한 소프트웨어
+	MostUsedSoftware          = 일반적으로 사용되는 소프트웨어
 	System                    = 체계
 	Service                   = 서비스
 	TaskBar                   = 작업 표시줄의 모든 아이콘

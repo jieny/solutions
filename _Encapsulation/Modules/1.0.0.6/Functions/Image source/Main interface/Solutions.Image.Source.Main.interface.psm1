@@ -7192,7 +7192,7 @@ Function Image_Select
 			}
 
 			if (Test-Path -Path $UIUnzipPanel_To_Path.Text -PathType leaf) {
-				$calchash = (Get-FileHash $UIUnzipPanel_To_Path.Text -Algorithm SHA256)
+				$calchash = (Get-FileHash -Path $UIUnzipPanel_To_Path.Text -Algorithm SHA256)
 
 				if ([string]::IsNullOrEmpty($UIUnzipPanel_SHA256_Calibration.Name)) {
 					$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Info.ico")
@@ -7334,7 +7334,7 @@ Function Image_Select
 			}
 
 			if (Test-Path -Path $UIUnzipPanel_To_Path.Text -PathType leaf) {
-				$calchash = (Get-FileHash $UIUnzipPanel_To_Path.Text -Algorithm SHA512)
+				$calchash = (Get-FileHash -Path $UIUnzipPanel_To_Path.Text -Algorithm SHA512)
 
 				if ([string]::IsNullOrEmpty($UIUnzipPanel_SHA512_Calibration.Name)) {
 					$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Info.ico")

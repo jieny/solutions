@@ -29,6 +29,7 @@
 	RefreshModules            = 热刷新所有模块
 	ForceUpdate               = 强行检查并更新
 	Necessary                 = 必备软件
+	MostUsedSoftware          = 常用软件
 	System                    = 系统
 	Service                   = 服务
 	TaskBar                   = 任务栏所有图标

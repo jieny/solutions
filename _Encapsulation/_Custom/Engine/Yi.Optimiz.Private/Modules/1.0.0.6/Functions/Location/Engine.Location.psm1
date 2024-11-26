@@ -100,7 +100,7 @@
 							.判断：1. 空值
 						#>
 						if ([string]::IsNullOrEmpty($GUILocationCustomizeShow.Text)) {
-							$UI_Main_Error.Text = $lang.SelectFromError -f $lang.NoSetFolderLabel
+							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoSetFolderLabel)"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							return
 						}
@@ -110,7 +110,7 @@
 							.判断：2. 前缀不能带空格
 						#>
 						if ($GUILocationCustomizeShow.Text -match '^\s') {
-							$UI_Main_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							return
 						}
@@ -120,7 +120,7 @@
 							.判断：3. 前缀不能带空格
 						#>
 						if ($GUILocationCustomizeShow.Text -match '\s$') {
-							$UI_Main_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							return
 						}
@@ -130,7 +130,7 @@
 							.判断：4. 中间不能含有二个空格
 						#>
 						if ($GUILocationCustomizeShow.Text -match '\s{2,}') {
-							$UI_Main_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							return
 						}
@@ -140,7 +140,7 @@
 							.判断：5, 不能包含：\\ / : * ? "" < > |
 						#>
 						if ($GUILocationCustomizeShow.Text -match '[~#$@!%&*{}\\:<>?/|+"]') {
-							$UI_Main_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorOther
+							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							return
 						}
@@ -149,7 +149,7 @@
 							.判断：6. 不能大于 260 字符
 						#>
 						if ($GUILocationCustomizeShow.Text.length -gt 128) {
-							$UI_Main_Error.Text = $lang.SelectFromError -f $($lang.ISOLengthError -f "260")
+							$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISOLengthError -f "260")"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
 							return
 						}
@@ -258,14 +258,14 @@
 		add_Click      = { Change_Location_Refresh }
 	}
 	$GUILocationCustomizeTips = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 70
+		Height         = 80
 		Width          = 355
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $False
 		Padding        = 0
 		Dock           = 0
-		Location       = '51,120'
+		Location       = '52,125'
 	}
 	$GUILocationVerifyErrorMsg = New-Object system.Windows.Forms.Label -Property @{
 		AutoSize       = 1
@@ -275,21 +275,21 @@
 		Height         = 22
 		Width          = 380
 		Text           = $lang.LocationComputer
-		Location       = '40,195'
+		Location       = '40,215'
 		add_Click      = { Change_Location_Refresh }
 	}
 	$GUILocationUsers  = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 380
 		Text           = "Users"
-		Location       = '40,223'
+		Location       = '40,250'
 		add_Click      = { Change_Location_Refresh }
 	}
 	$GUILocationUserName = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 380
 		Text           = $lang.LocationUserName
-		Location       = '40,251'
+		Location       = '40,285'
 		Checked        = $True
 		add_Click      = { Change_Location_Refresh }
 	}
@@ -298,13 +298,13 @@
 		Height         = 22
 		Width          = 410
 		Text           = $lang.SelectAutoAvailable
-		Location       = '10,295'
+		Location       = '10,330'
 	}
 	$GUILocationLowSize = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 380
 		Text           = $lang.SelectCheckAvailable
-		Location       = '26,320'
+		Location       = '26,360'
 		Checked        = $True
 		add_Click      = {
 			if ($GUILocationLowSize.Checked) {
@@ -318,7 +318,7 @@
 	$SelectLowSize     = New-Object System.Windows.Forms.NumericUpDown -Property @{
 		Height         = 22
 		Width          = 60
-		Location       = "45,350"
+		Location       = "45,390"
 		Value          = 1
 		Minimum        = 1
 		Maximum        = 999999
@@ -329,13 +329,13 @@
 		Height         = 22
 		Width          = 80
 		Text           = "GB"
-		Location       = "115,354"
+		Location       = "115,394"
 	}
 	$GUILocationTitle  = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 22
 		Width          = 380
 		Text           = $lang.ChangeInstallDisk
-		Location       = '24,400'
+		Location       = '24,440'
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
 		LinkBehavior   = "NeverUnderline"
@@ -349,14 +349,14 @@
 		autoScroll     = $true
 		Padding        = "8,0,8,0"
 		Dock           = 0
-		Location       = '30,423'
+		Location       = '30,463'
 	}
 
 	$GUILocationCurrent = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 22
 		Width          = 385
 		Text           = $lang.LocationCurrent
-		Location       = '30,567'
+		Location       = '30,605'
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
 		LinkBehavior   = "NeverUnderline"
@@ -373,7 +373,7 @@
 		Height         = 22
 		Width          = 385
 		Text           = $lang.LocationInitial
-		Location       = '30,595'
+		Location       = '30,635'
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
 		LinkBehavior   = "NeverUnderline"
@@ -394,15 +394,15 @@
 		Height         = 22
 		Width          = 430
 		Text           = $lang.LocationUserFolderTips
-		Location       = '472,10'
+		Location       = '472,15'
 	}
 	$GUILocationItemPanel = New-Object System.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 390
+		Height         = 355
 		Width          = 500
 		autoSizeMode   = 1
 		Padding        = "8,0,8,0"
-		Location       = '490,38'
+		Location       = '490,45'
 		autoScroll     = $True
 	}
 	$GUILocationItemDesktop = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -439,7 +439,7 @@
 		Height         = 22
 		Width          = 475
 		Text           = $lang.LocationDocuments
-		Location       = '0,65'
+		Location       = '0,85'
 		Checked        = $True
 		add_Click      = {
 			if ($GUILocationItemDocuments.Checked) {
@@ -453,23 +453,24 @@
 		Height         = 30
 		Width          = 425
 		Text           = ""
-		Location       = '18,90'
+		Location       = '18,110'
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
 	$GUILocationItemDocumentsSelect = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = '450,90'
+		Location       = '450,110'
 		Height         = 22
 		Width          = 25
 		add_Click      = { Change_Location_New_Path -KnownFolder "Documents" }
 		Text           = "..."
 	}
+
 	$GUILocationItemDownloads = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 475
 		Text           = $lang.LocationDownloads
-		Location       = '0,130'
+		Location       = '0,170'
 		Checked        = $True
 		add_Click      = {
 			if ($GUILocationItemDownloads.Checked) {
@@ -483,23 +484,24 @@
 		Height         = 30
 		Width          = 425
 		Text           = ""
-		Location       = '18,155'
+		Location       = '18,195'
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
 	$GUILocationItemDownloadsSelect = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = '450,155'
+		Location       = '450,195'
 		Height         = 22
 		Width          = 25
 		add_Click      = { Change_Location_New_Path -KnownFolder "Downloads" }
 		Text           = "..."
 	}
+
 	$GUILocationItemMusic = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 475
 		Text           = $lang.LocationMusic
-		Location       = '0,195'
+		Location       = '0,255'
 		Checked        = $True
 		add_Click      = {
 			if ($GUILocationItemMusic.Checked) {
@@ -513,23 +515,24 @@
 		Height         = 30
 		Width          = 425
 		Text           = ""
-		Location       = '18,220'
+		Location       = '18,280'
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
 	$GUILocationItemMusicSelect = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = '450,220'
+		Location       = '450,280'
 		Height         = 22
 		Width          = 25
 		add_Click      = { Change_Location_New_Path -KnownFolder "Music" }
 		Text           = "..."
 	}
+
 	$GUILocationItemPictures = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 475
 		Text           = $lang.LocationPictures
-		Location       = '0,260'
+		Location       = '0,340'
 		Checked        = $True
 		add_Click      = {
 			if ($GUILocationItemPictures.Checked) {
@@ -543,23 +546,24 @@
 		Height         = 30
 		Width          = 425
 		Text           = ""
-		Location       = '18,285'
+		Location       = '18,365'
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
 	$GUILocationItemPicturesSelect = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = '450,285'
+		Location       = '450,365'
 		Height         = 22
 		Width          = 25
 		add_Click      = { Change_Location_New_Path -KnownFolder "Pictures" }
 		Text           = "..."
 	}
+
 	$GUILocationItemVideos = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 475
 		Text           = $lang.LocationVideos
-		Location       = '0,325'
+		Location       = '0,425'
 		Checked        = $True
 		add_Click      = {
 			if ($GUILocationItemVideos.Checked) {
@@ -573,13 +577,13 @@
 		Height         = 30
 		Width          = 425
 		Text           = ""
-		Location       = '18,350'
+		Location       = '18,450'
 		BackColor      = "#FFFFFF"
 		ReadOnly       = $True
 	}
 	$GUILocationItemVideosSelect = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = '450,350'
+		Location       = '450,450'
 		Height         = 22
 		Width          = 25
 		add_Click      = { Change_Location_New_Path -KnownFolder "Videos" }
@@ -593,39 +597,39 @@
 		Height         = 22
 		Width          = 430
 		Text           = $lang.LocationDone
-		Location       = '472,455'
+		Location       = '472,440'
 	}
 	$GUILocationFinishSync = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 490
 		Text           = $lang.LocationDoneSync
-		Location       = '492,482'
+		Location       = '492,470'
 		Checked        = $True
 	}
 	$GUILocationFinishClear = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 22
 		Width          = 490
 		Text           = $lang.LocationDoneClean
-		Location       = '492,510'
+		Location       = '492,505'
 		ForeColor      = "#0000FF"
 	}
 	$GUILocationFinishClearTips = New-Object System.Windows.Forms.Label -Property @{
 		Height         = 38
 		Width          = 475
 		Text           = $lang.LocationDoneCleanTips
-		Location       = '508,535'
+		Location       = '508,530'
 	}
 	
 	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
-		Location       = "10,598"
+		Location       = "492,598"
 		Height         = 20
 		Width          = 20
 		SizeMode       = "StretchImage"
 	}
 	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
-		Location       = "16,645"
+		Location       = "517,600"
 		Height         = 30
-		Width          = 385
+		Width          = 470
 		Text           = ""
 	}
 	$GUILocationOK     = New-Object system.Windows.Forms.Button -Property @{

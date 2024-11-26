@@ -7,7 +7,7 @@
 	CreateASCAuthor           = 서명자
 	CreateASCAuthorTips       = 선택한 서명자가 없습니다.
 	UpCreateSHA256            = 업그레이드 패키지 생성 .SHA-256
-	SelectFromError           = 오류: {0}
+	SelectFromError           = 오류
 	Uping                     = 생성
 	SkipCreate                = 생성 건너뛰기, 찾을 수 없음
 	ZipStatus                 = 7-Zip 이 설치되어 있지 않습니다.

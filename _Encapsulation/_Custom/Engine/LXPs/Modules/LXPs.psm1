@@ -1763,8 +1763,7 @@ Function Language
 		.Automatic
 		.自动
 	#>
-	if ($Auto)
-	{
+	if ($Auto) {
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name LXPs).Author)\LXPs" -Name "Language" -ErrorAction SilentlyContinue) {
 			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name LXPs).Author)\LXPs" -Name "Language"
 			Language_Change -lang $GetLanguage

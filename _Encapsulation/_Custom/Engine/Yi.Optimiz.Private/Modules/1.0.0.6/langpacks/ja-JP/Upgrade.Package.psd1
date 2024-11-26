@@ -7,7 +7,7 @@
 	CreateASCAuthor           = 署名者
 	CreateASCAuthorTips       = 署名者が選択されていません。
 	UpCreateSHA256            = アップグレードパッケージを生成する .SHA-256
-	SelectFromError           = エラー：{0}
+	SelectFromError           = エラー
 	Uping                     = 生成
 	SkipCreate                = 世代をスキップしますが見つかりません
 	ZipStatus                 = 7-Zip がインストールされていません。

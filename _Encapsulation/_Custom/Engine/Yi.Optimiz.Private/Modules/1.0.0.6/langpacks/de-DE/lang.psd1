@@ -29,6 +29,7 @@
 	RefreshModules            = Hot-Refresh aller Module
 	ForceUpdate               = Prüfung und Aktualisierung erzwingen
 	Necessary                 = Notwendige Software
+	MostUsedSoftware          = Häufig verwendete Software
 	System                    = System
 	Service                   = Dienst
 	TaskBar                   = alle Icons in der Taskleiste

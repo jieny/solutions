@@ -1299,7 +1299,7 @@ Function Cleanup_Disk
 		.进行清理。 必须转换 SageSet 编号
 	#>
 	$Args = "/sagerun:$([string]([int]$SageSet.Substring($SageSet.Length-4)))"
-	Start-Process "$($env:SystemRoot)\System32\cleanmgr.exe" -ArgumentList $Args
+	Start-Process -FilePath "$($env:SystemRoot)\System32\cleanmgr.exe" -ArgumentList $Args
 
 	<#
 		.Remove the Stateflags

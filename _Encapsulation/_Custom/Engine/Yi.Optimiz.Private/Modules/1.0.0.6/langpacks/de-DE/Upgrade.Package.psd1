@@ -7,7 +7,7 @@
 	CreateASCAuthor           = Unterzeichner
 	CreateASCAuthorTips       = Keine Unterzeichner ausgewählt.
 	UpCreateSHA256            = Generieren Sie das Upgrade Paket .SHA-256
-	SelectFromError           = Fehler: {0}
+	SelectFromError           = Fehler
 	Uping                     = Erstellen
 	SkipCreate                = Generierung überspringen, nicht gefunden
 	ZipStatus                 = 7-Zip ist nicht installiert.

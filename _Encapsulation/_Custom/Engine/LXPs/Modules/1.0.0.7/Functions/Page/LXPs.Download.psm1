@@ -320,7 +320,7 @@ Function LXPs_Download
 			#>
 			if ([string]::IsNullOrEmpty($UI_Main_Download_Match_Version_Select.Text)) {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.NoSetLabel
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.NoSetLabel)"
 				return
 			}
 
@@ -330,7 +330,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '^\s') {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				return
 			}
 
@@ -340,7 +340,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '\s$') {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				return
 			}
 
@@ -350,7 +350,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '\s{2,}$') {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				return
 			}
 
@@ -360,7 +360,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '\s{1,}') {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorSpace
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				return
 			}
 
@@ -370,7 +370,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '[A-Za-z]+') {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorAZ
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorAZ)"
 				return
 			}
 
@@ -380,7 +380,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text -match '[~#$@!%&*{}<>?/|+".]') {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $lang.ISO9660TipsErrorOther
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 				return
 			}
 
@@ -390,7 +390,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text.length -lt 5) {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $($lang.ISOShortError -f "5")
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISOShortError -f "5")"
 				return
 			}
 
@@ -400,7 +400,7 @@ Function LXPs_Download
 			#>
 			if ($UI_Main_Download_Match_Version_Select.Text.length -gt 16) {
 				$UI_Main_Download_Match_Version_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Download_Match_Version_Error.Text = $lang.SelectFromError -f $($lang.ISOLengthError -f "16")
+				$UI_Main_Download_Match_Version_Error.Text = "$($lang.SelectFromError): $($lang.ISOLengthError -f "16")"
 				return
 			}
 
@@ -1183,7 +1183,7 @@ Function LXPs_Download
 				Save_Dynamic -regkey "LXPs" -name "Select_Download_Language" -value $Script:Queue_Language_Download_Select -Multi
 			} else {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = $lang.SelectFromError -f $lang.Not_Select
+				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.Not_Select)"
 				return
 			}
 
@@ -1196,7 +1196,7 @@ Function LXPs_Download
 			} else {
 				if ([string]::IsNullOrEmpty($Script:Version)) {
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\Assets\icon\Error.ico")
-					$UI_Main_Error.Text = $lang.SelectFromError -f $lang.OSVersion
+					$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.OSVersion)"
 					return
 				}
 

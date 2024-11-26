@@ -839,9 +839,6 @@ Function Installation_interface_UI
 		$UI_Main_Save_To_Restore,
 		$UI_Main_InstlTo_Wrap,
 		$UI_Main_Adv_Name,
-		$UI_Main_Adv_Env,
-		$UI_Main_Adv_Env_Tips,
-		$UI_Main_Router_Wrap,
 		$UI_Main_To_Name,
 		$UI_Main_To,
 		$UI_Main_End_Wrap
@@ -1081,7 +1078,7 @@ Function Download_Process
 	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -OutFile $NewFilePath -TimeoutSec 15 -ErrorAction stop }
 
 	if ($error.Count -eq 0) {
-		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
+		Write-Host "`n   $($lang.UpdateQueryingTime -f $time.TotalMilliseconds)"
 	} else {
 		Write-host "`n   $($lang.UpdateConnectFailed)"
 		return

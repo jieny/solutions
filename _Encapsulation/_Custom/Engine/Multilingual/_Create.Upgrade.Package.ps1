@@ -307,7 +307,7 @@ Function Update_Create_UI
 			if ($UI_Main_Create_ASC.Enabled) {
 				if ($UI_Main_Create_ASC.Checked) {
 					if ([string]::IsNullOrEmpty($UI_Main_Create_ASCSign.Text)) {
-						$GUIUpdateErrorMsg.Text = $lang.SelectFromError -f $lang.CreateASCAuthorTips
+						$GUIUpdateErrorMsg.Text = "$($lang.SelectFromError): $($lang.CreateASCAuthorTips)"
 						return
 					} else {
 						Save_Dynamic -regkey "Multilingual" -name "PGP" -value $UI_Main_Create_ASCSign.Text -String
@@ -459,6 +459,7 @@ Function Update_Create_Process_Add
 		switch ($Type) {
 			"zip" {
 				Write-Host "   * $($lang.Uping) $UpdateName.zip"
+
 				$arguments = @(
 					"a",
 					"-tzip",
@@ -470,11 +471,13 @@ Function Update_Create_Process_Add
 					"-mx9";
 				)
 				Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
+
 				remove-item -path "$($TempFolderUpdate)\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
 			"tar" {
 				Write-Host "   * $($lang.Uping) $($UpdateName).tar"
+
 				$arguments = @(
 					"a",
 					"$($TempFolderUpdate)\$($UpdateName).tar",
@@ -483,6 +486,7 @@ Function Update_Create_Process_Add
 					"-r";
 				)
 				Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
+
 				remove-item -path "$($TempFolderUpdate)\*.tar" -Force -ErrorAction SilentlyContinue
 				Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 			}
@@ -497,6 +501,7 @@ Function Update_Create_Process_Add
 						"-mx9";
 					)
 					Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
+
 					remove-item -path "$($TempFolderUpdate)\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
@@ -514,6 +519,7 @@ Function Update_Create_Process_Add
 						"-mx9";
 					)
 					Start-Process -FilePath $Verify_Install_Path -ArgumentList $Arguments -Wait -WindowStyle Minimized
+
 					remove-item -path "$($TempFolderUpdate)\*.tar" -Force -ErrorAction SilentlyContinue
 					Write-Host "     $($lang.Done)`n" -ForegroundColor Green
 				} else {
@@ -536,9 +542,9 @@ Function Update_Create_ASC
 
 			Write-Host "   * $($lang.Uping) $UpdateName.asc"
 			if (([string]::IsNullOrEmpty($Script:secure_password))) {
-				Start-Process $Verify_Install_Path -argument "--local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+				Start-Process -FilePath $Verify_Install_Path -argument "--local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			} else {
-				Start-Process $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$Script:secure_password"" --local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
+				Start-Process -FilePath $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$Script:secure_password"" --local-user ""$Script:SignGpgKeyID"" --output ""$($_.FullName).asc"" --detach-sign ""$($_.FullName)""" -Wait -WindowStyle Minimized
 			}
 
 			if (Test-Path "$($_.FullName).asc" -PathType Leaf) {
@@ -555,11 +561,11 @@ Function Update_Create_ASC
 Function Update_Create_SHA256
 {
 	Get-ChildItem $TempFolderUpdate -Include ($UpASType) -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
-		$fullnewpathFU = "$($_.FullName)"
+		$fullnewpathFU = $_.FullName
 		$fullnewpath = "$($_.FullName).sha256"
 
 		Write-Host "   * $($lang.Uping) $($_.FullName).sha256"
-		$calchash = (Get-FileHash $($fullnewpathFU) -Algorithm SHA256)
+		$calchash = (Get-FileHash -Path $fullnewpathFU -Algorithm SHA256)
 		"$($calchash.hash)  $($_.Name)" | Out-File -FilePath $fullnewpath -Encoding ASCII
 
 		Write-Host "     $($lang.Done)`n" -ForegroundColor Green

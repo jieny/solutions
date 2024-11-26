@@ -216,6 +216,12 @@ Function Image_Assign_Event_Master
 		Padding        = "15,0,10,10"
 	}
 
+	$UI_Main_Tips      = New-Object System.Windows.Forms.Label -Property @{
+		Height         = 300
+		Width          = 240
+		Text           = $lang.AssignMulTask
+		Location       = '560,15'
+	}
 	$UI_Main_Error     = New-Object system.Windows.Forms.Label -Property @{
 		Location       = "560,555"
 		Height         = 22
@@ -279,6 +285,7 @@ Function Image_Assign_Event_Master
 		$UI_AssignTips,
 		$UI_Main_Select_Assign_Multitasking,
 
+		$UI_Main_Tips,
 		$UI_Main_Error,
 		$UI_Main_Ok,
 		$UI_Main_Canel

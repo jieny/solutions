@@ -671,7 +671,7 @@ Function Language_Extract_UI
 
 					Check_Folder -chkpath "$($CopyTo)\$($NewLanguage)"
 					$arguments = "e", "-y", """$($SearchTempFile)""", "-o""$($CopyTo)\$($NewLanguage)""", "$($SearchNewPath)\*.*";
-					Start-Process $Verify_Install_Path $arguments -Wait -WindowStyle Hidden
+					Start-Process -FilePath $Verify_Install_Path $arguments -Wait -WindowStyle Hidden
 					$UI_Main_View_Detailed_Show.Text += "     $($lang.Done)`n"
 
 					ForEach ($itemCheckRepir in $Language_Repair_FileList) {

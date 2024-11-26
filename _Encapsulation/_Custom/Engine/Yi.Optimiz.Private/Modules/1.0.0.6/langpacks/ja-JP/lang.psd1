@@ -29,6 +29,7 @@
 	RefreshModules            = すべてのモジュールをホットリフレッシュします
 	ForceUpdate               = チェックと更新を強制します
 	Necessary                 = 必要なソフトウェア
+	MostUsedSoftware          = よく使われるソフトウェア
 	System                    = システム
 	Service                   = サービス
 	TaskBar                   = タスクバー内のすべてのアイコン

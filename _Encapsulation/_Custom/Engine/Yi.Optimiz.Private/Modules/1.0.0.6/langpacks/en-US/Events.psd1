@@ -8,6 +8,7 @@
 
 	AssignTask                      = Assign available event tasks
 	AssignTips                      = Please select an assignable event task
+	AssignMulTask                   = Before you customize the required items, change the user folder location, optimize the system, optimize services, or delete UWP applications, create a system restore point.
 	QueueMode                       = On-demand mode
 	NoWork                          = No tasks
 '@

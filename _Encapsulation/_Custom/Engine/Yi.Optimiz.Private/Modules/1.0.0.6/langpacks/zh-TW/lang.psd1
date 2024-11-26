@@ -29,6 +29,7 @@
 	RefreshModules            = 熱刷新所有模組
 	ForceUpdate               = 強行檢查並更新
 	Necessary                 = 必備軟件
+	MostUsedSoftware          = 常用軟體
 	System                    = 系統
 	Service                   = 服務
 	TaskBar                   = 任務欄所有圖標

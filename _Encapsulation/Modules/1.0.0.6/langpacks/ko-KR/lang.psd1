@@ -36,7 +36,7 @@
 	DeDuplication_Unlock            = 비활성화된 중복 잠금 해제
 	Existed                         = 존재했다
 	FailedCreateFolder              = 디렉토리 생성 실패
-	FailedCreateFile                = 파일 생성 실패: \
+	FailedCreateFile                = 파일 생성 실패
 	ToMsg                           = \n   {0} 몇 초 후에 자동으로 기본 메뉴로 돌아갑니다.
 	ToQuit                          = \n   {0} 몇 초 후에 메인 패널을 종료합니다.
 	OnDemandPlanTask                = 사용자 지정 알려진 이벤트 할당

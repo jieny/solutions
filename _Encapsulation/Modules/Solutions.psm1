@@ -1770,8 +1770,7 @@ Function Language
 		.Automatic
 		.自动
 	#>
-	if ($Auto)
-	{
+	if ($Auto) {
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "Language" -ErrorAction SilentlyContinue) {
 			$GetLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "Language"
 			Language_Change -lang $GetLanguage

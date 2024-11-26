@@ -2452,7 +2452,7 @@ Function ISO_Create_UI
 					.测试 ISO 生成临时目录
 				#>
 				$RandomGuid = [guid]::NewGuid()
-				$ISOTestFolderMain = "$($Global:ISOSaveToFolder)$($RandomGuid)"
+				$ISOTestFolderMain = Join-Path -Path $Global:ISOSaveToFolder -ChildPath $RandomGuid -ErrorAction SilentlyContinue
 				Check_Folder -chkpath $ISOTestFolderMain
 
 				<#
@@ -2485,11 +2485,26 @@ Function ISO_Create_UI
 
 					Out-File -FilePath $test_iso_Save_Temp -Encoding utf8 -ErrorAction SilentlyContinue
 
-					$OSCDIMGArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
-					if (Test-Path -Path $OSCDIMGArch -PathType Leaf) {
+					$OscdimgArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
+					if (Test-Path -Path $OscdimgArch -PathType Leaf) {
 						$test_iso_Save_Temp_Create = Join-Path -Path $Global:ISOSaveToFolder -ChildPath $RandomGuid -ErrorAction SilentlyContinue
 
-						Start-Process -Path $OSCDIMGArch -ArgumentList "-n -d -m ""$($test_iso_Save_Temp_Create)"" ""$($Global:ISOSaveToFullName)""" -wait -WindowStyle Hidden
+						$arguments = @(
+							"-n",
+							"-d",
+							"-m",
+							"""$($test_iso_Save_Temp_Create)""",
+							"""$($Global:ISOSaveToFullName)""";
+						)
+
+						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+							Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+							Write-host "   $('-' * 80)"
+							write-host "   Start-Process -FilePath '$($OscdimgArch)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
+							Write-host "   $('-' * 80)`n"
+						}
+
+						Start-Process -FilePath $OscdimgArch -ArgumentList $Arguments -Wait -WindowStyle Minimized
 					}
 
 					<#
@@ -3317,8 +3332,8 @@ Function ISO_Create_UI
 		ISO_Create_Refresh_Label
 	}
 
-	$OSCDIMGArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
-	if (Test-Path -Path $OSCDIMGArch -PathType Leaf) {
+	$OscdimgArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
+	if (Test-Path -Path $OscdimgArch -PathType Leaf) {
 	} else {
 		$UI_Main_Is_Create_ISO.Enabled = $False
 		$UI_Main_Is_Create_ISO.Checked = $False
@@ -3901,16 +3916,34 @@ Function ISO_Create_Process
 				.Execute the generate ISO command
 				.执行生成 ISO 命令
 			#>
-			$OSCDIMGArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
+			$OscdimgArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
 
 			Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
 			Write-host "   $('-' * 80)"
-			if (Test-Path -Path $OSCDIMGArch -PathType Leaf) {
-				Write-Host "   $($OSCDIMGArch)"
+			if (Test-Path -Path $OscdimgArch -PathType Leaf) {
+				Write-Host "   $($OscdimgArch)"
 				$ISOBootetfsboot = Join-Path -Path $Global:Image_source -ChildPath "boot\etfsboot.com" -ErrorAction SilentlyContinue
 				$ISOBootefisys = Join-Path -Path $Global:Image_source -ChildPath "efi\microsoft\boot\efisys.bin" -ErrorAction SilentlyContinue
 
-				start-process -Path $OSCDIMGArch -ArgumentList "-m -o -u2 -udfver102 -l""$($Global:ISOISOCustomLabel)"" -bootdata:2#p0,e,b""$($ISOBootetfsboot)""#pEF,e,b""$($ISOBootefisys)"" ""$($Global:Image_source)"" ""$($Global:ISOSaveToFullName)""" -wait -nonewwindow
+				$arguments = @(
+					"-m",
+					"-o",
+					"-u2",
+					"-udfver102",
+					"-l""$($Global:ISOISOCustomLabel)""",
+					"-bootdata:2#p0,e,b""$($ISOBootetfsboot)""#pEF,e,b""$($ISOBootefisys)""",
+					"""$($Global:Image_source)""",
+					"""$($Global:ISOSaveToFullName)""";
+				)
+
+				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+					Write-Host "`n   $($lang.Command)" -ForegroundColor Yellow
+					Write-host "   $('-' * 80)"
+					write-host "   Start-Process -FilePath '$($OscdimgArch)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
+					Write-host "   $('-' * 80)`n"
+				}
+
+				Start-Process -FilePath $OscdimgArch -ArgumentList $Arguments -Wait -WindowStyle Minimized
 			}
 
 			Write-Host "   $($lang.Uping)".PadRight(28) -NoNewline
@@ -3931,7 +3964,7 @@ Function ISO_Create_Process
 				Write-Host "   $($lang.Operable)" -ForegroundColor Green
 				Write-Host "   $($lang.LXPsWaitAddUpdate)".PadRight(28) -NoNewline
 
-				start-process "$($PSScriptRoot)\..\..\..\..\AIO\bypass11\Quick_11_iso_esd_wim_TPM_toggle.bat" -ArgumentList "$($Global:ISOSaveToFolder)$($Global:ISOSaveToFileName)" -wait -WindowStyle Minimized
+				start-process -FilePath "$($PSScriptRoot)\..\..\..\..\AIO\bypass11\Quick_11_iso_esd_wim_TPM_toggle.bat" -ArgumentList "$($Global:ISOSaveToFolder)$($Global:ISOSaveToFileName)" -wait -WindowStyle Minimized
 
 				Write-Host "   $($lang.Done)" -ForegroundColor Green
 			} else {
@@ -3955,9 +3988,9 @@ Function ISO_Create_Process
 						Write-Host "   * $($Global:ISOSaveToFullName).asc"
 						Write-Host "   $($lang.Uping)".PadRight(28) -NoNewline
 						if ([string]::IsNullOrEmpty($Global:secure_password)) {
-							Start-Process $Verify_Install_Path -argument "--local-user $Global:SignGpgKeyID --output "$($Global:ISOSaveToFullName).asc" --detach-sign "$($Global:ISOSaveToFullName)"" -Wait -WindowStyle Minimized
+							Start-Process -FilePath $Verify_Install_Path -argument "--local-user $Global:SignGpgKeyID --output "$($Global:ISOSaveToFullName).asc" --detach-sign "$($Global:ISOSaveToFullName)"" -Wait -WindowStyle Minimized
 						} else {
-							Start-Process $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase $Global:secure_password --local-user $Global:SignGpgKeyID --output "$($Global:ISOSaveToFullName).asc" --detach-sign "$($Global:ISOSaveToFullName)"" -Wait -WindowStyle Minimized
+							Start-Process -FilePath $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase $Global:secure_password --local-user $Global:SignGpgKeyID --output "$($Global:ISOSaveToFullName).asc" --detach-sign "$($Global:ISOSaveToFullName)"" -Wait -WindowStyle Minimized
 						}
 
 						if (Test-Path -Path "$($Global:ISOSaveToFullName).asc" -PathType Leaf) {
@@ -3995,13 +4028,13 @@ Function ISO_Create_Process
 				<#
 					.开始生成
 				#>
-				$calchash = (Get-FileHash "$($Global:ISOSaveToFullName)" -Algorithm SHA256)
+				$calchash = (Get-FileHash -Path $Global:ISOSaveToFullName -Algorithm SHA256)
 				"$($calchash.Hash)  $($Global:ISOSaveToFileName)" | Out-File -FilePath "$($Global:ISOSaveToFullName).sha256" -Encoding ASCII -ErrorAction SilentlyContinue | Out-Null
 
 				if (Test-Path -Path "$($Global:ISOSaveToFullName).sha256" -PathType Leaf) {
 					Write-Host $lang.Done -ForegroundColor Green
 				} else {
-					Write-Host "$($lang.FailedCreateFile)$($Global:ISOSaveToFullName).sha256" -ForegroundColor Red
+					Write-Host "$($lang.FailedCreateFile): $($Global:ISOSaveToFullName).sha256" -ForegroundColor Red
 				}
 			} else {
 				Write-Host "   $($lang.Inoperable)" -ForegroundColor Red

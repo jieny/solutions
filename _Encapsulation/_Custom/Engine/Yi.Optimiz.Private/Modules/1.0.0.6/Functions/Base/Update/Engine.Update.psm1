@@ -30,8 +30,7 @@ Function Update
 	Logo -Title $($lang.ChkUpdate)
 	Write-Host "   $($lang.ChkUpdate)`n   $('-' * 80)"
 
-	if ($Auto)
-	{
+	if ($Auto) {
 		ForEach ($item in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
 			$Script:ServerList += $item
 		}
@@ -68,7 +67,7 @@ Function Update_Setting_UI
 		Height         = 22
 		Width          = 505
 		Text           = $lang.UpdateServerSelect
-		Location       = '10,6'
+		Location       = '10,15'
 		Checked        = $True
 		add_Click      = {
 			if ($UI_Main_Auto_Select.Checked) {
@@ -81,7 +80,7 @@ Function Update_Setting_UI
 	$UI_Main_Menu      = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
 		Height         = 365
 		Width          = 530
-		Location       = "0,40"
+		Location       = "0,45"
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $True
@@ -101,6 +100,12 @@ Function Update_Setting_UI
 		Width          = 505
 		Location       = '12,470'
 		Text           = $lang.UpdateReset
+	}
+	$UI_Main_Reset_Tips = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 36
+		Width          = 490
+		Location       = "28,505"
+		Text           = $lang.UpdateResetTips
 	}
 
 	$UI_Main_Error_Icon = New-Object system.Windows.Forms.PictureBox -Property @{
@@ -197,7 +202,7 @@ Function Update_Setting_UI
 	ForEach ($item in (Get-Module -Name Engine).PrivateData.PSData.UpdateServer) {
 		$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 			Height    = 35
-			Width     = 395
+			Width     = 485
 			Text      = $item
 			Tag       = $item
 			Checked   = $true
@@ -305,7 +310,7 @@ Function Update_Process
 	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -TimeoutSec 15 -ErrorAction stop }
 
 	if ($error.Count -eq 0) {
-		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
+		Write-Host "`n   $($lang.UpdateQueryingTime -f $time.TotalMilliseconds)"
 	} else {
 		Write-host "`n   $($lang.UpdateConnectFailed)"
 		return

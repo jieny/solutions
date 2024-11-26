@@ -118,7 +118,7 @@ Function UnPack_Create_UI
 		Height         = 30
 		Width          = 360
 		Text           = $lang.UpSources -f $UnPackigtype
-		Location       = '15,10'
+		Location       = '15,15'
 		Checked        = $True
 		add_Click      = {
 			$UI_Main_Error.Text = ""
@@ -137,7 +137,7 @@ Function UnPack_Create_UI
 		Width          = 360
 		autoSizeMode   = 1
 		Padding        = "28,0,8,0"
-		Location       = "0,40"
+		Location       = "0,45"
 		autoScroll     = $True
 		Enabled        = $False
 	}
@@ -708,7 +708,7 @@ Function UnPack_Compression_Create_Format
 				} else {
 					$arguments = "a", "-m0=lzma2", "-v3072M", "$($TempFolderUnPack)\$($UnPackName).7z", "*.*", "-mcu=on", "-mx9";
 				}
-				Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
+				Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 				Write-Host $lang.Done -ForegroundColor Green
 
 				Write-Host
@@ -721,7 +721,7 @@ Function UnPack_Compression_Create_Format
 				} else {
 					$arguments = "a", "-tzip", "$($TempFolderUnPack)\$($UnPackName).zip", "*.*", "-mcu=on", "-r", "-mx9";
 				}
-				Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
+				Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 				Write-Host $lang.Done -ForegroundColor Green
 
 				Write-Host "`n   * latest.zip"
@@ -743,7 +743,7 @@ Function UnPack_Compression_Create_Format
 				} else {
 					$arguments = "a", "$($TempFolderUnPack)\$($UnPackName).tar", "*.*", "-r";
 				}
-				Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
+				Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 				Write-Host $lang.Done -ForegroundColor Green
 
 				Write-Host
@@ -753,7 +753,7 @@ Function UnPack_Compression_Create_Format
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
 				if (Test-Path -Path "$($TempFolderUnPack)\$($UnPackName).tar") {
 					$arguments = "a", "$($TempFolderUnPack)\$($UnPackName).tar.xz", "$($TempFolderUnPack)\$($UnPackName).tar", "-mf=bcj", "-mx9";
-					Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
+					Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 					Write-Host $lang.Done -ForegroundColor Green
 				} else {
 					Write-Host "$($lang.SkipCreate): $UnPackName.tar"
@@ -766,7 +766,7 @@ Function UnPack_Compression_Create_Format
 				Write-Host "     $($lang.Uping)".PadRight(28) -NoNewline
 				if (Test-Path -Path "$($TempFolderUnPack)\$($UnPackName).tar") {
 					$arguments = "a", "-tgzip", "$($TempFolderUnPack)\$($UnPackName).tar.gz", "$($TempFolderUnPack)\$($UnPackName).tar", "-mx9";
-					Start-Process $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
+					Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
 					Write-Host $lang.Done -ForegroundColor Green
 				} else {
 					Write-Host "$($lang.SkipCreate): $UnPackName.tar"
@@ -826,9 +826,9 @@ Function UnPack_Create_SHA256_GPG
 					Remove-Item -path $fullnewpathasc -Force -ErrorAction SilentlyContinue
 
 					if ([string]::IsNullOrEmpty($Global:secure_password)) {
-						Start-Process $Verify_Install_Path -argument "--local-user ""$($Global:SignGpgKeyID)"" --output ""$($fullnewpathasc)"" --detach-sign ""$($fullnewpath)""" -Wait -WindowStyle Minimized
+						Start-Process -FilePath $Verify_Install_Path -argument "--local-user ""$($Global:SignGpgKeyID)"" --output ""$($fullnewpathasc)"" --detach-sign ""$($fullnewpath)""" -Wait -WindowStyle Minimized
 					} else {
-						Start-Process $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$($Global:secure_password)"" --local-user ""$($Global:SignGpgKeyID)"" --output ""$($fullnewpathasc)"" --detach-sign ""$($fullnewpath)""" -Wait -WindowStyle Minimized
+						Start-Process -FilePath $Verify_Install_Path -argument "--pinentry-mode loopback --passphrase ""$($Global:secure_password)"" --local-user ""$($Global:SignGpgKeyID)"" --output ""$($fullnewpathasc)"" --detach-sign ""$($fullnewpath)""" -Wait -WindowStyle Minimized
 					}
 
 					if (Test-Path -Path $fullnewpathasc -PathType Leaf) {
@@ -857,7 +857,7 @@ Function UnPack_Create_SHA256_GPG
 			} else {
 				Remove-Item -Force -ErrorAction SilentlyContinue $fullnewpathsha256
 
-				$calchash = (Get-FileHash $fullnewpath -Algorithm SHA256)
+				$calchash = (Get-FileHash -Path $fullnewpath -Algorithm SHA256)
 				"$($calchash.Hash)  $($shortnamesha256)" | Out-File -FilePath $fullnewpathsha256 -Encoding ASCII -ErrorAction SilentlyContinue
 				Write-Host $lang.Done -ForegroundColor Green
 			}

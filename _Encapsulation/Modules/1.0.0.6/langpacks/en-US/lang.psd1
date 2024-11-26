@@ -36,7 +36,7 @@
 	DeDuplication_Unlock            = Unlock Disabled Duplicates
 	Existed                         = Existed
 	FailedCreateFolder              = Failed to create directory
-	FailedCreateFile                = Failed to create file: \
+	FailedCreateFile                = Failed to create file
 	ToMsg                           = \n   Automatically return to the main menu after {0} seconds.
 	ToQuit                          = \n   Exit the main panel in {0} seconds.
 	OnDemandPlanTask                = Custom Assign Known Events

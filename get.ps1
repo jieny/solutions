@@ -1257,7 +1257,7 @@ Function Download_Process
 	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -OutFile $NewFilePath -TimeoutSec 15 -ErrorAction stop }
 
 	if ($error.Count -eq 0) {
-		Write-Host "`n   $($lang.UpdateQueryingTime -f $($time.TotalMilliseconds))"
+		Write-Host "`n   $($lang.UpdateQueryingTime -f $time.TotalMilliseconds)"
 	} else {
 		Write-host "`n   $($lang.UpdateConnectFailed)"
 		return
