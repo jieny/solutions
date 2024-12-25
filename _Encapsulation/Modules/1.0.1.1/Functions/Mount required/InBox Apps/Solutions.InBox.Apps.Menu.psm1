@@ -104,7 +104,7 @@
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " E " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.ExcludeItem)" -ForegroundColor Green
+		Write-Host "  $($lang.ExcludeItem)" -ForegroundColor Red
 	}
 
 	Write-Host "`n`n  $($lang.GetInBoxApps)" -ForegroundColor Yellow
