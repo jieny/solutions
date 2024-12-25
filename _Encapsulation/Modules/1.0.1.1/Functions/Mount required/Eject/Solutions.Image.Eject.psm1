@@ -1443,10 +1443,10 @@ Function Image_Save_Primary_Key_Shortcuts
 	)
 
 	Write-Host "`n  $($lang.Command): " -NoNewline
-	Write-host "Save" -ForegroundColor Green
+	Write-host "Se" -ForegroundColor Green
 
 	Write-Host "  $($lang.RuleName): " -NoNewline
-	$Name = $Name.Remove(0, 5).Replace(' ', '')
+	$Name = $Name.Remove(0, 3).Replace(' ', '')
 	Write-host $Name -ForegroundColor Green
 
 	Write-Host "`n  $($lang.Event_Primary_Key) *" -ForegroundColor Yellow

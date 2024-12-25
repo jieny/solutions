@@ -251,15 +251,15 @@ Function Image_Get_Mount_Status
 			Write-host "$($lang.Short_Cmd): " -NoNewline
 
 			if (Image_Is_Mount) {
-				Write-Host " Esa " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+				Write-Host " ESE " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 				Write-host " " -NoNewline
-				Write-Host " Edns " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-				Write-host " " -NoNewline
+				Write-Host " EDNS " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+				Write-host ", " -NoNewline
 			}
 
 			Write-Host " MT " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-host " " -NoNewline
-			Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-host " " -NoNewline
 			Write-Host " Unmt " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-host " " -NoNewline

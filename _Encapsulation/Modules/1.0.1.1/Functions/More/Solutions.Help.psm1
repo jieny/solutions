@@ -25,10 +25,10 @@ Function Solutions_Help
 	}
 
 	if ($Full) {
-		Solutions_Help_Command -Name "Save" -Silent
+		Solutions_Help_Command -Name "Se" -Silent
 	} else {
 		Write-host "     " -NoNewline
-		Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 		Write-host " " -NoNewline
 		Write-Host "        $($lang.Event_Primary_Key), $($lang.Command), $($lang.Help) "
 	}
@@ -70,11 +70,11 @@ Function Solutions_Help
 	Write-Host "$($lang.Mount), $($lang.PleaseChoose)"
 
 	Write-Host "`n  $($lang.Mounted_Status)"
-	Write-Host "     Esa".PadRight(20) -NoNewline -ForegroundColor Yellow
+	Write-Host "     ESE".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.Image_Unmount_After): " -NoNewline
 	Write-Host $lang.Save -ForegroundColor Green
 
-	Write-Host "     Edns".PadRight(20) -NoNewline -ForegroundColor Yellow
+	Write-Host "     EDNS".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.Image_Unmount_After): " -NoNewline
 	Write-Host $lang.DoNotSave -ForegroundColor Green
 
@@ -228,9 +228,9 @@ Function Solutions_Help_Command
 			Solutions_Open_Command -Help
 			Get_Next
 		}
-		"Save" {
+		"Se" {
 			Write-Host $(' ' * 2) -NoNewline
-			Write-Host " Help Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " Help Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-Host " $($lang.Save)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			ForEach ($item in $Global:Image_Rule) {
@@ -238,7 +238,7 @@ Function Solutions_Help_Command
 					$NewFileFullPathMain = "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"
 					if (Test-Path -Path $NewFileFullPathMain -PathType leaf) {
 						Write-Host $(' ' * 7) -NoNewline
-						Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+						Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 						Write-host " " -NoNewline
 						Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 						Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
@@ -258,7 +258,7 @@ Function Solutions_Help_Command
 
 							if (Test-Path -Path $NewFileFullPathExpand -PathType leaf) {
 								Write-Host $(' ' * 7) -NoNewline
-								Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+								Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 								Write-host " " -NoNewline
 								Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 								Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow

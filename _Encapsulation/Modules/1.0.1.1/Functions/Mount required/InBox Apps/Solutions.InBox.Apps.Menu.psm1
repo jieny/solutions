@@ -118,7 +118,7 @@
 			Write-Host "  $($lang.ExportToLogs)" -ForegroundColor Red
 		}
 	} else {
-		Write-Host $lang.ExportToLogs -ForegroundColor Red
+		Write-Host "  $($lang.ExportToLogs)" -ForegroundColor Red
 	}
 
 	Write-host "    " -NoNewline
@@ -389,13 +389,13 @@
 		<#
 			.快捷指令：保存当前映像
 		#>
-		"Save" {
+		"Se" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Image_Eject_Save_Current
 			ToWait -wait 2
 			InBox_Apps_Menu
 		}
-		"Save *" {
+		"Se *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Image_Save_Primary_Key_Shortcuts -Name $PSItem
 			ToWait -wait 2
@@ -421,7 +421,7 @@
 		<#
 			.快捷指令：强行卸载所有已挂载前：保存
 		#>
-		"ESA" {
+		"ESE" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 
 			Write-Host "`n  $($lang.Image_Unmount_After): " -NoNewline

@@ -184,7 +184,7 @@ Function Mainpage
 	if (Image_Is_Select_IAB) {
 		if (Verify_Is_Current_Same) {
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
-			Write-Host " Save * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " Se * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-Host ", " -NoNewline
 
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
@@ -193,14 +193,14 @@ Function Mainpage
 			if (Image_Is_Mount) {
 				Write-Host "$($lang.Image_Unmount_After): " -NoNewline
 				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
-				Write-Host " Esa " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+				Write-Host " ESE " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 				Write-Host ", " -NoNewline
 
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
-				Write-Host " Edns " -BackgroundColor DarkMagenta -ForegroundColor White
+				Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 			} else {
 				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-				Write-Host " Save * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
+				Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
 				Write-Host ", " -NoNewline
 
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
@@ -211,14 +211,14 @@ Function Mainpage
 		if (Image_Is_Mount) {
 			Write-Host "$($lang.Image_Unmount_After): " -NoNewline
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
-			Write-Host " Esa " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " ESE " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-Host ", " -NoNewline
 
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
-			Write-Host " Edns " -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 		} else {
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-			Write-Host " Save * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
+			Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
 			Write-Host ", " -NoNewline
 
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
@@ -697,13 +697,13 @@ Function Mainpage
 			<#
 				.快捷指令：保存当前映像
 			#>
-			"Save" {
+			"Se" {
 				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 				Image_Eject_Save_Current
 				ToWait -wait 2
 				Mainpage
 			}
-			"Save *" {
+			"Se *" {
 				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 				Image_Save_Primary_Key_Shortcuts -Name $PSItem
 				ToWait -wait 2
@@ -729,7 +729,7 @@ Function Mainpage
 			<#
 				.快捷指令：强行卸载所有已挂载前：保存
 			#>
-			"ESA" {
+			"ESE" {
 				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 
 				Write-Host "`n  $($lang.Image_Unmount_After): " -NoNewline
