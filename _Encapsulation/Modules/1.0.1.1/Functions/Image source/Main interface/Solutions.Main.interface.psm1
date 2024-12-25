@@ -4733,7 +4733,7 @@ Write-Host "Test"
 		Height         = 40
 		Width          = 475
 		Margin         = "0,40,0,0"
-		Text           = $lang.SaveTo
+		Text           = $lang.ISOSaveTo
 	}
 	$GUIImageSourceISOCustomizePath = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30

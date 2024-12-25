@@ -231,38 +231,44 @@ Function Solutions_Help_Command
 		"Save" {
 			Write-Host $(' ' * 2) -NoNewline
 			Write-Host " Help Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-Host " $($lang.Setting): $($lang.Event_Primary_Key)" -ForegroundColor Yellow
+			Write-Host " $($lang.Save)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			ForEach ($item in $Global:Image_Rule) {
 				if ($item.Main.Suffix -eq "wim") {
-					Write-Host $(' ' * 7) -NoNewline
-					Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-					Write-host " " -NoNewline
-					Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
-					Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
-					Write-Host $item.Main.Uid -ForegroundColor Green
+					$NewFileFullPathMain = "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"
+					if (Test-Path -Path $NewFileFullPathMain -PathType leaf) {
+						Write-Host $(' ' * 7) -NoNewline
+						Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+						Write-host " " -NoNewline
+						Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
+						Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
+						Write-Host $item.Main.Uid -ForegroundColor Green
 
-					$InitNewImageSources = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($item.Main.ImageFileName)\$($item.Main.ImageFileName)\Mount"
-
-					Write-Host "        $($lang.Select_Path): " -NoNewline
-					Write-Host $InitNewImageSources -ForegroundColor Green
-					Write-Host
+						Write-Host "        $($lang.Select_Path): " -NoNewline
+						$InitNewImageSources = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($item.Main.ImageFileName)\$($item.Main.ImageFileName)\Mount"
+						Write-Host $InitNewImageSources -ForegroundColor Green
+						Write-Host
+					}
 				}
 
 				if ($item.Expand.Count -gt 0) {
 					ForEach ($Expand in $item.Expand) {
 						if ($Expand.Suffix -eq "wim") {
-							Write-Host $(' ' * 7) -NoNewline
-							Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-							Write-host " " -NoNewline
-							Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
-							Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
-							Write-Host $Expand.Uid -ForegroundColor Green
+							$NewFileFullPathExpand = "$($Expand.Path)\$($Expand.ImageFileName).$($Expand.Suffix)"
 
-							$InitNewImageMountToRouteRecovery = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($item.Main.ImageFileName)\$($Expand.ImageFileName)\Mount"
-							Write-Host "        $($lang.Select_Path): " -NoNewline
-							Write-Host $InitNewImageMountToRouteRecovery -ForegroundColor Green
-							Write-Host
+							if (Test-Path -Path $NewFileFullPathExpand -PathType leaf) {
+								Write-Host $(' ' * 7) -NoNewline
+								Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+								Write-host " " -NoNewline
+								Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
+								Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
+								Write-Host $Expand.Uid -ForegroundColor Green
+
+								Write-Host "        $($lang.Select_Path): " -NoNewline
+								$InitNewImageMountToRouteRecovery = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($item.Main.ImageFileName)\$($Expand.ImageFileName)\Mount"
+								Write-Host $InitNewImageMountToRouteRecovery -ForegroundColor Green
+								Write-Host
+							}
 						}
 					}
 				}
@@ -331,7 +337,7 @@ Function Solutions_Help_Command
 		"Sel" {
 			Write-Host $(' ' * 2) -NoNewline
 			Write-Host " Help Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-Host " $($lang.Setting): $($lang.Event_Primary_Key)" -ForegroundColor Yellow
+			Write-Host " $($lang.PleaseChoose): $($lang.Event_Primary_Key)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			ForEach ($item in $Global:Image_Rule) {
 				if ($item.Main.Suffix -eq "wim") {
@@ -344,7 +350,7 @@ Function Solutions_Help_Command
 
 					if (-not $NoShowFile) {
 						$TestWIMFile = Join-Path -Path $item.Main.Path -ChildPath "$($item.Main.ImageFileName).$($item.Main.Suffix)"
-						Write-Host "    $($lang.Select_Path): " -NoNewline
+						Write-Host "       $($lang.Select_Path): " -NoNewline
 						Write-Host $TestWIMFile -ForegroundColor Green
 						Write-Host
 					}
@@ -362,7 +368,7 @@ Function Solutions_Help_Command
 
 							if (-not $NoShowFile) {
 								$TestWIMFileExpand = Join-Path -Path $Expand.Path -ChildPath "$($Expand.ImageFileName).$($Expand.Suffix)"
-								Write-Host "    $($lang.Select_Path): " -NoNewline
+								Write-Host "       $($lang.Select_Path): " -NoNewline
 								Write-Host $TestWIMFileExpand -ForegroundColor Green
 								Write-Host
 							}

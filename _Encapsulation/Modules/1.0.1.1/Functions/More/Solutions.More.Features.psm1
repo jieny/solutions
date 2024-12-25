@@ -643,7 +643,7 @@ Function Solutions_Open_Command
 		Write-Host $(' ' * 7) -NoNewline
 		if (Test-Path -Path $Global:Image_source -PathType Container) {
 			Write-Host " O'D MN " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-Host "  $($lang.MainImageFolder)" -ForegroundColor Yellow
+			Write-Host "   $($lang.MainImageFolder)" -ForegroundColor Yellow
 			Write-Host "        $($lang.Select_Path): " -NoNewline
 			Write-Host $Global:Image_source -ForegroundColor Green
 		} else {
@@ -657,7 +657,7 @@ Function Solutions_Open_Command
 		Write-Host $(' ' * 7) -NoNewline
 		if (Test-Path -Path $Global:Mount_To_Route -PathType Container) {
 			Write-Host " O'D RT " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-Host "  $($lang.MountImageTo), $($lang.MainImageFolder)" -ForegroundColor Yellow
+			Write-Host "   $($lang.MountImageTo), $($lang.MainImageFolder)" -ForegroundColor Yellow
 			Write-Host "        $($lang.Select_Path): " -NoNewline
 			Write-Host $Global:Mount_To_Route -ForegroundColor Green
 		} else {
