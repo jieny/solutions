@@ -12,9 +12,8 @@ Function Solutions_Help
 	Clear-Host
 	Logo -Title $lang.Help
 
-	Write-Host "  $($lang.Short_Cmd)" -ForegroundColor Yellow
+	Write-Host "  $($lang.SelectSettingImage)"
 	Write-Host "  $('-' * 80)"
-
 	if ($Full) {
 		Solutions_Help_Command -Name "View" -Silent
 	} else {
@@ -30,7 +29,7 @@ Function Solutions_Help
 		Write-host "     " -NoNewline
 		Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 		Write-host " " -NoNewline
-		Write-Host "        $($lang.Event_Primary_Key), $($lang.Command), $($lang.Help) "
+		Write-Host "          $($lang.Event_Primary_Key), $($lang.Command), $($lang.Help) "
 	}
 
 	if ($Full) {
@@ -42,34 +41,31 @@ Function Solutions_Help
 		Write-Host "         $($lang.Event_Primary_Key), $($lang.Command), $($lang.Help) "
 	}
 
-	if ($Full) {
-		Solutions_Help_Command -Name "FX" -Silent
-	} else {
-		Write-Host "      FX *".PadRight(20) -NoNewline -ForegroundColor Yellow
-		Write-Host "$($lang.SpecialFunction): $($lang.Function_Unrestricted), $($lang.Short_Cmd)" -NoNewline
-		Write-Host " { FX Pause } { FX List }" -ForegroundColor Green
-	}
+	Write-Host "     ISA".PadRight(20) -NoNewline -ForegroundColor Yellow
+	Write-Host $lang.AddTo -NoNewline
+	Write-Host " { IW RW BW }" -ForegroundColor Green
 
-	Write-Host
+	Write-Host "     ISD".PadRight(20) -NoNewline -ForegroundColor Yellow
+	Write-Host $lang.Del -NoNewline
+	Write-Host " { IW RW BW } { $($lang.MountedIndex) }" -ForegroundColor Green
+
+	Write-Host "     Remt".PadRight(20) -NoNewline -ForegroundColor Yellow
+	Write-Host "$($lang.Mount), $($lang.PleaseChoose)"
+
 	Write-Host "     CPK".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.Event_Primary_Key_CPK
 
 	Write-Host "     Reset".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.EventManagerClear
 
-	Write-Host "`n  $($lang.SelectSettingImage)"
-	Write-Host "     ISD".PadRight(20) -NoNewline -ForegroundColor Yellow
-	Write-Host $lang.Del -NoNewline
-	Write-Host " { IW RW BW } { $($lang.MountedIndex) }" -ForegroundColor Green
 
+
+	Write-Host "`n  $($lang.Mounted_Status)"
+	Write-Host "  $('-' * 80)"
 	Write-Host "     Mt".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.Mount -NoNewline
 	Write-Host " { IW RW BW } { $($lang.MountedIndex) }" -ForegroundColor Green
 
-	Write-Host "     Remt".PadRight(20) -NoNewline -ForegroundColor Yellow
-	Write-Host "$($lang.Mount), $($lang.PleaseChoose)"
-
-	Write-Host "`n  $($lang.Mounted_Status)"
 	Write-Host "     ESE".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.Image_Unmount_After): " -NoNewline
 	Write-Host $lang.Save -ForegroundColor Green
@@ -79,6 +75,15 @@ Function Solutions_Help
 	Write-Host $lang.DoNotSave -ForegroundColor Green
 
 	Write-Host "`n  $($lang.RuleOther)"
+	Write-Host "  $('-' * 80)"
+	if ($Full) {
+		Solutions_Help_Command -Name "FX" -Silent
+	} else {
+		Write-Host "     FX *".PadRight(20) -NoNewline -ForegroundColor Yellow
+		Write-Host "$($lang.SpecialFunction): $($lang.Function_Unrestricted), $($lang.Short_Cmd)" -NoNewline
+		Write-Host " { FX Pause } { FX List }" -ForegroundColor Green
+	}
+
 	Write-Host "     VA".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.Wim_Rule_Verify): $($lang.Autopilot_Select_Config)"
 
@@ -111,8 +116,7 @@ Function Solutions_Help
 	Write-Host "$($lang.ChkUpdate), $($lang.UpdateSilent)"
 
 	Write-Host
-	Write-Host $(' ' * 2) -NoNewline
-	Write-Host " API * " -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host "  $($lang.API) "
 	Write-Host "  $('-' * 80)"
 	Write-host "     " -NoNewline
 	Write-Host " Set API " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
@@ -126,8 +130,7 @@ Function Solutions_Help
 	Write-host "     $($lang.ShowCommand)"
 
 	Write-Host
-	Write-Host $(' ' * 2) -NoNewline
-	Write-Host $lang.Help -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host "  $($lang.Help) "
 	Write-Host "  $('-' * 80)"
 	Write-host "     " -NoNewline
 	Write-Host " Help All " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
