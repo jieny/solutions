@@ -1134,7 +1134,6 @@ Function Menu_Shortcuts_Export_Key
 			Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "e1"
 			Image_Select_Export_UI
 			Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "e1end"
-			Get_Next
 		}
 	} else {
 		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
