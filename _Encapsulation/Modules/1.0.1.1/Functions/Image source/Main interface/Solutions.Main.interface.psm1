@@ -4214,6 +4214,39 @@ Write-Host "Test"
 	}
 
 	<#
+		.Allows you to always use developer mode
+		.允许一直使用开发者模式
+	#>
+	$GUIImageSourceSettingIsAllowDevMode = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 40
+		Width          = 475
+		Padding        = "16,0,0,0"
+		Text           = $lang.IsAllowDevMode
+		add_Click      = {
+			if ($GUIImageSourceSettingIsAllowDevMode.Checked) {
+				Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "True" -String
+
+				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.IsAllowDevMode), $($lang.Enable), $($lang.Done)"
+			} else {
+				Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "False" -String
+
+				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.IsAllowDevMode), $($lang.Disable), $($lang.Done)"
+			}
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsAllowDevMode" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsAllowDevMode" -ErrorAction SilentlyContinue) {
+			"True" { $GUIImageSourceSettingIsAllowDevMode.Checked = $True }
+			"False" { $GUIImageSourceSettingIsAllowDevMode.Checked = $False }
+		}
+	} else {
+		Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "False" -String
+		$GUIImageSourceSettingIsAllowDevMode.Checked = $False
+	}
+
+	<#
 		.Allow open windows to be on top
 		.允许打开的窗口后置顶
 	#>
@@ -8908,6 +8941,15 @@ Write-Host "Test"
 						Write-Host "  $($lang.Architecture): " -NoNewline -ForegroundColor Yellow
 						Write-Host " $($Global:Architecture) " -BackgroundColor DarkGreen -ForegroundColor White
 
+						Write-Host
+						Write-Host "  $($lang.IsAllowDevMode): " -NoNewline -ForegroundColor Yellow
+						if ($GUIImageSourceSettingIsAllowDevMode.Checked) {
+							$Global:Developers_Mode = $True
+							Write-Host " $($lang.Enable) " -BackgroundColor DarkGreen -ForegroundColor White
+						} else {
+							Write-Host " $($lang.AfterFinishingNoProcess) " -BackgroundColor DarkRed -ForegroundColor White
+						}
+
 						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)" -name "MountToRouting" -value $Global:Mount_To_Route -String
 						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)" -name "MountToRoutingTemp" -value $Global:Mount_To_RouteTemp -String
 
@@ -9129,6 +9171,7 @@ Write-Host "Test"
 		$GUIImageSourceSettingAdv,                    # 可选功能
 		$GUIImageSourceSettingEnv,                    # 将路由功能添加到系统变量
 		$GUIImageSourceSettingEnvTips,
+		$GUIImageSourceSettingIsAllowDevMode,         # 允许一直使用开发者模式
 		$GUIImageSourceSettingTopMost,                # 允许打开的窗口后置顶
 		$GUIImageSourceSettingClearHistoryLog,        # 允许自动清理超过 7 天的日志
 		$UI_Main_Adv_Cmd,                             # 显示运行的完整命令行

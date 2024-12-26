@@ -1711,6 +1711,7 @@ Function Image_Assign_Autopilot_Master
 			ActiveLinkColor = "RED"
 			LinkBehavior   = "NeverUnderline"
 			add_Click      = {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Prerequisite)"
 				$UI_Main_Prerequisite_Detailed.visible = $true
 				$UI_Main_Export_Detailed.visible = $False
 			}
@@ -1728,6 +1729,7 @@ Function Image_Assign_Autopilot_Master
 			ActiveLinkColor = "RED"
 			LinkBehavior   = "NeverUnderline"
 			add_Click      = {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Import_Event_Public )"
 				$UI_Main_Public_Detailed.visible = $true
 			}
 		}
@@ -1741,6 +1743,7 @@ Function Image_Assign_Autopilot_Master
 			ActiveLinkColor = "RED"
 			LinkBehavior   = "NeverUnderline"
 			add_Click      = {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Autopilot_Select_Config )"
 				$UI_Main_Prerequisite_Detailed.visible = $False
 				$UI_Main_Export_Detailed.visible = $true
 			}
@@ -3081,6 +3084,7 @@ Function Image_Assign_Autopilot_Master
 
 		if ($Script:InBox_Apps_Rule_Select_Single.count -gt 0) {
 			$UI_Main_Autopilot_View_Detailed.Visible = $True
+			$UI_Main.Text = "$($lang.Autopilot): 11111111111111111 $($lang.Prerequisite)"
 			$UI_Main_Autopilot_View_Detailed_Show.Text = ""
 
 			$UI_Main_Autopilot_View_Detailed_Show.Text += "$($lang.RuleAuthon)`n"
@@ -5579,6 +5583,7 @@ Function Image_Assign_Autopilot_Master
 		Width          = 240
 		Text           = $lang.Cancel
 		add_Click      = {
+			$UI_Main.Text = $lang.Autopilot
 			$UI_Main_Autopilot_View_Detailed.Visible = $False
 		}
 	}
@@ -5656,15 +5661,18 @@ Function Image_Assign_Autopilot_Master
 		$GetLanguagePrompt = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Autopilot" -Name "Is_Auto_Hide_Public" -ErrorAction SilentlyContinue
 		switch ($GetLanguagePrompt) {
 			"True" {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Import_Event_Public)"
 				$UI_Main_Public_Auto_Hide.Checked = $True
 				$UI_Main_Public_Detailed.Visible = $False
 			}
 			"False" {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Prerequisite)"
 				$UI_Main_Public_Auto_Hide.Checked = $False
 				$UI_Main_Public_Detailed.Visible = $true
 			}
 		}
 	} else {
+		$UI_Main.Text = "$($lang.Autopilot): $($lang.Prerequisite)"
 		$UI_Main_Public_Auto_Hide.Checked = $False
 		$UI_Main_Public_Detailed.Visible = $true
 	}
@@ -5755,6 +5763,7 @@ Function Image_Assign_Autopilot_Master
 		Width          = 158
 		Text           = $lang.Hide
 		add_Click      = {
+			$UI_Main.Text = $lang.Autopilot
 			$UI_Main_Public_Detailed.visible = $False
 		}
 	}
@@ -5867,6 +5876,7 @@ Function Image_Assign_Autopilot_Master
 			ActiveLinkColor = "RED"
 			LinkBehavior   = "NeverUnderline"
 			add_Click      = {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Import_Event_Public)"
 				$UI_Main_Public_Detailed.visible = $true
 			}
 		}
@@ -5883,6 +5893,7 @@ Function Image_Assign_Autopilot_Master
 			ActiveLinkColor = "RED"
 			LinkBehavior   = "NeverUnderline"
 			add_Click      = {
+				$UI_Main.Text = "$($lang.Autopilot): $($lang.Prerequisite)"
 				$UI_Main_Prerequisite_Detailed.visible = $true
 			}
 		}
@@ -5933,6 +5944,7 @@ Function Image_Assign_Autopilot_Master
 		Width          = 158
 		Text           = $lang.Hide
 		add_Click      = {
+			$UI_Main.Text = $lang.Autopilot
 			$UI_Main_Export_Detailed.Visible = $False
 		}
 	}
@@ -6133,6 +6145,7 @@ Function Image_Assign_Autopilot_Master
 		Width          = 158
 		Text           = $lang.Hide
 		add_Click      = {
+			$UI_Main.Text = $lang.Autopilot
 			$UI_Main_Prerequisite_Detailed.visible = $False
 		}
 	}

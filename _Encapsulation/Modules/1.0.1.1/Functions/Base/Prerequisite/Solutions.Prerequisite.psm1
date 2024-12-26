@@ -392,7 +392,7 @@ Function Prerequisite
 		Write-Host " $($lang.Check_Pass) " -BackgroundColor DarkGreen -ForegroundColor White
 	}
 
-	Write-Host "     InBox Apps ISO: " -NoNewline
+	Write-Host "    InBox Apps ISO: " -NoNewline
 	$Duplicate_Rule_InBox_Apps = @()
 	$Duplicate_Rule_InBox_Apps_seen = @{}
 	$Duplicate_Rule_InBox_Apps_duplicates = @()
