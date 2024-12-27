@@ -8113,8 +8113,8 @@ Write-Host "Test"
 
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
-				$types =  [IO.Path]::GetExtension($filename)
-				if ($Global:SearchISOType -contains $types) {
+				$types = [IO.Path]::GetExtension($filename)
+				if ($Global:SearchISOType -contains "*$($types)") {
 					$UIUnzipPanel_To_Path.Text = $filename
 					$UIUnzipPanel_To_New_Path.Text = [System.IO.Path]::GetFileNameWithoutExtension($filename)
 					Refresh_ISO_CRC_SHA
@@ -8122,7 +8122,7 @@ Write-Host "Test"
 					$UIUnzipPanelErrorMsg.Text = "$($lang.Choose): $($filename), $($lang.Done)"
 					$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 				} else {
-					$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.PleaseChoose) ( $($Global:SearchISOType)) )"
+					$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.PleaseChoose) ( $($Global:SearchISOType) )"
 					$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 				}
 			}
