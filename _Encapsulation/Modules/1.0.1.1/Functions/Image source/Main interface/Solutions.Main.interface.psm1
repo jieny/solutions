@@ -2608,7 +2608,7 @@ Write-Host "Test"
 						$GUIImageSourceGroupMountFromRename.Enabled = $False
 						$GUIImageSourceMountInfo.Text = "$($lang.Mounted), $($lang.Detailed_View)"
 
-						$UI_Mask_Image_Mount_To_Error.Text = "$($lang.Mounted), $($lang.Inoperable)"
+						$UI_Mask_Image_Mount_To_Error.Text = "$($lang.Mounted), $($lang.Function_Limited)"
 						$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					} else  {
 						$GUIImageSourceGroupMountChangePanel.Enabled = $True

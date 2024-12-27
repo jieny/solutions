@@ -3084,7 +3084,7 @@ Function Image_Assign_Autopilot_Master
 
 		if ($Script:InBox_Apps_Rule_Select_Single.count -gt 0) {
 			$UI_Main_Autopilot_View_Detailed.Visible = $True
-			$UI_Main.Text = "$($lang.Autopilot): 11111111111111111 $($lang.Prerequisite)"
+			$UI_Main.Text = "$($lang.Autopilot): $($lang.Prerequisite)"
 			$UI_Main_Autopilot_View_Detailed_Show.Text = ""
 
 			$UI_Main_Autopilot_View_Detailed_Show.Text += "$($lang.RuleAuthon)`n"
