@@ -448,6 +448,7 @@
 							"Add": {
 								"Schome": "Custom",
 								"Custom": {
+									"IsAllowError": false,
 									"AutoEditions": true,
 									"AutoSearch": false,
 									"DependencyPackage": true,
