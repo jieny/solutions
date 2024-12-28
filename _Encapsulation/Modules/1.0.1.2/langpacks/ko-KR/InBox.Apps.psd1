@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = 추가할 애플리케이션에 종속 패키지가 있는 경우 규칙에 따라 자동으로 일치하고 필요한 종속 패키지를 자동으로 결합하는 기능을 완료합니다.
 	Instl_Dependency_Package_Match  = 종속성 패키지 결합
 	Instl_Dependency_Package_Group  = 콤비네이션
-	Instl_Dependency_Package_Done   = 의존성 패키지 결합 완료
 	InBoxAppsErrorNoSave            = 실수를 겪을 때는 저장할 수 없습니다
 	InBoxAppsErrorTips              = 오류가 있습니다. 일치하는 항목 {0} 항목이 실패했습니다
 	InBoxAppsErrorNo                = 일치에서 오류가 발견되지 않았습니다

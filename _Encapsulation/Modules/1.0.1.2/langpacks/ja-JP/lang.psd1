@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = 画像を処理します：
 	NoInstallImage                  = ローカルに存在しません
-	ConvertChk                      = ファイルを確認してください：
+	ConvertChk                      = ファイルを確認してください
 	WindowsFeature                  = Windows 関数
 	Enable                          = 有効
 	Disable                         = 無効

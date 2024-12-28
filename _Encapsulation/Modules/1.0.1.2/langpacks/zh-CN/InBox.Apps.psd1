@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = 待添加的应用有依赖包时，自动根据规则来进行匹配并完成自动组合所需的依赖包功能。
 	Instl_Dependency_Package_Match  = 正在组合依赖包
 	Instl_Dependency_Package_Group  = 组合
-	Instl_Dependency_Package_Done   = 已完成组合依赖包
 	InBoxAppsErrorNoSave            = 遇到错误时不允许保存
 	InBoxAppsErrorTips              = 有错误，匹配中遇到 {0} 项未成功
 	InBoxAppsErrorNo                = 匹配中未发现有错误

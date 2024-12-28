@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Wanneer de toe te voegen applicatie afhankelijke pakketten heeft, zal deze automatisch overeenkomen volgens de regels en de functie van het automatisch combineren van de vereiste afhankelijke pakketten voltooien.
 	Instl_Dependency_Package_Match  = Afhankelijkheidspakketten combineren
 	Instl_Dependency_Package_Group  = Combinatie
-	Instl_Dependency_Package_Done   = Voltooiing van het combineren van afhankelijkheidspakketten
 	InBoxAppsErrorNoSave            = Bij het tegenkomen van een fout mag het niet worden opgeslagen
 	InBoxAppsErrorTips              = Er zijn fouten, het item dat in het item Matching {0} werd aangetroffen, was niet succesvol
 	InBoxAppsErrorNo                = Er werden geen fouten gevonden in de matching

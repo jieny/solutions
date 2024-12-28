@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = A kép feldolgozása:
 	NoInstallImage                  = Helyben nem létezik
-	ConvertChk                      = Ellenőrizze a fájlt:
+	ConvertChk                      = Ellenőrizze a fájlt
 	WindowsFeature                  = Windows funkciók
 	Enable                          = Engedélyezze
 	Disable                         = Letiltás

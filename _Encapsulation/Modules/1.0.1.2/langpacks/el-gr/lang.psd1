@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Επεξεργαστείτε την εικόνα:
 	NoInstallImage                  = Δεν υπάρχει τοπικά
-	ConvertChk                      = Ελέγξτε το αρχείο:
+	ConvertChk                      = Ελέγξτε το αρχείο
 	WindowsFeature                  = Δυνατότητες των Windows
 	Enable                          = Καθιστώ ικανό
 	Disable                         = Καθιστώ ανίκανο

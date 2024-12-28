@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Kai pridedama programa turi priklausomus paketus, ji automatiškai atitiks pagal taisykles ir užbaigs reikalingų priklausomų paketų automatinio sujungimo funkciją.
 	Instl_Dependency_Package_Match  = Priklausomybės paketų derinimas
 	Instl_Dependency_Package_Group  = Derinys
-	Instl_Dependency_Package_Done   = Priklausomybės paketų derinimo užbaigimas
 	InBoxAppsErrorNoSave            = Kai susiduriama su klaida, neleidžiama išsaugoti
 	InBoxAppsErrorTips              = Yra klaidų, elementas, su kuriuo susiduriama suderinamame {0} elemente, buvo nesėkminga
 	InBoxAppsErrorNo                = Atitikime nerasta klaidų

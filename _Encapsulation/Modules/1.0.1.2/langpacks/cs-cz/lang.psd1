@@ -147,7 +147,7 @@
 
 	ProcessingImage                 = Zpracujte obrázek: 
 	NoInstallImage                  = Lokálně neexistuje
-	ConvertChk                      = Zkontrolujte soubor: 
+	ConvertChk                      = Zkontrolujte soubor
 	WindowsFeature                  = Funkce Windows
 	Enable                          = Umožnit
 	Disable                         = Zakázat

@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Procesați imaginea:
 	NoInstallImage                  = Nu există la nivel local
-	ConvertChk                      = Verificați fișierul:
+	ConvertChk                      = Verificați fișierul
 	WindowsFeature                  = Caracteristicile Windows
 	Enable                          = Permite
 	Disable                         = Dezactivați

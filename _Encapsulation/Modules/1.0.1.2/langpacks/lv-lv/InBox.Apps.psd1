@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Ja pievienojamai lietojumprogrammai ir atkarīgās pakotnes, tā automātiski saskaņosies atbilstoši noteikumiem un pabeigs nepieciešamo atkarīgo pakotņu automātiskās apvienošanas funkciju.
 	Instl_Dependency_Package_Match  = Atkarības pakotņu apvienošana
 	Instl_Dependency_Package_Group  = Kombinācija
-	Instl_Dependency_Package_Done   = Atkarības pakotņu apvienošanas pabeigšana
 	InBoxAppsErrorNoSave            = Saskaroties ar kļūdu, to nav atļauts saglabāt
 	InBoxAppsErrorTips              = Ir kļūdas, vienums, kas sastopams atbilstošā {0} vienumā, bija neveiksmīgs
 	InBoxAppsErrorNo                = Atbilstībā netika atrastas kļūdas

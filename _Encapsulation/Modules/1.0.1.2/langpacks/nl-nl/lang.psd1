@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Verwerk de afbeelding:
 	NoInstallImage                  = Bestaat lokaal niet
-	ConvertChk                      = Controleer het bestand:
+	ConvertChk                      = Controleer het bestand
 	WindowsFeature                  = Windows-functies
 	Enable                          = Inschakelen
 	Disable                         = Uitzetten

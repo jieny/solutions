@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = عندما يحتوي التطبيق المراد إضافته على حزم تابعة، فسوف يتطابق تلقائيًا وفقًا للقواعد ويكمل وظيفة الجمع تلقائيًا بين الحزم التابعة المطلوبة.
 	Instl_Dependency_Package_Match  = الجمع بين حزم التبعية
 	Instl_Dependency_Package_Group  = مزيج
-	Instl_Dependency_Package_Done   = الانتهاء من الجمع بين حزم التبعية
 	InBoxAppsErrorNoSave            = عند مواجهة خطأ ، لا يُسمح بإنقاذه
 	InBoxAppsErrorTips              = حدث خطأ، وتمت مواجهة {0} من العناصر ولم تنجح المطابقة.
 	InBoxAppsErrorNo                = لم يتم العثور على أي أخطاء في المطابقة

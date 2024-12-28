@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = 追加するアプリケーションに依存パッケージがある場合, ルールに従って自動的にマッチングし, 必要な依存パッケージを自動結合する機能を完了します。
 	Instl_Dependency_Package_Match  = 依存関係パッケージの結合
 	Instl_Dependency_Package_Group  = 組み合わせ
-	Instl_Dependency_Package_Done   = 依存関係パッケージの結合の完了
 	InBoxAppsErrorNoSave            = 間違いに遭遇したとき、保存することは許可されていません
 	InBoxAppsErrorTips              = エラーがあり、マッチング {0} アイテムで遭遇するアイテムは失敗しました
 	InBoxAppsErrorNo                = マッチングでエラーは見つかりませんでした

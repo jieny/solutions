@@ -1,6 +1,6 @@
 ﻿<#
-	.Combination: add inbox Apps
-	.组合：添加 inbox Apps
+	.Combination: add InBox Apps
+	.组合：添加 InBox Apps
 #>
 Function InBox_Apps_Add_UI
 {
@@ -23,8 +23,8 @@ Function InBox_Apps_Add_UI
 	}
 
 	<#
-		.Search InBox APPS
-		.搜索 InBox APPS
+		.Search InBox Apps
+		.搜索 InBox Apps
 	#>
 	$SearchTypeInboxApps = @(
 		Join-Path -Path $Global:MainMasterFolder -ChildPath "$($Global:ImageType)\_Custom\InBox_Apps"
@@ -2010,10 +2010,6 @@ Function InBox_Apps_Add_To_Process
 	Write-Host "`n  $($lang.Assign_Editions)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Auto_Assign_Editions_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-		Write-Host "  $($lang.UpdateCurrent)" -ForegroundColor Yellow
-		Write-Host "  $('-' * 80)"
-
-
 		try {
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
@@ -2022,9 +2018,15 @@ Function InBox_Apps_Add_To_Process
 				Write-Host "  $('-' * 80)`n"
 			}
 
+			Write-Host "  $($lang.UpdateCurrent)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+
 			$Current_Edition_Version = (Get-WindowsEdition -Path $test_mount_folder_Current).Edition
 			Write-Host "  $($Current_Edition_Version)" -ForegroundColor Green
 		} catch {
+			Write-Host "  $($lang.UpdateCurrent)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 			Write-Host "  $($_)" -ForegroundColor Yellow
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
@@ -2160,17 +2162,17 @@ Function InBox_Apps_Add_Match_Process
 	Write-Host "$($InBoxAppsTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 	Write-Host "  $('-' * 80)"
 
-	Write-Host "  $($lang.RuleFileType): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+	Write-Host "  $($lang.RuleFileType): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 	Write-Host $Name -ForegroundColor Green
 
 	$Temp_Assign_Task_Select_Group = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Add_Group_Install_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	if ($Temp_Assign_Task_Select_Group -contains $Name) {
 		if (Test-Path -Path $AppxSource -PathType Leaf) {
-			Write-Host "  $($lang.LanguageCode): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+			Write-Host "  $($lang.LanguageCode): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 			Write-Host $Region -ForegroundColor Green
 
 			if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_DependencyPackage_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-				Write-Host "  $($lang.DependencyPackage): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+				Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 
 				if ($DependencyPackage.count -gt 0) {
 					Write-Host "$($DependencyPackage.count) $($lang.EventManagerCount)" -ForegroundColor Green
@@ -2184,9 +2186,9 @@ Function InBox_Apps_Add_Match_Process
 					Write-Host "`n  $($lang.Instl_Dependency_Package_Match)" -ForegroundColor Yellow
 					Write-Host "  $('.' * 80)"
 					foreach ($itemdp in $DependencyPackage) {
-						Write-Host "  $($lang.RuleFileType): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+						Write-Host "  $($lang.RuleFileType): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 						Write-Host $itemdp -ForegroundColor Yellow
-						Write-Host "  $($lang.Instl_Dependency_Package_Group): " -NoNewline -ForegroundColor Yellow
+						Write-Host "  $($lang.Instl_Dependency_Package_Group): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 
 						$FlagMatch = $True
 
@@ -2196,10 +2198,10 @@ Function InBox_Apps_Add_Match_Process
 								if ($item.name -eq $itemdp) {
 									Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 
-									Write-Host "  $($lang.FileName): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+									Write-Host "  $($lang.FileName): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 									Write-Host $item.InstallPacker -ForegroundColor Green
 
-									Write-Host "  $($lang.ConvertChk): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+									Write-Host "  $($lang.ConvertChk): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 									if (Test-Path -Path $item.InstallPacker -PathType Leaf) {
 										$IsWaitInstallDependencyPackage += $item.InstallPacker
 										$FlagMatch = $False
@@ -2222,9 +2224,9 @@ Function InBox_Apps_Add_Match_Process
 						}
 					}
 
-					Write-Host "  $($lang.Instl_Dependency_Package_Done)"
+					Write-Host "  $($lang.Instl_Dependency_Package_Match): " -NoNewline
+					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 					Write-Host "  $('.' * 80)"
-					Write-Host
 				} else {
 					Write-Host $lang.NoWork -ForegroundColor Red
 				}
@@ -2244,7 +2246,7 @@ Function InBox_Apps_Add_Match_Process
 				}
 			} else {
 				if ($DependencyPackage.count -gt 0) {
-					Write-Host "  $($lang.DependencyPackage): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+					Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 					Write-Host $lang.UpdateNotExecuted -ForegroundColor Red
 					Write-Host "  $('.' * 80)"
 					foreach ($itemdp in $DependencyPackage) {
@@ -2253,7 +2255,7 @@ Function InBox_Apps_Add_Match_Process
 
 					Write-Host
 				} else {
-					Write-Host "  $($lang.DependencyPackage): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+					Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 					Write-Host $lang.NoWork -ForegroundColor Red
 				}
 			}
@@ -2268,16 +2270,59 @@ Function InBox_Apps_Add_Match_Process
 				$CommandIsWaitInstallRegions = "-Regions ""$($Region)"""
 			}
 
-			Write-Host "  $($lang.FileName): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+			Write-Host "`n  $($lang.LXPsWaitAdd)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+			Write-Host "  $($lang.FileName): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 			Write-Host $AppxSource -ForegroundColor Green
 			$test_mount_folder_Current = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 
 			if ([string]::IsNullOrEmpty($CertificateSource)) {
-				Write-Host "  $($lang.License): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+				Write-Host "  $($lang.License): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 				Write-Host $lang.NoLicense -ForegroundColor Red
 
-				$CommandNew = "Add-AppxProvisionedPackage -ScratchDirectory ""$(Get_Mount_To_Temp)"" -LogPath ""$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log"" -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($AppxSource)"" -SkipLicense $($CommandIsWaitInstallRegions) $($CommandIsWaitInstallDependencyPackage) -ErrorAction SilentlyContinue | Out-Null"
-				$CommandNewPrint = "Add-AppxProvisionedPackage -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($AppxSource)"" -SkipLicense $($CommandIsWaitInstallDependencyPackage) $($CommandIsWaitInstallRegions)"
+				$CommandNew = @()
+				$CommandNewPrint = @()
+
+				# Add-AppxProvisionedPackage
+				$CommandNew += "Add-AppxProvisionedPackage"
+				$CommandNewPrint += "Add-AppxProvisionedPackage"
+
+				# -ScratchDirectory
+				$CommandNew += "-ScratchDirectory ""$(Get_Mount_To_Temp)"""
+
+				# -LogPath
+				$CommandNew += "-LogPath ""$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log"""
+
+				# -Path
+				$CommandNew += "-Path ""$($test_mount_folder_Current)"""
+				$CommandNewPrint += "-Path ""$($test_mount_folder_Current)"""
+
+				# -PackagePath
+				$CommandNew += "-PackagePath ""$($AppxSource)"""
+				$CommandNewPrint += "-PackagePath ""$($AppxSource)"""
+
+				# -DependencyPackagePath
+				if ([string]::IsNullOrEmpty($CommandIsWaitInstallDependencyPackage)) {
+				} else {
+					$CommandNew += $CommandIsWaitInstallDependencyPackage
+					$CommandNewPrint += $CommandIsWaitInstallDependencyPackage
+				}
+
+				# -Regions
+				if ([string]::IsNullOrEmpty($CommandIsWaitInstallRegions)) {
+				} else {
+					$CommandNew += $CommandIsWaitInstallRegions
+					$CommandNewPrint += $CommandIsWaitInstallRegions
+				}
+
+				# -SkipLicense
+				$CommandNew += "-SkipLicense"
+				$CommandNewPrint += "-SkipLicense"
+
+				$CommandNew += "-ErrorAction SilentlyContinue | Out-Null"
+
+				[string]$CommandNew = $CommandNew
+				[string]$CommandNewPrint = $CommandNewPrint
 
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 					Write-Host "`n  $($lang.Command): " -ForegroundColor Yellow
@@ -2294,12 +2339,53 @@ Function InBox_Apps_Add_Match_Process
 					Write-Host "  $($_)" -ForegroundColor Red
 				}
 			} else {
-				Write-Host "  $($lang.License): ".PadRight(21) -NoNewline -ForegroundColor Yellow
+				Write-Host "  $($lang.License): ".PadRight(24) -NoNewline -ForegroundColor Yellow
 				if (Test-Path -Path $CertificateSource -PathType Leaf) {
 					Write-Host $CertificateSource -ForegroundColor Green
 
-					$CommandNew = "Add-AppxProvisionedPackage -ScratchDirectory ""$(Get_Mount_To_Temp)"" -LogPath ""$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log"" -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($AppxSource)"" -LicensePath ""$($CertificateSource)"" $($CommandIsWaitInstallDependencyPackage) $($CommandIsWaitInstallRegions) -ErrorAction SilentlyContinue | Out-Null"
-					$CommandNewPrint = "Add-AppxProvisionedPackage -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($AppxSource)"" -LicensePath ""$($CertificateSource)"" $($CommandIsWaitInstallDependencyPackage) $($CommandIsWaitInstallRegions)"
+					$CommandNew = @()
+					$CommandNewPrint = @()
+
+					# Add-AppxProvisionedPackage
+					$CommandNew += "Add-AppxProvisionedPackage"
+					$CommandNewPrint += "Add-AppxProvisionedPackage"
+
+					# -ScratchDirectory
+					$CommandNew += "-ScratchDirectory ""$(Get_Mount_To_Temp)"""
+
+					# -LogPath
+					$CommandNew += "-LogPath ""$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log"""
+
+					# -Path
+					$CommandNew += "-Path ""$($test_mount_folder_Current)"""
+					$CommandNewPrint += "-Path ""$($test_mount_folder_Current)"""
+
+					# -PackagePath
+					$CommandNew += "-PackagePath ""$($AppxSource)"""
+					$CommandNewPrint += "-PackagePath ""$($AppxSource)"""
+
+					# -LicensePath
+					$CommandNew += "-LicensePath ""$($CertificateSource)"""
+					$CommandNewPrint += "-LicensePath ""$($CertificateSource)"""
+
+					# -DependencyPackagePath
+					if ([string]::IsNullOrEmpty($CommandIsWaitInstallDependencyPackage)) {
+					} else {
+						$CommandNew += $CommandIsWaitInstallDependencyPackage
+						$CommandNewPrint += $CommandIsWaitInstallDependencyPackage
+					}
+
+					# -Regions
+					if ([string]::IsNullOrEmpty($CommandIsWaitInstallRegions)) {
+					} else {
+						$CommandNew += $CommandIsWaitInstallRegions
+						$CommandNewPrint += $CommandIsWaitInstallRegions
+					}
+
+					$CommandNew += "-ErrorAction SilentlyContinue | Out-Null"
+
+					[string]$CommandNew = $CommandNew
+					[string]$CommandNewPrint = $CommandNewPrint
 
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n  $($lang.Command): " -ForegroundColor Yellow
@@ -2318,8 +2404,49 @@ Function InBox_Apps_Add_Match_Process
 				} else {
 					Write-Host " $($lang.NoLicense) " -BackgroundColor DarkRed -ForegroundColor White
 
-					$CommandNew = "Add-AppxProvisionedPackage -ScratchDirectory ""$(Get_Mount_To_Temp)"" -LogPath ""$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log"" -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($AppxSource)"" -SkipLicense $($CommandIsWaitInstallDependencyPackage) $($CommandIsWaitInstallRegions) -ErrorAction SilentlyContinue | Out-Null"
-					$CommandNewPrint = "Add-AppxProvisionedPackage -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($AppxSource)"" -SkipLicense $($CommandIsWaitInstallDependencyPackage) $($CommandIsWaitInstallRegions)"
+					$CommandNew = @()
+					$CommandNewPrint = @()
+
+					# Add-AppxProvisionedPackage
+					$CommandNew += "Add-AppxProvisionedPackage"
+					$CommandNewPrint += "Add-AppxProvisionedPackage"
+
+					# -ScratchDirectory
+					$CommandNew += "-ScratchDirectory ""$(Get_Mount_To_Temp)"""
+
+					# -LogPath
+					$CommandNew += "-LogPath ""$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log"""
+
+					# -Path
+					$CommandNew += "-Path ""$($test_mount_folder_Current)"""
+					$CommandNewPrint += "-Path ""$($test_mount_folder_Current)"""
+
+					# -PackagePath
+					$CommandNew += "-PackagePath ""$($AppxSource)"""
+					$CommandNewPrint += "-PackagePath ""$($AppxSource)"""
+
+					# -DependencyPackagePath
+					if ([string]::IsNullOrEmpty($CommandIsWaitInstallDependencyPackage)) {
+					} else {
+						$CommandNew += $CommandIsWaitInstallDependencyPackage
+						$CommandNewPrint += $CommandIsWaitInstallDependencyPackage
+					}
+
+					# -Regions
+					if ([string]::IsNullOrEmpty($CommandIsWaitInstallRegions)) {
+					} else {
+						$CommandNew += $CommandIsWaitInstallRegions
+						$CommandNewPrint += $CommandIsWaitInstallRegions
+					}
+
+					# -SkipLicense
+					$CommandNew += "-SkipLicense"
+					$CommandNewPrint += "-SkipLicense"
+
+					$CommandNew += "-ErrorAction SilentlyContinue | Out-Null"
+
+					[string]$CommandNew = $CommandNew
+					[string]$CommandNewPrint = $CommandNewPrint
 
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n  $($lang.Command): " -ForegroundColor Yellow
@@ -2350,7 +2477,7 @@ Function InBox_Apps_Add_Match_Process
 			Write-Host "  $('-' * 80)"
 			Write-Host
 		} else {
-			Write-Host "  Error: 01, $($lang.Inoperable)`n" -ForegroundColor Red
+			Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 	} else {
 		Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red

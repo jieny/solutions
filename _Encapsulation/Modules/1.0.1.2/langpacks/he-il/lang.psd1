@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = עבד את התמונה:
 	NoInstallImage                  = לא קיים במקום
-	ConvertChk                      = בדוק את הקובץ:
+	ConvertChk                      = בדוק את הקובץ
 	WindowsFeature                  = תכונות של Windows
 	Enable                          = לְאַפשֵׁר
 	Disable                         = השבת

@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = 이미지 처리: \
 	NoInstallImage                  = 로컬에 존재하지 않음
-	ConvertChk                      = 파일 확인: \
+	ConvertChk                      = 파일 확인
 	WindowsFeature                  = Windows 기능
 	Enable                          = 할 수 있게 하다
 	Disable                         = 장애가 있는

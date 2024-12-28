@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Kada aplikacija koju treba dodati ima ovisne pakete, automatski će se uskladiti prema pravilima i dovršiti funkciju automatskog kombiniranja potrebnih ovisnih paketa.
 	Instl_Dependency_Package_Match  = Kombiniranje paketa ovisnosti
 	Instl_Dependency_Package_Group  = Kombinacija
-	Instl_Dependency_Package_Done   = Završetak kombiniranja paketa ovisnosti
 	InBoxAppsErrorNoSave            = Kada se susretnete s pogreškom, nije dopušteno spasiti
 	InBoxAppsErrorTips              = Postoje pogreške, a stavka se susreće u podudarnoj {0} stavka nije bila uspješna
 	InBoxAppsErrorNo                = U podudaranju nisu pronađene pogreške

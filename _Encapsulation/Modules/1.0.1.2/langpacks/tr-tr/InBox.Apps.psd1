@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Eklenecek uygulamanın bağımlı paketleri olduğunda kurallara göre otomatik olarak eşleşecek ve gerekli bağımlı paketleri otomatik olarak birleştirme işlevini tamamlayacaktır.
 	Instl_Dependency_Package_Match  = Bağımlılık paketlerini birleştirme
 	Instl_Dependency_Package_Group  = Kombinasyon
-	Instl_Dependency_Package_Done   = Bağımlılık paketlerinin birleştirilmesinin tamamlanması
 	InBoxAppsErrorNoSave            = Bir hatayla karşılaşırken kurtarılmasına izin verilmez
 	InBoxAppsErrorTips              = Hatalar var, eşleşen {0} öğe ile karşılaşılan öğe başarısız oldu
 	InBoxAppsErrorNo                = Eşleşmede hata bulunmadı

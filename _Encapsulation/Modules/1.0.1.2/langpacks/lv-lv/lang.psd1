@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Apstrādājiet attēlu:
 	NoInstallImage                  = Lokāli nepastāv
-	ConvertChk                      = Pārbaudiet failu:
+	ConvertChk                      = Pārbaudiet failu
 	WindowsFeature                  = Windows funkcijas
 	Enable                          = Iespējot
 	Disable                         = Atspējot

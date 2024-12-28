@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Elabora l'immagine:
 	NoInstallImage                  = Non esiste localmente
-	ConvertChk                      = Controlla il file:
+	ConvertChk                      = Controlla il file
 	WindowsFeature                  = Funzionalità di Windows
 	Enable                          = Abilitare
 	Disable                         = Disabilita

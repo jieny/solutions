@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Bearbeiten Sie das Bild: \
 	NoInstallImage                  = Existiert nicht lokal
-	ConvertChk                      = Überprüfen Sie die Datei: \
+	ConvertChk                      = Überprüfen Sie die Datei
 	WindowsFeature                  = Windows Funktion
 	Enable                          = Ermöglichen
 	Disable                         = Behinderte

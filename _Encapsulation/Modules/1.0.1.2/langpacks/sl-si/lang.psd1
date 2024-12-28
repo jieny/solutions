@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Obdelaj sliko:
 	NoInstallImage                  = Lokalno ne obstaja
-	ConvertChk                      = Preverite datoteko:
+	ConvertChk                      = Preverite datoteko
 	WindowsFeature                  = Funkcije sistema Windows
 	Enable                          = Omogočiti
 	Disable                         = Onemogoči

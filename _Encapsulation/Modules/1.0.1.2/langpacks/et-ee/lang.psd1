@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Töötle pilti:
 	NoInstallImage                  = Lokaalselt ei eksisteeri
-	ConvertChk                      = Kontrolli faili:
+	ConvertChk                      = Kontrolli faili
 	WindowsFeature                  = Windowsi funktsioonid
 	Enable                          = Lubada
 	Disable                         = Keela

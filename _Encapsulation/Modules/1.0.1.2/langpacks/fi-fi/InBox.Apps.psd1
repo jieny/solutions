@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Kun lisättävässä sovelluksessa on riippuvaisia paketteja, se täsmää automaattisesti sääntöjen mukaisesti ja suorittaa tarvittavien riippuvien pakettien automaattisen yhdistämisen.
 	Instl_Dependency_Package_Match  = Riippuvuuspakettien yhdistäminen
 	Instl_Dependency_Package_Group  = Yhdistelmä
-	Instl_Dependency_Package_Done   = Riippuvuuspakettien yhdistämisen valmistuminen
 	InBoxAppsErrorNoSave            = Kun kohtaat virheen, sitä ei saa tallentaa
 	InBoxAppsErrorTips              = Virheitä on, vastaavan {0} kohteen kohde oli epäonnistunut
 	InBoxAppsErrorNo                = Vastaavasta virheistä ei löytynyt virheitä

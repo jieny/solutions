@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Kui lisataval rakendusel on sõltuvad paketid, sobitub see automaatselt vastavalt reeglitele ja täidab vajalike sõltuvate pakettide automaatse kombineerimise funktsiooni.
 	Instl_Dependency_Package_Match  = Sõltuvuspakettide kombineerimine
 	Instl_Dependency_Package_Group  = Kombinatsioon
-	Instl_Dependency_Package_Done   = Sõltuvuspakettide kombineerimise lõpetamine
 	InBoxAppsErrorNoSave            = Veaga kokku puutudes ei tohi seda päästa
 	InBoxAppsErrorTips              = Seal on vigu, sobitamises {0} üksuses tekkinud üksus oli ebaõnnestunud
 	InBoxAppsErrorNo                = Vigast ei leitud sobitamisest

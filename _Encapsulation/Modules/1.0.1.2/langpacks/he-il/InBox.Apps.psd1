@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = כאשר לאפליקציה שיש להוסיף יש חבילות תלויות, היא תתאים אוטומטית לפי הכללים ותשלים את הפונקציה של שילוב אוטומטי של החבילות התלויות הנדרשות.
 	Instl_Dependency_Package_Match  = שילוב חבילות תלות
 	Instl_Dependency_Package_Group  = קוֹמבִּינַצִיָה
-	Instl_Dependency_Package_Done   = השלמת שילוב חבילות תלות
 	InBoxAppsErrorNoSave            = כאשר נתקלים בטעות, אסור להישמר לו
 	InBoxAppsErrorTips              = יש שגיאות, הפריט שנתקל בפריט ההתאמה {0} לא הצליח
 	InBoxAppsErrorNo                = בהתאמה לא נמצאו שגיאות בהתאמה

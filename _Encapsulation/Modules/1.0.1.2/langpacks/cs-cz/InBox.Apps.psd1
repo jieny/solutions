@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Když aplikace, která má být přidána, obsahuje závislé balíčky, automaticky se přizpůsobí podle pravidel a dokončí funkci automatického kombinování požadovaných závislých balíčků.
 	Instl_Dependency_Package_Match  = Kombinace závislých balíčků
 	Instl_Dependency_Package_Group  = Kombinace
-	Instl_Dependency_Package_Done   = Dokončení kombinování závislostních balíčků
 	InBoxAppsErrorNoSave            = Při setkání s chybou není dovoleno uložit
 	InBoxAppsErrorTips              = Existují chyby, s nimiž se objevila položka v položce shody {0}, byla neúspěšná
 	InBoxAppsErrorNo                = Při shodě nebyly nalezeny žádné chyby

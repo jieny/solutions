@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Bearbeta bilden:
 	NoInstallImage                  = Finns inte lokalt
-	ConvertChk                      = Kontrollera filen:
+	ConvertChk                      = Kontrollera filen
 	WindowsFeature                  = Windows-funktioner
 	Enable                          = Aktivera
 	Disable                         = Inaktivera

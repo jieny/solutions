@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = معالجة الصورة:
 	NoInstallImage                  = غير موجود محليا
-	ConvertChk                      = التحقق من الملف:
+	ConvertChk                      = التحقق من الملف
 	WindowsFeature                  = Windows مميزات
 	Enable                          = يُمكَِن
 	Disable                         = إبطال

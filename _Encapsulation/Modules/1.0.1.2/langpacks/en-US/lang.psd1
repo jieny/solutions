@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Processing image: \
 	NoInstallImage                  = Does not exist locally
-	ConvertChk                      = Check the file: \
+	ConvertChk                      = Check the file
 	WindowsFeature                  = Windows features
 	Enable                          = Enable
 	Disable                         = Disable

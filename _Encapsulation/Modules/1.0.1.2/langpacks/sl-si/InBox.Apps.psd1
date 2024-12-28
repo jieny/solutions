@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Ko ima aplikacija, ki jo želite dodati, odvisne pakete, se bo samodejno ujemala v skladu s pravili in dokončala funkcijo samodejnega združevanja zahtevanih odvisnih paketov.
 	Instl_Dependency_Package_Match  = Združevanje paketov odvisnosti
 	Instl_Dependency_Package_Group  = Kombinacija
-	Instl_Dependency_Package_Done   = Dokončanje združevanja paketov odvisnosti
 	InBoxAppsErrorNoSave            = Ko naletite na napako, je ni dovoljeno rešiti
 	InBoxAppsErrorTips              = Obstajajo napake, element, ki je bil na sporedu v ujemajočem se {0}, ni bil uspešen
 	InBoxAppsErrorNo                = V ujemanju ni bilo mogoče najti napak

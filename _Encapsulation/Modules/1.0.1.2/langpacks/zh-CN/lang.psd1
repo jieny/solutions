@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = 处理映像：
 	NoInstallImage                  = 本地不存在
-	ConvertChk                      = 检查文件：
+	ConvertChk                      = 检查文件
 	WindowsFeature                  = Windows 功能
 	Enable                          = 启用
 	Disable                         = 禁用

@@ -1226,10 +1226,12 @@ Function Image_Convert_Process
 							Write-Host "  $('-' * 80)`n"
 						}
 
+						Write-Host "`n  $($lang.Conver_Split_To_Swm): "
 						try {
 							Split-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Split.log" -ImagePath $Install_wim -SplitImagePath $Install_SWM -FileSize "$($Global:Queue_Convert_Tasks.Split.Size)" -CheckIntegrity
+							Write-Host "  $($lang.Done)" -ForegroundColor Green
 						} catch {
-							Write-Host $lang.ConvertChk
+							Write-Host "  $($lang.ConvertChk)"
 							Write-Host "  $($Install_wim)"
 							Write-Host "  $($_)" -ForegroundColor Yellow
 							Write-Host "  $($lang.Inoperable)" -ForegroundColor Red

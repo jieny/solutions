@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Przetwórz obraz:
 	NoInstallImage                  = Nie istnieje lokalnie
-	ConvertChk                      = Sprawdź plik:
+	ConvertChk                      = Sprawdź plik
 	WindowsFeature                  = Funkcje systemu Windows
 	Enable                          = Włączać
 	Disable                         = Wyłączyć

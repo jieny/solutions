@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Görüntüyü işleyin:
 	NoInstallImage                  = Yerel olarak mevcut değil
-	ConvertChk                      = Dosyayı kontrol edin:
+	ConvertChk                      = Dosyayı kontrol edin
 	WindowsFeature                  = Windows özellikleri
 	Enable                          = Olanak vermek
 	Disable                         = Devre dışı bırakmak

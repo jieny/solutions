@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Gdy dodawana aplikacja posiada pakiety zależne, automatycznie dopasuje się zgodnie z regułami i zakończy funkcję automatycznego łączenia wymaganych pakietów zależnych.
 	Instl_Dependency_Package_Match  = Łączenie pakietów zależności
 	Instl_Dependency_Package_Group  = Połączenie
-	Instl_Dependency_Package_Done   = Zakończenie łączenia pakietów zależności
 	InBoxAppsErrorNoSave            = Podczas napotkającego błędu nie można go zapisać
 	InBoxAppsErrorTips              = Istnieją błędy, element napotkany w dopasowaniu {0} element nie powiodła się
 	InBoxAppsErrorNo                = W dopasowaniu nie znaleziono błędów

@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = ประมวลผลภาพ:
 	NoInstallImage                  = ไม่มีอยู่ในท้องถิ่น
-	ConvertChk                      = ตรวจสอบไฟล์:
+	ConvertChk                      = ตรวจสอบไฟล์
 	WindowsFeature                  = คุณสมบัติของวินโดวส์
 	Enable                          = เปิดใช้งาน
 	Disable                         = ปิดการใช้งาน

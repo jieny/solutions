@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = เมื่อแอปพลิเคชันที่จะเพิ่มมีแพ็คเกจที่ต้องพึ่งพา มันจะจับคู่ตามกฎโดยอัตโนมัติและทำหน้าที่รวมแพ็คเกจที่ต้องพึ่งพาที่จำเป็นโดยอัตโนมัติ
 	Instl_Dependency_Package_Match  = การรวมแพ็คเกจการพึ่งพา
 	Instl_Dependency_Package_Group  = การผสมผสาน
-	Instl_Dependency_Package_Done   = เสร็จสิ้นการรวมแพ็คเกจการพึ่งพา
 	InBoxAppsErrorNoSave            = เมื่อพบข้อผิดพลาดจะไม่ได้รับอนุญาตให้บันทึก
 	InBoxAppsErrorTips              = มีข้อผิดพลาดรายการที่พบในรายการที่ตรงกัน {0} ไม่สำเร็จ
 	InBoxAppsErrorNo                = ไม่พบข้อผิดพลาดในการจับคู่

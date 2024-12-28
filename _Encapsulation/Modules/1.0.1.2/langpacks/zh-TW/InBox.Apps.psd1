@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = 待新增的應用程式有依賴套件時，自動根據規則來進行比對並完成自動組合所需的依賴套件功能。
 	Instl_Dependency_Package_Match  = 正在組合依賴套件
 	Instl_Dependency_Package_Group  = 組合
-	Instl_Dependency_Package_Done   = 已完成組合依賴套件
 	InBoxAppsErrorNoSave            = 遇到錯誤時不允許保存
 	InBoxAppsErrorTips              = 有錯誤，匹配中遇到 {0} 項未成功
 	InBoxAppsErrorNo                = 匹配中未發現有錯誤

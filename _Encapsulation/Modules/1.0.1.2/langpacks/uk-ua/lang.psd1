@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Обробити зображення:
 	NoInstallImage                  = Не існує локально
-	ConvertChk                      = Перевірте файл:
+	ConvertChk                      = Перевірте файл
 	WindowsFeature                  = Функції Windows
 	Enable                          = Включити
 	Disable                         = Вимкнути

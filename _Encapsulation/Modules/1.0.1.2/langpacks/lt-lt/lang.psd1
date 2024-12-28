@@ -148,7 +148,7 @@
 
 	ProcessingImage                 = Apdorokite vaizdą:
 	NoInstallImage                  = Vietoje neegzistuoja
-	ConvertChk                      = Patikrinkite failą:
+	ConvertChk                      = Patikrinkite failą
 	WindowsFeature                  = Windows funkcijos
 	Enable                          = Įjungti
 	Disable                         = Išjungti

@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Ha a hozzáadandó alkalmazás függő csomagokkal rendelkezik, az automatikusan illeszkedik a szabályoknak megfelelően, és befejezi a szükséges függő csomagok automatikus kombinálását.
 	Instl_Dependency_Package_Match  = Függőségi csomagok kombinálása
 	Instl_Dependency_Package_Group  = Kombináció
-	Instl_Dependency_Package_Done   = A függőségi csomagok kombinálásának befejezése
 	InBoxAppsErrorNoSave            = Ha hibát tapasztal, akkor nem szabad megmenteni
 	InBoxAppsErrorTips              = Vannak hibák, a megfelelő {0} elemben tapasztalt elem sikertelen volt
 	InBoxAppsErrorNo                = A megfelelőségben nem találtak hibákat

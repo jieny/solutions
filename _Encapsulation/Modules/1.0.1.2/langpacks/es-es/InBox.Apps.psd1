@@ -40,7 +40,6 @@
 	Instl_Dependency_Package_Tips   = Cuando la aplicación que se agregará tiene paquetes dependientes, coincidirá automáticamente de acuerdo con las reglas y completará la función de combinar automáticamente los paquetes dependientes requeridos.
 	Instl_Dependency_Package_Match  = Combinando paquetes de dependencia
 	Instl_Dependency_Package_Group  = Combinación
-	Instl_Dependency_Package_Done   = Finalización de la combinación de paquetes de dependencia.
 	InBoxAppsErrorNoSave            = Al encontrar un error, no se le permite salvarse
 	InBoxAppsErrorTips              = Hay errores, el elemento encontrado en el elemento de coincidencia {0} no tuvo éxito
 	InBoxAppsErrorNo                = No se encontraron errores en la coincidencia
