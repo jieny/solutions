@@ -65,11 +65,10 @@ Function Feature_Menu
 
 	Write-Host
 	Write-Host "  " -NoNewline
-	Write-Host " R'R " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-	Write-Host " $($lang.RefreshModules)"
+	Write-Host " $($lang.RefreshModules)" -NoNewline -BackgroundColor White -ForegroundColor Black
+	Write-Host " R'R " -BackgroundColor DarkMagenta -ForegroundColor White
 
-	Write-Host
-	Write-host "  " -NoNewline
+	Write-Host "  " -NoNewline
 	Write-Host " $($lang.Help) " -NoNewline -BackgroundColor White -ForegroundColor Black
 	Write-Host " H'elp * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host " " -NoNewline
