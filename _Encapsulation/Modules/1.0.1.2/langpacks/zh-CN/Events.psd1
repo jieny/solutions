@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = 首选主键
 	Event_Primary_Key_CPK           = 重置并清除已选主键
+	Sel_Primary_Key                 = 选择主键
 	Event_Group                     = 群组
 	Event_Assign_Main               = 可分配的主要项
 	Event_Assign_Expand             = 可分配的扩展项

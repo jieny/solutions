@@ -238,38 +238,54 @@ Function Image_Get_Mount_Status
 	if ($Silent) {
 
 	} else {
-		Write-host "  " -NoNewline
 		if ($IsHotkeyShort) {
+			Write-host "  " -NoNewline
 			Write-host "$($lang.Short_Cmd): " -NoNewline
+			Write-Host "$($lang.ViewWIMFileInfo) " -NoNewline
 			Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host " " -NoNewline
+
+			Write-Host ", $($lang.Sel_Primary_Key) " -NoNewline
 			Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host ", " -NoNewline
+			Write-host ": "
 		}
 
 		if ($IsHotkey) {
+			Write-host "  " -NoNewline
 			Write-host "$($lang.Short_Cmd): " -NoNewline
 
 			if (Image_Is_Mount) {
+				Write-Host "$($lang.Image_Unmount_After): " -NoNewline
+				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
 				Write-Host " ESE " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-				Write-host " " -NoNewline
+				Write-Host ", " -NoNewline
+
+				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
 				Write-Host " EDNS " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-				Write-host ", " -NoNewline
+				Write-host ", "
+				Write-host "  " -NoNewline
 			}
 
+			Write-Host "$($lang.Mount) " -NoNewline
 			Write-Host " MT " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host " " -NoNewline
-			Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host " " -NoNewline
-			Write-Host " Unmt " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host " " -NoNewline
-			Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host " " -NoNewline
-			Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host ", " -NoNewline
-		}
 
-		Write-host "$($lang.Event_Primary_Key): "
+			Write-Host ", $($lang.Save) " -NoNewline
+			Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+
+			Write-Host ", $($lang.DoNotSave) " -NoNewline
+			Write-Host " Unmt " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+
+			Write-Host ", $($lang.ViewWIMFileInfo) " -NoNewline
+			Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+
+			Write-host ", "
+			Write-Host "  $($lang.Sel_Primary_Key) " -NoNewline
+			Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-host ": "
+		}
+	}
+
+	if (-not $IsHotkeyShort -xor $IsHotkey) {
+		Write-Host "  $($lang.Event_Primary_Key): "
 	}
 
 	ForEach ($item in $Global:Image_Rule) {

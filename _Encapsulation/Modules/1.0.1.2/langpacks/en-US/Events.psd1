@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Preferred primary key
 	Event_Primary_Key_CPK           = Reset and clear the selected primary key
+	Sel_Primary_Key                 = Select Primary Key
 	Event_Group                     = Group
 	Event_Assign_Main               = Main items that can be assigned
 	Event_Assign_Expand             = Assignable extensions
