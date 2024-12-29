@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Eelistatud primaarvõti
 	Event_Primary_Key_CPK           = Lähtestage ja tühjendage valitud esmased võtmed
+	Sel_Primary_Key                 = Valige esmane võti
 	Event_Group                     = Rühm
 	Event_Assign_Main               = Levitavad esmased esemed
 	Event_Assign_Expand             = Määratavad laiendused

@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = 優先主キー
 	Event_Primary_Key_CPK           = 選択した主キーをリセットおよびクリアします
+	Sel_Primary_Key                 = 主キーを選択
 	Event_Group                     = グループ
 	Event_Assign_Main               = 割り当て可能な主な項目
 	Event_Assign_Expand             = 割り当て可能な拡張子

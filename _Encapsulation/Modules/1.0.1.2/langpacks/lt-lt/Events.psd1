@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Pageidaujamą pirminį raktą
 	Event_Primary_Key_CPK           = Iš naujo nustatykite ir išvalykite pasirinktus pirminius raktus
+	Sel_Primary_Key                 = Pasirinkite pirminį raktą
 	Event_Group                     = Grupė
 	Event_Assign_Main               = Paskirstomi pirminiai daiktai
 	Event_Assign_Expand             = Priskiriami plėtiniai

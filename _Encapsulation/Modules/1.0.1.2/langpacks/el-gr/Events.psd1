@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Προτιμώμενο πρωτεύον κλειδί
 	Event_Primary_Key_CPK           = Επαναφέρετε και διαγράψτε τα επιλεγμένα πρωτεύοντα κλειδιά
+	Sel_Primary_Key                 = Επιλέξτε πρωτεύον κλειδί
 	Event_Group                     = Ομάδα
 	Event_Assign_Main               = Πρωτεύοντα είδη με δυνατότητα διανομής
 	Event_Assign_Expand             = Εκχωρήσιμες επεκτάσεις

@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = מפתח ראשי מועדף
 	Event_Primary_Key_CPK           = אפס ונקה את המפתחות הראשיים שנבחרו
+	Sel_Primary_Key                 = בחר מפתח ראשי
 	Event_Group                     = קְבוּצָה
 	Event_Assign_Main               = פריטים ראשיים שניתנים להפצה
 	Event_Assign_Expand             = הרחבות הניתנות להקצאה

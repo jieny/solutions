@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = คีย์หลักที่ต้องการ
 	Event_Primary_Key_CPK           = รีเซ็ตและล้างคีย์หลักที่เลือก
+	Sel_Primary_Key                 = เลือกคีย์หลัก
 	Event_Group                     = กลุ่ม
 	Event_Assign_Main               = รายการหลักที่สามารถแจกจ่ายได้
 	Event_Assign_Expand             = ส่วนขยายที่กำหนดได้

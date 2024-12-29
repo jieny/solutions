@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Preferált elsődleges kulcs
 	Event_Primary_Key_CPK           = Állítsa vissza és törölje a kiválasztott elsődleges kulcsokat
+	Sel_Primary_Key                 = Válassza ki az elsődleges kulcsot
 	Event_Group                     = Csoport
 	Event_Assign_Main               = Elosztható elsődleges cikkek
 	Event_Assign_Expand             = Hozzárendelhető bővítmények

@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Tercih edilen birincil anahtar
 	Event_Primary_Key_CPK           = Seçilen birincil anahtarları sıfırlayın ve temizleyin
+	Sel_Primary_Key                 = Birincil anahtarı seçin
 	Event_Group                     = Grup
 	Event_Assign_Main               = Dağıtılabilir birincil öğeler
 	Event_Assign_Expand             = Atanabilir uzantılar

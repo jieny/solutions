@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = المفتاح الأساسي المفضل
 	Event_Primary_Key_CPK           = إعادة تعيين ومسح المفاتيح الأساسية المحددة
+	Sel_Primary_Key                 = حدد المفتاح الأساسي
 	Event_Group                     = مجموعة
 	Event_Assign_Main               = العناصر الأساسية القابلة للتوزيع
 	Event_Assign_Expand             = ملحقات قابلة للتخصيص

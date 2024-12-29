@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = бажаний первинний ключ
 	Event_Primary_Key_CPK           = Скинути та очистити вибрані первинні ключі
+	Sel_Primary_Key                 = Виберіть первинний ключ
 	Event_Group                     = група
 	Event_Assign_Main               = Розповсюджувані первинні елементи
 	Event_Assign_Expand             = Призначаються розширення

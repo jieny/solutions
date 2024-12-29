@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = 首選主鍵
 	Event_Primary_Key_CPK           = 重置並清除已選主鍵
+	Sel_Primary_Key                 = 選擇主鍵
 	Event_Group                     = 群組
 	Event_Assign_Main               = 可分配的主要項
 	Event_Assign_Expand             = 可分配的擴展項

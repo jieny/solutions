@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Prednostni primarni ključ
 	Event_Primary_Key_CPK           = Ponastavite in počistite izbrane primarne ključe
+	Sel_Primary_Key                 = Izberite primarni ključ
 	Event_Group                     = Skupina
 	Event_Assign_Main               = Primarni predmeti, ki jih je mogoče razdeliti
 	Event_Assign_Expand             = Dodeljive razširitve

@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Foretrukket primærnøkkel
 	Event_Primary_Key_CPK           = Tilbakestill og slett valgte primærnøkler
+	Sel_Primary_Key                 = Velg primærnøkkel
 	Event_Group                     = Gruppe
 	Event_Assign_Main               = Distribuerbare primære elementer
 	Event_Assign_Expand             = Tilordnede utvidelser

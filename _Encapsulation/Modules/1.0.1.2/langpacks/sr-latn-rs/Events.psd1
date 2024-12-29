@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Преферирани примарни кључ
 	Event_Primary_Key_CPK           = Ресетујте и обришите изабране примарне кључеве
+	Sel_Primary_Key                 = Изаберите примарни кључ
 	Event_Group                     = Група
 	Event_Assign_Main               = Примарне ставке које се могу дистрибуирати
 	Event_Assign_Expand             = Додељива проширења

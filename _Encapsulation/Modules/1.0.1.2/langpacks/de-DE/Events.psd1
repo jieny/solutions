@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Bevorzugter Primärschlüssel
 	Event_Primary_Key_CPK           = Ausgewählte Primärschlüssel zurücksetzen und löschen
+	Sel_Primary_Key                 = Wählen Sie den Primärschlüssel aus
 	Event_Group                     = Gruppe
 	Event_Assign_Main               = Hauptelemente, die zugewiesen werden können
 	Event_Assign_Expand             = Zuweisbare Erweiterungen

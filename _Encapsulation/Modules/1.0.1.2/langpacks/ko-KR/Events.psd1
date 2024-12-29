@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = 기본 키
 	Event_Primary_Key_CPK           = 선택한 기본 키 재설정 및 지우기
+	Sel_Primary_Key                 = 기본 키 선택
 	Event_Group                     = 그룹
 	Event_Assign_Main               = 할당할 수 있는 주요 항목
 	Event_Assign_Expand             = 할당 가능한 확장

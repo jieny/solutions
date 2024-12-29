@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Clé primaire préférée
 	Event_Primary_Key_CPK           = Réinitialiser et effacer les clés primaires sélectionnées
+	Sel_Primary_Key                 = Sélectionnez la clé primaire
 	Event_Group                     = Groupe
 	Event_Assign_Main               = Articles principaux distribuables
 	Event_Assign_Expand             = Extensions attribuables

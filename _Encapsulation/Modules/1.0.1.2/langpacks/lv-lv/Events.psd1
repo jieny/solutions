@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Vēlamā primārā atslēga
 	Event_Primary_Key_CPK           = Atiestatīt un notīrīt atlasītās primārās atslēgas
+	Sel_Primary_Key                 = Izvēlieties primāro atslēgu
 	Event_Group                     = Grupai
 	Event_Assign_Main               = Izplatāmās primārās preces
 	Event_Assign_Expand             = Piešķiramie paplašinājumi

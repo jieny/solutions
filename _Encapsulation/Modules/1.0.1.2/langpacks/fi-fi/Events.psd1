@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Ensisijainen avain
 	Event_Primary_Key_CPK           = Nollaa ja tyhjennä valitut ensisijaiset avaimet
+	Sel_Primary_Key                 = Valitse ensisijainen avain
 	Event_Group                     = Ryhmä
 	Event_Assign_Main               = Jaettavat ensisijaiset tuotteet
 	Event_Assign_Expand             = Määritettävissä olevat laajennukset

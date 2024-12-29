@@ -29,12 +29,13 @@
 
 	Event_Primary_Key               = Clé primaire préférée
 	Event_Primary_Key_CPK           = Réinitialiser et effacer les clés primaires sélectionnées
+	Sel_Primary_Key                 = Sélectionnez la clé primaire
 	Event_Group                     = Groupe
 	Event_Assign_Main               = Articles principaux distribuables
 	Event_Assign_Expand             = Extensions attribuables
 	Event_Process_All               = Gérer toutes les tâches connues
 	Event_Allow_Update_Rule         = Autoriser les règles de mise à jour
-	Event_Allow_Update_Rule_Tips    =APrès avoir terminé le traitement de {0}.wim, effacez les tâches associées et continuez d'attendre la fin du traitement de {1}.wim pour mettre à jour le même fichier;\n\nLe traitement de {2}.wim sur une base par index augmente la taille du fichier, seule la mise à jour du même fichier réduit la taille du fichier de {3}.wim.
+	Event_Allow_Update_Rule_Tips    = APrès avoir terminé le traitement de {0}.wim, effacez les tâches associées et continuez d'attendre la fin du traitement de {1}.wim pour mettre à jour le même fichier;\n\nLe traitement de {2}.wim sur une base par index augmente la taille du fichier, seule la mise à jour du même fichier réduit la taille du fichier de {3}.wim.
 	Event_Allow_Update_Rule_Only    = Traitez uniquement les images partielles sélectionnées par l'utilisateur
 	Event_Allow_Update_To_All       = Règles de mise à jour synchronisées avec tous les numéros d'index
 	Event_Allow_Update_To_All_Tips  = Après avoir terminé le traitement de {0}.wim, obtenez tous les numéros d'index dans {1}.wim et mettez-les tous à jour.\n\nUne fois le modèle créé, cette tâche ne sera déclenchée que lorsque {2} apparaîtra. Avant la désinstallation, elle peut être gérée dans "Enregistrer et désinstaller l'image".

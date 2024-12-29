@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Föredragen primärnyckel
 	Event_Primary_Key_CPK           = Återställ och rensa valda primärnycklar
+	Sel_Primary_Key                 = Välj primärnyckel
 	Event_Group                     = Grupp
 	Event_Assign_Main               = Distribuerbara primära föremål
 	Event_Assign_Expand             = Tilldelbara tillägg

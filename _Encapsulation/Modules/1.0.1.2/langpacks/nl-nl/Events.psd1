@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Voorkeursprimaire sleutel
 	Event_Primary_Key_CPK           = Reset en wis geselecteerde primaire sleutels
+	Sel_Primary_Key                 = Selecteer primaire sleutel
 	Event_Group                     = Groep
 	Event_Assign_Main               = Verdeelbare primaire artikelen
 	Event_Assign_Expand             = Toewijsbare extensies

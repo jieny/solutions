@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Cheie primară preferată
 	Event_Primary_Key_CPK           = Resetați și ștergeți cheile primare selectate
+	Sel_Primary_Key                 = Selectați cheia primară
 	Event_Group                     = Grup
 	Event_Assign_Main               = Elemente primare distribuibile
 	Event_Assign_Expand             = Extensii atribuibile

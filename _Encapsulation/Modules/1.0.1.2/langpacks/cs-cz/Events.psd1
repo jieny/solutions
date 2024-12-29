@@ -29,6 +29,7 @@
 
 	Event_Primary_Key               = Preferovaný primární klíč
 	Event_Primary_Key_CPK           = Resetujte a vymažte vybrané primární klíče
+	Sel_Primary_Key                 = Vyberte primární klíč
 	Event_Group                     = Skupina
 	Event_Assign_Main               = Distribuovatelné primární položky
 	Event_Assign_Expand             = Přiřaditelná rozšíření
