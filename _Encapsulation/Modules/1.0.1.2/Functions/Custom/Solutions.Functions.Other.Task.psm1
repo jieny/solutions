@@ -253,8 +253,13 @@ Function Other_Tasks_RAMDISK
 
 				Invoke-Expression -Command "Format-Volume -DriveLetter $($SearchNewLicense) -NewFileSystemLabel $($GetRegRAMDISKVolumeLabel)"
 				Write-Host "  $($lang.Done)" -ForegroundColor Green
+				return
 			}
 		}
+
+		Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
+		Write-host $GetRegRAMDISKVolumeLabel -ForegroundColor Green
+		Write-Host "  $($lang.NoWork)" -ForegroundColor Red
 	} else {
 		Write-Host "  $($lang.UpdateUnavailable)" -ForegroundColor Red
 	}

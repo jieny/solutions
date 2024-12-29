@@ -430,6 +430,7 @@ Function Functions_Unrestricted_Process_Tasks
 			Write-Host "  $($lang.TimeEndAllseconds)" -NoNewline
 			Write-Host "$($TasksFXTime.ElapsedMilliseconds) $($lang.TimeMillisecond)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
+			Write-Host
 		}
 	} else {
 		Write-Host "  $($lang.NoWork)" -ForegroundColor Red
