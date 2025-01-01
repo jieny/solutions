@@ -239,7 +239,6 @@ Function Image_Select_Export_UI
 						Write-Host "  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
 						Write-Host $TempReBuildWim -ForegroundColor Green
 
-						Write-Host
 						Write-Host "  $($lang.Wim_Rule_Verify): " -NoNewline
 						if (Test-Path -Path $TempReBuildWim -PathType Leaf) {
 							Remove-Item -Path $Global:Primary_Key_Image.FullPath -ErrorAction SilentlyContinue

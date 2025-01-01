@@ -3997,7 +3997,6 @@ Function ISO_Create_Process
 			Write-Host "  $('-' * 80)"
 			if ($Global:BypassTPM) {
 				Write-Host "  $($lang.Operable)" -ForegroundColor Green
-				Write-Host "  $($lang.LXPsWaitAddUpdate): " -NoNewline
 
 				$arguments = @(
 					"""$(Join-Path -Path $Global:ISOSaveToFolder -ChildPath $Global:ISOSaveToFileName)"""
@@ -4010,8 +4009,8 @@ Function ISO_Create_Process
 					Write-Host "  $('-' * 80)`n"
 				}
 
+				Write-Host "  $($lang.LXPsWaitAddUpdate): " -NoNewline
 				Start-Process -FilePath $BypassTPMCmd -ArgumentList $Arguments -wait -WindowStyle Minimized
-
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			} else {
 				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White

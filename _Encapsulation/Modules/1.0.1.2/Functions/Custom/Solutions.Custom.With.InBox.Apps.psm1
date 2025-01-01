@@ -503,7 +503,6 @@ $Global:Pre_Config_Rules = @(
 
 						<#
 								File: X23-75752_HEVCappxbundle.img
-							Download: https://drive.massgrave.dev/HEVCappxbundle.img
 						   File list: https://files.rg-adguard.net/file/d6624138-77bb-13c1-9766-47b6b5e5864b
 							  Family: Tools and Resources
 							 Version: HEVC Video Extensions

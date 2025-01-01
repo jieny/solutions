@@ -7325,7 +7325,6 @@ Function Solutions_Office_Copy_Config_Prerequisite
 		Write-Host "  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
 		Write-Host $_.FullName -ForegroundColor Green
 
-		Write-Host
 		Write-Host "  $($lang.Wim_Rule_Verify): " -NoNewline
 		if (TestXMLFile -path $_.FullName) {
 			Write-Host " $($lang.Check_Pass) " -BackgroundColor DarkGreen -ForegroundColor White
@@ -8173,7 +8172,6 @@ $($Save_Microsoft_Windows_PE)
 	Write-Host "  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
 	Write-Host $FullFilename -ForegroundColor Green
 
-	Write-Host
 	Write-Host "  $($lang.Wim_Rule_Verify): " -NoNewline
 	if (TestXMLFile -path $FullFilename) {
 		Write-Host " $($lang.Check_Pass) " -BackgroundColor DarkGreen -ForegroundColor White

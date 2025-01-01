@@ -240,26 +240,41 @@ Function Other_Tasks_RAMDISK
 	#>
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "RAMDisk_Volume_Label" -ErrorAction SilentlyContinue) {
 		$GetRegRAMDISKVolumeLabel = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "RAMDisk_Volume_Label" -ErrorAction SilentlyContinue
+		$WaitFormatTasks = @()
 
 		Get-CimInstance -ClassName Win32_Volume -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_.DriveLetter) -or [string]::IsNullOrWhiteSpace($_.DriveLetter))} | ForEach-Object {
 			if ($_.Label -eq $GetRegRAMDISKVolumeLabel) {
-				$SearchNewLicense = $_.DriveLetter.Replace(":", "")
-
-				Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
-				Write-host $_.Label -ForegroundColor Green
-
-				Write-Host "  $($lang.Select_Path): " -NoNewline
-				Write-Host $_.DriveLetter -ForegroundColor Green
-
-				Invoke-Expression -Command "Format-Volume -DriveLetter $($SearchNewLicense) -NewFileSystemLabel $($GetRegRAMDISKVolumeLabel)"
-				Write-Host "  $($lang.Done)" -ForegroundColor Green
-				return
+				$WaitFormatTasks += @{
+					Label = $GetRegRAMDISKVolumeLabel
+					DriveLetter = $_.DriveLetter.Replace(":", "")
+				}
 			}
 		}
 
-		Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
-		Write-host $GetRegRAMDISKVolumeLabel -ForegroundColor Green
-		Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+		if ($WaitFormatTasks.Count -gt 0) {
+			ForEach ($item in $WaitFormatTasks) {
+				Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
+				Write-host $item.Label -ForegroundColor Green
+
+				Write-Host "  $($lang.Select_Path): " -NoNewline
+				Write-Host $item.DriveLetter -ForegroundColor Green
+
+				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+					Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
+					Write-Host "  $('-' * 80)"
+					Write-Host "  Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel $($item.Label)" -ForegroundColor Green
+					Write-Host "  $('-' * 80)`n"
+				}
+
+				Invoke-Expression -Command "Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel $($item.Label)"
+				Write-Host "  $($lang.Done)" -ForegroundColor Green
+			}
+		} else {
+			Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
+			Write-host $GetRegRAMDISKVolumeLabel -ForegroundColor Green
+			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+		}
+
 	} else {
 		Write-Host "  $($lang.UpdateUnavailable)" -ForegroundColor Red
 	}
