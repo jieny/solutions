@@ -307,6 +307,7 @@ Function Feature_Menu_Shortcuts_Enabled
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务
@@ -330,6 +331,7 @@ Function Feature_Menu_Shortcuts_Disabled
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务

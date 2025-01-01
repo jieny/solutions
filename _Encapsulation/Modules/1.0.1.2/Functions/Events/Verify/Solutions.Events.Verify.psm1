@@ -313,7 +313,6 @@ Function Verify_Is_Current_Same
 		.判断是否选择 Install，Boot
 	#>
 	if ([string]::IsNullOrEmpty($Global:Primary_Key_Image.ImageFileName)) {
-
 	} else {
 		if ((Get-Variable -Scope global -Name "Mark_Is_Mount_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 			return $True

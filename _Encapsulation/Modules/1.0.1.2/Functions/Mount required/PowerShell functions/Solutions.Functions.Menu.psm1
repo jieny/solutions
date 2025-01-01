@@ -326,6 +326,7 @@ Function Functions_Menu_Shortcuts_PFB
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务
@@ -349,6 +350,7 @@ Function Functions_Menu_Shortcuts_PFA
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务

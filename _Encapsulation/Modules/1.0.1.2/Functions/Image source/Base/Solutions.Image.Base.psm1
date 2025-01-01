@@ -104,13 +104,13 @@ Function Image_Mount_Check
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
-				Write-Host "  Mount-WindowsImage -ImagePath ""$($MountFileName)"" -Index ""$($Index)"" -Path "$test_mount_folder"" -ForegroundColor Green
+				Write-Host "  Mount-WindowsImage -ImagePath ""$($MountFileName)"" -Index ""$($Index)"" -Path "$($test_mount_folder)"" -ForegroundColor Green
 				Write-Host "  $('-' * 80)`n"
 			}
 
 			Write-Host "  $($lang.Mount): " -NoNewline
 			try {
-				Mount-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Mount.log" -ImagePath "$($MountFileName)" -Index $Index -Path $test_mount_folder | Out-Null
+				Mount-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Mount.log" -ImagePath $MountFileName -Index $Index -Path $test_mount_folder | Out-Null
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			} catch {
 				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
@@ -249,7 +249,12 @@ Function Image_Get_Mount_Status
 		}
 	}
 
-	Write-Host "  $($lang.Event_Primary_Key): "
+	if ($Silent) {
+
+	} else {
+		Write-Host "  $($lang.Event_Primary_Key): "
+	}
+
 	ForEach ($item in $Global:Image_Rule) {
 		if ($item.Main.Suffix -eq "wim") {
 			Image_Get_Mount_Status_New -ImageMaster $item.Main.ImageFileName -ImageName $item.Main.ImageFileName -ImageFile "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -Shortcuts $item.Main.Shortcuts -Silent $Silent

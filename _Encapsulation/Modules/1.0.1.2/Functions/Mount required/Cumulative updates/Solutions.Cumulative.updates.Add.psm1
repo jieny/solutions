@@ -1819,7 +1819,7 @@ Function Autopilot_Cumulative_updates_Add_UI_Import
 						Write-Host "  $($lang.NoWork)" -ForegroundColor Red
 					}
 				} else {
-					Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+					Write-Host " $($lang.NoWork) " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
 				}
 			}
 			"Custom" {

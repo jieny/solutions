@@ -559,6 +559,7 @@ Function Update_Menu_Shortcuts_Add
 	}
 }
 
+
 Function Update_Menu_Shortcuts_Delete
 {
 	Write-Host "`n  $($lang.CUpdate): $($lang.Del)" -ForegroundColor Yellow

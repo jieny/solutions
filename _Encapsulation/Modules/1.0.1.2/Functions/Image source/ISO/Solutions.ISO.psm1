@@ -2505,13 +2505,6 @@ Function ISO_Create_UI
 							"""$($Global:ISOSaveToFullName)""";
 						)
 
-						if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-							Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
-							Write-Host "  $('-' * 80)"
-							Write-Host "  Start-Process -FilePath '$($OscdimgArch)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
-							Write-Host "  $('-' * 80)`n"
-						}
-
 						Start-Process -FilePath $OscdimgArch -ArgumentList $Arguments -Wait -WindowStyle Minimized
 					}
 

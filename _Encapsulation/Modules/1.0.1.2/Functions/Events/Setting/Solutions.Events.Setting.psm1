@@ -955,6 +955,7 @@ Function Image_Set_Global_Primary_Key
 								Write-Host "  $($Export_To_New_Xml)" -ForegroundColor Red
 							}
 
+							Image_Get_Mount_Status -Silent
 							return
 						}
 					} else {
@@ -969,7 +970,6 @@ Function Image_Set_Global_Primary_Key
 							Write-Host "  $('-' * 80)`n"
 						}
 
-						
 						if (-not $Silent) {
 							Write-Host "  $($lang.Refresh): " -NoNewline
 						}
@@ -1038,6 +1038,8 @@ Function Image_Set_Global_Primary_Key
 			if (-not $Silent) {
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			}
+
+			Image_Get_Mount_Status -Silent
 			return
 		}
 
@@ -1083,6 +1085,7 @@ Function Image_Set_Global_Primary_Key
 									Write-Host "  $($lang.Failed)" -ForegroundColor Red
 								}
 
+								Image_Get_Mount_Status -Silent
 								return
 							}
 						}
@@ -1107,6 +1110,8 @@ Function Image_Set_Global_Primary_Key
 					if (-not $Silent) {
 						Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 					}
+
+					Image_Get_Mount_Status -Silent
 					return
 				}
 			}

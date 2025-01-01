@@ -898,6 +898,7 @@ Function Language_Menu_Shortcuts_LA
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务
@@ -911,7 +912,6 @@ Function Language_Menu_Shortcuts_LA
 	}
 }
 
-
 Function Language_Menu_Shortcuts_LD
 {
 	Write-Host "`n  $($lang.Language): $($lang.Del)" -ForegroundColor Yellow
@@ -922,6 +922,7 @@ Function Language_Menu_Shortcuts_LD
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务
@@ -935,7 +936,6 @@ Function Language_Menu_Shortcuts_LD
 	}
 }
 
-
 Function Language_Menu_Shortcuts_LS
 {
 	Write-Host "`n  $($lang.SwitchLanguage)" -ForegroundColor Yellow
@@ -947,6 +947,7 @@ Function Language_Menu_Shortcuts_LS
 
 		if (Verify_Is_Current_Same) {
 			Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
 			<#
 				.Assign available tasks
 				.分配可用的任务
