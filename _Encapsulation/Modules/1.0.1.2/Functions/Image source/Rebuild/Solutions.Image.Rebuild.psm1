@@ -56,7 +56,7 @@ Function Rebuild_Image_File
 
 			Write-Host "  $($lang.Rebuilding): " -NoNewline
 			try {
-				Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath "$($Filename)" -SourceIndex "$($_.ImageIndex)" -DestinationImagePath "$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim" -CompressionType max -ErrorAction SilentlyContinue | Out-Null	
+				Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath $Filename -SourceIndex $_.ImageIndex -DestinationImagePath "$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim" -CompressionType max -ErrorAction SilentlyContinue | Out-Null	
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			} catch {
 				Write-Host $lang.ConvertChk

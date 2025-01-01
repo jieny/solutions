@@ -262,11 +262,11 @@ Function Other_Tasks_RAMDISK
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 					Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
 					Write-Host "  $('-' * 80)"
-					Write-Host "  Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel $($item.Label)" -ForegroundColor Green
+					Write-Host "  Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel ""$($item.Label)""" -ForegroundColor Green
 					Write-Host "  $('-' * 80)`n"
 				}
 
-				Invoke-Expression -Command "Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel $($item.Label)"
+				Invoke-Expression -Command "Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel ""$($item.Label)"""
 				Write-Host "  $($lang.Done)" -ForegroundColor Green
 			}
 		} else {

@@ -2114,11 +2114,11 @@ Function InBox_Apps_Add_To_Process
 							if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 								Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
 								Write-Host "  $('-' * 80)"
-								Write-Host "  Add-AppxProvisionedPackage -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($SearchTempFile)"" -SkipLicense -Region ""$($Region)""" -ForegroundColor Green
+								Write-Host "  Add-AppxProvisionedPackage -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($SearchTempFile)"" -Region ""$($Region)"" -SkipLicense" -ForegroundColor Green
 								Write-Host "  $('-' * 80)`n"
 							}
 
-							Add-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log" -Path $test_mount_folder_Current -PackagePath $SearchTempFile -SkipLicense $CommandIsWaitInstallRegions -ErrorAction SilentlyContinue | Out-Null
+							Add-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log" -Path $test_mount_folder_Current -PackagePath $SearchTempFile -SkipLicense -ErrorAction SilentlyContinue | Out-Null
 							Write-Host "  $($lang.Done)" -ForegroundColor Green
 						} catch {
 							Write-Host "  $($_)" -ForegroundColor Yellow

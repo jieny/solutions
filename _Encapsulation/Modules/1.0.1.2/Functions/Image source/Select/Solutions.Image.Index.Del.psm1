@@ -80,7 +80,7 @@ Function Image_Select_Del_UI
 
 						Write-Host "  $($lang.Del): " -NoNewline
 						try {
-							Remove-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Remove.log" -ImagePath "$($Global:Primary_Key_Image.FullPath)" -Index $item -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
+							Remove-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Remove.log" -ImagePath $Global:Primary_Key_Image.FullPath -Index $item -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
 							Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 						} catch {
 							Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
