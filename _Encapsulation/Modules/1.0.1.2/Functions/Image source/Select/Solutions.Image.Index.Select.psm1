@@ -251,6 +251,7 @@ Function Image_Select_Index_UI
 					.映像标志
 				#>
 				$UI_Main_Mask_Rule_Wim_Edition_Edit.Text = $item.EditionId
+				$UI_Main_Mask_Rule_Wim_Edition_Select.SelectedIndex = $UI_Main_Mask_Rule_Wim_Edition_Select.FindString($item.EditionId)
 
 				<#
 					.架构
