@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = 모두 표시
 	Rule_Show_Only                  = 규칙만 표시
 	Rule_Show_Only_Select           = 규칙에서 선택
-	Image_Unmount_After             = 마운트된 모든 이미지를 강제로 마운트 해제
+	Image_Unmount_After             = 마운트된 모든 항목 제거
 
 	Wim_Rule_Update                 = 이미지 내의 파일 추출, 업데이트
 	Wim_Rule_Extract                = 파일을 추출합니다

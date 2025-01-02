@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = إظهار الكل
 	Rule_Show_Only                  = عرض القواعد فقط
 	Rule_Show_Only_Select           = اختر من القواعد
-	Image_Unmount_After             = قم بإلغاء تحميل جميع الصور المحملة بالقوة
+	Image_Unmount_After             = إلغاء تثبيت كافة شنت
 
 	Wim_Rule_Update                 = استخراج وتحديث الملفات داخل الصورة
 	Wim_Rule_Extract                = استخراج الملفات

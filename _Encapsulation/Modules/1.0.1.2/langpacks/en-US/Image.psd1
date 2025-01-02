@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Show all
 	Rule_Show_Only                  = Only those in the rule are displayed
 	Rule_Show_Only_Select           = Select from the rules
-	Image_Unmount_After             = Force unmount all mounted images
+	Image_Unmount_After             = Unmount all mounted
 
 	Wim_Rule_Update                 = Extract, update files within the image
 	Wim_Rule_Extract                = Extracting files

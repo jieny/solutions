@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = 显示全部
 	Rule_Show_Only                  = 仅显示规则里的
 	Rule_Show_Only_Select           = 从规则里选择
-	Image_Unmount_After             = 强行卸载所有已挂载映像
+	Image_Unmount_After             = 卸载所有已挂载
 
 	Wim_Rule_Update                 = 提取、更新映像内的文件
 	Wim_Rule_Extract                = 提取文件

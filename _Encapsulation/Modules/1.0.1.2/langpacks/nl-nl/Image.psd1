@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Toon alles
 	Rule_Show_Only                  = Laat alleen regels zien
 	Rule_Show_Only_Select           = Kies uit regels
-	Image_Unmount_After             = Ontkoppel alle gekoppelde afbeeldingen krachtig
+	Image_Unmount_After             = Verwijder alle gemonteerde bestanden
 
 	Wim_Rule_Update                 = Bestanden in de afbeelding uitpakken en bijwerken
 	Wim_Rule_Extract                = Bestanden uitpakken

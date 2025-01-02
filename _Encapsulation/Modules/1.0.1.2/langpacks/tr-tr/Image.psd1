@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Tümünü göster
 	Rule_Show_Only                  = Yalnızca kuralları göster
 	Rule_Show_Only_Select           = Kurallar arasından seçim yapın
-	Image_Unmount_After             = Takılan tüm görüntülerin bağlantısını zorla kaldırın
+	Image_Unmount_After             = Monte edilenlerin tümünü kaldır
 
 	Wim_Rule_Update                 = Görüntünün içindeki dosyaları çıkarın ve güncelleyin
 	Wim_Rule_Extract                = Dosyaları çıkart

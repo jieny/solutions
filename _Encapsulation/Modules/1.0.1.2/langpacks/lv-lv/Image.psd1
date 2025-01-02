@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Rādīt visu
 	Rule_Show_Only                  = Rādīt tikai noteikumus
 	Rule_Show_Only_Select           = Izvēlieties no noteikumiem
-	Image_Unmount_After             = Piespiedu kārtā atvienojiet visus pievienotos attēlus
+	Image_Unmount_After             = Atinstalējiet visus uzstādītos
 
 	Wim_Rule_Update                 = Izņemiet un atjauniniet failus attēlā
 	Wim_Rule_Extract                = Izvilkt failus

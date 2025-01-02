@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = すべて表示
 	Rule_Show_Only                  = ルールのみを表示
 	Rule_Show_Only_Select           = ルールから選ぶ
-	Image_Unmount_After             = マウントされているすべてのイメージを強制的にアンマウントします
+	Image_Unmount_After             = マウントされているものをすべてアンインストールする
 
 	Wim_Rule_Update                 = イメージ内のファイルの抽出, 更新
 	Wim_Rule_Extract                = ファイルを抽出します

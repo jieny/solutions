@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Показать все
 	Rule_Show_Only                  = Показать только правила
 	Rule_Show_Only_Select           = Выбирайте из правил
-	Image_Unmount_After             = Принудительно отключить все смонтированные образы
+	Image_Unmount_After             = Удалить все смонтированные
 
 	Wim_Rule_Update                 = Извлечение и обновление файлов в образе
 	Wim_Rule_Extract                = Извлечь файлы

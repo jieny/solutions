@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Rodyti viską
 	Rule_Show_Only                  = Rodyti tik taisykles
 	Rule_Show_Only_Select           = Pasirinkite iš taisyklių
-	Image_Unmount_After             = Per prievartą atjunkite visus pritvirtintus vaizdus
+	Image_Unmount_After             = Pašalinkite visus prijungtus
 
 	Wim_Rule_Update                 = Išskleiskite ir atnaujinkite failus vaizde
 	Wim_Rule_Extract                = Išskleiskite failus

@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Mostrar tudo
 	Rule_Show_Only                  = Mostrar apenas regras
 	Rule_Show_Only_Select           = Escolha entre as regras
-	Image_Unmount_After             = Desmonte à força todas as imagens montadas
+	Image_Unmount_After             = Desinstalar tudo montado
 
 	Wim_Rule_Update                 = Extraia e atualize ficheiros dentro da imagem
 	Wim_Rule_Extract                = Extrair ficheiros

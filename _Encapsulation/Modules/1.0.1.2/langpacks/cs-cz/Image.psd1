@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Zobrazit vše
 	Rule_Show_Only                  = Pouze ukázat pravidla
 	Rule_Show_Only_Select           = Vyberte si z pravidel
-	Image_Unmount_After             = Vynucené odpojení všech připojených obrazů
+	Image_Unmount_After             = Odinstalujte všechny namontované
 
 	Wim_Rule_Update                 = Extrahujte a aktualizujte soubory v rámci obrázku
 	Wim_Rule_Extract                = Extrahujte soubory

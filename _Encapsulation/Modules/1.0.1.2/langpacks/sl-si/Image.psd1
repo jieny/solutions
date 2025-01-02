@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Prikaži vse
 	Rule_Show_Only                  = Pokaži samo pravila
 	Rule_Show_Only_Select           = Izberite med pravili
-	Image_Unmount_After             = Prisilno odpni vse nameščene slike
+	Image_Unmount_After             = Odstranite vse nameščene
 
 	Wim_Rule_Update                 = Izvlecite in posodobite datoteke znotraj slike
 	Wim_Rule_Extract                = Ekstrahirajte datoteke

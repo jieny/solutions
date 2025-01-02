@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Összes megjelenítése
 	Rule_Show_Only                  = Csak szabályokat mutasson
 	Rule_Show_Only_Select           = Válassz a szabályok közül
-	Image_Unmount_After             = Erőszakkal távolítsa el az összes csatolt képet
+	Image_Unmount_After             = Távolítsa el az összes csatlakoztatott elemet
 
 	Wim_Rule_Update                 = Fájlok kibontása és frissítése a képen belül
 	Wim_Rule_Extract                = Fájlok kibontása

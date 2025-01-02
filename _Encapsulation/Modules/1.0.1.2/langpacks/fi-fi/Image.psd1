@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Näytä kaikki
 	Rule_Show_Only                  = Näytä vain säännöt
 	Rule_Show_Only_Select           = Valitse säännöistä
-	Image_Unmount_After             = Irrota kaikki liitetyt kuvat väkisin
+	Image_Unmount_After             = Poista kaikki asennetut
 
 	Wim_Rule_Update                 = Pura ja päivitä kuvan sisältämät tiedostot
 	Wim_Rule_Extract                = Pura tiedostot

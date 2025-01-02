@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Прикажи све
 	Rule_Show_Only                  = Покажи само правила
 	Rule_Show_Only_Select           = Бирајте између правила
-	Image_Unmount_After             = Присилно искључите све монтиране слике
+	Image_Unmount_After             = Деинсталирајте све монтиране
 
 	Wim_Rule_Update                 = Извуците и ажурирајте датотеке унутар слике
 	Wim_Rule_Extract                = Извуците датотеке

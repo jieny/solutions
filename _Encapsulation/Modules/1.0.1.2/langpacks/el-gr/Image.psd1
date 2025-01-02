@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Εμφάνιση όλων
 	Rule_Show_Only                  = Δείξτε μόνο κανόνες
 	Rule_Show_Only_Select           = Επιλέξτε από τους κανόνες
-	Image_Unmount_After             = Αποσυνδέστε αναγκαστικά όλες τις προσαρτημένες εικόνες
+	Image_Unmount_After             = Απεγκαταστήστε όλα τα τοποθετημένα
 
 	Wim_Rule_Update                 = Εξαγωγή και ενημέρωση αρχείων εντός της εικόνας
 	Wim_Rule_Extract                = Εξαγωγή αρχείων

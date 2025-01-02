@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = Näita kõiki
 	Rule_Show_Only                  = Näita ainult reegleid
 	Rule_Show_Only_Select           = Valige reeglite hulgast
-	Image_Unmount_After             = Eemaldage jõuga kõik ühendatud pildid
+	Image_Unmount_After             = Desinstallige kõik ühendatud
 
 	Wim_Rule_Update                 = Ekstraktige ja värskendage pildil olevaid faile
 	Wim_Rule_Extract                = Failide ekstraktimine

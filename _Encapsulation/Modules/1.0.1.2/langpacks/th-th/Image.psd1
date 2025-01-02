@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = แสดงทั้งหมด
 	Rule_Show_Only                  = แสดงกฎเท่านั้น
 	Rule_Show_Only_Select           = เลือกจากกฎ
-	Image_Unmount_After             = บังคับให้ถอนเมานท์อิมเมจที่ติดตั้งทั้งหมด
+	Image_Unmount_After             = ถอนการติดตั้งที่ติดตั้งทั้งหมด
 
 	Wim_Rule_Update                 = แยกและอัปเดตไฟล์ภายในรูปภาพ
 	Wim_Rule_Extract                = แยกไฟล์

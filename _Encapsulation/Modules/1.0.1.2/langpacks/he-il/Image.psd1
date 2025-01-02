@@ -71,7 +71,7 @@
 	Rule_Show_Full                  = הצג הכל
 	Rule_Show_Only                  = רק להראות חוקים
 	Rule_Show_Only_Select           = בחר מתוך כללים
-	Image_Unmount_After             = בטל בכוח את כל התמונות המותקנות
+	Image_Unmount_After             = הסר את כל ההתקנה
 
 	Wim_Rule_Update                 = חלץ ועדכן קבצים בתוך התמונה
 	Wim_Rule_Extract                = חלץ קבצים
