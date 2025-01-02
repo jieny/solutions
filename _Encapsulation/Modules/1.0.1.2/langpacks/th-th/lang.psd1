@@ -207,7 +207,7 @@
 	Running                         = วิ่ง
 	Paste                           = คัดลอกเส้นทาง
 	Clipboard_Copy                  = คัดลอกไปยังคลิปบอร์ดแล้ว
-	ViewWIMFileInfo                 = ดูรายละเอียดไฟล์
+	ViewWIMFileInfo                 = ดูภาพ
 	GetInBoxApps                    = InBox Apps แพ็คเกจแอปพลิเคชันที่ติดตั้ง
 	GetImagePackage                 = ส่วนประกอบ: แพ็คเกจทั้งหมดที่ติดตั้งในอิมเมจ
 	ViewMounted                     = รับข้อมูลเกี่ยวกับรูปภาพที่ติดตั้งทั้งหมด

@@ -207,7 +207,7 @@
 	Running                         = يجري
 	Paste                           = مسار النسخ
 	Clipboard_Copy                  = تم النسخ إلى الحافظة
-	ViewWIMFileInfo                 = عرض تفاصيل الملف
+	ViewWIMFileInfo                 = عرض الصورة
 	GetInBoxApps                    = InBox Apps: حزم التطبيقات المثبتة
 	GetImagePackage                 = المكونات: جميع الحزم المثبتة في الصورة
 	ViewMounted                     = الحصول على معلومات حول جميع الصور المثبتة

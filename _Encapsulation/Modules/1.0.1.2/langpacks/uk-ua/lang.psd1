@@ -207,7 +207,7 @@
 	Running                         = Бігти
 	Paste                           = Копіювати шлях
 	Clipboard_Copy                  = Скопійовано в буфер обміну
-	ViewWIMFileInfo                 = Переглянути деталі файлу
+	ViewWIMFileInfo                 = Переглянути зображення
 	GetInBoxApps                    = InBox Apps: встановлені пакети програм
 	GetImagePackage                 = Компоненти: усі пакети, встановлені в образі
 	ViewMounted                     = Отримати інформацію про всі змонтовані образи

@@ -207,7 +207,7 @@
 	Running                         = 走る
 	Paste                           = コピーパス
 	Clipboard_Copy                  = クリップボードにコピーされました
-	ViewWIMFileInfo                 = ファイルの詳細を表示する
+	ViewWIMFileInfo                 = 画像を見る
 	GetInBoxApps                    = InBox Apps: インストールされたアプリケーション パッケージ
 	GetImagePackage                 = コンポーネント: イメージにインストールされているすべてのパッケージ
 	ViewMounted                     = マウントされたすべてのイメージに関する情報を取得します

@@ -207,7 +207,7 @@
 	Running                         = Sikt
 	Paste                           = Kopieringsväg
 	Clipboard_Copy                  = Kopierade till urklipp
-	ViewWIMFileInfo                 = Visa filinformation
+	ViewWIMFileInfo                 = Visa bild
 	GetInBoxApps                    = InBox Apps: Installerade applikationspaket
 	GetImagePackage                 = Komponenter: Alla paket installerade i bilden
 	ViewMounted                     = Få information om alla monterade bilder

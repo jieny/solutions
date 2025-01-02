@@ -207,7 +207,7 @@
 	Running                         = Τρέξιμο
 	Paste                           = Διαδρομή αντιγραφής
 	Clipboard_Copy                  = Αντιγράφηκε στο πρόχειρο
-	ViewWIMFileInfo                 = Προβολή λεπτομερειών αρχείου
+	ViewWIMFileInfo                 = Προβολή εικόνας
 	GetInBoxApps                    = Εφαρμογές InBox: Εγκατεστημένα πακέτα εφαρμογών
 	GetImagePackage                 = Components: Όλα τα πακέτα που είναι εγκατεστημένα στην εικόνα
 	ViewMounted                     = Λάβετε πληροφορίες για όλες τις προσαρτημένες εικόνες

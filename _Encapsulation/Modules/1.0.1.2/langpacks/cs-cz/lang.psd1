@@ -206,7 +206,7 @@
 	Running                         = Běh
 	Paste                           = Kopírovat cestu
 	Clipboard_Copy                  = Zkopírováno do schránky
-	ViewWIMFileInfo                 = Zobrazit podrobnosti o souboru
+	ViewWIMFileInfo                 = Zobrazit obrázek
 	GetInBoxApps                    = InBox Apps: Nainstalované balíčky aplikací
 	GetImagePackage                 = Komponenty: Všechny balíčky nainstalované v obrazu
 	ViewMounted                     = Získejte informace o všech připojených obrazech

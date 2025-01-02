@@ -207,7 +207,7 @@
 	Running                         = Alerga
 	Paste                           = Copiați calea
 	Clipboard_Copy                  = Copiat în clipboard
-	ViewWIMFileInfo                 = Vizualizați detaliile fișierului
+	ViewWIMFileInfo                 = Vizualizați imaginea
 	GetInBoxApps                    = InBox Apps: pachete de aplicații instalate
 	GetImagePackage                 = Componente: Toate pachetele instalate în imagine
 	ViewMounted                     = Obțineți informații despre toate imaginile montate

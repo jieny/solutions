@@ -207,7 +207,7 @@
 	Running                         = 달리다
 	Paste                           = 복사 경로
 	Clipboard_Copy                  = 클립보드에 복사됨
-	ViewWIMFileInfo                 = 파일 세부 정보 보기
+	ViewWIMFileInfo                 = 이미지 보기
 	GetInBoxApps                    = InBox Apps: 설치된 애플리케이션 패키지
 	GetImagePackage                 = 구성요소: 이미지에 설치된 모든 패키지
 	ViewMounted                     = 탑재된 모든 이미지에 대한 정보 가져오기

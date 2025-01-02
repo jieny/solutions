@@ -207,7 +207,7 @@
 	Running                         = Juosta
 	Paste                           = Kopioi polku
 	Clipboard_Copy                  = Kopioitu leikepöydälle
-	ViewWIMFileInfo                 = Näytä tiedoston tiedot
+	ViewWIMFileInfo                 = Näytä kuva
 	GetInBoxApps                    = InBox Apps: Asennetut sovelluspaketit
 	GetImagePackage                 = Komponentit: Kaikki kuvaan asennetut paketit
 	ViewMounted                     = Hanki tietoja kaikista asennetuista kuvista

@@ -207,7 +207,7 @@
 	Running                         = Тичам
 	Paste                           = Път за копиране
 	Clipboard_Copy                  = Копирано в клипборда
-	ViewWIMFileInfo                 = Вижте подробности за файла
+	ViewWIMFileInfo                 = Вижте изображението
 	GetInBoxApps                    = InBox Apps: Инсталирани пакети с приложения
 	GetImagePackage                 = Компоненти: Всички пакети, инсталирани в изображението
 	ViewMounted                     = Получете информация за всички монтирани изображения

@@ -207,7 +207,7 @@
 	Running                         = Correr
 	Paste                           = Copiar caminho
 	Clipboard_Copy                  = Copiado para a área de transferência
-	ViewWIMFileInfo                 = Ver detalhes do ficheiro
+	ViewWIMFileInfo                 = Ver imagem
 	GetInBoxApps                    = InBox Apps: pacotes de aplicações instalados
 	GetImagePackage                 = Componentes: Todos os pacotes instalados na imagem
 	ViewMounted                     = Obtenha informações sobre todas as imagens montadas

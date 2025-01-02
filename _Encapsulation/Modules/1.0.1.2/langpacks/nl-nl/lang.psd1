@@ -207,7 +207,7 @@
 	Running                         = Loop
 	Paste                           = Kopieer pad
 	Clipboard_Copy                  = Gekopieerd naar klembord
-	ViewWIMFileInfo                 = Bestandsdetails bekijken
+	ViewWIMFileInfo                 = Bekijk afbeelding
 	GetInBoxApps                    = InBox Apps: Geïnstalleerde applicatiepakketten
 	GetImagePackage                 = Componenten: Alle pakketten die in de image zijn geïnstalleerd
 	ViewMounted                     = Krijg informatie over alle gekoppelde afbeeldingen

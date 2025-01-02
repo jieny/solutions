@@ -47,6 +47,8 @@ Function Other_Tasks_Clear
 	} else {
 		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 	}
+
+	write-host
 }
 
 <#
@@ -75,6 +77,8 @@ Function Other_Tasks_CTD
 	} else {
 		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 	}
+
+	write-host
 }
 
 <#
@@ -211,6 +215,8 @@ Function Other_Tasks_REFS
 	} else {
 		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 	}
+
+	write-host
 }
 
 <#
@@ -278,6 +284,8 @@ Function Other_Tasks_RAMDISK
 	} else {
 		Write-Host "  $($lang.UpdateUnavailable)" -ForegroundColor Red
 	}
+
+	write-host
 }
 
 <#

@@ -207,7 +207,7 @@
 	Running                         = Fut
 	Paste                           = Útvonal másolása
 	Clipboard_Copy                  = Vágólapra másolva
-	ViewWIMFileInfo                 = A fájl részleteinek megtekintése
+	ViewWIMFileInfo                 = Kép megtekintése
 	GetInBoxApps                    = InBox Apps: Telepített alkalmazáscsomagok
 	GetImagePackage                 = Összetevők: A képbe telepített összes csomag
 	ViewMounted                     = Információkat kaphat az összes csatlakoztatott képről

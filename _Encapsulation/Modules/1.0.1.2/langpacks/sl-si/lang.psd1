@@ -207,7 +207,7 @@
 	Running                         = Teči
 	Paste                           = Kopirajte pot
 	Clipboard_Copy                  = Kopirano v odložišče
-	ViewWIMFileInfo                 = Oglejte si podrobnosti datoteke
+	ViewWIMFileInfo                 = Ogled slike
 	GetInBoxApps                    = InBox Apps: nameščeni paketi aplikacij
 	GetImagePackage                 = Komponente: vsi paketi, nameščeni na sliki
 	ViewMounted                     = Pridobite informacije o vseh nameščenih slikah

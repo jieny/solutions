@@ -207,7 +207,7 @@
 	Running                         = Koşmak
 	Paste                           = Yolu kopyala
 	Clipboard_Copy                  = Panoya kopyalandı
-	ViewWIMFileInfo                 = Dosya ayrıntılarını görüntüle
+	ViewWIMFileInfo                 = Resmi görüntüle
 	GetInBoxApps                    = InBox Apps: Yüklü uygulama paketleri
 	GetImagePackage                 = Bileşenler: Görüntüde kurulu tüm paketler
 	ViewMounted                     = Monte edilen tüm görüntüler hakkında bilgi alın

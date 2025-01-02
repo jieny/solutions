@@ -207,7 +207,7 @@
 	Running                         = 运行
 	Paste                           = 复制路径
 	Clipboard_Copy                  = 已复制到剪贴板
-	ViewWIMFileInfo                 = 查看文件详细信息
+	ViewWIMFileInfo                 = 查看映像
 	GetInBoxApps                    = InBox Apps：已安装的应用程序包
 	GetImagePackage                 = 组件：映像中已安装的所有包
 	ViewMounted                     = 获取有关所有已挂载映像的信息

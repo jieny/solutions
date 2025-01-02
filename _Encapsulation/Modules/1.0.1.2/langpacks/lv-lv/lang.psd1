@@ -207,7 +207,7 @@
 	Running                         = Palaist
 	Paste                           = Kopēt ceļu
 	Clipboard_Copy                  = Kopēts starpliktuvē
-	ViewWIMFileInfo                 = Skatīt faila informāciju
+	ViewWIMFileInfo                 = Skatīt attēlu
 	GetInBoxApps                    = InBox Apps: instalētās lietojumprogrammu pakotnes
 	GetImagePackage                 = Sastāvdaļas: visas attēlā instalētās pakotnes
 	ViewMounted                     = Iegūstiet informāciju par visiem uzstādītajiem attēliem

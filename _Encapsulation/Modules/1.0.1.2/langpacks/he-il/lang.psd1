@@ -207,7 +207,7 @@
 	Running                         = לָרוּץ
 	Paste                           = העתק נתיב
 	Clipboard_Copy                  = הועתק ללוח
-	ViewWIMFileInfo                 = הצג את פרטי הקובץ
+	ViewWIMFileInfo                 = צפה בתמונה
 	GetInBoxApps                    = InBox Apps: חבילות יישומים מותקנות
 	GetImagePackage                 = רכיבים: כל החבילות המותקנות בתמונה
 	ViewMounted                     = קבל מידע על כל התמונות המותקנות

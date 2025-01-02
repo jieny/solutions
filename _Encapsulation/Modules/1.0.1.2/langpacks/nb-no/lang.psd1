@@ -207,7 +207,7 @@
 	Running                         = Løp
 	Paste                           = Kopibane
 	Clipboard_Copy                  = Kopiert til utklippstavlen
-	ViewWIMFileInfo                 = Se fildetaljer
+	ViewWIMFileInfo                 = Se bilde
 	GetInBoxApps                    = InBox Apps: Installerte applikasjonspakker
 	GetImagePackage                 = Komponenter: Alle pakker installert i bildet
 	ViewMounted                     = Få informasjon om alle monterte bilder

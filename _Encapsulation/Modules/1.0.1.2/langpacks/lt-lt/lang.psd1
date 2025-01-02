@@ -207,7 +207,7 @@
 	Running                         = Paleisti
 	Paste                           = Kopijuoti kelią
 	Clipboard_Copy                  = Nukopijuota į mainų sritį
-	ViewWIMFileInfo                 = Peržiūrėkite išsamią failo informaciją
+	ViewWIMFileInfo                 = Žiūrėti vaizdą
 	GetInBoxApps                    = InBox Apps: įdiegti programų paketai
 	GetImagePackage                 = Komponentai: visi vaizde įdiegti paketai
 	ViewMounted                     = Gaukite informacijos apie visus pritvirtintus vaizdus

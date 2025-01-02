@@ -207,7 +207,7 @@
 	Running                         = Trčanje
 	Paste                           = Put kopiranja
 	Clipboard_Copy                  = Kopirano u međuspremnik
-	ViewWIMFileInfo                 = Pregledajte detalje datoteke
+	ViewWIMFileInfo                 = Pogledaj sliku
 	GetInBoxApps                    = InBox Apps: instalirani paketi aplikacija
 	GetImagePackage                 = Komponente: Svi paketi instalirani na slici
 	ViewMounted                     = Dobijte informacije o svim montiranim slikama

@@ -207,7 +207,7 @@
 	Running                         = Jooksma
 	Paste                           = Kopeeri tee
 	Clipboard_Copy                  = Kopeeriti lõikelauale
-	ViewWIMFileInfo                 = Vaadake faili üksikasju
+	ViewWIMFileInfo                 = Vaata pilti
 	GetInBoxApps                    = Inboxi rakendused: installitud rakenduste paketid
 	GetImagePackage                 = Komponendid: kõik pildile installitud paketid
 	ViewMounted                     = Hankige teavet kõigi paigaldatud piltide kohta
