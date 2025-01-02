@@ -1577,7 +1577,9 @@ Function Help
 	Write-Host "$($Current_Folder)\_Custom\Engine\Yi.Suite\Engine.ps1" -ForegroundColor Yellow
 
 	Write-Host
-	Write-Host "  $($lang.Choose): " -NoNewline
+	write-host "  " -NoNewline
+	Write-Host " $($lang.Choose) " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host ": " -NoNewline
 
 	switch -Wildcard (Read-Host)
 	{

@@ -4058,9 +4058,9 @@ Write-Host "Test"
 	}
 
 	$GUIImageSourceSettingLP_Change = New-Object system.Windows.Forms.LinkLabel -Property @{
-		Height         = 30
+		Height         = 35
 		Width          = 475
-		Padding        = "22,0,0,0"
+		Padding        = "16,0,0,0"
 		Text           = "English (United States)"
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
@@ -4076,7 +4076,7 @@ Write-Host "Test"
 	$GUIImageSourceSettingUP = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
 		Width          = 478
-		margin         = "0,25,0,0"
+		margin         = "0,30,0,0"
 		Text           = $lang.ChkUpdate
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
@@ -4096,10 +4096,21 @@ Write-Host "Test"
 		Text           = "$($lang.UpdateCurrent): $((Get-Module -Name Solutions).Version.ToString())"
 	}
 
-	$GUIImageSourceSettingAPI = New-Object system.Windows.Forms.LinkLabel -Property @{
+	<#
+		.Developer Mode
+		.开发者模式
+	#>
+	$GUIImageSourceSettingDev = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 35
 		Width          = 478
-		margin         = "0,25,0,0"
+		Margin         = "0,30,0,0"
+		Text           = $lang.Developers_Mode
+	}
+
+	$GUIImageSourceSettingAPI = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 475
+		Padding        = "14,0,0,0"
 		Text           = $lang.API
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
@@ -4124,6 +4135,39 @@ Write-Host "Test"
 			$UI_Main.Add_DragOver($UI_Main_API_DragOver)
 			$UI_Main.Add_DragDrop($UI_Main_API_DragDrop)
 		}
+	}
+
+	<#
+		.Allows you to always use developer mode
+		.允许一直使用开发者模式
+	#>
+	$GUIImageSourceSettingIsAllowDevMode = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 475
+		Padding        = "16,0,0,0"
+		Text           = $lang.IsAllowDevMode
+		add_Click      = {
+			if ($GUIImageSourceSettingIsAllowDevMode.Checked) {
+				Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "True" -String
+
+				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.IsAllowDevMode), $($lang.Enable), $($lang.Done)"
+			} else {
+				Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "False" -String
+
+				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.IsAllowDevMode), $($lang.Disable), $($lang.Done)"
+			}
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsAllowDevMode" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsAllowDevMode" -ErrorAction SilentlyContinue) {
+			"True" { $GUIImageSourceSettingIsAllowDevMode.Checked = $True }
+			"False" { $GUIImageSourceSettingIsAllowDevMode.Checked = $False }
+		}
+	} else {
+		Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "False" -String
+		$GUIImageSourceSettingIsAllowDevMode.Checked = $False
 	}
 
 	<#
@@ -4211,39 +4255,6 @@ Write-Host "Test"
 		AutoSize       = 1
 		margin         = "34,5,20,20"
 		Text           = $lang.AddEnvTips
-	}
-
-	<#
-		.Allows you to always use developer mode
-		.允许一直使用开发者模式
-	#>
-	$GUIImageSourceSettingIsAllowDevMode = New-Object System.Windows.Forms.CheckBox -Property @{
-		Height         = 40
-		Width          = 475
-		Padding        = "16,0,0,0"
-		Text           = $lang.IsAllowDevMode
-		add_Click      = {
-			if ($GUIImageSourceSettingIsAllowDevMode.Checked) {
-				Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "True" -String
-
-				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.IsAllowDevMode), $($lang.Enable), $($lang.Done)"
-			} else {
-				Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "False" -String
-
-				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.IsAllowDevMode), $($lang.Disable), $($lang.Done)"
-			}
-		}
-	}
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsAllowDevMode" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsAllowDevMode" -ErrorAction SilentlyContinue) {
-			"True" { $GUIImageSourceSettingIsAllowDevMode.Checked = $True }
-			"False" { $GUIImageSourceSettingIsAllowDevMode.Checked = $False }
-		}
-	} else {
-		Save_Dynamic -regkey "Solutions" -name "IsAllowDevMode" -value "False" -String
-		$GUIImageSourceSettingIsAllowDevMode.Checked = $False
 	}
 
 	<#
@@ -9166,12 +9177,13 @@ Write-Host "Test"
 		<#
 			.显示 API 设置界面
 		#>
+		$GUIImageSourceSettingDev,
 		$GUIImageSourceSettingAPI,
+		$GUIImageSourceSettingIsAllowDevMode,         # 允许一直使用开发者模式
 
 		$GUIImageSourceSettingAdv,                    # 可选功能
 		$GUIImageSourceSettingEnv,                    # 将路由功能添加到系统变量
 		$GUIImageSourceSettingEnvTips,
-		$GUIImageSourceSettingIsAllowDevMode,         # 允许一直使用开发者模式
 		$GUIImageSourceSettingTopMost,                # 允许打开的窗口后置顶
 		$GUIImageSourceSettingClearHistoryLog,        # 允许自动清理超过 7 天的日志
 		$UI_Main_Adv_Cmd,                             # 显示运行的完整命令行
