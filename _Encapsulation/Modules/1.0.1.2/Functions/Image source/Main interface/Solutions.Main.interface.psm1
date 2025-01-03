@@ -8790,7 +8790,7 @@ Write-Host "Test"
 	$UI_Primary_Key_Name = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 270
-		Text           = $lang.Event_Primary_Key
+		Text           = $lang.Sel_Primary_Key
 		add_Click      = {
 			if ($UI_Primary_Key_Name.Checked) {
 				$UI_Primary_Key_Select.Enabled = $True
@@ -8842,9 +8842,9 @@ Write-Host "Test"
 		[pscustomobject]@{ Path = @("");                                      Lang = $lang.Ok_Go_To_No; }
 		[pscustomobject]@{ Path = @("Event_Assign_Task_Customize_Autopilot"); Lang = $lang.Autopilot; }
 		[pscustomobject]@{ Path = @("Event_Assign_Task_Customize");           Lang = $lang.OnDemandPlanTask; }
-		[pscustomobject]@{ Path = @("Image_Select_Mount_Shortcuts");          Lang = "$($lang.Mounted_Status): $($lang.Mount)"; }
-		[pscustomobject]@{ Path = @("Image_Eject_Save_Current");              Lang = "$($lang.Mounted_Status): $($lang.Save)"; }
-		[pscustomobject]@{ Path = @("Image_Eject_Dont_Save_Current");         Lang = "$($lang.Mounted_Status): $($lang.Unmount)"; }
+		[pscustomobject]@{ Path = @("Image_Select_Mount_Shortcuts");          Lang = "$($lang.Sel_Primary_Key): $($lang.Mount)"; }
+		[pscustomobject]@{ Path = @("Image_Eject_Save_Current");              Lang = "$($lang.Sel_Primary_Key): $($lang.Save)"; }
+		[pscustomobject]@{ Path = @("Image_Eject_Dont_Save_Current");         Lang = "$($lang.Sel_Primary_Key): $($lang.Unmount)"; }
 		[pscustomobject]@{ Path = @("Eject_Forcibly_All -Save -DontSave");    Lang = "$($lang.Image_Unmount_After): $($lang.Save)"; }
 		[pscustomobject]@{ Path = @("Eject_Forcibly_All -DontSave");          Lang = "$($lang.Image_Unmount_After): $($lang.DoNotSave)"; }
 		[pscustomobject]@{ Path = @("Language_Extract_UI");                   Lang = "$($lang.Language): $($lang.LanguageExtract)"; }
