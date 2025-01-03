@@ -776,7 +776,7 @@ Function UnPack_Compression_Create_Format
 				if (Test-Path -Path "$($TempFolderUnPack)\$($UnPackName).tar") {
 					$arguments = "a", "-tgzip", "$($TempFolderUnPack)\$($UnPackName).tar.gz", "$($TempFolderUnPack)\$($UnPackName).tar", "-mx9";
 					Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 				} else {
 					Write-Host "$($lang.SkipCreate): $UnPackName.tar"
 				}

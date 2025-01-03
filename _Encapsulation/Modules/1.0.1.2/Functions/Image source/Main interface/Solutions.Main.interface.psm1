@@ -639,42 +639,9 @@ Function Image_Select
 					}
 				}
 
-				$CheckboxPath = New-Object system.Windows.Forms.Label -Property @{
-					autoSize   = 1
-					Text       = ""
-					Padding    = "16,15,0,15"
-				}
-
-				$CheckboxPathCopy  = New-Object system.Windows.Forms.LinkLabel -Property @{
-					Height         = 35
-					Width          = 425
-					Padding        = "16,0,0,0"
-					Text           = $lang.Paste
-					Tag            = $GetImportFileName
-					LinkColor      = "GREEN"
-					ActiveLinkColor = "RED"
-					LinkBehavior   = "NeverUnderline"
-					add_Click      = {
-						$GUIImageSourceGroupAPIErrorMsg.Text = ""
-						$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
-
-						if ([string]::IsNullOrEmpty($This.Tag)) {
-							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Paste), $($lang.Inoperable)"
-						} else {
-							Set-Clipboard -Value $This.Tag
-
-							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
-							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Paste), $($lang.Done)"
-						}
-					}
-				}
-
 				$GUIImageSourceGroupAPI_Shortcut_Panel.controls.AddRange((
 					$Checkbox,
-					$CheckboxNameCopy,
-					$CheckboxPath,
-					$CheckboxPathCopy
+					$CheckboxNameCopy
 				))
 
 				$CheckboxCreate    = New-Object system.Windows.Forms.LinkLabel -Property @{
@@ -714,6 +681,42 @@ Function Image_Select
 						$GUIImageSourceGroupAPI_Shortcut_Panel.controls.AddRange($CheckboxCreate)
 					}
 				}
+
+				$CheckboxPath  = New-Object system.Windows.Forms.Label -Property @{
+					autoSize   = 1
+					Text       = ""
+					Padding    = "16,5,0,15"
+				}
+
+				$CheckboxPathCopy  = New-Object system.Windows.Forms.LinkLabel -Property @{
+					Height         = 35
+					Width          = 425
+					Padding        = "16,0,0,0"
+					Text           = $lang.Paste
+					Tag            = $GetImportFileName
+					LinkColor      = "GREEN"
+					ActiveLinkColor = "RED"
+					LinkBehavior   = "NeverUnderline"
+					add_Click      = {
+						$GUIImageSourceGroupAPIErrorMsg.Text = ""
+						$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
+
+						if ([string]::IsNullOrEmpty($This.Tag)) {
+							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Paste), $($lang.Inoperable)"
+						} else {
+							Set-Clipboard -Value $This.Tag
+
+							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Paste), $($lang.Done)"
+						}
+					}
+				}
+
+				$GUIImageSourceGroupAPI_Shortcut_Panel.controls.AddRange((
+					$CheckboxPath,
+					$CheckboxPathCopy
+				))
 
 				$CheckboxChange    = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height         = 35

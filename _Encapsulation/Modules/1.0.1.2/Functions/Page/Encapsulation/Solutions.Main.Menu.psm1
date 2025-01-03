@@ -1150,7 +1150,7 @@ Function Mainpage
 			Solutions_API_Command -Name $PSItem.Remove(0, 4)
 
 			Write-Host "  $('-' * 80)"
-			Write-Host "   API: $($lang.API), $($lang.Done)" -ForegroundColor Green
+			Write-Host "  API: $($lang.API), $($lang.Done)" -ForegroundColor Green
 			ToWait -wait 2
 			Mainpage
 		}
