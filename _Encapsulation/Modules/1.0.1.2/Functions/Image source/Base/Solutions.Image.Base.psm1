@@ -1560,7 +1560,7 @@ Function Menu_Shortcuts_PowerShell_functions_Unrestricted
 			if ([string]::IsNullOrEmpty($NewRuleName)) {
 				Functions_Unrestricted_UI
 			} else {
-				Functions_Unrestricted_UI -Custom "Other_Tasks_$($NewRuleName)"
+				Functions_Unrestricted_UI -Custom $NewRuleName
 			}
 		}
 	}

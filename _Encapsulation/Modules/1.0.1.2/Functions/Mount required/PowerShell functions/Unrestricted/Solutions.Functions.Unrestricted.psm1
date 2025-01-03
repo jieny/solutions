@@ -361,12 +361,15 @@
 	if ($Custom) {
 		Write-Host "  $($lang.RuleCustomize)" -ForegroundColor Green
 		Write-Host "  $('-' * 80)"
+
+		$Custom = $Custom -split ';'
+
 		foreach ($item in $Custom) {
-			if ($PowerShell_Function_Tasks -contains $item) {
+			if ($PowerShell_Function_Tasks -contains "Other_Tasks_$($item)") {
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = 40
 					Width     = 445
-					Text      = $item
+					Text      = "Other_Tasks_$($item)"
 					Checked   = $True
 					add_Click = {
 						$UI_Main_Error.Text = ""
