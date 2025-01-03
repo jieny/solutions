@@ -230,7 +230,21 @@
 	Write-Host " $($lang.Options) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 	Write-Host ": " -NoNewline
 
-	switch -Wildcard (Read-Host)
+	$NewEnter = Read-Host
+
+	<#
+		.The prefix cannot contain spaces
+		.前缀不能带空格
+	#>
+	while ($true) {
+		if ($NewEnter -match '^\s') {
+			$NewEnter = $NewEnter.Remove(0, 1)
+		} else {
+		    break
+		}
+	}
+
+	switch -Wildcard ($NewEnter)
 	{
 		"1" {
 			InBox_Apps_Menu_Shortcuts_LXPs_Add

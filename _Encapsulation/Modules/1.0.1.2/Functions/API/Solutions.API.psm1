@@ -1,7 +1,60 @@
-﻿
-<#
+﻿<#
 	.API
 #>
+Function Api_Create_Template
+{
+	param
+	(
+		$NewFile
+	)
+
+	$ThisFileType = $([System.IO.Path]::GetExtension($NewFile))
+	switch -WildCard ($ThisFileType) {
+		".psd1" {
+			$RandomGuid = [guid]::NewGuid()
+			$NewPsmFile = [System.IO.Path]::GetFileNameWithoutExtension($NewFile)
+			$NewPsFile = "$([System.IO.Path]::GetDirectoryName($NewFile))\$($NewPsmFile).psm1"
+@"
+@{
+	RootModule        = '$($NewPsmFile).psm1'
+	ModuleVersion     = '1.0.0.0'
+	GUID              = '$($RandomGuid)'
+	Author            = ''
+	Copyright         = ''
+	Description       = ''
+	PowerShellVersion = '5.1'
+	NestedModules     = @()
+	FunctionsToExport = '*'
+	CmdletsToExport   = '*'
+	VariablesToExport = '*'
+	AliasesToExport   = '*'
+
+	PrivateData = @{
+		PSData = @{
+			# Tags = @()
+			LicenseUri   = ''
+			ProjectUri   = ''
+#			IconUri      = ''
+#			ReleaseNotes = ''
+		}
+	}
+	HelpInfoURI = ''
+#	DefaultCommandPrefix = ''
+}
+"@ | Out-File -FilePath $NewFile -Encoding utf8 -ErrorAction SilentlyContinue
+
+@"
+Write-Host "  Test $($RandomGuid)"
+"@ | Out-File -FilePath $NewPsFile -Encoding utf8 -ErrorAction SilentlyContinue
+		}
+		default {
+@"
+Write-Host "  Test"
+"@ | Out-File -FilePath $NewFile -Encoding utf8 -ErrorAction SilentlyContinue
+		}
+	}
+}
+
 Function Solutions_API_Command
 {
 	param

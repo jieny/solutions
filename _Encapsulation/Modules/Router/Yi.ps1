@@ -1581,7 +1581,21 @@ Function Help
 	Write-Host " $($lang.Choose) " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host ": " -NoNewline
 
-	switch -Wildcard (Read-Host)
+	$NewEnter = Read-Host
+
+	<#
+		.The prefix cannot contain spaces
+		.前缀不能带空格
+	#>
+	while ($true) {
+		if ($NewEnter -match '^\s') {
+			$NewEnter = $NewEnter.Remove(0, 1)
+		} else {
+		    break
+		}
+	}
+
+	switch -Wildcard ($NewEnter)
 	{
 		"u" {
 			powershell -file "$($PSScriptRoot)\..\..\_Sip.ps1" -Function "Update"

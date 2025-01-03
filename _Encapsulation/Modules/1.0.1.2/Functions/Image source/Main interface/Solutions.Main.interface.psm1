@@ -688,56 +688,16 @@ Function Image_Select
 					ActiveLinkColor = "RED"
 					LinkBehavior   = "NeverUnderline"
 					add_Click      = {
-						$ThisFileType = $([System.IO.Path]::GetExtension($This.Tag))
-						switch -WildCard ($ThisFileType) {
-							".psd1" {
-								$RandomGuid = [guid]::NewGuid()
-								$NewPsmFile = [System.IO.Path]::GetFileNameWithoutExtension($This.Tag)
-								$NewPsFile = "$([System.IO.Path]::GetDirectoryName($This.Tag))\$($NewPsmFile).psm1"
-@"
-@{
-	RootModule        = '$($NewPsmFile).psm1'
-	ModuleVersion     = '1.0.0.0'
-	GUID              = '$($RandomGuid)'
-	Author            = ''
-	Copyright         = ''
-	Description       = ''
-	PowerShellVersion = '5.1'
-	NestedModules     = @()
-	FunctionsToExport = '*'
-	CmdletsToExport   = '*'
-	VariablesToExport = '*'
-	AliasesToExport   = '*'
-
-	PrivateData = @{
-		PSData = @{
-			# Tags = @()
-			LicenseUri   = ''
-			ProjectUri   = ''
-#			IconUri      = ''
-#			ReleaseNotes = ''
-		}
-	}
-	HelpInfoURI = ''
-#	DefaultCommandPrefix = ''
-}
-"@ | Out-File -FilePath $This.Tag -Encoding utf8 -ErrorAction SilentlyContinue
-
-@"
-Write-Host "Test $($RandomGuid)"
-"@ | Out-File -FilePath $NewPsFile -Encoding utf8 -ErrorAction SilentlyContinue
-							}
-							default {
-@"
-Write-Host "Test"
-"@ | Out-File -FilePath $This.Tag -Encoding utf8 -ErrorAction SilentlyContinue
-							}
-						}
-
+						Api_Create_Template -NewFile $This.Tag
 						Refresh_Rule_Shortcuts
 
-						$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Done)"
-						$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+						if (Test-Path -Path $This.Tag -PathType leaf) {
+							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Done)"
+							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+						}  else {
+							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Failed)"
+							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						}
 
 						$GUIImageSourceGroupAPI_Rule_Path.Text = ""
 						$GUIImageSourceGroupAPI_Rule_Path.BackColor = "#FFFFFF"
