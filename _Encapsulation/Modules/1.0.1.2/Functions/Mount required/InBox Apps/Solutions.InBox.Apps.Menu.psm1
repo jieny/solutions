@@ -85,6 +85,16 @@
 		Write-Host "  $($lang.InboxAppsManager): $($lang.InboxAppsOfflineDel)" -ForegroundColor Red
 	}
 
+	if (Verify_Is_Current_Same) {
+		Write-host "    " -NoNewline
+		Write-Host " O " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-Host "  $($lang.Optimize_Appx_Package)" -ForegroundColor Green
+	} else {
+		Write-host "    " -NoNewline
+		Write-Host " O " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-Host "  $($lang.Optimize_Appx_Package)" -ForegroundColor Red
+	}
+
 	Write-Host "`n    $($lang.InboxAppsClear)" -ForegroundColor Yellow
 	Write-Host "    $('-' * 78)"
 	if (Verify_Is_Current_Same) {
@@ -269,6 +279,28 @@
 		}
 		"A" {
 			InBox_Apps_Menu_Shortcuts_Delete
+			ToWait -wait 2
+			InBox_Apps_Menu
+		}
+		"o" {
+			Write-Host "`n  $($lang.Optimize_Appx_Package)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+			if (Image_Is_Select_IAB) {
+				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
+				Write-Host "  $('-' * 80)"
+
+				if (Verify_Is_Current_Same) {
+					Write-Host "  $($lang.Mounted)" -ForegroundColor Green
+
+					Inbox_Apps_Hard_Links_Optimize
+					Get_Next
+				} else {
+					Write-Host "  $($lang.NotMounted)" -ForegroundColor Red
+				}
+			} else {
+				Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
+			}
+
 			ToWait -wait 2
 			InBox_Apps_Menu
 		}

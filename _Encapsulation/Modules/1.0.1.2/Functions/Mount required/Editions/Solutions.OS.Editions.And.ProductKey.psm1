@@ -272,11 +272,12 @@ Function Editions_GUI
 			Write-Host "  $($lang.Editions): $($lang.Change), $($lang.EditionsProductKey)"
 			if ($MarkVerifyVersion) {
 				Write-Host "  $($MarkVerifyVersionSelect)" -ForegroundColor Yellow
+
 				try {
 					Set-WindowsEdition  -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Set.log" -Path $test_mount_folder_Current -Edition $MarkVerifyVersionSelect
 					Write-Host "  $($lang.Done)" -ForegroundColor Green
 				} catch {
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 					Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 				}
@@ -292,7 +293,7 @@ Function Editions_GUI
 					Set-WindowsProductKey -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Set.log" -Path $test_mount_folder_Current -ProductKey $UI_Main_Change_Key_Custom.Text
 					Write-Host "  $($lang.Done)" -ForegroundColor Green
 				} catch {
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 					Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 				}

@@ -1292,7 +1292,7 @@ Function Image_Clear_Superseded
 				}
 			}
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 			Write-Host "  $($lang.Superseded), $($lang.Inoperable) ( Superseded )" -ForegroundColor Red
 		}
@@ -1305,7 +1305,7 @@ Function Image_Clear_Superseded
 				}
 			}
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 			Write-Host "  $($lang.Superseded), $($lang.Inoperable) ( UninstallPending )" -ForegroundColor Red
 		}

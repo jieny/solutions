@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = 空のタスク
 	Other_Tasks_Pause               = 一時停止
 	Other_Tasks_RAMDISK             = RADMDISK を使用してすべてのローカル ディスク ボリュームを検索し、フォーマットします。
+	Other_Tasks_RAMDISK_AR          = RADMDISK ですべてのローカル ディスク ボリュームを検索し、フォーマットして自動的に修復します
 	Other_Tasks_REFS                = WinPE が REFS インストールのサポートを追加
 	Other_Tasks_TPM                 = TPM インストールチェックをバイパスする
 '@

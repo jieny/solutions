@@ -2064,7 +2064,7 @@ Function InBox_Apps_LIPs_Clean_Process
 						Write-Host "  $($_.PackageName)" -ForegroundColor Green
 					}
 				} catch {
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 					Write-Host "  $($lang.GetInBoxApps), $($lang.Inoperable)" -ForegroundColor Red
 					return

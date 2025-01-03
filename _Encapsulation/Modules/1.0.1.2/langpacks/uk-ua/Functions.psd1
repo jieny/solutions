@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Пусте завдання
 	Other_Tasks_Pause               = Пауза
 	Other_Tasks_RAMDISK             = Виконайте пошук на всіх томах локального диска за допомогою RADMDISK, а потім відформатуйте їх
+	Other_Tasks_RAMDISK_AR          = Виконайте пошук на всіх томах локального диска за допомогою RADMDISK, а потім відформатуйте та автоматично відновіть їх
 	Other_Tasks_REFS                = WinPE додає підтримку встановлення REFS
 	Other_Tasks_TPM                 = Обійти перевірку встановлення TPM
 '@

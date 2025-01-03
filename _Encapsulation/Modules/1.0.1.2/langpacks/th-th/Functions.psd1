@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = งานที่ว่างเปล่า
 	Other_Tasks_Pause               = หยุดชั่วคราว
 	Other_Tasks_RAMDISK             = ค้นหาวอลุ่มดิสก์ในเครื่องทั้งหมดด้วย RADMDISK แล้วฟอร์แมต
+	Other_Tasks_RAMDISK_AR          = ค้นหาวอลุ่มดิสก์ในเครื่องทั้งหมดด้วย RADMDISK จากนั้นฟอร์แมต + ซ่อมแซมโดยอัตโนมัติ
 	Other_Tasks_REFS                = WinPE เพิ่มการสนับสนุนการติดตั้ง REFS
 	Other_Tasks_TPM                 = การตรวจสอบการติดตั้งบายพาส TPM
 '@

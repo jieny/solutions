@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = משימה ריקה
 	Other_Tasks_Pause               = הַפסָקָה
 	Other_Tasks_RAMDISK             = חפש בכל אמצעי האחסון של הדיסקים המקומיים עם RADMDISK ולאחר מכן פרמט אותם
+	Other_Tasks_RAMDISK_AR          = חפש בכל אמצעי האחסון של הדיסק המקומי עם RADMDISK ולאחר מכן פרמט + תקן אותם באופן אוטומטי
 	Other_Tasks_REFS                = WinPE מוסיפה תמיכה בהתקנת REFS
 	Other_Tasks_TPM                 = עוקף את בדיקת התקנת TPM
 '@

@@ -1226,7 +1226,7 @@ Function Image_Get_Installed_Drive
 			}
 			Write-Host "  $($lang.Operable)" -ForegroundColor Green
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			return
 		}

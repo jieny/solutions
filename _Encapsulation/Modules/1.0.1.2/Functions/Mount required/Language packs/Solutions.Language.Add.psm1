@@ -2431,7 +2431,7 @@ Function Language_Rule_Add_group
 		}
 		Write-Host "  $($lang.Operable)" -ForegroundColor Green
 	} catch {
-		Write-Host "  $($_)" -ForegroundColor Yellow
+		Write-Host "  $($_)" -ForegroundColor Red
 		Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 		Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 		return

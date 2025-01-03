@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Tyhjä tehtävä
 	Other_Tasks_Pause               = Tauko
 	Other_Tasks_RAMDISK             = Etsi kaikki paikalliset levyasemat RADMDISKillä ja alusta ne sitten
+	Other_Tasks_RAMDISK_AR          = Etsi kaikki paikalliset levyasemat RADMDISK:llä ja alusta + korjaa ne automaattisesti
 	Other_Tasks_REFS                = WinPE lisää REFS asennustuen
 	Other_Tasks_TPM                 = Ohita TPM-asennuksen tarkistus
 '@

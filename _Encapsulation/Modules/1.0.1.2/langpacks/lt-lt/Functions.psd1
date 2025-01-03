@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Tuščia užduotis
 	Other_Tasks_Pause               = Pauzė
 	Other_Tasks_RAMDISK             = Ieškokite visų vietinių diskų tomų naudodami RADMDISK ir suformatuokite juos
+	Other_Tasks_RAMDISK_AR          = Ieškokite visų vietinių diskų tomų naudodami RADMDISK, tada formatuokite + automatiškai juos pataisykite
 	Other_Tasks_REFS                = WinPE prideda REFS diegimo palaikymą
 	Other_Tasks_TPM                 = Apeiti TPM diegimo patikrinimą
 '@

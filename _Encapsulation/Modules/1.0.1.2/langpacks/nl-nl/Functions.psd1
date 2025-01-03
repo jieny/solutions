@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Lege taak
 	Other_Tasks_Pause               = Pauze
 	Other_Tasks_RAMDISK             = Doorzoek alle lokale schijfvolumes met RADMDISK en formatteer ze vervolgens
+	Other_Tasks_RAMDISK_AR          = Doorzoek alle lokale schijfvolumes met RADMDISK en formatteer en repareer ze vervolgens automatisch
 	Other_Tasks_REFS                = WinPE voegt REFS installatieondersteuning toe
 	Other_Tasks_TPM                 = Omzeil de TPM installatiecontrole
 '@

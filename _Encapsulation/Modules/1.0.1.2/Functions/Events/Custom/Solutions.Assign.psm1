@@ -955,7 +955,7 @@ Function Run_Expand
 					}
 				} catch {
 					Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 				}
 

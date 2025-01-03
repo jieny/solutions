@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Prazna naloga
 	Other_Tasks_Pause               = Premor
 	Other_Tasks_RAMDISK             = Preiščite vse nosilce lokalnega diska z RADMDISK in jih nato formatirajte
+	Other_Tasks_RAMDISK_AR          = Preiščite vse nosilce lokalnega diska z RADMDISK in jih nato formatirajte + samodejno popravite
 	Other_Tasks_REFS                = WinPE doda podporo za namestitev REFS
 	Other_Tasks_TPM                 = Obidite preverjanje namestitve TPM
 '@

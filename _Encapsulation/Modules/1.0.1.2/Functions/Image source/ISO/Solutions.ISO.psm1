@@ -1263,7 +1263,7 @@ Function ISO_Create_UI
 				} catch {
 					Write-Host "  $($lang.ConvertChk)"
 					Write-Host "  $($Install_wim)"
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 				}
 			}
@@ -1277,7 +1277,7 @@ Function ISO_Create_UI
 				} catch {
 					Write-Host "  $($lang.ConvertChk)"
 					Write-Host "  $($Install_ESD)"
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 				}
 			}
@@ -1291,7 +1291,7 @@ Function ISO_Create_UI
 				} catch {
 					Write-Host "  $($lang.ConvertChk)"
 					Write-Host "  $($Install_SWM)"
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 				}
 			}
@@ -3027,7 +3027,7 @@ Function ISO_Create_UI
 			} catch {
 				Write-Host "  $($lang.ConvertChk)"
 				Write-Host "  $($Install_SWM)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 			}
 		}
@@ -3041,7 +3041,7 @@ Function ISO_Create_UI
 			} catch {
 				Write-Host "  $($lang.ConvertChk)"
 				Write-Host "  $($Install_ESD)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 			}
 		}
@@ -3055,7 +3055,7 @@ Function ISO_Create_UI
 			} catch {
 				Write-Host "  $($lang.ConvertChk)"
 				Write-Host "  $($Install_SWM)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 			}
 		}
@@ -4107,9 +4107,9 @@ Function ISO_Create_Process
 			Write-Host "`n  $($lang.EmptyDirectory)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			if ($Global:EmptyDirectory) {
-				Write-Host "  $($lang.Operable)" -ForegroundColor Green
+				Write-Host "  $($lang.Del): " -NoNewline
 				Remove_Tree $Global:Image_source
-				Write-Host "  $($lang.Done)" -ForegroundColor Green
+				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			} else {
 				Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			}

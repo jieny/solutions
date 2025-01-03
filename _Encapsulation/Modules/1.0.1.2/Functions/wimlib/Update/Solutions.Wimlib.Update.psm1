@@ -977,7 +977,7 @@ Function Image_Queue_Wimlib_Process_Wim_Main
 					}
 				} catch {
 					Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
-					Write-Host "  $($_)" -ForegroundColor Yellow
+					Write-Host "  $($_)" -ForegroundColor Red
 					Write-Host "  $($lang.Failed)" -ForegroundColor Red
 				}
 

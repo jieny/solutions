@@ -1186,7 +1186,7 @@ Function Image_Convert_Process
 			} catch {
 				Write-Host "  $($lang.ConvertChk)"
 				Write-Host "  $($Install_ESD)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 				return
 			}
@@ -1233,7 +1233,7 @@ Function Image_Convert_Process
 						} catch {
 							Write-Host "  $($lang.ConvertChk)"
 							Write-Host "  $($Install_wim)"
-							Write-Host "  $($_)" -ForegroundColor Yellow
+							Write-Host "  $($_)" -ForegroundColor Red
 							Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 						}
 
@@ -1335,7 +1335,7 @@ Function Image_Convert_Process
 			} catch {
 				Write-Host "  $($lang.ConvertChk)"
 				Write-Host "  $($Install_wim)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 				return
 			}
@@ -1431,7 +1431,7 @@ Function Image_Convert_Process
 					} catch {
 						Write-Host $lang.ConvertChk
 						Write-Host "  $($Install_wim)"
-						Write-Host "  $($_)" -ForegroundColor Yellow
+						Write-Host "  $($_)" -ForegroundColor Red
 						Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 					}
 
@@ -1505,7 +1505,7 @@ Function Image_Convert_Process
 			} catch {
 				Write-Host "  $($lang.ConvertChk)"
 				Write-Host "  $($Install_SWM)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 				return
 			}

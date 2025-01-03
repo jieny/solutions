@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Κενή εργασία
 	Other_Tasks_Pause               = Παύση
 	Other_Tasks_RAMDISK             = Αναζητήστε όλους τους τόμους τοπικών δίσκων με το RADMDISK και στη συνέχεια μορφοποιήστε τους
+	Other_Tasks_RAMDISK_AR          = Αναζητήστε όλους τους τοπικούς τόμους δίσκου με το RADMDISK και στη συνέχεια μορφοποιήστε + επιδιορθώστε τους αυτόματα
 	Other_Tasks_REFS                = Το WinPE προσθέτει υποστήριξη εγκατάστασης REFS
 	Other_Tasks_TPM                 = Παράκαμψη ελέγχου εγκατάστασης TPM
 '@

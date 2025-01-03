@@ -48,7 +48,7 @@ Function InBox_Apps_Offline_Delete_UI
 			$UI_Main_Refresh_Sources.Enabled = $False
 			$UI_Main_Save.Enabled = $False
 
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 			Write-Host "  $($lang.GetInBoxApps), $($lang.Inoperable)" -ForegroundColor Red
 			

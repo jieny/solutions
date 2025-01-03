@@ -1323,8 +1323,9 @@ Function Event_Process_Task_Need_Mount
 									Write-Host "  $('-' * 80)`n"
 								}
 
+								Write-Host "`n  $($lang.Save): " -NoNewline
 								Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $test_mount_Sources_Expand | Out-Null
-								Write-Host "  $($lang.Done)" -ForegroundColor Green
+								Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 							} else {
 								Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 							}
@@ -2009,7 +2010,7 @@ Function Healthy_Check_Process
 			}
 		} catch {
 			Write-Host "  $($lang.ConvertChk)"
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 
 			return $False
@@ -2140,8 +2141,9 @@ Function Eject_Forcibly_All
 						Write-Host "  $('-' * 80)`n"
 					}
 
+					Write-Host "`n  $($lang.Save): " -NoNewline
 					Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $Eject_Main_Do_Not_Save_Path | Out-Null
-					Write-Host "  $($lang.Done)" -ForegroundColor Green
+					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 				} else {
 					Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 				}

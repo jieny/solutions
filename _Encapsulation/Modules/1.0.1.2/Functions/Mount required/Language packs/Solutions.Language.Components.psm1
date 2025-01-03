@@ -492,7 +492,7 @@ Function Cleanup_Components_Process
 				}
 			}
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			return

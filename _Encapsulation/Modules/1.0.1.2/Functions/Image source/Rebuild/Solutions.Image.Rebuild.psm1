@@ -61,7 +61,7 @@ Function Rebuild_Image_File
 			} catch {
 				Write-Host $lang.ConvertChk
 				Write-Host "  $($Filename)"
-				Write-Host "  $($_)" -ForegroundColor Yellow
+				Write-Host "  $($_)" -ForegroundColor Red
 				Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 			}
 

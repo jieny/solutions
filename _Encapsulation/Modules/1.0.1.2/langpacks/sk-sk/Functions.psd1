@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Prázdna úloha
 	Other_Tasks_Pause               = Pauza
 	Other_Tasks_RAMDISK             = Vyhľadajte všetky zväzky lokálnych diskov pomocou RADMDISK a potom ich naformátujte
+	Other_Tasks_RAMDISK_AR          = Vyhľadajte všetky zväzky lokálnych diskov pomocou RADMDISK a potom ich naformátujte + automaticky opravte
 	Other_Tasks_REFS                = WinPE pridáva podporu inštalácie REFS
 	Other_Tasks_TPM                 = Vynechajte kontrolu inštalácie TPM
 '@

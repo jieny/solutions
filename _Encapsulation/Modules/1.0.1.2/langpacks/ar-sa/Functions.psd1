@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = مهمة فارغة
 	Other_Tasks_Pause               = يوقف
 	Other_Tasks_RAMDISK             = ابحث في كافة وحدات تخزين الأقراص المحلية باستخدام RADMDISK ثم قم بتنسيقها
+	Other_Tasks_RAMDISK_AR          = ابحث في كافة وحدات تخزين الأقراص المحلية باستخدام RADMDISK ثم قم بتنسيق + لإصلاحها تلقائيًا
 	Other_Tasks_REFS                = يضيف WinPE دعم تثبيت REFS
 	Other_Tasks_TPM                 = تجاوز فحص تثبيت TPM
 '@

@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Sarcină goală
 	Other_Tasks_Pause               = Pauză
 	Other_Tasks_RAMDISK             = Căutați toate volumele de disc locale cu RADMDISK și apoi formatați-le
+	Other_Tasks_RAMDISK_AR          = Căutați toate volumele de disc locale cu RADMDISK și apoi formatați + reparați-le automat
 	Other_Tasks_REFS                = WinPE adaugă suport pentru instalare REFS
 	Other_Tasks_TPM                 = Ocoliți verificarea instalării TPM
 '@

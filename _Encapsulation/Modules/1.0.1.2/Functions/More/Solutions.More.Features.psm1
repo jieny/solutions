@@ -325,7 +325,7 @@ Function Image_Get_Apps_Package
 				}
 			}
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			return
 		}
@@ -440,7 +440,7 @@ Function Image_Get_Detailed
 				}
 			}
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			return
 		}
@@ -549,7 +549,7 @@ Function Image_Get_Components_Package
 
 			Write-Host "  $($lang.Operable)" -ForegroundColor Green
 		} catch {
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			return
 		}

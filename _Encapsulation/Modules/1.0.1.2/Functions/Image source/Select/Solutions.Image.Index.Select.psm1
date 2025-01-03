@@ -1722,7 +1722,7 @@ Function Image_Select_Mul_UI
 		} catch {
 			Write-Host "  $($lang.ConvertChk)"
 			Write-Host "  $($ImageFileName)"
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 			return
 		}

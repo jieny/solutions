@@ -1,7 +1,4 @@
 ﻿<#
-	.用户自定义函数起始
-#>
-<#
 	.空任务
 #>
 Function Other_Tasks_Empty
@@ -81,10 +78,6 @@ Function Other_Tasks_CTD
 	write-host
 }
 
-<#
-	.Other tasks, global search Function, search condition: Other_Tasks_*, please refer to Dev.Log.xlsx for calling parameters
-	.其它任务，全局搜索 Function，搜索条件：Other_Tasks_*，需要调用参数请参阅 Dev.Log.xlsx
-#>
 <#
 	.TPM 2.0 检查
 #>
@@ -222,9 +215,6 @@ Function Other_Tasks_REFS
 <#
 	.Force format drive letter: volume name
 	.强行格式化盘符：卷标名
-
-	 F = Format Disk
-	 R = Ramdism
 #>
 Function Other_Tasks_RAMDISK
 {
@@ -238,7 +228,7 @@ Function Other_Tasks_RAMDISK
 	Write-host "Function Other_Tasks_RAMDISK" -ForegroundColor Yellow
 
 	Write-Host "  $($lang.RuleDescription): ".PadRight(22) -NoNewline
-	Write-host $($lang.Other_Tasks_RAMDISK) -ForegroundColor Yellow
+	Write-host $lang.Other_Tasks_RAMDISK -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 
 	<#
@@ -280,7 +270,88 @@ Function Other_Tasks_RAMDISK
 			Write-host $GetRegRAMDISKVolumeLabel -ForegroundColor Green
 			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
 		}
+	} else {
+		Write-Host "  $($lang.UpdateUnavailable)" -ForegroundColor Red
+	}
 
+	write-host
+}
+
+<#
+	.Force format drive letter: volume name + automatic repair
+	.强行格式化盘符：卷标名 + 自动修复
+#>
+Function Other_Tasks_RAMDISK_AR
+{
+	param
+	(
+		[switch]$Verify,
+		[Switch]$Silent
+	)
+
+	Write-Host "  $($lang.RuleName): ".PadRight(22) -NoNewline
+	Write-host "Function Other_Tasks_RAMDISK_AR" -ForegroundColor Yellow
+
+	Write-Host "`n  $($lang.Repair)" -ForegroundColor Yellow
+	Write-Host "    * $($lang.HistoryClearDismSave)" -ForegroundColor Green
+	Write-Host "    * $($lang.Clear_Bad_Mount)" -ForegroundColor Green
+
+	Write-Host "`n  $($lang.RuleDescription): ".PadRight(22) -NoNewline
+	Write-host $lang.Other_Tasks_RAMDISK_AR -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
+
+	<#
+		.获取 RAMDISK 卷标名
+	#>
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "RAMDisk_Volume_Label" -ErrorAction SilentlyContinue) {
+		$GetRegRAMDISKVolumeLabel = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "RAMDisk_Volume_Label" -ErrorAction SilentlyContinue
+		$WaitFormatTasks = @()
+
+		Get-CimInstance -ClassName Win32_Volume -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_.DriveLetter) -or [string]::IsNullOrWhiteSpace($_.DriveLetter))} | ForEach-Object {
+			if ($_.Label -eq $GetRegRAMDISKVolumeLabel) {
+				$WaitFormatTasks += @{
+					Label = $GetRegRAMDISKVolumeLabel
+					DriveLetter = $_.DriveLetter.Replace(":", "")
+				}
+			}
+		}
+
+		if ($WaitFormatTasks.Count -gt 0) {
+			ForEach ($item in $WaitFormatTasks) {
+				Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
+				Write-host $item.Label -ForegroundColor Green
+
+				Write-Host "  $($lang.Select_Path): " -NoNewline
+				Write-Host $item.DriveLetter -ForegroundColor Green
+
+				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+					Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
+					Write-Host "  $('-' * 80)"
+					Write-Host "  Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel ""$($item.Label)""" -ForegroundColor Green
+					Write-Host "  $('-' * 80)`n"
+				}
+
+				Invoke-Expression -Command "Format-Volume -DriveLetter $($item.DriveLetter) -NewFileSystemLabel ""$($item.Label)"""
+				Write-Host "  $($lang.Done)" -ForegroundColor Green
+			}
+
+			write-host "`n  $($lang.HistoryClearDismSave)"
+			Write-Host "  $('-' * 80)"
+			Write-Host "  $($lang.Del): " -NoNewline
+			Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\WIMMount\Mounted Images\*" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
+			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+
+			write-host "`n  $($lang.Clear_Bad_Mount)"
+			Write-Host "  $('-' * 80)"
+			Write-Host "  $($lang.Repair): " -NoNewline
+			dism /cleanup-wim | Out-Null
+			Clear-WindowsCorruptMountPoint -LogPath "$(Get_Mount_To_Logs)\Clear.log" -ErrorAction SilentlyContinue | Out-Null
+			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+		} else {
+			Write-Host "  $($lang.AutoSelectRAMDISK): " -NoNewline
+			Write-host $GetRegRAMDISKVolumeLabel -ForegroundColor Green
+			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+		}
 	} else {
 		Write-Host "  $($lang.UpdateUnavailable)" -ForegroundColor Red
 	}

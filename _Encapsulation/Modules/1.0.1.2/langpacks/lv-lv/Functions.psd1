@@ -17,6 +17,7 @@
 	Other_Tasks_Empty               = Tukšs uzdevums
 	Other_Tasks_Pause               = Pauze
 	Other_Tasks_RAMDISK             = Meklējiet visos lokālos diska sējumos, izmantojot RADMDISK, un pēc tam formatējiet tos
+	Other_Tasks_RAMDISK_AR          = Meklējiet visos lokālos disku sējumos, izmantojot RADMDISK, un pēc tam formatējiet + automātiski tos labojiet
 	Other_Tasks_REFS                = WinPE pievieno REFS instalēšanas atbalstu
 	Other_Tasks_TPM                 = Apiet TPM instalācijas pārbaudi
 '@

@@ -2028,7 +2028,7 @@ Function InBox_Apps_Add_To_Process
 			Write-Host "  $('-' * 80)"
 
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
 			return
 		}
@@ -2121,7 +2121,7 @@ Function InBox_Apps_Add_To_Process
 							Add-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Add-AppxProvisionedPackage.log" -Path $test_mount_folder_Current -PackagePath $SearchTempFile -SkipLicense -ErrorAction SilentlyContinue | Out-Null
 							Write-Host "  $($lang.Done)" -ForegroundColor Green
 						} catch {
-							Write-Host "  $($_)" -ForegroundColor Yellow
+							Write-Host "  $($_)" -ForegroundColor Red
 							Write-Host "  $($lang.AddTo), $($lang.Failed)" -ForegroundColor Red
 						}
 
@@ -2495,12 +2495,18 @@ Function Inbox_Apps_Hard_Links_Optimize
 	if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 		Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
-		Write-Host "  Dism.exe /Image:""$($test_mount_folder_Current)"" /Optimize-ProvisionedAppxPackages" -ForegroundColor Green
+		Write-Host "  Optimize-AppXProvisionedPackages -Path ""$($test_mount_folder_Current)""" -ForegroundColor Green
 		Write-Host "  $('-' * 80)`n"
 	}
 
-	start-process "Dism.exe" -ArgumentList "/Image:""$($test_mount_folder_Current)"" /Optimize-ProvisionedAppxPackages" -wait -NoNewWindow
-	Write-Host "  $($lang.Done)" -ForegroundColor Green
+	Write-Host "  $($lang.Optimize_ing): " -NoNewline
+	try {
+		Optimize-AppXProvisionedPackages -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Opt.log" -Path $test_mount_folder_Current | Out-Null
+		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+	} catch {
+		Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+		Write-Host "  $($_)" -ForegroundColor Red
+	}
 }
 
 Function InBox_Apps_Check_Customize

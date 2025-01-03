@@ -7465,7 +7465,7 @@ Function Solutions_Index_UI
 		} catch {
 			Write-Host "  $($lang.ConvertChk)"
 			Write-Host "  $($Install_wim)"
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 	}
@@ -7504,7 +7504,7 @@ Function Solutions_Index_UI
 		} catch {
 			Write-Host "  $($lang.ConvertChk)"
 			Write-Host "  $($Install_ESD)"
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 	}
@@ -7543,7 +7543,7 @@ Function Solutions_Index_UI
 		} catch {
 			Write-Host "  $($lang.ConvertChk)"
 			Write-Host "  $($Install_SWM)"
-			Write-Host "  $($_)" -ForegroundColor Yellow
+			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.Inoperable)`n" -ForegroundColor Red
 		}
 	}
@@ -8475,15 +8475,15 @@ Function Solutions_Generate_Prerequisite
 
 						Write-Host "  $($lang.SaveTo): " -NoNewline
 						Write-Host $Create_Mark_Deploy_Region -ForegroundColor Green
-				
+
 						Write-Host "  $($lang.LanguageCode): " -NoNewline
 						Write-Host $GetNewSaveLanguage -ForegroundColor Green
 
 						Out-File -FilePath $TempSaveLangToNew -Encoding utf8 -ErrorAction SilentlyContinue
 						if (Test-Path -Path $TempSaveLangToNew -PathType Leaf) {
-							Write-Host "  $($lang.Done)" -ForegroundColor Green
+							Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 						} else {
-							Write-Host "  $($lang.Inoperable)" -ForegroundColor Red
+							Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 						}
 					} else {
 						Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
