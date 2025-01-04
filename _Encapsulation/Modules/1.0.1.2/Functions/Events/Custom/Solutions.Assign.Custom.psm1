@@ -1039,7 +1039,7 @@ Function Image_Assign_Event_Master
 
 								$GUIImageSelectFunctionSolutions,
 								$GUIImageSelectFunctionSolutions_Wrap,
-	
+
 									$GUIImageSelectFunctionLang,
 									$GUIImageSelectFunctionLangAdd,
 									$GUIImageSelectFunctionLangDel,
@@ -1422,7 +1422,7 @@ Function Image_Assign_Event_Master
 											$_.Checked = $False
 										}
 									}
-								
+
 									if ($_.Tag -eq "ADV") {
 										ForEach ($QQNew in $_.Controls) {
 											if ($QQNew -is [System.Windows.Forms.CheckBox]) {
@@ -1509,7 +1509,7 @@ Function Image_Assign_Event_Master
 										if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
 											if ($_.Tag -eq "EjectMain") {
 												$_.Enabled = $False
-											
+
 												if ($Wait_Sync_Some_Select -Contains $_.Name) {
 													if ($Global:Developers_Mode) {
 														Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.001x1 ]`n   Start"
@@ -1907,11 +1907,11 @@ Function Image_Assign_Event_Master
 												Image_Select_Disable_Expand_Main_Item -Group $this.Tag -MainUid $this.Name
 											}
 										}
-	
+
 										if ($Global:Primary_Key_Image.Uid -eq "$($item.Main.ImageFileName);$($Expand.ImageFileName);") {
 											$GUIImageSelectInstallExpand.Checked = $True
 										}
-	
+
 										$UI_Main_Pri_Key_Setting_Expand = New-Object system.Windows.Forms.LinkLabel -Property @{
 											Height         = 30
 											Width          = 380
@@ -1946,11 +1946,11 @@ Function Image_Assign_Event_Master
 
 										if ($Verify_Expand_WIM.Count -gt 0) {
 											Image_Select_Refresh_Install_Boot_WinRE_Add -Master $item.Main.ImageFileName -ImageName $Expand.ImageFileName -Uid $Expand.Uid -MainUid $item.Main.Uid -ImageFilePath $NewFileFullPathExpand
-	
+
 											if ((Get-Variable -Scope global -Name "Mark_Is_Mount_$($item.Main.ImageFileName)_$($Expand.ImageFileName)").Value) {
 												$GUIImageSelectInstallExpand.ForeColor = "Red"
 											}
-	
+
 											$UI_Main_Select_Wim.controls.AddRange((
 												$UI_Main_Pri_Key_Setting_Expand
 											))
@@ -2357,7 +2357,7 @@ Function Image_Assign_Event_Master
 				.全局多任务分配
 			#>
 			$Global:Queue_Assign_Full = @()
-	
+
 			<#
 				.分配无需挂载项
 			#>
@@ -2366,7 +2366,7 @@ Function Image_Assign_Event_Master
 			$UI_Main_Select_No_Mounting.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					$Global:Queue_Assign_Not_Monuted_Expand += $_.Tag
-	
+
 					if ($_.Enabled) {
 						if ($_.Checked) {
 							$Global:Queue_Assign_Not_Monuted_Expand_Select += $_.Tag
@@ -2374,7 +2374,7 @@ Function Image_Assign_Event_Master
 					}
 				}
 			}
-	
+
 			<#
 				.所有任务，有可用挂载时
 			#>
@@ -2409,7 +2409,7 @@ Function Image_Assign_Event_Master
 					<#
 						.多任务分配
 					#>
-	
+
 					<#
 						.开始分配可用的多会话任务
 					#>
@@ -2427,19 +2427,19 @@ Function Image_Assign_Event_Master
 							}
 						}
 					}
-	
+
 					ForEach ($item in $Global:Image_Rule) {
 						if ($item.Main.Suffix -eq "wim") {
 							if ($Wait_Sync_Some_Select -contains $item.Main.uid) {
 								$MainItem += $item.Main.uid
 							}
-		
+
 							if ($item.Expand.Count -gt 0) {
 								ForEach ($Expand in $item.Expand) {
 									if ($Wait_Sync_Some_Select -contains $Expand.uid) {
 										$MainItem += $item.Main.uid
 										$MainItem += $Expand.uid
-			
+
 										if ($Wait_Sync_Some_Select -notcontains $item.Main.uid) {
 											$disable += $item.Main.uid
 										}
@@ -2457,7 +2457,7 @@ Function Image_Assign_Event_Master
 
 						#region Main
 						$Mark_Allow_Add_To = $False
-	
+
 						<#
 							.主要项，临时保存
 						#>
@@ -2509,12 +2509,12 @@ Function Image_Assign_Event_Master
 																.强制打开扩展项不保存，不管选没有选。
 															#>
 															$Fix_Eject_Force_Expand = $True
-														
+
 															New-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
 														}
 													}
 												}
-											
+
 												#region Enabled
 												if ($QQNew.Name -eq "IsAssign") {
 													if ($QQNew.Enabled) {
@@ -2538,7 +2538,7 @@ Function Image_Assign_Event_Master
 																if ($QQNewqqq.Checked) {
 																	if ($QQNewqqq.Tag -eq "Save") {
 																		New-Variable -Scope global -Name "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
-																	
+
 																		if ($Global:Developers_Mode) {
 																			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.101x1 ]`n   Start"
 																			Write-Host "$($lang.Event_Assign_Main), " -NoNewline
@@ -2549,7 +2549,7 @@ Function Image_Assign_Event_Master
 
 																	if ($QQNew.Tag -eq "DoNotSave") {
 																		New-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
-																	
+
 																		if ($Global:Developers_Mode) {
 																			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.200x1 ]`n   Start"
 																			Write-Host "$($lang.Event_Assign_Main), " -NoNewline
@@ -2898,14 +2898,14 @@ Function Image_Assign_Event_Master
 						ForEach ($item in $Global:Queue_Assign_Full) {
 							Write-Host "  $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 							Write-Host $item.Main.Uid -ForegroundColor Green
-	
+
 							Write-Host "`n      $($lang.User_Interaction): $($lang.OnDemandPlanTask): " -NoNewline -ForegroundColor Yellow
 							Write-Host "$($item.Main.UI.Count) $($lang.EventManagerCount)" -ForegroundColor Green
 							Write-Host "      $('-' * 77)"
 							ForEach ($itemMain in $item.Main.UI) {
 								Write-Host "      $($itemMain)" -ForegroundColor Green
 							}
-	
+
 							if ($item.Expand.Count -gt 0) {
 								Write-Host "`n     $($lang.Event_Assign_Expand): " -NoNewline -ForegroundColor Yellow
 								Write-Host "$($item.Expand.Count) $($lang.EventManagerCount)" -ForegroundColor Green
@@ -2913,7 +2913,7 @@ Function Image_Assign_Event_Master
 								ForEach ($itemExpand in $item.Expand) {
 									Write-Host "      $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 									Write-Host $itemExpand.Uid -ForegroundColor Green
-	
+
 									Write-Host "`n         $($lang.User_Interaction): $($lang.OnDemandPlanTask): " -NoNewline -ForegroundColor Yellow
 									Write-Host "$($itemExpand.UI.Count) $($lang.EventManagerCount)" -ForegroundColor Green
 									Write-Host "         $('-' * 74)"
@@ -2923,10 +2923,10 @@ Function Image_Assign_Event_Master
 									Write-Host
 								}
 							}
-	
+
 							Write-Host
 						}
-	
+
 						$UI_Main.Close()
 					} else {
 						$UI_Main_Error.Text = $lang.IABSelectNo

@@ -300,7 +300,7 @@ Function Feature_Disable_Match_UI
 					Write-Host "  $($lang.NoWork)" -ForegroundColor Red
 				}
 			}
-			
+
 			if ($UI_Main_Suggestion_Not.Checked) {
 				Init_Canel_Event
 			}

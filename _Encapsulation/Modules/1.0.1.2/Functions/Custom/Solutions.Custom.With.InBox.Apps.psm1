@@ -925,9 +925,9 @@ $Global:Pre_Config_Rules = @(
 								"IoTEnterprise"
 								"ServerRdsh"
 
-		#						"ServerStandardCore"
+#								"ServerStandardCore"
 								"ServerStandard"
-		#						"ServerDataCenterCore"
+#								"ServerDataCenterCore"
 								"ServerDatacenter"
 							)
 							Apps = @(
@@ -1388,7 +1388,7 @@ $Global:Pre_Config_Rules = @(
 						}
 					}
 					#endregion
-		
+
 					#region x86
 					@{
 						ISO = "en-us_windows_10_business_editions_version_22h2_x86_dvd_186a68c3.iso"
@@ -1402,7 +1402,7 @@ $Global:Pre_Config_Rules = @(
 						}
 					}
 					#endregion
-		
+
 					#region Windows 10 22H2 Consumer
 					#region x64
 					@{

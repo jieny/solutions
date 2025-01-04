@@ -159,7 +159,7 @@ Function ISO_Create_UI
 			if ($GUIISOOSLevel.Checked) {
 				$TestNewFolderStructure += (Join_MainFolder -Path $Global:ImageType)
 			}
-	
+
 			if ($GUIISOUniqueNameDirectory.Checked) {
 				$TestNewFolderStructure += (Join_MainFolder -Path $GUIISOFolderName.Text)
 			}
@@ -620,7 +620,7 @@ Function ISO_Create_UI
 			$MarkISOLabel += "_$([DateTime]::ParseExact($GUIISOYearsSel.Text, 'yyyy', $null).ToString("yy"))"
 			$MarkFolderLabel += "_$($GUIISOYearsSel.Text)"
 		}
-	
+
 		$GUIISOCustomizeName.Text = $MarkISOLabel
 		$GUIISOFolderName.Text = $MarkFolderLabel
 
@@ -1725,7 +1725,7 @@ Function ISO_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "ISOTo" -ErrorAction SilentlyContinue) {
 				$GUIISOSaveCustomizePath.Text = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "ISOTo" -ErrorAction SilentlyContinue
 			} else {
@@ -1750,7 +1750,7 @@ Function ISO_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$GUIISOSaveCustomizePath.Text = $Global:MainMasterFolder
 			Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "ISOTo" -value $Global:MainMasterFolder -String
 			ISO_Create_Not_Refresh_Label
@@ -2540,7 +2540,7 @@ Function ISO_Create_UI
 					} else {
 						$Global:ActionRebuldBoot = $False
 					}
-				
+
 					<#
 						.Rebuild: install.wim
 						.install.wim
@@ -2584,7 +2584,7 @@ Function ISO_Create_UI
 							}
 						}
 					}
-	
+
 					<#
 						.Processing: Create SHA256
 						.处理：创建 SHA256
@@ -2594,7 +2594,7 @@ Function ISO_Create_UI
 					} else {
 						$Global:CreateSHA256 = $False
 					}
-	
+
 					<#
 						.Processing: Empty the main directory
 						.处理：清空主目录
@@ -2602,12 +2602,12 @@ Function ISO_Create_UI
 					if ($GUIISOEmptyDirectory.Checked) {
 						$Global:EmptyDirectory = $True
 					}
-	
+
 					$Global:ISOISOCustomLabel = $GUIISOCustomizeName.Text
 
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "SaveLabelSpecify" -value $GUIISOFolderName.Text -String
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "SaveLabel" -value $GUIISOCustomizeName.Text -String
-		
+
 					Refres_Event_Tasks_ISO_Create
 
 					$UI_Main_Error.Text = "$($lang.Save), $($lang.Done)"
@@ -2729,7 +2729,7 @@ Function ISO_Create_UI
 		$GUIISOMonthTitle,
 		$GUIISOMonthSel
 	))
-	
+
 	$GUIISOGroupISOAll.controls.AddRange((
 		$UI_Main_Dashboard,
 		$UI_Main_Dashboard_Event_Status,
@@ -3335,6 +3335,7 @@ Function ISO_Create_UI
 
 	$OscdimgArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
 	if (Test-Path -Path $OscdimgArch -PathType Leaf) {
+
 	} else {
 		$UI_Main_Is_Create_ISO.Enabled = $False
 		$UI_Main_Is_Create_ISO.Checked = $False
@@ -3359,7 +3360,7 @@ Function ISO_Create_UI
 			$UI_Main_Event_Assign_Stop
 		))
 	}
-	
+
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
 		Write-Host "`n  $($lang.UnpackISO)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
@@ -3615,7 +3616,7 @@ Function ISO_Create_UI
 			} else {
 				$GUIISORebuldBoot.Checked = $False
 			}
-			
+
 			<#
 				.Rebuild: install.wim
 				.install.wim
@@ -4163,9 +4164,9 @@ Function New_Password
 				$requiredCharLength += $i
 			}
 
- 			if ($requiredCharLength -gt $Length) {
- 				throw "The sum of characters specified by CharacterSetCount is higher than the desired password length"
- 			}
+			if ($requiredCharLength -gt $Length) {
+				throw "The sum of characters specified by CharacterSetCount is higher than the desired password length"
+			}
 
 			$password = [Char[]]::new($Length)
 			$index = 0

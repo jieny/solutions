@@ -97,7 +97,7 @@
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Functions_Duplicate.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Functions" -name "Now_Is_Check_Duplicate" -value "True" -String
 			} else {
@@ -129,7 +129,7 @@
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Functions_AutoSelect.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Functions" -name "Now_Is_Check_Auto_Select" -value "True" -String
 			} else {
@@ -249,7 +249,7 @@
 				add_Click      = {
 					$UI_Main_Error.Text = ""
 					$UI_Main_Error_Icon.Image = $null
-					
+
 					if ($UI_Main_Functions_Duplicate.Checked) {
 						$Temp_Get_Select_Function = @()
 						$UI_Main_Select_Function.Controls | ForEach-Object {
@@ -376,7 +376,7 @@
 						$UI_Main_Error_Icon.Image = $null
 					}
 				}
-		
+
 				$UI_Main_Select_Function.controls.AddRange($CheckBox)
 			}
 		}

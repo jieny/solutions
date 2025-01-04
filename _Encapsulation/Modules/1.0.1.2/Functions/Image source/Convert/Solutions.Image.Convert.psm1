@@ -69,7 +69,7 @@ Function Image_Convert_UI
 		Event_Reset_Variable
 		$UI_Main.Close()
 	}
-	
+
 	Function Autopilot_Image_Convert_Save
 	{
 		$UI_Main_Error.Text = ""
@@ -903,7 +903,7 @@ Function Image_Convert_UI
 	#>
 	Refresh_Is_Save_Image_Convert
 	Refres_Event_Tasks_Image_Convert
-	
+
 	<#
 		.Allow open windows to be on top
 		.允许打开的窗口后置顶

@@ -33,7 +33,7 @@ Function Language_Delete_UI
 	{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-		
+
 		if ($UI_Main_Auto_Sync_Suggestions.Enabled) {
 			if ($UI_Main_Auto_Sync_Suggestions.Checked) {
 				<#
@@ -225,11 +225,11 @@ Function Language_Delete_UI
 				Text           = $lang.RulePre
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Pre_Rule)
-	
+
 			ForEach ($item in $SearchFolderRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 					Width     = 493
@@ -239,7 +239,7 @@ Function Language_Delete_UI
 					add_Click = { Language_Refresh_Del_Auto_Suggestions }
 				}
 				$UI_Main_Rule.controls.AddRange($CheckBox)
-	
+
 				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
 					autosize        = 1
 					Padding         = "50,0,0,0"
@@ -252,14 +252,14 @@ Function Language_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -269,7 +269,7 @@ Function Language_Delete_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 35
 					Width           = 525
@@ -282,14 +282,14 @@ Function Language_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -299,7 +299,7 @@ Function Language_Delete_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 35
 					Width           = 525
@@ -312,13 +312,13 @@ Function Language_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
@@ -345,7 +345,7 @@ Function Language_Delete_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -359,14 +359,14 @@ Function Language_Delete_UI
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
 							$CheckBox.Enabled = $True
 						}
 					}
-	
+
 					$UI_Main_Rule.controls.AddRange((
 						$AddSourcesPathOpen,
 						$AddSourcesPathPaste
@@ -386,15 +386,15 @@ Function Language_Delete_UI
 							Language_Del_Refresh_Sources
 						}
 					}
-		
+
 					$UI_Main_Rule.controls.AddRange($AddSourcesPathNoFolder)
 				}
-	
+
 				$Add_Pre_Rule_Wrap = New-Object system.Windows.Forms.Label -Property @{
 					Height         = 30
 					Width          = 525
 				}
-	
+
 				$UI_Main_Rule.controls.AddRange($Add_Pre_Rule_Wrap)
 			}
 		}
@@ -411,7 +411,7 @@ Function Language_Delete_UI
 				Text           = $lang.RuleMultistage
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Multistage_Rule_Name)
-	
+
 			ForEach ($item in $Search_Folder_Multistage_Rule) {
 				$MarkIsFolderRule = $False
 				if (Test-Path -Path $item -PathType Container) {
@@ -419,7 +419,7 @@ Function Language_Delete_UI
 						$MarkIsFolderRule = $True
 					}
 				}
-	
+
 				if ($MarkIsFolderRule) {
 					$No_Find_Multistage_Rule_Create = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
@@ -433,7 +433,7 @@ Function Language_Delete_UI
 						add_Click       = $UI_Main_Create_New_Tempate_Click
 					}
 					$UI_Main_Rule.controls.AddRange($No_Find_Multistage_Rule_Create)
-	
+
 					Get-ChildItem -Path $item -Directory -ErrorAction SilentlyContinue | Where-Object {
 						<#
 							.添加：文字显示路径
@@ -450,14 +450,14 @@ Function Language_Delete_UI
 							add_Click       = {
 								$UI_Main_Error.Text = ""
 								$UI_Main_Error_Icon.Image = $null
-					
+
 								if ([string]::IsNullOrEmpty($This.Tag)) {
 									$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 									$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 								} else {
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
-					
+
 										$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 										$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 									} else {
@@ -468,9 +468,9 @@ Function Language_Delete_UI
 							}
 						}
 						$UI_Main_Rule.controls.AddRange($AddSourcesPathName)
-	
+
 						Language_Del_Refresh_Sources_New -Sources $_.FullName -ImageMaster $Global:Primary_Key_Image.Master -ImageName $Global:Primary_Key_Image.ImageFileName
-	
+
 						$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 							Height         = 30
 							Width          = 525
@@ -480,7 +480,7 @@ Function Language_Delete_UI
 				} else {
 					$InitLength = $item.Length
 					if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 					$CheckBox    = New-Object System.Windows.Forms.CheckBox -Property @{
 						Height   = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 						Width    = 493
@@ -490,7 +490,7 @@ Function Language_Delete_UI
 						Enabled  = $False
 						add_Click = { Language_Refresh_Del_Auto_Suggestions }
 					}
-	
+
 					$No_Find_Multistage_Rule = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "47,0,0,0"
@@ -501,12 +501,12 @@ Function Language_Delete_UI
 						LinkBehavior    = "NeverUnderline"
 						add_Click       = $UI_Main_Create_New_Tempate_Click
 					}
-	
+
 					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 						Height         = 30
 						Width          = 525
 					}
-	
+
 					$UI_Main_Rule.controls.AddRange((
 						$CheckBox,
 						$No_Find_Multistage_Rule,
@@ -554,14 +554,14 @@ Function Language_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -584,14 +584,14 @@ Function Language_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -620,7 +620,7 @@ Function Language_Delete_UI
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
@@ -647,7 +647,7 @@ Function Language_Delete_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -693,7 +693,7 @@ Function Language_Delete_UI
 							Language_Del_Refresh_Sources
 						}
 					}
-	
+
 					$UI_Main_Rule.controls.AddRange($AddSourcesPathNoFolder)
 				}
 			}
@@ -747,14 +747,14 @@ Function Language_Delete_UI
 			add_Click       = {
 				$UI_Main_Error.Text = ""
 				$UI_Main_Error_Icon.Image = $null
-	
+
 				if ([string]::IsNullOrEmpty($This.Tag)) {
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 				} else {
 					if (Test-Path -Path $This.Tag -PathType Container) {
 						Start-Process $This.Tag
-	
+
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 					} else {
@@ -830,7 +830,7 @@ Function Language_Delete_UI
 					Language_Del_Refresh_Sources
 				}
 			}
-	
+
 			$UI_Main_Rule.controls.AddRange($AddSourcesPathNoFolder)
 		}
 	}
@@ -838,7 +838,7 @@ Function Language_Delete_UI
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -848,7 +848,7 @@ Function Language_Delete_UI
 	$UI_Main_DragDrop = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
 				if (Test-Path -Path $filename -PathType Container) {
@@ -972,7 +972,7 @@ Function Language_Delete_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_Mask_Tips.Visible = $True
 		}
 	}
@@ -1063,7 +1063,7 @@ Function Language_Delete_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleMultistage_Delete" -value "False" -String
 				}
-			
+
 				Language_Del_Refresh_Sources
 			}
 		}
@@ -1094,7 +1094,7 @@ Function Language_Delete_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Delete" -value "False" -String
 				}
-			
+
 				Language_Del_Refresh_Sources
 			}
 		}
@@ -1314,7 +1314,7 @@ Function Language_Delete_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Global_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions" -name "TipsWarningLanguageGlobal" -value "True" -String
 				$UI_Main_Mask_Tips_Do_Not.Enabled = $False
@@ -1332,7 +1332,7 @@ Function Language_Delete_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -name "TipsWarningLanguage" -value "True" -String
 			} else {
@@ -1404,7 +1404,7 @@ Function Language_Delete_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Suggestion_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -name "IsSuggested" -value "True" -String
 				$UI_Main_Suggestion_Setting.Enabled = $False
@@ -1555,7 +1555,7 @@ Function Language_Delete_UI
 		#>
 		$UI_Main_Mask_Tips_Results.Text += "`n   $($lang.Basic): $($item.Basic.Count) $($lang.EventManagerCount)`n"
 		ForEach ($Basic in $item.Basic) {
-            $UI_Main_Mask_Tips_Results.Text += "      $($Basic)`n"
+			$UI_Main_Mask_Tips_Results.Text += "      $($Basic)`n"
 		}
 
 		<#
@@ -1563,7 +1563,7 @@ Function Language_Delete_UI
 		#>
 		$UI_Main_Mask_Tips_Results.Text += "`n   $($lang.Fonts): $($item.Fonts.Count) $($lang.EventManagerCount)`n"
 		ForEach ($Fonts in $item.Fonts) {
-            $UI_Main_Mask_Tips_Results.Text += "      $($Fonts)`n"
+			$UI_Main_Mask_Tips_Results.Text += "      $($Fonts)`n"
 		}
 
 		<#
@@ -1571,7 +1571,7 @@ Function Language_Delete_UI
 		#>
 		$UI_Main_Mask_Tips_Results.Text += "`n   $($lang.OCR): $($item.OCR.Count) $($lang.EventManagerCount)`n"
 		ForEach ($OCR in $item.OCR) {
-            $UI_Main_Mask_Tips_Results.Text += "      $($OCR)`n"
+			$UI_Main_Mask_Tips_Results.Text += "      $($OCR)`n"
 		}
 
 		<#
@@ -1579,7 +1579,7 @@ Function Language_Delete_UI
 		#>
 		$UI_Main_Mask_Tips_Results.Text += "`n   $($lang.Handwriting): $($item.Basic.Count) $($lang.EventManagerCount)`n"
 		ForEach ($Handwriting in $item.Handwriting) {
-            $UI_Main_Mask_Tips_Results.Text += "      $($Handwriting)`n"
+			$UI_Main_Mask_Tips_Results.Text += "      $($Handwriting)`n"
 		}
 
 		<#
@@ -1587,7 +1587,7 @@ Function Language_Delete_UI
 		#>
 		$UI_Main_Mask_Tips_Results.Text += "`n   $($lang.TextToSpeech): $($item.TextToSpeech.Count) $($lang.EventManagerCount)`n"
 		ForEach ($TextToSpeech in $item.TextToSpeech) {
-            $UI_Main_Mask_Tips_Results.Text += "      $($TextToSpeech)`n"
+			$UI_Main_Mask_Tips_Results.Text += "      $($TextToSpeech)`n"
 		}
 
 		<#
@@ -1595,7 +1595,7 @@ Function Language_Delete_UI
 		#>
 		$UI_Main_Mask_Tips_Results.Text += "`n   $($lang.Speech): $($item.Speech.Count) $($lang.EventManagerCount)`n"
 		ForEach ($Speech in $item.Speech) {
-            $UI_Main_Mask_Tips_Results.Text += "      $($Speech)`n"
+			$UI_Main_Mask_Tips_Results.Text += "      $($Speech)`n"
 		}
 
 		<#

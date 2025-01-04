@@ -75,7 +75,7 @@ Function Editions_GUI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($this.Checked) {
 				$UI_Main_Menu_Change_Key.Enabled = $True
 			} else {
@@ -170,7 +170,7 @@ Function Editions_GUI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($this.Enabled) {
 				if ($this.Checked) {
 					$UI_Main_Unlock_Image_Version.Enabled = $True
@@ -194,7 +194,7 @@ Function Editions_GUI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_Change_Version_Select.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.RadioButton]) {
 					$_.Enabled = $True
@@ -227,7 +227,7 @@ Function Editions_GUI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$MarkVerifyVersion = $False
 			$MarkVerifyVersionSelect = ""
 
@@ -265,7 +265,7 @@ Function Editions_GUI
 					}
 				}
 			}
-	
+
 			$test_mount_folder_Current = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 
 			$UI_Main.Hide()

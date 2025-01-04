@@ -144,11 +144,11 @@ Function Cumulative_updates_Add_UI_Autopilot
 				Text           = $lang.RulePre
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Pre_Rule)
-	
+
 			ForEach ($item in $SearchFolderRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 					Width     = 490
@@ -160,9 +160,9 @@ Function Cumulative_updates_Add_UI_Autopilot
 						$UI_Main_Error_Icon.Image = $null
 					}
 				}
-	
+
 				$UI_Main_Rule.controls.AddRange($CheckBox)
-	
+
 				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
 					autosize        = 1
 					Padding         = "50,0,0,0"
@@ -175,14 +175,14 @@ Function Cumulative_updates_Add_UI_Autopilot
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -192,7 +192,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 						}
 					}
 				}
-	
+
 				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 40
 					Width           = 525
@@ -205,14 +205,14 @@ Function Cumulative_updates_Add_UI_Autopilot
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -222,7 +222,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 						}
 					}
 				}
-	
+
 				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 40
 					Width           = 525
@@ -235,19 +235,19 @@ Function Cumulative_updates_Add_UI_Autopilot
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：预置规则
@@ -268,7 +268,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.不再检查目录里是否存在文件
 					#>
@@ -282,7 +282,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
@@ -301,7 +301,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 					))
 				} else {
 					$CheckBox.Enabled = $False
-	
+
 					$AddSourcesPathNoFolder = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "48,0,0,0"
@@ -339,7 +339,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 				Text           = $lang.RuleMultistage
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Multistage_Rule_Name)
-	
+
 			ForEach ($item in $Search_Folder_Multistage_Rule) {
 				$MarkIsFolderRule = $False
 				if (Test-Path -Path $item -PathType Container) {
@@ -347,7 +347,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 						$MarkIsFolderRule = $True
 					}
 				}
-	
+
 				if ($MarkIsFolderRule) {
 					$No_Find_Multistage_Rule_Create = New-Object system.Windows.Forms.LinkLabel -Property @{
 						Height         = 35
@@ -396,14 +396,14 @@ Function Cumulative_updates_Add_UI_Autopilot
 							add_Click       = {
 								$UI_Main_Error.Text = ""
 								$UI_Main_Error_Icon.Image = $null
-	
+
 								if ([string]::IsNullOrEmpty($This.Tag)) {
 									$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 									$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 								} else {
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
-					
+
 										$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 										$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 									} else {
@@ -414,9 +414,9 @@ Function Cumulative_updates_Add_UI_Autopilot
 							}
 						}
 						$UI_Main_Rule.controls.AddRange($AddSourcesPathName)
-	
+
 						Update_Add_Refresh_Sources_New_Autopilot -Sources $_.FullName -NewMaster $Global:Primary_Key_Image.Master -ImageName $Global:Primary_Key_Image.ImageFileName
-	
+
 						$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 							Height         = 30
 							Width          = 520
@@ -443,7 +443,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 
 					$InitLength = $item.Length
 					if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 					$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 						Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 						Width     = 465
@@ -456,7 +456,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 							$UI_Main_Error_Icon.Image = $null
 						}
 					}
-	
+
 					$No_Find_Multistage_Rule = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "49,0,0,0"
@@ -467,7 +467,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 						LinkBehavior    = "NeverUnderline"
 						add_Click       = $UI_Main_Create_New_Tempate_Click
 					}
-	
+
 					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 						Height         = 30
 						Width          = 520
@@ -529,7 +529,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -559,7 +559,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -588,13 +588,13 @@ Function Cumulative_updates_Add_UI_Autopilot
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：其它规则
@@ -744,7 +744,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 				} else {
 					if (Test-Path -Path $This.Tag -PathType Container) {
 						Start-Process $This.Tag
-	
+
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 					} else {
@@ -838,7 +838,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -848,7 +848,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 	$UI_Main_DragDrop = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
 				if (Test-Path -Path $filename -PathType Container) {
@@ -928,7 +928,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\Autopilot\Deploy\Update" -Name "$(Get_GPS_Location)_$(Get_Autopilot_Location)_$($Global:ImageType)_Add_Auto" -Force -ErrorAction SilentlyContinue | out-null
 
 			Refres_Event_Tasks_Cumulative_updates_Add_UI_Autopilot
-	
+
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 			$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
 		}
@@ -953,9 +953,9 @@ Function Cumulative_updates_Add_UI_Autopilot
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Update\Autopilot" -Name "$(Get_GPS_Location)_$(Get_Autopilot_Location)_$($Global:ImageType)_Add_Auto" -Force -ErrorAction SilentlyContinue | out-null
-	
+
 			Refres_Event_Tasks_Cumulative_updates_Add_UI_Autopilot
-	
+
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 			$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
 		}
@@ -1057,7 +1057,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Update" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleMultistage_Add_Autopilot" -value "False" -String
 				}
-			
+
 				Update_Add_Refresh_Sourcs_Autopilot
 			}
 		}
@@ -1088,7 +1088,7 @@ Function Cumulative_updates_Add_UI_Autopilot
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Update" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Add_Autopilot" -value "False" -String
 				}
-			
+
 				Update_Add_Refresh_Sourcs_Autopilot
 			}
 		}

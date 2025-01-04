@@ -224,6 +224,7 @@ Function Update_Setting_UI
 			}
 		}
 	})
+
 	$UI_Main_Menu_Select.Items.Add($lang.AllClear).add_Click({
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null

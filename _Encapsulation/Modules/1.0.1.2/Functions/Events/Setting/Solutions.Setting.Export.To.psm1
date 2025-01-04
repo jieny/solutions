@@ -80,7 +80,7 @@ Function Setting_Export_To_UI
 				}
 			}
 
-			$UI_Main_Error.Text = $lang.NoChoose		
+			$UI_Main_Error.Text = $lang.NoChoose
 		}
 	}
 	$UI_Main_Canel     = New-Object system.Windows.Forms.Button -Property @{

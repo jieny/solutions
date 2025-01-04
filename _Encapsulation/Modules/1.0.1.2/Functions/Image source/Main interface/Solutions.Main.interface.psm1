@@ -525,7 +525,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupAPI_Rule_Path.Text -match '^\s') {
 			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 			$GUIImageSourceGroupAPI_Rule_Path.BackColor = "LightPink"
 			return $False
 		}
@@ -536,7 +536,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupAPI_Rule_Path.Text -match '\s$') {
 			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 			$GUIImageSourceGroupAPI_Rule_Path.BackColor = "LightPink"
 			return $False
 		}
@@ -547,7 +547,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupAPI_Rule_Path.Text -match '\s{2,}') {
 			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 			$GUIImageSourceGroupAPI_Rule_Path.BackColor = "LightPink"
 			return $False
 		}
@@ -558,7 +558,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupAPI_Rule_Path.Text -match '[~#$@!%&*{}<>?/|+"]') {
 			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+			$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 			$GUIImageSourceGroupAPI_Rule_Path.BackColor = "LightPink"
 			return $False
 		}
@@ -675,7 +675,7 @@ Function Image_Select
 
 				if ([string]::IsNullOrEmpty($GetImportFileName)) {
 					$GUIImageSourceGroupAPI_Shortcut_Panel.controls.AddRange($CheckboxCreate)
-				} else {		
+				} else {
 					if (Test-Path -Path $GetImportFileName -PathType leaf) {
 					} else {
 						$GUIImageSourceGroupAPI_Shortcut_Panel.controls.AddRange($CheckboxCreate)
@@ -1285,7 +1285,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupSettingCustomizeShow.Text -match '^\s') {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 			$GUIImageSourceGroupSettingCustomizeShow.BackColor = "LightPink"
 			return $False
 		}
@@ -1296,7 +1296,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupSettingCustomizeShow.Text -match '\s$') {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 			$GUIImageSourceGroupSettingCustomizeShow.BackColor = "LightPink"
 			return $False
 		}
@@ -1307,7 +1307,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupSettingCustomizeShow.Text -match '\s{2,}') {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 			$GUIImageSourceGroupSettingCustomizeShow.BackColor = "LightPink"
 			return $False
 		}
@@ -1318,7 +1318,7 @@ Function Image_Select
 		#>
 		if ($GUIImageSourceGroupSettingCustomizeShow.Text -match '[~#$@!%&*{}<>?/|+"]') {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 			$GUIImageSourceGroupSettingCustomizeShow.BackColor = "LightPink"
 			return $False
 		}
@@ -1336,7 +1336,7 @@ Function Image_Select
 		$GUIImageSourceGroupSettingCustomizeShow.BackColor = "#FFFFFF"
 		$GUIImageSourceGroupSettingErrorMsg.Text = ""
 		$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
-	
+
 		Save_Dynamic -regkey "Solutions" -name "SearchDiskMinSize" -value $GUIImageSourceGroupSettingLowSize.Text -String
 
 		$GUIImageSourceGroupSettingDisk.controls.Clear()
@@ -1742,7 +1742,7 @@ Function Image_Select
 					} else {
 						if (Test-Path -Path $This.Tag -PathType Container) {
 							Start-Process $This.Tag
-		
+
 							$UI_Main_Error.Text = "$($lang.OpenFolder): $($This.Tag), $($lang.Done)"
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 						} else {
@@ -1878,7 +1878,7 @@ Function Image_Select
 					$UI_Main_Other_Rule_RadioButton_Wrap
 				))
 			}
-			
+
 			$UI_Main_Pre_Rule_Wrap = New-Object system.Windows.Forms.Label -Property @{
 				Height       = 20
 				Width        = 658
@@ -2051,7 +2051,6 @@ Function Image_Select
 								Width     = 340
 								Text      = $GetRegeditDiskCache
 								Tag       = $GetRegeditDiskCache
-
 								add_Click = { Image_Select_Refresh_Sources_Event }
 							}
 
@@ -2405,7 +2404,6 @@ Function Image_Select
 							$GUIImageSourceGroupMountFromDelete_Clear.Checked = $False
 						}
 
-
 					<#
 						从注册表获取挂载临时目录
 					#>
@@ -2461,7 +2459,7 @@ Function Image_Select
 						判断架构
 					#>
 					ISO_Verify_Arch
-			
+
 					<#
 						.判断安装类型
 					#>
@@ -2484,7 +2482,7 @@ Function Image_Select
 								break
 							}
 						}
-			
+
 						if (-not $MarkCodename) {
 							$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageCodename) ( $($lang.ImageCodenameNo) )"
 						}
@@ -2499,13 +2497,13 @@ Function Image_Select
 						$MarkInitLanguage++
 					}
 					Image_Select_Refresh_Event
-			
+
 					if ($MarkInitLanguage -ge "1") {
 						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.EventManager): $($MarkInitLanguage) $($lang.EventManagerCount)"
 					} else {
 						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.EventManager): $($lang.EventManagerNo)"
 					}
-			
+
 					$UI_Main_Select_Sources.Controls | ForEach-Object {
 						if ($_ -is [System.Windows.Forms.RadioButton]) {
 							if ($_.Enabled) {
@@ -2684,7 +2682,7 @@ Function Image_Select
 					$GUIImageSelectInstall_Wrap
 				))
 			}
-			
+
 			if ($Expand) {
 				$GUIImageSelectInstall.Padding = "20,0,0,0"
 				$GUIImageSelectInstallTips.Padding = "36,0,0,0"
@@ -3192,57 +3190,57 @@ Function Image_Select
 						$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 						return
 					}
-				
+
 					<#
 						.Judgment: 2. The prefix cannot contain spaces
 						.判断：2. 前缀不能带空格
 					#>
 					if ($UIUnzip_Search_Sift_Custon.Text -match '^\s') {
-						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 						return
 					}
-				
+
 					<#
 						.Judgment: 3. Suffix cannot contain spaces
 						.判断：3. 后缀不能带空格
 					#>
 					if ($UIUnzip_Search_Sift_Custon.Text -match '\s$') {
-						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 						return
 					}
-				
+
 					<#
 						.Judgment: 4. The suffix cannot contain multiple spaces
 						.判断：4. 后缀不能带多空格
 					#>
 					if ($UIUnzip_Search_Sift_Custon.Text -match '\s{2,}$') {
-						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 						return
 					}
-				
+
 					<#
 						.Judgment: 5. There can be no two spaces in between
 						.判断：5. 中间不能含有二个空格
 					#>
 					if ($UIUnzip_Search_Sift_Custon.Text -match '\s{2,}') {
-						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 						return
 					}
-				
+
 					<#
 						.Judgment: 6. Cannot contain: \\ /: *? "" <> |
 						.判断：6, 不能包含：\\ / : * ? "" < > |
 					#>
 					if ($UIUnzip_Search_Sift_Custon.Text -match '[~#$@!%&*{}<>?/|+"]') {
-						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+						$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 						$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 						return
@@ -3505,7 +3503,7 @@ Function Image_Select
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -3515,7 +3513,7 @@ Function Image_Select
 	$UI_Main_DragDrop = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
 				if (Test-Path -Path $filename -PathType Container) {
@@ -3539,7 +3537,7 @@ Function Image_Select
 							Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value "" -Multi
 						}
 						$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
-	
+
 						<#
 							.注册表里已保存其它路径
 						#>
@@ -3685,7 +3683,7 @@ Function Image_Select
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$Temp_Save_Select_Path = @()
-			
+
 			$GUIImageSourceGroupAPI_Shortcut_Panel.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($_.Checked) {
@@ -3801,7 +3799,7 @@ Function Image_Select
 	$UI_Main_API_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$GUIImageSourceGroupAPIErrorMsg.Text = ""
 		$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -4156,7 +4154,7 @@ Function Image_Select
 			$regLocation = "Registry::HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Session Manager\Environment"
 			$regLocation = $regLocation.TrimEnd(';')
 			$path = (Get-ItemProperty -Path $regLocation -Name PATH).path
-	
+
 			if ($GUIImageSourceSettingEnv.Checked) {
 				<#
 					.添加模式
@@ -4354,7 +4352,7 @@ Function Image_Select
 	<#
 		.空闲时自动修复
 	#>
- 	$GUIImageSourceSetting_Is_Auto_Repair = New-Object System.Windows.Forms.CheckBox -Property @{
+	$GUIImageSourceSetting_Is_Auto_Repair = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 40
 		Width          = 475
 		Padding        = "16,0,0,0"
@@ -4515,7 +4513,7 @@ Function Image_Select
 			#>
 			if ($GUIImageSourceSetting_RAMDISK_Volume_Label.Text -match '^\s') {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceSetting_RAMDISK_Volume_Label.BackColor = "LightPink"
 				return
 			}
@@ -4526,7 +4524,7 @@ Function Image_Select
 			#>
 			if ($GUIImageSourceSetting_RAMDISK_Volume_Label.Text -match '\s$') {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceSetting_RAMDISK_Volume_Label.BackColor = "LightPink"
 				return
 			}
@@ -4537,7 +4535,7 @@ Function Image_Select
 			#>
 			if ($GUIImageSourceSetting_RAMDISK_Volume_Label.Text -match '\s{2,}$') {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceSetting_RAMDISK_Volume_Label.BackColor = "LightPink"
 				return
 			}
@@ -4548,7 +4546,7 @@ Function Image_Select
 			#>
 			if ($GUIImageSourceSetting_RAMDISK_Volume_Label.Text -match '\s{2,}') {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceSetting_RAMDISK_Volume_Label.BackColor = "LightPink"
 				return
 			}
@@ -4559,7 +4557,7 @@ Function Image_Select
 			#>
 			if ($GUIImageSourceSetting_RAMDISK_Volume_Label.Text -match '[~#$@!%&*{}<>?/|+"]') {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 				$GUIImageSourceSetting_RAMDISK_Volume_Label.BackColor = "LightPink"
 				return
 			}
@@ -4720,7 +4718,6 @@ Function Image_Select
 			$GUIImageSourceGroupSettingErrorMsg.Text = ""
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
 
-
 			if ([string]::IsNullOrEmpty($GUIImageSourceISOCacheCustomizePath.Text)) {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.Paste), $($lang.Inoperable)"
@@ -4802,7 +4799,6 @@ Function Image_Select
 			$GUIImageSourceGroupSettingErrorMsg.Text = ""
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
 
-
 			if ([string]::IsNullOrEmpty($GUIImageSourceISOCustomizePath.Text)) {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
@@ -4834,7 +4830,6 @@ Function Image_Select
 		add_Click      = {
 			$GUIImageSourceGroupSettingErrorMsg.Text = ""
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
-
 
 			if ([string]::IsNullOrEmpty($GUIImageSourceISOCustomizePath.Text)) {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
@@ -5527,7 +5522,7 @@ Function Image_Select
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$Temp_Save_Select_Path = @()
-			
+
 			$UI_Other_Path_Show.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($_.Checked) {
@@ -5613,7 +5608,7 @@ Function Image_Select
 					#>
 					if ([string]::IsNullOrEmpty($GUIImageSourceISOCacheCustomizePath.Text)) {
 						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.CacheDiskCustomize))"
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.CacheDiskCustomize)"
 						$GUIImageSourceISOCacheCustomizePath.BackColor = "LightPink"
 						return
 					}
@@ -5624,7 +5619,7 @@ Function Image_Select
 					#>
 					if ($GUIImageSourceISOCacheCustomizePath.Text -match '^\s') {
 						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$GUIImageSourceISOCacheCustomizePath.BackColor = "LightPink"
 						return
 					}
@@ -5635,7 +5630,7 @@ Function Image_Select
 					#>
 					if ($GUIImageSourceISOCacheCustomizePath.Text -match '\s$') {
 						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$GUIImageSourceISOCacheCustomizePath.BackColor = "LightPink"
 						return
 					}
@@ -5646,7 +5641,7 @@ Function Image_Select
 					#>
 					if ($GUIImageSourceISOCacheCustomizePath.Text -match '\s{2,}') {
 						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 						$GUIImageSourceISOCacheCustomizePath.BackColor = "LightPink"
 						return
 					}
@@ -5657,7 +5652,7 @@ Function Image_Select
 					#>
 					if ($GUIImageSourceISOCacheCustomizePath.Text -match '[~#$@!%&*{}<>?/|+"]') {
 						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 						$GUIImageSourceISOCacheCustomizePath.BackColor = "LightPink"
 						return
 					}
@@ -5698,7 +5693,7 @@ Function Image_Select
 				#>
 				if ($GUIImageSourceISOCustomizePath.Text -match '^\s') {
 					$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 					return
 				}
@@ -5709,7 +5704,7 @@ Function Image_Select
 				#>
 				if ($GUIImageSourceISOCustomizePath.Text -match '\s$') {
 					$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 					return
 				}
@@ -5720,7 +5715,7 @@ Function Image_Select
 				#>
 				if ($GUIImageSourceISOCustomizePath.Text -match '\s{2,}') {
 					$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 					return
 				}
@@ -5731,7 +5726,7 @@ Function Image_Select
 				#>
 				if ($GUIImageSourceISOCustomizePath.Text -match '[~#$@!%&*{}<>?/|+"]') {
 					$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 					$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 					return
 				}
@@ -5981,7 +5976,6 @@ Function Image_Select
 			$UI_Mask_Image_Mount_To_Error.Text = ""
 			$UI_Mask_Image_Mount_To_Error_Icon.Image = $null
 
-
 			if ([string]::IsNullOrEmpty($GUIImageSourceGroupMountFromPath.Text)) {
 				$UI_Mask_Image_Mount_To_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 				$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
@@ -6014,7 +6008,6 @@ Function Image_Select
 		add_Click      = {
 			$UI_Mask_Image_Mount_To_Error.Text = ""
 			$UI_Mask_Image_Mount_To_Error_Icon.Image = $null
-
 
 			if ([string]::IsNullOrEmpty($GUIImageSourceGroupMountFromPath.Text)) {
 				$UI_Mask_Image_Mount_To_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
@@ -6176,7 +6169,7 @@ Function Image_Select
 			add_Click      = {
 				$UI_Main_Error.Text = ""
 				$UI_Main_Error_Icon.Image = $null
-	
+
 				$UI_Mask_Image_Mount_To_Error.Text = ""
 				$UI_Mask_Image_Mount_To_Error_Icon.Image = $null
 
@@ -6190,62 +6183,62 @@ Function Image_Select
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 2. The prefix cannot contain spaces
 					.判断：2. 前缀不能带空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '^\s') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 3. Suffix cannot contain spaces
 					.判断：3. 后缀不能带空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '\s$') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 4. The suffix cannot contain multiple spaces
 					.判断：4. 后缀不能带多空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '\s{2,}$') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 5. There can be no two spaces in between
 					.判断：5. 中间不能含有二个空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '\s{2,}') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 6. Cannot contain: \\ /: *? "" <> |
 					.判断：6, 不能包含：\\ / : * ? "" < > |
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '[~#$@!%&*{}<>?/|+"]') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 7. No more than 260 characters
 					.判断：7. 不能大于 260 字符
@@ -6256,7 +6249,7 @@ Function Image_Select
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 8. Cannot be the same as the old directory name
 					.判断：8. 不能与旧目录名相同
@@ -6267,7 +6260,7 @@ Function Image_Select
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 9. Cannot be the same as the old directory name
 					.判断：9. 已存在
@@ -6281,7 +6274,7 @@ Function Image_Select
 				}
 
 				Rename-Item -Path $GUIImageSourceGroupMountFromPath.Text -NewName $GUIImageSourceGroupMountFromRename_New_Path.Text
-	
+
 				$UI_Main.Text = $lang.SelectSettingImage
 				$GUIImageSourceGroupAPI.visible = $False             # 蒙板：设置 API
 				$GUIImageSourceGroupSetting.visible = $False         # 蒙板：设置界面
@@ -6294,7 +6287,7 @@ Function Image_Select
 				$UI_Main_Image_Sources.visible = $True               # 设置主界面
 
 				Image_Select_Refresh_Sources_List
-	
+
 				$Verify_New_Rename_Folder = Join-Path -Path $Global:MainMasterFolder -ChildPath $GUIImageSourceGroupMountFromRename_New_Path.Text
 				if (Test-Path -Path $Verify_New_Rename_Folder -PathType Container) {
 					$UI_Main_Error.Text = "$($lang.Rename): $($GUIImageSourceGroupMountFromRename_New_Path.Text), $($lang.Done), "
@@ -6320,7 +6313,7 @@ Function Image_Select
 			add_Click      = {
 				$UI_Main_Error.Text = ""
 				$UI_Main_Error_Icon.Image = $null
-	
+
 				$UI_Mask_Image_Mount_To_Error.Text = ""
 				$UI_Mask_Image_Mount_To_Error_Icon.Image = $null
 
@@ -6334,62 +6327,62 @@ Function Image_Select
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 2. The prefix cannot contain spaces
 					.判断：2. 前缀不能带空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '^\s') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 3. Suffix cannot contain spaces
 					.判断：3. 后缀不能带空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '\s$') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 4. The suffix cannot contain multiple spaces
 					.判断：4. 后缀不能带多空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '\s{2,}$') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 5. There can be no two spaces in between
 					.判断：5. 中间不能含有二个空格
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '\s{2,}') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 6. Cannot contain: \\ /: *? "" <> |
 					.判断：6, 不能包含：\\ / : * ? "" < > |
 				#>
 				if ($GUIImageSourceGroupMountFromRename_New_Path.Text -match '[~#$@!%&*{}<>?/|+"]') {
-					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+					$UI_Mask_Image_Mount_To_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 					$UI_Mask_Image_Mount_To_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 7. No more than 260 characters
 					.判断：7. 不能大于 260 字符
@@ -6400,7 +6393,7 @@ Function Image_Select
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 8. Cannot be the same as the old directory name
 					.判断：8. 不能与旧目录名相同
@@ -6411,7 +6404,7 @@ Function Image_Select
 					$GUIImageSourceGroupMountFromRename_New_Path.BackColor = "LightPink"
 					return
 				}
-	
+
 				<#
 					.Judgment: 9. Cannot be the same as the old directory name
 					.判断：9. 已存在
@@ -6438,7 +6431,7 @@ Function Image_Select
 				$UI_Main_Image_Sources.visible = $True               # 设置主界面
 
 				Image_Select_Refresh_Sources_List
-	
+
 				$Verify_New_Rename_Folder = Join-Path -Path $Global:MainMasterFolder -ChildPath $GUIImageSourceGroupMountFromRename_New_Path.Text
 				if (Test-Path -Path $Verify_New_Rename_Folder -PathType Container) {
 					$UI_Main_Error.Text = "$($lang.Copy): $($GUIImageSourceGroupMountFromRename_New_Path.Text), $($lang.Done), "
@@ -6752,7 +6745,6 @@ Function Image_Select
 		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)" -name "Exclude_REFS" -value "True" -String
 		$GUIImageSourceGroupMountChangeExclude.Checked = $True
 	}
-
 
 	<#
 		选择可用磁盘：刷新
@@ -7997,7 +7989,7 @@ Function Image_Select
 			#>
 			if ($UIUnzipPanel_To_New_Path.Text -match '^\s') {
 				$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzipPanel_To_New_Path.BackColor = "LightPink"
 				return
 			}
@@ -8008,7 +8000,7 @@ Function Image_Select
 			#>
 			if ($UIUnzipPanel_To_New_Path.Text -match '\s$') {
 				$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzipPanel_To_New_Path.BackColor = "LightPink"
 				return
 			}
@@ -8019,7 +8011,7 @@ Function Image_Select
 			#>
 			if ($UIUnzipPanel_To_New_Path.Text -match '\s{2,}') {
 				$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzipPanel_To_New_Path.BackColor = "LightPink"
 				return
 			}
@@ -8030,7 +8022,7 @@ Function Image_Select
 			#>
 			if ($UIUnzipPanel_To_New_Path.Text -match '[~#$@!%&*{}<>?/|+"]') {
 				$UIUnzipPanelErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+				$UIUnzipPanelErrorMsg.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 				$UIUnzipPanel_To_New_Path.BackColor = "LightPink"
 				return
 			}
@@ -8374,7 +8366,7 @@ Function Image_Select
 							}
 						}
 					}
-					
+
 					foreach ($item in $Script:Exclude_InBox_Apps) {
 						foreach ($CRCSHA in $item.CRCSHA) {
 							if ($CRCSHA.SHA256 -eq $calchash.Hash) {
@@ -8950,7 +8942,7 @@ Function Image_Select
 				}
 			}
 
-			$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoSelectImageSource))"
+			$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoSelectImageSource)"
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 		}
 	}
@@ -9185,7 +9177,7 @@ Function Image_Select
 		$GUIImageSourceSettingSuggestedPanel,
 		$UI_Expand_Wrap
 	))
-	
+
 	$GUIImageSourceSettingSuggestedPanel.controls.AddRange((
 		$GUIImageSourceSettingSuggestedSoltions,
 
@@ -9313,7 +9305,7 @@ Function Image_Select
 		$GUIImageSourceGroupMountChangeLowSize,
 		$GUIImageSourceGroupMountChangeLowUnit
 	))
-	
+
 	$UI_Mask_Image_Language.controls.AddRange((
 		$UI_Mask_Image_Language_Name,
 		$UI_Mask_Image_Language_Select,
@@ -9643,7 +9635,7 @@ Function ISO_Verify_Install_Type
 				$GUISelectTypeDesktop.Checked = $True
 				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageLevel) ( $($lang.LevelDesktop), $($lang.Save) )"
 			}
-			"Server"  {
+			"Server" {
 				$GUISelectTypeServer.Checked  = $True
 				$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.ImageLevel) ( $($lang.LevelServer), $($lang.Save) )"
 			}

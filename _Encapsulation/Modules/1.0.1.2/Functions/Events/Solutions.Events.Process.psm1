@@ -554,7 +554,7 @@ Function Event_Process_Task_Need_Mount
 		Write-Host "  $('-' * 80)"
 
 		InBox_Apps_LIPs_Delete_Process
-		
+
 		$Script:LXPsDelTasksTime.Stop()
 		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
@@ -1345,7 +1345,7 @@ Function Event_Process_Task_Need_Mount
 							if ($IsEjectAfterSaveNot) {
 								$Mark_Is_Unmount_Current_Image = $True
 							}
-							
+
 							if ((Get-Variable -Scope global -Name "Queue_Expand_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)").Value) {
 								$Mark_Is_Unmount_Current_Image = $True
 							}
@@ -1364,7 +1364,7 @@ Function Event_Process_Task_Need_Mount
 
 								Dismount-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Dismount.log" -Path "$($Temp_Do_Not_Save_Path)" -Discard -ErrorAction SilentlyContinue | Out-Null
 								Image_Mount_Force_Del -NewPath "$($Temp_Do_Not_Save_Path)"
-								
+
 								<#
 									.检查了已挂载后，判断目录是否存在，再次删除。
 								#>

@@ -190,11 +190,11 @@ Function Cumulative_updates_Add_UI
 				Text           = $lang.RulePre
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Pre_Rule)
-	
+
 			ForEach ($item in $SearchFolderRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 					Width     = 490
@@ -206,9 +206,9 @@ Function Cumulative_updates_Add_UI
 						$UI_Main_Error_Icon.Image = $null
 					}
 				}
-	
+
 				$UI_Main_Rule.controls.AddRange($CheckBox)
-	
+
 				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
 					autosize        = 1
 					Padding         = "50,0,0,0"
@@ -221,14 +221,14 @@ Function Cumulative_updates_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -238,7 +238,7 @@ Function Cumulative_updates_Add_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 40
 					Width           = 525
@@ -251,14 +251,14 @@ Function Cumulative_updates_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -268,7 +268,7 @@ Function Cumulative_updates_Add_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 40
 					Width           = 525
@@ -281,19 +281,19 @@ Function Cumulative_updates_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：预置规则
@@ -314,7 +314,7 @@ Function Cumulative_updates_Add_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.不再检查目录里是否存在文件
 					#>
@@ -328,7 +328,7 @@ Function Cumulative_updates_Add_UI
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
@@ -340,7 +340,7 @@ Function Cumulative_updates_Add_UI
 						Height         = 30
 						Width          = 520
 					}
-	
+
 					$UI_Main_Rule.controls.AddRange((
 						$AddSourcesPathOpen,
 						$AddSourcesPathPaste,
@@ -348,7 +348,7 @@ Function Cumulative_updates_Add_UI
 					))
 				} else {
 					$CheckBox.Enabled = $False
-	
+
 					$AddSourcesPathNoFolder = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "48,0,0,0"
@@ -386,7 +386,7 @@ Function Cumulative_updates_Add_UI
 				Text           = $lang.RuleMultistage
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Multistage_Rule_Name)
-	
+
 			ForEach ($item in $Search_Folder_Multistage_Rule) {
 				$MarkIsFolderRule = $False
 				if (Test-Path -Path $item -PathType Container) {
@@ -394,7 +394,7 @@ Function Cumulative_updates_Add_UI
 						$MarkIsFolderRule = $True
 					}
 				}
-	
+
 				if ($MarkIsFolderRule) {
 					$No_Find_Multistage_Rule_Create = New-Object system.Windows.Forms.LinkLabel -Property @{
 						Height         = 35
@@ -443,14 +443,14 @@ Function Cumulative_updates_Add_UI
 							add_Click       = {
 								$UI_Main_Error.Text = ""
 								$UI_Main_Error_Icon.Image = $null
-	
+
 								if ([string]::IsNullOrEmpty($This.Tag)) {
 									$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 									$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 								} else {
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
-					
+
 										$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 										$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 									} else {
@@ -461,9 +461,9 @@ Function Cumulative_updates_Add_UI
 							}
 						}
 						$UI_Main_Rule.controls.AddRange($AddSourcesPathName)
-	
+
 						Update_Add_Refresh_Sources_New -Sources $_.FullName -NewMaster $Global:Primary_Key_Image.Master -ImageName $Global:Primary_Key_Image.ImageFileName
-	
+
 						$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 							Height         = 30
 							Width          = 520
@@ -490,7 +490,7 @@ Function Cumulative_updates_Add_UI
 
 					$InitLength = $item.Length
 					if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 					$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 						Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 						Width     = 465
@@ -503,7 +503,7 @@ Function Cumulative_updates_Add_UI
 							$UI_Main_Error_Icon.Image = $null
 						}
 					}
-	
+
 					$No_Find_Multistage_Rule = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "49,0,0,0"
@@ -576,7 +576,7 @@ Function Cumulative_updates_Add_UI
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -606,7 +606,7 @@ Function Cumulative_updates_Add_UI
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -635,13 +635,13 @@ Function Cumulative_updates_Add_UI
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：其它规则
@@ -777,7 +777,7 @@ Function Cumulative_updates_Add_UI
 				} else {
 					if (Test-Path -Path $This.Tag -PathType Container) {
 						Start-Process $This.Tag
-	
+
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 					} else {
@@ -871,7 +871,7 @@ Function Cumulative_updates_Add_UI
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -881,7 +881,7 @@ Function Cumulative_updates_Add_UI
 	$UI_Main_DragDrop = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
 				if (Test-Path -Path $filename -PathType Container) {
@@ -1051,7 +1051,7 @@ Function Cumulative_updates_Add_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Update" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleMultistage_Add" -value "False" -String
 				}
-			
+
 				Update_Add_Refresh_Sourcs
 			}
 		}
@@ -1082,7 +1082,7 @@ Function Cumulative_updates_Add_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Update" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Add" -value "False" -String
 				}
-			
+
 				Update_Add_Refresh_Sourcs
 			}
 		}
@@ -1159,7 +1159,7 @@ Function Cumulative_updates_Add_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_View_Detailed.Visible = $True
 			$UI_Main_View_Detailed_Show.Text = ""
 
@@ -1333,7 +1333,7 @@ Function Cumulative_updates_Add_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Suggestion_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -name "IsSuggested" -value "True" -String
 				$UI_Main_Suggestion_Setting.Enabled = $False
@@ -1466,7 +1466,7 @@ Function Cumulative_updates_Add_UI
 			if ($UI_Main_Suggestion_Not.Checked) {
 				Init_Canel_Event
 			}
-	
+
 			$UI_Main.Close()
 		}
 	}
@@ -1571,7 +1571,6 @@ Function Cumulative_updates_Add_UI
 		}
 	})
 	$UI_Main_Rule.ContextMenuStrip = $GUIUpdateAddMenu
-
 
 	if ($Global:AutopilotMode) {
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Autopilot), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
@@ -1813,7 +1812,7 @@ Function Autopilot_Cumulative_updates_Add_UI_Import
 							IsEvent = $Tasks.IsEvent
 							Path = $Is_Valid_New_Custom_Path
 						}
-	
+
 						Cumulative_updates_Add_UI -Autopilot $New_Event
 					} else {
 						Write-Host "  $($lang.NoWork)" -ForegroundColor Red

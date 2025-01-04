@@ -51,7 +51,7 @@ Function InBox_Apps_Offline_Delete_UI
 			Write-Host "  $($_)" -ForegroundColor Red
 			Write-Host "  $($lang.SelectFromError)" -ForegroundColor Red
 			Write-Host "  $($lang.GetInBoxApps), $($lang.Inoperable)" -ForegroundColor Red
-			
+
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 			$UI_Main_Error.Text = "$($lang.GetInBoxApps), $($lang.Inoperable)"
 		}
@@ -290,7 +290,7 @@ Function InBox_Apps_Offline_Delete_UI
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 			$Queue_Inbox_Apps_Offline_Delete_Select = @()
-	
+
 			$UI_Main_Rule.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.CheckBox]) {
 					if ($_.Enabled) {

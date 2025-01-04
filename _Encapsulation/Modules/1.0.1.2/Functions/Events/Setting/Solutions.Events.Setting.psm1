@@ -462,7 +462,7 @@ Function Event_Assign_Setting
 
 		if ($Temp_Add_Not_Mounted_New -Contains "Image_Convert_UI") {
 			$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectFunctionConvertImage)
-			
+
 			if (Image_Is_Mount) {
 				$GUIImageSelectFunctionConvertImage.Enabled = $False
 			}
@@ -471,7 +471,7 @@ Function Event_Assign_Setting
 		if ($Temp_Add_Not_Mounted_New -Contains "ISO_Create_UI") {
 			$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectFunctionISO)
 		}
-		
+
 		$UI_Main_Select_No_Mounting.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
 				if ($Global:Queue_Assign_Not_Monuted_Expand_Select -Contains $_.Tag) {

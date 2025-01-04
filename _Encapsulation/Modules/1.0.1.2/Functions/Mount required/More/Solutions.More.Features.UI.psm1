@@ -302,7 +302,7 @@ Function Feature_More_UI
 			$UI_Main_Drive_To_View.ForeColor = "Red"
 			$UI_Main_Drive_To_View.Text = "$($lang.ExportShow): $($lang.Disable)"
 		}
-		
+
 		<#
 			.映像语言
 		#>
@@ -1054,9 +1054,6 @@ Function Feature_More_UI
 			$UI_Main_Superseded_Rule_Exclude.Enabled = $False       # 清理过时的，排除规则
 			$UI_Main_Healthy.Enabled = $False                       # 健康
 			$UI_Main_UWP_To_Log.Enabled = $False                    # 获取预安装应用 UWP
-		}
-		Default {
-			
 		}
 	}
 

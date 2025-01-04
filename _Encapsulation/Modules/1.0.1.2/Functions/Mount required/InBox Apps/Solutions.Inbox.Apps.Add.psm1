@@ -891,7 +891,7 @@ Function InBox_Apps_Add_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Dependencies_DoNot_Tips.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\InBox" -name "$(Get_GPS_Location)_IsCheckDependencies" -value "True" -String
 			} else {
@@ -1186,7 +1186,7 @@ Function InBox_Apps_Add_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$TempSelectUWPAddFolderQueue = @()
 
 			$UI_Main_Select_Sources.Controls | ForEach-Object {
@@ -1454,7 +1454,7 @@ Function InBox_Apps_Add_UI
 			$UI_Main.Close()
 		}
 	}
-	
+
 	$UI_Main.controls.AddRange((
 		$UI_Main_Mask_Error,
 		$UI_Main_Mask_Rule_Detailed,
@@ -2468,10 +2468,10 @@ Function InBox_Apps_Add_Match_Process
 			$InBoxAppsTasksTime.Stop()
 			Write-Host "`n  $($lang.TimeEnd)" -NoNewline
 			Write-Host $(Get-Date -Format "yyyy/MM/dd HH:mm:ss tt") -ForegroundColor Yellow
-		
+
 			Write-Host "  $($lang.TimeEndAll)" -NoNewline
 			Write-Host $InBoxAppsTasksTime.Elapsed -ForegroundColor Yellow
-		
+
 			Write-Host "  $($lang.TimeEndAllseconds)" -NoNewline
 			Write-Host "$($InBoxAppsTasksTime.ElapsedMilliseconds) $($lang.TimeMillisecond)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
@@ -2630,7 +2630,6 @@ Function InBox_Apps_Check_Customize
 			<#
 				.依赖关系
 			#>
-			
 			if ($InBox_Apps_Rule_Select_Single.InboxApps.Rule.Count -gt 0) {
 				ForEach ($item in $InBox_Apps_Rule_Select_Single.InboxApps.Rule){
 					if ($InBoxAppxUserSelect -contains $item.Name) {

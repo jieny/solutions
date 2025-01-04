@@ -308,11 +308,13 @@ Function Prerequisite
 			}
 		}
 	}
+
 	ForEach ($item in $Global:Preconfigured_Rule_ISO) {
 		foreach ($itemISO in $item.ISO) {
 			$Duplicate_Rule_ISO += [System.IO.Path]::GetFileName($itemISO.ISO)
 		}
 	}
+
 	ForEach ($item in $Global:Custom_Rule) {
 		foreach ($itemISO in $item.ISO) {
 			$Duplicate_Rule_ISO += [System.IO.Path]::GetFileName($itemISO.ISO)
@@ -356,11 +358,13 @@ Function Prerequisite
 			}
 		}
 	}
+
 	ForEach ($item in $Global:Preconfigured_Rule_Language) {
 		foreach ($itemlanguage in $item.Language.ISO) {
 			$Duplicate_Rule_Language += [System.IO.Path]::GetFileName($itemlanguage.ISO)
 		}
 	}
+
 	ForEach ($item in $Global:Custom_Rule) {
 		foreach ($itemlanguage in $item.Language.ISO) {
 			$Duplicate_Rule_Language += [System.IO.Path]::GetFileName($itemlanguage.ISO)

@@ -37,7 +37,7 @@
 						$UI_Main_Error_Icon.Image = $null
 					}
 				}
-	
+
 				$UI_Main_Wait_Add.controls.AddRange($CheckBox)
 			}
 		} else {
@@ -67,7 +67,7 @@
 	{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-		
+
 		$UI_Main_Wait_Add.Controls.clear()
 		$UI_Main_Wait_Add_Name.Text = "$($lang.YesWork): $($Script:Init_Feature_Add_Queue.Count) $($lang.EventManagerCount)"
 
@@ -132,51 +132,51 @@
 			#>
 			if ($UIUnzip_Search_Sift_Custon.Text -match '^\s') {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 				return
 			}
-		
+
 			<#
 				.Judgment: 3. Suffix cannot contain spaces
 				.判断：3. 后缀不能带空格
 			#>
 			if ($UIUnzip_Search_Sift_Custon.Text -match '\s$') {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 				return
 			}
-		
+
 			<#
 				.Judgment: 4. The suffix cannot contain multiple spaces
 				.判断：4. 后缀不能带多空格
 			#>
 			if ($UIUnzip_Search_Sift_Custon.Text -match '\s{2,}$') {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 				return
 			}
-		
+
 			<#
 				.Judgment: 5. There can be no two spaces in between
 				.判断：5. 中间不能含有二个空格
 			#>
 			if ($UIUnzip_Search_Sift_Custon.Text -match '\s{2,}') {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 				return
 			}
-		
+
 			<#
 				.Judgment: 6. Cannot contain: \\ /: *? "" <> |
 				.判断：6, 不能包含：\\ / : * ? "" < > |
 			#>
 			if ($UIUnzip_Search_Sift_Custon.Text -match '[~#$@!%&*{}<>?/|+"]') {
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+				$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 				$UIUnzip_Search_Sift_Custon.BackColor = "LightPink"
 				return
 			}
@@ -239,7 +239,7 @@
 					add_Click      = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-						
+
 						if ($Script:Init_Feature_Add_Queue -contains $this.Tag) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.Existed): $($this.Tag)"
@@ -705,7 +705,7 @@
 		if ($_.State -eq "Enabled") {
 			$Script:Init_Feature_All_Enabled += $_.FeatureName
 		}
-	
+
 		if ($_.State -eq "Disabled") {
 			$Script:Init_Feature_All_Disable += $_.FeatureName
 		}

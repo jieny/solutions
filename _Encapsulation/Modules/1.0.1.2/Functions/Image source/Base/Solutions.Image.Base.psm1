@@ -877,7 +877,7 @@ Function Menu_Shortcuts_Remove_Index
 		}
 	} else {
 		Write-Host "  $($lang.VerifyNumberFailed)" -ForegroundColor Red
-		
+
 		if (Image_Is_Select_IAB) {
 			Write-Host "`n  $($lang.Ok_Go_To)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"

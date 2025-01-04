@@ -262,7 +262,7 @@ Function Event_Assign_Task_Customize
 								.设置首选主键
 							#>
 							Image_Set_Global_Primary_Key -Uid $WildCard.Main.Uid -DevCode "11"
-							
+
 							<#
 								.弹出选择 Install.wim 索引号
 							#>
@@ -819,7 +819,7 @@ Function Expand_Process_abc
 			.保存到临时目录
 		#>
 		$RandomGuid = [guid]::NewGuid()
-		
+
 		$Local_Wim_Update_Folder_Sources = "$($Global:Image_source)_Custom\$($MainUid)\$($MainUid)\Update\Wimlib\$($RandomGuid)"
 
 		$Local_Wim_Update_Full_Path = "$($Local_Wim_Update_Folder_Sources)\$($ExpandUid).wim"

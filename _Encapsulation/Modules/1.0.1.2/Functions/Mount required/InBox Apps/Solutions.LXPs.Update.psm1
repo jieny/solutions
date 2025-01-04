@@ -88,8 +88,8 @@ Function LXPs_Update_UI
 
 	$UI_Main           = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-        Height         = 720
-        Width          = 928
+		Height         = 720
+		Width          = 928
 		Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
@@ -139,7 +139,7 @@ Function LXPs_Update_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Global_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions" -name "TipsWarningUWPGlobal" -value "True" -String
 				$UI_Main_Mask_Tips_Do_Not.Enabled = $False
@@ -157,7 +157,7 @@ Function LXPs_Update_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\InBox" -name "TipsWarningUWP" -value "True" -String
 			} else {
@@ -204,7 +204,7 @@ Function LXPs_Update_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_Mask_Tips.Visible = $True
 		}
 	}
@@ -250,7 +250,7 @@ Function LXPs_Update_UI
 				Width          = 505
 				Text           = $lang.NoWork
 			}
-	
+
 			$UI_Main_Is_Wait_Add.controls.AddRange($UI_Main_Other_Rule_Not_Find)
 		} else {
 			$Temp_Queue_Is_InBox_Apps_Update = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Update_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
@@ -259,7 +259,7 @@ Function LXPs_Update_UI
 			} else {
 				if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\InBox" -Name "$(Get_GPS_Location)_SelectLXPsLanguage" -ErrorAction SilentlyContinue)) {
 					$DeployinboxGetSourcesOnly = @()
-	
+
 					$Region = Language_Region
 					ForEach ($itemRegion in $Region) {
 						$TestFolderRegion = Join-Path -Path $Global:Image_source -ChildPath "Sources\$($itemRegion.Region)"
@@ -270,7 +270,7 @@ Function LXPs_Update_UI
 							}
 						}
 					}
-	
+
 					if ($DeployinboxGetSourcesOnly.count -gt 0) {
 						Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\InBox" -name "$(Get_GPS_Location)_SelectLXPsLanguage" -value $DeployinboxGetSourcesOnly -Multi
 					} else {
@@ -285,7 +285,7 @@ Function LXPs_Update_UI
 				.清除显示区域
 			#>
 			$UI_Main_Is_Wait_Add.controls.Clear()
-	
+
 			<#
 				.Search whether the selected directory has: LanguageExperiencePack.*.appx
 				.搜索已选择的目录是否有：LanguageExperiencePack.*.appx
@@ -299,13 +299,13 @@ Function LXPs_Update_UI
 							Text      = $_.BaseName
 							Tag       = $_.FullName
 						}
-	
+
 						if ($GetSelectLXPsLanguage -contains $_.BaseName) {
 							$CheckBox.Checked = $True
 						} else {
 							$CheckBox.Checked = $False
 						}
-	
+
 						$UI_Main_Is_Wait_Add.controls.AddRange($CheckBox)
 					}
 				}
@@ -319,13 +319,13 @@ Function LXPs_Update_UI
 								Text      = $_.BaseName
 								Tag       = $_.FullName
 							}
-						
+
 							if ($GetSelectLXPsLanguage -contains $_.BaseName) {
 								$CheckBox.Checked = $True
 							} else {
 								$CheckBox.Checked = $False
 							}
-						
+
 							$UI_Main_Is_Wait_Add.controls.AddRange($CheckBox)
 						}
 					}
@@ -471,7 +471,7 @@ Function LXPs_Update_UI
 		Text           = $lang.Save
 		add_Click      = {
 			if (Autopilot_LXPs_Update_UI_Save) {
-
+				
 			}
 		}
 	}

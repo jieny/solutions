@@ -150,7 +150,7 @@ Function Event_Completion_Start_Setting_UI
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Time_Sky.Text = "0"
- 			$UI_Time_Time.Text = "0"
+			$UI_Time_Time.Text = "0"
 			$UI_Time_Minute.Text = "30"
 
 			Autopilot_Event_Completion_Save
@@ -172,7 +172,7 @@ Function Event_Completion_Start_Setting_UI
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			$UI_Time_Sky.Text = "0"
- 			$UI_Time_Time.Text = "0"
+			$UI_Time_Time.Text = "0"
 			$UI_Time_Minute.Text = "30"
 
 			$UI_Main_Error.Text = "$($lang.Image_Restore_Default), $($lang.Done)"
@@ -427,12 +427,12 @@ Function Event_Completion_Start_Setting_UI
 					.天
 				#>
 				$UI_Time_Sky.Text = $Autopilot.Custom.Sky
-			
+
 				<#
 					.小时
 				#>
 				$UI_Time_Time.Text = $Autopilot.Custom.Hour
-				
+
 				<#
 					.分钟
 				#>

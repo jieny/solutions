@@ -159,14 +159,14 @@ Function Drive_Add_UI_Autopilot
 				add_Click       = {
 					$UI_Main_Error.Text = ""
 					$UI_Main_Error_Icon.Image = $null
-		
+
 					if ([string]::IsNullOrEmpty($This.Tag)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 					} else {
 						if (Test-Path -Path $This.Tag -PathType Container) {
 							Start-Process $This.Tag
-		
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 						} else {
@@ -189,14 +189,14 @@ Function Drive_Add_UI_Autopilot
 				add_Click       = {
 					$UI_Main_Error.Text = ""
 					$UI_Main_Error_Icon.Image = $null
-		
+
 					if ([string]::IsNullOrEmpty($This.Tag)) {
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 					} else {
 						if (Test-Path -Path $This.Tag -PathType Container) {
 							Start-Process $This.Tag
-		
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 						} else {
@@ -365,7 +365,7 @@ Function Drive_Add_UI_Autopilot
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -388,14 +388,14 @@ Function Drive_Add_UI_Autopilot
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -424,7 +424,7 @@ Function Drive_Add_UI_Autopilot
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
@@ -451,7 +451,7 @@ Function Drive_Add_UI_Autopilot
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -465,7 +465,7 @@ Function Drive_Add_UI_Autopilot
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
@@ -529,7 +529,7 @@ Function Drive_Add_UI_Autopilot
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -619,7 +619,7 @@ Function Drive_Add_UI_Autopilot
 			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\Autopilot\Deploy\Drive" -Name "$(Get_GPS_Location)_$(Get_Autopilot_Location)_$($Global:ImageType)_Add_Auto" -Force -ErrorAction SilentlyContinue | out-null
 
 			Refres_Event_Tasks_Drive_Add_UI_Autopilot
-	
+
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 			$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
 		}
@@ -644,9 +644,9 @@ Function Drive_Add_UI_Autopilot
 		LinkBehavior   = "NeverUnderline"
 		add_Click      = {
 			Remove-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive\Autopilot" -Name "$(Get_GPS_Location)_$(Get_Autopilot_Location)_$($Global:ImageType)_Add_Auto" -Force -ErrorAction SilentlyContinue | out-null
-	
+
 			Refres_Event_Tasks_Drive_Add_UI_Autopilot
-	
+
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 			$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
 		}
@@ -748,7 +748,7 @@ Function Drive_Add_UI_Autopilot
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Add_Autopilot" -value "False" -String
 				}
-			
+
 				Drive_Add_Refresh_Autopilot_Sources
 			}
 		}

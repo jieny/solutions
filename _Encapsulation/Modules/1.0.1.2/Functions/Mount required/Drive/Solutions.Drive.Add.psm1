@@ -148,11 +148,11 @@ Function Drive_Add_UI
 				Text           = $lang.RulePre
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Pre_Rule)
-	
+
 			ForEach ($item in $SearchFolderRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 					Width     = 470
@@ -165,7 +165,7 @@ Function Drive_Add_UI
 					}
 				}
 				$UI_Main_Rule.controls.AddRange($CheckBox)
-	
+
 				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
 					autosize        = 1
 					Padding         = "50,0,0,0"
@@ -195,7 +195,7 @@ Function Drive_Add_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 30
 					Width           = 470
@@ -225,7 +225,7 @@ Function Drive_Add_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 30
 					Width           = 470
@@ -250,7 +250,7 @@ Function Drive_Add_UI
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：预置规则
@@ -271,7 +271,7 @@ Function Drive_Add_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -285,7 +285,7 @@ Function Drive_Add_UI
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
@@ -304,7 +304,7 @@ Function Drive_Add_UI
 					))
 				} else {
 					$CheckBox.Enabled = $False
-	
+
 					$AddSourcesPathNoFolder = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "48,0,0,0"
@@ -464,7 +464,7 @@ Function Drive_Add_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -478,7 +478,7 @@ Function Drive_Add_UI
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
@@ -542,7 +542,7 @@ Function Drive_Add_UI
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -722,7 +722,7 @@ Function Drive_Add_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Drive" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Add" -value "False" -String
 				}
-			
+
 				Drive_Add_Refresh_Sources
 			}
 		}

@@ -5226,7 +5226,7 @@ Function Image_Assign_Autopilot_Master
 								add_Click      = {
 									$UI_Main_Prerequisite_Error.Text = ""
 									$UI_Main_Prerequisite_Error_Icon.Image = $null
-									
+
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
 
@@ -5377,7 +5377,7 @@ Function Image_Assign_Autopilot_Master
 								add_Click      = {
 									$UI_Main_Prerequisite_Error.Text = ""
 									$UI_Main_Prerequisite_Error_Icon.Image = $null
-									
+
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
 
@@ -6368,6 +6368,7 @@ Function Image_Assign_Autopilot_Master
 			}
 		}
 	}
+
 	<#
 		.选择 install.wim 或 boot.wim
 	#>
@@ -6832,6 +6833,7 @@ Function Image_Assign_Autopilot_Master
 								} else {
 									Write-Host "  $($lang.Disable), Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)"
 								}
+
 								if ((Get-Variable -Scope global -Name "Queue_Expand_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 									Write-Host "  $($lang.Enable), Queue_Expand_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)" -ForegroundColor Green
 								} else {
@@ -6844,6 +6846,7 @@ Function Image_Assign_Autopilot_Master
 								} else {
 									Write-Host "  $($lang.Disable), Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)"
 								}
+
 								if ((Get-Variable -Scope global -Name "Queue_Expand_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 									Write-Host "  $($lang.Enable), Queue_Expand_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)" -ForegroundColor Green
 								} else {

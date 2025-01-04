@@ -121,7 +121,7 @@ Function LXPs_Region_Add
 				#>
 				if ($UI_Main_InBox_Apps_Clear.Checked) {
 					New-Variable -Scope global -Name "Queue_Is_InBox_Apps_Clear_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $True -Force
-				
+
 					if ($UI_Main_InBox_Apps_Clear_Rule.Checked) {
 						New-Variable -Scope global -Name "Queue_Is_InBox_Apps_Clear_Allow_Rule_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $True -Force
 					} else {
@@ -257,7 +257,7 @@ Function LXPs_Region_Add
 						add_Click = {
 							$UI_Main_Error.Text = ""
 							$UI_Main_Error_Icon.Image = $null
-							
+
 							$UI_Main_Mask_Report_Sources_Path.Text = $_.FullName
 
 							Refresh_Sources_New_LXPs
@@ -567,7 +567,6 @@ Function LXPs_Region_Add
 		$UI_Main.Close()
 	}
 
-
 	Function Refresh_Sources_New_LXPs
 	{
 		$UI_Main_Rule.Controls | ForEach-Object {
@@ -646,13 +645,13 @@ Function LXPs_Region_Add
 								$UI_Main_Error_Icon.Image = $null
 							}
 						}
-	
+
 						if ($Temp_Assign_Task_Select.Language -contains $itemRegion.Region) {
 							$CheckBox.Checked = $True
 						} else {
 							$CheckBox.Checked = $False
 						}
-	
+
 						$UI_Main_Select_LXPs.controls.AddRange($CheckBox)
 
 						break
@@ -699,7 +698,7 @@ Function LXPs_Region_Add
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -709,7 +708,7 @@ Function LXPs_Region_Add
 	$UI_Main_DragDrop = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
 				if (Test-Path -Path $filename -PathType Container) {
@@ -738,7 +737,7 @@ Function LXPs_Region_Add
 		Add_DragOver   = $UI_Main_DragOver
 		Add_DragDrop   = $UI_Main_DragDrop
 	}
-	
+
 	$UI_Main_Menu      = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
 		Height         = 675
@@ -907,7 +906,7 @@ Function LXPs_Region_Add
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Global_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions" -name "TipsWarningUWPGlobal" -value "True" -String
 				$UI_Main_Mask_Tips_Do_Not.Enabled = $False
@@ -915,7 +914,7 @@ Function LXPs_Region_Add
 				Save_Dynamic -regkey "Solutions" -name "TipsWarningUWPGlobal" -value "False" -String
 				$UI_Main_Mask_Tips_Do_Not.Enabled = $True
 			}
-	}
+		}
 	}
 	$UI_Main_Mask_Tips_Do_Not = New-Object System.Windows.Forms.CheckBox -Property @{
 		Location       = "20,635"
@@ -925,7 +924,7 @@ Function LXPs_Region_Add
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\InBox" -name "TipsWarningUWP" -value "True" -String
 			} else {
@@ -966,9 +965,9 @@ Function LXPs_Region_Add
 		add_Click      = {
 			New-Variable -Scope global -Name "Queue_Is_LXPs_Region_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $False -Force
 			New-Variable -Scope global -Name "Queue_Is_LXPs_Region_Add_Custom_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
-		
+
 			Refres_Event_Tasks_InBox_Apps_Region_Add_UI
-	
+
 			$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 			$UI_Main_Error.Text = "$($lang.EventManagerCurrentClear), $($lang.Done)"
 		}
@@ -1016,7 +1015,7 @@ Function LXPs_Region_Add
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($this.Checked) {
 				$UI_Main_Select_LXPs.Enabled = $False
 				$UI_Main_Select_Folder.Enabled = $False
@@ -1317,26 +1316,26 @@ Function LXPs_Region_Add
 		add_Click      = {
 			$UI_Main_Mask_Report_Error.Text = ""
 			$UI_Main_Mask_Report_Error_Icon.Image = $null
-			
+
 			$RandomGuid = [guid]::NewGuid()
 			$DesktopOldpath = [Environment]::GetFolderPath("Desktop")
-	
+
 			$FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
 				RootFolder = "MyComputer"
 			}
-	
+
 			if ($FolderBrowser.ShowDialog() -eq "OK") {
 				$InitalReportSources = (Join_MainFolder -Path $FolderBrowser.SelectedPath)
 				$UI_Main_Mask_Report_Sources_Path.Text = $InitalReportSources
 				$GUIISOCustomizeName.Text = $FolderBrowser.SelectedPath
-				
+
 				if (Test-Path -Path $InitalReportSources -PathType Container) {
 					if (Test_Available_Disk -Path $InitalReportSources) {
 						$UI_Main_Mask_Report_Save_To.Text = "$($InitalReportSources)Report.$($RandomGuid).csv"
 					} else {
 						$UI_Main_Mask_Report_Save_To.Text = "$($DesktopOldpath)\Report.$($RandomGuid).csv"
 					}
-	
+
 					LXPs_Refresh_Sources_To_Status
 				} else {
 					$UI_Main_Mask_Report_Save_To.Text = "$($DesktopOldpath)\Report.$($RandomGuid).csv"
@@ -1434,7 +1433,7 @@ Function LXPs_Region_Add
 		add_Click      = {
 			$UI_Main_Mask_Report_Error.Text = ""
 			$UI_Main_Mask_Report_Error_Icon.Image = $null
-			
+
 			$RandomGuid = [guid]::NewGuid()
 
 			$FileBrowser = New-Object System.Windows.Forms.SaveFileDialog -Property @{
@@ -1666,7 +1665,7 @@ Function LXPs_Region_Add
 		Text           = $lang.Save
 		add_Click      = {
 			if (Autopilot_LXPs_Region_Add_Save) {
-	
+				
 			}
 		}
 	}

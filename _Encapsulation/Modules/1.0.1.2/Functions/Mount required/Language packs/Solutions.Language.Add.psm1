@@ -142,7 +142,7 @@ Function Language_Add_UI
 					New-Variable -Scope global -Name "Queue_Is_Setup_Fix_Missing_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $True -Force
 				}
 			}
-		
+
 			<#
 				.同步语言包到安装程序
 			#>
@@ -152,7 +152,7 @@ Function Language_Add_UI
 				New-Variable -Scope global -Name "Queue_Is_Language_Sync_To_ISO_Sources_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $True -Force
 				}
 			}
-		
+
 			<#
 				.重建 Lang.ini
 			#>
@@ -209,7 +209,7 @@ Function Language_Add_UI
 	$UI_Main_Create_New_Tempate_Click = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-		
+
 		$RandomGuid = "Example_$(Get-RandomHexNumber -length 5).$(Get-RandomHexNumber -length 3)"
 
 		switch ($Global:Architecture) {
@@ -268,7 +268,7 @@ Function Language_Add_UI
 			ForEach ($item in $SearchFolderRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 					Width     = 493
@@ -278,7 +278,7 @@ Function Language_Add_UI
 					add_Click = { Language_Refresh_Add_Auto_Suggestions }
 				}
 				$UI_Main_Rule.controls.AddRange($CheckBox)
-	
+
 				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
 					autosize        = 1
 					Padding         = "50,0,0,0"
@@ -291,14 +291,14 @@ Function Language_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-	
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -308,7 +308,7 @@ Function Language_Add_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 35
 					Width           = 525
@@ -321,14 +321,14 @@ Function Language_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -338,7 +338,7 @@ Function Language_Add_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 35
 					Width           = 525
@@ -351,19 +351,19 @@ Function Language_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：预置规则
@@ -384,7 +384,7 @@ Function Language_Add_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -398,14 +398,14 @@ Function Language_Add_UI
 							<#
 								.提示，未发现文件
 							#>
-	
+
 							$UI_Main_Rule.controls.AddRange($AddSourcesPath)
 							$CheckBox.Enabled = $False
 						} else {
 							$CheckBox.Enabled = $True
 						}
 					}
-	
+
 					$UI_Main_Rule.controls.AddRange((
 						$AddSourcesPathOpen,
 						$AddSourcesPathPaste
@@ -425,15 +425,15 @@ Function Language_Add_UI
 							Language_Add_Refresh_Sources
 						}
 					}
-		
+
 					$UI_Main_Rule.controls.AddRange($AddSourcesPathNoFolder)
 				}
-	
+
 				$Add_Pre_Rule_Wrap = New-Object system.Windows.Forms.Label -Property @{
 					Height         = 30
 					Width          = 525
 				}
-	
+
 				$UI_Main_Rule.controls.AddRange($Add_Pre_Rule_Wrap)
 			}
 		}
@@ -450,7 +450,7 @@ Function Language_Add_UI
 				Text           = $lang.RuleMultistage
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Multistage_Rule_Name)
-	
+
 			ForEach ($item in $Search_Folder_Multistage_Rule) {
 				$MarkIsFolderRule = $False
 				if (Test-Path -Path $item -PathType Container) {
@@ -458,7 +458,7 @@ Function Language_Add_UI
 						$MarkIsFolderRule = $True
 					}
 				}
-	
+
 				if ($MarkIsFolderRule) {
 					$No_Find_Multistage_Rule_Create = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
@@ -472,7 +472,7 @@ Function Language_Add_UI
 						add_Click       = $UI_Main_Create_New_Tempate_Click
 					}
 					$UI_Main_Rule.controls.AddRange($No_Find_Multistage_Rule_Create)
-	
+
 					Get-ChildItem -Path $item -Directory -ErrorAction SilentlyContinue | Where-Object {
 						<#
 							.添加：文字显示路径
@@ -489,14 +489,14 @@ Function Language_Add_UI
 							add_Click       = {
 								$UI_Main_Error.Text = ""
 								$UI_Main_Error_Icon.Image = $null
-	
+
 								if ([string]::IsNullOrEmpty($This.Tag)) {
 									$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 									$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 								} else {
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
-	
+
 										$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 										$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 									} else {
@@ -507,9 +507,9 @@ Function Language_Add_UI
 							}
 						}
 						$UI_Main_Rule.controls.AddRange($AddSourcesPathName)
-	
+
 						Language_Add_Refresh_Sources_New -Sources $_.FullName -ImageMaster $Global:Primary_Key_Image.Master -ImageName $Global:Primary_Key_Image.ImageFileName
-	
+
 						$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 							Height         = 30
 							Width          = 525
@@ -519,7 +519,7 @@ Function Language_Add_UI
 				} else {
 					$InitLength = $item.Length
 					if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 					$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 						Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 						Width     = 493
@@ -529,7 +529,7 @@ Function Language_Add_UI
 						Enabled   = $False
 						add_Click = { Language_Refresh_Add_Auto_Suggestions }
 					}
-	
+
 					$No_Find_Multistage_Rule = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "47,0,0,0"
@@ -540,12 +540,12 @@ Function Language_Add_UI
 						LinkBehavior    = "NeverUnderline"
 						add_Click       = $UI_Main_Create_New_Tempate_Click
 					}
-	
+
 					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 						Height         = 30
 						Width          = 525
 					}
-	
+
 					$UI_Main_Rule.controls.AddRange((
 						$CheckBox,
 						$No_Find_Multistage_Rule,
@@ -593,14 +593,14 @@ Function Language_Add_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -630,7 +630,7 @@ Function Language_Add_UI
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -686,7 +686,7 @@ Function Language_Add_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.判断目录里，是否存在文件
 					#>
@@ -706,7 +706,7 @@ Function Language_Add_UI
 							$CheckBox.Enabled = $True
 						}
 					}
-	
+
 					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 						Height         = 30
 						Width          = 525
@@ -785,14 +785,14 @@ Function Language_Add_UI
 			add_Click       = {
 				$UI_Main_Error.Text = ""
 				$UI_Main_Error_Icon.Image = $null
-	
+
 				if ([string]::IsNullOrEmpty($This.Tag)) {
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 				} else {
 					if (Test-Path -Path $This.Tag -PathType Container) {
 						Start-Process $This.Tag
-	
+
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 					} else {
@@ -876,7 +876,7 @@ Function Language_Add_UI
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -886,7 +886,7 @@ Function Language_Add_UI
 	$UI_Main_DragDrop = {
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			foreach ($filename in $_.Data.GetData([Windows.Forms.DataFormats]::FileDrop)) {
 				if (Test-Path -Path $filename -PathType Container) {
@@ -1133,7 +1133,7 @@ Function Language_Add_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleMultistage_Add" -value "False" -String
 				}
-			
+
 				Language_Add_Refresh_Sources
 			}
 		}
@@ -1164,7 +1164,7 @@ Function Language_Add_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Add" -value "False" -String
 				}
-			
+
 				Language_Add_Refresh_Sources
 			}
 		}
@@ -1229,7 +1229,7 @@ Function Language_Add_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Setup_Fix_Missing.Checked) {
 				New-Variable -Scope global -Name "Queue_Is_Setup_Fix_Missing_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value $True -Force
 			} else {
@@ -1428,7 +1428,7 @@ Function Language_Add_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Mask_Tips_Do_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -name "TipsWarningLanguage" -value "True" -String
 			} else {
@@ -2067,7 +2067,7 @@ Function Language_Add_Process
 					.添加根目录下的其它文件
 				#>
 				Get-ChildItem -Path "$($item)\*" -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | ForEach-Object {
-    				Language_Add_File_Type_Process -FileName $_.FullName
+					Language_Add_File_Type_Process -FileName $_.FullName
 				}
 			}
 		} else {

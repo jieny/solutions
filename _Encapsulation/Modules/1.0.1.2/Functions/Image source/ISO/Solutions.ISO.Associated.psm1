@@ -94,13 +94,13 @@ Function ISO_Associated_UI
 				Text      = $FileA
 				Tag       = $_.FullName
 			}
-		
+
 			if ($Global:Queue_ISO_Associated_Tasks.Rule -contains $_.FullName) {
 				$CheckBox.Checked = $True
 			} else {
 				$CheckBox.Checked = $False
 			}
-		
+
 			$UI_Main_Rule.controls.AddRange($CheckBox)
 
 			$GUIImageSelectFunctionLang_Wrap = New-Object system.Windows.Forms.Label -Property @{
@@ -133,13 +133,13 @@ Function ISO_Associated_UI
 						Text      = $FileA
 						Tag       = $_.FullName
 					}
-				
+
 					if ($Global:Queue_ISO_Associated_Tasks.Rule -contains $_.FullName) {
 						$CheckBox.Checked = $True
 					} else {
 						$CheckBox.Checked = $False
 					}
-				
+
 					$UI_Main_Rule.controls.AddRange($CheckBox)
 				}
 

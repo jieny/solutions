@@ -764,7 +764,7 @@ Function Image_Select_Index_UI
 			#>
 			if ($GUIImageSourceISOCustomizePath.Text -match '^\s') {
 				$UI_Main_Apply_Detailed_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 				return
 			}
@@ -775,7 +775,7 @@ Function Image_Select_Index_UI
 			#>
 			if ($GUIImageSourceISOCustomizePath.Text -match '\s$') {
 				$UI_Main_Apply_Detailed_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 				return
 			}
@@ -786,7 +786,7 @@ Function Image_Select_Index_UI
 			#>
 			if ($GUIImageSourceISOCustomizePath.Text -match '\s{2,}') {
 				$UI_Main_Apply_Detailed_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace))"
+				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorSpace)"
 				$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 				return
 			}
@@ -797,7 +797,7 @@ Function Image_Select_Index_UI
 			#>
 			if ($GUIImageSourceISOCustomizePath.Text -match '[~#$@!%&*{}<>?/|+"]') {
 				$UI_Main_Apply_Detailed_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther))"
+				$UI_Main_Apply_Detailed_Error.Text = "$($lang.SelectFromError): $($lang.ISO9660TipsErrorOther)"
 				$GUIImageSourceISOCustomizePath.BackColor = "LightPink"
 				return
 			}

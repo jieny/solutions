@@ -116,7 +116,7 @@ Function UnPack_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($GUIUnPackSources.Checked) {
 				$GUIUnPackShow.Enabled = $False
 			} else {
@@ -161,7 +161,7 @@ Function UnPack_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Create_ASC.Checked) {
 				$UI_Main_Create_ASC_Panel.Enabled = $True
 				Save_Dynamic -regkey "Solutions\Unpack" -name "IsPGP_Unpack" -value "True" -String
@@ -223,7 +223,7 @@ Function UnPack_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($GUIUnPackCreateSHA256.Checked) {
 				$GUIUnPackCreateSHA256Clean.Enabled = $True
 			} else {
@@ -263,7 +263,7 @@ Function UnPack_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_View_Detailed.Visible = $True
 			$UI_Main_View_Detailed_Show.Text = ""
 
@@ -282,7 +282,7 @@ Function UnPack_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Create_Latest_Zip.Checked) {
 				Save_Dynamic -regkey "Solutions\Unpack" -name "IsLatest" -value "True" -String
 			} else {
@@ -439,7 +439,7 @@ Function UnPack_Create_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$Script:SelectFolderList = @()
 
 			<#

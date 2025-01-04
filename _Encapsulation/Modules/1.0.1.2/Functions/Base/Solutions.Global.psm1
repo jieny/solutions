@@ -36,7 +36,7 @@ Function Remove_Tree
 	)
 
 	Remove-Item -Path $Path -force -Recurse -ErrorAction silentlycontinue -Confirm:$false | Out-Null
-	
+
 	if (Test-Path -Path "$($path)\" -ErrorAction silentlycontinue) {
 		Get-ChildItem -Path $Path -File -Force -Recurse -ErrorAction SilentlyContinue | ForEach-Object {
 			Remove-Item -Path $_.FullName -force -ErrorAction SilentlyContinue -Confirm:$false
@@ -208,6 +208,7 @@ Function ElevatePrivileges
         }
     }
 "@
+
 	$ProcessHandle = (Get-Process -id $pid).Handle
 	$type = Add-Type $definition -PassThru
 	$type[0]::EnablePrivilege($processHandle, $Privilege)

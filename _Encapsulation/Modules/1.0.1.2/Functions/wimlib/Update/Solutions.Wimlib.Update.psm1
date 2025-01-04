@@ -505,23 +505,23 @@ Function Wimlib_Extract_And_Update
 
 				Write-Host "`n  $($lang.Event_Group): " -NoNewline -ForegroundColor Yellow
 				Write-Host $Global:Primary_Key_Image.Group -ForegroundColor Green
-	
+
 				Write-Host "  $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 				Write-Host $Global:Primary_Key_Image.Uid -ForegroundColor Green
-	
+
 				Write-Host "  $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
 				Write-Host $WimLib_SplieNew_Rule_path[2] -ForegroundColor Green
-	
+
 				Write-Host "`n  $($lang.MountedIndexSelect)" -ForegroundColor Green
 				Write-Host "  $('-' * 80)"
 				ForEach ($item in $Global:Primary_Key_Image.Index) {
 					if ($Script:Wimlib_Select_Index -Contains $item.ImageIndex) {
 						Write-Host "  $($lang.Wim_Image_Name): " -NoNewline
 						Write-Host $item.ImageName -ForegroundColor Yellow
-						
+
 						Write-Host "  $($lang.MountedIndex): " -NoNewline
 						Write-Host $item.ImageIndex -ForegroundColor Yellow
-	
+
 						$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
 						if (Test-Path -Path $wimlib -PathType Leaf) {
 							<#
@@ -531,7 +531,7 @@ Function Wimlib_Extract_And_Update
 
 							$Local_Wim_Update_Folder_Sources = "$($UI_Main_Mask_Report_Save_To.Text)\$($RandomGuid)"
 							Check_Folder -chkpath $Local_Wim_Update_Folder_Sources
-	
+
 							Start-Process -FilePath $wimlib -ArgumentList "extract ""$($Global:Primary_Key_Image.FullPath)"" $($item.ImageIndex) ""$($WimLib_SplieNew_Rule_path[2])"" --dest-dir=""$($Local_Wim_Update_Folder_Sources)""" -wait -WindowStyle Minimized
 
 							$FullFilePath = "$($Local_Wim_Update_Folder_Sources)\WinRE.wim"

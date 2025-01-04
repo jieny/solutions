@@ -116,8 +116,8 @@ Function LXPs_Remove_UI
 
 	$UI_Main           = New-Object system.Windows.Forms.Form -Property @{
 		autoScaleMode  = 2
-        Height         = 720
-        Width          = 928
+		Height         = 720
+		Width          = 928
 		Text           = "$($lang.LocalExperiencePack): $($lang.Del)"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
@@ -292,7 +292,7 @@ Function LXPs_Remove_UI
 		Text           = $lang.Save
 		add_Click      = {
 			if (Autopilot_LXPs_Remove_UI_Save) {
-
+				
 			}
 		}
 	}

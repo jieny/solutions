@@ -187,7 +187,7 @@ Function Image_Select_Export_UI
 									}
 								}
 							}
-	
+
 							$UI_Main.Close()
 						} else {
 							Write-Host "  $($lang.UserCancel)"
@@ -198,7 +198,7 @@ Function Image_Select_Export_UI
 
 						$TempReBuildWim = Join-Path -Path $Global:Image_source -ChildPath "Sources\ReBuild.wim"
 						Remove-Item -Path $TempReBuildWim -ErrorAction SilentlyContinue
-	
+
 						Write-Host "`n  $($lang.AddQueue)" -ForegroundColor Yellow
 						Write-Host "  $('-' * 80)"
 						ForEach ($item in $MarkSelectIndexin) {
@@ -206,7 +206,7 @@ Function Image_Select_Export_UI
 								if ($item -eq $itemDetail.ImageIndex) {
 									Write-Host "  $($lang.Wim_Image_Name): " -NoNewline
 									Write-Host $itemDetail.ImageName -ForegroundColor Yellow
-	
+
 									Write-Host "  $($lang.MountedIndex): " -NoNewline
 									Write-Host $itemDetail.ImageIndex -ForegroundColor Yellow	
 
@@ -216,7 +216,7 @@ Function Image_Select_Export_UI
 										Write-Host "  Export-WindowsImage -SourceImagePath ""$($Global:Primary_Key_Image.FullPath)"" -SourceIndex ""$($item)"" -DestinationImagePath ""$($TempReBuildWim)"" -CompressionType max -CheckIntegrity" -ForegroundColor Green
 										Write-Host "  $('-' * 80)`n"
 									}
-	
+
 									Write-Host "  $($lang.Export_Image): " -NoNewline
 									try {
 										Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath $Global:Primary_Key_Image.FullPath -SourceIndex $item -DestinationImagePath $TempReBuildWim -CompressionType max -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
@@ -230,7 +230,7 @@ Function Image_Select_Export_UI
 								}
 							}
 						}
-	
+
 						<#
 							.导出，检查是否成功
 						#>
@@ -243,12 +243,12 @@ Function Image_Select_Export_UI
 						if (Test-Path -Path $TempReBuildWim -PathType Leaf) {
 							Remove-Item -Path $Global:Primary_Key_Image.FullPath -ErrorAction SilentlyContinue
 							Rename-Item -Path $TempReBuildWim -NewName $Global:Primary_Key_Image.FullPath -ErrorAction SilentlyContinue
-	
+
 							Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 						} else {
 							Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 						}
-	
+
 						Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "04292024"
 
 						$UI_Main.Close()

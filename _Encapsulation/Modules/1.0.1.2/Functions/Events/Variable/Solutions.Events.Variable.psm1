@@ -166,7 +166,7 @@ Function Event_Reset_Specified_Variable
 					if ($Tasks -notcontains $itemExpandNew.Uid) {
 						Event_Reset_Suggest_Custom -NewMaster $item.main.ImageFileName -NewImageFileName $itemExpandNew.ImageFileName
 						Event_Need_Mount_Global_Variable -DevQueue "3" -Master $item.main.ImageFileName -ImageFileName $itemExpandNew.ImageFileName -IsNoRefresh $IsNoRefresh -Init $Init
-	
+
 						<#
 							.扩展项：高级功能
 						#>
@@ -175,23 +175,23 @@ Function Event_Reset_Specified_Variable
 							#>
 							New-Variable -Scope global -Name "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
 							New-Variable -Scope global -Name "Queue_Expand_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
-	
+
 							<#
 								.不保存，扩展项
 							#>
 							New-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
 							New-Variable -Scope global -Name "Queue_Expand_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
-	
+
 							<#
 								.重建映像
 							#>
 							New-Variable -Scope global -Name "Queue_Expand_Rebuild_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
-	
+
 							<#
 								.健康
 							#>
 							New-Variable -Scope global -Name "Queue_Expand_Healthy_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
-	
+
 						<#
 							。弹出后更新，已过时
 						#>
@@ -199,7 +199,7 @@ Function Event_Reset_Specified_Variable
 							.允许更新规则
 						#>
 #						New-Variable -Scope global -Name "Queue_Is_Update_Rule_$($item.Main.ImageFileName)_$($itemExpandNew.ImageFileName)" -Value $False -Force
-	
+
 						<#
 							.更新规则同步到所有索引号
 						#>
@@ -233,7 +233,7 @@ Function Event_Need_Mount_Global_Variable
 			.保存已选择的映像源
 		#>
 		New-Variable -Scope global -Name "Queue_Process_Image_Select_$($Master)_$($ImageFileName)" -Value @() -Force
-	
+
 		<#
 			.待批量处理的映像源
 		#>

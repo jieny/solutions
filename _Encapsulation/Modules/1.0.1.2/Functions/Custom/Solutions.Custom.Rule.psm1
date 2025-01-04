@@ -279,7 +279,7 @@ $Global:Search_File_Order = @{
 		"*TerminalServices-AppServer-Client-FOD-Package*~arm64.x86~*"
 		"*TerminalServices-AppServer-Client-FOD-Package*~arm64~*"
 
-			<#	
+			<#
 				.WinRE
 			#>
 			"*winpe-appxdeployment*"

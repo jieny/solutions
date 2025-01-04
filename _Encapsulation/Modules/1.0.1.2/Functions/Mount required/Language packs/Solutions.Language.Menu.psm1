@@ -113,7 +113,7 @@ Function Language_Menu
 				} else {
 					Write-Host "  $($lang.Mounted)" -ForegroundColor Red
 				}
-			
+
 				Write-host "   " -NoNewline
 				Write-Host " 12 " -NoNewline -BackgroundColor Green -ForegroundColor Black
 				if (Test-Path -Path $LanguageRepair_ISO_Path -PathType Container) {
@@ -129,7 +129,7 @@ Function Language_Menu
 			} else {
 				Write-Host "  $($SearchFolderRule)" -ForegroundColor Red
 			}
-				
+
 			if (Test-Path -Path $SearchFolderRuleCustom -PathType Container) {
 				Write-Host "  $($SearchFolderRuleCustom)" -ForegroundColor Yellow
 
@@ -140,7 +140,6 @@ Function Language_Menu
 				} else {
 					Write-Host "  $($lang.Mounted)" -ForegroundColor Red
 				}
-
 
 				Write-host "   " -NoNewline
 				Write-Host " 22 " -NoNewline -BackgroundColor Green -ForegroundColor Black
@@ -306,7 +305,7 @@ Function Language_Menu
 		if ($NewEnter -match '^\s') {
 			$NewEnter = $NewEnter.Remove(0, 1)
 		} else {
-		    break
+			break
 		}
 	}
 
@@ -323,7 +322,7 @@ Function Language_Menu
 			Language_Menu
 		}
 		"2" {
-			Language_Menu_Shortcuts_LD			
+			Language_Menu_Shortcuts_LD
 			ToWait -wait 2
 			Language_Menu
 		}
@@ -537,7 +536,7 @@ Function Language_Menu
 			} else {
 				Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 			}
-			
+
 			ToWait -wait 2
 			Language_Menu
 		}
@@ -558,7 +557,7 @@ Function Language_Menu
 						Write-Host "  Dism.exe /Image:""$($test_mount_folder_Current)"" /Get-Intl" -ForegroundColor Green
 						Write-Host "  $('-' * 80)`n"
 					}
-			
+
 					start-process "Dism.exe" -ArgumentList "/Image:""$($test_mount_folder_Current)"" /Get-Intl" -wait -nonewwindow
 					Get_Next
 				} else {
@@ -567,7 +566,7 @@ Function Language_Menu
 			} else {
 				Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 			}
-			
+
 			ToWait -wait 2
 			Language_Menu
 		}
@@ -598,7 +597,7 @@ Function Language_Menu
 			} else {
 				Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 			}
-			
+
 			ToWait -wait 2
 			Language_Menu
 		}
@@ -629,7 +628,7 @@ Function Language_Menu
 			} else {
 				Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 			}
-			
+
 			ToWait -wait 2
 			Language_Menu
 		}
@@ -639,7 +638,7 @@ Function Language_Menu
 			if (Image_Is_Select_IAB) {
 				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
-		
+
 				if (Verify_Is_Current_Same) {
 					Write-Host "  $($lang.Mounted)" -ForegroundColor Green
 
@@ -896,8 +895,8 @@ Function Language_Refresh_Ini
 	$TestFolderMount_To_Route = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 
 	Write-Host "  $($lang.Rebuilding): " -NoNewline
-	dism /image:"$($TestFolderMount_To_Route)" /gen-langini /distribution:"$($TestFolderMount_To_Route)"
-	dism /image:"$($TestFolderMount_To_Route)" /gen-langini /distribution:"$($Global:Image_source)"
+	dism /image:""$($TestFolderMount_To_Route)"" /gen-langini /distribution:""$($TestFolderMount_To_Route)""
+	dism /image:""$($TestFolderMount_To_Route)"" /gen-langini /distribution:""$($Global:Image_source)""
 	Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 }
 

@@ -117,35 +117,35 @@ $Global:Preconfigured_Rule_Language = @(
 						@{
 							Architecture = "Auto"
 							Rule = @(
-								@{ Match = "Microsoft-Windows-LanguageFeatures-Fonts-{DiyLang}-Package~31bf3856ad364e35~{ARCH}~~.cab";     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-Server-Language-Pack_{ARCHC}_{Lang}.cab";                                    Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-LanguageFeatures-Basic-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";        Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-LanguageFeatures-Handwriting-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";  Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-LanguageFeatures-OCR-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";          Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-LanguageFeatures-Speech-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";       Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-LanguageFeatures-TextToSpeech-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab"; Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";      Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-MSPaint-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-MSPaint-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-Notepad-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-Notepad-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-PowerShell-ISE-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";              Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-PowerShell-ISE-FOD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";              Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-StepsRecorder-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                   Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-StepsRecorder-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                   Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-SnippingTool-FoD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";               Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-WMIC-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                        Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-WMIC-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                        Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-ProjFS-OptionalFeature-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";     Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-SenseClient-FoD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-Telnet-Client-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";              Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-TFTP-Client-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-VBSCRIPT-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                    Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-VBSCRIPT-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                    Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-WinOcr-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                      Structure = "LanguagesAndOptionalFeatures"; }
-								@{ Match = "Microsoft-Windows-WinOcr-FOD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                      Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-LanguageFeatures-Fonts-{DiyLang}-Package~31bf3856ad364e35~{ARCH}~~.cab";                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-Server-Language-Pack_{ARCHC}_{Lang}.cab";                                                          Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-LanguageFeatures-Basic-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";                              Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-LanguageFeatures-Handwriting-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";                        Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-LanguageFeatures-OCR-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";                                Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-LanguageFeatures-Speech-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";                             Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-LanguageFeatures-TextToSpeech-{Lang}-Package~31bf3856ad364e35~{ARCH}~~.cab";                       Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-InternetExplorer-Optional-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                            Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-MSPaint-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-MSPaint-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-Notepad-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-Notepad-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-MediaPlayer-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-PowerShell-ISE-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                    Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-PowerShell-ISE-FOD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                    Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-StepsRecorder-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                         Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-StepsRecorder-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                         Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-SnippingTool-FoD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                                     Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-WMIC-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                              Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-WMIC-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                              Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-ProjFS-OptionalFeature-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                           Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-SenseClient-FoD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                                      Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-Telnet-Client-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                                    Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-TFTP-Client-FOD-Package~31bf3856ad364e35~{ARCH}~{Lang}~.cab";                                      Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-VBSCRIPT-FoD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                          Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-VBSCRIPT-FoD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                          Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-WinOcr-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";                                            Structure = "LanguagesAndOptionalFeatures"; }
+								@{ Match = "Microsoft-Windows-WinOcr-FOD-Package~31bf3856ad364e35~wow64~{Lang}~.cab";                                            Structure = "LanguagesAndOptionalFeatures"; }
 								@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-BitmapFonts-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";     Structure = "LanguagesAndOptionalFeatures"; }
 								@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-MinConsoleFonts-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab"; Structure = "LanguagesAndOptionalFeatures"; }
 								@{ Match = "Microsoft-Windows-ServerCoreFonts-NonCritical-Fonts-Support-FOD-Package~31bf3856ad364e35~amd64~{Lang}~.cab";         Structure = "LanguagesAndOptionalFeatures"; }

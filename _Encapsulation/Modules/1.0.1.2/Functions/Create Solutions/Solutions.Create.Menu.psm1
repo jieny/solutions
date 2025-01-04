@@ -231,7 +231,7 @@ Function Solutions_Menu
 		if ($NewEnter -match '^\s') {
 			$NewEnter = $NewEnter.Remove(0, 1)
 		} else {
-		    break
+			break
 		}
 	}
 

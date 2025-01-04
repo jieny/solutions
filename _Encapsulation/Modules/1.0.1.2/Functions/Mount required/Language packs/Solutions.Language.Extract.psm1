@@ -97,7 +97,7 @@ Function Language_Extract_UI
 		#>
 		if ($AddAndDel) {
 			$MarkCheckedAddAndDel = $False
-	
+
 			$UI_Main_Extract_Save_To_Select.Controls | ForEach-Object {
 				if ($_ -is [System.Windows.Forms.RadioButton]) {
 					if ($_.Enabled) {
@@ -108,7 +108,7 @@ Function Language_Extract_UI
 					}
 				}
 			}
-	
+
 			if ($MarkCheckedAddAndDel) {
 
 			} else {
@@ -153,7 +153,7 @@ Function Language_Extract_UI
 			#>
 			if ($SavePath) {
 				$MarkCheckedAddAndDel = $False
-		
+
 				$UI_Main_Rule.Controls | ForEach-Object {
 					if ($_ -is [System.Windows.Forms.RadioButton]) {
 						if ($_.Enabled) {
@@ -164,9 +164,9 @@ Function Language_Extract_UI
 						}
 					}
 				}
-		
+
 				if ($MarkCheckedAddAndDel) {
-	
+
 				} else {
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$UI_Main_Error.Text = "$($lang.SelectFromError): $($lang.NoChoose) ( $($lang.RulePre) )"
@@ -445,7 +445,7 @@ Function Language_Extract_UI
 					}
 				}
 
-				<#	
+				<#
 					.未搜索到后，匹配自动默认规则
 				#>
 				if ($NewMatchFileRule.Count -ge 0) {
@@ -1363,7 +1363,7 @@ Function Language_Extract_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if (Test-Path -Path $This.Tag -PathType Container) {
 				Start-Process $this.Tag
 			} else {
@@ -1478,11 +1478,11 @@ Function Language_Extract_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_View_Return.Visible = $True
 		}
 	}
-	
+
 	$UI_Main_Extract_Adv = New-Object System.Windows.Forms.Label -Property @{
 		Height         = 30
 		Width          = 437

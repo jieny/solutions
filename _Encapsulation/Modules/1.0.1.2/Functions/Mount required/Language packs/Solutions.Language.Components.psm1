@@ -287,7 +287,7 @@ Function Language_Cleanup_Components_UI
 		Text           = $lang.Save
 		add_Click      = {
 			if (Autopilot_Language_Cleanup_Components_UI_Save) {
-	
+				
 			}
 		}
 	}
@@ -466,7 +466,7 @@ Function Language_Cleanup_Components_UI
 Function Cleanup_Components_Process
 {
 	<#
-    	.初始化，获取语言
+		.初始化，获取语言
 	#>
 	$InitlClearLanguagePackage = @()
 
@@ -504,7 +504,7 @@ Function Cleanup_Components_Process
 	if ($InitlClearLanguagePackage.count -gt 0) {
 		Write-Host "  $($lang.AddSources)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
-	
+
 		ForEach ($item in $InitlClearLanguagePackage | Sort-Object -Descending) {
 			Write-Host "  $($item)" -ForegroundColor Green
 

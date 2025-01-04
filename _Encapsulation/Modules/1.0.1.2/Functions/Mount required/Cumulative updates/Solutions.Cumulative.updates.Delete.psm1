@@ -52,7 +52,7 @@ Function Cumulative_updates_Delete_UI
 	{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-		
+
 		$Temp_Get_Select_Queue = @()
 		$UI_Main_Rule.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.CheckBox]) {
@@ -146,7 +146,7 @@ Function Cumulative_updates_Delete_UI
 			"AMD64" { $ArchitectureNew = "x64" }
 			"x86" { $ArchitectureNew = "x86" }
 		}
-	
+
 		Check_Folder -chkpath "$($this.Tag)\$($RandomGuid)\$($ArchitectureNew)\Add"
 		Check_Folder -chkpath "$($this.Tag)\$($RandomGuid)\$($ArchitectureNew)\Del"
 
@@ -187,11 +187,11 @@ Function Cumulative_updates_Delete_UI
 				Text           = $lang.RulePre
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Pre_Rule)
-	
+
 			ForEach ($item in $SearchFolderRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 				$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 					Width     = 490
@@ -204,7 +204,7 @@ Function Cumulative_updates_Delete_UI
 					}
 				}
 				$UI_Main_Rule.controls.AddRange($CheckBox)
-	
+
 				$AddSourcesPath     = New-Object system.Windows.Forms.LinkLabel -Property @{
 					autosize        = 1
 					Padding         = "50,0,0,0"
@@ -217,14 +217,14 @@ Function Cumulative_updates_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -234,7 +234,7 @@ Function Cumulative_updates_Delete_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 40
 					Width           = 525
@@ -247,14 +247,14 @@ Function Cumulative_updates_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -264,7 +264,7 @@ Function Cumulative_updates_Delete_UI
 						}
 					}
 				}
-	
+
 				$AddSourcesPathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height          = 40
 					Width           = 525
@@ -277,19 +277,19 @@ Function Cumulative_updates_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-	
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：预置规则
@@ -310,7 +310,7 @@ Function Cumulative_updates_Delete_UI
 							$CheckBox.Checked = $False
 						}
 					}
-	
+
 					<#
 						.不再检查目录里是否存在文件
 					#>
@@ -342,7 +342,7 @@ Function Cumulative_updates_Delete_UI
 					))
 				} else {
 					$CheckBox.Enabled = $False
-	
+
 					$AddSourcesPathNoFolder = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "48,0,0,0"
@@ -380,7 +380,7 @@ Function Cumulative_updates_Delete_UI
 				Text           = $lang.RuleMultistage
 			}
 			$UI_Main_Rule.controls.AddRange($UI_Main_Multistage_Rule_Name)
-	
+
 			ForEach ($item in $Search_Folder_Multistage_Rule) {
 				$MarkIsFolderRule = $False
 				if (Test-Path -Path $item -PathType Container) {
@@ -388,7 +388,7 @@ Function Cumulative_updates_Delete_UI
 						$MarkIsFolderRule = $True
 					}
 				}
-	
+
 				if ($MarkIsFolderRule) {
 					$No_Find_Multistage_Rule_Create = New-Object system.Windows.Forms.LinkLabel -Property @{
 						Height         = 35
@@ -437,14 +437,14 @@ Function Cumulative_updates_Delete_UI
 							add_Click       = {
 								$UI_Main_Error.Text = ""
 								$UI_Main_Error_Icon.Image = $null
-	
+
 								if ([string]::IsNullOrEmpty($This.Tag)) {
 									$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 									$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 								} else {
 									if (Test-Path -Path $This.Tag -PathType Container) {
 										Start-Process $This.Tag
-					
+
 										$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 										$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 									} else {
@@ -455,9 +455,9 @@ Function Cumulative_updates_Delete_UI
 							}
 						}
 						$UI_Main_Rule.controls.AddRange($AddSourcesPathName)
-		
+
 						Update_Del_Refresh_Sources_New -Sources $_.FullName -NewMaster $Global:Primary_Key_Image.Master -ImageName $Global:Primary_Key_Image.ImageFileName
-	
+
 						$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 							Height         = 30
 							Width          = 520
@@ -484,7 +484,7 @@ Function Cumulative_updates_Delete_UI
 
 					$InitLength = $item.Length
 					if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
-	
+
 					$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
 						Height    = $([math]::Ceiling($InitLength / $InitCharacterLength) * $InitControlHeight)
 						Width     = 465
@@ -497,7 +497,7 @@ Function Cumulative_updates_Delete_UI
 							$UI_Main_Error_Icon.Image = $null
 						}
 					}
-	
+
 					$No_Find_Multistage_Rule = New-Object system.Windows.Forms.LinkLabel -Property @{
 						autosize        = 1
 						Padding         = "49,0,0,0"
@@ -508,7 +508,7 @@ Function Cumulative_updates_Delete_UI
 						LinkBehavior    = "NeverUnderline"
 						add_Click       = $UI_Main_Create_New_Tempate_Click
 					}
-	
+
 					$AddSourcesPath_Wrap = New-Object system.Windows.Forms.Label -Property @{
 						Height         = 30
 						Width          = 520
@@ -563,14 +563,14 @@ Function Cumulative_updates_Delete_UI
 					add_Click       = {
 						$UI_Main_Error.Text = ""
 						$UI_Main_Error_Icon.Image = $null
-			
+
 						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 							$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Inoperable)"
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -600,7 +600,7 @@ Function Cumulative_updates_Delete_UI
 						} else {
 							if (Test-Path -Path $This.Tag -PathType Container) {
 								Start-Process $This.Tag
-			
+
 								$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 								$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 							} else {
@@ -629,13 +629,13 @@ Function Cumulative_updates_Delete_UI
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Inoperable)"
 						} else {
 							Set-Clipboard -Value $This.Tag
-	
+
 							$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 							$UI_Main_Error.Text = "$($lang.Paste), $($lang.Done)"
 						}
 					}
 				}
-	
+
 				if (Test-Path -Path $item -PathType Container) {
 					<#
 						.目录可用时，自动选择：其它规则
@@ -771,7 +771,7 @@ Function Cumulative_updates_Delete_UI
 				} else {
 					if (Test-Path -Path $This.Tag -PathType Container) {
 						Start-Process $This.Tag
-	
+
 						$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 						$UI_Main_Error.Text = "$($lang.OpenFolder), $($lang.Done)"
 					} else {
@@ -865,7 +865,7 @@ Function Cumulative_updates_Delete_UI
 	$UI_Main_DragOver = [System.Windows.Forms.DragEventHandler]{
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
-	
+
 		if ($_.Data.GetDataPresent([Windows.Forms.DataFormats]::FileDrop)) {
 			$_.Effect = 'Copy'
 		} else {
@@ -1044,7 +1044,7 @@ Function Cumulative_updates_Delete_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Update" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleMultistage_Del" -value "False" -String
 				}
-			
+
 				Update_Del_Refresh_Sourcs
 			}
 		}
@@ -1075,7 +1075,7 @@ Function Cumulative_updates_Delete_UI
 				} else {
 					Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\Update" -name "$(Get_GPS_Location)_Is_Check_Folder_RuleOther_Del" -value "False" -String
 				}
-			
+
 				Update_Del_Refresh_Sourcs
 			}
 		}
@@ -1152,7 +1152,7 @@ Function Cumulative_updates_Delete_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			$UI_Main_View_Detailed.Visible = $True
 			$UI_Main_View_Detailed_Show.Text = ""
 
@@ -1326,7 +1326,7 @@ Function Cumulative_updates_Delete_UI
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
-			
+
 			if ($UI_Main_Suggestion_Not.Checked) {
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Suggested\$($Global:Event_Guid)" -name "IsSuggested" -value "True" -String
 				$UI_Main_Suggestion_Setting.Enabled = $False
@@ -1878,7 +1878,7 @@ Function Update_Del_Process
 						Write-Host "  Remove-WindowsPackage -Path ""$($test_mount_folder_Current)"" -PackagePath ""$($_.FullName)""" -ForegroundColor Green
 						Write-Host "  $('-' * 80)`n"
 					}
-		
+
 					Write-Host "  $($lang.FullName): " -NoNewline -ForegroundColor Yellow
 					Write-Host $_.FullName -ForegroundColor Green
 

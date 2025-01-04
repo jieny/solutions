@@ -974,7 +974,7 @@ Function InBox_Apps_Delete_Check_Match_Customize
 
 	$UI_Main_Error.Text = ""
 	$UI_Main_Error_Icon.Image = $null
-	
+
 	$MarkCheckedRuleNaming = $False
 
 	$Queue_Inbox_Apps_Select = @()
@@ -1046,7 +1046,7 @@ Function InBox_Apps_Match_Delete_Process
 	ForEach ($item in $Script:QueueInboxAppsDeleteSelect) {
 		Write-Host "  $($lang.RuleName): " -NoNewline
 		Write-Host $item.Name -ForegroundColor Green
-		
+
 		Write-Host "  $($lang.RuleFileFind): " -NoNewline
 		Write-Host $item.Rule -ForegroundColor Green
 
@@ -1071,7 +1071,7 @@ Function InBox_Apps_Match_Delete_Process
 		}
 
 		Get-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Get.log" -Path $test_mount_folder_Current -ErrorAction SilentlyContinue | ForEach-Object {
-    		$InitlUWPPreDeleteSelectPakcage += $_.PackageName
+			$InitlUWPPreDeleteSelectPakcage += $_.PackageName
 			Write-Host "  $($_.PackageName)"
 		}
 	} catch {
