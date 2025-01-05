@@ -31,12 +31,20 @@ $Global:Preconfigured_Rule_Language = @(
 			@{
 				ISO = "en-us_windows_server_2025_x64_dvd_b7ec10f3.iso"
 				AlternativeFilenames = @(
-					"https://drive.massgrave.dev/X23-81958_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_en-us.iso"
+					"X23-81958_26100.1742.240906-0331.ge_release_svc_refresh_SERVER_OEMRET_x64FRE_en-us.iso"
 				)
 				FileList = "https://files.rg-adguard.net/file/f415465a-71bd-3823-ecb5-f249f9bce844"
 				CRCSHA = @{
 					SHA256 = "854109e1f215a29fc3541188297a6ca97c8a8f0f8c4dd6236b78dfdf845bf75e"
 					SHA512 = "66a96031566f2e5b9fdaa4c4506799ab0b86b50f7acf6f6192e8d35775326e4a455b43ced293155222be570d9ea15b7c9adf0562d99bd7b8f4746f7639de8150"
+				}
+			}
+			@{
+				ISO = "SW_DVD9_Win_Server_STD_CORE_2025_24H2_64Bit_English_DC_STD_MLF_X23-81891.ISO"
+				FileList = "https://files.rg-adguard.net/file/4d45d643-66f8-5769-74c7-8773a2811e5a"
+				CRCSHA = @{
+					SHA256 = "7cbb65644248cdbe8a72f51fbd9f98c4888e0a4938575fc4f052d52b927116df"
+					SHA512 = "7bc4e68c7b3dae00c27480e0492b40f9e190b05688e7c729730b7a45a230f806d640be8b7d1dd41a0cc222c515129c11b2c5fa79c596a0e2cbab9c279fa06d56"
 				}
 			}
 			@{
@@ -75,6 +83,7 @@ $Global:Preconfigured_Rule_Language = @(
 				@{
 					ISO = "https://software-static.download.prss.microsoft.com/dbazure/888969d5-f34g-4e03-ac9d-1f9786c66749/26100.1.240331-1435.ge_release_amd64fre_SERVER_LOF_PACKAGES_OEM.iso"
 					AlternativeFilenames = @(
+						"mul_languages_and_optional_features_for_windows_server_2025_x64_dvd_762b4771.iso"
 						"mul_languages_and_optional_features_for_windows_server_2025_preview_x64_dvd_762b4771.iso"
 					)
 					FileList = "https://files.rg-adguard.net/file/8f17df69-94b4-b8d2-6430-560748cdb0ca"
