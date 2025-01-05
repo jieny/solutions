@@ -7823,13 +7823,9 @@ Function Solutions_Create_Deploy_Report
 @"
 {
 	"Author": {
-		"Name":          "Yi",
+		"Name":          "$((Get-Module -Name Solutions).Author)'s Solutions",
 		"Version":       "$((Get-Module -Name Solutions).Version)",
 		"Url":           "$((Get-Module -Name Solutions).HelpInfoURI)"
-	},
-	"Engine": {
-		"ProductName":   "$((Get-Module -Name Solutions).Author)'s Solutions",
-		"Core":          "$((Get-Variable -Scope global -Name "SelectSolutionVersion_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value)"
 	},
 	"Unattend": {
 		"ISORoot":       "$((Get-Variable -Scope global -Name "SolutionsCreateUnattendISO_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value)",
@@ -7861,6 +7857,7 @@ Function Solutions_Create_Deploy_Report
 		"AddTo":         "$((Get-Variable -Scope global -Name "DeployPackageTo_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value)"
 	},
 	"Deploy": {
+		"Engine":        "$((Get-Variable -Scope global -Name "SelectSolutionVersion_$($Script:init_To_GPS)" -ErrorAction SilentlyContinue).Value)",
 		"Architecture":  "$($Global:ArchitecturePack)",
 		"Allow":         "$($QueueDeployFileSelectPrint)",
 		"Apps":          "$($QueueSoftwareSelectPrint)",

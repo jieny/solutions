@@ -671,7 +671,7 @@ Function Solutions_Open_Command
 			Write-Host $Global:Mount_To_Route -ForegroundColor Green
 		} else {
 			Write-Host " O'D RT " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-			Write-Host "  $($lang.MountImageTo), $($lang.MainImageFolder)" -ForegroundColor Yellow
+			Write-Host "   $($lang.MountImageTo), $($lang.MainImageFolder)" -ForegroundColor Yellow
 			Write-Host "        $($lang.Select_Path): " -NoNewline
 			Write-Host $Global:Mount_To_Route -ForegroundColor Red
 		}
