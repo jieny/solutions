@@ -50,13 +50,13 @@ Function Rebuild_Image_File
 			if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 				Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
-				Write-Host "  Export-WindowsImage -SourceImagePath ""$($Filename)"" -SourceIndex ""$($_.ImageIndex)"" -DestinationImagePath ""$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim"" -CompressionType max" -ForegroundColor Green
+				Write-Host "  Export-WindowsImage -SourceImagePath ""$($Filename)"" -SourceIndex ""$($_.ImageIndex)"" -DestinationImagePath ""$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim"" -CompressionType Max" -ForegroundColor Green
 				Write-Host "  $('-' * 80)`n"
 			}
 
 			Write-Host "  $($lang.Rebuilding): " -NoNewline
 			try {
-				Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath $Filename -SourceIndex $_.ImageIndex -DestinationImagePath "$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim" -CompressionType max -ErrorAction SilentlyContinue | Out-Null	
+				Export-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Export.log" -SourceImagePath $Filename -SourceIndex $_.ImageIndex -DestinationImagePath "$($Save_To_Temp_Folder_Path)\$($RandomGuid).wim" -CompressionType Max -ErrorAction SilentlyContinue | Out-Null	
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			} catch {
 				Write-Host $lang.ConvertChk

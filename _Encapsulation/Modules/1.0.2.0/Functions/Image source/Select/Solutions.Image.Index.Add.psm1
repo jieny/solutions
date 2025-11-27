@@ -214,7 +214,7 @@ Function Image_Select_Add_UI
 
 						Write-Host "  $($lang.Export_Image): " -NoNewline
 						try {
-							Export-WindowsImage -SourceImagePath $Script:TempSourcesFile -SourceIndex $item.ImageIndex -DestinationImagePath $Global:Primary_Key_Image.FullPath -CompressionType max -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
+							Export-WindowsImage -SourceImagePath $Script:TempSourcesFile -SourceIndex $item.ImageIndex -DestinationImagePath $Global:Primary_Key_Image.FullPath -CompressionType Max -CheckIntegrity -ErrorAction SilentlyContinue | Out-Null
 							Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 						} catch {
 							Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
