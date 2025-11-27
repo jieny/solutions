@@ -1998,7 +1998,7 @@ Function Language_Add_Process
 							Language_Add_Rule_Process -Sources $FullNewPath -NewLang "$($itemRegion.Region)"
 						} else {
 							Get-ChildItem -Path "$($FullNewPath)\*" -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | ForEach-Object {
-								Language_Add_File_Type_Process -FileName $_.FullName -NewSN $SNTasks -Group $lang.OrderRuleLang
+								Language_Add_File_Type_Process -FileName $_.FullName -SNTasks $SNTasks -Group $lang.OrderRuleLang
 							}
 						}
 					}
@@ -2008,7 +2008,7 @@ Function Language_Add_Process
 					.添加根目录下的其它文件
 				#>
 				Get-ChildItem -Path "$($item)\*" -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | ForEach-Object {
-					Language_Add_File_Type_Process -FileName $_.FullName -NewSN $SNTasks -Group $lang.RuleOther
+					Language_Add_File_Type_Process -FileName $_.FullName -SNTasks $SNTasks -Group $lang.RuleOther
 				}
 			}
 		} else {
@@ -2025,7 +2025,7 @@ Function Language_Add_Process
 						Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 						Write-Host $_.FullName -ForegroundColor Green
 
-						Language_Add_File_Type_Process -FileName $_.FullName -NewSN $SNTasks -Group $lang.RuleOther
+						Language_Add_File_Type_Process -FileName $_.FullName -SNTasks $SNTasks -Group $lang.RuleOther
 					}
 				}
 			}
@@ -2040,7 +2040,7 @@ Function Language_Add_File_Type_Process
 	param
 	(
 		$FileName,
-		$NewSN,
+		$SNTasks,
 		$Group
 	)
 
@@ -2059,7 +2059,8 @@ Function Language_Add_File_Type_Process
 		$UpdateTasksTime.Start()
 
 		Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
-		Write-Host $NewSN -ForegroundColor Green
+		Write-Host $SNTasks -NoNewline -ForegroundColor Green
+		Write-host " $($lang.EventManagerCount)"
 
 		Write-Host "  $($lang.TimeStart)" -NoNewline
 		Write-Host "$($UpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
@@ -2731,7 +2732,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.Fonts
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.Fonts
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2754,7 +2755,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.Basic
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.Basic
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2777,7 +2778,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.OCR
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.OCR
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2800,7 +2801,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.Handwriting
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.Handwriting
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2823,7 +2824,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.TextToSpeech
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.TextToSpeech
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2846,7 +2847,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.Speech
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.Speech
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2869,7 +2870,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.Retail
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.Retail
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2892,7 +2893,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.Features_On_Demand
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.Features_On_Demand
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2915,7 +2916,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item.FileName -NewSN $SNTasks -Group $lang.RegionSpecific
+				Language_Add_File_Type_Process -FileName $item.FileName -SNTasks $SNTasks -Group $lang.RegionSpecific
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item.FileName -ForegroundColor Green
@@ -2938,7 +2939,7 @@ Function Language_Rule_Add_View_And_Process
 			if ($Install) {
 				$SNTasks++
 
-				Language_Add_File_Type_Process -FileName $item -NewSN $SNTasks -Group $lang.UnassignedLangFiles
+				Language_Add_File_Type_Process -FileName $item -SNTasks $SNTasks -Group $lang.UnassignedLangFiles
 			} else {
 				Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 				Write-Host $item -ForegroundColor Green

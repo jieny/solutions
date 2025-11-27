@@ -154,7 +154,7 @@ Function Mainpage
 	Write-Host " App * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host ", " -NoNewline
 
-	Write-Host " Euwl " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " Euwl * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host ": $($lang.LanguageExtract)" -NoNewline -ForegroundColor Green
 	Write-Host ", " -NoNewline
 
@@ -839,6 +839,16 @@ Function Mainpage
 			"euwl" {
 				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 				Menu_Shortcuts_Euwl
+				ToWait -wait 2
+				Mainpage
+			}
+
+			<#
+				.快捷指令：提取、更新映像内里的文件 + 主键
+			#>
+			"euwl *" {
+				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+				Menu_Shortcuts_Euwl_Primary_Key -Command $PSItem
 				ToWait -wait 2
 				Mainpage
 			}

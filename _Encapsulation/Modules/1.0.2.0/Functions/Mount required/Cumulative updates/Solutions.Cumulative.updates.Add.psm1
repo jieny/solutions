@@ -1888,7 +1888,8 @@ Function Update_Add_Process
 					$UpdateTasksTime.Start()
 
 					Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
-					Write-Host $SNTasks -ForegroundColor Green
+					Write-Host $SNTasks -NoNewline -ForegroundColor Green
+					Write-host " $($lang.EventManagerCount)"
 
 					Write-Host "  $($lang.TimeStart)" -NoNewline
 					Write-Host "$($UpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green

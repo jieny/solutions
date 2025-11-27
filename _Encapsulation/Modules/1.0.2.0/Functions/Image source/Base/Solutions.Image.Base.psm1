@@ -1038,6 +1038,77 @@ Function Menu_Shortcuts_Euwl
 }
 
 <#
+	.快捷指令，映像内文件：提取、更新
+#>
+Function Menu_Shortcuts_Euwl_Primary_Key
+{
+	param
+	(
+		$Command
+	)
+
+	Write-Host "`n  $($lang.Command): " -NoNewline
+	Write-host $Command -ForegroundColor Green
+
+	Write-Host "  $($lang.Event_Primary_Key): " -NoNewline
+	$NewRuleName = $Command.Remove(0, 5).split(" ").ToLower()
+	$NewImageIndex = ""
+	$Scope = @()
+	ForEach ($item in $Global:Image_Rule) {
+		if ($item.Main.Suffix -eq "wim") {
+			$Scope += $item.Main.Shortcuts
+
+			if ($item.Expand.Count -gt 0) {
+				ForEach ($Expand in $item.Expand) {
+					if ($Expand.Suffix -eq "wim") {
+						$Scope += $Expand.Shortcuts
+					}
+				}
+			}
+		}
+	}
+
+	ForEach ($Item in $Scope) {
+		if ($NewRuleName -like $Item.ToLower()) {
+			$NewRuleName = $NewRuleName.replace($item.ToLower(), '') | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+			$NewImageIndex = $Item
+			$Global:Primary_Key_Image = @()
+			break
+		}
+	}
+
+	if ([string]::IsNullOrEmpty($NewImageIndex)) {
+		Write-host $lang.NoChoose -ForegroundColor Red
+		$Global:Primary_Key_Image = @()
+	} else {
+		Write-Host $NewImageIndex -ForegroundColor Green
+		Image_Set_Primary_Key_Shortcuts -Name $NewImageIndex
+	}
+
+	Write-Host "`n  $($lang.LanguageExtract)"
+	Write-Host "  $('-' * 80)"
+	if (Image_Is_Select_IAB) {
+		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
+		Write-Host "  $('-' * 80)"
+
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Mounted)" -ForegroundColor Red
+		} else {
+			Wimlib_Extract_And_Update
+		}
+	} else {
+		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
+
+		Write-Host "`n  $($lang.Ok_Go_To)" -ForegroundColor Yellow
+		Write-Host "  $('-' * 80)"
+		Write-Host "  $($lang.OnDemandPlanTask)" -ForegroundColor Green
+
+		ToWait -wait 2
+		Image_Assign_Event_Master
+	}
+}
+
+<#
 	.快捷指令，导出
 #>
 Function Menu_Shortcuts_Export

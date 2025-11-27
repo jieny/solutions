@@ -2096,7 +2096,7 @@ Function InBox_Apps_Add_To_Process
 		ForEach ($item in $Temp_Assign_Task_InBox_Apps) {
 			$SNTasks++
 
-			InBox_Apps_Add_Match_Process -Name $item.Name -SearchName $item.Search -AppxSource $item.InstallPacker -CertificateSource $item.Certificate -Region $item.Region -DependencyPackage $item.Depend -NewSN $SNTasks
+			InBox_Apps_Add_Match_Process -Name $item.Name -SearchName $item.Search -AppxSource $item.InstallPacker -CertificateSource $item.Certificate -Region $item.Region -DependencyPackage $item.Depend -SNTasks $SNTasks
 		}
 	} else {
 		Write-Host "  $($lang.NoWork)" -ForegroundColor Red
@@ -2162,7 +2162,7 @@ Function InBox_Apps_Add_Match_Process
 		$CertificateSource,
 		$Region,
 		$DependencyPackage,
-		$NewSN
+		$SNTasks
 	)
 
 	$IsWaitInstallDependencyPackage = @()
@@ -2177,7 +2177,8 @@ Function InBox_Apps_Add_Match_Process
 	$InBoxAppsTasksTime.Start()
 
 	Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
-	Write-Host $NewSN -ForegroundColor Green
+	Write-Host $SNTasks -NoNewline -ForegroundColor Green
+	Write-host " $($lang.EventManagerCount)"
 
 	Write-Host "  $($lang.TimeStart)" -NoNewline
 	Write-Host "$($InBoxAppsTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
@@ -2189,8 +2190,12 @@ Function InBox_Apps_Add_Match_Process
 	$Temp_Assign_Task_Select_Group = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Add_Group_Install_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	if ($Temp_Assign_Task_Select_Group -contains $Name) {
 		if (Test-Path -Path $AppxSource -PathType Leaf) {
-			Write-Host "  $($lang.LanguageCode): ".PadRight(24) -NoNewline -ForegroundColor Yellow
-			Write-Host $Region -ForegroundColor Green
+			Write-Host "  $($lang.LanguageRegionLink): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+			if ([string]::IsNullOrEmpty($Region)) {
+				Write-Host $lang.UpdateUnavailable -ForegroundColor Red
+			} else {
+				Write-Host $Region -ForegroundColor Green
+			}
 
 			if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_DependencyPackage_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 				Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow

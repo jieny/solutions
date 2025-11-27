@@ -2109,7 +2109,8 @@ Function InBox_Apps_LIPs_Clean_Process
 							$SNTasks++
 
 							Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
-							Write-Host $SNTasks -ForegroundColor Green
+							Write-Host $SNTasks -NoNewline -ForegroundColor Green
+							Write-host " $($lang.EventManagerCount)"
 
 							Write-Host "  $($lang.TimeStart)" -NoNewline
 							Write-Host "$($InBoxAppsTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green

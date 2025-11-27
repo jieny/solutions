@@ -416,7 +416,8 @@ Function Functions_Unrestricted_Process_Tasks
 			$SNTasks++
 
 			Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
-			Write-Host $SNTasks -ForegroundColor Green
+			Write-Host $SNTasks -NoNewline -ForegroundColor Green
+			Write-host " $($lang.EventManagerCount)"
 
 			Write-Host "  $($lang.TimeStart)" -NoNewline
 			Write-Host " $($TasksFXTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
