@@ -1,7 +1,7 @@
 <a name="readme-top"></a>
-Yi’s soultions
+Yi's soultions
 -
-It consists of multiple parts: encapsulation script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi’s Suite, etc.
+It consists of multiple parts: encapsulation script, packaging tutorial, video tutorial, deployment engine: fully automatically adds Windows installed languages, Yi's Suite, etc.
 
 To help you solve the difficult problem of packaging multilingual versions, the production method provided by Yi and the deployment engine can perfectly solve this problem. You can initiate this packaging journey at will and end this "unpackageable journey".
 
@@ -119,7 +119,7 @@ Vector original file, document version Illustator 2020, open it with Adobe Illus
   <summary>Component</summary>
 
 <h4><pre>A.&nbsp;&nbsp;Packaging Tutorial</pre></h4>
-<ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 25H2, 24H2, 23H2, Windows 10 22H2, and Windows Server 2025, 2022. Different packaging versions are available.</ol>
+<ol>The packaging tutorial written by Yi can optionally start the packaging journey of Windows 11 25H2, 24H2, Windows 10 22H2, and Windows Server 2025, 2022. Different packaging versions are available.</ol>
 
 <ul>
   <p>Different versions are provided: a full version and a simplified version. The formats provided are: .Docx document format, .Pdf document format. Version differences:</p>
@@ -391,7 +391,7 @@ D:\Yi.Solutions\_Encapsulation\_SIP.ps1
 
 <br>
 
-<h4><pre>F.&nbsp;&nbsp;Yi’s Suite</pre></h4>
+<h4><pre>F.&nbsp;&nbsp;Yi's Suite</pre></h4>
 <ol>Automatically obtain installed languages and automatically add them, support full deployment tags, and customize the deployment process, including:</ol>
 <ol>Optimization scripts, common software installation, software installation, system optimization, service optimization, UWP uninstallation, changing folder location, etc.</ol>
 <ol>Project address: https://github.com/ilikeyi/YiSuite, included in the full version: <code>\_Encapsulation\_Custom\Engine\Yi.Suite</code></ol>

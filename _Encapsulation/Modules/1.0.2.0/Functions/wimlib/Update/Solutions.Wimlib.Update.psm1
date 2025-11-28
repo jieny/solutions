@@ -1013,11 +1013,11 @@ Function Image_Queue_Wimlib_Process_Wim_Main
 						Write-Host $item.Index -ForegroundColor Yellow
 
 						$Arguments = "update ""$($MasterFile)"" $($item.Index) --command=""add '$($Temp_Expand_Rule.FileName)' '$($Temp_Expand_Rule.UpdatePath)'"""
+						Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
 
 						Write-Host
 						Write-Host "  " -NoNewline
 						Write-Host " $($lang.LXPsWaitAddUpdate) " -NoNewline -BackgroundColor White -ForegroundColor Black
-						Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
 						Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 						Write-Host
 					}
@@ -1050,10 +1050,10 @@ Function Image_Queue_Wimlib_Process_Wim_Main
 					Write-Host $wimlib_item_Mount.Index -ForegroundColor Yellow
 
 					$Arguments = "update ""$($MasterFile)"" $($wimlib_item_Mount.Index) --command=""add '$($Temp_Expand_Rule.FileName)' '$($Temp_Expand_Rule.UpdatePath)'"""
+					Write-Host " $($lang.LXPsWaitAddUpdate) " -NoNewline -BackgroundColor White -ForegroundColor Black
 
 					Write-Host
 					Write-Host "  " -NoNewline
-					Write-Host " $($lang.LXPsWaitAddUpdate) " -NoNewline -BackgroundColor White -ForegroundColor Black
 					Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
 					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 					Write-Host

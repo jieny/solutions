@@ -415,6 +415,7 @@ Function Functions_Unrestricted_Process_Tasks
 			$TasksFXTime.Start()
 			$SNTasks++
 
+			Write-Host "  $('-' * 80)"
 			Write-Host "  $($lang.TimeStart)" -NoNewline
 			Write-Host " $($TasksFXTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 
@@ -422,7 +423,6 @@ Function Functions_Unrestricted_Process_Tasks
 			Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
 			Write-Host $SNTasks -NoNewline -ForegroundColor Green
 			Write-host " $($lang.EventManagerCount)"
-			Write-Host "  $('-' * 80)"
 
 			Invoke-Expression -Command $item
 

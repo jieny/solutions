@@ -2058,6 +2058,7 @@ Function Language_Add_File_Type_Process
 		$UpdateTasksTime.Reset()
 		$UpdateTasksTime.Start()
 
+		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.TimeStart)" -NoNewline
 		Write-Host "$($UpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 
@@ -2068,7 +2069,6 @@ Function Language_Add_File_Type_Process
 
 		Write-host "  $($lang.Event_Group): " -NoNewline -ForegroundColor Yellow
 		Write-Host $Group -ForegroundColor Green
-		Write-Host "  $('-' * 80)"
 
 		Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 		Write-Host $FileName -ForegroundColor Green
@@ -2104,6 +2104,7 @@ Function Language_Add_File_Type_Process
 		Write-Host "  $($lang.TimeEndAllseconds)" -NoNewline
 		Write-Host "$($UpdateTasksTime.ElapsedMilliseconds) $($lang.TimeMillisecond)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
+		Write-Host
 	}
 }
 
