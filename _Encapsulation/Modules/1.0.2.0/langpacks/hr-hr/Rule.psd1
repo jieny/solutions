@@ -11,8 +11,8 @@
 	LanguageMatchError              = Nije uspjelo podudaranje s jezikom. Postavljen je kao zadani. Kliknite na gumb za promjenu jezika.
 	LanguageChangeError             = Prije promjena odaberite izvor slike.
 	LanguageExtract                 = Ekstrakt
-	LanguageExtractRule             = Pravila ekstrakcije:
-	LanguageExtractRuleFilter       = Pravila filtra:
+	LanguageExtractRule             = Pravila ekstrakcije
+	LanguageExtractRuleFilter       = Pravila filtra
 	LanguageExtractRuleNoSel        = Odaberite vrstu pravila za ekstrakciju, shemu instalacije ili pokretanja.
 	LanguageExtractCondition        = Uskladite osnovne pakete koji se odnose na ono što vam je potrebno
 	LanguageExtractConditionTips    = Odaberite jezik i kliknite gumb "Dohvati" za prikaz rezultata kriterija pretraživanja.\n\nUvjeti pretraživanja: Potpuna pretraga, bez obilaženja, samo prosudba na temelju strukture imenika.

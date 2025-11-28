@@ -11,8 +11,8 @@
 	LanguageMatchError              = La langue correspondante a échoué et a été initialisée par défaut.
 	LanguageChangeError             = Avant d'apporter des modifications, sélectionnez une source d'image.
 	LanguageExtract                 = Extrait
-	LanguageExtractRule             = Règles d'extraction:
-	LanguageExtractRuleFilter       = Règles de filtrage:
+	LanguageExtractRule             = Règles d'extraction
+	LanguageExtractRuleFilter       = Règles de filtrage
 	LanguageExtractRuleNoSel        = Veuillez sélectionner le type de règle d'extraction, le schéma Install ou boot.
 	LanguageExtractCondition        = Associez les forfaits essentiels qui s'appliquent à ce dont vous avez besoin
 	LanguageExtractConditionTips    = Sélectionnez la langue et cliquez sur le bouton "Obtenir" pour voir les résultats des critères de recherche. \n\nConditions de recherche: recherche complète, pas de parcours, seulement un jugement basé sur la structure des répertoires.

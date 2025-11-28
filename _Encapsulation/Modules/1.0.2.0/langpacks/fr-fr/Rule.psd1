@@ -11,8 +11,8 @@
 	LanguageMatchError              = Échec de la correspondance avec la langue. Elle a été initialisée par défaut. Veuillez cliquer sur le bouton de langue pour la modifier.
 	LanguageChangeError             = Avant d'apporter des modifications, sélectionnez une source d'image.
 	LanguageExtract                 = Extrait
-	LanguageExtractRule             = Règles d'extraction:
-	LanguageExtractRuleFilter       = Règles de filtrage:
+	LanguageExtractRule             = Règles d'extraction
+	LanguageExtractRuleFilter       = Règles de filtrage
 	LanguageExtractRuleNoSel        = Veuillez sélectionner le type de règle d'extraction, le schéma d'installation ou de démarrage.
 	LanguageExtractCondition        = Faites correspondre les forfaits essentiels qui s'appliquent à ce dont vous avez besoin
 	LanguageExtractConditionTips    = Sélectionnez la langue et cliquez sur le bouton "Obtenir" pour afficher les résultats des critères de recherche. \n\nConditions de recherche: recherche complète, pas de parcours, uniquement un jugement basé sur la structure des répertoires.

@@ -11,8 +11,8 @@
 	LanguageMatchError              = Det gick inte att matcha språket. Det har initierats som standard. Klicka på språkknappen för att ändra det.
 	LanguageChangeError             = Välj en bildkälla innan du gör ändringar.
 	LanguageExtract                 = Extrahera
-	LanguageExtractRule             = Extraktionsregler:
-	LanguageExtractRuleFilter       = Filterregler:
+	LanguageExtractRule             = Extraktionsregler
+	LanguageExtractRuleFilter       = Filterregler
 	LanguageExtractRuleNoSel        = Välj typ av extraheringsregel, Installera eller startschema.
 	LanguageExtractCondition        = Matcha de väsentliga paketen som gäller för det du behöver
 	LanguageExtractConditionTips    = Välj språk och klicka på knappen "Hämta" för att visa sökkriterieresultaten. \n\nSökvillkor: Fullständig sökning, ingen genomgång, endast bedömning baserat på katalogstruktur.

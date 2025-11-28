@@ -2226,9 +2226,21 @@ Function Language_Extract_UI
 				}
 			}
 			Default {
+				$NewGroupLanguageRegion = @()
+
+				foreach ($item in $Autopilot.Region) {
+					$NewGroupLanguageRegion += $item
+				}
+
+				If (-not [String]::IsNullOrEmpty($Autopilot.RegionRelated)) {
+					foreach ($item in $Autopilot.RegionRelated) {
+						$NewGroupLanguageRegion += $item
+					}
+				}
+
 				$UI_Main_Available_Languages_Select.Controls | ForEach-Object {
 					if ($_ -is [System.Windows.Forms.CheckBox]) {
-						if ($Autopilot.Region -contains $_.Tag) {
+						if ($NewGroupLanguageRegion -contains $_.Tag) {
 							$_.Checked = $true
 						} else {
 							$_.Checked = $False

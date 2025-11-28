@@ -11,8 +11,8 @@
 	LanguageMatchError              = ไม่สามารถจับคู่ภาษาได้ ถูกเตรียมใช้งานเป็นค่าเริ่มต้น โปรดคลิกปุ่มภาษาเพื่อเปลี่ยน
 	LanguageChangeError             = ก่อนทำการเปลี่ยนแปลง ให้เลือกแหล่งที่มาของภาพ
 	LanguageExtract                 = สารสกัด
-	LanguageExtractRule             = กฎการสกัด:
-	LanguageExtractRuleFilter       = กฎการกรอง:
+	LanguageExtractRule             = กฎการสกัด
+	LanguageExtractRuleFilter       = กฎการกรอง
 	LanguageExtractRuleNoSel        = โปรดเลือกประเภทกฎการแยก ติดตั้งหรือบูต
 	LanguageExtractCondition        = จับคู่แพ็คเกจสำคัญที่ตรงกับสิ่งที่คุณต้องการ
 	LanguageExtractConditionTips    = เลือกภาษาและคลิกปุ่ม "รับ" เพื่อแสดงผลลัพธ์เกณฑ์การค้นหา \n\nเงื่อนไขการค้นหา: การค้นหาแบบเต็ม ไม่มีการข้ามผ่าน ตัดสินตามโครงสร้างไดเร็กทอรีเท่านั้น

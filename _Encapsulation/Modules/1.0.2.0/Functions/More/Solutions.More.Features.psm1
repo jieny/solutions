@@ -27,7 +27,7 @@ Function Feature_More_Menu
 	}
 
 	Write-Host $(' ' * 2) -NoNewline
-	Write-Host " Unpk " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " Unpack " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host "  " -NoNewline
 	Write-Host $lang.UpBackup -ForegroundColor Green
 
@@ -141,7 +141,7 @@ Function Feature_More_Menu
 			ToWait -wait 2
 			Feature_More_Menu
 		}
-		"Unpk" {
+		"Unpack" {
 			UnPack_Create_UI
 			Get_Next
 			ToWait -wait 2

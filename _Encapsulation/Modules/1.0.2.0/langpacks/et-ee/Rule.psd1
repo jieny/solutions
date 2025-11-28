@@ -11,8 +11,8 @@
 	LanguageMatchError              = Sobiv keel ebaõnnestus ja see on lähtestatud vaikekeelena. Selle muutmiseks klõpsake keelenuppu.
 	LanguageChangeError             = Enne muudatuste tegemist valige pildiallikas.
 	LanguageExtract                 = Väljavõte
-	LanguageExtractRule             = Ekstraheerimise reeglid:
-	LanguageExtractRuleFilter       = Filtrireeglid:
+	LanguageExtractRule             = Ekstraheerimise reeglid
+	LanguageExtractRuleFilter       = Filtrireeglid
 	LanguageExtractRuleNoSel        = Valige ekstraheerimisreegli tüüp, Install or boot scheme.
 	LanguageExtractCondition        = Sobitage olulised paketid, mis sobivad teile vajalikuga
 	LanguageExtractConditionTips    = Valige keel ja klõpsake otsingukriteeriumide tulemuste kuvamiseks nuppu "Hangi". \n\nOtsingutingimused: täielik otsing, läbimine puudub, ainult kataloogistruktuuril põhinev hinnang.

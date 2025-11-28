@@ -11,8 +11,8 @@
 	LanguageMatchError              = Dil eşleştirilemedi. Varsayılan olarak başlatıldı. Lütfen değiştirmek için dil düğmesine tıklayın.
 	LanguageChangeError             = Değişiklik yapmadan önce bir görüntü kaynağı seçin.
 	LanguageExtract                 = Çıkarmak
-	LanguageExtractRule             = Çıkarma kuralları:
-	LanguageExtractRuleFilter       = Filtre kuralları:
+	LanguageExtractRule             = Çıkarma kuralları
+	LanguageExtractRuleFilter       = Filtre kuralları
 	LanguageExtractRuleNoSel        = Lütfen çıkarma kuralı türünü, Kurulum veya önyükleme şemasını seçin.
 	LanguageExtractCondition        = İhtiyaç duyduğunuz şeylerle ilgili temel paketleri eşleştirin
 	LanguageExtractConditionTips    = Dili seçin ve arama kriterleri sonuçlarını görüntülemek için "Al" düğmesine tıklayın. \n\nArama koşulları: Tam arama, geçiş yok, yalnızca dizin yapısına dayalı değerlendirme.

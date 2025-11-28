@@ -1052,7 +1052,7 @@ Function Mainpage
 			<#
 				.快捷指令：打包
 			#>
-			"Unpk" {
+			"Unpack" {
 				UnPack_Create_UI
 				ToWait -wait 2
 				Mainpage

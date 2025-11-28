@@ -11,8 +11,8 @@
 	LanguageMatchError              = 言語の一致に失敗しました。デフォルトです。言語ボタンをクリックして変更してください。
 	LanguageChangeError             = 変更を加える前に, 画像ソースを選択してください。
 	LanguageExtract                 = 抽出
-	LanguageExtractRule             = 抽出ルール：
-	LanguageExtractRuleFilter       = フィルタルール：
+	LanguageExtractRule             = 抽出ルール
+	LanguageExtractRuleFilter       = フィルタルール
 	LanguageExtractRuleNoSel        = 抽出ルールの種類を選択してください，Install また boot プログラム。
 	LanguageExtractCondition        = 一致は, 必要な前提条件パッケージに適用されます
 	LanguageExtractConditionTips    = 言語を選択し, [取得]ボタンをクリックして, 検索条件の結果を表示します。\n\n検索条件：完全検索, トラバーサルなし, ディレクトリ構造に基づく判断のみ。

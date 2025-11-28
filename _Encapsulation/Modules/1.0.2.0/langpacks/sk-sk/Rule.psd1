@@ -11,8 +11,8 @@
 	LanguageMatchError              = Jazyk bol inicializovaný ako predvolený, kliknite na tlačidlo jazyka a zmeňte ho.
 	LanguageChangeError             = Pred vykonaním zmien vyberte zdroj obrazu.
 	LanguageExtract                 = Extrakt
-	LanguageExtractRule             = Pravidlá extrakcie:
-	LanguageExtractRuleFilter       = Pravidlá filtrovania:
+	LanguageExtractRule             = Pravidlá extrakcie
+	LanguageExtractRuleFilter       = Pravidlá filtrovania
 	LanguageExtractRuleNoSel        = Vyberte typ pravidla extrakcie, schému inštalácie alebo zavádzania.
 	LanguageExtractCondition        = Priraďte základné balíčky, ktoré sa vzťahujú na to, čo potrebujete
 	LanguageExtractConditionTips    = Vyberte jazyk a kliknutím na tlačidlo "Získať zobrazte výsledky kritérií vyhľadávania. \n\nPodmienky vyhľadávania: Úplné vyhľadávanie, žiadne prechádzanie, iba posúdenie na základe štruktúry adresára.

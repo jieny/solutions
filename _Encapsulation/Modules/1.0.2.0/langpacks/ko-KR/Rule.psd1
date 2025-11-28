@@ -11,8 +11,8 @@
 	LanguageMatchError              = 언어 일치에 실패했습니다. 기본값입니다. 언어 버튼을 클릭하여 변경하십시오.
 	LanguageChangeError             = 변경하기 전에 이미지 소스를 선택하십시오.
 	LanguageExtract                 = 언어
-	LanguageExtractRule             = 추출 규칙:
-	LanguageExtractRuleFilter       = 필터 규칙:
+	LanguageExtractRule             = 추출 규칙
+	LanguageExtractRuleFilter       = 필터 규칙
 	LanguageExtractRuleNoSel        = 추출 규칙 유형을 선택하십시오, Install 또는 boot 계획.
 	LanguageExtractCondition        = 필수 전제 조건 패키지에 일치 항목이 적용됩니다.
 	LanguageExtractConditionTips    = 언어를 선택하고 "가져오기" 버튼을 클릭하면 검색 기준 결과가 표시됩니다.\n\n검색 조건: 전체 검색, 순회 없음, 디렉토리 구조를 기반으로 한 판단만.

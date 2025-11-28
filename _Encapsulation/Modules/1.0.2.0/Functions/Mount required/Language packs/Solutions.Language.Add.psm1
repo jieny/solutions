@@ -2048,7 +2048,7 @@ Function Language_Add_File_Type_Process
 		Write-Host "  $($lang.FileName): " -NoNewline -ForegroundColor Yellow
 		Write-Host $FileName -ForegroundColor Green
 		Write-Host "  $('-' * 80)"
-		Write-Host "  $($lang.ExcludeItem)`n" -ForegroundColor Red
+		Write-Host "  $($lang.ExcludeItem)" -ForegroundColor Red
 	} else {
 		<#
 			.初始化每任务运行时间
@@ -2104,7 +2104,6 @@ Function Language_Add_File_Type_Process
 		Write-Host "  $($lang.TimeEndAllseconds)" -NoNewline
 		Write-Host "$($UpdateTasksTime.ElapsedMilliseconds) $($lang.TimeMillisecond)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
-		Write-Host
 	}
 }
 

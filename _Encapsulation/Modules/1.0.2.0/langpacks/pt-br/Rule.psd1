@@ -11,8 +11,8 @@
 	LanguageMatchError              = Falha ao corresponder ao idioma. Ele foi inicializado como padrão. Clique no botão de idioma para alterá-lo.
 	LanguageChangeError             = Antes de fazer alterações, selecione uma fonte de imagem.
 	LanguageExtract                 = Extrair
-	LanguageExtractRule             = Regras de extração:
-	LanguageExtractRuleFilter       = Regras de filtro:
+	LanguageExtractRule             = Regras de extração
+	LanguageExtractRuleFilter       = Regras de filtro
 	LanguageExtractRuleNoSel        = Selecione o tipo de regra de extração, esquema de instalação ou inicialização.
 	LanguageExtractCondition        = Combine os pacotes essenciais que se aplicam ao que você precisa
 	LanguageExtractConditionTips    = Selecione o idioma e clique no botão "Obter" para exibir os resultados dos critérios de pesquisa. \n\nCondições de pesquisa: pesquisa completa, sem travessia, apenas julgamento baseado na estrutura de diretórios.

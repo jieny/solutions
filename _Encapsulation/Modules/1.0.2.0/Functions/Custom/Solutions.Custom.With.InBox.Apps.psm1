@@ -59,7 +59,7 @@ $Global:Pre_Config_Rules = @(
 							ISO = @{
 								Language  = @()
 								InBoxApps = @(
-									"SW_DVD9_NTRL_Win_11_25H2_64_Arm64_Inbox_Apps_OEM_VL_X24-12858.ISO"
+									"26100.6584.250904-1728.ge_release_svc_prod1_amd64fre_InboxApps.iso"
 								)
 							}
 						}

@@ -11,8 +11,8 @@
 	LanguageMatchError              = Sprache konnte nicht angepasst werden, es ist Standard, bitte klicken Sie auf die Sprachschaltfläche, um sie zu ändern.
 	LanguageChangeError             = Bevor Sie Änderungen vornehmen, wählen Sie die Bildquelle aus.
 	LanguageExtract                 = Sprache
-	LanguageExtractRule             = Extraktionsregeln:
-	LanguageExtractRuleFilter       = Filterregeln:
+	LanguageExtractRule             = Extraktionsregeln
+	LanguageExtractRuleFilter       = Filterregeln
 	LanguageExtractRuleNoSel        = Bitte wählen Sie den Typ der Extraktionsregel, Installation oder Boot Schema.
 	LanguageExtractCondition        = Übereinstimmungen gelten für die erforderlichen vorausgesetzten Pakete
 	LanguageExtractConditionTips    = Wählen Sie die Sprache aus und klicken Sie auf die Schaltfläche "Get", um die Ergebnisse der Suchkriterien anzuzeigen.\n\nSuchbedingungen: Vollständige Suche, kein Durchlaufen, nur Beurteilung basierend auf der Verzeichnisstruktur.

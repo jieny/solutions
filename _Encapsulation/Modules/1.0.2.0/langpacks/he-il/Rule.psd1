@@ -11,8 +11,8 @@
 	LanguageMatchError              = לא הצליחה להתאים את השפה היא אותחלה כברירת מחדל. אנא לחץ על כפתור השפה כדי לשנות אותה.
 	LanguageChangeError             = לפני ביצוע שינויים, בחר מקור תמונה.
 	LanguageExtract                 = לְהוֹצִיא
-	LanguageExtractRule             = כללי חילוץ:
-	LanguageExtractRuleFilter       = כללי סינון:
+	LanguageExtractRule             = כללי חילוץ
+	LanguageExtractRuleFilter       = כללי סינון
 	LanguageExtractRuleNoSel        = אנא בחר את סוג כלל החילוץ, סכימת התקנה או אתחול.
 	LanguageExtractCondition        = התאם את החבילות החיוניות שמתאימות למה שאתה צריך
 	LanguageExtractConditionTips    = בחר את השפה ולחץ על כפתור "קבל" כדי להציג את תוצאות קריטריוני החיפוש.\n\nתנאי חיפוש: חיפוש מלא, ללא מעבר, רק שיפוט מבוסס על מבנה ספריות.

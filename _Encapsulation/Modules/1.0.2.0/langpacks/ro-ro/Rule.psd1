@@ -11,8 +11,8 @@
 	LanguageMatchError              = Limba a eșuat. A fost inițializată ca implicită. Faceți clic pe butonul de limbă pentru a o schimba.
 	LanguageChangeError             = Înainte de a face modificări, selectați o sursă de imagine.
 	LanguageExtract                 = Extrage
-	LanguageExtractRule             = Reguli de extragere:
-	LanguageExtractRuleFilter       = Reguli de filtrare:
+	LanguageExtractRule             = Reguli de extragere
+	LanguageExtractRuleFilter       = Reguli de filtrare
 	LanguageExtractRuleNoSel        = Vă rugăm să selectați tipul regulii de extracție, Instalare sau schema de pornire.
 	LanguageExtractCondition        = Potriviți pachetele esențiale care se aplică la ceea ce aveți nevoie
 	LanguageExtractConditionTips    = Selectați limba și faceți clic pe butonul "Obține" pentru a afișa rezultatele criteriilor de căutare. \n\nCondiții de căutare: căutare completă, fără traversare, doar judecată bazată pe structura directorului.

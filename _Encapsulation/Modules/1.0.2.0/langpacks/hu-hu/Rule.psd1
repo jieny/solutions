@@ -11,8 +11,8 @@
 	LanguageMatchError              = Nem sikerült megegyezni a nyelvvel. A nyelvet alapértelmezettként inicializálták. Kérjük, kattintson a nyelv gombra.
 	LanguageChangeError             = A módosítások elvégzése előtt válasszon ki egy képforrást.
 	LanguageExtract                 = Kivonat
-	LanguageExtractRule             = A kivonás szabályai:
-	LanguageExtractRuleFilter       = Szűrési szabályok:
+	LanguageExtractRule             = A kivonás szabályai
+	LanguageExtractRuleFilter       = Szűrési szabályok
 	LanguageExtractRuleNoSel        = Kérjük, válassza ki a kibontási szabály típusát, Telepítés vagy rendszerindítási sémát.
 	LanguageExtractCondition        = Párosítsa össze az alapvető csomagokat, amelyek arra vonatkoznak, amire szüksége van
 	LanguageExtractConditionTips    = Válassza ki a nyelvet, és kattintson a "Get" gombra a keresési feltételek eredményeinek megjelenítéséhez.\n\nKeresési feltételek: Teljes keresés, nincs bejárás, csak a címtárszerkezeten alapuló ítélet.

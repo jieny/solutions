@@ -11,8 +11,8 @@
 	LanguageMatchError              = Det matchende sprog mislykkedes og er blevet initialiseret som standard Klik på sprogknappen for at ændre det.
 	LanguageChangeError             = Inden du foretager ændringer, skal du vælge en billedkilde.
 	LanguageExtract                 = Ekstrakt
-	LanguageExtractRule             = Udvindingsregler:
-	LanguageExtractRuleFilter       = Filterregler:
+	LanguageExtractRule             = Udvindingsregler
+	LanguageExtractRuleFilter       = Filterregler
 	LanguageExtractRuleNoSel        = Vælg venligst udtræksregeltypen, Install eller boot skemaet.
 	LanguageExtractCondition        = Match de væsentlige pakker, der passer til det, du har brug for
 	LanguageExtractConditionTips    = Vælg sproget, og klik på knappen "Hent" for at få vist søgekriterieresultaterne.\n\nSøgebetingelser: Fuld søgning, ingen gennemgang, kun bedømmelse baseret på mappestruktur.

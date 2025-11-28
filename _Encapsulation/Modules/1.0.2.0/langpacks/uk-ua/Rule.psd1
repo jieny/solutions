@@ -11,8 +11,8 @@
 	LanguageMatchError              = Не вдалося зіставити мову як мову за замовчуванням, щоб змінити її.
 	LanguageChangeError             = Перш ніж вносити зміни, виберіть джерело зображення.
 	LanguageExtract                 = екстракт
-	LanguageExtractRule             = Правила вилучення:
-	LanguageExtractRuleFilter       = Правила фільтрації:
+	LanguageExtractRule             = Правила вилучення
+	LanguageExtractRuleFilter       = Правила фільтрації
 	LanguageExtractRuleNoSel        = Будь ласка, виберіть тип правила вилучення, схему встановлення або завантаження.
 	LanguageExtractCondition        = Зіставте основні пакети, які стосуються того, що вам потрібно
 	LanguageExtractConditionTips    = Виберіть мову та натисніть кнопку "Отримати", щоб відобразити результати пошуку за критеріями. \n\nУмови пошуку: повний пошук, без обходу, лише судження на основі структури каталогу.

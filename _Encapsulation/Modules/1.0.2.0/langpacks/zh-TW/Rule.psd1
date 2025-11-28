@@ -11,8 +11,8 @@
 	LanguageMatchError              = 匹配語言失敗，已初始為默認，請點擊語言按鈕更改。
 	LanguageChangeError             = 更改前，請選擇映像源。
 	LanguageExtract                 = 提取
-	LanguageExtractRule             = 提取規則：
-	LanguageExtractRuleFilter       = 篩選規則：
+	LanguageExtractRule             = 提取規則
+	LanguageExtractRuleFilter       = 篩選規則
 	LanguageExtractRuleNoSel        = 請選擇提取規則類型，Install 或 boot 方案。
 	LanguageExtractCondition        = 匹配適用於所需的必備包
 	LanguageExtractConditionTips    = 選擇語言，點擊“獲取”按鈕即可顯示搜索條件結果。\n\n搜索條件：全盤搜索，不會遍歷，只按目錄結構判斷。

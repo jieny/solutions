@@ -2,7 +2,7 @@
 	"Config": {
 		"Author":  "Yi",
 		"Url":     "https://fengyi.tel",
-		"Version": "1.0.0.7"
+		"Version": "1.0.0.8"
 	},
 	"Deploy": {
 		"Prerequisite": {
@@ -32,7 +32,9 @@
 					],
 					"Region": [
 						"zh-CN",
-						"zh-TW",
+						"zh-TW"
+					],
+					"RegionRelated": [
 						"zh-HK"
 					]
 				},

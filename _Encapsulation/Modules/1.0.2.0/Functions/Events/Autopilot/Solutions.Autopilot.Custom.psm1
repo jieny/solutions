@@ -3520,17 +3520,32 @@ Function Image_Assign_Autopilot_Master
 							$Autopilot_Language_Is_Finish = @()
 							$Autopilot_Language_Falied = @()
 
-							ForEach ($item in $Global:Image_Rule) {
-								if ($item.Main.Suffix -eq "wim") {
-									if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope -contains $item.main.Uid) {
-										foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region) {
-											$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($item.main.ImageFileName)\Language\Add\$($ConfigRegion)"
-										
-											if (Test-Path -Path $TempPathMain -PathType Container) {
-												if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-													$Autopilot_Language_Is_Finish += @{
-														Uid    = $item.main.Uid
-														Failed = $TempPathMain
+							if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region -eq "Auto") {
+								$GUIImageSelectFunctionLangAdd_SelectAll = New-Object system.Windows.Forms.Label -Property @{
+									Height         = 30
+									Width          = 435
+									Padding        = "50,0,0,0"
+									Text           = $lang.AllSel
+								}
+								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_SelectAll)
+							} else {
+								ForEach ($item in $Global:Image_Rule) {
+									if ($item.Main.Suffix -eq "wim") {
+										if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope -contains $item.main.Uid) {
+											foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region) {
+												$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($item.main.ImageFileName)\Language\Add\$($ConfigRegion)"
+
+												if (Test-Path -Path $TempPathMain -PathType Container) {
+													if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+														$Autopilot_Language_Is_Finish += @{
+															Uid    = $item.main.Uid
+															Failed = $TempPathMain
+														}
+													} else {
+														$Autopilot_Language_Falied += @{
+															Uid    = $item.main.Uid
+															Failed = $TempPathMain
+														}
 													}
 												} else {
 													$Autopilot_Language_Falied += @{
@@ -3538,26 +3553,26 @@ Function Image_Assign_Autopilot_Master
 														Failed = $TempPathMain
 													}
 												}
-											} else {
-												$Autopilot_Language_Falied += @{
-													Uid    = $item.main.Uid
-													Failed = $TempPathMain
-												}
 											}
 										}
-									}
 
-									if ($item.Expand.Count -gt 0) {
-										ForEach ($itemExpandNew in $item.Expand) {
-											if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope -contains $itemExpandNew.Uid) {
-												foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region) {
-													$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($itemExpandNew.ImageFileName)\Language\Add\$($ConfigRegion)"
+										if ($item.Expand.Count -gt 0) {
+											ForEach ($itemExpandNew in $item.Expand) {
+												if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope -contains $itemExpandNew.Uid) {
+													foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region) {
+														$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($itemExpandNew.ImageFileName)\Language\Add\$($ConfigRegion)"
 
-													if (Test-Path -Path $TempPathMain -PathType Container) {
-														if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-															$Autopilot_Language_Is_Finish += @{
-																Uid    = $itemExpandNew.Uid
-																Failed = $TempPathMain
+														if (Test-Path -Path $TempPathMain -PathType Container) {
+															if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+																$Autopilot_Language_Is_Finish += @{
+																	Uid    = $itemExpandNew.Uid
+																	Failed = $TempPathMain
+																}
+															} else {
+																$Autopilot_Language_Falied += @{
+																	Uid    = $itemExpandNew.Uid
+																	Failed = $TempPathMain
+																}
 															}
 														} else {
 															$Autopilot_Language_Falied += @{
@@ -3565,49 +3580,44 @@ Function Image_Assign_Autopilot_Master
 																Failed = $TempPathMain
 															}
 														}
-													} else {
-														$Autopilot_Language_Falied += @{
-															Uid    = $itemExpandNew.Uid
-															Failed = $TempPathMain
-														}
 													}
 												}
 											}
 										}
 									}
 								}
-							}
 
-							if ($Autopilot_Language_Falied.Count -gt 0) {
-								$GUIImageSelectFunctionLangAdd_btn = New-Object System.Windows.Forms.CheckBox -Property @{
-									Height         = 30
-									Width          = 425
-									Padding        = "50,0,0,0"
-									Text           = $lang.Prerequisite_Extract_Auto
-									Tag            = "Prerequisite_Extract_Language_Add"
-								}
+								if ($Autopilot_Language_Falied.Count -gt 0) {
+									$GUIImageSelectFunctionLangAdd_btn = New-Object System.Windows.Forms.CheckBox -Property @{
+										Height         = 30
+										Width          = 425
+										Padding        = "50,0,0,0"
+										Text           = $lang.Prerequisite_Extract_Auto
+										Tag            = "Prerequisite_Extract_Language_Add"
+									}
 
-								if ($Autopilot.Deploy.Prerequisite.IsAutoSelect -contains "Prerequisite_Extract_Language_Add") {
-									$GUIImageSelectFunctionLangAdd_btn.Checked = $True
-								}
+									if ($Autopilot.Deploy.Prerequisite.IsAutoSelect -contains "Prerequisite_Extract_Language_Add") {
+										$GUIImageSelectFunctionLangAdd_btn.Checked = $True
+									}
 
-								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_btn)
+									$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_btn)
 
-								$GUIImageSelectFunctionLangAdd_Status = New-Object system.Windows.Forms.Label -Property @{
-									Height         = 30
-									Width          = 435
-									Padding        = "66,0,0,0"
-									Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
+									$GUIImageSelectFunctionLangAdd_Status = New-Object system.Windows.Forms.Label -Property @{
+										Height         = 30
+										Width          = 435
+										Padding        = "66,0,0,0"
+										Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
+									}
+									$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_Status)
+								} else {
+									$GUIImageSelectFunctionLangAdd_Status = New-Object system.Windows.Forms.Label -Property @{
+										Height         = 30
+										Width          = 435
+										Padding        = "50,0,0,0"
+										Text           = "$($lang.Prerequisite_satisfy): $($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region.Count) $($lang.EventManagerCount)"
+									}
+									$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_Status)
 								}
-								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_Status)
-							} else {
-								$GUIImageSelectFunctionLangAdd_Status = New-Object system.Windows.Forms.Label -Property @{
-									Height         = 30
-									Width          = 435
-									Padding        = "50,0,0,0"
-									Text           = "$($lang.Prerequisite_satisfy): $($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope.Count) $($lang.EventManagerCount)"
-								}
-								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_Status)
 							}
 							#endregion
 						}
@@ -3700,7 +3710,7 @@ Function Image_Assign_Autopilot_Master
 									Height         = 30
 									Width          = 435
 									Padding        = "66,0,0,0"
-									Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
+									Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
 								}
 								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_Status)
 							} else {
@@ -3708,7 +3718,7 @@ Function Image_Assign_Autopilot_Master
 									Height         = 30
 									Width          = 435
 									Padding        = "50,0,0,0"
-									Text           = "$($lang.Prerequisite_satisfy): $($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Scope.Count) $($lang.EventManagerCount)"
+									Text           = "$($lang.Prerequisite_satisfy): $($Autopilot.Deploy.Prerequisite.ExtractLanguage.Add.Region.Count) $($lang.EventManagerCount)"
 								}
 								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_Status)
 							}
@@ -3745,17 +3755,32 @@ Function Image_Assign_Autopilot_Master
 							$Autopilot_Language_Is_Finish = @()
 							$Autopilot_Language_Falied = @()
 
-							ForEach ($item in $Global:Image_Rule) {
-								if ($item.Main.Suffix -eq "wim") {
-									if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope -contains $item.main.Uid) {
-										foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region) {
-											$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($item.main.ImageFileName)\Language\Del\$($ConfigRegion)"
+							if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region -eq "Auto") {
+								$GUIImageSelectFunctionLangAdd_SelectAll = New-Object system.Windows.Forms.Label -Property @{
+									Height         = 30
+									Width          = 435
+									Padding        = "50,0,0,0"
+									Text           = $lang.AllSel
+								}
+								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangAdd_SelectAll)
+							} else {
+								ForEach ($item in $Global:Image_Rule) {
+									if ($item.Main.Suffix -eq "wim") {
+										if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope -contains $item.main.Uid) {
+											foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region) {
+												$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($item.main.ImageFileName)\Language\Del\$($ConfigRegion)"
 
-											if (Test-Path -Path $TempPathMain -PathType Container) {
-												if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-													$Autopilot_Language_Is_Finish += @{
-														Uid    = $item.main.Uid
-														Failed = $TempPathMain
+												if (Test-Path -Path $TempPathMain -PathType Container) {
+													if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+														$Autopilot_Language_Is_Finish += @{
+															Uid    = $item.main.Uid
+															Failed = $TempPathMain
+														}
+													} else {
+														$Autopilot_Language_Falied += @{
+															Uid    = $item.main.Uid
+															Failed = $TempPathMain
+														}
 													}
 												} else {
 													$Autopilot_Language_Falied += @{
@@ -3763,26 +3788,26 @@ Function Image_Assign_Autopilot_Master
 														Failed = $TempPathMain
 													}
 												}
-											} else {
-												$Autopilot_Language_Falied += @{
-													Uid    = $item.main.Uid
-													Failed = $TempPathMain
-												}
 											}
 										}
-									}
 
-									if ($item.Expand.Count -gt 0) {
-										ForEach ($itemExpandNew in $item.Expand) {
-											if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope -contains $itemExpandNew.Uid) {
-												foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region) {
-													$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($itemExpandNew.ImageFileName)\Language\Del\$($ConfigRegion)"
-												
-													if (Test-Path -Path $TempPathMain -PathType Container) {
-														if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
-															$Autopilot_Language_Is_Finish += @{
-																Uid    = $itemExpandNew.Uid
-																Failed = $TempPathMain
+										if ($item.Expand.Count -gt 0) {
+											ForEach ($itemExpandNew in $item.Expand) {
+												if ($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope -contains $itemExpandNew.Uid) {
+													foreach ($ConfigRegion in $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region) {
+														$TempPathMain = "$($New_Custom_Path)\$($item.main.ImageFileName)\$($itemExpandNew.ImageFileName)\Language\Del\$($ConfigRegion)"
+													
+														if (Test-Path -Path $TempPathMain -PathType Container) {
+															if((Get-ChildItem $TempPathMain -Recurse -Include ($Global:Search_Language_File_Type) -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+																$Autopilot_Language_Is_Finish += @{
+																	Uid    = $itemExpandNew.Uid
+																	Failed = $TempPathMain
+																}
+															} else {
+																$Autopilot_Language_Falied += @{
+																	Uid    = $itemExpandNew.Uid
+																	Failed = $TempPathMain
+																}
 															}
 														} else {
 															$Autopilot_Language_Falied += @{
@@ -3790,49 +3815,44 @@ Function Image_Assign_Autopilot_Master
 																Failed = $TempPathMain
 															}
 														}
-													} else {
-														$Autopilot_Language_Falied += @{
-															Uid    = $itemExpandNew.Uid
-															Failed = $TempPathMain
-														}
 													}
 												}
 											}
 										}
 									}
 								}
-							}
 
-							if ($Autopilot_Language_Falied.Count -gt 0) {
-								$GUIImageSelectFunctionLangDel_btn = New-Object System.Windows.Forms.CheckBox -Property @{
-									Height         = 30
-									Width          = 425
-									Padding        = "50,0,0,0"
-									Text           = $lang.Prerequisite_Extract_Auto
-									Tag            = "Prerequisite_Extract_Language_Del"
-								}
+								if ($Autopilot_Language_Falied.Count -gt 0) {
+									$GUIImageSelectFunctionLangDel_btn = New-Object System.Windows.Forms.CheckBox -Property @{
+										Height         = 30
+										Width          = 425
+										Padding        = "50,0,0,0"
+										Text           = $lang.Prerequisite_Extract_Auto
+										Tag            = "Prerequisite_Extract_Language_Del"
+									}
 
-								if ($Autopilot.Deploy.Prerequisite.IsAutoSelect -contains "Prerequisite_Extract_Language_Del") {
-									$GUIImageSelectFunctionLangDel_btn.Checked = $True
-								}
+									if ($Autopilot.Deploy.Prerequisite.IsAutoSelect -contains "Prerequisite_Extract_Language_Del") {
+										$GUIImageSelectFunctionLangDel_btn.Checked = $True
+									}
 
-								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_btn)
-							
-								$GUIImageSelectFunctionLangDel_Status = New-Object system.Windows.Forms.Label -Property @{
-									Height         = 30
-									Width          = 435
-									Padding        = "66,0,0,0"
-									Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
+									$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_btn)
+								
+									$GUIImageSelectFunctionLangDel_Status = New-Object system.Windows.Forms.Label -Property @{
+										Height         = 30
+										Width          = 435
+										Padding        = "66,0,0,0"
+										Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
+									}
+									$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_Status)
+								} else {
+									$GUIImageSelectFunctionLangDel_Status = New-Object system.Windows.Forms.Label -Property @{
+										Height         = 30
+										Width          = 435
+										Padding        = "50,0,0,0"
+										Text           = "$($lang.Prerequisite_satisfy): $($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region.Count) $($lang.EventManagerCount)"
+									}
+									$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_Status)
 								}
-								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_Status)
-							} else {
-								$GUIImageSelectFunctionLangDel_Status = New-Object system.Windows.Forms.Label -Property @{
-									Height         = 30
-									Width          = 435
-									Padding        = "50,0,0,0"
-									Text           = "$($lang.Prerequisite_satisfy): $($Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope.Count) $($lang.EventManagerCount)"
-								}
-								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_Status)
 							}
 							#endregion
 						}
@@ -3925,7 +3945,7 @@ Function Image_Assign_Autopilot_Master
 									Height         = 30
 									Width          = 435
 									Padding        = "66,0,0,0"
-									Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Scope.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
+									Text           = $lang.Prerequisite_Is_Extract -f $Autopilot.Deploy.Prerequisite.ExtractLanguage.Del.Region.Count, $Autopilot_Language_Is_Finish.Count, $Autopilot_Language_Falied.Count
 								}
 								$UI_Main_Export_Event_Custom_Menu.controls.AddRange($GUIImageSelectFunctionLangDel_Status)
 							} else {

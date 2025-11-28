@@ -11,8 +11,8 @@
 	LanguageMatchError              = Nepavyko suderinti kalbos. Ji inicijuota kaip numatytoji. Norėdami ją pakeisti, spustelėkite kalbos mygtuką.
 	LanguageChangeError             = Prieš atlikdami pakeitimus, pasirinkite vaizdo šaltinį.
 	LanguageExtract                 = Ekstraktas
-	LanguageExtractRule             = Ištraukimo taisyklės:
-	LanguageExtractRuleFilter       = Filtro taisyklės:
+	LanguageExtractRule             = Ištraukimo taisyklės
+	LanguageExtractRuleFilter       = Filtro taisyklės
 	LanguageExtractRuleNoSel        = Pasirinkite ištraukimo taisyklės tipą, diegimo arba įkrovos schemą.
 	LanguageExtractCondition        = Suderinkite pagrindinius paketus, kurie tinka tai, ko jums reikia
 	LanguageExtractConditionTips    = Pasirinkite kalbą ir spustelėkite mygtuką "Gauti", kad būtų rodomi paieškos kriterijų rezultatai.\n\nPaieškos sąlygos: Visa paieška, be perėjimo, tik sprendimas, pagrįstas katalogo struktūra.

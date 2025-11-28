@@ -11,8 +11,8 @@
 	LanguageMatchError              = Неуспешно подударање са језиком. Иницијализован је као подразумевани.
 	LanguageChangeError             = Пре него што извршите измене, изаберите извор слике.
 	LanguageExtract                 = Екстракт
-	LanguageExtractRule             = Правила екстракције:
-	LanguageExtractRuleFilter       = Правила филтрирања:
+	LanguageExtractRule             = Правила екстракције
+	LanguageExtractRuleFilter       = Правила филтрирања
 	LanguageExtractRuleNoSel        = Молимо изаберите тип правила екстракције, Install или boot план.
 	LanguageExtractCondition        = Ускладите основне пакете који се односе на оно што вам је потребно
 	LanguageExtractConditionTips    = Изаберите језик и кликните на дугме "Преузми" да бисте приказали резултате критеријума претраге. \n\nУслови претраге: Потпуна претрага, без преласка, само процена заснована на структури директоријума.

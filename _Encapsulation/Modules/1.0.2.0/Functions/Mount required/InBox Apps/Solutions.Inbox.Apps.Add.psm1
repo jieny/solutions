@@ -2185,13 +2185,13 @@ Function InBox_Apps_Add_Match_Process
 	Write-host " $($lang.EventManagerCount)"
 	Write-Host "  $('-' * 80)"
 
-	Write-Host "  $($lang.RuleFileType): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+	Write-Host "  $($lang.RuleFileType): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 	Write-Host $Name -ForegroundColor Green
 
 	$Temp_Assign_Task_Select_Group = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Add_Group_Install_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	if ($Temp_Assign_Task_Select_Group -contains $Name) {
 		if (Test-Path -Path $AppxSource -PathType Leaf) {
-			Write-Host "  $($lang.LanguageRegionLink): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+			Write-Host "  $($lang.LanguageRegionLink): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 			if ([string]::IsNullOrEmpty($Region)) {
 				Write-Host $lang.UpdateUnavailable -ForegroundColor Red
 			} else {
@@ -2199,7 +2199,7 @@ Function InBox_Apps_Add_Match_Process
 			}
 
 			if ((Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_DependencyPackage_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
-				Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+				Write-Host "  $($lang.DependencyPackage): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 
 				if ($DependencyPackage.count -gt 0) {
 					Write-Host "$($DependencyPackage.count) $($lang.EventManagerCount)" -ForegroundColor Green
@@ -2211,9 +2211,9 @@ Function InBox_Apps_Add_Match_Process
 					Write-Host "`n  $($lang.Instl_Dependency_Package_Match)" -ForegroundColor Yellow
 					Write-Host "  $('.' * 80)"
 					foreach ($itemdp in $DependencyPackage) {
-						Write-Host "  $($lang.RuleFileType): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+						Write-Host "  $($lang.RuleFileType): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 						Write-Host $itemdp -ForegroundColor Yellow
-						Write-Host "  $($lang.Instl_Dependency_Package_Group): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+						Write-Host "  $($lang.Instl_Dependency_Package_Group): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 
 						$FlagMatch = $True
 
@@ -2223,10 +2223,10 @@ Function InBox_Apps_Add_Match_Process
 								if ($item.name -eq $itemdp) {
 									Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 
-									Write-Host "  $($lang.FileName): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+									Write-Host "  $($lang.FileName): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 									Write-Host $item.InstallPacker -ForegroundColor Green
 
-									Write-Host "  $($lang.ConvertChk): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+									Write-Host "  $($lang.ConvertChk): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 									if (Test-Path -Path $item.InstallPacker -PathType Leaf) {
 										$IsWaitInstallDependencyPackage += $item.InstallPacker
 										$FlagMatch = $False
@@ -2271,7 +2271,7 @@ Function InBox_Apps_Add_Match_Process
 				}
 			} else {
 				if ($DependencyPackage.count -gt 0) {
-					Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+					Write-Host "  $($lang.DependencyPackage): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 					Write-Host $lang.UpdateNotExecuted -ForegroundColor Red
 					Write-Host "  $('.' * 80)"
 					foreach ($itemdp in $DependencyPackage) {
@@ -2280,7 +2280,7 @@ Function InBox_Apps_Add_Match_Process
 
 					Write-Host
 				} else {
-					Write-Host "  $($lang.DependencyPackage): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+					Write-Host "  $($lang.DependencyPackage): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 					Write-Host $lang.NoWork -ForegroundColor Red
 				}
 			}
@@ -2297,12 +2297,12 @@ Function InBox_Apps_Add_Match_Process
 
 			Write-Host "`n  $($lang.LXPsWaitAdd)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
-			Write-Host "  $($lang.FileName): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+			Write-Host "  $($lang.FileName): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 			Write-Host $AppxSource -ForegroundColor Green
 			$test_mount_folder_Current = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
 
 			if ([string]::IsNullOrEmpty($CertificateSource)) {
-				Write-Host "  $($lang.License): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+				Write-Host "  $($lang.License): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 				Write-Host $lang.NoLicense -ForegroundColor Red
 
 				$CommandNew = @()
@@ -2365,7 +2365,7 @@ Function InBox_Apps_Add_Match_Process
 					Write-Host "  $($_)" -ForegroundColor Red
 				}
 			} else {
-				Write-Host "  $($lang.License): ".PadRight(24) -NoNewline -ForegroundColor Yellow
+				Write-Host "  $($lang.License): ".PadRight(25) -NoNewline -ForegroundColor Yellow
 				if (Test-Path -Path $CertificateSource -PathType Leaf) {
 					Write-Host $CertificateSource -ForegroundColor Green
 

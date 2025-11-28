@@ -11,8 +11,8 @@
 	LanguageMatchError              = Impossibile corrispondere alla lingua. È stata inizializzata come predefinita. Fare clic sul pulsante della lingua per modificarla.
 	LanguageChangeError             = Prima di apportare modifiche, seleziona una fonte di immagine.
 	LanguageExtract                 = Estrarre
-	LanguageExtractRule             = Regole di estrazione:
-	LanguageExtractRuleFilter       = Regole di filtro:
+	LanguageExtractRule             = Regole di estrazione
+	LanguageExtractRuleFilter       = Regole di filtro
 	LanguageExtractRuleNoSel        = Seleziona il tipo di regola di estrazione, Installazione o schema di avvio.
 	LanguageExtractCondition        = Abbina i pacchetti essenziali che si applicano a ciò di cui hai bisogno
 	LanguageExtractConditionTips    = Selezionare la lingua e fare clic sul pulsante "Ottieni" per visualizzare i risultati dei criteri di ricerca.\n\nCondizioni di ricerca: ricerca completa, nessun attraversamento, solo giudizio basato sulla struttura della directory.

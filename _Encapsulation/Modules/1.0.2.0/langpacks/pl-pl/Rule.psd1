@@ -11,8 +11,8 @@
 	LanguageMatchError              = Nie udało się dopasować języka. Został on zainicjowany jako domyślny. Kliknij przycisk języka, aby go zmienić.
 	LanguageChangeError             = Przed wprowadzeniem zmian wybierz źródło obrazu.
 	LanguageExtract                 = Ekstrakt
-	LanguageExtractRule             = Zasady ekstrakcji:
-	LanguageExtractRuleFilter       = Reguły filtrowania:
+	LanguageExtractRule             = Zasady ekstrakcji
+	LanguageExtractRuleFilter       = Reguły filtrowania
 	LanguageExtractRuleNoSel        = Wybierz typ reguły wyodrębniania, schemat instalacji lub rozruchu.
 	LanguageExtractCondition        = Dopasuj niezbędne pakiety, które dotyczą tego, czego potrzebujesz
 	LanguageExtractConditionTips    = Wybierz język i kliknij przycisk "Pobierz", aby wyświetlić wyniki kryteriów wyszukiwania. \n\nWarunki wyszukiwania: Pełne wyszukiwanie, brak przechodzenia, tylko ocena na podstawie struktury katalogów.

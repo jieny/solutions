@@ -11,8 +11,8 @@
 	LanguageMatchError              = فشلت اللغة المطابقة وتمت تهيئتها كلغة افتراضية. يرجى النقر على زر اللغة لتغييرها.
 	LanguageChangeError             = قبل إجراء التغييرات، حدد مصدر الصورة.
 	LanguageExtract                 = يستخرج
-	LanguageExtractRule             = قواعد الاستخراج:
-	LanguageExtractRuleFilter       = قواعد التصفية:
+	LanguageExtractRule             = قواعد الاستخراج
+	LanguageExtractRuleFilter       = قواعد التصفية
 	LanguageExtractRuleNoSel        = الرجاء تحديد نوع قاعدة الاستخراج، نظام Install أو boot.
 	LanguageExtractCondition        = قم بمطابقة الحزم الأساسية التي تنطبق على ما تحتاجه
 	LanguageExtractConditionTips    = اختر اللغة وانقر على زر "Get" لعرض نتائج معايير البحث.\n\nشروط البحث: بحث كامل، عدم الاجتياز، الحكم فقط بناءً على بنية الدليل.

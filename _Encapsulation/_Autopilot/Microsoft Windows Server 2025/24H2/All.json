@@ -2,7 +2,7 @@
 	"Config": {
 		"Author":  "Yi",
 		"Url":     "https://fengyi.tel",
-		"Version": "1.0.0.7"
+		"Version": "1.0.0.8"
 	},
 	"Deploy": {
 		"Prerequisite": {
@@ -30,7 +30,8 @@
 						"Install;WinRE;wim;",
 						"Boot;Boot;wim;"
 					],
-					"Region": "Auto"
+					"Region": "Auto",
+					"RegionRelated": []
 				},
 				"Del": {
 					"Guid": "11fe132f-1c84-41fd-a66e-fbc60b79d457",

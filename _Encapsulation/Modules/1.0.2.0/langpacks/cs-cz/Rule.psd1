@@ -11,8 +11,8 @@
 	LanguageMatchError              = Odpovídající jazyk se nezdařil a byl inicializován jako výchozí. Kliknutím na tlačítko jazyka jej změníte.
 	LanguageChangeError             = Před provedením změn vyberte zdroj obrazu.
 	LanguageExtract                 = Výpis
-	LanguageExtractRule             = Pravidla extrakce:
-	LanguageExtractRuleFilter       = Pravidla filtrování:
+	LanguageExtractRule             = Pravidla extrakce
+	LanguageExtractRuleFilter       = Pravidla filtrování
 	LanguageExtractRuleNoSel        = Vyberte typ pravidla extrakce, Install nebo boot scheme.
 	LanguageExtractCondition        = Slaďte základní balíčky, které se vztahují k tomu, co potřebujete
 	LanguageExtractConditionTips    = Vyberte jazyk a kliknutím na tlačítko "Získat" zobrazíte výsledky kritérií vyhledávání.\n\nPodmínky vyhledávání: Úplné vyhledávání, žádné procházení, pouze posouzení na základě adresářové struktury.

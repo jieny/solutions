@@ -11,8 +11,8 @@
 	LanguageMatchError              = Kan de taal niet matchen. Deze is als standaard ingesteld. Klik op de taalknop om deze te wijzigen.
 	LanguageChangeError             = Selecteer een afbeeldingsbron voordat u wijzigingen aanbrengt.
 	LanguageExtract                 = Extract
-	LanguageExtractRule             = Extractieregels:
-	LanguageExtractRuleFilter       = Filterregels:
+	LanguageExtractRule             = Extractieregels
+	LanguageExtractRuleFilter       = Filterregels
 	LanguageExtractRuleNoSel        = Selecteer het type extractieregel, Installatie of opstartschema.
 	LanguageExtractCondition        = Match de essentiële pakketten die van toepassing zijn op wat jij nodig hebt
 	LanguageExtractConditionTips    = Selecteer de taal en klik op de knop "Ophalen" om de resultaten van de zoekcriteria weer te geven. \n\nZoekvoorwaarden: volledige zoekactie, geen doorzoeken, alleen beoordeling op basis van directorystructuur.

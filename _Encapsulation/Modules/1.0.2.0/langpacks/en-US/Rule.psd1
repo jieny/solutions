@@ -11,8 +11,8 @@
 	LanguageMatchError              = Failed to match the language, it is already the default, please click the language button to change it.
 	LanguageChangeError             = Before changing, please select the image source.
 	LanguageExtract                 = Extract
-	LanguageExtractRule             = Extraction rules:
-	LanguageExtractRuleFilter       = Filter rules:
+	LanguageExtractRule             = Extraction rules
+	LanguageExtractRuleFilter       = Filter rules
 	LanguageExtractRuleNoSel        = Please select the extraction rule type, Install or boot scheme.
 	LanguageExtractCondition        = Search condition
 	LanguageExtractConditionTips    = Select the language and click the "Get" button to display the search criteria results.\n\nSearch conditions: full search, no traversal, only judged by the directory structure.

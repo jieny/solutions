@@ -11,8 +11,8 @@
 	LanguageMatchError              = No se pudo coincidir con el idioma. Se ha inicializado como predeterminado. Haga clic en el botón de idioma para cambiarlo.
 	LanguageChangeError             = Antes de realizar cambios, seleccione una fuente de imagen.
 	LanguageExtract                 = Extracto
-	LanguageExtractRule             = Reglas de extracción:
-	LanguageExtractRuleFilter       = Reglas de filtrado:
+	LanguageExtractRule             = Reglas de extracción
+	LanguageExtractRuleFilter       = Reglas de filtrado
 	LanguageExtractRuleNoSel        = Seleccione el tipo de regla de extracción, instalación o esquema de inicio.
 	LanguageExtractCondition        = Haga coincidir los paquetes esenciales que se aplican a lo que necesita
 	LanguageExtractConditionTips    = Seleccione el idioma y haga clic en el botón "Obtener" para mostrar los resultados de los criterios de búsqueda.\n\nCondiciones de búsqueda: búsqueda completa, sin recorrido, solo juicio basado en la estructura del directorio.
