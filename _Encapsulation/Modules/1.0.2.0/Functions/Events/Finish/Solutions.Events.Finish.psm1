@@ -463,7 +463,7 @@ Function Event_Completion_Process
 					Write-Host "  $($TempPath)" -ForegroundColor Green
 				
 					if (Test-Path -Path $TempPath -PathType Container) {
-						Get-ChildItem -Path $TempPath -Recurse -Force | ForEach-Object {
+						Get-ChildItem -Path $TempPath -Recurse -Force -ErrorAction SilentlyContinue | ForEach-Object {
 							try {
 								Remove-Item -Path $_.FullName -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
 							} catch {

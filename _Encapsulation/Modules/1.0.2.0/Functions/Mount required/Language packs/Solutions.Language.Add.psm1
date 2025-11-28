@@ -2058,12 +2058,13 @@ Function Language_Add_File_Type_Process
 		$UpdateTasksTime.Reset()
 		$UpdateTasksTime.Start()
 
+		Write-Host "  $($lang.TimeStart)" -NoNewline
+		Write-Host "$($UpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
+
+		Write-Host
 		Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
 		Write-Host $SNTasks -NoNewline -ForegroundColor Green
 		Write-host " $($lang.EventManagerCount)"
-
-		Write-Host "  $($lang.TimeStart)" -NoNewline
-		Write-Host "$($UpdateTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
 
 		Write-host "  $($lang.Event_Group): " -NoNewline -ForegroundColor Yellow
 		Write-Host $Group -ForegroundColor Green
