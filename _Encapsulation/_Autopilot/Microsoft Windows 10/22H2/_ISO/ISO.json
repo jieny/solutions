@@ -2,7 +2,7 @@
 	"Config": {
 		"Author":  "Yi",
 		"Url":     "https://fengyi.tel",
-		"Version": "1.0.0.8"
+		"Version": "1.0.0.9"
 	},
 	"Deploy": {
 		"ImageSource": {
@@ -11,10 +11,12 @@
 					"SaveTo":             "",
 					"Structure":  {
 						"InstallType":    true,
-						"UniqueName":     true,
 						"Group":          "Windows 10 22H2",
 						"Event":           false,
-						"EngineVersion":  ""
+						"EngineVersion":  "",
+						"MulTags":        true,
+						"VerTags":        true,
+						"UniqueName":     true
 					},
 					"PublicDate": {
 						"Year":           true,

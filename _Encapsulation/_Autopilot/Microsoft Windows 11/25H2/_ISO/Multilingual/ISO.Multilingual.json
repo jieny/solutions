@@ -2,7 +2,7 @@
 	"Config": {
 		"Author":  "Yi",
 		"Url":     "https://fengyi.tel",
-		"Version": "1.0.0.8"
+		"Version": "1.0.0.9"
 	},
 	"Deploy": {
 		"ImageSource": {
@@ -148,10 +148,12 @@
 					"SaveTo":             "",
 					"Structure": {
 						"InstallType":    true,
-						"UniqueName":     false,
 						"Group":          "Windows 11 25H2",
 						"Event":           true,
-						"EngineVersion":  "Multilingual"
+						"EngineVersion":  "Multilingual",
+						"MulTags":        true,
+						"VerTags":        true,
+						"UniqueName":     false
 					},
 					"PublicDate": {
 						"Year":           true,
