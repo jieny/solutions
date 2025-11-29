@@ -2176,11 +2176,9 @@ Function InBox_Apps_Add_Match_Process
 	$InBoxAppsTasksTime.Reset()
 	$InBoxAppsTasksTime.Start()
 
-	Write-Host "  $('-' * 80)"
 	Write-Host "  $($lang.TimeStart)" -NoNewline
 	Write-Host "$($InBoxAppsTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Green
-
-	Write-Host
+	Write-Host "  $('-' * 80)"
 	Write-host "  $($lang.EventManager): " -NoNewline -ForegroundColor Yellow
 	Write-Host $SNTasks -NoNewline -ForegroundColor Green
 	Write-host " $($lang.EventManagerCount)"
