@@ -2446,10 +2446,6 @@ Function Image_Select
 	Function Refresh_Click_Image_Sources
 	{
 		$UI_Main_Ok.Visible = $False                    # 隐藏: 确定按钮
-		$UI_Main_To.Visible = $False                    # 隐藏：前往到
-		$GUIImageSourceGroupMount.Visible = $False      # 动态显示：挂载到
-		$GUIImageSourceGroupLang.Visible = $False       # 动态显示：更改语言
-		$GUIImageSourceGroupOther.Visible = $False      # 动态显示：详细
 
 		$UI_Main_Error.Text = ""
 		$UI_Main_Error_Icon.Image = $null
@@ -2761,8 +2757,8 @@ Function Image_Select
 			}
 		}
 
-		$UI_Main_Ok.Visible = $True                    # 隐藏: 确定按钮
-		$UI_Main_To.Visible = $True                    # 隐藏：前往到
+		$UI_Main_Ok.Visible = $True                    # 显示: 确定按钮
+		$UI_Main_To.Visible = $True                    # 显示：前往到
 		$GUIImageSourceGroupMount.Visible = $True      # 动态显示：挂载到
 		$GUIImageSourceGroupLang.Visible = $True       # 动态显示：更改语言
 		$GUIImageSourceGroupOther.Visible = $True      # 动态显示：详细
@@ -4504,7 +4500,7 @@ Function Image_Select
 				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.ImageSourcesClickShowKey), $($lang.Disable), $($lang.Done)"
 			}
 
-			Refresh_Click_Image_Sources
+			Image_Select_Refresh_Sources_List
 		}
 	}
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsShowSelectKey" -ErrorAction SilentlyContinue) {
