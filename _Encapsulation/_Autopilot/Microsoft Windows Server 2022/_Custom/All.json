@@ -31,7 +31,7 @@
 						"Boot;Boot;wim;"
 					],
 					"Region": "Auto",
-					"RegionRelated": []
+					"RegionAssoc": []
 				},
 				"Del": {
 					"Guid": "a70389a7-bb7b-4774-91c7-2507c1472db0",

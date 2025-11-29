@@ -2232,8 +2232,8 @@ Function Language_Extract_UI
 					$NewGroupLanguageRegion += $item
 				}
 
-				If (-not [String]::IsNullOrEmpty($Autopilot.RegionRelated)) {
-					foreach ($item in $Autopilot.RegionRelated) {
+				If (-not [String]::IsNullOrEmpty($Autopilot.RegionAssoc)) {
+					foreach ($item in $Autopilot.RegionAssoc) {
 						$NewGroupLanguageRegion += $item
 					}
 				}
