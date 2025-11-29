@@ -25,7 +25,6 @@ Function Language_Change_UI
 
 	Function Autopilot_Language_Change_UI_Save
 	{
-			
 		$FlagCheckSelectLanguage = $False
 		$GUILangChangePanel.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.RadioButton]) {
