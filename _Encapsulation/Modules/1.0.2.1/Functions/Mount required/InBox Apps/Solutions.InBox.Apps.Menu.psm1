@@ -36,11 +36,11 @@
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Green
+		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Green
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Red
+		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Red
 	}
 
 	if (Verify_Is_Current_Same) {
@@ -56,21 +56,21 @@
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Green
+		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Green
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Red
+		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Red
 	}
 
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Green
+		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Green
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Red
+		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Red
 	}
 
 	Write-Host "`n    $($lang.InboxAppsManager)" -ForegroundColor Yellow
@@ -667,7 +667,7 @@ Function InBox_Apps_Menu_Shortcuts_Delete
 
 Function InBox_Apps_Menu_Shortcuts_LXPs_Add
 {
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -691,7 +691,7 @@ Function InBox_Apps_Menu_Shortcuts_LXPs_Add
 
 Function InBox_Apps_Menu_Shortcuts_LXPs_Update
 {
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -715,7 +715,7 @@ Function InBox_Apps_Menu_Shortcuts_LXPs_Update
 
 Function InBox_Apps_Menu_Shortcuts_LXPs_Delete
 {
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow

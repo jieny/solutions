@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Δεν είναι δυνατή η σύνδεση σε απομακρυσμένο διακομιστή, ο έλεγχος για ενημερώσεις ματαιώθηκε.
 	UpdateMinimumVersion      = Πληροί ελάχιστες απαιτήσεις έκδοσης ενημερώσεων, ελάχιστη απαιτούμενη έκδοση: {0}
 	UpdateVerifyAvailable     = Επαληθεύστε ότι η διεύθυνση είναι διαθέσιμη
+	Download                  = λήψη
 	UpdateDownloadAddress     = Λήψη διεύθυνσης
 	UpdateAvailable           = Διαθέσιμος
 	UpdateUnavailable         = Μη διαθέσιμο

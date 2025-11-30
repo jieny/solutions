@@ -725,7 +725,7 @@ Function LXPs_Region_Add
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 928
-		Text           = "$($lang.LocalExperiencePack): $($lang.AddTo)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
@@ -1850,7 +1850,7 @@ Function LXPs_Region_Add
 	}
 
 	if ($Global:EventQueueMode) {
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
@@ -1862,7 +1862,7 @@ Function LXPs_Region_Add
 	}
 
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ) $($lang.AddTo)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"

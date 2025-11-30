@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Невозможно подключиться к удаленному серверу, проверка обновлений прервана.
 	UpdateMinimumVersion      = Соответствует минимальным требованиям к версии средства обновления. Минимальная необходимая версия: {0}
 	UpdateVerifyAvailable     = Убедитесь, что адрес доступен
+	Download                  = Скачать
 	UpdateDownloadAddress     = Скачать адрес
 	UpdateAvailable           = Доступный
 	UpdateUnavailable         = Нет в наличии

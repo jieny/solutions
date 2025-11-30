@@ -118,7 +118,7 @@ Function LXPs_Remove_UI
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 928
-		Text           = "$($lang.LocalExperiencePack): $($lang.Del)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
@@ -384,7 +384,7 @@ Function LXPs_Remove_UI
 	}
 
 	if ($Global:EventQueueMode) {
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
@@ -396,7 +396,7 @@ Function LXPs_Remove_UI
 	}
 
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"

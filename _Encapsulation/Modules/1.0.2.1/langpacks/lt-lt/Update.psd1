@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Nepavyko prisijungti prie nuotolinio serverio, atnaujinimų tikrinimas nutrauktas.
 	UpdateMinimumVersion      = Atitinka minimalius atnaujinimo versijos reikalavimus, minimalią reikalaujamą versiją: {0}
 	UpdateVerifyAvailable     = Patikrinkite, ar adresas yra
+	Download                  = Atsisiųsti
 	UpdateDownloadAddress     = Atsisiųsti adresą
 	UpdateAvailable           = Galima
 	UpdateUnavailable         = Nėra

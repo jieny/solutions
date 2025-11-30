@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Es kann keine Verbindung zum Remote Server hergestellt werden, die Überprüfung, ob das Update abgebrochen wurde.
 	UpdateMinimumVersion      = Erfüllt die Mindestanforderungen für die Update Programmversion, die erforderliche Mindestversion: {0}
 	UpdateVerifyAvailable     = Überprüfen Sie, ob die Adresse verfügbar ist
+	Download                  = Herunterladen
 	UpdateDownloadAddress     = Download Adresse
 	UpdateAvailable           = Verfügbar
 	UpdateUnavailable         = Nicht verfügbar

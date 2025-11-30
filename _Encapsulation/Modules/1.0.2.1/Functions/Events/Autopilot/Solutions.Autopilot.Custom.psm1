@@ -738,7 +738,7 @@ Function Image_Assign_Autopilot_Master
 			Height         = 35
 			Width          = 450
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.AddTo)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 			Tag            = "LXPs_Region_Add"
 			LinkColor      = "GREEN"
 			ActiveLinkColor = "RED"
@@ -770,7 +770,7 @@ Function Image_Assign_Autopilot_Master
 			Height         = 35
 			Width          = 450
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 			Tag            = "LXPs_Update_UI"
 			LinkColor      = "GREEN"
 			ActiveLinkColor = "RED"
@@ -786,7 +786,7 @@ Function Image_Assign_Autopilot_Master
 			Height         = 35
 			Width          = 450
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.Del)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 			Tag            = "LXPs_Remove_UI"
 			LinkColor      = "GREEN"
 			ActiveLinkColor = "RED"
@@ -2411,7 +2411,7 @@ Function Image_Assign_Autopilot_Master
 			Height         = 35
 			Width          = 412
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.AddTo)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 			Tag            = "LXPs_Region_Add"
 		}
 		if ($NewTasksFull.IsAutoSelect -contains "LXPs_Region_Add") {
@@ -2435,7 +2435,7 @@ Function Image_Assign_Autopilot_Master
 			Height         = 35
 			Width          = 412
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 			Tag            = "LXPs_Update_UI"
 		}
 		if ($NewTasksFull.IsAutoSelect -contains "LXPs_Update_UI") {
@@ -2447,7 +2447,7 @@ Function Image_Assign_Autopilot_Master
 			Height         = 35
 			Width          = 412
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.Del)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 			Tag            = "LXPs_Remove_UI"
 		}
 		if ($NewTasksFull.IsAutoSelect -contains "LXPs_Remove_UI") {
@@ -7354,7 +7354,7 @@ Function Autopilot_Refresh_Export_Event_To_WIM
 			.本地语言体验（LXPs）：标记
 		#>
 		if ($SelectEvent -contains "LXPs_Region_Add") {
-			Write-Host "`n  $($lang.LanguageExtractAddTo): $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.LanguageExtractAddTo): $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			LXPs_Region_Add -Autopilot $NewTasks.Tasks.InBoxApps.Mark
 		}
@@ -7372,7 +7372,7 @@ Function Autopilot_Refresh_Export_Event_To_WIM
 			.本地语言体验（LXPs）：更新
 		#>
 		if ($SelectEvent -contains "LXPs_Update_UI") {
-			Write-Host "`n  $($lang.LanguageExtractAddTo): $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.LanguageExtractAddTo): $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			LXPs_Update_UI -Autopilot $NewTasks.Tasks.InBoxApps.Update
 		}
@@ -7381,7 +7381,7 @@ Function Autopilot_Refresh_Export_Event_To_WIM
 			.本地语言体验（LXPs）：删除
 		#>
 		if ($SelectEvent -contains "LXPs_Remove_UI") {
-			Write-Host "`n  $($lang.LanguageExtractAddTo): $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.LanguageExtractAddTo): $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			LXPs_Remove_UI -Autopilot $NewTasks.Tasks.InBoxApps.Remove
 		}

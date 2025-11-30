@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Nije moguće povezati se s udaljenim poslužiteljem, provjera ažuriranja prekinuta.
 	UpdateMinimumVersion      = Zadovoljava minimalne zahtjeve za verziju programa za ažuriranje, minimalna potrebna verzija: {0}
 	UpdateVerifyAvailable     = Provjerite je li adresa dostupna
+	Download                  = Preuzimanje
 	UpdateDownloadAddress     = Adresa preuzimanja
 	UpdateAvailable           = Na raspolaganju
 	UpdateUnavailable         = Nije dostupno

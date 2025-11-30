@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = مطابقة تطبيقات InBox Apps
 	InBox_Apps_Check                = التحقق من حزم التبعية
 	InBox_Apps_Check_Tips           = وفقًا للقواعد، احصل على كافة عناصر التثبيت المحددة وتحقق من تحديد عناصر التثبيت التابعة.
-	LocalExperiencePack             = حزم تجربة اللغة المحلية ( LXPs )
+	LocalExperiencePack             = حزم تجربة اللغة المحلية
 	LEPBrandNew                     = بطريقة جديدة، الموصى بها
 	UWPAutoMissingPacker            = البحث تلقائيًا عن الحزم المفقودة من كافة الأقراص
 	UWPAutoMissingPackerSupport     = بنية x64، يجب تثبيت الحزم المفقودة.

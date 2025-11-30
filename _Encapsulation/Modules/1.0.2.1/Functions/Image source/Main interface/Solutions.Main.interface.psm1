@@ -5270,7 +5270,7 @@ Function Image_Select
 		Height         = 45
 		Width          = 465
 		Padding        = "26,0,0,0"
-		Text           = "$($lang.LocalExperiencePack): $($lang.AddTo)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 		Tag            = "LXPs_Region_Add"
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
@@ -5298,7 +5298,7 @@ Function Image_Select
 		Height         = 45
 		Width          = 465
 		Padding        = "26,0,0,0"
-		Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 		Tag            = "LXPs_Update_UI"
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"

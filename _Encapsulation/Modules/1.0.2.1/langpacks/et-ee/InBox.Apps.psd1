@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Vaste InBox Apps rakendus
 	InBox_Apps_Check                = Kontrollige sõltuvuspakette
 	InBox_Apps_Check_Tips           = Vastavalt reeglitele hankige kõik valitud installielemendid ja kontrollige, kas sõltuvad installielemendid on valitud.
-	LocalExperiencePack             = Kohalikud keelekogemuse paketid (LXs)
+	LocalExperiencePack             = Kohalikud keelekogemuse paketid
 	LEPBrandNew                     = Uuel viisil, soovitatav
 	UWPAutoMissingPacker            = Otsige automaatselt puuduvaid pakette kõigilt ketastelt
 	UWPAutoMissingPackerSupport     = X64 arhitektuur, puuduvad paketid tuleb installida.

@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Impossible de se connecter au serveur distant, vérification des mises à jour interrompue.
 	UpdateMinimumVersion      = Répond aux exigences minimales en matière de version de mise à jour, version minimale requise: {0}
 	UpdateVerifyAvailable     = Vérifier que l'adresse est disponible
+	Download                  = Télécharger
 	UpdateDownloadAddress     = Adresse de téléchargement
 	UpdateAvailable           = Disponible
 	UpdateUnavailable         = Pas disponible

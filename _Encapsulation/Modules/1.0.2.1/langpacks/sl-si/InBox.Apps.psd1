@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Match InBox Apps Aplikacije
 	InBox_Apps_Check                = Preverite pakete odvisnosti
 	InBox_Apps_Check_Tips           = V skladu s pravili pridobite vse izbrane namestitvene elemente in preverite, ali so izbrani odvisni namestitveni elementi.
-	LocalExperiencePack             = Paketi lokalnih jezikovnih izkušenj ( LXPs )
+	LocalExperiencePack             = Paketi lokalnih jezikovnih izkušenj
 	LEPBrandNew                     = Na nov način, priporočljivo
 	UWPAutoMissingPacker            = Samodejno poiščite manjkajoče pakete na vseh diskih
 	UWPAutoMissingPackerSupport     = X64 arhitektura, treba je namestiti manjkajoče pakete.

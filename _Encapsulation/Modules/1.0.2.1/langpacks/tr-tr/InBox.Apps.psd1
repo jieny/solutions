@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = InBox Apps nı Eşleştir
 	InBox_Apps_Check                = Bağımlılık paketlerini kontrol edin
 	InBox_Apps_Check_Tips           = Kurallara göre seçilen tüm kurulum öğelerini edinin ve bağımlı kurulum öğelerinin seçilip seçilmediğini doğrulayın.
-	LocalExperiencePack             = Yerel Dil Deneyimi Paketleri ( LXPs )
+	LocalExperiencePack             = Yerel Dil Deneyimi Paketleri
 	LEPBrandNew                     = Yeni bir şekilde tavsiye edilir
 	UWPAutoMissingPacker            = Tüm disklerdeki eksik paketleri otomatik olarak ara
 	UWPAutoMissingPackerSupport     = X64 mimarisinde eksik paketlerin kurulması gerekmektedir.

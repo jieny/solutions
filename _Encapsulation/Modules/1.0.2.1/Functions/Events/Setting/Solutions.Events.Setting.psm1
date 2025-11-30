@@ -101,7 +101,7 @@ Function Event_Assign_Setting
 		Height         = 30
 		Width          = 450
 		Padding        = "31,0,0,0"
-		Text           = "$($lang.LocalExperiencePack): $($lang.AddTo)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 		Tag            = "LXPs_Region_Add"
 	}
 	$UI_Main_Need_Mount_InBox_Apps_Two = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -115,14 +115,14 @@ Function Event_Assign_Setting
 		Height         = 30
 		Width          = 450
 		Padding        = "31,0,0,0"
-		Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 		Tag            = "LXPs_Update_UI"
 	}
 	$UI_Main_Need_Mount_InBox_Apps_Remove = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 450
 		Padding        = "31,0,0,0"
-		Text           = "$($lang.LocalExperiencePack): $($lang.Del)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 		Tag            = "LXPs_Remove_UI"
 	}
 	$UI_Main_Need_Mount_InBox_Apps_Match_Del = New-Object System.Windows.Forms.CheckBox -Property @{

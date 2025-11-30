@@ -327,7 +327,7 @@ Function Image_Assign_Event_Master
 			Height         = 35
 			Width          = 445
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.AddTo)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 			Tag            = "LXPs_Region_Add"
 			Checked        = $True
 		}
@@ -345,7 +345,7 @@ Function Image_Assign_Event_Master
 			Height         = 35
 			Width          = 445
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 			Tag            = "LXPs_Update_UI"
 			Checked        = $True
 		}
@@ -354,7 +354,7 @@ Function Image_Assign_Event_Master
 			Height         = 35
 			Width          = 445
 			Padding        = "31,0,0,0"
-			Text           = "$($lang.LocalExperiencePack): $($lang.Del)"
+			Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 			Tag            = "LXPs_Remove_UI"
 			Checked        = $True
 		}

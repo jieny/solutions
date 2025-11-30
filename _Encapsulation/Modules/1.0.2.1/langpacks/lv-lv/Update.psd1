@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Nevar izveidot savienojumu ar attālo serveri, atjauninājumu pārbaude tika pārtraukta.
 	UpdateMinimumVersion      = Atbilst minimālajām atjauninātāja versijas prasībām, minimālā nepieciešamā versija: {0}
 	UpdateVerifyAvailable     = Pārbaudiet, vai adrese ir pieejama
+	Download                  = Lejupielādes
 	UpdateDownloadAddress     = Lejupielādes adrese
 	UpdateAvailable           = Pieejams
 	UpdateUnavailable         = Nav pieejams

@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Porovnejte aplikace InBox Apps
 	InBox_Apps_Check                = Zkontrolujte balíčky závislostí
 	InBox_Apps_Check_Tips           = Podle pravidel získejte všechny vybrané položky instalace a ověřte, zda byly vybrány položky závislé instalace.
-	LocalExperiencePack             = Balíčky místních jazykových zkušeností ( LXPs )
+	LocalExperiencePack             = Balíčky místních jazykových zkušeností
 	LEPBrandNew                     = Novým způsobem, doporučeno
 	UWPAutoMissingPacker            = Automaticky vyhledat chybějící balíčky ze všech disků
 	UWPAutoMissingPackerSupport     = X64, je třeba nainstalovat chybějící balíčky.

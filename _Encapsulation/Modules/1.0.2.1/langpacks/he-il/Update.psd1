@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = לא ניתן להתחבר לשרת מרוחק, בודקים אם עדכונים בוטלו.
 	UpdateMinimumVersion      = עומד בדרישות המינימום של גרסת העדכון, הגרסה המינימלית הנדרשת: {0}
 	UpdateVerifyAvailable     = ודא שהכתובת זמינה
+	Download                  = הורדה
 	UpdateDownloadAddress     = כתובת הורדה
 	UpdateAvailable           = זָמִין
 	UpdateUnavailable         = לא זמין

@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Yhteyden muodostaminen etäpalvelimeen ei onnistu, päivitysten tarkistus keskeytettiin.
 	UpdateMinimumVersion      = Täyttää päivitysversion vähimmäisvaatimukset, vaadittu vähimmäisversio: {0}
 	UpdateVerifyAvailable     = Tarkista, että osoite on saatavilla
+	Download                  = Lataa
 	UpdateDownloadAddress     = Lataa osoite
 	UpdateAvailable           = Saatavilla
 	UpdateUnavailable         = Ei saatavilla

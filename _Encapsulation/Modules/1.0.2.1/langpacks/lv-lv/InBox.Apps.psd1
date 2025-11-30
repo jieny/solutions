@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Atbilst InBox Apps Apps
 	InBox_Apps_Check                = Pārbaudiet atkarības pakotnes
 	InBox_Apps_Check_Tips           = Saskaņā ar noteikumiem iegūstiet visus atlasītos instalācijas vienumus un pārbaudiet, vai ir atlasīti atkarīgie instalācijas vienumi.
-	LocalExperiencePack             = Vietējās valodas pieredzes pakotnes ( LXPs )
+	LocalExperiencePack             = Vietējās valodas pieredzes pakotnes
 	LEPBrandNew                     = Jaunā veidā, ieteicams
 	UWPAutoMissingPacker            = Automātiski meklēt trūkstošās pakotnes no visiem diskiem
 	UWPAutoMissingPackerSupport     = X64 arhitektūra, trūkstošās pakotnes ir jāinstalē.

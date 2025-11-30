@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Nelze se připojit ke vzdálenému serveru, kontrola aktualizací byla přerušena.
 	UpdateMinimumVersion      = Splňuje požadavky na minimální verzi aktualizátoru, minimální požadovaná verze: {0}
 	UpdateVerifyAvailable     = Ověřte, zda je adresa k dispozici
+	Download                  = Stáhnout
 	UpdateDownloadAddress     = Stáhnout adresu
 	UpdateAvailable           = K dispozici
 	UpdateUnavailable         = Není k dispozici

@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = จับคู่แอพ InBox Apps
 	InBox_Apps_Check                = ตรวจสอบแพ็คเกจการพึ่งพา
 	InBox_Apps_Check_Tips           = ตามกฎแล้ว ให้รับรายการการติดตั้งที่เลือกทั้งหมด และตรวจสอบว่ารายการการติดตั้งที่ต้องพึ่งพาได้ถูกเลือกแล้วหรือไม่
-	LocalExperiencePack             = ชุดประสบการณ์ภาษาท้องถิ่น ( LXPs )
+	LocalExperiencePack             = ชุดประสบการณ์ภาษาท้องถิ่น
 	LEPBrandNew                     = ในรูปแบบใหม่ขอแนะนำ
 	UWPAutoMissingPacker            = ค้นหาแพ็คเกจที่หายไปจากดิสก์ทั้งหมดโดยอัตโนมัติ
 	UWPAutoMissingPackerSupport     = สถาปัตยกรรม x64 จำเป็นต้องติดตั้งแพ็คเกจที่ขาดหายไป

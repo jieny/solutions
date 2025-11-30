@@ -306,7 +306,11 @@ Function Mainpage
 			Write-Host "$($lang.Del) " -NoNewline -ForegroundColor Green
 			Write-Host " IA D " -BackgroundColor DarkMagenta -ForegroundColor White
 
-			Write-Host "       $($lang.LocalExperiencePack): " -NoNewline -ForegroundColor Yellow
+			Write-Host "       $($lang.LocalExperiencePack) " -NoNewline -ForegroundColor Yellow
+			Write-Host " LXPs " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " $($lang.Download) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			Write-Host ": " -NoNewline
+
 			Write-Host "$($lang.AddTo) " -NoNewline -ForegroundColor Green
 			Write-Host " EP A " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 			Write-Host ", " -NoNewline
@@ -325,7 +329,11 @@ Function Mainpage
 			Write-Host "$($lang.Del) " -NoNewline -ForegroundColor Red
 			Write-Host " IA D " -BackgroundColor DarkRed -ForegroundColor White
 
-			Write-Host "       $($lang.LocalExperiencePack): " -NoNewline -ForegroundColor Yellow
+			Write-Host "       $($lang.LocalExperiencePack) " -NoNewline -ForegroundColor Yellow
+			Write-Host " LXPs " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " $($lang.Download) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			Write-Host ": " -NoNewline
+
 			Write-Host "$($lang.AddTo) " -NoNewline -ForegroundColor Red
 			Write-Host " EP A " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
 			Write-Host ", " -NoNewline
@@ -345,7 +353,11 @@ Function Mainpage
 		Write-Host "$($lang.Del) " -NoNewline -ForegroundColor Red
 		Write-Host " IA D " -BackgroundColor DarkRed -ForegroundColor White
 
-		Write-Host "       $($lang.LocalExperiencePack): " -NoNewline -ForegroundColor Yellow
+		Write-Host "       $($lang.LocalExperiencePack) " -NoNewline -ForegroundColor Yellow
+		Write-Host " LXPs " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host " $($lang.Download) " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host ": " -NoNewline
+
 		Write-Host "$($lang.AddTo) " -NoNewline -ForegroundColor Red
 		Write-Host " EP A " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
 		Write-Host ", " -NoNewline

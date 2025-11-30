@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = 匹配 InBox Apps 应用
 	InBox_Apps_Check                = 检查依赖包
 	InBox_Apps_Check_Tips           = 根据规则，获取已选择的所有安装项，校验是否已选择所依赖的安装项。
-	LocalExperiencePack             = 本地语言体验包 ( LXPs )
+	LocalExperiencePack             = 本地语言体验包
 	LEPBrandNew                     = 以全新方式，推荐
 	UWPAutoMissingPacker            = 自动从所有磁盘搜索缺少的软件包
 	UWPAutoMissingPackerSupport     = x64 架构，需要安装缺少的软件包。

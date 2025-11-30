@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Coincidir con las aplicaciones de la bandeja de entrada
 	InBox_Apps_Check                = Verificar paquetes de dependencia
 	InBox_Apps_Check_Tips           = De acuerdo con las reglas, obtenga todos los elementos de instalación seleccionados y verifique si se han seleccionado los elementos de instalación dependientes.
-	LocalExperiencePack             = Paquetes de experiencia en idiomas locales ( LXPs )
+	LocalExperiencePack             = Paquetes de experiencia en idiomas locales
 	LEPBrandNew                     = De una manera nueva, recomendado.
 	UWPAutoMissingPacker            = Busque automáticamente paquetes faltantes en todos los discos
 	UWPAutoMissingPackerSupport     = Arquitectura x64, es necesario instalar los paquetes que faltan.

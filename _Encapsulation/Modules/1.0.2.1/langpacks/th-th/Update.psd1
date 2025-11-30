@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ระยะไกลได้ การตรวจสอบการอัปเดตถูกยกเลิก
 	UpdateMinimumVersion      = ตรงตามข้อกำหนดเวอร์ชันตัวอัปเดตขั้นต่ำ เวอร์ชันขั้นต่ำที่ต้องการ: {0}
 	UpdateVerifyAvailable     = ตรวจสอบที่อยู่ที่มีอยู่
+	Download                  = ดาวน์โหลด
 	UpdateDownloadAddress     = ดาวน์โหลดที่อยู่
 	UpdateAvailable           = มีอยู่
 	UpdateUnavailable         = ไม่สามารถใช้ได้

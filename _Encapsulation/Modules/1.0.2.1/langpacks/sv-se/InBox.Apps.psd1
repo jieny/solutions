@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Matcha InBox Apps-appar
 	InBox_Apps_Check                = Kontrollera beroendepaket
 	InBox_Apps_Check_Tips           = Enligt reglerna, skaffa alla valda installationsobjekt och verifiera om de beroende installationsobjekten har valts.
-	LocalExperiencePack             = Lokala språkupplevelsepaket ( LXPs )
+	LocalExperiencePack             = Lokala språkupplevelsepaket
 	LEPBrandNew                     = På ett nytt sätt, rekommenderas
 	UWPAutoMissingPacker            = Sök automatiskt efter saknade paket från alla diskar
 	UWPAutoMissingPackerSupport     = X64-arkitektur, saknade paket måste installeras.

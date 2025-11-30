@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Неможливо підключитися до віддаленого сервера, перевірку оновлень перервано.
 	UpdateMinimumVersion      = Відповідає вимогам до мінімальної версії програми оновлення, мінімальна необхідна версія: {0}
 	UpdateVerifyAvailable     = Перевірте наявність адреси
+	Download                  = завантажити
 	UpdateDownloadAddress     = Адреса завантаження
 	UpdateAvailable           = в наявності
 	UpdateUnavailable         = Не доступний

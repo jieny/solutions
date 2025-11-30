@@ -90,7 +90,7 @@ Function LXPs_Update_UI
 		autoScaleMode  = 2
 		Height         = 720
 		Width          = 928
-		Text           = "$($lang.LocalExperiencePack): $($lang.Update)"
+		Text           = "$($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		StartPosition  = "CenterScreen"
 		MaximizeBox    = $False
@@ -598,7 +598,7 @@ Function LXPs_Update_UI
 	}
 
 	if ($Global:EventQueueMode) {
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.OnDemandPlanTask), $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"
@@ -610,7 +610,7 @@ Function LXPs_Update_UI
 	}
 
 	if (-not $Global:AutopilotMode -xor $Global:EventQueueMode) {
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
 		$UI_Main.Text = "$($UI_Main.Text) [ $($lang.Event_Primary_Key): $($Global:Primary_Key_Image.Uid) ]"

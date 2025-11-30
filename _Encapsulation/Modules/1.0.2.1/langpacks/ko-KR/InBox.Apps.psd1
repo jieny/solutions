@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = InBox Apps 앱 일치
 	InBox_Apps_Check                = 종속성 확인
 	InBox_Apps_Check_Tips           = 규칙에 따라 선택한 설치 항목을 모두 가져오고 종속 설치 항목이 선택되었는지 확인합니다.
-	LocalExperiencePack             = 현지 언어 체험 팩 ( LXPs )
+	LocalExperiencePack             = 현지 언어 체험 팩
 	LEPBrandNew                     = 새로운 방식으로 추천
 	UWPAutoMissingPacker            = 모든 디스크에서 누락된 패키지 자동 검색
 	UWPAutoMissingPackerSupport     = x64 아키텍처의 경우 누락된 패키지를 설치해야 합니다.

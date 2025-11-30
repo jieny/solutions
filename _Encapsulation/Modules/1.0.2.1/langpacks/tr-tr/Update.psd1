@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Uzak sunucuya bağlanılamıyor, güncelleme kontrolü durduruldu.
 	UpdateMinimumVersion      = Minimum güncelleyici sürümü gereksinimlerini karşılar, gereken minimum sürüm: {0}
 	UpdateVerifyAvailable     = Adresin mevcut olduğunu doğrulayın
+	Download                  = Indirmek
 	UpdateDownloadAddress     = Adresi indir
 	UpdateAvailable           = Mevcut
 	UpdateUnavailable         = Müsait değil

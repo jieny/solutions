@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Ni mogoče vzpostaviti povezave z oddaljenim strežnikom, preverjanje posodobitev je prekinjeno.
 	UpdateMinimumVersion      = Izpolnjuje minimalne zahteve glede različice posodobitve, minimalna zahtevana različica: {0}
 	UpdateVerifyAvailable     = Preverite, ali je naslov na voljo
+	Download                  = Prenos
 	UpdateDownloadAddress     = Prenos naslova
 	UpdateAvailable           = Na voljo
 	UpdateUnavailable         = Ni na voljo

@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = غير قادر على الاتصال بالخادم البعيد، تم إحباط البحث عن التحديثات.
 	UpdateMinimumVersion      = يلبي الحد الأدنى من متطلبات إصدار المحدث، الحد الأدنى من الإصدار المطلوب: {0}
 	UpdateVerifyAvailable     = عنوان التحقق متاح
+	Download                  = تحميل
 	UpdateDownloadAddress     = عنوان التحميل
 	UpdateAvailable           = متاح
 	UpdateUnavailable         = غير متوفر

@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = התאם יישומי InBox Apps
 	InBox_Apps_Check                = בדוק חבילות תלות
 	InBox_Apps_Check_Tips           = על פי הכללים, השג את כל פריטי ההתקנה שנבחרו וודא אם פריטי ההתקנה התלויים נבחרו.
-	LocalExperiencePack             = חבילות חוויית שפה מקומית ( LXPs )
+	LocalExperiencePack             = חבילות חוויית שפה מקומית
 	LEPBrandNew                     = בצורה חדשה, מומלץ
 	UWPAutoMissingPacker            = חפש אוטומטית חבילות חסרות מכל הדיסקים
 	UWPAutoMissingPackerSupport     = ארכיטקטורת x64, יש להתקין חבילות חסרות.

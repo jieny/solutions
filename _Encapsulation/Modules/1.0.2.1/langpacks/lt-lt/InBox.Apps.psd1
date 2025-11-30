@@ -12,7 +12,7 @@
 	InBox_Apps_Match                = Suderinkite InBox Apps programas
 	InBox_Apps_Check                = Patikrinkite priklausomybės paketus
 	InBox_Apps_Check_Tips           = Pagal taisykles gaukite visus pasirinktus diegimo elementus ir patikrinkite, ar pasirinkti priklausomi diegimo elementai.
-	LocalExperiencePack             = Vietinės kalbos patirties paketai ( LXPs )
+	LocalExperiencePack             = Vietinės kalbos patirties paketai
 	LEPBrandNew                     = Nauju būdu, rekomenduojama
 	UWPAutoMissingPacker            = Automatiškai ieškoti trūkstamų paketų iš visų diskų
 	UWPAutoMissingPackerSupport     = X64 architektūra, trūkstamus paketus reikia įdiegti.

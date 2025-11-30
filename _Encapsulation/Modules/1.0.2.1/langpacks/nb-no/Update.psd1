@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Kan ikke koble til ekstern server, ser etter oppdateringer avbrutt.
 	UpdateMinimumVersion      = Oppfyller minimumskrav til oppdateringsversjon, minimum obligatorisk versjon: {0}
 	UpdateVerifyAvailable     = Bekreft at adressen er tilgjengelig
+	Download                  = Nedlasting
 	UpdateDownloadAddress     = Last ned adresse
 	UpdateAvailable           = Tilgjengelig
 	UpdateUnavailable         = Ikke tilgjengelig

@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Kaugserveriga ei saa ühendust luua, värskenduste otsimine katkestati.
 	UpdateMinimumVersion      = Vastab värskendaja versiooni miinimumnõuetele, minimaalne nõutav versioon: {0}
 	UpdateVerifyAvailable     = Kontrollige aadressi olemasolu
+	Download                  = Allalaadimise
 	UpdateDownloadAddress     = Allalaadimise aadress
 	UpdateAvailable           = Saadaval
 	UpdateUnavailable         = Ei ole saadaval

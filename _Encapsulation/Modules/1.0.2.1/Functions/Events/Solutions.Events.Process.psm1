@@ -425,9 +425,9 @@ Function Event_Process_Task_Need_Mount
 		.Step 1: Add local language experience packs (LXPs)
 		.第一步：添加本地语言体验包 (LXPs)
 	#>
-	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack): $($lang.AddTo)"
+	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)"
 
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.AddTo)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if ((Get-Variable -Scope global -Name "Queue_Is_LXPs_Region_Add_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value) {
 		$Script:InBoxAppsAddTasksTimeStart = Get-Date -Format "yyyy/MM/dd HH:mm:ss tt"
@@ -443,7 +443,7 @@ Function Event_Process_Task_Need_Mount
 
 		$Script:InBoxAppsAddTasksTime.Stop()
 
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.TimeStart)" -NoNewline
 		Write-Host "$($Script:InBoxAppsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
@@ -505,9 +505,9 @@ Function Event_Process_Task_Need_Mount
 		.Step 3: Remove local language experience packs (LXPs)
 		.第三步：删除本地语言体验包 (LXPs)
 	#>
-	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack): $($lang.Del)"
+	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	$Temp_LXPs_Delete = (Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	if ($Temp_LXPs_Delete.Count -gt 0) {
@@ -524,7 +524,7 @@ Function Event_Process_Task_Need_Mount
 
 		$Script:LXPsDelTasksTime.Stop()
 
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.TimeStart)" -NoNewline
 		Write-Host "$($Script:LXPsDelTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
@@ -546,9 +546,9 @@ Function Event_Process_Task_Need_Mount
 		.Step 4: Add only local language experience packs (LXPs)
 		.第四步：仅添加本地语言体验包 (LXPs)
 	#>
-	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack): $($lang.Update)"
+	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)"
 
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Update)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	$Temp_Queue_Is_InBox_Apps_Update = (Get-Variable -Scope global -Name "Queue_Is_InBox_Apps_Update_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	if ($Temp_Queue_Is_InBox_Apps_Update.Count -gt 0) {
@@ -565,7 +565,7 @@ Function Event_Process_Task_Need_Mount
 
 		$Script:LXPsAddTasksTime.Stop()
 
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Update), $($lang.Done)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.TimeStart)" -NoNewline
 		Write-Host "$($Script:LXPsAddTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow
@@ -587,9 +587,9 @@ Function Event_Process_Task_Need_Mount
 		.Step 5: Remove local language experience packs (LXPs)
 		.第五步：删除本地语言体验包 (LXPs)
 	#>
-	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack): $($lang.Del)"
+	$Host.UI.RawUI.WindowTitle = "$($lang.Event_Primary_Key): $($Global:Primary_Key_Image.UID), $($lang.MountedIndex): $(Image_Get_Mount_Index), $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)"
 
-	Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	$Temp_LXPs_Delete = (Get-Variable -Scope global -Name "Queue_Is_LXPs_Delete_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -ErrorAction SilentlyContinue).Value
 	if ($Temp_LXPs_Delete.Count -gt 0) {
@@ -605,7 +605,7 @@ Function Event_Process_Task_Need_Mount
 		InBox_Apps_LIPs_Delete_Process
 
 		$Script:LXPsDeleteOldTasksTime.Stop()
-		Write-Host "`n  $($lang.LocalExperiencePack): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
+		Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del), $($lang.Done)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.TimeStart)" -NoNewline
 		Write-Host "$($Script:LXPsDeleteOldTasksTimeStart -f "yyyy/MM/dd HH:mm:ss tt")" -ForegroundColor Yellow

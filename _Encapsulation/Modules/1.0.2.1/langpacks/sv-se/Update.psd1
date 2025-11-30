@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Det går inte att ansluta till fjärrservern, letar efter uppdateringar avbrutna.
 	UpdateMinimumVersion      = Uppfyller lägsta krav för uppdateringsversion, lägsta version som krävs: {0}
 	UpdateVerifyAvailable     = Kontrollera att adressen är tillgänglig
+	Download                  = Ladda ner
 	UpdateDownloadAddress     = Ladda ner adress
 	UpdateAvailable           = Tillgänglig
 	UpdateUnavailable         = Ej tillgängligt

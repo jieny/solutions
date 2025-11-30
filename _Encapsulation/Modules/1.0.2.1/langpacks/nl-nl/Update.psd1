@@ -18,6 +18,7 @@
 	UpdateConnectFailed       = Kan geen verbinding maken met de externe server. Controleren op updates is afgebroken.
 	UpdateMinimumVersion      = Voldoet aan de minimale versievereisten van de updater, minimaal vereiste versie: {0}
 	UpdateVerifyAvailable     = Controleer of het adres beschikbaar is
+	Download                  = Downloaden
 	UpdateDownloadAddress     = Adres downloaden
 	UpdateAvailable           = Beschikbaar
 	UpdateUnavailable         = Niet beschikbaar
