@@ -88,14 +88,14 @@ Function Image_Version_Menu
 
 		write-host
 
-		Write-host "    " -NoNewline
-		Write-Host " C " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-host "   " -NoNewline
+		Write-Host " EI " -NoNewline -BackgroundColor Green -ForegroundColor Black
 		Write-Host " " -NoNewline -ForegroundColor Green
 		Write-Host " $($lang.Consumer) "
 		Write-Host "         $($lang.ConsumerTips)" -ForegroundColor Yellow
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " B " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-host "   " -NoNewline
+		Write-Host " EI " -NoNewline -BackgroundColor Green -ForegroundColor Black
 		Write-Host " " -NoNewline -ForegroundColor Green
 		Write-Host " $($lang.Business) "
 		Write-Host "         $($lang.BusinessTips)" -ForegroundColor Yellow
@@ -200,65 +200,10 @@ Function Image_Version_Menu
 			ToWait -wait 2
 			Image_Version_Menu
 		}
-		"b" {
+		"ei" {
 			Write-Host "`n  $($lang.Change)"
 			Write-Host "  $('-' * 80)"
-			Write-host "  $($lang.Editions): " -NoNewline
-			write-host $lang.Business -ForegroundColor Yellow
-
-			Write-host "  $($lang.Select_Path): " -NoNewline
-			Write-host $EICfgPath -ForegroundColor Yellow
-
-			Write-Host
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $EICfgPath -PathType leaf) {
-				Write-Host " $($lang.Existed)" -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-			} else {
-@"
-[Channel]
-volume
-
-[VL]
-1
-"@ | Out-File -FilePath $EICfgPath -Encoding Ascii -ErrorAction SilentlyContinue
-
-				if (Test-Path -Path $EICfgPath -PathType leaf) {
-					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-				} else {
-					Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-				}
-			}
-			Write-Host
-
-			ToWait -wait 5
-			Image_Version_Menu
-		}
-		"C" {
-			Write-Host "`n  $($lang.Change)"
-			Write-Host "  $('-' * 80)"
-			Write-host "  $($lang.Editions): " -NoNewline
-			write-host $lang.Consumer -ForegroundColor Yellow
-
-			Write-host "  $($lang.Select_Path): " -NoNewline
-			Write-host $EICfgPath -ForegroundColor Yellow
-
-			Write-Host
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $EICfgPath -PathType leaf) {
-				remove-item -path $EICfgPath -force -ErrorAction SilentlyContinue
-
-				if (Test-Path -Path $EICfgPath -PathType leaf) {
-					Write-Host " $($lang.Failed) " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-				} else {
-					Write-Host " $($lang.Done) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
-				}
-			} else {
-				Write-Host " $($lang.NoInstallImage)" -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-			}
-			Write-Host
-
+			Menu_Shortcuts_Install_Method_Switch
 			ToWait -wait 2
 			Image_Version_Menu
 		}

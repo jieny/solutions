@@ -1542,42 +1542,55 @@ Function Menu_Shortcuts_Image_version
 		"k" {
 			Editions_GUI
 		}
-		"s" {
-			$EICfgPath = Join-Path -Path $Global:Image_source -ChildPath "Sources\EI.CFG"
-			Write-Host "`n  $($lang.InstlMode)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
+		default {
+			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+		}
+	}
+}
 
-			Write-host "  $($lang.Select_Path): " -NoNewline
-			Write-host $EICfgPath -ForegroundColor Yellow
+<#
+	.快捷指令：组：映像版本
+#>
+Function Menu_Shortcuts_Install_Method_Switch
+{
+	Write-Host "`n  $($lang.Command): " -NoNewline
+	Write-host "Ei" -ForegroundColor Green
 
-			Write-Host "`n  $($lang.Change)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
+	$EICfgPath = Join-Path -Path $Global:Image_source -ChildPath "Sources\EI.CFG"
+	Write-Host "`n  $($lang.InstlMode)" -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
+
+	Write-host "  $($lang.Select_Path): " -NoNewline
+	Write-host $EICfgPath -ForegroundColor Yellow
+
+	Write-Host "`n  $($lang.Change)" -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
+	if (Test-Path -Path $EICfgPath -PathType leaf) {
+		Write-Host "  $($lang.Consumer) "
+		Write-Host "  $($lang.ConsumerTips)" -ForegroundColor Yellow
+
+		Write-Host
+		Write-Host "  " -NoNewline
+		Write-Host " $($lang.Setting) " -NoNewline -BackgroundColor White -ForegroundColor Black
+
+		if (Test-Path -Path $EICfgPath -PathType leaf) {
+			remove-item -path $EICfgPath -force -ErrorAction SilentlyContinue
+
 			if (Test-Path -Path $EICfgPath -PathType leaf) {
-				Write-Host "  $($lang.Consumer) "
-				Write-Host "  $($lang.ConsumerTips)" -ForegroundColor Yellow
-
-				Write-Host
-				Write-Host "  " -NoNewline
-				Write-Host " $($lang.Setting) " -NoNewline -BackgroundColor White -ForegroundColor Black
-
-				if (Test-Path -Path $EICfgPath -PathType leaf) {
-					remove-item -path $EICfgPath -force -ErrorAction SilentlyContinue
-
-					if (Test-Path -Path $EICfgPath -PathType leaf) {
-						Write-Host " $($lang.Failed) " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-					} else {
-						Write-Host " $($lang.Done) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
-					}
-				} else {
-					Write-Host " $($lang.NoInstallImage)" -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-				}
+				Write-Host " $($lang.Failed) " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
 			} else {
-				Write-Host "  $($lang.Business) "
-				Write-Host "  $($lang.BusinessTips)" -ForegroundColor Yellow
+				Write-Host " $($lang.Done) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
+			}
+		} else {
+			Write-Host " $($lang.NoInstallImage)" -NoNewline -BackgroundColor DarkRed -ForegroundColor White
+		}
+	} else {
+		Write-Host "  $($lang.Business) "
+		Write-Host "  $($lang.BusinessTips)" -ForegroundColor Yellow
 
-				Write-Host
-				Write-Host "  " -NoNewline
-				Write-Host " $($lang.Setting) " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host
+		Write-Host "  " -NoNewline
+		Write-Host " $($lang.Setting) " -NoNewline -BackgroundColor White -ForegroundColor Black
 @"
 [Channel]
 volume
@@ -1586,19 +1599,14 @@ volume
 1
 "@ | Out-File -FilePath $EICfgPath -Encoding Ascii -ErrorAction SilentlyContinue
 
-				if (Test-Path -Path $EICfgPath -PathType leaf) {
-					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-				} else {
-					Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-				}
-			}
-
-			Write-Host
-		}
-		default {
-			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+		if (Test-Path -Path $EICfgPath -PathType leaf) {
+			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+		} else {
+			Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 		}
 	}
+
+	Write-Host
 }
 
 <#

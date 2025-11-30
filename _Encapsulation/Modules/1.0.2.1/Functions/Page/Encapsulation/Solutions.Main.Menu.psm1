@@ -245,9 +245,11 @@ Function Mainpage
 		(Test-Path -Path $(Join-Path -Path $Global:Image_source -ChildPath "Sources\Unattend.xml") -PathType Leaf) -or
 		(Test-Path -Path $(Join-Path -Path $Global:Image_source -ChildPath "Sources\`$OEM$") -PathType Container))
 	{
-		Write-Host $lang.Del -ForegroundColor Green
+		Write-Host "$($lang.EnglineDoneClearFull) " -NoNewline -ForegroundColor Green
+		Write-Host " SCD " -BackgroundColor DarkMagenta -ForegroundColor White
 	} else {
-		Write-Host $lang.Del -ForegroundColor Red
+		Write-Host "$($lang.EnglineDoneClearFull) " -NoNewline -ForegroundColor Red
+		Write-Host " SCD " -BackgroundColor DarkMagenta -ForegroundColor White
 	}
 
 	Write-host "  " -NoNewline
@@ -462,10 +464,10 @@ Function Mainpage
 	Write-host ", $($lang.InstlMode): " -NoNewline -ForegroundColor Yellow
 	if (Test-Path -Path $EICfgPath -PathType leaf) {
 		Write-Host "$($lang.Business) " -NoNewline -ForegroundColor Green
-		Write-Host " IV S " -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host " EI " -BackgroundColor DarkMagenta -ForegroundColor White
 	} else {
 		Write-Host "$($lang.Consumer) " -NoNewline -ForegroundColor Green
-		Write-Host " IV S " -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host " EI " -BackgroundColor DarkMagenta -ForegroundColor White
 	}
 
 	Write-host "  " -NoNewline
@@ -936,6 +938,16 @@ Function Mainpage
 				ToWait -wait 2
 				Mainpage
 			}
+
+			<#
+				.快捷指令：解决方案：删除
+			#>
+			"scd" {
+				Solutions_Remove_Source_ISO
+				ToWait -wait 2
+				Mainpage
+			}
+
 			<#
 				.快捷指令：组：InBox Apps
 			#>
@@ -981,6 +993,16 @@ Function Mainpage
 			"IV *" {
 				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 				Menu_Shortcuts_Image_version -Command $PSItem
+				ToWait -wait 2
+				Mainpage
+			}
+
+			<#
+				.Shortcut: Group: Installation Method
+				.快捷指令：组：安装方式
+			#>
+			"EI" {
+				Menu_Shortcuts_Install_Method_Switch
 				ToWait -wait 2
 				Mainpage
 			}

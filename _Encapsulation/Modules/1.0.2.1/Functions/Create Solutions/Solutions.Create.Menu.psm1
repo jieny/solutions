@@ -299,50 +299,6 @@ Function Solutions_Menu
 			ToWait -wait 2
 			Solutions_Menu
 		}
-		"a" {
-			$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Sources\`$OEM$"
-
-			Write-Host "`n  $($File_Path)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $File_Path -PathType Container) {
-				Remove_Tree $File_Path
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-			} else {
-				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-			}
-			write-host
-
-			$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Sources\Unattend.xml"
-			Write-Host "`n  $($File_Path)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $File_Path -PathType leaf) {
-				Remove_Tree $File_Path
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-			} else {
-				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-			}
-			write-host
-
-			$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Autounattend.xml"
-			Write-Host "`n  $($File_Path)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $File_Path -PathType leaf) {
-				Remove_Tree $File_Path
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-			} else {
-				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-			}
-			write-host
-
-			ToWait -wait 2
-			Solutions_Menu
-		}
 		"11" {
 			$File_Path_MainFolder = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\$((Get-Module -Name Solutions).Author)"
 
@@ -391,6 +347,11 @@ Function Solutions_Menu
 				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 			}
 
+			ToWait -wait 2
+			Solutions_Menu
+		}
+		"a" {
+			Solutions_Remove_Source_ISO
 			ToWait -wait 2
 			Solutions_Menu
 		}
@@ -592,5 +553,50 @@ Function Solutions_Menu
 		default {
 			Mainpage
 		}
+	}
+}
+
+Function Solutions_Remove_Source_ISO
+{
+	Write-Host "`n  $($lang.EnglineDoneClearFull)" -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
+	$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Sources\`$OEM$"
+
+	Write-Host "  $($lang.Select_Path): " -NoNewline
+	Write-host $File_Path -ForegroundColor Yellow
+	Write-Host "  $('.' * 80)"
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
+	if (Test-Path -Path $File_Path -PathType Container) {
+		Remove_Tree $File_Path
+		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+	} else {
+		Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+	}
+
+	$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Sources\Unattend.xml"
+	Write-Host "`n  $($lang.Select_Path): " -NoNewline
+	Write-host $File_Path -ForegroundColor Yellow
+	Write-Host "  $('.' * 80)"
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
+	if (Test-Path -Path $File_Path -PathType leaf) {
+		Remove_Tree $File_Path
+		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+	} else {
+		Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+	}
+
+	$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Autounattend.xml"
+	Write-Host "`n  $($lang.Select_Path): " -NoNewline
+	Write-host $File_Path -ForegroundColor Yellow
+	Write-Host "  $('.' * 80)"
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
+	if (Test-Path -Path $File_Path -PathType leaf) {
+		Remove_Tree $File_Path
+		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+	} else {
+		Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 	}
 }

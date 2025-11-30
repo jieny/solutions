@@ -31,18 +31,43 @@
 
 	Image_Get_Mount_Status -IsHotkey
 
-	Write-Host "`n  $($lang.Menu)" -ForegroundColor Yellow
+	Write-Host
+	Write-Host "  $($lang.LocalExperiencePack) " -NoNewline -ForegroundColor Yellow
+	Write-Host " LXPs " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " $($lang.Download) " -BackgroundColor White -ForegroundColor Black
 	Write-Host "  $('-' * 80)"
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Green
+		Write-Host "  $($lang.AddTo)" -ForegroundColor Green
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Red
+		Write-Host "  $($lang.AddTo)" -ForegroundColor Red
 	}
 
+	if (Verify_Is_Current_Same) {
+		Write-host "    " -NoNewline
+		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-Host "  $($lang.Update)" -ForegroundColor Green
+	} else {
+		Write-host "    " -NoNewline
+		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-Host "  $($lang.Update)" -ForegroundColor Red
+	}
+
+	if (Verify_Is_Current_Same) {
+		Write-host "    " -NoNewline
+		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-Host "  $($lang.Del)" -ForegroundColor Green
+	} else {
+		Write-host "    " -NoNewline
+		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+		Write-Host "  $($lang.Del)" -ForegroundColor Red
+	}
+
+	Write-Host "`n  $($lang.InboxAppsManager)" -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
@@ -53,28 +78,6 @@
 		Write-Host "  $($lang.InboxAppsManager): $($lang.AddTo)" -ForegroundColor Red
 	}
 
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Green
-	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Red
-	}
-
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Green
-	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Red
-	}
-
-	Write-Host "`n    $($lang.InboxAppsManager)" -ForegroundColor Yellow
-	Write-Host "    $('-' * 78)"
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " A " -NoNewline -BackgroundColor Green -ForegroundColor Black
