@@ -1605,7 +1605,7 @@ Function ISO_Create_UI
 			}
 		}
 	} else {
-		$IsISOAddLanguageFlag.Checked = $True
+		$IsISOAddLanguageFlag.Checked = $False
 	}
 
 	<#
@@ -1636,7 +1636,7 @@ Function ISO_Create_UI
 			}
 		}
 	} else {
-		$GUIISO_Engline_Language_Know_Group.Checked = $True
+		$GUIISO_Engline_Language_Know_Group.Checked = $False
 	}
 
 	$GroupGetKnownLanguage = @()
@@ -4146,14 +4146,12 @@ Function ISO_Create_Process
 			Write-Host "`n  $($lang.Bypass_TPM)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			if ($Global:BypassTPM) {
-				Write-Host "  $($lang.Operable)" -ForegroundColor Green
-
 				$arguments = @(
 					"""$(Join-Path -Path $Global:ISOSaveToFolder -ChildPath $Global:ISOSaveToFileName)"""
 				)
 
 				if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
-					Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
+					Write-Host "  $($lang.Command)" -ForegroundColor Yellow
 					Write-Host "  $('-' * 80)"
 					Write-Host "  Start-Process -FilePath '$($BypassTPMCmd)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
 					Write-Host "  $('-' * 80)`n"
