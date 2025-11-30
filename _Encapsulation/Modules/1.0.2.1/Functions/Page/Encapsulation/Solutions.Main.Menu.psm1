@@ -190,6 +190,9 @@ Function Mainpage
 		if (Verify_Is_Current_Same) {
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
 			Write-Host " Se * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+
+			Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+			Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 			Write-Host ", " -NoNewline
 
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
@@ -206,6 +209,9 @@ Function Mainpage
 			} else {
 				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
 				Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
+
+				Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+				Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 				Write-Host ", " -NoNewline
 
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
@@ -213,6 +219,7 @@ Function Mainpage
 			}
 		}
 	} else {
+		write-host "222"
 		if (Image_Is_Mount) {
 			Write-Host "$($lang.Image_Unmount_After): " -NoNewline
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green

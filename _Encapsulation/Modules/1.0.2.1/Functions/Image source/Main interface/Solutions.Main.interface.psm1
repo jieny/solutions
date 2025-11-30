@@ -1777,63 +1777,6 @@ Function Image_Select
 		$UI_Main_Error_Icon.Image = $null
 
 		$UI_Main_Ok.Visible = $False                    # 隐藏: 确定按钮
-
-		<#
-			.前往到
-		#>
-			$UI_Main_To.Visible = $False                    # 隐藏：前往到
-			$UI_Main_To.DataSource = $null                  # 清除旧内容
-			$GotoNew = [Collections.ArrayList]@()
-			$GotoNewOne = @{
-				GroupA = @(
-					@{ Path = "";                                      Lang = $lang.Ok_Go_To_No; }
-					@{ Path = "Event_Assign_Task_Customize_Autopilot"; Lang = $lang.Autopilot; }
-					@{ Path = "Event_Assign_Task_Customize";           Lang = $lang.OnDemandPlanTask; }
-				)
-				GroupB = @(
-					@{ Path = @("Eject_Forcibly_All -Save -DontSave"); Lang = "$($lang.Image_Unmount_After): $($lang.Save)"; }
-					@{ Path = @("Eject_Forcibly_All -DontSave");       Lang = "$($lang.Image_Unmount_After): $($lang.DoNotSave)"; }
-					@{ Path = @("Language_Extract_UI");                Lang = "$($lang.Language): $($lang.LanguageExtract)"; }
-					@{ Path = @("Solutions");                          Lang = "$($lang.Solution): $($lang.IsCreate)"; }
-					@{ Path = @("Image_Convert");                      Lang = "$($lang.Convert_Only), $($lang.Conver_Merged), $($lang.Conver_Split_To_Swm)"; }
-					@{ Path = @("ISO_Create");                         Lang = $lang.UnpackISO; }
-				)
-				GroupPK = @(
-					@{ Path = @("Image_Select_Mount_Shortcuts");          Lang = "$($lang.Sel_Primary_Key): $($lang.Mount)"; }
-					@{ Path = @("Image_Eject_Save_Current");              Lang = "$($lang.Sel_Primary_Key): $($lang.Save)"; }
-					@{ Path = @("Image_Eject_Dont_Save_Current");         Lang = "$($lang.Sel_Primary_Key): $($lang.Unmount)"; }
-				)
-			}
-
-			<#
-				.可前往：添加群组 A
-			#>
-			foreach ($item in $GotoNewOne.GroupA) {
-				$GotoNew.Add([pscustomobject]@{ Path = $item.Path; Lang = $item.Lang; }) | Out-Null
-			}
-
-			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsShowSelectKey" -ErrorAction SilentlyContinue) {
-				switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsShowSelectKey" -ErrorAction SilentlyContinue) {
-					"True" {
-						foreach ($item in $GotoNewOne.GroupPK) {
-							$GotoNew.Add([pscustomobject]@{ Path = $item.Path; Lang = $item.Lang; }) | Out-Null
-						}
-					}
-				}
-			}
-
-			<#
-				.前往到：添加群组 B
-			#>
-			foreach ($item in $GotoNewOne.GroupB) {
-				$GotoNew.Add([pscustomobject]@{ Path = $item.Path; Lang = $item.Lang; }) | Out-Null
-			}
-
-			$UI_Main_To.BindingContext = New-Object System.Windows.Forms.BindingContext
-			$UI_Main_To.Datasource = $GotoNew
-			$UI_Main_To.ValueMember = "Path"
-			$UI_Main_To.DisplayMember = "Lang"
-
 		$GUIImageSourceGroupMount.Visible = $False      # 动态显示：挂载到
 		$GUIImageSourceGroupLang.Visible = $False       # 动态显示：更改语言
 		$GUIImageSourceGroupOther.Visible = $False      # 动态显示：详细
@@ -1843,6 +1786,64 @@ Function Image_Select
 		#>
 		$UI_Primary_Key_Select.controls.Clear()
 		$UI_Primary_Key_Group.Visible = $False
+
+		<#
+			.前往到
+		#>
+		#region GoTo
+		$UI_Main_To.Visible = $False                    # 隐藏：前往到
+		$UI_Main_To.DataSource = $null                  # 清除旧内容
+		$GoTo = [Collections.ArrayList]@()
+		$GoToGroup = @{
+			GroupA = @(
+				@{ Path = "";                                      Lang = $lang.Ok_Go_To_No; }
+				@{ Path = "Event_Assign_Task_Customize_Autopilot"; Lang = $lang.Autopilot; }
+				@{ Path = "Event_Assign_Task_Customize";           Lang = $lang.OnDemandPlanTask; }
+			)
+			GroupB = @(
+				@{ Path = @("Eject_Forcibly_All -Save -DontSave"); Lang = "$($lang.Image_Unmount_After): $($lang.Save)"; }
+				@{ Path = @("Eject_Forcibly_All -DontSave");       Lang = "$($lang.Image_Unmount_After): $($lang.DoNotSave)"; }
+				@{ Path = @("Language_Extract_UI");                Lang = "$($lang.Language): $($lang.LanguageExtract)"; }
+				@{ Path = @("Solutions");                          Lang = "$($lang.Solution): $($lang.IsCreate)"; }
+				@{ Path = @("Image_Convert");                      Lang = "$($lang.Convert_Only), $($lang.Conver_Merged), $($lang.Conver_Split_To_Swm)"; }
+				@{ Path = @("ISO_Create");                         Lang = $lang.UnpackISO; }
+			)
+			GroupPK = @(
+				@{ Path = @("Image_Select_Mount_Shortcuts");       Lang = "$($lang.Sel_Primary_Key): $($lang.Mount)"; }
+				@{ Path = @("Image_Eject_Save_Current");           Lang = "$($lang.Sel_Primary_Key): $($lang.Save)"; }
+				@{ Path = @("Image_Eject_Dont_Save_Current");      Lang = "$($lang.Sel_Primary_Key): $($lang.Unmount)"; }
+			)
+		}
+
+		<#
+			.可前往：添加群组 A
+		#>
+		foreach ($item in $GoToGroup.GroupA) {
+			$GoTo.Add([pscustomobject]@{ Path = $item.Path; Lang = $item.Lang; }) | Out-Null
+		}
+
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsShowSelectKey" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsShowSelectKey" -ErrorAction SilentlyContinue) {
+				"True" {
+					foreach ($item in $GoToGroup.GroupPK) {
+						$GoTo.Add([pscustomobject]@{ Path = $item.Path; Lang = $item.Lang; }) | Out-Null
+					}
+				}
+			}
+		}
+
+		<#
+			.前往到：添加群组 B
+		#>
+		foreach ($item in $GoToGroup.GroupB) {
+			$GoTo.Add([pscustomobject]@{ Path = $item.Path; Lang = $item.Lang; }) | Out-Null
+		}
+
+		$UI_Main_To.BindingContext = New-Object System.Windows.Forms.BindingContext
+		$UI_Main_To.Datasource = $GoTo
+		$UI_Main_To.ValueMember = "Path"
+		$UI_Main_To.DisplayMember = "Lang"
+		#endregion
 
 		<#
 			.初始化字符长度

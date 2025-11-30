@@ -1447,8 +1447,27 @@ Function Image_Save_Primary_Key_Shortcuts
 	Write-host "Se" -ForegroundColor Green
 
 	Write-Host "  $($lang.RuleName): " -NoNewline
-	$Name = $Name.Remove(0, 3).Replace(' ', '')
-	Write-host $Name -ForegroundColor Green
+	if ($Name -like "*-DNS*") {
+		$Name = $Name.Remove(0, 3).Replace(' ', '').Replace('-dns', '').Tolower()
+		Write-host $Name -ForegroundColor Green
+
+		Write-Host "  $($lang.UnmountAndSave): "
+		write-host "  " -NoNewline
+		Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
+
+		$IsSaveUnmount = $True
+	} else {
+		$Name = $Name.Remove(0, 3).Replace(' ', '')
+		Write-host $Name -ForegroundColor Green
+
+		Write-Host "  $($lang.UnmountAndSave): "
+		write-host "  " -NoNewline
+		Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host " $($lang.UpdateUnavailable) " -BackgroundColor DarkRed -ForegroundColor White
+
+		$IsSaveUnmount = $False
+	}
 
 	Write-Host "`n  $($lang.Event_Primary_Key) *" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
@@ -1482,6 +1501,17 @@ Function Image_Save_Primary_Key_Shortcuts
 				Write-Host " $($lang.Save) " -NoNewline -BackgroundColor White -ForegroundColor Black
 				Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $test_mount_folder_Current | Out-Null
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+
+				Write-Host
+				Write-Host "  " -NoNewline
+				Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor White -ForegroundColor Black
+				if ($IsSaveUnmount) {
+					Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
+
+					Image_Eject_Dont_Save_Current
+				} else {
+					Write-Host " $($lang.UpdateUnavailable) " -BackgroundColor DarkRed -ForegroundColor White
+				}
 			} else {
 				Write-Host "  $($lang.NotMounted)" -ForegroundColor Red
 			}
@@ -1519,6 +1549,17 @@ Function Image_Save_Primary_Key_Shortcuts
 						Write-Host " $($lang.Save) " -NoNewline -BackgroundColor White -ForegroundColor Black
 						Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $test_mount_folder_Current | Out-Null
 						Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+
+						Write-Host
+						Write-Host "  " -NoNewline
+						Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor White -ForegroundColor Black
+						if ($IsSaveUnmount) {
+							Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
+
+							Image_Eject_Dont_Save_Current
+						} else {
+							Write-Host " $($lang.UpdateUnavailable) " -BackgroundColor DarkRed -ForegroundColor White
+						}
 					} else {
 						Write-Host "  $($lang.NotMounted)" -ForegroundColor Red
 					}
