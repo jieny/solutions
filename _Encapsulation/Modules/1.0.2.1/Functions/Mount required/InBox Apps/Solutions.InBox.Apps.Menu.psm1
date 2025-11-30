@@ -559,6 +559,15 @@
 		}
 
 		<#
+			.LXPs
+		#>
+		"lxps" {
+			Solutions_Engine_LXPs
+			ToWait -wait 2
+			InBox_Apps_Menu
+		}
+
+		<#
 			.帮助
 		#>
 		{ "H", "Help", "H'elp" -eq $_ } {

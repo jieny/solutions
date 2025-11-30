@@ -4159,7 +4159,8 @@ Function ISO_Create_Process
 					Write-Host "  $('-' * 80)`n"
 				}
 
-				Write-Host "  $($lang.LXPsWaitAddUpdate): " -NoNewline
+				Write-Host "  " -NoNewline
+				Write-Host " $($lang.LXPsWaitAddUpdate) " -NoNewline -BackgroundColor White -ForegroundColor Black
 				Start-Process -FilePath $BypassTPMCmd -ArgumentList $Arguments -wait -WindowStyle Minimized
 				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			} else {

@@ -1153,6 +1153,15 @@ Function Mainpage
 		}
 
 		<#
+			.LXPs
+		#>
+		"lxps" {
+			Solutions_Engine_LXPs
+			ToWait -wait 2
+			Mainpage
+		}
+
+		<#
 			.帮助
 		#>
 		{ "H", "Help", "H'elp" -eq $_ } {

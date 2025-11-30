@@ -2078,3 +2078,38 @@ Function Menu_Shortcuts_PS_Cmd
 		}
 	}
 }
+
+<#
+	.LXPs
+#>
+Function Solutions_Engine_LXPs
+{
+	Write-Host "`n  $($lang.Command): " -NoNewline
+	Write-host "LXPs" -ForegroundColor Green
+
+	$RunFilePath = Join-Path -Path $PSScriptRoot -ChildPath "..\..\..\..\..\_Custom\Engine\LXPs\LXPs.ps1" -ErrorAction SilentlyContinue
+	if (Test-Path -Path $RunFilePath -PathType Leaf) {
+		$Newfilename = Convert-Path -Path $RunFilePath -ErrorAction SilentlyContinue
+
+		Write-Host "  $($lang.Filename): " -NoNewline
+		Write-host $Newfilename -ForegroundColor Green
+
+		Write-Host "  " -NoNewline
+		Write-Host " $($lang.Running) " -NoNewline -BackgroundColor White -ForegroundColor Black
+
+		$arguments = @(
+			"-ExecutionPolicy",
+			"ByPass",
+			"-File",
+			$Newfilename
+		)
+
+		Start-Process "powershell" -ArgumentList $arguments -Verb RunAs
+
+		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+	} else {
+		Write-Host "  " -NoNewline
+		Write-Host " $($lang.Running) " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+	}
+}

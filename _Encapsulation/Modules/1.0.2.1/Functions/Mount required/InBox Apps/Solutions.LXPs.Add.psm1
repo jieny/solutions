@@ -2226,7 +2226,9 @@ Function InBox_Apps_Add_Mark_Process
 			}
 
 			Write-Host "  $($Path)\License.xml" -ForegroundColor Yellow
-			Write-Host "  $($lang.IsLicense): " -NoNewline
+			
+			Write-Host "  " -NoNewline
+			Write-Host " $($lang.IsLicense) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			Add-AppxProvisionedPackage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\AppxProvisionedPackage.log" -Path $test_mount_folder_Current -PackagePath $_.FullName -LicensePath "$($Path)\License.xml" -Regions "All" -ErrorAction SilentlyContinue | Out-Null
 			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 			Write-Host
