@@ -191,7 +191,7 @@ Function Mainpage
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
 			Write-Host " Se * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 
-			Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+			Write-Host " -Dns " -NoNewline -BackgroundColor White -ForegroundColor Black
 			Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 			Write-Host ", " -NoNewline
 

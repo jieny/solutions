@@ -2049,6 +2049,7 @@ Function Language_Add_File_Type_Process
 		Write-Host $FileName -ForegroundColor Green
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.ExcludeItem)" -ForegroundColor Red
+		Write-Host
 	} else {
 		<#
 			.初始化每任务运行时间

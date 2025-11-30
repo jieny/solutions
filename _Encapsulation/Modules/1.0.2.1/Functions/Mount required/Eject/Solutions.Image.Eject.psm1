@@ -1453,7 +1453,7 @@ Function Image_Save_Primary_Key_Shortcuts
 
 		Write-Host "  $($lang.UnmountAndSave): "
 		write-host "  " -NoNewline
-		Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host " -Dns " -NoNewline -BackgroundColor White -ForegroundColor Black
 		Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
 
 		$IsSaveUnmount = $True
@@ -1463,7 +1463,7 @@ Function Image_Save_Primary_Key_Shortcuts
 
 		Write-Host "  $($lang.UnmountAndSave): "
 		write-host "  " -NoNewline
-		Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+		Write-Host " -Dns " -NoNewline -BackgroundColor White -ForegroundColor Black
 		Write-Host " $($lang.UpdateUnavailable) " -BackgroundColor DarkRed -ForegroundColor White
 
 		$IsSaveUnmount = $False
