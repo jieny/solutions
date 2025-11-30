@@ -177,6 +177,9 @@ Function Language_Menu
 		if (Verify_Is_Current_Same) {
 			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Green
 			Write-Host " Se * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+
+			Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
+			Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 			Write-Host ", " -NoNewline
 
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
@@ -193,9 +196,6 @@ Function Language_Menu
 			} else {
 				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
 				Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-
-				Write-Host " -DNS " -NoNewline -BackgroundColor White -ForegroundColor Black
-				Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 				Write-Host ", " -NoNewline
 
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
