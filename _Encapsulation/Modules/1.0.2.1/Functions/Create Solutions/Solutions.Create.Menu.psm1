@@ -158,7 +158,7 @@ Function Solutions_Menu
 	}
 
 	Write-Host
-	Write-host "  $($lang.Shortcut): "
+	Write-host "  $($lang.Shortcut)"
 	Write-Host "  $('-' * 80)"
 	Write-Host "  $($lang.SelectSettingImage): " -NoNewline -ForegroundColor Yellow
 	Write-Host " MT * "-BackgroundColor DarkMagenta -ForegroundColor White

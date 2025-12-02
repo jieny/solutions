@@ -1047,6 +1047,8 @@ Function Image_Select
 	#>
 	Function Unzip_Custom_Rule_Setting_Default
 	{
+		$GUID = ""
+
 		$UIUnzipPanel_Select_Rule_Menu.Controls | ForEach-Object {
 			if ($_ -is [System.Windows.Forms.RadioButton]) {
 				if ($_.Enabled) {
@@ -4595,11 +4597,6 @@ Function Image_Select
 		Text           = $lang.IsAuto_Repair_Tips
 	}
 
-	$GUIImageSourceSettingRepairTips = New-Object system.Windows.Forms.Label -Property @{
-		AutoSize       = 1
-		margin         = "20,5,20,35"
-		Text           = $lang.History_Del_Tips
-	}
 	$GUIImageSourceSettingClearHistory = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 45
 		Width          = 475
@@ -4662,6 +4659,11 @@ Function Image_Select
 			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.Clear_Bad_Mount), $($lang.Done)"
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 		}
+	}
+	$GUIImageSourceSettingRepairTips = New-Object system.Windows.Forms.Label -Property @{
+		AutoSize       = 1
+		margin         = "20,0,0,35"
+		Text           = $lang.History_Del_Tips
 	}
 
 	<#
