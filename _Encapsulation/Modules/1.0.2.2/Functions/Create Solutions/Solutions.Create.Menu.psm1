@@ -357,45 +357,7 @@ Function Solutions_Menu
 			Solutions_Menu
 		}
 		"aa" {
-			$File_Path_MainFolder = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\$((Get-Module -Name Solutions).Author)"
-
-			Write-Host "`n  $($File_Path_MainFolder)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $File_Path_MainFolder -PathType Container) {
-				Remove_Tree $File_Path_MainFolder
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-			} else {
-				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-			}
-
-			$File_Path_Unattend = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows\Panther\Unattend.xml"
-
-			Write-Host "`n  $($File_Path_Unattend)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $File_Path_Unattend -PathType Leaf) {
-				Remove_Tree $File_Path_Unattend
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-			} else {
-				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-			}
-
-			$File_Path_Office = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Users\Public\Desktop\Office"
-
-			Write-Host "`n  $($File_Path_Office)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			Write-Host "  " -NoNewline
-			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			if (Test-Path -Path $File_Path_Office -PathType Container) {
-				Remove_Tree $File_Path_Office
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-			} else {
-				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
-			}
-
+			Solutions_Remove_Mount_OEM
 			ToWait -wait 2
 			Solutions_Menu
 		}
@@ -559,7 +521,7 @@ Function Solutions_Menu
 
 Function Solutions_Remove_Source_ISO
 {
-	Write-Host "`n  $($lang.EnglineDoneClearFull)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.Del): ISO"
 	Write-Host "  $('-' * 80)"
 	$File_Path = Join-Path -Path $Global:Image_source -ChildPath "Sources\`$OEM$"
 
@@ -599,5 +561,60 @@ Function Solutions_Remove_Source_ISO
 		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 	} else {
 		Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+	}
+}
+
+
+Function Solutions_Remove_Mount_OEM
+{
+	Write-Host "`n  $($lang.Del): $($lang.Mounted)"
+	Write-Host "  $('-' * 80)"
+	if (Image_Is_Select_IAB) {
+		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
+		Write-Host "  $('-' * 80)"
+
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Mounted)" -ForegroundColor Red
+			
+			$File_Path_MainFolder = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\$((Get-Module -Name Solutions).Author)"
+			Write-Host "`n  $($File_Path_MainFolder)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+			Write-Host "  " -NoNewline
+			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			if (Test-Path -Path $File_Path_MainFolder -PathType Container) {
+				Remove_Tree $File_Path_MainFolder
+				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+			} else {
+				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+			}
+
+			$File_Path_Unattend = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Windows\Panther\Unattend.xml"
+			Write-Host "`n  $($File_Path_Unattend)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+			Write-Host "  " -NoNewline
+			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			if (Test-Path -Path $File_Path_Unattend -PathType Leaf) {
+				Remove_Tree $File_Path_Unattend
+				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+			} else {
+				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+			}
+		
+			$File_Path_Office = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount\Users\Public\Desktop\Office"
+			Write-Host "`n  $($File_Path_Office)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+			Write-Host "  " -NoNewline
+			Write-Host " $($lang.Del) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			if (Test-Path -Path $File_Path_Office -PathType Container) {
+				Remove_Tree $File_Path_Office
+				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+			} else {
+				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
+			}
+		} else {
+			Write-Host "  $($lang.NotMounted)" -ForegroundColor Red
+		}
+	} else {
+		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
 	}
 }

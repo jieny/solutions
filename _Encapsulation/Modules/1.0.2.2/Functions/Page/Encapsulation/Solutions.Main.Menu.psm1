@@ -242,17 +242,44 @@ Function Mainpage
 	Write-Host " $($lang.Solution): " -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.IsCreate) " -NoNewline -ForegroundColor Green
 	Write-Host " SC " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-	Write-Host ", " -NoNewline
+	Write-Host ", $($lang.Del): " -NoNewline -ForegroundColor Yellow
 
 	if ((Test-Path -Path $(Join-Path -Path $Global:Image_source -ChildPath "Autounattend.xml") -PathType Leaf) -or
 		(Test-Path -Path $(Join-Path -Path $Global:Image_source -ChildPath "Sources\Unattend.xml") -PathType Leaf) -or
 		(Test-Path -Path $(Join-Path -Path $Global:Image_source -ChildPath "Sources\`$OEM$") -PathType Container))
 	{
-		Write-Host "$($lang.EnglineDoneClearFull) " -NoNewline -ForegroundColor Green
-		Write-Host " SCD " -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host "ISO " -NoNewline -ForegroundColor Green
+		Write-Host " SC DI " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	} else {
-		Write-Host "$($lang.EnglineDoneClearFull) " -NoNewline -ForegroundColor Red
-		Write-Host " SCD " -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host "ISO " -NoNewline -ForegroundColor Red
+		Write-Host " SC DI " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	}
+
+	Write-Host ", " -NoNewline
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			$TestNewFolder = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
+			$File_Path_MainFolder = "$($TestNewFolder)\$((Get-Module -Name Solutions).Author)"
+			$File_Path_Unattend = "$($TestNewFolder)\Windows\Panther\Unattend.xml"
+			$File_Path_Office = "$($TestNewFolder)\Users\Public\Desktop\Office"
+
+			if ((Test-Path -Path $File_Path_MainFolder -PathType Container) -or
+				(Test-Path -Path $File_Path_Unattend -PathType Leaf) -or
+				(Test-Path -Path $File_Path_Office -PathType Container))
+			{
+				Write-Host "$($lang.Mounted) " -NoNewline -ForegroundColor Green
+				Write-Host " SC DM " -BackgroundColor DarkMagenta -ForegroundColor White
+			} else {
+				Write-Host "$($lang.Mounted) " -NoNewline -ForegroundColor Red
+				Write-Host " SC DM " -BackgroundColor DarkRed -ForegroundColor White
+			}
+		} else {
+			Write-Host "$($lang.Mounted) " -NoNewline -ForegroundColor Red
+			Write-Host " SC DM " -BackgroundColor DarkRed -ForegroundColor White
+		}
+	} else {
+		Write-Host "$($lang.Mounted) " -NoNewline -ForegroundColor Red
+		Write-Host " SC DM " -BackgroundColor DarkRed -ForegroundColor White
 	}
 
 	Write-host "  " -NoNewline
@@ -950,10 +977,19 @@ Function Mainpage
 			}
 
 			<#
-				.快捷指令：解决方案：删除
+				.快捷指令：解决方案：删除，ISO
 			#>
-			"scd" {
+			"SC DI" {
 				Solutions_Remove_Source_ISO
+				ToWait -wait 2
+				Mainpage
+			}
+
+			<#
+				.快捷指令：解决方案：删除，已挂载
+			#>
+			"SC DM" {
+				Solutions_Remove_Mount_OEM
 				ToWait -wait 2
 				Mainpage
 			}
