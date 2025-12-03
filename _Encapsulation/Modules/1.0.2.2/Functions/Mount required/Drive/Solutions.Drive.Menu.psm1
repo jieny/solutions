@@ -115,6 +115,7 @@ Function Drive_Menu
 	Write-host "  $($lang.Shortcut)"
 	Write-Host "  $('-' * 80)"
 	Write-Host "  $($lang.SelectSettingImage): " -NoNewline -ForegroundColor Yellow
+	Write-Host "$($lang.Mount) " -NoNewline -ForegroundColor Green
 	Write-Host " MT * "-BackgroundColor DarkMagenta -ForegroundColor White
 
 	Write-Host "  $($lang.Mounted_Status): " -NoNewline -ForegroundColor Yellow
