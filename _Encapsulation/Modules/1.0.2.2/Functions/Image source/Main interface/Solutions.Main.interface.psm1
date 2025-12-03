@@ -4512,8 +4512,9 @@ Function Image_Select
 		}
 	} else {
 		Save_Dynamic -regkey "Solutions" -name "IsShowSelectKey" -value "True" -String
-		$UI_Main_Adv_Sel_ImageSources_Show_Key.Checked = $true
+		$UI_Main_Adv_Sel_ImageSources_Show_Key.Checked = $True
 	}
+
 	$UI_Main_Adv_Sel_ImageSources_Show_Key_Tips = New-Object system.Windows.Forms.Label -Property @{
 		AutoSize       = 1
 		margin         = "34,5,20,20"
