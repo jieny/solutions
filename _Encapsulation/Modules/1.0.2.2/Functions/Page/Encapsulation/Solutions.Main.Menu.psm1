@@ -115,6 +115,10 @@ Function Mainpage
 	Write-Host " MT * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host ", " -NoNewline
 
+	Write-Host "$($lang.Wim_Capture) " -NoNewline -ForegroundColor Green
+	Write-Host " ISC " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host ", " -NoNewline
+
 	Write-Host "$($lang.Rebuild) " -NoNewline -ForegroundColor Green
 	if (Image_Is_Select_IAB) {
 		if (Verify_Is_Current_Same) {
@@ -133,14 +137,9 @@ Function Mainpage
 	Write-Host ", " -NoNewline
 
 	Write-Host "$($lang.Del) " -NoNewline -ForegroundColor Green
-	Write-Host " ISD * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-	Write-Host ", " -NoNewline
-
-	Write-Host "$($lang.Wim_Capture) " -NoNewline -ForegroundColor Green
-	Write-Host " ISC " -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " ISD * " -BackgroundColor DarkMagenta -ForegroundColor White
 
 	Write-Host "      " -NoNewline
-
 	Write-Host " $($lang.Export_Image) " -NoNewline -ForegroundColor Green
 	if (Image_Is_Select_IAB) {
 		if (Verify_Is_Current_Same) {
@@ -170,7 +169,7 @@ Function Mainpage
 
 	Write-host ", " -NoNewline
 	Write-Host " $($lang.CompressionType_Fast) " -NoNewline -ForegroundColor Green
-	Write-Host " 2Q " -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " FF " -BackgroundColor DarkMagenta -ForegroundColor White
 
 	Write-host "   " -NoNewline
 	if (Image_Is_Mount_Specified -Master "Install" -ImageFileName "Install") {
@@ -581,7 +580,7 @@ Function Mainpage
 			ToWait -wait 2
 			Mainpage
 		}
-		"2Q" {
+		"FF" {
 			ISO_Create_UI -Quick -ISO
 
 			if ($Global:Queue_ISO) {

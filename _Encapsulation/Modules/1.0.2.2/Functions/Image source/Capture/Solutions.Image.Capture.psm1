@@ -113,7 +113,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Sources_Path_Sel = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
-		Width          = 475
+		Width          = 530
 		Padding        = "14,0,0,0"
 		Text           = $lang.SelectFolder
 		LinkColor      = "GREEN"
@@ -153,7 +153,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Sources_PathOpen = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 45
-		Width          = 475
+		Width          = 530
 		Padding        = "14,0,0,0"
 		Text           = $lang.OpenFolder
 		LinkColor      = "GREEN"
@@ -188,7 +188,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Sources_PathPaste = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 45
-		Width          = 475
+		Width          = 530
 		Padding        = "14,0,0,0"
 		Text           = $lang.Paste
 		LinkColor      = "GREEN"
@@ -324,7 +324,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Config_Edit = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
-		Width          = 500
+		Width          = 515
 		margin          = "18,25,0,0"
 		Text           = $lang.Wim_Config_Edit
 		LinkColor      = "GREEN"
@@ -357,7 +357,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Config_Select = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
-		Width          = 500
+		Width          = 515
 		margin          = "18,10,0,0"
 		Text           = $lang.SelFile
 		LinkColor      = "GREEN"
@@ -387,7 +387,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Config_Tips = New-Object System.Windows.Forms.Label -Property @{
 		Height          = 35
-		Width           = 500
+		Width           = 530
 		Text            = $lang.DropFile
 		Padding         = "32,0,0,0"
 	}
@@ -398,7 +398,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_WIM_Detailed = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
-		Width          = 530
+		Width          = 533
 		margin         = "0,35,0,0"
 		Text           = $lang.Detailed
 	}
@@ -492,7 +492,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_CompressionType = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
-		Width          = 530
+		Width          = 533
 		Margin         = "0,35,0,0"
 		Text           = $lang.CompressionType
 		Checked        = $True
@@ -534,7 +534,7 @@ Function Image_Capture_UI
 	#>
 	$UI_Main_Capture_Adv = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
-		Width          = 530
+		Width          = 533
 		Margin         = "0,45,0,0"
 		Text           = $lang.AdvOption
 	}
@@ -630,12 +630,12 @@ Function Image_Capture_UI
 	}
 
 	$RandomGuid = [guid]::NewGuid()
-	$SaveFileToCapture = Join-Path -Path $Global:MainMasterFolder -ChildPath "_Backup\Capture\Capture.$($RandomGuid).wim"
+	$SaveFileToCapture = Join-Path -Path $Global:MainMasterFolder -ChildPath "_Backup\Capture\Capture.$(Get-Date -Format "yyyyMMddHHmmss").$($RandomGuid).wim"
 	$UI_Main_Capture_Save_Path.Text = $SaveFileToCapture
 
 	$UI_Main_Capture_Save_Path_Select = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 45
-		Width          = 475
+		Width          = 530
 		Padding        = "14,0,0,0"
 		Text           = $lang.SelFile
 		LinkColor      = "GREEN"
@@ -647,7 +647,7 @@ Function Image_Capture_UI
 			$UI_Main_Capture_Save_Path.BackColor = "#FFFFFF"
 
 			$RandomGuid = [guid]::NewGuid()
-			$NewTempFileNameGUID = "Capture.$($RandomGuid).wim"
+			$NewTempFileNameGUID = "Capture.$(Get-Date -Format "yyyyMMddHHmmss").$($RandomGuid).wim"
 
 			$FileBrowser = New-Object System.Windows.Forms.SaveFileDialog -Property @{
 				FileName         = $NewTempFileNameGUID

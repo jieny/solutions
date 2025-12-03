@@ -4100,7 +4100,7 @@ Function ISO_Create_Process
 			#>
 			$OscdimgArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
 
-			Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.Running)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			if (Test-Path -Path $OscdimgArch -PathType Leaf) {
 				Write-Host "  $($OscdimgArch)"
