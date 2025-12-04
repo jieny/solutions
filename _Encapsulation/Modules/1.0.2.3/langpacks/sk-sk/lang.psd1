@@ -192,6 +192,8 @@
 	CRCSHA                          = Skontrolovať
 	Alternative                     = Alternatívny názov súboru
 	ChangeInstallDisk               = Zmeňte automatický výber disku
+	Backup                          = Záloha
+	Restore                         = Obnoviť
 
 	# View
 	ExportToLogs                    = Vytlačte zostavu na prihlásenie

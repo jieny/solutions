@@ -192,6 +192,8 @@
 	CRCSHA                          = Ellenőrzés
 	Alternative                     = Alternatív fájlnév
 	ChangeInstallDisk               = Az automatikus lemezkiválasztás módosítása
+	Backup                          = Biztonsági mentés
+	Restore                         = Visszaállítás
 
 	# View
 	ExportToLogs                    = Jelentés nyomtatása a naplóhoz

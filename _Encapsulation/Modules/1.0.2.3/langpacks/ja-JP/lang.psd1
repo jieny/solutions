@@ -192,6 +192,8 @@
 	CRCSHA                          = 確かめる
 	Alternative                     = 代替ファイル名
 	ChangeInstallDisk               = 自動選択ディスクを変更します
+	Backup                          = バックアップ
+	Restore                         = 復元
 
 	# View
 	ExportToLogs                    = ログにレポートを印刷する

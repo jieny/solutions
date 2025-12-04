@@ -192,6 +192,8 @@
 	CRCSHA                          = يفحص
 	Alternative                     = اسم الملف البديل
 	ChangeInstallDisk               = تغيير التحديد التلقائي للقرص
+	Backup                          = النسخ الاحتياطي
+	Restore                         = الاستعادة
 
 	# View
 	ExportToLogs                    = طباعة التقرير للتسجيل

@@ -666,8 +666,7 @@ Function Image_Capture_UI
 		}
 	}
 
-	$RandomGuid = [guid]::NewGuid()
-	$SaveFileToCapture = Join-Path -Path $Global:MainMasterFolder -ChildPath "_Backup\Capture\Capture.$(Get-Date -Format "yyyyMMddHHmmss").$($RandomGuid).wim"
+	$SaveFileToCapture = Join-Path -Path $Global:MainMasterFolder -ChildPath "_Backup\Capture\Capture.$(Get-Date -Format "yyyyMMddHHmmss").wim"
 	$UI_Main_Capture_Save_Path.Text = $SaveFileToCapture
 
 	$UI_Main_Capture_Save_Path_Select = New-Object system.Windows.Forms.LinkLabel -Property @{
@@ -683,8 +682,7 @@ Function Image_Capture_UI
 			$UI_Main_Error_Icon.Image = $null
 			$UI_Main_Capture_Save_Path.BackColor = "#FFFFFF"
 
-			$RandomGuid = [guid]::NewGuid()
-			$NewTempFileNameGUID = "Capture.$(Get-Date -Format "yyyyMMddHHmmss").$($RandomGuid).wim"
+			$NewTempFileNameGUID = "Capture.$(Get-Date -Format "yyyyMMddHHmmss").wim"
 
 			$FileBrowser = New-Object System.Windows.Forms.SaveFileDialog -Property @{
 				FileName         = $NewTempFileNameGUID

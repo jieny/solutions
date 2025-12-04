@@ -192,6 +192,8 @@
 	CRCSHA                          = Patikrinti
 	Alternative                     = Alternatyvus failo pavadinimas
 	ChangeInstallDisk               = Pakeiskite automatinį disko pasirinkimą
+	Backup                          = Atsarginė kopija
+	Restore                         = Atkurti
 
 	# View
 	ExportToLogs                    = Spausdinkite ataskaitą į žurnalą

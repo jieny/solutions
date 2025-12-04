@@ -191,6 +191,8 @@
 	CRCSHA                          = Kontrola
 	Alternative                     = Alternativní název souboru
 	ChangeInstallDisk               = Změňte automatický výběr disku
+	Backup                          = Záloha
+	Restore                         = Obnovení
 
 	# View
 	ExportToLogs                    = Tisk sestavy k přihlášení

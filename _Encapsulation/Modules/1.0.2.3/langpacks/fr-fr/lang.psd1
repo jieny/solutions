@@ -192,6 +192,8 @@
 	CRCSHA                          = Vérifier
 	Alternative                     = Nom de fichier alternatif
 	ChangeInstallDisk               = Modifier la sélection automatique du disque
+	Backup                          = Sauvegarder
+	Restore                         = Restaurer
 
 	# View
 	ExportToLogs                    = Imprimer le rapport pour enregistrer

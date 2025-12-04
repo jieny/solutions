@@ -192,6 +192,8 @@
 	CRCSHA                          = Controllo
 	Alternative                     = Nome file alternativo
 	ChangeInstallDisk               = Modifica la selezione automatica del disco
+	Backup                          = Backup
+	Restore                         = Ripristino
 
 	# View
 	ExportToLogs                    = Stampa il rapporto per accedere

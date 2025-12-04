@@ -192,6 +192,8 @@
 	CRCSHA                          = Check
 	Alternative                     = Alternativt filnavn
 	ChangeInstallDisk               = Skift automatisk diskvalg
+	Backup                          = Sikkerhedskopiering
+	Restore                         = Gendannelse
 
 	# View
 	ExportToLogs                    = Udskriv rapport til log

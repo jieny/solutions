@@ -192,6 +192,8 @@
 	CRCSHA                          = Проверка
 	Alternative                     = Алтернативно име на файл
 	ChangeInstallDisk               = Променете автоматичния избор на диск
+	Backup                          = Архивиране
+	Restore                         = Възстановяване
 
 	# View
 	ExportToLogs                    = Отпечатайте отчета в регистъра

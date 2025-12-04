@@ -192,6 +192,8 @@
 	CRCSHA                          = Preverite
 	Alternative                     = Alternativno ime datoteke
 	ChangeInstallDisk               = Spremenite samodejno izbiro diska
+	Backup                          = Varnostno kopiranje
+	Restore                         = Obnovitev
 
 	# View
 	ExportToLogs                    = Natisnite poročilo v dnevnik

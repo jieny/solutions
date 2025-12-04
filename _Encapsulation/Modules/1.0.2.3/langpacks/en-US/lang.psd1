@@ -192,6 +192,8 @@
 	CRCSHA                          = Calibration
 	Alternative                     = Alternative file name
 	ChangeInstallDisk               = Change auto select disk
+	Backup                          = Backup
+	Restore                         = Restore
 
 	# View
 	ExportToLogs                    = Print report to log

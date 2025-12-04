@@ -192,6 +192,8 @@
 	CRCSHA                          = Verifica
 	Alternative                     = Nume alternativ de fișier
 	ChangeInstallDisk               = Schimbați selecția automată a discului
+	Backup                          = Copiere de rezervă
+	Restore                         = Restaurare
 
 	# View
 	ExportToLogs                    = Imprimați raportul pentru a înregistra

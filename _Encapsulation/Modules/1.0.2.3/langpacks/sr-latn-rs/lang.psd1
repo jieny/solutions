@@ -192,6 +192,8 @@
 	CRCSHA                          = Проверити
 	Alternative                     = Алтернативно име датотеке
 	ChangeInstallDisk               = Промените аутоматски избор диска
+	Backup                          = Резервна копија
+	Restore                         = Враћање
 
 	# View
 	ExportToLogs                    = Одштампајте извештај у дневник

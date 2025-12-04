@@ -192,6 +192,8 @@
 	CRCSHA                          = 확인
 	Alternative                     = 대체 파일 이름
 	ChangeInstallDisk               = 자동 디스크 선택 변경
+	Backup                          = 백업
+	Restore                         = 복원
 
 	# View
 	ExportToLogs                    = 로그에 보고서 인쇄

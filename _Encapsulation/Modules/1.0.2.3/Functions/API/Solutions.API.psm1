@@ -65,14 +65,14 @@ Function Solutions_API_Command
 	switch ($Name) {
 		"List" {
 			$GetALlName = @()
-			Get-ChildItem -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import" -ErrorAction SilentlyContinue | ForEach-Object {
+			Get-ChildItem -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom" -ErrorAction SilentlyContinue | ForEach-Object {
 				<#
 					.捕捉路径
 				#>
 				$GetNewPath = $([System.IO.Path]::GetFileNameWithoutExtension($_.Name))
 
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($GetNewPath)" -Name "Path") {
-					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($GetNewPath)" -Name "Path" -ErrorAction SilentlyContinue
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path") {
+					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path" -ErrorAction SilentlyContinue
 				} else {
 					$GetImportFileName = ""
 				}
@@ -112,8 +112,8 @@ Function Solutions_API_Command
 			Write-Host "  $($lang.RuleName): " -NoNewline -ForegroundColor Yellow
 			Write-Host $Name -ForegroundColor Green
 
-			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($Name)" -Name "Path" -ErrorAction SilentlyContinue) {
-				$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($Name)" -Name "Path" -ErrorAction SilentlyContinue
+			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($Name)" -Name "Path" -ErrorAction SilentlyContinue) {
+				$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($Name)" -Name "Path" -ErrorAction SilentlyContinue
 
 				Write-Host "  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
 				

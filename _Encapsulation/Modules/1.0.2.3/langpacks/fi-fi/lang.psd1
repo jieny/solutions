@@ -192,6 +192,8 @@
 	CRCSHA                          = Tarkista
 	Alternative                     = Vaihtoehtoinen tiedostonimi
 	ChangeInstallDisk               = Muuta automaattista levyvalintaa
+	Backup                          = Varmuuskopiointi
+	Restore                         = Palautus
 
 	# View
 	ExportToLogs                    = Tulosta raportti lokiin

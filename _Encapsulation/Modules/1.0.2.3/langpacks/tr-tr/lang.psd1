@@ -192,6 +192,8 @@
 	CRCSHA                          = Kontrol etmek
 	Alternative                     = Alternatif dosya adı
 	ChangeInstallDisk               = Otomatik disk seçimini değiştir
+	Backup                          = Yedekleme
+	Restore                         = Geri Yükleme
 
 	# View
 	ExportToLogs                    = Günlüğe rapor yazdır

@@ -192,6 +192,8 @@
 	CRCSHA                          = 校驗
 	Alternative                     = 替代檔名
 	ChangeInstallDisk               = 更改自動選擇磁盤
+	Backup                          = 備份
+	Restore                         = 還原
 
 	# View
 	ExportToLogs                    = 打印報告到日誌裡

@@ -192,6 +192,8 @@
 	CRCSHA                          = Έλεγχος
 	Alternative                     = Εναλλακτικό όνομα αρχείου
 	ChangeInstallDisk               = Αλλαγή αυτόματης επιλογής δίσκου
+	Backup                          = Αντίγραφα ασφαλείας
+	Restore                         = Επαναφορά
 
 	# View
 	ExportToLogs                    = Εκτύπωση αναφοράς για καταγραφή

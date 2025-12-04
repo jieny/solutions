@@ -192,6 +192,8 @@
 	CRCSHA                          = Kontrollige
 	Alternative                     = Alternatiivne failinimi
 	ChangeInstallDisk               = Muutke automaatset kettavalikut
+	Backup                          = Varundamine
+	Restore                         = Taasta
 
 	# View
 	ExportToLogs                    = Printige logimiseks aruanne

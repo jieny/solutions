@@ -192,6 +192,8 @@
 	CRCSHA                          = לִבדוֹק
 	Alternative                     = שם קובץ חלופי
 	ChangeInstallDisk               = שנה בחירת דיסק אוטומטי
+	Backup                          = גיבוי
+	Restore                         = שחזור
 
 	# View
 	ExportToLogs                    = הדפס דוח ליומן

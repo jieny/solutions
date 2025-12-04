@@ -28,6 +28,9 @@
 				"https://fengyi.tel/download/solutions/latest.json"
 				"https://github.com/ilikeyi/solutions/raw/main/update/latest.json"
 			)
+			API = @{
+				MinimumVersion = '1.0.0.0'
+			}
 		}
 	}
 	HelpInfoURI = 'https://fengyi.tel'

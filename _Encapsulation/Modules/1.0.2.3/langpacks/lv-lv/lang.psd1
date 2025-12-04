@@ -192,6 +192,8 @@
 	CRCSHA                          = Pārbaudīt
 	Alternative                     = Alternatīvs faila nosaukums
 	ChangeInstallDisk               = Mainiet automātisko diska izvēli
+	Backup                          = Dublējums
+	Restore                         = Atjaunošana
 
 	# View
 	ExportToLogs                    = Drukāt atskaiti, lai reģistrētos

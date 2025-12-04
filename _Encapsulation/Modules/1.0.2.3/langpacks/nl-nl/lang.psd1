@@ -192,6 +192,8 @@
 	CRCSHA                          = Rekening
 	Alternative                     = Alternatieve bestandsnaam
 	ChangeInstallDisk               = Wijzig de automatische schijfselectie
+	Backup                          = Back-up
+	Restore                         = Herstellen
 
 	# View
 	ExportToLogs                    = Rapport afdrukken om te loggen

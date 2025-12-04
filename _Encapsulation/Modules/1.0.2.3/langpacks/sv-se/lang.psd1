@@ -192,6 +192,8 @@
 	CRCSHA                          = Kontrollera
 	Alternative                     = Alternativt filnamn
 	ChangeInstallDisk               = Ändra automatiskt val av disk
+	Backup                          = Säkerhetskopiering
+	Restore                         = Återställ
 
 	# View
 	ExportToLogs                    = Skriv ut rapport för att logga

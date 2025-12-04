@@ -394,11 +394,11 @@ Function Image_Select
 	<#
 		.初始化：API
 	#>
-	If (Test-Path -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import") {
+	If (Test-Path -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom") {
 	} else {
-		New-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$((Get-Module -Name Solutions).Author)" -force -ErrorAction SilentlyContinue | Out-Null
+		New-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$((Get-Module -Name Solutions).Author)" -force -ErrorAction SilentlyContinue | Out-Null
 		$InitPath = Join-Path -Path $([Environment]::GetFolderPath("Desktop")) -ChildPath "$((Get-Module -Name Solutions).Author).ps1"
-		New-ItemProperty -LiteralPath "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$((Get-Module -Name Solutions).Author)" -Name "Path" -Value $InitPath -PropertyType String -force -ErrorAction SilentlyContinue | Out-Null
+		New-ItemProperty -LiteralPath "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$((Get-Module -Name Solutions).Author)" -Name "Path" -Value $InitPath -PropertyType String -force -ErrorAction SilentlyContinue | Out-Null
 	}
 
 	if ($Page) {
@@ -430,6 +430,104 @@ Function Image_Select
 	Add-Type -AssemblyName System.Windows.Forms
 	Add-Type -AssemblyName System.Drawing
 	[System.Windows.Forms.Application]::EnableVisualStyles()
+
+	Function Solutions_API_Backup
+	{
+		$GUIImageSourceGroupAPIErrorMsg.Text = ""
+		$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
+
+		$GetALlName = @()
+		Get-ChildItem -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom" -ErrorAction SilentlyContinue | ForEach-Object {
+			$GetNewPath = $([System.IO.Path]::GetFileNameWithoutExtension($_.Name))
+
+			if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path" -ErrorAction SilentlyContinue) {
+				$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path" -ErrorAction SilentlyContinue
+			} else {
+				$GetImportFileName = ""
+			}
+
+			$GetALlName += @{
+				Name = $GetNewPath
+				Path = $GetImportFileName
+			}
+		}
+
+		if ($GetALlName.Count -gt 0) {
+			$NewTempFileNameGUID = "API.Backup.$(Get-Date -Format "yyyyMMddHHmmss").json"
+
+			$FileBrowser = New-Object System.Windows.Forms.SaveFileDialog -Property @{
+				FileName         = $NewTempFileNameGUID
+				Filter           = "API Backup Files (*.json;)|*.json;"
+				InitialDirectory = $InitialPath
+			}
+
+			if ($FileBrowser.ShowDialog() -eq "OK") {
+				$GroupBackupNew = [PSCustomObject]@{
+					Name = "$((Get-Module -Name Solutions).Author)'s Soultions"
+					Url = "$((Get-Module -Name Solutions).HelpInfoURI)"
+					Description = "API Backup"
+					version = $((Get-Module -Name Solutions).PrivateData.PSData.API.MinimumVersion)
+					API = $GetALlName
+				}
+				$GroupBackupNew | ConvertTo-Json | Out-File -FilePath $FileBrowser.FileName -Encoding utf8 -ErrorAction SilentlyContinue
+
+				if (Test-Path -Path $FileBrowser.FileName -PathType leaf) {
+					$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Backup): $($FileBrowser.FileName), $($lang.Done)"
+					$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+				} else {
+					$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Backup): $($FileBrowser.FileName), $($lang.Failed)"
+					$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+				}
+			} else {
+				$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+				$GUIImageSourceGroupAPIErrorMsg.Text = $lang.UserCanel
+			}
+		} else {
+			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+			$GUIImageSourceGroupAPIErrorMsg.Text = $lang.NoWork
+		}
+	}
+
+	Function Solutions_API_Restore
+	{
+		$GUIImageSourceGroupAPIErrorMsg.Text = ""
+		$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
+
+		$FileBrowser = New-Object System.Windows.Forms.OpenFileDialog -Property @{
+			Filter = "json Files (*.json)|*.json"
+		}
+
+		if ($FileBrowser.ShowDialog() -eq "OK") {
+			try {
+				$ReadBackupJson = Get-Content -Raw -Path $FileBrowser.FileName | ConvertFrom-Json
+
+				if ($ReadBackupJson.Version.Replace('.', '') -ge $((Get-Module -Name Solutions).PrivateData.PSData.API.MinimumVersion).Replace('.', '')) {
+					if ($ReadBackupJson.API.Count -gt 0) {
+						foreach ($item in $ReadBackupJson.API) {
+							New-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item.Name)" -force -ErrorAction SilentlyContinue | Out-Null
+							New-ItemProperty -LiteralPath "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item.Name)" -Name "Path" -Value $item.Path -PropertyType String -force -ErrorAction SilentlyContinue | Out-Null
+						}
+
+						Refresh_Rule_Shortcuts
+						$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Restore), $($lang.Done)"
+						$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+					} else {
+						$GUIImageSourceGroupAPIErrorMsg.Text = $lang.NoWork
+						$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\info.ico")
+					}
+				} else {
+					$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Autopilot_Config_File_Low): $($FileBrowser.FileName)"
+					$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+				}
+			} catch {
+				$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.SelectFileFormatError): $($FileBrowser.FileName)"
+				$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+			}
+		} else {
+			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+			$GUIImageSourceGroupAPIErrorMsg.Text = $lang.UserCanel
+		}
+	}
 
 	Function System_Env_Test_Order
 	{
@@ -533,7 +631,7 @@ Function Image_Select
 
 		if (Verify_New_RuleName) {
 			if ($IsForce) {
-				If (Test-Path -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($GUIImageSourceGroupAPI_Rule_Path.Text)") {
+				If (Test-Path -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GUIImageSourceGroupAPI_Rule_Path.Text)") {
 				} else {
 					$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.NoInstallImage), $($lang.PleaseChoose): $($lang.AddTo)"
@@ -544,7 +642,7 @@ Function Image_Select
 				<#
 					.添加前，验证是否有旧的规则名存在
 				#>
-				If (Test-Path -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($GUIImageSourceGroupAPI_Rule_Path.Text)") {
+				If (Test-Path -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GUIImageSourceGroupAPI_Rule_Path.Text)") {
 					$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Existed): $($GUIImageSourceGroupAPI_Rule_Path.Text)"
 					$GUIImageSourceGroupAPI_Rule_Path.BackColor = "LightPink"
@@ -577,8 +675,8 @@ Function Image_Select
 				}
 			}
 
-			New-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($GUIImageSourceGroupAPI_Rule_Path.Text)" -force -ErrorAction SilentlyContinue | Out-Null
-			New-ItemProperty -LiteralPath "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($GUIImageSourceGroupAPI_Rule_Path.Text)" -Name "Path" -Value $GUIImageSourceGroupAPI_New_Path.Text -PropertyType String -force -ErrorAction SilentlyContinue | Out-Null
+			New-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GUIImageSourceGroupAPI_Rule_Path.Text)" -force -ErrorAction SilentlyContinue | Out-Null
+			New-ItemProperty -LiteralPath "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GUIImageSourceGroupAPI_Rule_Path.Text)" -Name "Path" -Value $GUIImageSourceGroupAPI_New_Path.Text -PropertyType String -force -ErrorAction SilentlyContinue | Out-Null
 
 			Refresh_Rule_Shortcuts
 
@@ -690,7 +788,7 @@ Function Image_Select
 		$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
 
 		$GetALlName = @()
-		Get-ChildItem -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import" -ErrorAction SilentlyContinue | ForEach-Object {
+		Get-ChildItem -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom" -ErrorAction SilentlyContinue | ForEach-Object {
 			$GetALlName += $([System.IO.Path]::GetFileNameWithoutExtension($_.Name))
 		}
 
@@ -699,8 +797,8 @@ Function Image_Select
 				<#
 					.捕捉路径
 				#>
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($item)" -Name "Path" -ErrorAction SilentlyContinue) {
-					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($item)" -Name "Path"
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item)" -Name "Path" -ErrorAction SilentlyContinue) {
+					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item)" -Name "Path"
 				} else {
 					$GetImportFileName = ""
 				}
@@ -712,6 +810,10 @@ Function Image_Select
 					Text       = "$($lang.RuleName): $($item)"
 					Name       = $ShortcutsShortName
 					Tag        = $GetImportFileName
+					add_Click      = {
+						$GUIImageSourceGroupAPIErrorMsg.Text = ""
+						$GUIImageSourceGroupAPIErrorMsg_Icon.Image = $null
+					}
 				}
 
 				$CheckboxNameCopy  = New-Object system.Windows.Forms.LinkLabel -Property @{
@@ -848,7 +950,7 @@ Function Image_Select
 					ActiveLinkColor = "RED"
 					LinkBehavior   = "NeverUnderline"
 					add_Click      = {
-						Remove-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($This.Name)" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+						Remove-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($This.Name)" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
 						Refresh_Rule_Shortcuts
 
 						$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.Del): $($This.Name), $($lang.Done)"
@@ -3829,12 +3931,40 @@ Function Image_Select
 	$GUIImageSourceGroupAPI_Shortcut_Panel.ContextMenuStrip = $UI_Main_List_Select
 
 	<#
+		备份 API
+	#>
+	$GUIImageSourceGroupAPI_Shortcut_Panel_Backup = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 230
+		Location       = '260,590'
+		Text           = $lang.Backup
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Solutions_API_Backup }
+	}
+
+	<#
+		还原 API
+	#>
+	$GUIImageSourceGroupAPI_Shortcut_Panel_Restore = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 35
+		Width          = 230
+		Location       = '260,630'
+		Text           = $lang.Restore
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = { Solutions_API_Restore }
+	}
+
+	<#
 		从注册表读取保存的命名规则：刷新
 	#>
 	$GUIImageSourceGroupAPI_Shortcut_Panel_Refresh = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
-		Width          = 460
-		Location       = '20,595'
+		Width          = 230
+		Location       = '20,590'
 		Text           = $lang.Refresh
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
@@ -3846,9 +3976,13 @@ Function Image_Select
 			$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
 		}
 	}
+
+	<#
+		.API：删除已选
+	#>
 	$GUIImageSourceGroupAPI_Shortcut_Clear_Select = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 35
-		Width          = 450
+		Width          = 230
 		Location       = '20,630'
 		Text           = "$($lang.Del), $($lang.Choose)"
 		LinkColor      = "GREEN"
@@ -3867,7 +4001,7 @@ Function Image_Select
 
 			if ($Temp_Save_Select_Path.Count -gt 0) {
 				Foreach ($item in $Temp_Save_Select_Path) {
-					Remove-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Import\$($item)" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
+					Remove-Item "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item)" -Recurse -Force -ErrorAction SilentlyContinue | Out-Null
 				}
 
 				Refresh_Rule_Shortcuts
@@ -4068,7 +4202,7 @@ Function Image_Select
 	$GUIImageSourceGroupAPI_New_Path_Paste = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 45
 		Width          = 428
-		Padding        = "22,0,0,0"
+		Padding        = "20,0,0,0"
 		Text           = $lang.Paste
 		LinkColor      = "GREEN"
 		ActiveLinkColor = "RED"
@@ -9233,6 +9367,8 @@ Function Image_Select
 	$GUIImageSourceGroupAPI.controls.AddRange((
 		$GUIImageSourceGroupAPI_Shortcut_Name,
 		$GUIImageSourceGroupAPI_Shortcut_Panel,
+		$GUIImageSourceGroupAPI_Shortcut_Panel_Backup,
+		$GUIImageSourceGroupAPI_Shortcut_Panel_Restore,
 		$GUIImageSourceGroupAPI_Shortcut_Panel_Refresh,
 		$GUIImageSourceGroupAPI_Shortcut_Clear_Select,
 		$GUIImageSourceGroupAPISettingPanel,
