@@ -347,3 +347,39 @@ $Global:Search_KB_File_Type = @(
 $Global:ExcludeClearSuperseded = @(
 	"*Microsoft-Windows-UserExperience-Desktop-Package*"
 )
+
+<#
+	.Windows Edition
+	.Windows 版本
+#>
+$Global:WindowsEdition = @(
+	"EnterpriseS"
+	"EnterpriseSN"
+	"IoTEnterpriseS"
+	"CloudEdition"
+	"Core"
+	"CoreSingleLanguage"
+	"Education"
+	"Professional"
+	"ProfessionalEducation"
+	"ProfessionalWorkstation"
+	"Enterprise"
+	"IoTEnterprise"
+	"ServerRdsh"
+	"CoreN"
+	"EnterpriseN"
+	"EnterpriseGN"
+	"ProfessionalN"
+	"EducationN"
+	"ProfessionalWorkstationN"
+	"ProfessionalEducationN"
+	"CloudN"
+	"CloudEN"
+	"CloudEditionLN"
+	"StarterN"
+	"ServerStandardCore"
+	"ServerStandard"
+	"ServerDataCenterCore"
+	"ServerDatacenter"
+	"WindowsPE"
+)
