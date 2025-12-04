@@ -549,35 +549,72 @@ Function Image_Assign_Autopilot_Master
 				$Group_Image_Sources.ContextMenuStrip = $UI_Main_Select_Assign_Group_Image_Sources
 				$paneel.controls.AddRange($Group_Image_Sources)
 
-				try {
-					Get-WindowsImage -ImagePath $ImageFilePath -ErrorAction SilentlyContinue | ForEach-Object {
-						$TempQueueProcessImageSelect += @{
-							Name   = $_.ImageName
-							Index  = $_.ImageIndex
+				$RandomGuid = [guid]::NewGuid()
+				$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
+				$Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
+
+				if (Test-Path -Path $wimlib -PathType Leaf) {
+					$Arguments = "info ""$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)"" --extract-xml ""$($Export_To_New_Xml)"""
+					Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
+
+					if (Test-Path -Path $Export_To_New_Xml -PathType Leaf) {
+						[XML]$empDetails = Get-Content $Export_To_New_Xml
+
+						ForEach ($empDetail in $empDetails.wim.IMAGE) {
+							$TempQueueProcessImageSelect += @{
+								Name               = $empDetail.index
+								Index              = $empDetail.NAME
+								ImageDescription   = $empDetail.DESCRIPTION
+								DISPLAYNAME        = $empDetail.DISPLAYNAME
+								DISPLAYDESCRIPTION = $empDetail.DISPLAYDESCRIPTION
+							}
+
+							$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
+								Height    = 105
+								Width     = 448
+								Padding   = "16,0,0,0"
+								Text      = "$($lang.MountedIndex): $($empDetail.index)`n$($lang.Wim_Image_Name): $($empDetail.NAME)`n$($lang.Wim_Image_Description): $($empDetail.ImageDescription)`n$($lang.Wim_Display_Name): $($empDetail.DISPLAYNAME)`n$($lang.Wim_Display_Description): $($empDetail.DISPLAYDESCRIPTION)"
+								Tag       = $_.ImageIndex
+								Checked   = $True
+							}
+
+							$Group_Image_Sources.controls.AddRange($CheckBox)
 						}
 
-						$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
-							Height    = 55
-							Width     = 448
-							Padding   = "16,0,0,0"
-							Text      = "$($lang.MountedIndex): $($_.ImageIndex)`n$($lang.Wim_Image_Name): $($_.ImageName)"
-							Tag       = $_.ImageIndex
-							Checked   = $True
+						New-Variable -Scope global -Name "Queue_Process_Image_Select_$($Master)_$($ImageName)" -Value $TempQueueProcessImageSelect -Force
+						Remove-Item -Path $Export_To_New_Xml
+					}
+				} else {
+					try {
+						Get-WindowsImage -ImagePath $ImageFilePath -ErrorAction SilentlyContinue | ForEach-Object {
+							$TempQueueProcessImageSelect += @{
+								Name   = $_.ImageName
+								Index  = $_.ImageIndex
+							}
+
+							$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{
+								Height    = 55
+								Width     = 448
+								Padding   = "16,0,0,0"
+								Text      = "$($lang.MountedIndex): $($_.ImageIndex)`n$($lang.Wim_Image_Name): $($_.ImageName)"
+								Tag       = $_.ImageIndex
+								Checked   = $True
+							}
+
+							$Group_Image_Sources.controls.AddRange($CheckBox)
 						}
 
-						$Group_Image_Sources.controls.AddRange($CheckBox)
-					}
+						New-Variable -Scope global -Name "Queue_Process_Image_Select_$($Master)_$($ImageName)" -Value $TempQueueProcessImageSelect -Force
+					} catch {
+						$UI_Main_Other_Rule_Not_Find = New-Object system.Windows.Forms.Label -Property @{
+							Height         = 40
+							Width          = 448
+							margin         = "16,0,0,0"
+							Text           = "$($lang.SelectFromError): $($lang.UpdateUnavailable)"
+						}
 
-					New-Variable -Scope global -Name "Queue_Process_Image_Select_$($Master)_$($ImageName)" -Value $TempQueueProcessImageSelect -Force
-				} catch {
-					$UI_Main_Other_Rule_Not_Find = New-Object system.Windows.Forms.Label -Property @{
-						Height         = 40
-						Width          = 448
-						margin         = "16,0,0,0"
-						Text           = "$($lang.SelectFromError): $($lang.UpdateUnavailable)"
+						$Group_Image_Sources.controls.AddRange($UI_Main_Other_Rule_Not_Find)
 					}
-
-					$Group_Image_Sources.controls.AddRange($UI_Main_Other_Rule_Not_Find)
 				}
 			} else {
 				<#
