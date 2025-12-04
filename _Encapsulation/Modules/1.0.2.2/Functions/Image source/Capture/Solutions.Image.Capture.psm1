@@ -98,10 +98,6 @@ Function Image_Capture_UI
 		}
 	}
 
-	if (Image_Is_Select_IAB) {
-		$UI_Main_Capture_Sources_Path.Text = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
-	}
-
 	$UI_Main_Capture_Sources_Path_Tips = New-Object system.Windows.Forms.Label -Property @{
 		autoSize       = 1
 		Padding        = "14,0,0,20"
@@ -131,6 +127,13 @@ Function Image_Capture_UI
 			if ($FolderBrowser.ShowDialog() -eq "OK") {
 				if (Test_Available_Disk -Path $FolderBrowser.SelectedPath) {
 					$UI_Main_Capture_Sources_Path.Text = $FolderBrowser.SelectedPath
+
+					try {
+						$Current_Edition_Version = (Get-WindowsEdition -Path $FolderBrowser.SelectedPath).Edition
+						$UI_Main_Mask_Rule_Wim_Edition_Edit.Text = $Current_Edition_Version
+					} catch {
+
+					}
 				} else {
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 					$UI_Main_Error.Text = $lang.FailedCreateFolder
@@ -485,6 +488,71 @@ Function Image_Capture_UI
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 		}
+	}
+
+	<#
+		.映像标志
+	#>
+	$UI_Main_Mask_Rule_Wim_Edition = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 530
+		Text           = $lang.Wim_Edition
+	}
+	$UI_Main_Mask_Rule_Wim_Edition_Edit = New-Object System.Windows.Forms.TextBox -Property @{
+		Height         = 30
+		Width          = 498
+		Text           = ""
+		margin         = "22,0,0,25"
+	}
+	$UI_Main_Mask_Rule_Wim_Edition_Select_Tips = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 530
+		Padding        = "18,0,0,0"
+		Text           = $lang.Wim_Edition_Select_Know
+	}
+	$UI_Main_Mask_Rule_Wim_Edition_Select = New-Object system.Windows.Forms.ComboBox -Property @{
+		Height         = 30
+		Width          = 482
+		Margin         = "40,0,0,0"
+		Text           = ""
+		DropDownStyle  = "DropDownList"
+		Add_SelectedValueChanged = {
+			$UI_Main_Mask_Rule_Wim_Edition_Edit.Text = $this.Text
+		}
+	}
+	$Edition = @(
+		"EnterpriseS"
+		"EnterpriseSN"
+		"IoTEnterpriseS"
+		"CloudEdition"
+		"Core"
+		"CoreSingleLanguage"
+		"Education"
+		"Professional"
+		"ProfessionalEducation"
+		"ProfessionalWorkstation"
+		"Enterprise"
+		"IoTEnterprise"
+		"ServerRdsh"
+		"CoreN"
+		"EnterpriseN"
+		"EnterpriseGN"
+		"ProfessionalN"
+		"EducationN"
+		"ProfessionalWorkstationN"
+		"ProfessionalEducationN"
+		"CloudN"
+		"CloudEN"
+		"CloudEditionLN"
+		"StarterN"
+		"ServerStandardCore"
+		"ServerStandard"
+		"ServerDataCenterCore"
+		"ServerDatacenter"
+		"WindowsPE"
+	)
+	foreach ($item in $Edition) {
+		$UI_Main_Mask_Rule_Wim_Edition_Select.Items.Add($item) | Out-Null
 	}
 
 	<#
@@ -923,7 +991,7 @@ Function Image_Capture_UI
 				Write-Host "  $('-' * 80)"
 				$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
 				if (Test-Path -Path $wimlib -PathType Leaf) {
-					$Arguments = "info ""$($UI_Main_Capture_Save_Path.Text)"" ""1"" --image-property NAME=""$($UI_Main_Capture_Image_Name_New.Text)"" --image-property DESCRIPTION=""$($UI_Main_Capture_Image_Description_New.Text)"" --image-property DISPLAYNAME=""$($UI_Main_Capture_Image_Display_Name_New.Text)"" --image-property DISPLAYDESCRIPTION=""$($UI_Main_Capture_Image_Display_Description_New.Text)"""
+					$Arguments = "info ""$($UI_Main_Capture_Save_Path.Text)"" ""1"" --image-property NAME=""$($UI_Main_Capture_Image_Name_New.Text)"" --image-property DESCRIPTION=""$($UI_Main_Capture_Image_Description_New.Text)"" --image-property DISPLAYNAME=""$($UI_Main_Capture_Image_Display_Name_New.Text)"" --image-property DISPLAYDESCRIPTION=""$($UI_Main_Capture_Image_Display_Description_New.Text)"" --image-property FLAGS=""$($UI_Main_Mask_Rule_Wim_Edition_Edit.Text)"""
 
 					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
 						Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
@@ -988,6 +1056,11 @@ Function Image_Capture_UI
 		$UI_Main_Capture_Image_Display_Description,
 		$UI_Main_Capture_Image_Display_Description_New,
 
+		$UI_Main_Mask_Rule_Wim_Edition,
+		$UI_Main_Mask_Rule_Wim_Edition_Edit,
+		$UI_Main_Mask_Rule_Wim_Edition_Select_Tips,
+		$UI_Main_Mask_Rule_Wim_Edition_Select,
+
 		$UI_Main_CompressionType,
 		$UI_Main_Capture_Type_Select,
 
@@ -1003,6 +1076,18 @@ Function Image_Capture_UI
 		$UI_Main_Capture_Save_Path_Select,
 		$UI_Main_Menu_Warp
 	))
+
+	if (Image_Is_Select_IAB) {
+		$NewPathFolder = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master)\$($Global:Primary_Key_Image.ImageFileName)\Mount"
+		$UI_Main_Capture_Sources_Path.Text = $NewPathFolder
+
+		try {
+			$Current_Edition_Version = (Get-WindowsEdition -Path $NewPathFolder).Edition
+			$UI_Main_Mask_Rule_Wim_Edition_Edit.Text = $Current_Edition_Version
+		} catch {
+
+		}
+	}
 
 	<#
 		.Allow open windows to be on top
