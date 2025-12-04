@@ -253,6 +253,11 @@ Function Image_Select_Index_UI
 		ForEach ($item in $Global:Primary_Key_Image.Index) {
 			if ($item.ImageIndex -eq $index) {
 				<#
+					.映像路径
+				#>
+				$UI_Main_Mask_Rule_Wim_Image_Path.Text = $Global:Primary_Key_Image.FullPath
+
+				<#
 					.索引号
 				#>
 				$UI_Main_Mask_Rule_Wim_Image_Index.Text = $item.ImageIndex
@@ -486,7 +491,7 @@ Function Image_Select_Index_UI
 	$UIUnzipPanel_To_Path = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
 		Width          = 500
-		Margin         = "20,0,0,35"
+		Margin         = "22,0,0,35"
 		Text           = ""
 		ReadOnly       = $True
 		add_Click      = {
@@ -1027,6 +1032,22 @@ Function Image_Select_Index_UI
 		.显示详细信息，控件
 	#>
 	<#
+		.映像路径
+	#>
+	$UI_Main_Mask_Rule_Wim_Image_Path_Name = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 40
+		Width          = 530
+		Text           = $lang.SelectSettingImage
+	}
+	$UI_Main_Mask_Rule_Wim_Image_Path = New-Object System.Windows.Forms.TextBox -Property @{
+		Height         = 30
+		Width          = 500
+		Margin         = "22,0,0,35"
+		Text           = ""
+		ReadOnly       = $True
+	}
+
+	<#
 		.索引号
 	#>
 	$UI_Main_Mask_Rule_Wim_Image_Index_Name = New-Object system.Windows.Forms.Label -Property @{
@@ -1036,7 +1057,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Image_Index = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
-		Width          = 480
+		Width          = 500
 		Text           = ""
 		margin         = "22,0,0,30"
 		ReadOnly       = $True
@@ -1052,7 +1073,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Image_Name_Edit = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
-		Width          = 480
+		Width          = 500
 		Text           = ""
 		margin         = "22,0,0,30"
 	}
@@ -1067,7 +1088,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Image_Description_Edit = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
-		Width          = 480
+		Width          = 500
 		Text           = ""
 		margin         = "22,0,0,30"
 	}
@@ -1082,7 +1103,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Display_Name_Edit = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
-		Width          = 480
+		Width          = 500
 		Text           = ""
 		margin         = "22,0,0,30"
 	}
@@ -1097,7 +1118,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Display_Description_Edit = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
-		Width          = 480
+		Width          = 500
 		Text           = ""
 		margin         = "22,0,0,30"
 	}
@@ -1112,7 +1133,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Edition_Edit = New-Object System.Windows.Forms.TextBox -Property @{
 		Height         = 30
-		Width          = 480
+		Width          = 500
 		Text           = ""
 		margin         = "22,0,0,25"
 	}
@@ -1124,7 +1145,7 @@ Function Image_Select_Index_UI
 	}
 	$UI_Main_Mask_Rule_Wim_Edition_Select = New-Object system.Windows.Forms.ComboBox -Property @{
 		Height         = 30
-		Width          = 462
+		Width          = 482
 		Margin         = "40,0,0,35"
 		Text           = ""
 		DropDownStyle  = "DropDownList"
@@ -1514,6 +1535,8 @@ Function Image_Select_Index_UI
 		$UI_Main_Mask_Rule_Detailed_Canel
 	))
 	$UI_Main_Mask_Rule_Detailed_Results.controls.AddRange((
+		$UI_Main_Mask_Rule_Wim_Image_Path_Name,
+		$UI_Main_Mask_Rule_Wim_Image_Path,
 		$UI_Main_Mask_Rule_Wim_Image_Index_Name,
 		$UI_Main_Mask_Rule_Wim_Image_Index,
 		$UI_Main_Mask_Rule_Wim_Image_Name,
