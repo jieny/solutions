@@ -71,21 +71,21 @@
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.InboxAppsManager): $($lang.AddTo)" -ForegroundColor Green
+		Write-Host "  $($lang.AddTo)" -ForegroundColor Green
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.InboxAppsManager): $($lang.AddTo)" -ForegroundColor Red
+		Write-Host "  $($lang.AddTo)" -ForegroundColor Red
 	}
 
 	if (Verify_Is_Current_Same) {
 		Write-host "    " -NoNewline
 		Write-Host " A " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.InboxAppsManager): $($lang.InboxAppsOfflineDel)" -ForegroundColor Green
+		Write-Host "  $($lang.InboxAppsOfflineDel)" -ForegroundColor Green
 	} else {
 		Write-host "    " -NoNewline
 		Write-Host " A " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.InboxAppsManager): $($lang.InboxAppsOfflineDel)" -ForegroundColor Red
+		Write-Host "  $($lang.InboxAppsOfflineDel)" -ForegroundColor Red
 	}
 
 	if (Verify_Is_Current_Same) {
