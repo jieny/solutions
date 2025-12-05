@@ -1907,10 +1907,10 @@ Function Image_Select
 				@{ Path = "";                                      Lang = $lang.Ok_Go_To_No; }
 				@{ Path = "Event_Assign_Task_Customize_Autopilot"; Lang = $lang.Autopilot; }
 				@{ Path = "Event_Assign_Task_Customize";           Lang = $lang.OnDemandPlanTask; }
-			)
-			GroupB = @(
 				@{ Path = @("Image_Capture_UI");                   Lang = $lang.Wim_Capture }
 				@{ Path = @("Menu_Shortcuts_Apply");               Lang = $lang.Apply }
+			)
+			GroupB = @(
 				@{ Path = @("Eject_Forcibly_All -Save -DontSave"); Lang = "$($lang.Image_Unmount_After): $($lang.Save)"; }
 				@{ Path = @("Eject_Forcibly_All -DontSave");       Lang = "$($lang.Image_Unmount_After): $($lang.DoNotSave)"; }
 				@{ Path = @("Language_Extract_UI");                Lang = "$($lang.Language): $($lang.LanguageExtract)"; }
@@ -2102,23 +2102,15 @@ Function Image_Select
 		}
 		$UI_Main_Select_Sources.controls.AddRange($UI_Main_Other_Rule)
 
-
-		$UI_Main_Other_Rule_Not_Find = New-Object system.Windows.Forms.LinkLabel -Property @{
-			Height         = 35
-			Width          = 658
-			Padding        = "23,0,0,0"
-			Text           = $lang.NoImageOtherSource
-			LinkColor      = "GREEN"
-			ActiveLinkColor = "RED"
-			LinkBehavior   = "NeverUnderline"
-			add_Click      = $UI_Other_Path_Add_Click
-		}
-		$UI_Main_Select_Sources.controls.AddRange($UI_Main_Other_Rule_Not_Find)
-
 		if ($TempSelectAraayOtherRule.count -gt 0) {
 			ForEach ($item in $TempSelectAraayOtherRule) {
 				$InitLength = $item.Length
 				if ($InitLength -lt $InitCharacterLength) { $InitLength = $InitCharacterLength }
+
+				$NewOtherRuleName = [IO.Path]::GetFileName($item)
+				if ([string]::IsNullOrEmpty($NewOtherRuleName)) {
+					$NewOtherRuleName = [System.IO.Path]::GetPathRoot($item).Substring(0,1)
+				}
 
 				$CheckBox     = New-Object System.Windows.Forms.RadioButton -Property @{
 					Name      = $item
@@ -2126,7 +2118,7 @@ Function Image_Select
 					Width     = 658
 					Padding   = "25,0,0,0"
 					Text      = $item
-					Tag       = [IO.Path]::GetFileName($item)
+					Tag       = $NewOtherRuleName
 					add_Click = {
 						Refresh_Click_Image_Sources
 					}
@@ -2162,6 +2154,19 @@ Function Image_Select
 			}
 			$UI_Main_Select_Sources.controls.AddRange($UI_Main_Pre_Rule_Wrap)
 		}
+
+		
+		$UI_Main_Other_Rule_Not_Find = New-Object system.Windows.Forms.LinkLabel -Property @{
+			Height         = 35
+			Width          = 658
+			Padding        = "23,0,0,0"
+			Text           = $lang.NoImageOtherSource
+			LinkColor      = "GREEN"
+			ActiveLinkColor = "RED"
+			LinkBehavior   = "NeverUnderline"
+			add_Click      = $UI_Other_Path_Add_Click
+		}
+		$UI_Main_Select_Sources.controls.AddRange($UI_Main_Other_Rule_Not_Find)
 	}
 
 	Function Image_Select_Refresh_Language
@@ -7696,6 +7701,23 @@ Function Image_Select
 	}
 
 	<#
+		.捕获
+	#>
+	$UI_Main_Capture   = New-Object system.Windows.Forms.Button -Property @{
+		UseVisualStyleBackColor = $True
+		Location       = "764,130"
+		Height         = 36
+		Width          = 280
+		Text           = $lang.Wim_Capture
+		add_Click      = {
+			$UI_Main.Hide()
+			Image_Capture_UI
+			Image_Select
+			$UI_Main.Close()
+		}
+	}
+
+	<#
 		.Mask: Displays the rule details
 		.蒙板：显示规则详细信息
 	#>
@@ -9080,7 +9102,7 @@ Function Image_Select
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $False
-		Location       = "764,145"
+		Location       = "764,180"
 		Visible        = $False
 	}
 	$UI_Primary_Key_Name = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -9338,6 +9360,11 @@ Function Image_Select
 			.按钮：刷新
 		#>
 		$GUISelectRefresh,
+
+		<#
+			.捕获
+		#>
+		$UI_Main_Capture,
 
 		<#
 			.按钮：解压 ISO

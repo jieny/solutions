@@ -841,7 +841,7 @@ Function Mainpage
 			}
 
 			<#
-				.快捷指令：添加
+				.快捷指令：追加
 			#>
 			"isa" {
 				Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
@@ -879,6 +879,10 @@ Function Mainpage
 				ToWait -wait 2
 				Mainpage
 			}
+
+			<#
+				.快捷指令：捕获
+			#>
 			"isc" {
 				Write-Host "`n  $($lang.Short_Cmd): " -NoNewline
 				Write-host "ISC" -ForegroundColor Green

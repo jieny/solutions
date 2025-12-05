@@ -817,7 +817,7 @@ Function Image_Capture_UI
 			}
 
 			if (Test-Path -Path $UI_Main_Capture_Sources_Path.Text -PathType Container) {
-				if((Get-ChildItem $UI_Main_Capture_Sources_Path.Text -Recurse -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
+				if((Get-ChildItem $UI_Main_Capture_Sources_Path.Text -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0) {
 
 				} else {
 					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
