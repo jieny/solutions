@@ -2373,8 +2373,15 @@ Function Image_Select
 						$MarkNewLabelMountToTemp = (Join_MainFolder -Path $_.Tag)
 						$FullNewPath = [IO.Path]::GetFileName($GUIImageSourceGroupMountFromPath.Text)
 
-						$MarkNewLabelMountTo += "$($FullNewPath)_Custom"
-						$MarkNewLabelMountToTemp += "$($FullNewPath)_Custom\Temp"
+						if ([string]::IsNullOrEmpty($FullNewPath)) {
+							$NewOtherRuleName = [System.IO.Path]::GetPathRoot($GUIImageSourceGroupMountFromPath.Text).Substring(0,1)
+
+							$MarkNewLabelMountTo += "$($NewOtherRuleName)_Custom"
+							$MarkNewLabelMountToTemp += "$($NewOtherRuleName)_Custom\Temp"
+						} else {
+							$MarkNewLabelMountTo += "$($FullNewPath)_Custom"
+							$MarkNewLabelMountToTemp += "$($FullNewPath)_Custom\Temp"
+						}
 
 						if ($GUIImageSourceGroupMountChangeTemp.Checked) {
 							$MarkNewLabelMountTo += "\Temp"

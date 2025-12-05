@@ -1343,7 +1343,7 @@ Function Image_Assign_Autopilot_Master
 			#region boot;boot;wim;
 			"boot;boot;wim;" {
 				if ($Global:Developers_Mode) {
-					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x2 ]`n   Start"
+					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x2`n  Start"
 				}
 
 				$Group_Image_Sources_Console.controls.AddRange((
@@ -1430,7 +1430,7 @@ Function Image_Assign_Autopilot_Master
 				}
 
 				if ($Global:Developers_Mode) {
-					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x2 ]`n   End"
+					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x2`n  End"
 				}
 			}
 			#endregion
@@ -1438,7 +1438,7 @@ Function Image_Assign_Autopilot_Master
 			#region Install;Install;wim;
 			"Install;Install;wim;" {
 				if ($Global:Developers_Mode) {
-					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x6 ]`n   Start"
+					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x6`n  Start"
 				}
 
 				$Group_Image_Sources_Console.controls.AddRange((
@@ -1526,7 +1526,7 @@ Function Image_Assign_Autopilot_Master
 				}
 
 				if ($Global:Developers_Mode) {
-					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x6 ]`n   End"
+					Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x6`n  End"
 				}
 			}
 			#endregion
@@ -1534,7 +1534,7 @@ Function Image_Assign_Autopilot_Master
 				#region Install;WinRE;wim
 				"Install;WinRE;wim;" {
 					if ($Global:Developers_Mode) {
-						Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x5 ]`n   Start"
+						Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x5`n  Start"
 					}
 
 					$Group_Image_Sources_Console.controls.AddRange((
@@ -1646,7 +1646,7 @@ Function Image_Assign_Autopilot_Master
 					$GUIImage_Select_Expand_Rule_To_All.Checked = $True
 
 					if ($Global:Developers_Mode) {
-						Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x5 ]`n   End"
+						Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.0x5`n  End"
 					}
 				}
 				#endregion
@@ -1673,7 +1673,7 @@ Function Image_Assign_Autopilot_Master
 		}
 
 		if ($Global:Developers_Mode) {
-			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.009x2 ]`n   Start"
+			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.009x2`n  Start"
 			Write-Host "`n  $($lang.Choose)"
 			ForEach ($item in $Wait_Sync_Some_Select) {
 				Write-Host "  $($item)"
@@ -1692,7 +1692,7 @@ Function Image_Assign_Autopilot_Master
 		}
 
 		if ($Global:Developers_Mode) {
-			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.009x99 ]`n   Start"
+			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.009x99`n  Start"
 			Write-Host "`n  $($lang.Event_Primary_Key)"
 			ForEach ($item in $Wait_Match_Expand_Item) {
 				Write-Host "  $($item)"
@@ -1716,13 +1716,13 @@ Function Image_Assign_Autopilot_Master
 
 												if ($Wait_Sync_Some_Select -Contains $_.Name) {
 													if ($Global:Developers_Mode) {
-														Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.001x1 ]`n   Start"
+														Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.001x1`n  Start"
 														Write-Host "  $($lang.Disable): " -NoNewline
 														Write-Host $_.Name -ForegroundColor Green
 													}
 												} else {
 													if ($Global:Developers_Mode) {
-														Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.002x2 ]`n   Start"
+														Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.002x2`n  Start"
 														Write-Host "  $($lang.Enable): " -NoNewline
 														Write-Host $_.Name -ForegroundColor Red
 													}
@@ -2177,7 +2177,7 @@ Function Image_Assign_Autopilot_Master
 		}
 
 		if ($Global:Developers_Mode) {
-			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.9x99 ]`n   Start"
+			Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Assign.9x99`n  Start"
 			Write-Host "  $($lang.Event_Assign_Main)"
 			Write-Host "  $($MainItem)"
 
@@ -2189,7 +2189,7 @@ Function Image_Assign_Autopilot_Master
 			if ($_ -is [System.Windows.Forms.FlowLayoutPanel]) {
 				if ($Wait_Sync_Some_Select -contains $_.Name) {
 					if ($Global:Developers_Mode) {
-						Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x0000001 ]`n   Start"
+						Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x0000001`n  Start"
 					}
 
 					$_.Enabled = $True
@@ -2204,7 +2204,7 @@ Function Image_Assign_Autopilot_Master
 					#>
 					if ($MainItem -contains $_.Name) {
 						if ($Global:Developers_Mode) {
-							Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x1111111 ]`n   Start"
+							Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x1111111`n  Start"
 						}
 
 						<#
@@ -2219,7 +2219,7 @@ Function Image_Assign_Autopilot_Master
 					} else {
 						if ($disable -contains $_.Name) {
 							if ($Global:Developers_Mode) {
-								Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x22222222 ]`n   Start"
+								Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x22222222`n  Start"
 							}
 
 							$_.Enabled = $True
@@ -2230,7 +2230,7 @@ Function Image_Assign_Autopilot_Master
 							}
 						} else {
 							if ($Global:Developers_Mode) {
-								Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x3333333333333 ]`n   Start"
+								Write-Host "`n  $($lang.Developers_Mode_Location): Assign.9x3333333333333`n  Start"
 							}
 
 							$_.Enabled = $False
@@ -6752,7 +6752,7 @@ Function Image_Assign_Autopilot_Master
 																	New-Variable -Scope global -Name "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
 
 																	if ($Global:Developers_Mode) {
-																		Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.101x1 ]`n   Start"
+																		Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.101x1`n  Start"
 																		Write-Host "$($lang.Event_Assign_Main), " -NoNewline
 																		Write-Host "$($lang.DoNotSave), " -NoNewline -ForegroundColor Green
 																		Write-Host "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)"
@@ -6763,7 +6763,7 @@ Function Image_Assign_Autopilot_Master
 																	New-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
 
 																	if ($Global:Developers_Mode) {
-																		Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.200x1 ]`n   Start"
+																		Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.200x1`n  Start"
 																		Write-Host "$($lang.Event_Assign_Main), " -NoNewline
 																		Write-Host "$($lang.DoNotSave), " -NoNewline -ForegroundColor Green
 																		Write-Host "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)"
@@ -6873,7 +6873,7 @@ Function Image_Assign_Autopilot_Master
 																			New-Variable -Scope global -Name "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
 
 																			if ($Global:Developers_Mode) {
-																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.11200x1 ]`n   Start"
+																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.11200x1`n  Start"
 																				Write-Host "$($lang.Event_Assign_Main), " -NoNewline
 																				Write-Host "$($lang.DoNotSave), " -NoNewline -ForegroundColor Green
 																				Write-Host "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)"
@@ -6884,7 +6884,7 @@ Function Image_Assign_Autopilot_Master
 																			New-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)" -Value $True -Force
 
 																			if ($Global:Developers_Mode) {
-																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.21200x1 ]`n   Start"
+																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectMain.21200x1`n  Start"
 																				Write-Host "$($lang.Event_Assign_Main), " -NoNewline
 																				Write-Host "$($lang.DoNotSave), " -NoNewline -ForegroundColor Green
 																				Write-Host "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($item.Main.ImageFileName)"
@@ -6910,7 +6910,7 @@ Function Image_Assign_Autopilot_Master
 																			New-Variable -Scope global -Name "Queue_Eject_Only_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)" -Value $True -Force
 
 																			if ($Global:Developers_Mode) {
-																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectExpand.200x1 ]`n   Start"
+																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectExpand.200x1`n  Start"
 																				Write-Host "$($lang.Event_Assign_Expand), " -NoNewline
 																				Write-Host "$($lang.DoNotSave), " -NoNewline -ForegroundColor Green
 																				Write-Host "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)"
@@ -6921,7 +6921,7 @@ Function Image_Assign_Autopilot_Master
 																			New-Variable -Scope global -Name "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)" -Value $True -Force
 
 																			if ($Global:Developers_Mode) {
-																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectExpand.222x1 ]`n   Start"
+																				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): EjectExpand.222x1`n  Start"
 																				Write-Host "$($lang.Event_Assign_Expand), " -NoNewline
 																				Write-Host "$($lang.DoNotSave), " -NoNewline -ForegroundColor Green
 																				Write-Host "Queue_Eject_Do_Not_Save_$($item.Main.ImageFileName)_$($itemExpand.ImageFileName)"
@@ -6976,7 +6976,7 @@ Function Image_Assign_Autopilot_Master
 
 			#region 验证保存和不保存事件
 			if ($Global:Developers_Mode) {
-				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Developers_Mode.0x009200x1 ]`n   Start"
+				Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): Developers_Mode.0x009200x1`n  Start"
 				Write-Host "`n  $($lang.Verify_Save_And_DonSave)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
 				ForEach ($item in $Global:Image_Rule) {

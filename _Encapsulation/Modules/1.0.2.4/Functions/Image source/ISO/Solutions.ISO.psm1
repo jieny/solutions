@@ -2745,9 +2745,7 @@ Function ISO_Create_UI
 			}
 		} else {
 			$UI_Main.Hide()
-			Write-Host "  $($lang.UnpackISO)"
-			Write-Host "  $('-' * 80)"
-			Write-Host "  $($lang.NextDoOperate)" -ForegroundColor Red
+			Write-Host " $($lang.NextDoOperate) " -BackgroundColor DarkRed -ForegroundColor White
 			$UI_Main.Close()
 
 			return $True
@@ -3462,7 +3460,17 @@ Function ISO_Create_UI
 
 	$OscdimgArch = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\Oscdimg")\oscdimg.exe"
 	if (Test-Path -Path $OscdimgArch -PathType Leaf) {
+		$NewOtherRuleName = [IO.Path]::GetFileName($Global:Image_source)
+		if ([string]::IsNullOrEmpty($NewOtherRuleName)) {
+			$UI_Main_Save.Enabled = $False
+			$UI_Main_Is_Create_ISO.Enabled = $False
+			$UI_Main_Is_Create_ISO.Checked = $False
 
+				$GUIISOGroupISOAll.Enabled = $False
+				$GUIISOBypassTPM.Enabled = $False
+				$GUIISOCreateSHA256.Enabled = $False
+				$GUIISOEmptyDirectory.Enabled = $False
+		}
 	} else {
 		$UI_Main_Is_Create_ISO.Enabled = $False
 		$UI_Main_Is_Create_ISO.Checked = $False
@@ -3831,7 +3839,7 @@ Function ISO_Create_UI
 		Refres_Event_Tasks_ISO_Create
 
 		if (Autopilot_ISO_Save) {
-			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+			
 		} else {
 			Write-Host " $($lang.ISOCreateFailed) " -BackgroundColor DarkRed -ForegroundColor White
 
@@ -3845,7 +3853,7 @@ Function ISO_Create_UI
 			Write-host "  " -NoNewline
 			Write-Host " $($lang.Setting) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			if (Autopilot_ISO_Save) {
-				Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+
 			} else {
 				Write-Host " $($lang.ISOCreateFailed) " -BackgroundColor DarkRed -ForegroundColor White
 
@@ -4122,12 +4130,13 @@ Function ISO_Create_Process
 					Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
 					Write-Host "  $('-' * 80)"
 					Write-Host "  Start-Process -FilePath '$($OscdimgArch)' -ArgumentList '$($Arguments)'" -ForegroundColor Green
-					Write-Host "  $('-' * 80)`n"
+					Write-Host "  $('-' * 80)"
 				}
 
 				Start-Process -FilePath $OscdimgArch -ArgumentList $Arguments -Wait -NoNewWindow
 			}
 
+			Write-Host
 			Write-Host "  " -NoNewline
 			Write-Host " $($lang.Uping) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			if (Test-Path -Path $Global:ISOSaveToFullName -PathType Leaf) {
