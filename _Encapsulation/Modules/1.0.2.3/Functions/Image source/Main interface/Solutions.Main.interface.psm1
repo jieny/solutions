@@ -2707,6 +2707,13 @@ Function Image_Select
 						}
 					}
 
+					$EICfgPath = Join-Path -Path $Global:Image_source -ChildPath "Sources\EI.CFG"
+					if (Test-Path -Path $EICfgPath -PathType leaf) {
+						$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.InstlMode) ( $($lang.Business) )"
+					} else {
+						$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.InstlMode) ( $($lang.Consumer) )"
+					}
+
 					<#
 						.Get the matched or saved tag name
 						.匹配 MVS (MSDN) 版本
@@ -2715,13 +2722,13 @@ Function Image_Select
 						$GetSaveLabelName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Name" -ErrorAction SilentlyContinue
 						$GetSaveLabelGUID = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "GUID" -ErrorAction SilentlyContinue
 
-						$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.Editions) ( $($GetSaveLabelName), $($GetSaveLabelGUID) )"
+						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Editions) ( $($GetSaveLabelName), $($GetSaveLabelGUID) )"
 					} else {
 						$Verify_Language_New_Path = Match_Images_MSDN_MVS -ISO $Global:MainImage
 						if ($Verify_Language_New_Path) {
-							$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.Editions) ( $($Verify_Language_New_Path.Name), $($Verify_Language_New_Path.GUID) )"
+							$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Editions) ( $($Verify_Language_New_Path.Name), $($Verify_Language_New_Path.GUID) )"
 						} else {
-							$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.Editions) ( $($lang.ImageCodenameNo) )"
+							$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Editions) ( $($lang.ImageCodenameNo) )"
 						}
 					}
 

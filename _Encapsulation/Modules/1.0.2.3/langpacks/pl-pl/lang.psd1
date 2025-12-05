@@ -58,8 +58,8 @@
 	HealthyTips                     = Szczególnie ważne jest sprawdzenie stanu technicznego, gdy pojawi się komunikat "naprawialny" lub "nienaprawialny": Podczas procesu konwersji ESD pojawia się komunikat o błędzie 13, a dane są nieprawidłowe;
 	Healthy_Save                    = Gdy pojawi się informacja, że można ją naprawić lub nie można jej naprawić, nie zapisuj.
 	Repair                          = Naprawa
-	IsAuto_Repair                   = "Zezwalaj na automatyczną naprawę w stanie bezczynności
-	IsAuto_Repair_Tips              = "Automatycznie sprawdzaj, czy po każdym uruchomieniu skryptu pakującego są jakieś zadania montowania. Jeśli jest zamontowany, żadna naprawa nie zostanie wykonana; jeśli nie zostanie zamontowany, zostanie uruchomiona automatyczna naprawa.
+	IsAuto_Repair                   = Zezwalaj na automatyczną naprawę w stanie bezczynności
+	IsAuto_Repair_Tips              = Automatycznie sprawdzaj, czy po każdym uruchomieniu skryptu pakującego są jakieś zadania montowania. Jeśli jest zamontowany, żadna naprawa nie zostanie wykonana; jeśli nie zostanie zamontowany, zostanie uruchomiona automatyczna naprawa.
 	Repairable                      = Możliwość naprawy
 	NonRepairable                   = Nie do naprawy
 	HealthyForceStop                = Podczas przetwarzania zdarzenia napotkano nieodwracalny błąd i zdarzenie zostało wymuszone. \n\n   Powoduje główne problemy: \n\n      1. Uszkodzony jest sprzęt fizyczny, dysk twardy; \n\n      2. Jeżeli korzystasz z dysku wirtualnego z pamięcią RAMDISK (w tym hybrydową), sprawdź pamięć fizyczną;\n\n      3. Sprawdź oryginalny SHA256 MVS (MSDN). Jeśli jest spójny, zmień katalog i spróbuj ponownie. Jeśli SHA256 jest niespójny, pobierz go ponownie i spróbuj ponownie.\n\n      4. Inne nie są wymienione w tym przykładzie.

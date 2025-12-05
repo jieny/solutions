@@ -58,8 +58,8 @@
 	HealthyTips                     = Det är särskilt viktigt att kontrollera hälsostatus När "reparable" eller "unrepairable" visas: Under ESD-konverteringsprocessen uppmanas fel 13 och informationen är ogiltig när systemet installeras.
 	Healthy_Save                    = Spara inte när reparationsbar eller irreparabel visas.
 	Repair                          = Reparera
-	IsAuto_Repair                   = "Tillåt automatisk reparation vid tomgång
-	IsAuto_Repair_Tips              = "Kontrollera automatiskt om det finns några monteringsuppgifter efter varje körning av paketeringsskriptet. Om den är monterad kommer ingen reparation att utföras om den inte är monterad.
+	IsAuto_Repair                   = Tillåt automatisk reparation vid tomgång
+	IsAuto_Repair_Tips              = Kontrollera automatiskt om det finns några monteringsuppgifter efter varje körning av paketeringsskriptet. Om den är monterad kommer ingen reparation att utföras om den inte är monterad.
 	Repairable                      = Reparerbar
 	NonRepairable                   = Kan inte repareras
 	HealthyForceStop                = Under bearbetningen av händelsen påträffades ett oåterkalleligt fel och händelsen avbröts med tvång.\n\n   Orsakar huvudproblem:\n\n      1. Fysisk hårdvara är skadad, hårddisk;\n\n      2. Om du använder virtuell disk med RAMDISK-minne (inklusive hybrid), kontrollera det fysiska minnet;\n\n      3. Verifiera den ursprungliga SHA256 av MVS (MSDN) Om den är konsekvent, ändra katalogen och försök igen Om SHA256 är inkonsekvent, ladda ner den igen och försök igen.\n\n      4. Andra är inte listade i detta exempel.
