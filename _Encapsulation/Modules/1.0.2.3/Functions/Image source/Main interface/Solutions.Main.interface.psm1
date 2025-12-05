@@ -1905,6 +1905,8 @@ Function Image_Select
 				@{ Path = "Event_Assign_Task_Customize";           Lang = $lang.OnDemandPlanTask; }
 			)
 			GroupB = @(
+				@{ Path = @("Image_Capture_UI");                   Lang = $lang.Wim_Capture }
+				@{ Path = @("Menu_Shortcuts_Apply");               Lang = $lang.Apply }
 				@{ Path = @("Eject_Forcibly_All -Save -DontSave"); Lang = "$($lang.Image_Unmount_After): $($lang.Save)"; }
 				@{ Path = @("Eject_Forcibly_All -DontSave");       Lang = "$($lang.Image_Unmount_After): $($lang.DoNotSave)"; }
 				@{ Path = @("Language_Extract_UI");                Lang = "$($lang.Language): $($lang.LanguageExtract)"; }
