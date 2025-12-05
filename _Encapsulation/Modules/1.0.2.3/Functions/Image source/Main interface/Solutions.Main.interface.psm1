@@ -857,15 +857,19 @@ Function Image_Select
 					ActiveLinkColor = "RED"
 					LinkBehavior   = "NeverUnderline"
 					add_Click      = {
-						Api_Create_Template -NewFile $This.Tag
-						Refresh_Rule_Shortcuts
-
-						if (Test-Path -Path $This.Tag -PathType leaf) {
-							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Done)"
-							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
-						}  else {
-							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Failed)"
+						if ([string]::IsNullOrEmpty($This.Tag)) {
 							$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Failed)"
+						} else {
+							Api_Create_Template -NewFile $This.Tag
+							Refresh_Rule_Shortcuts
+							if (Test-Path -Path $This.Tag -PathType leaf) {
+								$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Done)"
+								$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+							}  else {
+								$GUIImageSourceGroupAPIErrorMsg.Text = "$($lang.RuleNewTempate): $($This.Name), $($lang.Failed)"
+								$GUIImageSourceGroupAPIErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+							}
 						}
 
 						$GUIImageSourceGroupAPI_Rule_Path.Text = ""
