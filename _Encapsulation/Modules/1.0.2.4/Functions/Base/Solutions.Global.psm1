@@ -488,3 +488,20 @@ Function Get_Autopilot_Location
 
 	return "Default"
 }
+
+<#
+	.DISM 版本大于 10.0.26100.2454 时，允许支持 ESD 功能
+#>
+Function GetSupportedWIMTypes
+{
+	$dismOutput = dism.exe
+	$dismVersionLine = $dismOutput | Select-String -Pattern "Version:"
+	$dismVersion = $dismVersionLine.ToString().Trim()
+	$dismVersion = $dismVersion.Replace('Version:', '').Replace(' ', '')
+
+	if ("10.0.26100.2454" -ile $dismVersion) {
+		return @("wim", "esd")
+	}
+
+	return @("wim")
+}

@@ -2099,7 +2099,7 @@ Function Image_Assign_Autopilot_Master
 											}
 										}
 
-										if ($Global:Primary_Key_Image.Uid -eq "$($item.Main.ImageFileName);$($Expand.ImageFileName);") {
+										if ($Global:Primary_Key_Image.Uid -eq "$($item.Main.ImageFileName);$($Expand.ImageFileName);$($Expand.Suffix);") {
 											$GUIImageSelectInstallExpand.Checked = $True
 										}
 
