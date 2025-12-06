@@ -119,6 +119,7 @@ Function Image_Select_Index_UI
 		$UIUnzipPanel_To_Path.Text = ""
 		$UI_Main_Apply_Image_Index_Name.Text = $lang.MountedIndex
 		$UI_Main_Apply_Image_Index_Name.Tag = ""
+		$UI_Main_Apply_Language.Text = $lang.Language
 		$UI_Main_Apply_Image_Name.Text = $lang.Wim_Image_Name
 		$UI_Main_Apply_Image_Description.Text = $lang.Wim_Image_Description
 		$UI_Main_Apply_Display_Name.Text = $lang.Wim_Display_Name
@@ -141,6 +142,11 @@ Function Image_Select_Index_UI
 				#>
 				$UI_Main_Apply_Image_Index_Name.Text = "$($lang.MountedIndex): $($item.ImageIndex)"
 				$UI_Main_Apply_Image_Index_Name.Tag = $item.ImageIndex
+
+				<#
+					.语言
+				#>
+				$UI_Main_Apply_Language.Text = "$($lang.Language): $($item.Language)"
 
 				<#
 					.映像名称
@@ -243,6 +249,7 @@ Function Image_Select_Index_UI
 		$UI_Main_Mask_Rule_Wim_Edition_Select.Text = ""
 
 		$UI_Main_Mask_Rule_Wim_Architecture.Text = $lang.Architecture
+		$UI_Main_Mask_Rule_Wim_Language.Text = $lang.Language
 		$UI_Main_Mask_Rule_Wim_CreatedTime.Text = $lang.Wim_CreatedTime
 		$UI_Main_Mask_Rule_Wim_ModifiedTime.Text = $lang.Wim_ModifiedTime
 		$UI_Main_Mask_Rule_Wim_FileCount.Text = $lang.Wim_FileCount
@@ -304,6 +311,11 @@ Function Image_Select_Index_UI
 					}
 				}
 				$UI_Main_Mask_Rule_Wim_Architecture.Text = "$($lang.Architecture): $($New_Architecture)"
+
+				<#
+					.语言
+				#>
+				$UI_Main_Mask_Rule_Wim_Language.Text = "$($lang.Language): $($item.Language)"
 
 				<#
 					.创建日期
@@ -769,6 +781,16 @@ Function Image_Select_Index_UI
 	}
 
 	<#
+		.语言
+	#>
+	$UI_Main_Apply_Language = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 40
+		Width          = 530
+		Text           = $lang.Language
+		Padding        = "18,0,0,0"
+	}
+
+	<#
 		.架构
 	#>
 	$UI_Main_Apply_Architecture = New-Object system.Windows.Forms.Label -Property @{
@@ -1168,6 +1190,16 @@ Function Image_Select_Index_UI
 	}
 
 	<#
+		.语言
+	#>
+	$UI_Main_Mask_Rule_Wim_Language = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 30
+		Width          = 530
+		margin         = "2,0,0,12"
+		Text           = $lang.Language
+	}
+
+	<#
 		.创建日期
 	#>
 	$UI_Main_Mask_Rule_Wim_CreatedTime = New-Object system.Windows.Forms.Label -Property @{
@@ -1484,18 +1516,19 @@ Function Image_Select_Index_UI
 
 		$UI_Main_Apply_Select_Detailed,
 		$UI_Main_Apply_Image_Index_Name,
+		$UI_Main_Apply_Language,
+		$UI_Main_Apply_System_Version,
+		$UI_Main_Apply_Architecture,
 		$UI_Main_Apply_Image_Name,
 		$UI_Main_Apply_Image_Description,
 		$UI_Main_Apply_Display_Name,
 		$UI_Main_Apply_Display_Description,
 		$UI_Main_Apply_Edition,
-		$UI_Main_Apply_Architecture,
 		$UI_Main_Apply_Created,
 		$UI_Main_Apply_ModifiedTime,
 		$UI_Main_Apply_FileCount,
 		$UI_Main_Apply_DirectoryCount,
-		$UI_Main_Apply_Expander_Space,
-		$UI_Main_Apply_System_Version
+		$UI_Main_Apply_Expander_Space
 	))
 
 	$UI_Main_Mask_Rule_Detailed.controls.AddRange((
@@ -1521,6 +1554,7 @@ Function Image_Select_Index_UI
 		$UI_Main_Mask_Rule_Wim_Edition_Select_Tips,
 		$UI_Main_Mask_Rule_Wim_Edition_Select,
 		$UI_Main_Mask_Rule_Wim_Architecture,
+		$UI_Main_Mask_Rule_Wim_Language,
 		$UI_Main_Mask_Rule_Wim_CreatedTime,
 		$UI_Main_Mask_Rule_Wim_ModifiedTime,
 		$UI_Main_Mask_Rule_Wim_FileCount,

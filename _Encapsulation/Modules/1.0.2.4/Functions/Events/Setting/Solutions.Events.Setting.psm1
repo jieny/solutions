@@ -943,6 +943,7 @@ Function Image_Set_Global_Primary_Key
 									FileCount          = $empDetail.FILECOUNT
 									DirectoryCount     = $empDetail.DIRCOUNT
 									ImageSize          = $empDetail.TOTALBYTES
+									Language           = $empDetail.WINDOWS.LANGUAGES.LANGUAGE
 									Version            = "$($empDetail.WINDOWS.VERSION.BUILD).$($empDetail.WINDOWS.VERSION.SPBUILD)"
 								}
 							}
@@ -1001,6 +1002,7 @@ Function Image_Set_Global_Primary_Key
 										FileCount          = $_.FileCount
 										DirectoryCount     = $_.DirectoryCount
 										ImageSize          = $_.ImageSize
+										Language           = $_.Languages
 										Version            = $_.Version
 									}
 								}
