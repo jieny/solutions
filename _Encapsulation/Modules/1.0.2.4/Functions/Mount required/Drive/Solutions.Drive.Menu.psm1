@@ -142,6 +142,9 @@ Function Drive_Menu
 			} else {
 				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
 				Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
+
+				Write-Host " -Dns " -NoNewline -BackgroundColor White -ForegroundColor Black
+				Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 				Write-Host ", " -NoNewline
 
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
@@ -158,12 +161,7 @@ Function Drive_Menu
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
 			Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 		} else {
-			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-			Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-			Write-Host ", " -NoNewline
-
-			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
-			Write-Host " Unmt * " -BackgroundColor DarkRed -ForegroundColor White
+			Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 		}
 	}
 
@@ -326,6 +324,12 @@ Function Drive_Menu
 		"Se" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Image_Eject_Save_Current
+			ToWait -wait 2
+			Drive_Menu
+		}
+		"Se -dns" {
+			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+			Image_Eject_Save_Current -dns
 			ToWait -wait 2
 			Drive_Menu
 		}

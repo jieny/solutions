@@ -1406,6 +1406,10 @@ Function Image_Select_Eject_Disable_Expand_Item
 #>
 Function Image_Eject_Save_Current
 {
+	param (
+		[switch]$Dns
+	)
+
 	Write-Host "`n  $($lang.Save)"
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
@@ -1428,6 +1432,17 @@ Function Image_Eject_Save_Current
 			Write-Host " $($lang.Save) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			Save-WindowsImage -ScratchDirectory "$(Get_Mount_To_Temp)" -LogPath "$(Get_Mount_To_Logs)\Save.log" -Path $test_mount_folder_Current | Out-Null
 			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+
+			Write-Host
+			Write-Host "  " -NoNewline
+			Write-Host " $($lang.UnmountAndSave) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			if ($Dns) {
+				Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
+
+				Image_Eject_Dont_Save_Current
+			} else {
+				Write-Host " $($lang.UpdateUnavailable) " -BackgroundColor DarkRed -ForegroundColor White
+			}
 		} else {
 			Write-Host "  $($lang.NotMounted)" -ForegroundColor Red
 		}

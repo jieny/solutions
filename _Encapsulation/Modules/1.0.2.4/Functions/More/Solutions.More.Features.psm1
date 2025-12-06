@@ -218,6 +218,12 @@ Function Feature_More_Menu
 			ToWait -wait 2
 			Feature_More_Menu
 		}
+		"Se -dns" {
+			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+			Image_Eject_Save_Current -Dns
+			ToWait -wait 2
+			Feature_More_Menu
+		}
 		"Se *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Image_Save_Primary_Key_Shortcuts -Name $PSItem

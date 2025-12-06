@@ -198,12 +198,7 @@
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
 				Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 			} else {
-				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-				Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-				Write-Host ", " -NoNewline
-
-				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
-				Write-Host " Unmt * " -BackgroundColor DarkRed -ForegroundColor White
+				Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 			}
 		}
 	} else {
@@ -216,12 +211,7 @@
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
 			Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 		} else {
-			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-			Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-			Write-Host ", " -NoNewline
-
-			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
-			Write-Host " Unmt * " -BackgroundColor DarkRed -ForegroundColor White
+			Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 		}
 	}
 
@@ -492,6 +482,12 @@
 		"Se" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Image_Eject_Save_Current
+			ToWait -wait 2
+			InBox_Apps_Menu
+		}
+		"Se -dns" {
+			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+			Image_Eject_Save_Current -Dns
 			ToWait -wait 2
 			InBox_Apps_Menu
 		}

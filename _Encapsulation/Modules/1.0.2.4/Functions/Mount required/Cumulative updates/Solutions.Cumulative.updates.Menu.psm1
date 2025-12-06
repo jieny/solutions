@@ -170,12 +170,7 @@ Function Update_Menu
 				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
 				Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 			} else {
-				Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-				Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-				Write-Host ", " -NoNewline
-
-				Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
-				Write-Host " Unmt * " -BackgroundColor DarkRed -ForegroundColor White
+				Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 			}
 		}
 	} else {
@@ -188,12 +183,7 @@ Function Update_Menu
 			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Green
 			Write-Host " EDNS " -BackgroundColor DarkMagenta -ForegroundColor White
 		} else {
-			Write-Host "$($lang.Save) " -NoNewline -ForegroundColor Red
-			Write-Host " Se * " -NoNewline -BackgroundColor DarkRed -ForegroundColor White
-			Write-Host ", " -NoNewline
-
-			Write-Host "$($lang.DoNotSave) " -NoNewline -ForegroundColor Red
-			Write-Host " Unmt * " -BackgroundColor DarkRed -ForegroundColor White
+			Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 		}
 	}
 
@@ -433,6 +423,12 @@ Function Update_Menu
 		"Se" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Image_Eject_Save_Current
+			ToWait -wait 2
+			Update_Menu
+		}
+		"Se -dns" {
+			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+			Image_Eject_Save_Current -dns
 			ToWait -wait 2
 			Update_Menu
 		}
