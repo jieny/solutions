@@ -927,7 +927,7 @@ Function Image_Set_Global_Primary_Key
 							[XML]$empDetails = Get-Content $Export_To_New_Xml
 
 							ForEach ($empDetail in $empDetails.wim.IMAGE) {
-								$NewLASTMODIFICATIONTIME = ConvertToDate -lowpart $empDetail.LASTMODIFICATIONTIME.LOWPART -highpart $empDetail.LASTMODIFICATIONTIME.HIGHPART
+								$NewLASTMODIFICATIONTIME = ConvertToDate -lowpart $empDetail.CREATIONTIME.LOWPART -highpart $empDetail.CREATIONTIME.HIGHPART
 								$NewLastModifiTime = ConvertToDate -lowpart $empDetail.LASTMODIFICATIONTIME.LOWPART -highpart $empDetail.LASTMODIFICATIONTIME.HIGHPART
 
 								$custom_array += @{
