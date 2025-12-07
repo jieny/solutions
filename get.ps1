@@ -3415,7 +3415,7 @@ Function Installation_interface_UI
 			}
 			default {
 				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Name "Instl_To_Custom" -ErrorAction SilentlyContinue) {
-					$GetNewInstallTo = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Name "Instl_To_Custom"
+					$GetNewInstallTo = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Name "Instl_To_Custom" -ErrorAction SilentlyContinue
 					Save_Dynamic -regkey "Solutions\Get" -name "InstlTo" -value $GetNewInstallTo -String
 					return $GetNewInstallTo
 				} else {
@@ -3583,7 +3583,8 @@ Function Installation_interface_UI
 	$UI_Main_Install_To.DisplayMember = "Lang"
 
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Name "InstlTo" -ErrorAction SilentlyContinue) {
-		$GetNewInstallTo = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Name "InstlTo"
+		$GetNewInstallTo = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Name "InstlTo" -ErrorAction SilentlyContinue
+
 		switch ($GetNewInstallTo) {
 			"AutoSelectDisk" {
 				$UI_Main_Install_To.SelectedIndex = $UI_Main_Install_To.FindString($lang.RestoreToDisk)
@@ -4410,8 +4411,8 @@ Function Download_Process
 	.Reset script usage history
 #>
 if ($Reset) {
-	$Path = "HKCU:\SOFTWARE\Yi\Solutions\Get"
-	Remove-Item -Path $Path -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
+	$Path = 
+	Remove-Item -Path "HKCU:\SOFTWARE\Yi\Solutions\Get" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
 }
 
 <#

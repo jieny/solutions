@@ -6,17 +6,16 @@ Function Event_Reset_Suggest
 {
 	$Global:EventProcessGuid = [guid]::NewGuid()
 
-	<#
-		.分配已运行过的 UI
-	#>
-	New-Variable -Scope global -Name "Queue_Assign_Has_Been_Run_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
+	$GroupSuggest = @(
+		"Queue_Assign_Has_Been_Run"            # 分配已运行过的 UI
+		"Queue_Is_Mounted_Primary_Assign_Task" # 需要挂载项，主键
+		"Queue_Is_Mounted_Expand_Assign_Task"
+		"Queue_Is_Mounted_Expand_Assign_Task_Select"
+	)
 
-	<#
-		.分配 1 ：需要挂载项，主键
-	#>
-	New-Variable -Scope global -Name "Queue_Is_Mounted_Primary_Assign_Task_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
-	New-Variable -Scope global -Name "Queue_Is_Mounted_Expand_Assign_Task_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
-	New-Variable -Scope global -Name "Queue_Is_Mounted_Expand_Assign_Task_Select_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
+	foreach ($item in $GroupSuggest) {
+		New-Variable -Scope global -Name "$($item)_$($Global:Primary_Key_Image.Master)_$($Global:Primary_Key_Image.ImageFileName)" -Value @() -Force
+	}
 }
 
 <#
@@ -31,17 +30,16 @@ Function Event_Reset_Suggest_Custom
 		$NewImageFileName
 	)
 
-	<#
-		.分配已运行过的 UI
-	#>
-	New-Variable -Scope global -Name "Queue_Assign_Has_Been_Run_$($NewMaster)_$($NewImageFileName)" -Value @() -Force
+	$GroupSuggest = @(
+		"Queue_Assign_Has_Been_Run"            # 分配已运行过的 UI
+		"Queue_Is_Mounted_Primary_Assign_Task" # 需要挂载项，主键
+		"Queue_Is_Mounted_Expand_Assign_Task"
+		"Queue_Is_Mounted_Expand_Assign_Task_Select"
+	)
 
-	<#
-		.分配 1 ：需要挂载项，主键
-	#>
-	New-Variable -Scope global -Name "Queue_Is_Mounted_Primary_Assign_Task_$($NewMaster)_$($NewImageFileName)" -Value @() -Force
-	New-Variable -Scope global -Name "Queue_Is_Mounted_Expand_Assign_Task_$($NewMaster)_$($NewImageFileName)" -Value @() -Force
-	New-Variable -Scope global -Name "Queue_Is_Mounted_Expand_Assign_Task_Select_$($NewMaster)_$($NewImageFileName)" -Value @() -Force
+	foreach ($item in $GroupSuggest) {
+		New-Variable -Scope global -Name "$($item)_$($NewMaster)_$($NewImageFileName)" -Value @() -Force
+	}
 }
 
 <#

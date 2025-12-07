@@ -798,7 +798,7 @@ Function Image_Select
 					.捕捉路径
 				#>
 				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item)" -Name "Path" -ErrorAction SilentlyContinue) {
-					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item)" -Name "Path"
+					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($item)" -Name "Path" -ErrorAction SilentlyContinue
 				} else {
 					$GetImportFileName = ""
 				}
@@ -2088,7 +2088,7 @@ Function Image_Select
 		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name 'Sources_Other_Directory' -ErrorAction SilentlyContinue)) {
 			Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value "" -Multi
 		}
-		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
 
 		$TempSelectAraayOtherRule = @()
 		ForEach ($item in $GetExcludeSoftware) {
@@ -2481,7 +2481,7 @@ Function Image_Select
 		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name 'Sources_Other_Directory' -ErrorAction SilentlyContinue)) {
 			Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value "" -Multi
 		}
-		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
 
 		$TempSelectAraayOtherRule = @()
 		ForEach ($item in $GetExcludeSoftware) {
@@ -3856,7 +3856,7 @@ Function Image_Select
 						if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name 'Sources_Other_Directory' -ErrorAction SilentlyContinue)) {
 							Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value "" -Multi
 						}
-						$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+						$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
 
 						<#
 							.注册表里已保存其它路径
@@ -5859,7 +5859,7 @@ Function Image_Select
 		if (-not (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name 'Sources_Other_Directory' -ErrorAction SilentlyContinue)) {
 			Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value "" -Multi
 		}
-		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
+		$GetExcludeSoftware = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources" -Name "Sources_Other_Directory" -ErrorAction SilentlyContinue | Where-Object { -not ([string]::IsNullOrEmpty($_) -or [string]::IsNullOrWhiteSpace($_))} | Select-Object -Unique
 
 		$TempSelectAraayOtherRule = @()
 		ForEach ($item in $GetExcludeSoftware) {
@@ -9934,7 +9934,7 @@ Function Image_Select
 Function ISO_Verify_Kernel
 {
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel" -ErrorAction SilentlyContinue) {
-		$TempSelectAraayKernelRegedit = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel"
+		$TempSelectAraayKernelRegedit = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Kernel" -ErrorAction SilentlyContinue
 		$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.SelLabel) ( $($TempSelectAraayKernelRegedit), $($lang.Save) )"
 		return
 	}

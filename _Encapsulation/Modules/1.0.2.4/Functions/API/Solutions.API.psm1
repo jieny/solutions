@@ -71,7 +71,7 @@ Function Solutions_API_Command
 				#>
 				$GetNewPath = $([System.IO.Path]::GetFileNameWithoutExtension($_.Name))
 
-				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path") {
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path" -ErrorAction SilentlyContinue) {
 					$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\API\Custom\$($GetNewPath)" -Name "Path" -ErrorAction SilentlyContinue
 				} else {
 					$GetImportFileName = ""

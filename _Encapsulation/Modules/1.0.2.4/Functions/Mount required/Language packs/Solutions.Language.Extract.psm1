@@ -1786,7 +1786,7 @@ Function Language_Extract_UI
 		}
 	}
 
-	$GetSelectLXPsLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -Name "$(Get_GPS_Location)_Add_List"
+	$GetSelectLXPsLanguage = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Language" -Name "$(Get_GPS_Location)_Add_List" -ErrorAction SilentlyContinue
 
 	ForEach ($item in $Global:Languages_Available) {
 		$CheckBox     = New-Object System.Windows.Forms.CheckBox -Property @{

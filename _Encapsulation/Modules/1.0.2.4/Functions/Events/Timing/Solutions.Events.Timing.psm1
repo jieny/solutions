@@ -329,7 +329,7 @@ Function Event_Completion_Start_Setting_UI
 	))
 
 	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -Name "Minute" -ErrorAction SilentlyContinue) {
-		$UI_Time_Minute.Text = Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -Name "Minute"
+		$UI_Time_Minute.Text = Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\Event\Time" -Name "Minute" -ErrorAction SilentlyContinue
 	}
 
 	if ($Global:QueueWaitTime.IsEnabled) {
