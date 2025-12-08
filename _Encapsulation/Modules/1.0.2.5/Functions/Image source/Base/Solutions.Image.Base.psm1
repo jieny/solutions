@@ -241,21 +241,21 @@ Function Image_Get_Mount_Status
 	} else {
 		if ($IsHotkey) {
 			Write-host "  " -NoNewline
-			Write-host "$($lang.Short_Cmd): " -NoNewline
+			Write-host "$($lang.Short_Cmd): " -NoNewline -ForegroundColor Yellow
 
 			Write-Host "$($lang.ViewWIMFileInfo) " -NoNewline
 			Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 
 			Write-Host ", $($lang.Sel_Primary_Key) " -NoNewline
 			Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-			Write-host "," -NoNewline
+			Write-host "." -NoNewline
 		}
 	}
 
 	if ($Silent) {
 
 	} else {
-		Write-Host "  $($lang.Event_Primary_Key): "
+		Write-Host "  $($lang.Event_Primary_Key): " -ForegroundColor Yellow
 	}
 
 	ForEach ($item in $Global:Image_Rule) {

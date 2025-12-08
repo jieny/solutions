@@ -97,9 +97,9 @@ Function Mainpage
 	Write-Host "  $('-' * 80)"
 	Write-host "   " -NoNewline
 	Write-Host " A " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-	Write-Host " $($lang.Autopilot)" -ForegroundColor Green
+	Write-Host " $($lang.Autopilot)" -NoNewline -ForegroundColor Green
 
-	Write-host "   " -NoNewline
+	Write-host "    " -NoNewline
 	Write-Host " C " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host " $($lang.OnDemandPlanTask)" -ForegroundColor Green
 
