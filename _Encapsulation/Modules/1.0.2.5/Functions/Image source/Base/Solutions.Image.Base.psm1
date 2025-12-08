@@ -247,7 +247,8 @@ Function Image_Get_Mount_Status
 			Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 
 			Write-Host ", $($lang.Sel_Primary_Key) " -NoNewline
-			Write-Host " Sel " -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+			Write-host "," -NoNewline
 		}
 	}
 
