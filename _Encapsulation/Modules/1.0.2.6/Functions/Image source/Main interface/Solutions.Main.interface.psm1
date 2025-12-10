@@ -542,20 +542,15 @@ Function Image_Select
 					}
 				}
 
-				if ($GetAddFolderExclude.Count -gt 0) {
-					foreach ($item in $GetAddFolderExclude) {
-						if ($WaitAddExclude -contains $item) {
-							Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
-							$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
-							$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.AddTo), $($lang.Done)"
-						} else {
-							$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
-							$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.AddTo), $($lang.Existed)"
-						}
+				foreach ($item in $GetAddFolderExclude) {
+					if ($WaitAddExclude -contains $item) {
+						Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
+						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.AddTo), $($lang.Done)"
+					} else {
+						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.AddTo), $($lang.Existed)"
 					}
-				} else {
-					$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Info.ico")
-					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.AddTo), $($lang.NoWork)"
 				}
 			} else {
 				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Info.ico")
@@ -1775,15 +1770,9 @@ Function Image_Select
 		}
 
 		$AddImageDisk = @()
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsDefenderExclude" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions" -Name "IsDefenderExclude" -ErrorAction SilentlyContinue) {
-				"True" {
-					$extensionExclusion = Get-MpPreference | Select-Object -Property ExclusionPath
-					foreach ($exclusion in $extensionExclusion.ExclusionPath) {
-						$AddImageDisk += $exclusion
-					}
-				}
-			}
+		$extensionExclusion = Get-MpPreference | Select-Object -Property ExclusionPath
+		foreach ($exclusion in $extensionExclusion.ExclusionPath) {
+			$AddImageDisk += $exclusion
 		}
 
 		Get-PSDrive -PSProvider FileSystem -ErrorAction SilentlyContinue | ForEach-Object {
@@ -1806,31 +1795,17 @@ Function Image_Select
 				if ($MarkCheckedSearchStructure) {
 					$NewFolderName = Join-Path -Path $_.Root -ChildPath $GUIImageSourceGroupSettingCustomizeShow.Text -ErrorAction SilentlyContinue
 
-					if ($AddImageDisk.Count -gt 0) {
-						if ($AddImageDisk -contains $NewFolderName) {
-							$RadioButton.Height = 55
-							$RadioButton.Text = "$($NewFolderName)`n$($lang.DefenderIsAdd)"
-							$RadioButton.Tag = "$($NewFolderName)"
-						} else {
-							$RadioButton.Text = $NewFolderName
-							$RadioButton.Tag = $NewFolderName
-						}
-					} else {
-						$RadioButton.Text = $NewFolderName
-						$RadioButton.Tag = $NewFolderName
-					}
+					$RadioButton.Text = $NewFolderName
+					$RadioButton.Tag = $NewFolderName
 				} else {
-					if ($AddImageDisk.Count -gt 0) {
-						if ($AddImageDisk -contains $_.Root) {
-							$RadioButton.Text = "$($_.Root), $($lang.DefenderIsAdd)"
-							$RadioButton.Tag = $_.Root
-						} else {
-							$RadioButton.Text = $_.Root
-							$RadioButton.Tag = $_.Root
-						}
-					} else {
-						$RadioButton.Text = $_.Root
-						$RadioButton.Tag = $_.Root
+					$RadioButton.Text = $_.Root
+					$RadioButton.Tag = $_.Root
+				}
+
+				if ($AddImageDisk.count -gt 0) {
+					if ($AddImageDisk -contains $RadioButton.Tag) {
+						$RadioButton.Height = 55
+						$RadioButton.Text += "`n$($lang.DefenderIsAdd)"
 					}
 				}
 
@@ -5277,9 +5252,6 @@ Function Image_Select
 		Padding        = "30,0,0,0"
 		Text           = $lang.DefenderExclude
 		add_Click      = {
-			$GUIImageSourceGroupSettingErrorMsg.Text = ""
-			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
-
 			if ($GUIImageSource_Setting_RAMDISK_Exclude.Checked) {
 				Save_Dynamic -regkey "Solutions" -name "RAMDisk_Exclude" -value "True" -String
 				Exclude_Add_Ramdisk
@@ -5349,6 +5321,8 @@ Function Image_Select
 					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.UpdateUnavailable)"
 				}
 			}
+
+			Image_Select_Refresh_Disk_Local
 		}
 	}
 
@@ -5498,9 +5472,6 @@ Function Image_Select
 		Padding        = "26,0,0,0"
 		Text           = $lang.DefenderExclude
 		add_Click      = {
-			$GUIImageSourceGroupSettingErrorMsg.Text = ""
-			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
-
 			if ($GUIImageSource_Setting_Custom_Exclude.Checked) {
 				Save_Dynamic -regkey "Solutions" -name "Custom_Exclude" -value "True" -String
 				Exclude_Add_Custom
@@ -5568,6 +5539,8 @@ Function Image_Select
 					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.UpdateUnavailable)"
 				}
 			}
+
+			Image_Select_Refresh_Disk_Local
 		}
 	}
 
@@ -6249,9 +6222,6 @@ Function Image_Select
 		Padding        = "14,0,0,0"
 		Text           = $lang.DefenderExclude
 		add_Click      = {
-			$GUIImageSourceGroupSettingErrorMsg.Text = ""
-			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
-
 			if ($GUIImageSourceGroupSettingDefenderAdd.Checked) {
 				Save_Dynamic -regkey "Solutions" -name "IsDefenderExclude" -value "True" -String
 				Exclude_Add_DiskTo
@@ -6283,6 +6253,8 @@ Function Image_Select
 					$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.DefenderExclude): $($lang.UpdateUnavailable)"
 				}
 			}
+
+			Image_Select_Refresh_Disk_Local
 		}
 	}
 

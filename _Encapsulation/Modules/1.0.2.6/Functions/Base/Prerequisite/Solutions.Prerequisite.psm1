@@ -267,21 +267,17 @@ Function Prerequisite
 							}
 						}
 
-						if ($GetAddFolderExclude.Count -gt 0) {
-							foreach ($item in $GetAddFolderExclude) {
-								Write-host "      $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
-								write-host $item -ForegroundColor Green -NoNewline
+						foreach ($item in $GetAddFolderExclude) {
+							Write-host "      $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
+							write-host $item -ForegroundColor Green -NoNewline
 
-								Write-Host ", $($lang.AddTo): " -NoNewline
-								if ($WaitAddExclude -contains $item) {
-									Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
-									Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-								} else {
-									Write-Host " $($lang.Existed) " -BackgroundColor DarkRed -ForegroundColor White
-								}
+							Write-Host ", $($lang.AddTo): " -NoNewline
+							if ($WaitAddExclude -contains $item) {
+								Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
+								Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+							} else {
+								Write-Host " $($lang.Existed) " -BackgroundColor DarkRed -ForegroundColor White
 							}
-						} else {
-							Write-Host "$($lang.DefenderExclude): $($lang.AddTo), $($lang.NoWork)"
 						}
 					} else {
 						Write-Host "$($lang.DefenderExclude): $($lang.AutoSelectRAMDISKFailed): $($CustomRAMDISKLabel)"
@@ -357,27 +353,24 @@ Function Prerequisite
 										}
 									}
 
-									if ($GetRAMDISK.Count -gt 0) {
-										foreach ($item in $GetRAMDISK) {
-											Write-host "      $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
-											write-host $item -ForegroundColor Green -NoNewline
-										
-											Write-Host ", $($lang.AddTo): " -NoNewline
-											if ($WaitAddExclude -contains $item) {
-												Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
-												Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-											} else {
-												Write-Host " $($lang.Existed) " -BackgroundColor DarkRed -ForegroundColor White
-											}
+									foreach ($item in $GetRAMDISK) {
+										Write-host "      $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
+										write-host $item -ForegroundColor Green -NoNewline
+									
+										Write-Host ", $($lang.AddTo): " -NoNewline
+										if ($WaitAddExclude -contains $item) {
+											Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
+											Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+										} else {
+											Write-Host " $($lang.Existed) " -BackgroundColor DarkRed -ForegroundColor White
 										}
-
-										Write-Host
-									} else {
-										Write-Host "$($lang.DefenderExclude): $($lang.AddTo), $($lang.NoWork)"
 									}
 								} else {
-									Write-Host "$($lang.DefenderExclude): $($lang.AutoSelectRAMDISKFailed): $($CustomRAMDISKLabel)"
+									Write-Host "      $($lang.AutoSelectRAMDISKFailed): " -NoNewline
+									write-host $CustomRAMDISKLabel -ForegroundColor Red
 								}
+
+								Write-Host
 							} else {
 								Write-Host " $($lang.UpdateUnavailable) " -BackgroundColor DarkRed -ForegroundColor White
 							}
@@ -451,21 +444,17 @@ Function Prerequisite
 										}
 									}
 
-									if ($GetAddFolderExclude.Count -gt 0) {
-										foreach ($item in $GetAddFolderExclude) {
-											Write-host "      $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
-											write-host $item -ForegroundColor Green -NoNewline
+									foreach ($item in $GetAddFolderExclude) {
+										Write-host "      $($lang.Select_Path): " -NoNewline -ForegroundColor Yellow
+										write-host $item -ForegroundColor Green -NoNewline
 
-											Write-Host ", $($lang.AddTo): " -NoNewline
-											if ($WaitAddExclude -contains $item) {
-												Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
-												Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
-											} else {
-												Write-Host " $($lang.Existed) " -BackgroundColor DarkRed -ForegroundColor White
-											}
+										Write-Host ", $($lang.AddTo): " -NoNewline
+										if ($WaitAddExclude -contains $item) {
+											Add-MpPreference -ExclusionPath $item -ErrorAction SilentlyContinue | Out-Null
+											Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+										} else {
+											Write-Host " $($lang.Existed) " -BackgroundColor DarkRed -ForegroundColor White
 										}
-									} else {
-										Write-Host "$($lang.DefenderExclude): $($lang.AddTo), $($lang.NoWork)"
 									}
 								} else {
 									Write-Host "$($lang.DefenderExclude): $($lang.CacheDiskCustomize): $($CustomRAMDISKLabel)"
