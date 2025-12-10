@@ -5390,8 +5390,19 @@ Function Image_Select
 				if (Test_Available_Disk -Path $FolderBrowser.SelectedPath) {
 					$GUIImageSourceISOCacheCustomizePath.Text = $FolderBrowser.SelectedPath
 
-					if ($GUIImageSource_Setting_Custom_Exclude.Checked) {
-						Exclude_Add_Custom
+					if (Test_Available_Disk -Path $FolderBrowser.SelectedPath) {
+						Save_Dynamic -regkey "Solutions" -name "IsDiskCache" -value "True" -String
+						Save_Dynamic -regkey "Solutions" -name "DiskCache" -value $FolderBrowser.SelectedPath -String
+
+						if ($GUIImageSource_Setting_Custom_Exclude.Checked) {
+							Exclude_Add_Custom
+						}
+
+						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.CacheDiskCustomize): $($lang.Setting), $($lang.Done)"
+					} else {
+						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.FailedCreateFolder)"
 					}
 				} else {
 					$GUIImageSourceGroupSettingErrorMsg.Text = $lang.FailedCreateFolder
@@ -5464,7 +5475,7 @@ Function Image_Select
 	}
 
 	<#
-		.Windows Defender 排除项: RAMDISK
+		.Windows Defender 排除项: 自定义目录
 	#>
 	$GUIImageSource_Setting_Custom_Exclude = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -6545,6 +6556,8 @@ Function Image_Select
 					if (Test_Available_Disk -Path $GUIImageSourceISOCacheCustomizePath.Text) {
 						Save_Dynamic -regkey "Solutions" -name "IsDiskCache" -value "True" -String
 						Save_Dynamic -regkey "Solutions" -name "DiskCache" -value $GUIImageSourceISOCacheCustomizePath.Text -String
+
+						Exclude_Add_Custom
 					} else {
 						$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 						$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.FailedCreateFolder)"
