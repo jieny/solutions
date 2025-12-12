@@ -6637,6 +6637,10 @@ Function Image_Select
 						if ($_.Checked) {
 							$MarkCheckSelectSearchDisk = $True
 							Image_Set_Disk_Sources -Disk $_.Tag
+
+							if ($GUIImageSourceGroupSettingDefenderAdd.Checked) {
+								Exclude_Add_DiskTo
+							}
 						}
 					}
 				}
