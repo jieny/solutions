@@ -574,7 +574,7 @@ Function Image_Assign_Autopilot_Master
 								Width     = 448
 								Padding   = "16,0,0,0"
 								Text      = "$($lang.MountedIndex): $($empDetail.index)`n$($lang.Wim_Image_Name): $($empDetail.NAME)`n$($lang.Wim_Image_Description): $($empDetail.ImageDescription)`n$($lang.Wim_Display_Name): $($empDetail.DISPLAYNAME)`n$($lang.Wim_Display_Description): $($empDetail.DISPLAYDESCRIPTION)"
-								Tag       = $_.ImageIndex
+								Tag       = $empDetail.index
 								Checked   = $True
 							}
 
