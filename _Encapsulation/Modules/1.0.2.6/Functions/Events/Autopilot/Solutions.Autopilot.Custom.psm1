@@ -562,8 +562,8 @@ Function Image_Assign_Autopilot_Master
 
 						ForEach ($empDetail in $empDetails.wim.IMAGE) {
 							$TempQueueProcessImageSelect += @{
-								Name               = $empDetail.index
-								Index              = $empDetail.NAME
+								Name               = $empDetail.NAME
+								Index              = $empDetail.index
 								ImageDescription   = $empDetail.DESCRIPTION
 								DISPLAYNAME        = $empDetail.DISPLAYNAME
 								DISPLAYDESCRIPTION = $empDetail.DISPLAYDESCRIPTION
@@ -6694,7 +6694,7 @@ Function Image_Assign_Autopilot_Master
 							if ($item.Main.Uid -eq $_.Name) {
 								$_.Controls | ForEach-Object {
 									if ($_.Name -eq "ImageSources") {
-										$TempQueueProcessImageSelectPending = @()
+										$TempQueueProcessImageSelectPending = [pscustomobject]@()
 										$MarkSelectIndexin = @()
 
 										ForEach ($ItemNew in $_.Controls) {
@@ -6811,7 +6811,7 @@ Function Image_Assign_Autopilot_Master
 										#region Object
 										$_.Controls | ForEach-Object {
 											if ($_.Name -eq "ImageSources") {
-												$TempQueueProcessImageSelectPending = @()
+												$TempQueueProcessImageSelectPending = [pscustomobject]@()
 												$MarkSelectIndexin = @()
 
 												ForEach ($ItemNew in $_.Controls) {
