@@ -9,7 +9,7 @@
 			"Tasks": {
 				"ISO": {
 					"SaveTo":              "",
-					"Structure":  {
+					"Structure": {
 						"InstallType":     true,
 						"Group":           "Windows 11 25H2",
 						"Event":           false,

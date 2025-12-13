@@ -146,7 +146,7 @@
 				},
 				"ISO": {
 					"SaveTo":             "",
-					"Structure":  {
+					"Structure": {
 						"InstallType":    true,
 						"Group":          "Windows Server 2025",
 						"Event":           true,

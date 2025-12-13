@@ -9,7 +9,7 @@
 			"Tasks": {
 				"ISO": {
 					"SaveTo":             "",
-					"Structure":  {
+					"Structure": {
 						"InstallType":    true,
 						"UniqueName":     true,
 						"Group":          "Windows Server 2025",

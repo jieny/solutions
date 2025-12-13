@@ -10853,7 +10853,7 @@ Function Image_Refresh_Init_GLobal_Rule
 					Uid           = "Install;Install;Wim;"
 					ImageFileName = "Install"
 					Suffix        = "wim"
-					Shortcuts     = "IW"
+					Shortcuts     = "WI"
 					Path          = $InitNewImageSources
 				}
 			)
@@ -10863,7 +10863,30 @@ Function Image_Refresh_Init_GLobal_Rule
 					Uid           = "Install;WinRE;Wim;"
 					ImageFileName = "WinRe"
 					Suffix        = "wim"
-					Shortcuts     = "RW"
+					Shortcuts     = "WR"
+					Path          = $InitNewImageMountToRouteRecovery
+					UpdatePath    = "\Windows\System32\Recovery\WinRe.wim"
+				}
+			)
+		}
+		@{
+			Main = @(
+				@{
+					Group         = "Install;Install;"
+					Uid           = "Install;Install;Esd;"
+					ImageFileName = "Install"
+					Suffix        = "esd"
+					Shortcuts     = "EI"
+					Path          = $InitNewImageSources
+				}
+			)
+			Expand = @(
+				@{
+					Group         = "Install;Install;"
+					Uid           = "Install;WinRE;Wim;"
+					ImageFileName = "WinRe"
+					Suffix        = "wim"
+					Shortcuts     = "ER"
 					Path          = $InitNewImageMountToRouteRecovery
 					UpdatePath    = "\Windows\System32\Recovery\WinRe.wim"
 				}
@@ -10881,18 +10904,6 @@ Function Image_Refresh_Init_GLobal_Rule
 				}
 			)
 			Expand = @()
-		}
-		@{
-			Main = @(
-				@{
-					Group         = "Install;Install;"
-					Uid           = "Install;Install;Esd;"
-					ImageFileName = "Install"
-					Suffix        = "esd"
-					Shortcuts     = "IE"
-					Path          = $InitNewImageSources
-				}
-			)
 		}
 		@{
 			Main = @(

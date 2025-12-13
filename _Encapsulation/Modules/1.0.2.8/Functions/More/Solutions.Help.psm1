@@ -43,11 +43,11 @@ Function Solutions_Help
 
 	Write-Host "     ISA".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.AddTo -NoNewline
-	Write-Host " { IW RW BW }" -ForegroundColor Green
+	Write-Host " { WI WR EI ER }" -ForegroundColor Green
 
 	Write-Host "     ISD".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.Del -NoNewline
-	Write-Host " { IW RW BW } { $($lang.MountedIndex) }" -ForegroundColor Green
+	Write-Host " { WI WR EI ER } { $($lang.MountedIndex) }" -ForegroundColor Green
 
 	Write-Host "     Remt".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.Mount), $($lang.PleaseChoose)"
@@ -64,7 +64,7 @@ Function Solutions_Help
 	Write-Host "  $('-' * 80)"
 	Write-Host "     Mt".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.Mount -NoNewline
-	Write-Host " { IW RW BW } { $($lang.MountedIndex) }" -ForegroundColor Green
+	Write-Host " { WI WR EI ER } { $($lang.MountedIndex) }" -ForegroundColor Green
 
 	Write-Host "     ESE".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host "$($lang.Image_Unmount_After): " -NoNewline

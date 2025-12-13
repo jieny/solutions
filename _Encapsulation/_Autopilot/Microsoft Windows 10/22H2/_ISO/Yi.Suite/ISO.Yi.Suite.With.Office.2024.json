@@ -151,7 +151,7 @@
 				},
 				"ISO": {
 					"SaveTo":             "",
-					"Structure":  {
+					"Structure": {
 						"InstallType":    true,
 						"Group":          "Windows 10 22H2",
 						"Event":           true,
