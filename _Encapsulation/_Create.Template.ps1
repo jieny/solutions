@@ -3,13 +3,12 @@
 	 Yi's Solutions
 
 	.Open "Terminal" or "PowerShell ISE" as an administrator,
-	 set PowerShell execution policy: Bypass, PS command line: 
+	 set PowerShell execution policy: Bypass, PS >
 
 	 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
 
 	.Example
 	 PS C:\> .\_Create.Template.ps1
-	 PS C:\> .\_Create.Template.ps1 -Function "Function1 -Param", "Function2 -Param"
 
 	.LINK
 	 https://fengyi.tel/solutions
@@ -56,13 +55,5 @@ Prerequisite
 	.启用日志
 #>
 Logging
-
-# Go
-if ($Functions) {
-	foreach ($Function in $Functions) {
-		Invoke-Expression -Command $Function
-	}
-	exit
-}
 
 Create_Template_UI

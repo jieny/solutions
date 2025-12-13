@@ -3,13 +3,12 @@
 	 Yi's Solutions
 
 	.Open "Terminal" or "PowerShell ISE" as an administrator,
-	 set PowerShell execution policy: Bypass, PS command line: 
+	 set PowerShell execution policy: Bypass, PS >
 
 	 Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope LocalMachine -Force
 
 	.Example
 	 PS C:\> .\_Zip.ps1
-	 PS C:\> .\_Zip.ps1 -Function "Function1 -Param", "Function2 -Param"
 
 	.LINK
 	 https://fengyi.tel/solutions

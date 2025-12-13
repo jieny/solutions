@@ -2989,13 +2989,6 @@ Function Image_Select
 						}
 					}
 
-					$EICfgPath = Join-Path -Path $Global:Image_source -ChildPath "Sources\EI.CFG"
-					if (Test-Path -Path $EICfgPath -PathType leaf) {
-						$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.InstlMode) ( $($lang.Business) )"
-					} else {
-						$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.InstlMode) ( $($lang.Consumer) )"
-					}
-
 					<#
 						.Get the matched or saved tag name
 						.匹配 MVS (MSDN) 版本
@@ -3004,14 +2997,21 @@ Function Image_Select
 						$GetSaveLabelName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "Name" -ErrorAction SilentlyContinue
 						$GetSaveLabelGUID = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\MVS" -Name "GUID" -ErrorAction SilentlyContinue
 
-						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Editions) ( $($GetSaveLabelName), $($GetSaveLabelGUID) )"
+						$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.Editions) ( $($GetSaveLabelName), $($GetSaveLabelGUID) )"
 					} else {
 						$Verify_Language_New_Path = Match_Images_MSDN_MVS -ISO $Global:MainImage
 						if ($Verify_Language_New_Path) {
-							$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Editions) ( $($Verify_Language_New_Path.Name), $($Verify_Language_New_Path.GUID) )"
+							$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.Editions) ( $($Verify_Language_New_Path.Name), $($Verify_Language_New_Path.GUID) )"
 						} else {
-							$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.Editions) ( $($lang.ImageCodenameNo) )"
+							$GUIImageSourceOtherImageErrorMsg.Text += "$($lang.Editions) ( $($lang.ImageCodenameNo) )"
 						}
+					}
+
+					$EICfgPath = Join-Path -Path $Global:Image_source -ChildPath "Sources\EI.CFG"
+					if (Test-Path -Path $EICfgPath -PathType leaf) {
+						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.InstlMode) ( $($lang.Business) )"
+					} else {
+						$GUIImageSourceOtherImageErrorMsg.Text += ", $($lang.InstlMode) ( $($lang.Consumer) )"
 					}
 
 					<#
@@ -4659,6 +4659,64 @@ Function Image_Select
 		Width          = 475
 		Padding        = "16,0,0,0"
 		Text           = "$($lang.UpdateCurrent): $((Get-Module -Name Solutions).Version.ToString())"
+	}
+
+	<#
+		.菜单
+	#>
+	$GUIImageSourceSetting_Menu = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 35
+		Width          = 478
+		Margin         = "0,30,0,0"
+		Text           = $lang.Menu
+	}
+
+	$GUIImageSourceSetting_Menu_Capture = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 40
+		Width          = 475
+		Padding        = "14,0,0,0"
+		Text           = $lang.Wim_Capture
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = {
+			$UI_Main.Hide()
+			Image_Capture_UI
+			Image_Select -Page "Set"
+			$UI_Main.Close()
+		}
+	}
+
+	$GUIImageSourceSetting_Menu_Tempate = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 40
+		Width          = 475
+		Padding        = "14,0,0,0"
+		Text           = $lang.RuleNewTempate
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = {
+			$UI_Main.Hide()
+			Create_Template_UI
+			Image_Select -Page "Set"
+			$UI_Main.Close()
+		}
+	}
+
+	$GUIImageSourceSetting_Menu_Unpack = New-Object system.Windows.Forms.LinkLabel -Property @{
+		Height         = 40
+		Width          = 475
+		Padding        = "14,0,0,0"
+		Text           = $lang.UpBackup
+		LinkColor      = "GREEN"
+		ActiveLinkColor = "RED"
+		LinkBehavior   = "NeverUnderline"
+		add_Click      = {
+			$UI_Main.Hide()
+			UnPack_Create_UI
+			Image_Select -Page "Set"
+			$UI_Main.Close()
+		}
 	}
 
 	<#
@@ -6381,14 +6439,19 @@ Function Image_Select
 				$UI_Main_Error.Text = "$($lang.AddTo): $($FolderBrowser.SelectedPath), $($lang.Existed)"
 				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
 			} else {
-				$TempSelectAraayOtherRule += $FolderBrowser.SelectedPath
-				Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value $TempSelectAraayOtherRule -Multi
+				if (Test_Available_Disk -Path $FolderBrowser.SelectedPath) {
+					$TempSelectAraayOtherRule += $FolderBrowser.SelectedPath
+					Save_Dynamic -regkey "Solutions\ImageSources" -name "Sources_Other_Directory" -value $TempSelectAraayOtherRule -Multi
 
-				Image_Select_Refresh_Sources_List
-				Image_Select_Other_Path_Refresh
+					Image_Select_Refresh_Sources_List
+					Image_Select_Other_Path_Refresh
 
-				$UI_Main_Error.Text = "$($lang.AddTo): $($FolderBrowser.SelectedPath), $($lang.Done)"
-				$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+					$UI_Main_Error.Text = "$($lang.AddTo): $($FolderBrowser.SelectedPath), $($lang.Done)"
+					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Success.ico")
+				} else {
+					$UI_Main_Error.Text = "$($lang.AddTo): $($FolderBrowser.SelectedPath), $($lang.ISOCreateFailed)"
+					$UI_Main_Error_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\Assets\icon\Error.ico")
+				}
 			}
 		} else {
 			$GUIImageSourceGroupSettingErrorMsg.Text = $lang.UserCanel
@@ -8263,23 +8326,6 @@ Function Image_Select
 	}
 
 	<#
-		.捕获
-	#>
-	$UI_Main_Capture   = New-Object system.Windows.Forms.Button -Property @{
-		UseVisualStyleBackColor = $True
-		Location       = "764,130"
-		Height         = 36
-		Width          = 280
-		Text           = $lang.Wim_Capture
-		add_Click      = {
-			$UI_Main.Hide()
-			Image_Capture_UI
-			Image_Select
-			$UI_Main.Close()
-		}
-	}
-
-	<#
 		.Mask: Displays the rule details
 		.蒙板：显示规则详细信息
 	#>
@@ -9659,12 +9705,12 @@ Function Image_Select
 		.主键项
 	#>
 	$UI_Primary_Key_Group = New-Object system.Windows.Forms.FlowLayoutPanel -Property @{
-		Height         = 345
+		Height         = 375
 		Width          = 280
 		BorderStyle    = 0
 		autoSizeMode   = 0
 		autoScroll     = $False
-		Location       = "764,180"
+		Location       = "764,130"
 		Visible        = $False
 	}
 	$UI_Primary_Key_Name = New-Object System.Windows.Forms.CheckBox -Property @{
@@ -9924,11 +9970,6 @@ Function Image_Select
 		$GUISelectRefresh,
 
 		<#
-			.捕获
-		#>
-		$UI_Main_Capture,
-
-		<#
 			.按钮：解压 ISO
 		#>
 		$UIUnzip,
@@ -10043,6 +10084,14 @@ Function Image_Select
 		#>
 		$GUIImageSourceSettingUP,
 		$GUIImageSourceSettingUPCurrentVersion,
+
+		<#
+			.菜单
+		#>
+		$GUIImageSourceSetting_Menu,
+			$GUIImageSourceSetting_Menu_Capture,      # 捕获
+			$GUIImageSourceSetting_Menu_Tempate,      # 创建模板
+			$GUIImageSourceSetting_Menu_Unpack,       # 打包
 
 		<#
 			.显示 API 设置界面
@@ -10479,6 +10528,23 @@ Function Image_Select
 			$UI_Main.Add_DragDrop($UI_Main_API_DragDrop)
 			$UI_Main.ShowDialog() | Out-Null
 		}
+		"Set" {
+			$UI_Main.Text = $lang.Setting
+			Write-Host "`n  $($lang.Setting)" -ForegroundColor Yellow
+			Write-Host "  $('-' * 80)"
+
+			$GUIImageSourceGroupAPI.visible = $False             # 蒙板：设置 API
+			$GUIImageSourceGroupSetting.visible = $True          # 蒙板：设置界面
+			$UI_Mask_Image_Mount_To.visible = $False             # 蒙板：更改挂载到
+			$UI_Mask_Image_Language.visible = $False             # 蒙板：更改 ISO 挂载的映像主语言
+			$UI_Main_View_Detailed.visible = $False              # 蒙板：解压 ISO，显示详细规则
+			$UIUnzipPanel_Select_Rule.visible = $False           # 蒙板：解压 ISO，选择规则
+			$UIUnzipPanel.visible = $False                       # 蒙板：解压 ISO
+			$GUIImageSourceGroupOtherPanel.visible = $False      # 蒙板：其它信息
+			$UI_Main_Image_Sources.visible = $False              # 设置主界面
+
+			$UI_Main.ShowDialog() | Out-Null
+		}
 		default {
 			$UI_Main.ShowDialog() | Out-Null
 		}
@@ -10748,6 +10814,9 @@ Function Image_Select_Page_Shortcuts
 			Image_Select -Page $Name
 		}
 		"API" {
+			Image_Select -Page $Name
+		}
+		"Set" {
 			Image_Select -Page $Name
 		}
 		default {
