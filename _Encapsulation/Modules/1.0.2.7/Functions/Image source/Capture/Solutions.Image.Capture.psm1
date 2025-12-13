@@ -296,7 +296,6 @@ Function Image_Capture_UI
 \Windows\CSC
 \Winpepge.SYS
 
-
 [ExclusionException]
 
 [CompressionExclusionList]

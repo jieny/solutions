@@ -500,7 +500,7 @@ Function Event_Assign_Task_Customize
 								.设置首选主键
 							#>
 							Image_Set_Global_Primary_Key -Uid $ExpandWildcard.Uid -DevCode "17"
-							Run_Expand -NewUid $ExpandWildcard.UID -NewMain $WildCard.Main -NewExpand $ExpandWildcard
+							Run_Expand_Assign -NewUid $ExpandWildcard.UID -NewMain $WildCard.Main -NewExpand $ExpandWildcard
 						}
 					}
 				} else {
@@ -640,7 +640,7 @@ Function Event_Assign_Task_Customize
 											.设置首选主键
 										#>
 										Image_Set_Global_Primary_Key -Uid $ExpandWildcard.Uid -DevCode "21"
-										Run_Expand -NewUid $ExpandWildcard.UID -NewMain $WildCard.Main -NewExpand $ExpandWildcard
+										Run_Expand_Assign -NewUid $ExpandWildcard.UID -NewMain $WildCard.Main -NewExpand $ExpandWildcard
 
 										if ($Global:Developers_Mode) {
 											Write-Host "`n  $('-' * 80)`n  $($lang.Developers_Mode_Location): E0x006050`n  End"
@@ -893,7 +893,7 @@ Function Expand_Process_abc
 	}
 }
 
-Function Run_Expand
+Function Run_Expand_Assign
 {
 	param
 	(
@@ -1150,11 +1150,11 @@ Function Run_Expand
 						$Temp_Queue_Process_Image_Select_Pending = (Get-Variable -Scope global -Name "Queue_Process_Image_Select_Pending_$($NewMain.ImageFileName)_$($NewExpand.ImageFileName)" -ErrorAction SilentlyContinue).Value
 						if ($Temp_Queue_Process_Image_Select_Pending.Count -gt 0) {
 							ForEach ($itemBB in $Temp_Queue_Process_Image_Select_Pending) {
-								Write-Host "  $($lang.Wim_Image_Name): " -noNewline
-								Write-Host $itemBB.Name -ForegroundColor Yellow
-
 								Write-Host "  $($lang.MountedIndex): " -noNewline
 								Write-Host $itemBB.Index -ForegroundColor Yellow
+
+								Write-Host "  $($lang.Wim_Image_Name): " -noNewline
+								Write-Host $itemBB.Name -ForegroundColor Yellow
 
 								Write-Host
 							}
