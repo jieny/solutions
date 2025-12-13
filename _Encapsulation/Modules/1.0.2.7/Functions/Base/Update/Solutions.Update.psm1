@@ -288,7 +288,7 @@ Function Update_Process
 	Write-Host "`n  $($lang.UpdateQueryingUpdate)"
 
 	$error.Clear()
-	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -TimeoutSec 15 -ErrorAction stop }
+	$time = Measure-Command { Invoke-WebRequest -Uri $PreServerVersion -UseBasicParsing -TimeoutSec 15 -ErrorAction stop }
 
 	if ($error.Count -eq 0) {
 		Write-Host "`n  $($lang.UpdateQueryingTime -f $time.TotalMilliseconds)"
