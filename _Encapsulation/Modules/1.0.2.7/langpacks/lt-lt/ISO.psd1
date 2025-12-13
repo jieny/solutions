@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Sinchronizuoti dabartinę datą
 	PublicYear                      = Metai
 	PublicMonth                     = Mėnulis
+	PublicMonthShort                = Mėnesiams naudokite trumpus pavadinimus
 	ISOCreateFailed                 = Sukurti nepavyko, katalogas neįskaitomas arba neįrašomas.
 	ISORefreshAuto                  = Kiekvieną kartą atnaujinkite ISO žymas
 	ISOSaveTo                       = ISO numatytoji išsaugojimo vieta

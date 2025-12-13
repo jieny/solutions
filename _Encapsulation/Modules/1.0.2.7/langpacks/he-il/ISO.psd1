@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = סנכרן את התאריך הנוכחי
 	PublicYear                      = שָׁנָה
 	PublicMonth                     = יָרֵחַ
+	PublicMonthShort                = השתמשו בשמות קצרים לחודשים
 	ISOCreateFailed                 = היצירה נכשלה, הספרייה אינה ניתנת לקריאה או כתיבה.
 	ISORefreshAuto                  = רענן תגי ISO בכל פעם
 	ISOSaveTo                       = ברירת המחדל של מיקום השמירה של ISO

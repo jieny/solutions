@@ -567,51 +567,111 @@ Function ISO_Create_UI
 			switch ($GUIISOMonthSel.Text) {
 				1 {
 					$MarkNewLabelMonthShort += "_jan"
-					$MarkNewLabelMonth      += "_january"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_jan"
+					} else {
+						$MarkNewLabelMonth += "_january"
+					}
 				}
 				2 {
 					$MarkNewLabelMonthShort += "_feb"
-					$MarkNewLabelMonth      += "_february"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_feb"
+					} else {
+						$MarkNewLabelMonth += "_february"
+					}
 				}
 				3 {
 					$MarkNewLabelMonthShort += "_mar"
-					$MarkNewLabelMonth      += "_march"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_mar"
+					} else {
+						$MarkNewLabelMonth += "_march"
+					}
 				}
 				4 {
 					$MarkNewLabelMonthShort += "_apr"
-					$MarkNewLabelMonth      += "_april"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_apr"
+					} else {
+						$MarkNewLabelMonth += "_april"
+					}
 				}
 				5 {
 					$MarkNewLabelMonthShort += "_may"
-					$MarkNewLabelMonth      += "_may"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_may"
+					} else {
+						$MarkNewLabelMonth += "_may"
+					}
 				}
 				6 {
 					$MarkNewLabelMonthShort += "_jun"
-					$MarkNewLabelMonth      += "_june"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_jun"
+					} else {
+						$MarkNewLabelMonth += "_june"
+					}
 				}
 				7 {
 					$MarkNewLabelMonthShort += "_jul"
-					$MarkNewLabelMonth      += "_july"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_jul"
+					} else {
+						$MarkNewLabelMonth += "_july"
+					}
 				}
 				8 {
 					$MarkNewLabelMonthShort += "_aug"
-					$MarkNewLabelMonth      += "_august"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_aug"
+					} else {
+						$MarkNewLabelMonth += "_august"
+					}
 				}
 				9 {
-					$MarkNewLabelMonthShort += "_sept"
-					$MarkNewLabelMonth      += "_september"
+					$MarkNewLabelMonthShort += "_sep"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_sep"
+					} else {
+						$MarkNewLabelMonth += "_september"
+					}
 				}
 				10 {
 					$MarkNewLabelMonthShort += "_oct"
-					$MarkNewLabelMonth      += "_october"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_oct"
+					} else {
+						$MarkNewLabelMonth += "_october"
+					}
 				}
 				11 {
 					$MarkNewLabelMonthShort += "_nov"
-					$MarkNewLabelMonth      += "_november"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_nov"
+					} else {
+						$MarkNewLabelMonth += "_november"
+					}
 				}
 				12 {
 					$MarkNewLabelMonthShort += "_dec"
-					$MarkNewLabelMonth      += "_december"
+
+					if ($GUIISOMonthShort.Checked) {
+						$MarkNewLabelMonth += "_dec"
+					} else {
+						$MarkNewLabelMonth += "_december"
+					}
 				}
 			}
 
@@ -902,12 +962,12 @@ Function ISO_Create_UI
 	}
 	$GUIISOGroupPublicDate = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 155
+		Height         = 205
 		Width          = 455
 		autoSizeMode   = 1
 	}
 	$GUIISOPublicDateGetCurrent = New-Object system.Windows.Forms.LinkLabel -Property @{
-		Height         = 30
+		Height         = 35
 		Width          = 265
 		Text           = $lang.PublicDateGetCurrent
 		Location       = "32,0"
@@ -922,11 +982,42 @@ Function ISO_Create_UI
 			ISO_Create_Refresh_Label
 		}
 	}
+
+	$GUIISOMonthShort  = New-Object System.Windows.Forms.CheckBox -Property @{
+		Height         = 30
+		Width          = 280
+		Text           = $lang.PublicMonthShort
+		Location       = "35,30"
+		Checked        = $True
+		add_Click      = {
+			if ($GUIISOMonthShort.Checked) {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "AllowMonthShort" -value "True" -String
+			} else {
+				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "AllowMonthShort" -value "False" -String
+			}
+
+			ISO_Create_Refresh_Label
+		}
+	}
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -Name "AllowMonthShort" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$((Get-Module -Name Solutions).Author)\Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -Name "AllowMonthShort" -ErrorAction SilentlyContinue) {
+			"True" {
+				$GUIISOMonthShort.Checked = $True
+			}
+			"False" {
+				$GUIISOMonthShort.Checked = $False
+			}
+		}
+	} else {
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "AllowMonthShort" -value "True" -String
+		$GUIISOMonthShort.Checked = $True
+	}
+
 	$GUIISOYearTitle   = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 80
 		Text           = $lang.PublicYear
-		Location       = "35,30"
+		Location       = "35,70"
 		Checked        = $True
 		add_Click      = {
 			if ($GUIISOYearTitle.Checked) {
@@ -936,13 +1027,14 @@ Function ISO_Create_UI
 				$GUIISOYearsSel.Enabled = $False
 				Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "AllowDateYear" -value "False" -String
 			}
+
 			ISO_Create_Refresh_Label
 		}
 	}
 	$GUIISOYearsSel    = New-Object System.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
 		Width          = 60
-		Location       = "52,70"
+		Location       = "52,110"
 		Text          = "2023"
 		Minimum        = 1
 		Maximum        = 2099
@@ -956,7 +1048,7 @@ Function ISO_Create_UI
 		Height         = 30
 		Width          = 80
 		Text           = $lang.PublicMonth
-		Location       = "145,30"
+		Location       = "145,70"
 		Checked        = $True
 		add_Click      = {
 			if ($GUIISOMonthTitle.Checked) {
@@ -972,7 +1064,7 @@ Function ISO_Create_UI
 	$GUIISOMonthSel    = New-Object System.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
 		Width          = 60
-		Location       = "162,70"
+		Location       = "162,110"
 		Value          = 1
 		Minimum        = 1
 		Maximum        = 12
@@ -2846,6 +2938,7 @@ Function ISO_Create_UI
 
 	$GUIISOGroupPublicDate.controls.AddRange((
 		$GUIISOPublicDateGetCurrent,
+		$GUIISOMonthShort,
 		$GUIISOYearTitle,
 		$GUIISOYearsSel,
 		$GUIISOMonthTitle,
@@ -3570,6 +3663,15 @@ Function ISO_Create_UI
 		} else {
 			$GUIISOMonthTitle.Checked = $False
 			$GUIISOMonthSel.Enabled = $False
+		}
+
+		<#
+			.选择发行日期：月，月份使用短名称
+		#>
+		if ($Autopilot.PublicDate.MonthShort) {
+			$GUIISOMonthShort.Checked = $True
+		} else {
+			$GUIISOMonthShort.Checked = $False
 		}
 
 		<#

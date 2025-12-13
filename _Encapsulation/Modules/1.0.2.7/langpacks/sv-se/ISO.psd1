@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Synkronisera aktuellt datum
 	PublicYear                      = År
 	PublicMonth                     = Månen
+	PublicMonthShort                = Använd korta namn för månader
 	ISOCreateFailed                 = Skapandet misslyckades, katalogen är inte läsbar eller skrivbar.
 	ISORefreshAuto                  = Uppdatera ISO-taggar varje gång
 	ISOSaveTo                       = ISO standard spara plats

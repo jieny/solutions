@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = ซิงค์วันที่ปัจจุบัน
 	PublicYear                      = ปี
 	PublicMonth                     = ดวงจันทร์
+	PublicMonthShort                = ใช้ชื่อย่อสำหรับเดือนต่างๆ
 	ISOCreateFailed                 = การสร้างล้มเหลว ไม่สามารถอ่านหรือเขียนไดเร็กทอรีได้
 	ISORefreshAuto                  = รีเฟรชแท็ก ISO ทุกครั้ง
 	ISOSaveTo                       = ตำแหน่งบันทึกเริ่มต้น ISO

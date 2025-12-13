@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = 現在の日付を同期します
 	PublicYear                      = 年
 	PublicMonth                     = 月
+	PublicMonthShort                = 月の名前は短くする
 	ISOCreateFailed                 = の作成に失敗し, ディレクトリが読み取り/書き込み不能になりました。
 	ISORefreshAuto                  = ISO ラベルを毎回更新します
 	ISOSaveTo                       = ISO は既定で保存場所になります

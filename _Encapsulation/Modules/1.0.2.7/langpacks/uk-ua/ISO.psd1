@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Синхронізувати поточну дату
 	PublicYear                      = рік
 	PublicMonth                     = місяць
+	PublicMonthShort                = Використовуйте короткі назви місяців
 	ISOCreateFailed                 = Помилка створення, каталог не доступний для читання або запису.
 	ISORefreshAuto                  = Щоразу оновлюйте теги ISO
 	ISOSaveTo                       = Розташування збереження за умовчанням ISO

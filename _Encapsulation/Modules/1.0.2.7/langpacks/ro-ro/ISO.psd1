@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Sincronizați data curentă
 	PublicYear                      = An
 	PublicMonth                     = Lună
+	PublicMonthShort                = Folosește nume scurte pentru luni
 	ISOCreateFailed                 = Crearea a eșuat, directorul nu poate fi citit sau scris.
 	ISORefreshAuto                  = Actualizează etichetele ISO de fiecare dată
 	ISOSaveTo                       = Locația de salvare implicită ISO

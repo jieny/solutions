@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Συγχρονισμός τρέχουσας ημερομηνίας
 	PublicYear                      = Ετος
 	PublicMonth                     = φεγγάρι
+	PublicMonthShort                = Χρησιμοποιήστε σύντομα ονόματα για μήνες
 	ISOCreateFailed                 = Η δημιουργία απέτυχε, ο κατάλογος δεν είναι αναγνώσιμος ή εγγράψιμος.
 	ISORefreshAuto                  = Ανανεώστε τις ετικέτες ISO κάθε φορά
 	ISOSaveTo                       = Προεπιλεγμένη τοποθεσία αποθήκευσης ISO

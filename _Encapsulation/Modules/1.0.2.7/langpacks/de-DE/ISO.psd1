@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Aktuelles Datum synchronisieren
 	PublicYear                      = Jahr
 	PublicMonth                     = Mond
+	PublicMonthShort                = Verwenden Sie Kurznamen für Monate
 	ISOCreateFailed                 = Konnte nicht erstellt werden, Verzeichnis ist nicht les und beschreibbar.
 	ISORefreshAuto                  = ISO Tags jedes Mal aktualisieren
 	ISOSaveTo                       = ISO Standardspeicherort

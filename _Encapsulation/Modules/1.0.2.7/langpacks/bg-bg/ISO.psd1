@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Синхронизиране на текущата дата
 	PublicYear                      = Година
 	PublicMonth                     = Луна
+	PublicMonthShort                = Използвайте кратки имена за месеците
 	ISOCreateFailed                 = Създаването е неуспешно, директорията не може да се чете или записва.
 	ISORefreshAuto                  = Опреснявайте ISO таговете всеки път
 	ISOSaveTo                       = ISO местоположение за запис по подразбиране

@@ -20,7 +20,8 @@
 					},
 					"PublicDate": {
 						"Year":           true,
-						"Month":          true
+						"Month":          true,
+						"MonthShort":     true
 					},
 					"WindowsVersion": {
 						"Enable":         true,

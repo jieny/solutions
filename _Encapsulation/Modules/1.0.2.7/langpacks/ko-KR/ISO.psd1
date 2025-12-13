@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = 현재 날짜 동기화
 	PublicYear                      = 년도
 	PublicMonth                     = 달
+	PublicMonthShort                = 월에는 약칭을 사용하세요
 	ISOCreateFailed                 = 를 생성하지 못했습니다. 디렉토리를 읽고 쓸 수 없습니다.
 	ISORefreshAuto                  = 매번 ISO 태그 새로 고침
 	ISOSaveTo                       = ISO 기본 저장 위치

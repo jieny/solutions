@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Sinhroniziraj trenutni datum
 	PublicYear                      = Leto
 	PublicMonth                     = Luna
+	PublicMonthShort                = Uporabite kratka imena za mesece
 	ISOCreateFailed                 = Ustvarjanje ni uspelo, imenik ni berljiv ali zapisljiv.
 	ISORefreshAuto                  = Vsakič osvežite oznake ISO
 	ISOSaveTo                       = ISO privzeto mesto shranjevanja

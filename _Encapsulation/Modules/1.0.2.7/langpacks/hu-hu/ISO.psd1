@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Az aktuális dátum szinkronizálása
 	PublicYear                      = Év
 	PublicMonth                     = Hold
+	PublicMonthShort                = Használj rövid neveket a hónapokhoz
 	ISOCreateFailed                 = A létrehozás nem sikerült, a könyvtár nem olvasható vagy írható.
 	ISORefreshAuto                  = Minden alkalommal frissítse az ISO-címkéket
 	ISOSaveTo                       = ISO alapértelmezett mentési hely

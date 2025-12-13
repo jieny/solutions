@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = مزامنة التاريخ الحالي
 	PublicYear                      = سنة
 	PublicMonth                     = قمر
+	PublicMonthShort                = استخدم أسماءً مختصرة للأشهر
 	ISOCreateFailed                 = فشل الإنشاء، الدليل غير قابل للقراءة أو الكتابة.
 	ISORefreshAuto                  = قم بتحديث علامات ISO في كل مرة
 	ISOSaveTo                       = موقع الحفظ الافتراضي ISO

@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Synkronoi nykyinen päivämäärä
 	PublicYear                      = Vuosi
 	PublicMonth                     = Kuu
+	PublicMonthShort                = Käytä kuukausille lyhyitä nimiä
 	ISOCreateFailed                 = Luominen epäonnistui, hakemistoa ei voi lukea tai kirjoittaa.
 	ISORefreshAuto                  = Päivitä ISO-tunnisteet joka kerta
 	ISOSaveTo                       = ISO-oletustallennuspaikka

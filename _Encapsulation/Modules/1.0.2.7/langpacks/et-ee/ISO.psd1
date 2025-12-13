@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Sünkrooni praegune kuupäev
 	PublicYear                      = Aasta
 	PublicMonth                     = Kuu
+	PublicMonthShort                = Kasutage kuude jaoks lühikesi nimesid
 	ISOCreateFailed                 = Loomine ebaõnnestus, kataloog ei ole loetav ega kirjutatav.
 	ISORefreshAuto                  = Värskendage ISO-silte iga kord
 	ISOSaveTo                       = ISO vaikesalvestuskoht

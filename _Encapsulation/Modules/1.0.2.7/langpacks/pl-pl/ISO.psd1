@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Synchronizuj bieżącą datę
 	PublicYear                      = Rok
 	PublicMonth                     = Księżyc
+	PublicMonthShort                = Używaj krótkich nazw miesięcy
 	ISOCreateFailed                 = Utworzenie nie powiodło się, katalogu nie można odczytać ani zapisać.
 	ISORefreshAuto                  = Odśwież znaczniki ISO za każdym razem
 	ISOSaveTo                       = Domyślna lokalizacja zapisu ISO

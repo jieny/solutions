@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Sinhronizēt pašreizējo datumu
 	PublicYear                      = Gads
 	PublicMonth                     = Mēness
+	PublicMonthShort                = Izmantojiet īsus nosaukumus mēnešiem
 	ISOCreateFailed                 = Izveidošana neizdevās, direktorijs nav lasāms vai rakstāms.
 	ISORefreshAuto                  = Katru reizi atsvaidziniet ISO tagus
 	ISOSaveTo                       = ISO noklusējuma saglabāšanas vieta

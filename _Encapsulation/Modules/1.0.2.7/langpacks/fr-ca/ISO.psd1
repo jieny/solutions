@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Synchroniser la date courante
 	PublicYear                      = Année
 	PublicMonth                     = Lune
+	PublicMonthShort                = Utilisez des noms courts pour les mois
 	ISOCreateFailed                 = La création a échoué, le répertoire n'est ni lisible ni inscriptible.
 	ISORefreshAuto                  = Rafraîchir les balises ISO à chaque fois
 	ISOSaveTo                       = Emplacement de sauvegarde ISO par défaut

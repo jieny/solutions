@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = 同步當前日期
 	PublicYear                      = 年
 	PublicMonth                     = 月
+	PublicMonthShort                = 月使用短名稱
 	ISOCreateFailed                 = 創建失敗，目錄不可讀寫。
 	ISORefreshAuto                  = 每次刷新 ISO 标签
 	ISOSaveTo                       = 生成 ISO 保存位置

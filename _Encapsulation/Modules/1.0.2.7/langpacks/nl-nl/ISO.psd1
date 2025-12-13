@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Synchroniseer de huidige datum
 	PublicYear                      = Jaar
 	PublicMonth                     = Maan
+	PublicMonthShort                = Gebruik korte namen voor de maanden
 	ISOCreateFailed                 = Het maken is mislukt, de map is niet leesbaar of beschrijfbaar.
 	ISORefreshAuto                  = Vernieuw ISO-tags elke keer
 	ISOSaveTo                       = ISO standaard opslaglocatie

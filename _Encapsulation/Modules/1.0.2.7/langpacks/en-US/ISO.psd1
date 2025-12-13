@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Sync current date
 	PublicYear                      = Year
 	PublicMonth                     = Month
+	PublicMonthShort                = Use short names for months.
 	ISOCreateFailed                 = Failed to create, directory is not readable and writable.
 	ISORefreshAuto                  = Refresh ISO tags every time
 	ISOSaveTo                       = Generate ISO save location

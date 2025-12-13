@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Synchronizovat aktuální datum
 	PublicYear                      = Rok
 	PublicMonth                     = Měsíc
+	PublicMonthShort                = Používejte krátké názvy měsíců
 	ISOCreateFailed                 = Vytvoření se nezdařilo, adresář není čitelný ani zapisovatelný.
 	ISORefreshAuto                  = Pokaždé obnovte ISO tagy
 	ISOSaveTo                       = Výchozí umístění uložení ISO

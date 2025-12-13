@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Geçerli tarihi senkronize et
 	PublicYear                      = Yıl
 	PublicMonth                     = Ay
+	PublicMonthShort                = Ayların adlarını kısaltın
 	ISOCreateFailed                 = Oluşturma başarısız oldu, dizin okunamıyor veya yazılabilir değil.
 	ISORefreshAuto                  = ISO etiketlerini her seferinde yenileyin
 	ISOSaveTo                       = ISO varsayılan kaydetme konumu

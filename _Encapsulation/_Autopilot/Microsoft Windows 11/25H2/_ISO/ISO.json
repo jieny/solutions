@@ -11,16 +11,17 @@
 					"SaveTo":              "",
 					"Structure":  {
 						"InstallType":     true,
-						"Group":          "Windows 11 25H2",
+						"Group":           "Windows 11 25H2",
 						"Event":           false,
 						"EngineVersion":   "",
-						"MulTags":        true,
-						"VerTags":        true,
-						"UniqueName":     true
+						"MulTags":         true,
+						"VerTags":         true,
+						"UniqueName":      true
 					},
 					"PublicDate": {
 						"Year":            true,
-						"Month":           true
+						"Month":           true,
+						"MonthShort":      true
 					},
 					"WindowsVersion": {
 						"Enable":          true,

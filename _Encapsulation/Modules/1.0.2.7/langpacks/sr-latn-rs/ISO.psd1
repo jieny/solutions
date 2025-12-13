@@ -30,6 +30,7 @@
 	PublicDateGetCurrent            = Синхронизујте тренутни датум
 	PublicYear                      = Година
 	PublicMonth                     = Моон
+	PublicMonthShort                = Користите кратка имена за месеце
 	ISOCreateFailed                 = Креирање није успело, директоријум није читљив или уписан.
 	ISORefreshAuto                  = Освежите ISO  ознаке сваки пут
 	ISOSaveTo                       = ISO подразумевана локација за чување
