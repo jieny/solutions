@@ -1,6 +1,6 @@
 ﻿@{
 	RootModule        = 'Solutions.psm1'
-	ModuleVersion     = '1.0.2.8'
+	ModuleVersion     = '1.0.2.9'
 	GUID              = '1e1ad755-d5e1-4769-af9b-7134001c8daf'
 	Author            = 'Yi'
 	Copyright         = 'FengYi, Inc. All rights reserved.'
@@ -22,7 +22,7 @@
 			)
 #			IconUri      = ''
 #			ReleaseNotes = ''
-			Buildstring    = 'yi_release.12.08.2025'
+			Buildstring    = 'yi_release.12.15.2025'
 			MinimumVersion = '1.0.0.0'
 			UpdateServer = @(
 				"https://fengyi.tel/download/solutions/latest.json"
