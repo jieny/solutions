@@ -523,6 +523,11 @@ Function Get_gpg_list_secret_keys
 
 	if (Test-Path -Path $gpgPath -PathType leaf) {
 		$output = gpg --list-secret-keys --with-colons --fingerprint
+		$hasKeys = $output -match "^sec:"
+		if (-not $hasKeys) {
+		   $output = gpg --list-secret-keys --with-colons --fingerprint
+		}
+
 		$newout = @()
 
 		for ($i=0; $i -lt $output.Count; $i++) {
