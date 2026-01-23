@@ -4137,7 +4137,7 @@ volume
 		Height         = 30
 		Width          = 433
 		margin         = "0,25,0,0"
-		Text           = $lang.FirstExpRequirements
+		Text           = $lang.FirstExpProcess
 	}
 
 	$EngineChkSyncMark = New-Object System.Windows.Forms.CheckBox -Property @{
