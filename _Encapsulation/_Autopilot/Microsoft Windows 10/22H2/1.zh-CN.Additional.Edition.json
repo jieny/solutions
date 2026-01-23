@@ -96,7 +96,6 @@
 							"FirstExperience": {
 								"Prerequisite": {
 									"FirstExpSyncMark":      true,
-									"FirstExpUpdate":        false,
 									"FirstExpDefender":      false,
 									"NetworkLocationWizard": true,
 									"FirstExpSyncLabel":     false,
@@ -356,7 +355,6 @@
 									"FirstExperience": {
 										"Prerequisite": {
 											"FirstExpSyncMark":      true,
-											"FirstExpUpdate":        false,
 											"FirstExpDefender":      false,
 											"NetworkLocationWizard": true,
 											"FirstExpSyncLabel":     false,
