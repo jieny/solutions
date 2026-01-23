@@ -169,7 +169,7 @@
 						"Month": {
 							"IsAllow": true,
 							"UseShortnames": {
-								"GroupB": false
+								"GroupB": true
 							},
 							"UseNumber": {
 								"GroupA": true,
