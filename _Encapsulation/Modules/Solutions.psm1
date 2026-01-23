@@ -644,6 +644,7 @@ Function Language_Select_GUI
 		Width          = 375
 		Location       = "20,22"
 		Text           = ""
+		BackColor      = "#FFFFFF"
 		add_Click      = {
 			$This.BackColor = "#FFFFFF"
 			$UI_Main_Error_Icon.Image = $null

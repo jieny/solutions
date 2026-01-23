@@ -259,6 +259,7 @@ Function Update_Create_UI
 		Width          = 400
 		PasswordChar = "*"
 		Text           = $Global:secure_password
+		BackColor      = "#FFFFFF"
 	}
 	$UI_Add_End_Wrap = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 20

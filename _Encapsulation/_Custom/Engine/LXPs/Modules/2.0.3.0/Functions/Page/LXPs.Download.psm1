@@ -295,6 +295,7 @@ Function LXPs_Download
 		Width          = 385
 		Location       = "426,55"
 		Text           = ""
+		BackColor      = "#FFFFFF"
 		add_Click      = {
 			$UI_Main_Download_Match_Version_Error.Text = ""
 			$UI_Main_Download_Match_Version_Error_Icon.Image = $null
@@ -599,6 +600,7 @@ Function LXPs_Download
 		margin         = "24,5,0,15"
 		ReadOnly       = $True
 		Text           = ""
+		BackColor      = "#FFFFFF"
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
@@ -888,6 +890,7 @@ Function LXPs_Download
 		margin         = "18,0,0,18"
 		Text           = ""
 		ReadOnly       = $True
+		BackColor      = "#FFFFFF"
 		add_Click      = {
 			$UI_Main_Mask_Report_Error.Text = ""
 			$UI_Main_Mask_Report_Error_Icon.Image = $null
@@ -1043,6 +1046,7 @@ Function LXPs_Download
 		margin         = "20,0,0,18"
 		Text           = ""
 		ReadOnly       = $True
+		BackColor      = "#FFFFFF"
 		add_Click      = {
 			$UI_Main_Mask_Report_Error.Text = ""
 			$UI_Main_Mask_Report_Error_Icon.Image = $null
