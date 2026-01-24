@@ -232,7 +232,7 @@ Function API_Process_Rule_Name
 				Write-Host $lang.UpdateAvailable -BackgroundColor DarkGreen -ForegroundColor White
 				Write-Host "  $('-' * 80)"
 
-				Import-Module -Name $GetImportFileName -Force | Out-Null
+				Import-Module -Name $GetImportFileName -Force
 				Remove-Module -Name $GetImportFileName -Force -ErrorAction Ignore | Out-Null
 
 				Write-Host
