@@ -1,11 +1,11 @@
 ﻿<#
-	.Menu: API
-	.菜单：API
+	.Menu: Running PowerShell Functions
+	.菜单：运行 PowerShell 函数
 #>
-Function API_Menu
+Function PowerShell_Functions_Menu
 {
 	if (-not $Global:EventQueueMode) {
-		Logo -Title $lang.API
+		Logo -Title $lang.SpecialFunction
 		Write-Host "  $($lang.Dashboard)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
@@ -34,13 +34,13 @@ Function API_Menu
 			Write-Host "  $($lang.NoInstallImage)" -ForegroundColor Red
 
 			ToWait -wait 6
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		Image_Get_Mount_Status -IsHotkey
 	}
 
-	Write-Host "`n  $($lang.API)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.SpecialFunction)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	Write-host "    " -NoNewline
 	Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
@@ -68,7 +68,7 @@ Function API_Menu
 
 	Write-Host
 	Write-host "  " -NoNewline
-	Write-Host " API * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " FX * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 	Write-Host " $($lang.Function_Unrestricted) " -ForegroundColor Green
 
 	Solutions_Menu_Shortcut
@@ -90,40 +90,37 @@ Function API_Menu
 	switch -Wildcard ($NewEnter)
 	{
 		"1" {
-			API_Menu_Shortcuts_PFB
+			PowerShell_Functions_Menu_Shortcuts_PFB
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 		"2" {
-			API_Menu_Shortcuts_PFA
+			PowerShell_Functions_Menu_Shortcuts_PFA
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
-		"API" {
-			API_Unrestricted_UI
+		"FX" {
+			Functions_Unrestricted_UI
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
-		"API *" {
+		"FX *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
-
-			Solutions_API_Command -Name $PSItem.Remove(0, 4)
-
-			Write-Host "  $('-' * 80)"
-			Write-Host "  API: $($lang.API), $($lang.Done)" -ForegroundColor Green
+			$NewRuleName = $PSItem.Remove(0, 3)
+			Shortcuts_PowerShell_Functions_Unrestricted -Command $NewRuleName
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		{ "O", "Od", "O'D" -eq $_ } {
 			Solutions_Help_Command -Name "OD" -Pause
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 		{ $_ -like "O'D *" -or $_ -like "Od *" -or $_ -like "O *" } {
 			Write-Host "`n  $($lang.Short_Cmd)`n" -ForegroundColor Yellow
 			Shortcuts_OpenFolder -Command $PSItem
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -133,7 +130,7 @@ Function API_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Mount
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -143,7 +140,7 @@ Function API_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Mount_Key_and_Index -Command $PSItem
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 			<#
@@ -173,7 +170,7 @@ Function API_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Save -Name $PSItem
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -183,7 +180,7 @@ Function API_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Unmt -Name $PSItem
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -202,7 +199,7 @@ Function API_Menu
 			}
 
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -221,21 +218,21 @@ Function API_Menu
 			}
 
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		"View *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_View -Name $PSItem.Remove(0, 5).Replace(' ', '')
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		"Sel *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Select -Name $PSItem
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -243,15 +240,15 @@ Function API_Menu
 		#>
 		{ "H", "Help", "H'elp" -eq $_ } {
 			Solutions_Help
-			Get_Next -DevCode "API 1"
+			Get_Next -DevCode "PF 1"
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 		{ $_ -like "H'elp *" -or  $_ -like "Help *" -or $_ -like "H *" } {
 			Write-Host "`n  $($lang.Short_Cmd)`n" -ForegroundColor Yellow
 			Shortcuts_Help -Command $PSItem
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
@@ -260,14 +257,14 @@ Function API_Menu
 		"Dev" {
 			Shortcuts_Developers_Mode
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		<#
 			热刷新：快速
 		#>
 		"r" {
-			Modules_Refresh -Function "ToWait -wait 2", "API_Menu"
+			Modules_Refresh -Function "ToWait -wait 2", "PowerShell_Functions_Menu"
 		}
 
 		<#
@@ -279,17 +276,17 @@ Function API_Menu
 			Write-Host "  $($lang.RefreshModules): " -NoNewline
 			Write-host $lang.Prerequisites -ForegroundColor Yellow
 
-			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "API_Menu"
+			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "PowerShell_Functions_Menu"
 		}
 
 		<#
 			.快捷指令：查看并接受许可条款
 		#>
-		"Vat" {
+		“vTC" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Eject_Abandon_Agreement
 			ToWait -wait 2
-			API_Menu
+			PowerShell_Functions_Menu
 		}
 
 		default {
@@ -298,9 +295,9 @@ Function API_Menu
 	}
 }
 
-Function API_Menu_Shortcuts_PFB
+Function PowerShell_Functions_Menu_Shortcuts_PFB
 {
-	Write-Host "`n  $($lang.API): $($lang.Functions_Before)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.SpecialFunction): $($lang.Functions_Before)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -315,7 +312,7 @@ Function API_Menu_Shortcuts_PFB
 				.Assign available tasks
 				.分配可用的任务
 			#>
-			Event_Assign -Rule "API_Before_UI" -Run
+			Event_Assign -Rule "Functions_Before_UI" -Run
 		} else {
 			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 		}
@@ -324,9 +321,9 @@ Function API_Menu_Shortcuts_PFB
 	}
 }
 
-Function API_Menu_Shortcuts_PFA
+Function PowerShell_Functions_Menu_Shortcuts_PFA
 {
-	Write-Host "`n  $($lang.API): $($lang.Functions_Rear)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.SpecialFunction): $($lang.Functions_Rear)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -341,7 +338,7 @@ Function API_Menu_Shortcuts_PFA
 				.Assign available tasks
 				.分配可用的任务
 			#>
-			Event_Assign -Rule "API_Rear_UI" -Run
+			Event_Assign -Rule "Functions_Rear_UI" -Run
 		} else {
 			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 		}

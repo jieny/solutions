@@ -155,7 +155,7 @@ Function Solutions_Menu_Shortcut
 
 	if ($IsShowQ) {
 		write-host "  " -NoNewline
-		Write-Host " vAT " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+		Write-Host “ vTC " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
 		Write-Host " $($lang.View) " -NoNewline -BackgroundColor DarkYellow -ForegroundColor White
 		Write-Host " $($lang.Abandon_Terms) " -NoNewline -BackgroundColor White -ForegroundColor Black
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {

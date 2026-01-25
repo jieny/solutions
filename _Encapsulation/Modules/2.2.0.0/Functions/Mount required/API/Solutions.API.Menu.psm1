@@ -1,11 +1,11 @@
 ﻿<#
-	.Open the functional user interface
-	.开启功能用户界面
+	.Menu: API
+	.菜单：API
 #>
-Function Windows_Feature_Menu
+Function API_Menu
 {
 	if (-not $Global:EventQueueMode) {
-		Logo -Title $lang.WindowsFeature
+		Logo -Title $lang.API
 		Write-Host "  $($lang.Dashboard)" -ForegroundColor Yellow
 		Write-Host "  $('-' * 80)"
 
@@ -34,34 +34,42 @@ Function Windows_Feature_Menu
 			Write-Host "  $($lang.NoInstallImage)" -ForegroundColor Red
 
 			ToWait -wait 6
-			PowerShell_Functions_Menu
+			API_Menu
 		}
 
 		Image_Get_Mount_Status -IsHotkey
 	}
 
-	Write-Host "`n  $($lang.WindowsFeature)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.API)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
-
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Enable)" -ForegroundColor Green
+	Write-host "    " -NoNewline
+	Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Functions_Before)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.Functions_Before)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Enable)" -ForegroundColor Red
+		Write-Host "  $($lang.Functions_Before)" -ForegroundColor Red
 	}
 
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Disable)" -ForegroundColor Green
+	Write-host "    " -NoNewline
+	Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Functions_Rear)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.Functions_Rear)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Disable)" -ForegroundColor Red
+		Write-Host "  $($lang.Functions_Rear)" -ForegroundColor Red
 	}
+
+	Write-Host
+	Write-host "  " -NoNewline
+	Write-Host " API * " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host " $($lang.Function_Unrestricted) " -ForegroundColor Green
 
 	Solutions_Menu_Shortcut
 	Solutions_Input_Menu
@@ -82,25 +90,40 @@ Function Windows_Feature_Menu
 	switch -Wildcard ($NewEnter)
 	{
 		"1" {
-			Windows_Feature_Menu_Shortcuts_Enabled
+			API_Menu_Shortcuts_PFB
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 		"2" {
-			Windows_Feature_Menu_Shortcuts_Disabled
+			API_Menu_Shortcuts_PFA
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
+		}
+		"API" {
+			API_Unrestricted_UI
+			ToWait -wait 2
+			API_Menu
+		}
+		"API *" {
+			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+
+			Solutions_API_Command -Name $PSItem.Remove(0, 4)
+
+			Write-Host "  $('-' * 80)"
+			Write-Host "  API: $($lang.API), $($lang.Done)" -ForegroundColor Green
+			ToWait -wait 2
+			API_Menu
 		}
 
 		{ "O", "Od", "O'D" -eq $_ } {
 			Solutions_Help_Command -Name "OD" -Pause
-			Windows_Feature_Menu
+			API_Menu
 		}
 		{ $_ -like "O'D *" -or $_ -like "Od *" -or $_ -like "O *" } {
 			Write-Host "`n  $($lang.Short_Cmd)`n" -ForegroundColor Yellow
 			Shortcuts_OpenFolder -Command $PSItem
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -110,7 +133,7 @@ Function Windows_Feature_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Mount
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -120,7 +143,7 @@ Function Windows_Feature_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Mount_Key_and_Index -Command $PSItem
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 			<#
@@ -150,7 +173,7 @@ Function Windows_Feature_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Save -Name $PSItem
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -160,7 +183,7 @@ Function Windows_Feature_Menu
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Unmt -Name $PSItem
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -179,7 +202,7 @@ Function Windows_Feature_Menu
 			}
 
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -198,21 +221,21 @@ Function Windows_Feature_Menu
 			}
 
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		"View *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_View -Name $PSItem.Remove(0, 5).Replace(' ', '')
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		"Sel *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Select -Name $PSItem
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -220,15 +243,15 @@ Function Windows_Feature_Menu
 		#>
 		{ "H", "Help", "H'elp" -eq $_ } {
 			Solutions_Help
-			Get_Next -DevCode "WF 1"
+			Get_Next -DevCode "API 1"
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 		{ $_ -like "H'elp *" -or  $_ -like "Help *" -or $_ -like "H *" } {
 			Write-Host "`n  $($lang.Short_Cmd)`n" -ForegroundColor Yellow
 			Shortcuts_Help -Command $PSItem
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
@@ -237,14 +260,14 @@ Function Windows_Feature_Menu
 		"Dev" {
 			Shortcuts_Developers_Mode
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		<#
 			热刷新：快速
 		#>
 		"r" {
-			Modules_Refresh -Function "ToWait -wait 2", "Windows_Feature_Menu"
+			Modules_Refresh -Function "ToWait -wait 2", "API_Menu"
 		}
 
 		<#
@@ -256,17 +279,17 @@ Function Windows_Feature_Menu
 			Write-Host "  $($lang.RefreshModules): " -NoNewline
 			Write-host $lang.Prerequisites -ForegroundColor Yellow
 
-			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "Windows_Feature_Menu"
+			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "API_Menu"
 		}
 
 		<#
 			.快捷指令：查看并接受许可条款
 		#>
-		"Vat" {
+		“vTC" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Eject_Abandon_Agreement
 			ToWait -wait 2
-			Windows_Feature_Menu
+			API_Menu
 		}
 
 		default {
@@ -275,9 +298,9 @@ Function Windows_Feature_Menu
 	}
 }
 
-Function Windows_Feature_Menu_Shortcuts_Enabled
+Function API_Menu_Shortcuts_PFB
 {
-	Write-Host "`n  $($lang.WindowsFeature): $($lang.Enable)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.API): $($lang.Functions_Before)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -292,7 +315,7 @@ Function Windows_Feature_Menu_Shortcuts_Enabled
 				.Assign available tasks
 				.分配可用的任务
 			#>
-			Event_Assign -Rule "Feature_Enabled_UI" -Run
+			Event_Assign -Rule "API_Before_UI" -Run
 		} else {
 			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 		}
@@ -301,9 +324,9 @@ Function Windows_Feature_Menu_Shortcuts_Enabled
 	}
 }
 
-Function Windows_Feature_Menu_Shortcuts_Disabled
+Function API_Menu_Shortcuts_PFA
 {
-	Write-Host "`n  $($lang.WindowsFeature): $($lang.Disable)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.API): $($lang.Functions_Rear)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -318,7 +341,7 @@ Function Windows_Feature_Menu_Shortcuts_Disabled
 				.Assign available tasks
 				.分配可用的任务
 			#>
-			Event_Assign -Rule "Feature_Disable_UI" -Run
+			Event_Assign -Rule "API_Rear_UI" -Run
 		} else {
 			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 		}

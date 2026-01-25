@@ -1,6 +1,10 @@
-﻿Function InBox_Apps_Menu
+﻿<#
+	.Update management
+	.更新管理
+#>
+Function Cumulative_updates_menu
 {
-	Logo -Title $lang.InboxAppsManager
+	Logo -Title $lang.CUpdate
 	Write-Host "  $($lang.Dashboard)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 
@@ -27,100 +31,84 @@
 
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.NoInstallImage)" -ForegroundColor Red
+
+		ToWait -wait 6
+		Cumulative_updates_menu
 	}
 
 	Image_Get_Mount_Status -IsHotkey
 
-	Write-Host
-	Write-Host "  $($lang.LocalExperiencePack) " -NoNewline -ForegroundColor Yellow
-	Write-Host " LXPs " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-	Write-Host " $($lang.Download) " -BackgroundColor White -ForegroundColor Black
+	Write-Host "`n  $($lang.CUpdate)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.AddTo)" -ForegroundColor Green
+	Write-host "   " -NoNewline
+	Write-Host " CT " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+	Write-Host "  $($lang.RuleNewTempate)" -ForegroundColor Green
+
+
+	Write-host "    " -NoNewline
+	Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.AddTo)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.AddTo)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 1 " -NoNewline -BackgroundColor Green -ForegroundColor Black
 		Write-Host "  $($lang.AddTo)" -ForegroundColor Red
 	}
 
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Update)" -ForegroundColor Green
+	Write-host "    " -NoNewline
+	Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Del)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.Del)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Update)" -ForegroundColor Red
-	}
-
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Del)" -ForegroundColor Green
-	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 4 " -NoNewline -BackgroundColor Green -ForegroundColor Black
 		Write-Host "  $($lang.Del)" -ForegroundColor Red
 	}
 
-	Write-Host "`n  $($lang.InboxAppsManager)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.MoreFeature)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.AddTo)" -ForegroundColor Green
+	Write-host "    " -NoNewline
+	Write-Host " 3 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.CuringUpdate)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.CuringUpdate)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " 2 " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.AddTo)" -ForegroundColor Red
+		Write-Host "  $($lang.CuringUpdate)" -ForegroundColor Red
 	}
 
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " A " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.InboxAppsOfflineDel)" -ForegroundColor Green
+	Write-Host "         $('-' * 73)"
+	Write-host "         " -NoNewline
+	Write-Host " 31 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Superseded)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.Superseded)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " A " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.InboxAppsOfflineDel)" -ForegroundColor Red
+		Write-Host "  $($lang.Superseded)" -ForegroundColor Red
 	}
 
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " O " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Optimize_Appx_Package)" -ForegroundColor Green
+	Write-host "         " -NoNewline
+	Write-Host " 32 " -NoNewline -BackgroundColor Green -ForegroundColor Black
+	if (Image_Is_Select_IAB) {
+		if (Verify_Is_Current_Same) {
+			Write-Host "  $($lang.Superseded), $($lang.ExcludeItem)" -ForegroundColor Green
+		} else {
+			Write-Host "  $($lang.Superseded), $($lang.ExcludeItem)" -ForegroundColor Red
+		}
 	} else {
-		Write-host "    " -NoNewline
-		Write-Host " O " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.Optimize_Appx_Package)" -ForegroundColor Red
+		Write-Host "  $($lang.Superseded), $($lang.ExcludeItem)" -ForegroundColor Red
 	}
 
-	Write-Host "`n    $($lang.InboxAppsClear)" -ForegroundColor Yellow
-	Write-Host "    $('-' * 78)"
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " F " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.AllClear)" -ForegroundColor Green
-	} else {
-		Write-host "    " -NoNewline
-		Write-Host " F " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.AllClear)" -ForegroundColor Red
-	}
-
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " E " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.ExcludeItem)" -ForegroundColor Green
-	} else {
-		Write-host "    " -NoNewline
-		Write-Host " E " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.ExcludeItem)" -ForegroundColor Red
-	}
-
-	Write-Host "`n`n  $($lang.GetInBoxApps)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.GetImagePackage)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	Write-host "    " -NoNewline
 	Write-Host " P " -NoNewline -BackgroundColor Green -ForegroundColor Black
@@ -158,17 +146,6 @@
 		}
 	}
 
-	Write-host
-	if (Verify_Is_Current_Same) {
-		Write-host "    " -NoNewline
-		Write-Host " C " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.OnDemandPlanTask)" -ForegroundColor Green
-	} else {
-		Write-host "    " -NoNewline
-		Write-Host " C " -NoNewline -BackgroundColor Green -ForegroundColor Black
-		Write-Host "  $($lang.OnDemandPlanTask)" -ForegroundColor Red
-	}
-
 	Solutions_Menu_Shortcut
 	Solutions_Input_Menu
 	$NewEnter = Read-Host
@@ -187,28 +164,23 @@
 
 	switch -Wildcard ($NewEnter)
 	{
-		"1" {
-			InBox_Apps_Menu_Shortcuts_LXPs_Add
+		"ct" {
+			Create_Template_UI
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
+		}
+		"1" {
+			Shortcuts_Cumulative_updates_Add
+			ToWait -wait 2
+			Cumulative_updates_menu
 		}
 		"2" {
-			InBox_Apps_Menu_Shortcuts_Add
+			Shortcuts_Cumulative_updates_Delete
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 		"3" {
-			InBox_Apps_Menu_Shortcuts_LXPs_Update
-			ToWait -wait 2
-			InBox_Apps_Menu
-		}
-		"4" {
-			InBox_Apps_Menu_Shortcuts_LXPs_Delete
-			ToWait -wait 2
-			InBox_Apps_Menu
-		}
-		"c" {
-			Write-Host "`n  $($lang.User_Interaction): $($lang.OnDemandPlanTask)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.CuringUpdate)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			if (Image_Is_Select_IAB) {
 				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -219,11 +191,11 @@
 					Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
 					Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
 
-					<#
-							.Assign available tasks
-							.分配可用的任务
-					#>
-					Event_Assign -Rule "LXPs_Region_Add" -Run
+					New-Variable -Scope global -Name "Queue_Is_Update_Curing_$($Global:Primary_Key_Image.Uid)" -Value $True -Force
+					Event_Process_Task_Need_Mount
+					New-Variable -Scope global -Name "Queue_Is_Update_Curing_$($Global:Primary_Key_Image.Uid)" -Value $False -Force
+
+					Get_Next -DevCode "CU 1"
 				} else {
 					Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 				}
@@ -232,15 +204,10 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
-		"A" {
-			InBox_Apps_Menu_Shortcuts_Delete
-			ToWait -wait 2
-			InBox_Apps_Menu
-		}
-		"o" {
-			Write-Host "`n  $($lang.Optimize_Appx_Package)" -ForegroundColor Yellow
+		"31" {
+			Write-Host "`n  $($lang.Superseded)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			if (Image_Is_Select_IAB) {
 				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -251,8 +218,11 @@
 					Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
 					Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
 
-					Inbox_Apps_Hard_Links_Optimize
-					Get_Next -DevCode "IAPP 1"
+					New-Variable -Scope global -Name "Queue_Superseded_Clean_$($Global:Primary_Key_Image.Uid)" -Value $True -Force
+					Image_Clear_Superseded
+					New-Variable -Scope global -Name "Queue_Superseded_Clean_$($Global:Primary_Key_Image.Uid)" -Value $False -Force
+
+					Get_Next -DevCode "CU 2"
 				} else {
 					Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 				}
@@ -261,13 +231,11 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
-		"f" {
-			Write-Host "`n  $($lang.InboxAppsClear)" -ForegroundColor Yellow
+		"32" {
+			Write-Host "`n  $($lang.Superseded)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
-			New-Variable -Scope global -Name "Queue_Is_InBox_Apps_Clear_Allow_Rule_$($Global:Primary_Key_Image.Uid)" -Value $False -Force
-
 			if (Image_Is_Select_IAB) {
 				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
@@ -277,8 +245,13 @@
 					Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
 					Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
 
-					InBox_Apps_LIPs_Clean_Process
-					Get_Next -DevCode "IAPP 2"
+					New-Variable -Scope global -Name "Queue_Superseded_Clean_$($Global:Primary_Key_Image.Uid)" -Value $True -Force
+					New-Variable -Scope global -Name "Queue_Superseded_Clean_Allow_Rule_$($Global:Primary_Key_Image.Uid)" -Value $True -Force
+					Image_Clear_Superseded
+					New-Variable -Scope global -Name "Queue_Superseded_Clean_$($Global:Primary_Key_Image.Uid)" -Value $False -Force
+					New-Variable -Scope global -Name "Queue_Superseded_Clean_Allow_Rule_$($Global:Primary_Key_Image.Uid)" -Value $False -Force
+
+					Get_Next -DevCode "CU 3"
 				} else {
 					Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 				}
@@ -287,38 +260,13 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
-		}
-		"e" {
-			Write-Host "`n  $($lang.InboxAppsClear)" -ForegroundColor Yellow
-			Write-Host "  $('-' * 80)"
-			New-Variable -Scope global -Name "Queue_Is_InBox_Apps_Clear_Allow_Rule_$($Global:Primary_Key_Image.Uid)" -Value $True -Force
-
-			if (Image_Is_Select_IAB) {
-				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
-				Write-Host "  $('-' * 80)"
-				write-host "  " -NoNewline
-
-				if (Verify_Is_Current_Same) {
-					Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
-					Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
-
-					InBox_Apps_LIPs_Clean_Process
-					Get_Next -DevCode "IAPP 3"
-				} else {
-					Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
-				}
-			} else {
-				Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
-			}
-
-			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 		"p" {
-			Write-Host "`n  $($lang.GetInBoxApps)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.GetImagePackage)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
 			Write-Host "  $($lang.ExportToLogs)" -ForegroundColor Yellow
+
 			if (Image_Is_Select_IAB) {
 				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
@@ -335,8 +283,8 @@
 						$Temp_Export_SaveTo = $Temp_Expand_Rule
 					}
 
-					Image_Get_Apps_Package -Save $Temp_Export_SaveTo
-					Get_Next -DevCode "IAPP 4"
+					Image_Get_Components_Package -Save $Temp_Export_SaveTo
+					Get_Next -DevCode "CU 4"
 				} else {
 					Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 				}
@@ -345,12 +293,13 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 		"s" {
-			Write-Host "`n  $($lang.GetInBoxApps)" -ForegroundColor Yellow
+			Write-Host "`n  $($lang.GetImagePackage)" -ForegroundColor Yellow
 			Write-Host "  $('-' * 80)"
-			Write-Host "  $($lang.ExportShow)"
+			Write-Host "  $($lang.ExportToLogs)" -ForegroundColor Yellow
+
 			if (Image_Is_Select_IAB) {
 				Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
 				Write-Host "  $('-' * 80)"
@@ -367,8 +316,8 @@
 						$Temp_Export_SaveTo = $Temp_Expand_Rule
 					}
 
-					Image_Get_Apps_Package -Save $Temp_Export_SaveTo -View
-					Get_Next -DevCode "IAPP 5"
+					Image_Get_Components_Package -Save $Temp_Export_SaveTo -View
+					Get_Next -DevCode "CU 5"
 				} else {
 					Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 				}
@@ -377,7 +326,7 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 		"ss" {
 			Write-Host "`n  $($lang.Setting): $($lang.SaveTo)" -ForegroundColor Yellow
@@ -400,18 +349,18 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		{ "O", "Od", "O'D" -eq $_ } {
 			Solutions_Help_Command -Name "OD" -Pause
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 		{ $_ -like "O'D *" -or $_ -like "Od *" -or $_ -like "O *" } {
 			Write-Host "`n  $($lang.Short_Cmd)`n" -ForegroundColor Yellow
 			Shortcuts_OpenFolder -Command $PSItem
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -421,7 +370,7 @@
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Mount
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -431,7 +380,7 @@
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Mount_Key_and_Index -Command $PSItem
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 			<#
@@ -461,7 +410,7 @@
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Save -Name $PSItem
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -471,7 +420,7 @@
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Unmt -Name $PSItem
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -490,7 +439,7 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -509,30 +458,21 @@
 			}
 
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		"View *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_View -Name $PSItem.Remove(0, 5).Replace(' ', '')
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		"Sel *" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Shortcuts_Select -Name $PSItem
 			ToWait -wait 2
-			InBox_Apps_Menu
-		}
-
-		<#
-			.LXPs
-		#>
-		"lxps" {
-			Shortcuts_Engine_LXPs
-			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -540,15 +480,15 @@
 		#>
 		{ "H", "Help", "H'elp" -eq $_ } {
 			Solutions_Help
-			Get_Next -DevCode "IAPP 6"
+			Get_Next -DevCode "CU 5"
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 		{ $_ -like "H'elp *" -or  $_ -like "Help *" -or $_ -like "H *" } {
 			Write-Host "`n  $($lang.Short_Cmd)`n" -ForegroundColor Yellow
 			Shortcuts_Help -Command $PSItem
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
@@ -557,14 +497,14 @@
 		"Dev" {
 			Shortcuts_Developers_Mode
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		<#
 			热刷新：快速
 		#>
 		"r" {
-			Modules_Refresh -Function "ToWait -wait 2", "InBox_Apps_Menu"
+			Modules_Refresh -Function "ToWait -wait 2", "Cumulative_updates_menu"
 		}
 
 		<#
@@ -576,17 +516,17 @@
 			Write-Host "  $($lang.RefreshModules): " -NoNewline
 			Write-host $lang.Prerequisites -ForegroundColor Yellow
 
-			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "InBox_Apps_Menu"
+			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "Cumulative_updates_menu"
 		}
 
 		<#
 			.快捷指令：查看并接受许可条款
 		#>
-		"Vat" {
+		“vTC" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Eject_Abandon_Agreement
 			ToWait -wait 2
-			InBox_Apps_Menu
+			Cumulative_updates_menu
 		}
 
 		default {
@@ -595,9 +535,9 @@
 	}
 }
 
-Function InBox_Apps_Menu_Shortcuts_Add
+Function Shortcuts_Cumulative_updates_Add
 {
-	Write-Host "`n  $($lang.InboxAppsManager): $($lang.AddTo)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.CUpdate): $($lang.AddTo)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -612,7 +552,7 @@ Function InBox_Apps_Menu_Shortcuts_Add
 				.Assign available tasks
 				.分配可用的任务
 			#>
-			Event_Assign -Rule "InBox_Apps_Add_UI" -Run
+			Event_Assign -Rule "Cumulative_updates_Add_UI" -Run
 		} else {
 			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 		}
@@ -621,9 +561,9 @@ Function InBox_Apps_Menu_Shortcuts_Add
 	}
 }
 
-Function InBox_Apps_Menu_Shortcuts_Delete
+Function Shortcuts_Cumulative_updates_Delete
 {
-	Write-Host "`n  $($lang.InboxAppsManager): $($lang.InboxAppsOfflineDel)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.CUpdate): $($lang.Del)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
@@ -638,85 +578,7 @@ Function InBox_Apps_Menu_Shortcuts_Delete
 				.Assign available tasks
 				.分配可用的任务
 			#>
-			Event_Assign -Rule "InBox_Apps_Offline_Delete_UI" -Run
-		} else {
-			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
-		}
-	} else {
-		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
-	}
-}
-
-Function InBox_Apps_Menu_Shortcuts_LXPs_Add
-{
-	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.AddTo)" -ForegroundColor Yellow
-	Write-Host "  $('-' * 80)"
-	if (Image_Is_Select_IAB) {
-		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
-		Write-Host "  $('-' * 80)"
-		write-host "  " -NoNewline
-
-		if (Verify_Is_Current_Same) {
-			Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
-
-			<#
-				.Assign available tasks
-				.分配可用的任务
-			#>
-			Event_Assign -Rule "LXPs_Region_Add" -Run
-		} else {
-			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
-		}
-	} else {
-		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
-	}
-}
-
-Function InBox_Apps_Menu_Shortcuts_LXPs_Update
-{
-	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Update)" -ForegroundColor Yellow
-	Write-Host "  $('-' * 80)"
-	if (Image_Is_Select_IAB) {
-		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
-		Write-Host "  $('-' * 80)"
-		write-host "  " -NoNewline
-
-		if (Verify_Is_Current_Same) {
-			Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
-
-			<#
-				.Assign available tasks
-				.分配可用的任务
-			#>
-			Event_Assign -Rule "LXPs_Update_UI" -Run
-		} else {
-			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
-		}
-	} else {
-		Write-Host "  $($lang.IABSelectNo)" -ForegroundColor Red
-	}
-}
-
-Function InBox_Apps_Menu_Shortcuts_LXPs_Delete
-{
-	Write-Host "`n  $($lang.LocalExperiencePack) ( LXPs ): $($lang.Del)" -ForegroundColor Yellow
-	Write-Host "  $('-' * 80)"
-	if (Image_Is_Select_IAB) {
-		Write-Host "  $($lang.Mounted_Status)" -ForegroundColor Yellow
-		Write-Host "  $('-' * 80)"
-		write-host "  " -NoNewline
-
-		if (Verify_Is_Current_Same) {
-			Write-Host " $($lang.Mounted) " -NoNewline -BackgroundColor White -ForegroundColor Black
-			Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
-
-			<#
-				.Assign available tasks
-				.分配可用的任务
-			#>
-			Event_Assign -Rule "LXPs_Remove_UI" -Run
+			Event_Assign -Rule "Cumulative_updates_Delete_UI" -Run
 		} else {
 			Write-Host " $($lang.NotMounted) " -BackgroundColor DarkRed -ForegroundColor White
 		}

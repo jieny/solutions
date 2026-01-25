@@ -274,6 +274,23 @@ Function Mainpage
 			if ($IsShowQ) {
 				Write-Host " -Q " -BackgroundColor White -ForegroundColor Black
 			} else { write-host }
+
+			if ($IsShowQ) {
+				write-host "       " -NoNewline
+				Write-Host “ vTC " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+				Write-Host " $($lang.View) " -NoNewline -BackgroundColor DarkYellow -ForegroundColor White
+				Write-Host " $($lang.Abandon_Terms) " -NoNewline -BackgroundColor White -ForegroundColor Black
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {
+					switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {
+						"True" {
+							Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
+						}
+						"False" {
+							Write-Host " $($lang.Prerequisite_Not_satisfied) " -BackgroundColor DarkRed -ForegroundColor White
+						}
+					}
+				}
+			}
 		} else {
 			if (Image_Is_Mount) {
 				Write-Host "$($lang.NotMounted), " -NoNewline -ForegroundColor Red
@@ -306,6 +323,23 @@ Function Mainpage
 				if ($IsShowQ) {
 					Write-Host " -Q " -BackgroundColor White -ForegroundColor Black
 				} else { write-host }
+
+				if ($IsShowQ) {
+					write-host "       " -NoNewline
+					Write-Host “ vTC " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+					Write-Host " $($lang.View) " -NoNewline -BackgroundColor DarkYellow -ForegroundColor White
+					Write-Host " $($lang.Abandon_Terms) " -NoNewline -BackgroundColor White -ForegroundColor Black
+					if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {
+						switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {
+							"True" {
+								Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
+							}
+							"False" {
+								Write-Host " $($lang.Prerequisite_Not_satisfied) " -BackgroundColor DarkRed -ForegroundColor White
+							}
+						}
+					}
+				}
 			} else {
 				Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 			}
@@ -342,6 +376,23 @@ Function Mainpage
 			if ($IsShowQ) {
 				Write-Host " -Q " -BackgroundColor White -ForegroundColor Black
 			} else { write-host }
+
+			if ($IsShowQ) {
+				write-host "       " -NoNewline
+				Write-Host “ vTC " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
+				Write-Host " $($lang.View) " -NoNewline -BackgroundColor DarkYellow -ForegroundColor White
+				Write-Host " $($lang.Abandon_Terms) " -NoNewline -BackgroundColor White -ForegroundColor Black
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {
+					switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\RAMDisk" -Name "RAMDisk_Accept" -ErrorAction SilentlyContinue) {
+						"True" {
+							Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
+						}
+						"False" {
+							Write-Host " $($lang.Prerequisite_Not_satisfied) " -BackgroundColor DarkRed -ForegroundColor White
+						}
+					}
+				}
+			}
 		} else {
 			Write-Host "$($lang.NotMounted) " -ForegroundColor Red
 		}
@@ -848,6 +899,16 @@ Function Mainpage
 			Write-host $lang.Prerequisites -ForegroundColor Yellow
 
 			Modules_Refresh -Function "ToWait -wait 2", "Prerequisite", "Mainpage"
+		}
+
+		<#
+			.快捷指令：查看并接受许可条款
+		#>
+		“vTC" {
+			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
+			Eject_Abandon_Agreement
+			ToWait -wait 2
+			Mainpage
 		}
 
 		<#

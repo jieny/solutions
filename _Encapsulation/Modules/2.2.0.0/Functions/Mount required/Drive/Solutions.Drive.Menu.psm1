@@ -399,7 +399,7 @@ Function Drive_Menu
 		<#
 			.快捷指令：查看并接受许可条款
 		#>
-		"Vat" {
+		“vTC" {
 			Write-Host "`n  $($lang.Short_Cmd)" -ForegroundColor Yellow
 			Eject_Abandon_Agreement
 			ToWait -wait 2
