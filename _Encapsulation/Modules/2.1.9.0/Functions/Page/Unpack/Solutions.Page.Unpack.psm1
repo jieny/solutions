@@ -325,6 +325,15 @@ Function UnPack_Create_UI
 		}
 	}
 
+	$UI_Main_Sources_Line = New-Object system.Windows.Forms.Panel -Property @{
+		BorderStyle    = 0
+		Height         = 230
+		Width          = 2
+		autoSizeMode   = 1
+		Location       = '560,10'
+		BackColor      = "#1b8d1b"
+	}
+
 	$UI_Main_Sources_Ok = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Height         = 36
@@ -997,7 +1006,7 @@ Function UnPack_Create_UI
 	<#
 		.组：设置 API
 	#>
-	$Unpack_API = New-Object system.Windows.Forms.Panel -Property @{
+	$Unpack_API        = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
 		Height         = 678
 		Width          = 1072
@@ -1370,6 +1379,15 @@ Function UnPack_Create_UI
 		}
 	}
 
+	$GUIUnPackBackup_Line = New-Object system.Windows.Forms.Panel -Property @{
+		BorderStyle    = 0
+		Height         = 365
+		Width          = 2
+		autoSizeMode   = 1
+		Location       = '560,300'
+		BackColor      = "#fa8f03"
+	}
+
 	$GUIUnPackBackup   = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
 		Location       = "575,300"
@@ -1676,12 +1694,14 @@ Function UnPack_Create_UI
 		$GUIUnPackCreateSHA256,
 		$GUIUnPackCreateSHA256Clean,
 
+		$UI_Main_Sources_Line,
 		$UI_Main_Sources_Ok,
 		$GUIUnPackSources,
 		$GUIUnPackShow,
 
-		$UI_Create_Latest_Zip,
+		$GUIUnPackBackup_Line,
 		$GUIUnPackBackup,
+		$UI_Create_Latest_Zip,
 		$UI_Unpack_Api_Setting,
 		$UI_Unpack_Api_Refresh,
 		$UI_Unpack_Api,
