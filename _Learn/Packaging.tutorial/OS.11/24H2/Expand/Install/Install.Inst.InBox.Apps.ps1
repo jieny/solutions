@@ -416,7 +416,7 @@ Function Match_InBox_Apps_Install_Pack
                         $InstallPackerCert = $_.FullName
                     }
 
-                    $Script:InBoxAppx += @{
+                    $Script:InBoxAppx += [pscustomobject]@{
                         Name            = $itemInBoxApps.Name
                         Depend          = $itemInBoxApps.Dependencies
                         Region          = $itemInBoxApps.Region

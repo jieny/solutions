@@ -142,7 +142,7 @@ if (Test-Path -Path $Export_To_New_Xml -PathType Leaf) {
 	[XML]$empDetails = Get-Content $Export_To_New_Xml
 
 	ForEach ($empDetail in $empDetails.wim.IMAGE) {
-		$GroupImageFileDetailed += @{
+		$GroupImageFileDetailed += [pscustomobject]@{
 			Index              = $empDetail.index
 			Name               = $empDetail.NAME
 			ImageDescription   = $empDetail.DESCRIPTION

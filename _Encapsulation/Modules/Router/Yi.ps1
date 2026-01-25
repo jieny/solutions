@@ -1304,7 +1304,7 @@ Function System_Env_Test_Order
 		Foreach ($item in $windows_path) {
 			$CalcCurrentValue++
 
-			$CalcCurrentPath += @{
+			$CalcCurrentPath += [pscustomobject]@{
 				SN = $CalcCurrentValue
 				OldPath = $item
 			}
