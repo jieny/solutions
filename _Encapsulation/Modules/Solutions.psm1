@@ -629,7 +629,7 @@ Function Language_Select_GUI
 		MaximizeBox    = $False
 		MinimizeBox    = $True
 		ControlBox     = $True
-		BackColor      = "#ffffff"
+		BackColor      = "#FFFFFF"
 		FormBorderStyle = "Fixed3D"
 		Font           = New-Object System.Drawing.Font($lang.FontsUI, 9, [System.Drawing.FontStyle]::Regular)
 		Icon = [System.Drawing.Icon]::ExtractAssociatedIcon("$($PSScriptRoot)\Assets\icon\Yi.ico")
@@ -644,7 +644,7 @@ Function Language_Select_GUI
 		add_Click      = {
 			$This.BackColor = "#FFFFFF"
 			$UI_Main_Error_Icon.Image = $null
-			$UI_Main_Error.ForeColor = "Black"
+			$UI_Main_Error.ForeColor = "#000000"
 		}
 	}
 
