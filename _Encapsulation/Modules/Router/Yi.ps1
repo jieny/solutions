@@ -23,7 +23,8 @@ param
 	[switch]$FixBad,
 	[switch]$LXPs,
 	[switch]$Mul,
-	[switch]$Ys
+	[switch]$Ys,
+	[string]$API
 )
 
 if ($Guid) {
@@ -68,6 +69,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Delete all resources associated with the corrupted mounted image"
 			CleanupLogs          = "Cleaning: Temp files, solution logs, DISM logs"
 			CleanupDisk          = "Clean up all temporary disk files"
+			API                  = "Application Programming Interface"
+			NoAPI                = "No valid API name was found."
+			RuleName             = "Rule Name"
+			Filename             = "File Name"
+			Select_Path          = "Select Path"
+			Unavailable          = "Unavailable"
+			Import               = "Import"
+			Available            = "Available"
+			RuleNoImport         = "Rule Not Imported"
+			Enable               = "Enable"
+			Disable			     = "Disable"
+			Running              = "Running"
+			Command              = "Command"
+			DoesNotExist         = "Does not exist locally"
+			Done 			     = "Done"
 		}
 	}
 	@{
@@ -100,6 +116,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "احذف جميع الموارد المرتبطة بالصورة المثبتة التالفة"
 			CleanupLogs          = "لتنظيف: الملفات المؤقتة وسجلات الحلول وسجلات DISM"
 			CleanupDisk          = "تنظيف كافة ملفات القرص المؤقتة"
+			API                  = "واجهة برمجة التطبيقات"
+			NoAPI                = "لم يتم العثور على اسم API صالح."
+			RuleName             = "اسم القاعدة"
+			FileName             = "اسم الملف"
+			Select_Path          = "طريق"
+			Available            = "متاح"
+			Unavailable          = "غير متوفر"
+			Import               = "يستورد"
+			RuleNoImport         = "لم يعد يتم استخدام الاستيراد ( الوراثة ) للتشغيل"
+			Enable               = "يُمكَِن"
+			Disable              = "إبطال"
+			Running              = "يجري"
+			Command              = "سطر الأوامر"
+			DoesNotExist         = "غير موجود محليا"
+			Done                 = "ينهي"
 		}
 	}
 	@{
@@ -132,6 +163,68 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Изтрийте всички ресурси, свързани с повреденото монтирано изображение"
 			CleanupLogs          = "Почистване: временни файлове, регистрационни файлове на решения, регистрационни файлове на DISM"
 			CleanupDisk          = "Почистете всички временни дискови файлове"
+			API                  = "Интерфейс за приложно програмиране"
+			NoAPI                = "Не е намерено валидно име на API."
+			RuleName             = "Име на правилото"
+			FileName             = "Име на файл"
+			Select_Path          = "Път"
+			Available            = "Наличен"
+			Unavailable          = "Не е наличен"
+			Import               = "Импортиране"
+			RuleNoImport         = "Вече не се използва импорт ( наследяване ) за изпълнение"
+			Enable               = "Активирайте"
+			Disable              = "Деактивиране"
+			Running              = "Тичам"
+			Command              = "Команден ред"
+			DoesNotExist         = "Не съществува локално"
+			Done                 = "Завършете"
+		}
+	}
+	@{
+		Region   = "cs-cz"
+		Name     = "Czech (Czech Republic)"
+		Language = @{
+			FontsUI              = "Segoe UI"
+			Usage                = "Použití: "
+			Learn                = "Učit se"
+			Choose               = "Vyberte prosím"
+			Reset                = "Resetovat"
+			History              = "Vyčistit záznamy příkazové řádky"
+			Add                  = "Přidat funkci směrování, systémovou proměnnou"
+			AddOK                = "Přidáno"
+			AddDone              = "Přidáno do dokončených"
+			Remove               = "Odstranit"
+			RemoveRoute          = "Odstranit funkci směrování, systémovou proměnnou"
+			RemoveDone           = "Úspěšně odstraněno"
+			SIP                  = "Skript systémového balení"
+			VerifyAutopilot      = "Ověření: Konfigurační soubor pro autonomní řízení"
+			VerifyUnattend       = "Ověření: musí být předem odpovězen šablonový soubor"
+			Unpack               = "Bale"
+			ChkUpdate            = "Zkontrolovat aktualizace"
+			CreateTemplate       = "Vytvořit šablonu"
+			CEUP                 = "Vytvořit balíček aktualizace nasazovacího nástroje"
+			zip                  = "Veškerý software je zabalen v komprimovaném formátu zip."
+			Repair               = "Oprava"
+			All                  = "všechno"
+			HistoryClearDismSave = "Odstranit záznamy o připojení DISM uložené v registru"
+			Clear_Bad_Mount      = "Odstranit všechny zdroje spojené s poškozeným připojeným obrazem"
+			CleanupLogs          = "Vyčistit: dočasné soubory, protokoly řešení, protokoly DISM"
+			CleanupDisk          = "Vyčistit všechny dočasné soubory disku"
+			API                  = "Rozhraní pro programování aplikací"
+			NoAPI                = "Nebyl nalezen žádný platný název API."
+			RuleName             = "Název pravidla"
+			FileName             = "Název souboru"
+			Select_Path          = "Vybrat cestu"
+			Available            = "Dostupný"
+			Unavailable          = "Nedostupný"
+			Import               = "Importovat"
+			RuleNoImport         = "Více není používán import (dědičnost) po spuštění"
+			Enable               = "Povolit"
+			Disable			     = "Zakázat"
+			Running              = "Běžící"
+			Command              = "Příkaz"
+			DoesNotExist         = "Není lokálně k dispozici"
+			Done 			     = "Dokončeno"
 		}
 	}
 	@{
@@ -164,6 +257,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Slet alle ressourcer forbundet med det beskadigede monterede billede"
 			CleanupLogs          = "Oprydning: Temp-filer, løsningslogfiler, DISM-logfiler"
 			CleanupDisk          = "Rens alle midlertidige diskfiler"
+			API                  = "Applikationsprogrammeringsgrænseflade"
+			NoAPI                = "Intet gyldigt API-navn fundet."
+			RuleName             = "Regelnavn"
+			FileName             = "Filnavn"
+			Select_Path          = "Sti"
+			Available            = "Tilgængelig"
+			Unavailable          = "Ikke tilgængelig"
+			Import               = "Importere"
+			RuleNoImport         = "Bruger ikke længere import ( arv ) til at køre"
+			Enable               = "Aktivere"
+			Disable              = "Deaktiver"
+			Running              = "Løbe"
+			Command              = "Kommandolinje"
+			DoesNotExist         = "Findes ikke lokalt"
+			Done                 = "Slutte"
 		}
 	}
 	@{
@@ -196,6 +304,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Löschen Sie alle Ressourcen, die mit dem beschädigten gemounteten Image verknüpft sind"
 			CleanupLogs          = "Bereinigung: Temporäre Dateien, Lösungsprotokolle, DISM-Protokolle"
 			CleanupDisk          = "Bereinigen Sie alle temporären Festplattendateien"
+			API                  = "Anwendungsprogrammierschnittstelle"
+			NoAPI                = "Es wurde kein gültiger API-Name gefunden."
+			RuleName             = "Regelname"
+			FileName             = "Dateiname"
+			Select_Path          = "Pfad"
+			Available            = "Verfügbar"
+			Unavailable          = "Nicht verfügbar"
+			Import               = "Importieren"
+			RuleNoImport         = "Die Verwendung von Import ( Vererbung ) zum Ausführen wird nicht mehr verwendet"
+			Enable               = "Ermöglichen"
+			Disable              = "Behinderte"
+			Running              = "Laufen"
+			Command              = "Befehlszeile"
+			DoesNotExist         = "Existiert nicht lokal"
+			Done                 = "Ziel"
 		}
 	}
 	@{
@@ -228,6 +351,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Διαγράψτε όλους τους πόρους που σχετίζονται με την κατεστραμμένη προσαρτημένη εικόνα"
 			CleanupLogs          = "Εκκαθάριση: αρχεία Temp, αρχεία καταγραφής λύσεων, αρχεία καταγραφής DISM"
 			CleanupDisk          = "Καθαρίστε όλα τα προσωρινά αρχεία δίσκου"
+			API                  = "Διεπαφή προγραμματισμού εφαρμογών"
+			NoAPI                = "Δεν βρέθηκε έγκυρο όνομα API."
+			RuleName             = "Όνομα κανόνα"
+			FileName             = "Όνομα αρχείου"
+			Select_Path          = "Μονοπάτι"
+			Available            = "Διαθέσιμος"
+			Unavailable          = "Μη διαθέσιμο"
+			Import               = "Εισαγωγή"
+			RuleNoImport         = "Δεν χρησιμοποιείται πλέον η εισαγωγή ( κληρονομικότητα ) για εκτέλεση"
+			Enable               = "Καθιστώ ικανό"
+			Disable              = "Καθιστώ ανίκανο"
+			Running              = "Τρέξιμο"
+			Command              = "Γραμμή εντολών"
+			DoesNotExist         = "Δεν υπάρχει τοπικά"
+			Done                 = "Φινίρισμα"
 		}
 	}
 	@{
@@ -260,6 +398,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Elimine todos los recursos asociados con la imagen montada dañada"
 			CleanupLogs          = "Limpieza: archivos temporales, registros de soluciones, registros DISM"
 			CleanupDisk          = "Limpiar todos los archivos temporales del disco"
+			API                  = "Interfaz de programación de aplicaciones"
+			NoAPI                = "No se encontró ningún nombre de API válido."
+			RuleName             = "Nombre de la regla"
+			FileName             = "Nombre del archivo"
+			Select_Path          = "Camino"
+			Available            = "Disponible"
+			Unavailable          = "No disponible"
+			Import               = "Importar"
+			RuleNoImport         = "Ya no se utiliza la importación ( herencia ) para ejecutar"
+			Enable               = "Permitir"
+			Disable              = "Desactivar"
+			Running              = "Correr"
+			Command              = "Línea de comando"
+			DoesNotExist         = "No existe localmente"
+			Done                 = "Finalizar"
 		}
 	}
 	@{
@@ -292,6 +445,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Elimine todos los recursos asociados con la imagen montada dañada"
 			CleanupLogs          = "Limpieza: archivos temporales, registros de soluciones, registros DISM"
 			CleanupDisk          = "Limpiar todos los archivos temporales del disco"
+			API                  = "Interfaz de programación de aplicaciones"
+			NoAPI                = "No se encontró ningún nombre de API válido."
+			RuleName             = "Nombre de la regla"
+			FileName             = "Nombre del archivo"
+			Select_Path          = "Camino"
+			Available            = "Disponible"
+			Unavailable          = "No disponible"
+			Import               = "Importar"
+			RuleNoImport         = "Ya no se utiliza la importación ( herencia ) para ejecutar"
+			Enable               = "Permitir"
+			Disable              = "Desactivar"
+			Running              = "Correr"
+			Command              = "Línea de comando"
+			DoesNotExist         = "No existe localmente"
+			Done                 = "Finalizar"
 		}
 	}
 	@{
@@ -324,6 +492,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Kustutage kõik rikutud ühendatud pildiga seotud ressursid"
 			CleanupLogs          = "Puhastamine: ajutised failid, lahenduslogid, DISM-i logid"
 			CleanupDisk          = "Puhastage kõik ajutised kettafailid"
+			API                  = "Rakenduste programmeerimisliides"
+			NoAPI                = "Kehtivat API nime ei leitud."
+			RuleName             = "Reegli nimi"
+			FileName             = "Faili nimi"
+			Select_Path          = "Tee"
+			Available            = "Saadaval"
+			Unavailable          = "Ei ole saadaval"
+			Import               = "Importida"
+			RuleNoImport         = "Importi ( pärimist ) enam ei kasutata käivitamiseks"
+			Enable               = "Lubada"
+			Disable              = "Keela"
+			Running              = "Jooksma"
+			Command              = "Käsurida"
+			DoesNotExist         = "Lokaalselt ei eksisteeri"
+			Done                 = "Lõpeta"
 		}
 	}
 	@{
@@ -356,6 +539,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Poista kaikki resurssit, jotka liittyvät vioittuneeseen liitettyyn kuvaan"
 			CleanupLogs          = "Puhdistus: Temp-tiedostot, ratkaisulokit, DISM-lokit"
 			CleanupDisk          = "Puhdista kaikki väliaikaiset levytiedostot"
+			API                  = "Sovellusohjelmointirajapinta"
+			NoAPI                = "Kelvollista API-nimeä ei löytynyt."
+			RuleName             = "Säännön nimi"
+			FileName             = "Tiedoston nimi"
+			Select_Path          = "Polku"
+			Available            = "Saatavilla"
+			Unavailable          = "Ei saatavilla"
+			Import               = "Tuoda"
+			RuleNoImport         = "Ei enää käytetä tuontia ( periytymistä ) suoritukseen"
+			Enable               = "Ota käyttöön"
+			Disable              = "Poista käytöstä"
+			Running              = "Juosta"
+			Command              = "Komentorivi"
+			DoesNotExist         = "Ei ole paikallisesti olemassa"
+			Done                 = "Valmis"
 		}
 	}
 	@{
@@ -388,6 +586,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Supprimez toutes les ressources associées à l'image montée corrompue"
 			CleanupLogs          = "Nettoyage: fichiers temporaires, journaux de solutions, journaux DISM"
 			CleanupDisk          = "Nettoyer tous les fichiers de disque temporaires"
+			API                  = "Interface de programmation d'applications"
+			NoAPI                = "Aucun nom d'API valide trouvé."
+			RuleName             = "Nom de la règle"
+			FileName             = "Nom du fichier"
+			Select_Path          = "Chemin"
+			Available            = "Disponible"
+			Unavailable          = "Non disponible"
+			Import               = "Importer"
+			RuleNoImport         = "Je n'utilise plus l'importation ( héritage ) pour exécuter"
+			Enable               = "Activer"
+			Disable              = "Désactiver"
+			Running              = "Courir"
+			Command              = "Ligne de commande"
+			DoesNotExist         = "N'existe pas localement"
+			Done                 = "Finition"
 		}
 	}
 	@{
@@ -420,6 +633,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Supprimez toutes les ressources associées à l'image montée corrompue"
 			CleanupLogs          = "Nettoyage: fichiers temporaires, journaux de solutions, journaux DISM"
 			CleanupDisk          = "Nettoyer tous les fichiers de disque temporaires"
+			API                  = "Interface de programmation d'applications"
+			NoAPI                = "Aucun nom d'API valide trouvé."
+			RuleName             = "Nom de la règle"
+			FileName             = "Nom de fichier"
+			Select_Path          = "Chemin"
+			Available            = "Disponible"
+			Unavailable          = "Pas disponible"
+			Import               = "Importer"
+			RuleNoImport         = "Je n'utilise plus l'importation ( héritage ) pour exécuter"
+			Enable               = "Activer"
+			Disable              = "Désactiver"
+			Running              = "Courir"
+			Command              = "Ligne de commande"
+			DoesNotExist         = "N'existe pas localement"
+			Done                 = "Finition"
 		}
 	}
 	@{
@@ -452,6 +680,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "מחק את כל המשאבים המשויכים לתמונה המותקנת הפגומה"
 			CleanupLogs          = "ניקוי: קבצי זמני, יומני פתרונות, יומני DISM"
 			CleanupDisk          = "נקה את כל קבצי הדיסק הזמניים"
+			API                  = "ממשק תכנות יישומים"
+			NoAPI                = "לא נמצא שם API חוקי."
+			RuleName             = "שם כלל"
+			FileName             = "שם הקובץ"
+			Select_Path          = "נָתִיב"
+			Available            = "זָמִין"
+			Unavailable          = "לא זמין"
+			Import               = "יְבוּא"
+			RuleNoImport         = "לא משתמש יותר בייבוא​​ ( ירושה ) כדי להריץ"
+			Enable               = "לְאַפשֵׁר"
+			Disable              = "השבת"
+			Running              = "לָרוּץ"
+			Command              = "שורת הפקודה"
+			DoesNotExist         = "לא קיים במקום"
+			Done                 = "סִיוּם"
 		}
 	}
 	@{
@@ -484,6 +727,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Izbrišite sve resurse povezane s oštećenom montiranom slikom"
 			CleanupLogs          = "Čišćenje: privremene datoteke, zapisnici rješenja, zapisnici DISM-a"
 			CleanupDisk          = "Očistite sve privremene diskovne datoteke"
+			API                  = "Sučelje za programiranje aplikacija"
+			NoAPI                = "Nije pronađen valjani API naziv."
+			RuleName             = "Naziv pravila"
+			FileName             = "Naziv datoteke"
+			Select_Path          = "Put"
+			Available            = "Na raspolaganju"
+			Unavailable          = "Nije dostupno"
+			Import               = "Uvoz"
+			RuleNoImport         = "Više se ne koristi uvoz ( nasljeđivanje ) za pokretanje"
+			Enable               = "Omogućiti"
+			Disable              = "Onemogući"
+			Running              = "Trčanje"
+			Command              = "Naredbeni redak"
+			DoesNotExist         = "Ne postoji lokalno"
+			Done                 = "Završiti"
 		}
 	}
 	@{
@@ -516,6 +774,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Törölje a sérült csatolt képfájlhoz tartozó összes erőforrást"
 			CleanupLogs          = "Tisztítás: Ideiglenes fájlok, megoldásnaplók, DISM-naplók"
 			CleanupDisk          = "Tisztítsa meg az összes ideiglenes lemezfájlt"
+			API                  = "Alkalmazás programozási felület"
+			NoAPI                = "Nem található érvényes API-név."
+			RuleName             = "Szabály neve"
+			FileName             = "Fájlnév"
+			Select_Path          = "Útvonal"
+			Available            = "Na raspolaganju"
+			Unavailable          = "Nije dostupno"
+			Import               = "Import"
+			RuleNoImport         = "Már nem használ importálást ( öröklést ) a futtatáshoz"
+			Enable               = "Engedélyezze"
+			Disable              = "Letiltás"
+			Running              = "Fut"
+			Command              = "Parancssor"
+			DoesNotExist         = "Helyben nem létezik"
+			Done                 = "Befejezés"
 		}
 	}
 	@{
@@ -548,6 +821,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Elimina tutte le risorse associate all'immagine montata danneggiata"
 			CleanupLogs          = "Pulizia: file temporanei, registri delle soluzioni, registri DISM"
 			CleanupDisk          = "Pulisci tutti i file temporanei del disco"
+			API                  = "Interfaccia di programmazione dell'applicazione"
+			NoAPI                = "Nessun nome API valido trovato."
+			RuleName             = "Nome della regola"
+			FileName             = "Nome del file"
+			Select_Path          = "Sentiero"
+			Available            = "Disponibile"
+			Unavailable          = "Non disponibile"
+			Import               = "Importare"
+			RuleNoImport         = "Non si usa più l'importazione ( ereditarietà ) per l'esecuzione"
+			Enable               = "Abilitare"
+			Disable              = "Disabilita"
+			Running              = "Correre"
+			Command              = "Riga di comando"
+			DoesNotExist         = "Non esiste localmente"
+			Done                 = "Fine"
 		}
 	}
 	@{
@@ -580,6 +868,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "破損したマウントされたイメージに関連付けられたすべてのリソースを削除します"
 			CleanupLogs          = "クリーンアップ: 一時ファイル、ソリューション ログ、DISM ログ"
 			CleanupDisk          = "すべての一時ディスク ファイルをクリーンアップする"
+			API                  = "アプリケーションプログラミングインターフェース"
+			NoAPI                = "有効な API 名が見つかりません"
+			RuleName             = "ルール名"
+			FileName             = "ファイル名"
+			Select_Path          = "パス"
+			Available            = "利用可能"
+			Unavailable          = "利用不可"
+			Import               = "輸入"
+			RuleNoImport         = "インポート ( 継承 ) の使用をやめてから実行します"
+			Enable               = "有効"
+			Disable              = "無効"
+			Running              = "走る"
+			Command              = "コマンドライン"
+			DoesNotExist         = "ローカルに存在しません"
+			Done                 = "終了"
 		}
 	}
 	@{
@@ -612,6 +915,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "손상된 탑재된 이미지와 관련된 모든 리소스 삭제"
 			CleanupLogs          = "정리: 임시 파일, 솔루션 로그, DISM 로그"
 			CleanupDisk          = "모든 임시 디스크 파일 정리"
+			API                  = "응용 프로그래밍 인터페이스"
+			NoAPI                = "유효한 API 이름을 찾을 수 없습니다."
+			RuleName             = "규칙 이름입니다"
+			FileName             = "파일"
+			Select_Path          = "경로입니다"
+			Available            = "사용 가능"
+			Unavailable          = "사용할 수 없음"
+			Import               = "수입"
+			RuleNoImport         = "더 이상 가져오기 ( 상속 ) 후 실행하지 않습니다"
+			Enable               = "할 수 있게 하다"
+			Disable              = "장애가 있는"
+			Running              = "달리다"
+			Command              = "명령줄"
+			DoesNotExist         = "로컬에 존재하지 않음"
+			Done                 = "마치다"
 		}
 	}
 	@{
@@ -644,6 +962,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Ištrinkite visus išteklius, susijusius su sugadintu prijungtu vaizdu"
 			CleanupLogs          = "Valymas: laikinieji failai, sprendimų žurnalai, DISM žurnalai"
 			CleanupDisk          = "Išvalykite visus laikinuosius disko failus"
+			API                  = "Taikomųjų programų programavimo sąsaja"
+			NoAPI                = "Nerastas tinkamas API pavadinimas"
+			RuleName             = "Taisyklės pavadinimas"
+			FileName             = "Failo pavadinimas"
+			Select_Path          = "Kelias"
+			Available            = "Galima"
+			Unavailable          = "Nėra"
+			Import               = "Importuoti"
+			RuleNoImport         = "Nebenaudokite importavimo ( paveldėjimo ) paleidimo"
+			Enable               = "Įjungti"
+			Disable              = "Išjungti"
+			Running              = "Paleisti"
+			Command              = "Komandinė eilutė"
+			DoesNotExist         = "Vietoje neegzistuoja"
+			Done                 = "Baigti"
 		}
 	}
 	@{
@@ -676,6 +1009,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Dzēsiet visus resursus, kas saistīti ar bojāto pievienoto attēlu"
 			CleanupLogs          = "Tīrīšana: pagaidu faili, risinājumu žurnāli, DISM žurnāli"
 			CleanupDisk          = "Notīriet visus pagaidu diska failus"
+			API                  = "Lietojumprogrammu saskarne"
+			NoAPI                = "Nav atrasts derīgs API nosaukums"
+			RuleName             = "Noteikuma nosaukums"
+			FileName             = "Faila nosaukums"
+			Select_Path          = "Ceļš"
+			Available            = "Pieejams"
+			Unavailable          = "Nav pieejams"
+			Import               = "Imports"
+			RuleNoImport         = "Vairs nepalaidiet pēc importa ( mantošanas )"
+			Enable               = "Iespējot"
+			Disable              = "Atspējot"
+			Running              = "Palaist"
+			Command              = "Komandrinda"
+			DoesNotExist         = "Lokāli nepastāv"
+			Done                 = "Pabeigt"
 		}
 	}
 	@{
@@ -708,6 +1056,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Slett alle ressurser knyttet til det ødelagte monterte bildet"
 			CleanupLogs          = "Opprydding: Temp-filer, løsningslogger, DISM-logger"
 			CleanupDisk          = "Rengjør alle midlertidige diskfiler"
+			API                  = "Applikasjonsprogrammeringsgrensesnitt"
+			NoAPI                = "Intet gyldigt API-navn fundet."
+			RuleName             = "Regelnavn"
+			FileName             = "Filnavn"
+			Select_Path          = "Sti"
+			Available            = "Tilgjengelig"
+			Unavailable          = "Ikke tilgjengelig"
+			Import               = "Import"
+			RuleNoImport         = "Ikke lenger kjør etter import ( arv )"
+			Enable               = "Aktivere"
+			Disable              = "Deaktiver"
+			Running              = "Løp"
+			Command              = "Kommandolinje"
+			DoesNotExist         = "Finnes ikke lokalt"
+			Done                 = "Fullfør"
 		}
 	}
 	@{
@@ -740,6 +1103,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Verwijder alle bronnen die zijn gekoppeld aan de beschadigde gekoppelde afbeelding"
 			CleanupLogs          = "Opschonen: tijdelijke bestanden, oplossingslogboeken, DISM-logboeken"
 			CleanupDisk          = "Maak alle tijdelijke schijfbestanden schoon"
+			API                  = "Applicatie-programmeerinterface"
+			NoAPI                = "Geen geldige API-naam gevonden."
+			RuleName             = "Regelnaam"
+			FileName             = "Bestandsnaam"
+			Select_Path          = "Pad"
+			Available            = "Beschikbaar"
+			Unavailable          = "Niet beschikbaar"
+			Import               = "Importeren"
+			RuleNoImport         = "Gebruik importeren ( overerven ) niet meer bij het uitvoeren"
+			Enable               = "Inschakelen"
+			Disable              = "Uitzetten"
+			Running              = "Loop"
+			Command              = "Opdrachtregel"
+			DoesNotExist         = "Bestaat lokaal niet"
+			Done                 = "Finish"
 		}
 	}
 	@{
@@ -772,6 +1150,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Usuń wszystkie zasoby powiązane z uszkodzonym zamontowanym obrazem"
 			CleanupLogs          = "Oczyszczanie: pliki tymczasowe, dzienniki rozwiązań, dzienniki DISM"
 			CleanupDisk          = "Wyczyść wszystkie pliki tymczasowe na dysku"
+			API                  = "Interfejs programowania aplikacji"
+			NoAPI                = "Nie znaleziono poprawnej nazwy API"
+			RuleName             = "Nazwa reguły"
+			FileName             = "Nazwa pliku"
+			Select_Path          = "Ścieżka"
+			Available            = "Dostępny"
+			Unavailable          = "Niedostępne"
+			Import               = "Import"
+			RuleNoImport         = "Nie używaj już importu ( dziedziczenia ) podczas uruchamiania"
+			Enable               = "Włączać"
+			Disable              = "Wyłączyć"
+			Running              = "Uruchomić"
+			Command              = "Wiersz poleceń"
+			DoesNotExist         = "Nie istnieje lokalnie"
+			Done                 = "Skończyć"
 		}
 	}
 	@{
@@ -804,6 +1197,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Exclua todos os recursos associados à imagem montada corrompida"
 			CleanupLogs          = "Limpeza: arquivos temporários, logs de solução, logs DISM"
 			CleanupDisk          = "Limpe todos os arquivos temporários do disco"
+			API                  = "Interface de programação de aplicativos"
+			NoAPI                = "Nenhum nome de API válido encontrado"
+			RuleName             = "Nome da regra"
+			FileName             = "Nome do arquivo"
+			Select_Path          = "Caminho"
+			Available            = "Disponível"
+			Unavailable          = "Não disponível"
+			Import               = "Importar"
+			RuleNoImport         = "Não use mais a importação ( herança ) para executar"
+			Enable               = "Habilitar"
+			Disable              = "Desativar"
+			Running              = "Correr"
+			Command              = "Linha de comando"
+			DoesNotExist         = "Não existe localmente"
+			Done                 = "Terminar"
 		}
 	}
 	@{
@@ -836,6 +1244,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Apague todos os recursos associados à imagem montada corrompida"
 			CleanupLogs          = "Limpeza: ficheiros temporários, registos de soluções, registos DISM"
 			CleanupDisk          = "Limpe todos os ficheiros temporários do disco"
+			API                  = "Interface de programação de aplicações"
+			NoAPI                = "Nenhum nome de API válido encontrado"
+			RuleName             = "Nome da regra"
+			FileName             = "Nome do ficheiro"
+			Select_Path          = "Caminho"
+			Available            = "Disponível"
+			Unavailable          = "Não disponível"
+			Import               = "Importar"
+			RuleNoImport         = "Não utilize mais a importação ( herança ) para executar"
+			Enable               = "Habilitar"
+			Disable              = "Desativar"
+			Running              = "Correr"
+			Command              = "Linha de comando"
+			DoesNotExist         = "Não existe localmente"
+			Done                 = "Terminar"
 		}
 	}
 	@{
@@ -868,6 +1291,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Ștergeți toate resursele asociate cu imaginea montată coruptă"
 			CleanupLogs          = "Curățare: fișiere temporare, jurnale de soluții, jurnale DISM"
 			CleanupDisk          = "Curățați toate fișierele temporare de pe disc"
+			API                  = "Interfata de programare a aplicatiei"
+			NoAPI                = "Nenhum nome de API válido encontrado"
+			RuleName             = "Numele regulii"
+			FileName             = "Nume de fișier"
+			Select_Path          = "Cale"
+			Available            = "Disponibil"
+			Unavailable          = "Nu este disponibil"
+			Import               = "Import"
+			RuleNoImport         = "Nu mai utilizați importul ( moștenirea ) pentru a rula"
+			Enable               = "Permite"
+			Disable              = "Dezactivați"
+			Running              = "Alerga"
+			Command              = "Linie de comandă"
+			DoesNotExist         = "Nu există la nivel local"
+			Done                 = "Termina"
 		}
 	}
 	@{
@@ -900,6 +1338,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Удалите все ресурсы, связанные с поврежденным смонтированным образом"
 			CleanupLogs          = "Очистка: временные файлы, журналы решений, журналы DISM."
 			CleanupDisk          = "Очистите все временные файлы на диске"
+			API                  = "Интерфейс прикладного программирования"
+			NoAPI                = "Нет доступного API"
+			RuleName             = "Название правила"
+			FileName             = "Имя файла"
+			Select_Path          = "Путь"
+			Available            = "Доступный"
+			Unavailable          = "Нет в наличии"
+			Import               = "Импортировать"
+			RuleNoImport         = "Больше не используйте импорт ( наследование ) для запуска"
+			Enable               = "Давать возможность"
+			Disable              = "Запрещать"
+			Running              = "Бегать"
+			Command              = "Командная строка"
+			DoesNotExist         = "Не существует локально"
+			Done                 = "Заканчивать"
 		}
 	}
 	@{
@@ -932,6 +1385,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Odstráňte všetky prostriedky spojené s poškodeným pripojeným obrazom"
 			CleanupLogs          = "Čistenie: dočasné súbory, protokoly riešení, protokoly DISM"
 			CleanupDisk          = "Vyčistite všetky dočasné súbory na disku"
+			API                  = "Aplikačné programovacie rozhranie"
+			NoAPI                = "Nenájdené žiadne platné API"
+			RuleName             = "Názov pravidla"
+			FileName             = "Názov súboru"
+			Select_Path          = "Cesta"
+			Available            = "Dostupné"
+			Unavailable          = "Nie je k dispozícii"
+			Import               = "Importovať"
+			RuleNoImport         = "Už nepoužívajte import ( dedičstvo ) na spustenie"
+			Enable               = "Povoliť"
+			Disable              = "Zakázať"
+			Running              = "Behať"
+			Command              = "Príkazový riadok"
+			DoesNotExist         = "Neexistuje lokálne"
+			Done                 = "Dokončiť"
 		}
 	}
 	@{
@@ -964,6 +1432,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Izbrišite vse vire, povezane s poškodovano nameščeno sliko"
 			CleanupLogs          = "Čiščenje: začasne datoteke, dnevniki rešitev, dnevniki DISM"
 			CleanupDisk          = "Očistite vse začasne datoteke na disku"
+			API                  = "Aplikacijski programski vmesnik"
+			NoAPI                = "Najden ni noben veljaven API"
+			RuleName             = "Ime pravila"
+			FileName             = "Ime datoteke"
+			Select_Path          = "Pot"
+			Available            = "Na voljo"
+			Unavailable          = "Ni na voljo"
+			Import               = "Uvoz"
+			RuleNoImport         = "Ne uporabljajte več uvoza ( dedovanja ) za zagon"
+			Enable               = "Omogočiti"
+			Disable              = "Onemogoči"
+			Running              = "Teči"
+			Command              = "Ukazna vrstica"
+			DoesNotExist         = "Lokalno ne obstaja"
+			Done                 = "Končaj"
 		}
 	}
 	@{
@@ -996,6 +1479,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Избришите све ресурсе повезане са оштећеном монтираном сликом"
 			CleanupLogs          = "Чишћење: Темп датотеке, евиденције решења, ДИСМ евиденције"
 			CleanupDisk          = "Очистите све привремене датотеке на диску"
+			API                  = "Интерфејс за програмирање апликација"
+			NoAPI                = "Није пронађен ниједан важећи API"
+			RuleName             = "Име правила"
+			FileName             = "Назив датотеке"
+			Select_Path          = "Пут"
+			Available            = "Доступан"
+			Unavailable          = "Није доступно"
+			Import               = "Увоз"
+			RuleNoImport         = "Више не користите увоз ( наслеђивање ) за покретање"
+			Enable               = "Омогућити"
+			Disable              = "Онемогући"
+			Running              = "Трчи"
+			Command              = "Командна линија"
+			DoesNotExist         = "Не постоји локално"
+			Done                 = "Заврши"
 		}
 	}
 	@{
@@ -1028,6 +1526,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Ta bort alla resurser som är associerade med den skadade monterade bilden"
 			CleanupLogs          = "Rensning: Temp-filer, lösningsloggar, DISM-loggar"
 			CleanupDisk          = "Rensa alla temporära diskfiler"
+			API                  = "Applikationsprogrammeringsgränssnitt"
+			NoAPI                = "Ingen giltig API-namn hittades"
+			RuleName             = "Regelnamn"
+			FileName             = "Filnamn"
+			Select_Path          = "Väg"
+			Available            = "Tillgänglig"
+			Unavailable          = "Ej tillgängligt"
+			Import               = "Importera"
+			RuleNoImport         = "Använd inte längre import ( ärva ) för att köra"
+			Enable               = "Aktivera"
+			Disable              = "Inaktivera"
+			Running              = "Sikt"
+			Command              = "Kommandoraden"
+			DoesNotExist         = "Finns inte lokalt"
+			Done                 = "Avsluta"
 		}
 	}
 	@{
@@ -1060,6 +1573,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "ลบทรัพยากรทั้งหมดที่เกี่ยวข้องกับอิมเมจที่เมาท์ที่เสียหาย"
 			CleanupLogs          = "การล้างข้อมูล: ไฟล์ชั่วคราว บันทึกโซลูชัน บันทึก DISM"
 			CleanupDisk          = "ทำความสะอาดไฟล์ดิสก์ชั่วคราวทั้งหมด"
+			API                  = "อินเทอร์เฟซการเขียนโปรแกรมแอปพลิเคชัน"
+			NoAPI                = "ไม่พบชื่อ API ที่ถูกต้อง"
+			RuleName             = "ชื่อกฎ"
+			FileName             = "ชื่อไฟล์"
+			Select_Path          = "เส้นทาง"
+			Available            = "มีอยู่"
+			Unavailable          = "ไม่สามารถใช้ได้"
+			Import               = "นำเข้า"
+			RuleNoImport         = "ไม่ใช้การนำเข้า ( สืบทอด ) เพื่อรันอีกต่อไป"
+			Enable               = "เปิดใช้งาน"
+			Disable              = "ปิดการใช้งาน"
+			Running              = "วิ่ง"
+			Command              = "บรรทัดคำสั่ง"
+			DoesNotExist         = "ไม่มีอยู่ในท้องถิ่น"
+			Done                 = "เสร็จ"
 		}
 	}
 	@{
@@ -1092,6 +1620,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Bozuk monte edilmiş görüntüyle ilişkili tüm kaynakları silin"
 			CleanupLogs          = "Temizleme: Geçici dosyalar, çözüm günlükleri, DISM günlükleri"
 			CleanupDisk          = "Tüm geçici disk dosyalarını temizleyin"
+			API                  = "Uygulama programlama arayüzü"
+			NoAPI                = "Geçerli API adı bulunamadı"
+			RuleName             = "Kural adı"
+			FileName             = "Dosya adı"
+			Select_Path          = "Yol"
+			Available            = "Mevcut"
+			Unavailable          = "Müsait değil"
+			Import               = "Içe aktarmak"
+			RuleNoImport         = "İçe aktarma ( miras ) sonrası çalıştırmayı artık kullanmıyor"
+			Enable               = "Olanak vermek"
+			Disable              = "Devre dışı bırakmak"
+			Running              = "Koşmak"
+			Command              = "Komut satırı"
+			DoesNotExist         = "Yerel olarak mevcut değil"
+			Done                 = "Sona ermek"
 		}
 	}
 	@{
@@ -1124,6 +1667,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "Видаліть усі ресурси, пов'язані з пошкодженим підключеним образом"
 			CleanupLogs          = "Очищення: тимчасові файли, журнали рішень, журнали DISM"
 			CleanupDisk          = "Очистіть усі тимчасові файли диска"
+			API                  = "Інтерфейс прикладного програмування"
+			NoAPI                = "Немає дійсного API-імені"
+			RuleName             = "Назва правила"
+			FileName             = "Ім'я файлу"
+			Select_Path          = "шлях"
+			Available            = "в наявності"
+			Unavailable          = "Не доступний"
+			Import               = "імпорт"
+			RuleNoImport         = "Не використовувати імпорт ( успадкування ) після запуску"
+			Enable               = "Включити"
+			Disable              = "Вимкнути"
+			Running              = "Бігти"
+			Command              = "командний рядок"
+			DoesNotExist         = "Не існує локально"
+			Done                 = "Закінчити"
 		}
 	}
 	@{
@@ -1156,6 +1714,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "删除与已损坏的已装载映像关联的所有资源"
 			CleanupLogs          = "清理：Temp 临时文件、解决方案日志、DISM 日志"
 			CleanupDisk          = "清理所有磁盘临时文件"
+			API                  = "应用程序编程接口"
+			NoAPI                = "未找到有效的 API 名称。"
+			RuleName             = "规则名称"
+			Filename             = "文件名"
+			Select_Path          = "选择路径"
+			Available            = "可用"
+			Unavailable          = "不可用"
+			Import               = "导入"
+			RuleNoImport         = "不再使用导入（继承）后运行"
+			Enable               = "启用"
+			Disable			     = "停用"
+			Running              = "运行中"
+			Command              = "命令"
+			DoesNotExist         = "本地不存在"
+			Done 			     = "完成"
 		}
 	}
 	@{
@@ -1188,6 +1761,21 @@ $AvailableLanguages = @(
 			Clear_Bad_Mount      = "刪除與已損壞的已裝載映像關聯的所有資源"
 			CleanupLogs          = "清理：Temp 臨時檔案、解決方案日誌、DISM 日誌"
 			CleanupDisk          = "清理所有磁碟臨時文件"
+			API                  = "應用程式介面"
+			NoAPI                = "沒有找到有效的 API 名稱"
+			RuleName             = "規則名稱"
+			FileName             = "檔案名稱"
+			Select_Path          = "路徑"
+			Available            = "可用"
+			Unavailable          = "不可用"
+			Import               = "導入"
+			RuleNoImport         = "不再使用導入（繼承）後運行"
+			Enable               = "啟用"
+			Disable              = "禁用"
+			Running              = "运行"
+			Command              = "命令行"
+			DoesNotExist         = "本地不存在"
+			Done                 = "完成"
 		}
 	}
 )
@@ -1512,7 +2100,7 @@ Function Help
 	Write-Host
 	Write-Host "  " -NoNewline
 	Write-Host " Yi's Solutions " -NoNewline -BackgroundColor White -ForegroundColor Black
-	Write-Host " v1.0.0.8 " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
+	Write-Host " v1.0.1.0 " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 
 	Write-Host
 	Write-Host "  " -NoNewline
@@ -1522,6 +2110,11 @@ Function Help
 	Write-Host
 	Write-Host "  $($lang.Usage)"
 	Write-Host "  $('-' * 80)"
+	Write-Host "   " -NoNewLine -ForegroundColor Green
+	Write-Host "$($PSscript.BaseName) -API {$($lang.RuleName)}" -NoNewLine -ForegroundColor Green
+	Write-Host " | " -NoNewLine
+	Write-Host $lang.Api -ForegroundColor Yellow
+
 	Write-Host "    U   " -NoNewLine -ForegroundColor Green
 	Write-Host "$($PSscript.BaseName) -Update" -NoNewLine -ForegroundColor Green
 	Write-Host "  | " -NoNewLine
@@ -1838,6 +2431,137 @@ if ($Mul) {
 if ($Ys) {
 	powershell -file "$($PSScriptRoot)\..\..\_Custom\Engine\Yi.Suite\Engine.ps1"
 	return
+}
+
+Function Unpack_API_Process_Rule_Name
+{
+	param (
+		$RuleName
+	)
+
+	Write-Host "  $($lang.RuleName): " -NoNewline -ForegroundColor Yellow
+	Write-Host $RuleName -ForegroundColor Green
+
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\Yi\Solutions\Unpack\API\Custom\$($RuleName)" -Name "Path" -ErrorAction SilentlyContinue) {
+		$GetImportFileName = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\Yi\Solutions\Unpack\API\Custom\$($RuleName)" -Name "Path" -ErrorAction SilentlyContinue
+
+		Write-Host "  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
+		
+		If ([String]::IsNullOrEmpty($GetImportFileName)) {
+			Write-Host "$($lang.Select_Path), $($lang.Unavailable)" -BackgroundColor DarkRed -ForegroundColor White
+		} else {
+			Write-Host $GetImportFileName -ForegroundColor Green
+
+			write-host
+			write-host "  " -NoNewline
+			Write-Host " $($lang.Import) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			if (Test-Path -Path $GetImportFileName -PathType leaf) {
+				Write-Host " $($lang.Available) " -BackgroundColor DarkGreen -ForegroundColor White
+
+				Write-Host "`n  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
+				Write-Host $GetImportFileName -ForegroundColor Green
+				Write-Host "  $('-' * 80)"
+
+				$RunRule = $True
+				if (Get-ItemProperty -Path "HKCU:\SOFTWARE\Yi\Solutions\Unpack\API\Custom\$($RuleName)" -Name "NoImport" -ErrorAction SilentlyContinue) {
+					switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\Yi\Solutions\Unpack\API\Custom\$($RuleName)" -Name "NoImport" -ErrorAction SilentlyContinue) {
+						"True" { $RunRule = $False }
+					}
+				}
+
+				Write-Host "  $($lang.RuleNoImport)" -ForegroundColor Yellow
+
+				if ($RunRule) {
+					write-host "  $($lang.Enable)" -ForegroundColor Green
+
+					Write-Host
+					Write-Host "  " -NoNewline
+					Write-Host " $($lang.Running) " -BackgroundColor White -ForegroundColor Black
+					Write-Host "  $('-' * 80)"
+
+					Import-Module -Name $GetImportFileName -Force | Out-Null
+					Remove-Module -Name $GetImportFileName -Force -ErrorAction Ignore | Out-Null
+
+					Write-Host
+					Write-Host "  $('-' * 80)"
+					Write-Host "  $($lang.Filename): " -NoNewline -ForegroundColor Yellow
+					Write-Host $GetImportFileName -ForegroundColor Green
+
+					Write-Host "  " -NoNewline
+					Write-Host " $($lang.Running) " -NoNewline -BackgroundColor White -ForegroundColor Black
+					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+					Write-Host
+				} else {
+					write-host "  $($lang.Disable)" -ForegroundColor Red
+
+					$arguments = @(
+						"-ExecutionPolicy",
+						"ByPass",
+						"-File",
+						"""$($GetImportFileName)"""
+					)
+
+					if ((Get-ItemProperty -Path "HKCU:\SOFTWARE\Yi\Solutions" -ErrorAction SilentlyContinue).'ShowCommand' -eq "True") {
+						Write-Host "`n  $($lang.Command)" -ForegroundColor Yellow
+						Write-Host "  $('-' * 80)"
+						Write-Host "  Start-Process -FilePath 'powershell' -ArgumentList '$($Arguments)'" -ForegroundColor Green
+						Write-Host "  $('-' * 80)"
+					}
+
+					Write-Host
+					Write-Host "  " -NoNewline
+					Write-Host " $($lang.Running) " -NoNewline -BackgroundColor White -ForegroundColor Black
+					Start-Process "powershell" -ArgumentList $arguments -Verb RunAs -Wait
+					Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
+					Write-Host
+				}
+			} else {
+				Write-Host " $($lang.DoesNotExist) " -BackgroundColor DarkRed -ForegroundColor White
+			}
+		}
+	} else {
+		Write-Host "  $($lang.NoWork)" -ForegroundColor Red
+	}
+}
+
+if ($API) {
+	Write-Host "`n  $($lang.API)" -ForegroundColor Yellow
+	Write-Host "  $('-' * 80)"
+	
+	$GetALlName = @()
+	Get-ChildItem -Path "HKCU:\SOFTWARE\Yi\Solutions\Unpack\API\Custom" -ErrorAction SilentlyContinue | ForEach-Object {
+		$GetALlName += $([System.IO.Path]::GetFileNameWithoutExtension($_.Name))
+	}
+
+	switch ($API) {
+		"list" {
+			if ($GetALlName.Count -gt 0) {
+				ForEach ($item in $GetALlName) {
+					write-host "  $($item)" -ForegroundColor Yellow
+				}
+			} else {
+				write-host "  $($lang.NoWork)" -ForegroundColor Red
+			}
+			exit
+		}
+		default {
+			if ($GetALlName -Contains $API) {
+				Unpack_API_Process_Rule_Name -RuleName $API
+			} else {
+				if ($GetALlName.Count -gt 0) {
+					ForEach ($item in $GetALlName) {
+						write-host "  $($item)" -ForegroundColor Yellow
+					}
+				} else {
+					write-host "  $($lang.NoWork)" -ForegroundColor Red
+				}
+
+				Write-Host "`n  $($lang.NoAPI)" -ForegroundColor Red
+			}
+
+			exit
+		}
+	}
 }
 
 clear-host
