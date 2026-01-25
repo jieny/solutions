@@ -56,12 +56,12 @@ Function Api_Create_Template
 Write-Host "fengyi.tel" -ForegroundColor Cyan
 `$winscpPath = "D:\WinSCP\winscp.com" 
 
-& `$winscpPath /command `
-    "option batch continue" `
-    "option confirm off" `
-    "open root@fengyi.tel" `
-    "put D:\YiSolutions\_Unpack\latest.zip /Yi/domain/fengyi.tel/www/download/solutions/" `
-    "call bash /Yi/git.sh" `
+& `$winscpPath /command ``
+    "option batch continue" ``
+    "option confirm off" ``
+    "open root@fengyi.tel" ``
+    "put D:\YiSolutions\_Unpack\latest.zip /Yi/domain/fengyi.tel/www/download/solutions/" ``
+    "call bash /Yi/git.sh" ``
     "exit"
 "@ | Out-File -FilePath $NewFile -Encoding utf8 -ErrorAction SilentlyContinue
 		}
@@ -80,12 +80,12 @@ Write-Host "  Test $($NewPsmFile).psm1 $($RandomGuid)"
 Write-Host "fengyi.tel" -ForegroundColor Cyan
 `$winscpPath = "D:\WinSCP\winscp.com" 
 
-& `$winscpPath /command `
-    "option batch continue" `
-    "option confirm off" `
-    "open root@fengyi.tel" `
-    "put D:\YiSolutions\_Unpack\latest.zip /Yi/domain/fengyi.tel/www/download/solutions/" `
-    "call bash /Yi/git.sh" `
+& `$winscpPath /command ``
+    "option batch continue" ``
+    "option confirm off" ``
+    "open root@fengyi.tel" ``
+    "put D:\YiSolutions\_Unpack\latest.zip /Yi/domain/fengyi.tel/www/download/solutions/" ``
+    "call bash /Yi/git.sh" ``
     "exit"
 "@ | Out-File -FilePath $NewFile -Encoding utf8 -ErrorAction SilentlyContinue
 				}
@@ -229,10 +229,10 @@ Function API_Process_Rule_Name
 			write-host "  " -NoNewline
 			Write-Host " $($lang.Import) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			if (Test-Path -Path $GetImportFileName -PathType leaf) {
-				Write-Host $lang.UpdateAvailable -BackgroundColor DarkGreen -ForegroundColor White
+				Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
 				Write-Host "  $('-' * 80)"
 
-				Import-Module -Name $GetImportFileName -Force
+				Import-Module -Name $GetImportFileName -Force | Out-Null
 				Remove-Module -Name $GetImportFileName -Force -ErrorAction Ignore | Out-Null
 
 				Write-Host
