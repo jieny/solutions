@@ -686,7 +686,6 @@ Function UnPack_Create_UI
 				}
 
 				$ShortcutsShortName = $([System.IO.Path]::GetFileNameWithoutExtension($item))
-
 				$Checkbox      = New-Object System.Windows.Forms.CheckBox -Property @{
 					Height     = 35
 					Width      = 425
@@ -698,7 +697,36 @@ Function UnPack_Create_UI
 						$Unpack_API_ErrorMsg_Icon.Image = $null
 					}
 				}
-				$Unpack_API_Shortcut_Panel.controls.AddRange($Checkbox)
+
+				$CheckboxNameCopy  = New-Object system.Windows.Forms.LinkLabel -Property @{
+					Height         = 35
+					Width          = 425
+					Padding        = "16,0,0,0"
+					Text           = "$($lang.Copy): Yi -API ""$($item)"""
+					Tag            = $item
+					LinkColor      = "#008000"
+					ActiveLinkColor = "#FF0000"
+					LinkBehavior   = "NeverUnderline"
+					add_Click      = {
+						$Unpack_API_ErrorMsg.Text = ""
+						$Unpack_API_ErrorMsg_Icon.Image = $null
+
+						if ([string]::IsNullOrEmpty($This.Tag)) {
+							$Unpack_API_ErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Error.ico")
+							$Unpack_API_ErrorMsg.Text = "$($lang.Copy): API $($This.Tag), $($lang.Inoperable)"
+						} else {
+							Set-Clipboard -Value "Yi -API ""$($This.Tag)"""
+
+							$Unpack_API_ErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+							$Unpack_API_ErrorMsg.Text = "$($lang.Copy): API $($This.Tag), $($lang.Done)"
+						}
+					}
+				}
+
+				$Unpack_API_Shortcut_Panel.controls.AddRange((
+					$Checkbox,
+					$CheckboxNameCopy
+				))
 
 				$CheckboxCreate    = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height         = 35
@@ -1584,7 +1612,7 @@ Function UnPack_Create_UI
 		Height         = 30
 		Width          = 390
 		Location       = '575,385'
-		Text           = "$($lang.Setting) > $($lang.RuleName): "
+		Text           = "$($lang.Setting) > $($lang.RuleName)"
 		LinkColor      = "#008000"
 		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"
