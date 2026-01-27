@@ -2,7 +2,7 @@
 	"Config": {
 		"Author":  "Yi",
 		"Url":     "https://fengyi.tel",
-		"Version": "1.1.3.3"
+		"Version": "1.1.5.0"
 	},
 	"Deploy": {
 		"Prerequisite": {
@@ -201,7 +201,8 @@
 							},
 							"Software": {
 								"IsDeploy": false,
-								"App": []
+								"App": [],
+								"DeployTo": "SystemDisk"
 							},
 							"Fonts": {
 								"IsDeploy": false,
@@ -460,7 +461,8 @@
 									},
 									"Software": {
 										"IsDeploy": false,
-										"App": []
+										"App": [],
+										"DeployTo": "SystemDisk"
 									},
 									"Fonts": {
 										"IsDeploy": false,
