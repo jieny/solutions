@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Jau yra naujausia versija.
 
 	SearchOrder               = Paieškos tvarka
-	SearchOrderTips           = Paieškos tvarka\n  Jei įvykdomos 12 sąlygų, paieška sustabdoma; kitu atveju ji tęsiama.\n\n\n1. Indekso numeris\n   Ieškoti [ Pridėti šaltinį ]\\Pasirinktinis\\[ Atitinka šiuo metu prijungtą indekso numerį ]. Jei randamas atitikmuo, pridėti failą ir sustabdyti paiešką.\n\n2. Vaizdo žymė\n   Ieškoti [ Pridėti šaltinį ]\\Pasirinktinis\\[ Gauti šiuo metu prijungtą vaizdo žymę ]. Jei randamas atitikmuo, pridėti failą ir sustabdyti paiešką.\n\n3. Kita\n   Jei neįvykdoma nė viena iš 12 sąlygų, pagal numatytuosius nustatymus pridedami visi šaltinio failai ( išskyrus pasirinktinį katalogą šaltinyje ).
+	SearchOrderTips           = Paieškos tvarka\n  Jei įvykdomos [ 1.  2. ] sąlygų, paieška sustabdoma; kitu atveju ji tęsiama.\n\n\n1. Indekso numeris\n   Ieškoti [ Pridėti šaltinį ]\\Pasirinktinis\\[ Atitinka šiuo metu prijungtą indekso numerį ]. Jei randamas atitikmuo, pridėti failą ir sustabdyti paiešką.\n\n2. Vaizdo žymė\n   Ieškoti [ Pridėti šaltinį ]\\Pasirinktinis\\[ Gauti šiuo metu prijungtą vaizdo žymę ]. Jei randamas atitikmuo, pridėti failą ir sustabdyti paiešką.\n\n3. Kita\n   Jei neįvykdoma nė viena iš 12 sąlygų, pagal numatytuosius nustatymus pridedami visi šaltinio failai ( išskyrus pasirinktinį katalogą šaltinyje ).
 '@

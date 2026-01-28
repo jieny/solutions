@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = This is already the latest version.
 
 	SearchOrder               = Search order
-	SearchOrderTips           = Search order\n  If 12 conditions are met, stop the search; otherwise, continue searching.\n\n\n1. Index Number\n    Search for [ Add Source ]\\Custom\\[ Match the currently mounted index number ], if a match is found, add it and close the search;\n\n2. Edition\n    Search for [ Add Source ]\\Custom\\[ Get Current Mounted Image Flag ], if a match is found, stop the search;\n\n3. Other\n    Twelve requirements were not met; by default, all files from the source ( excluding the 'Custom' directory within the source ) will be added.
+	SearchOrderTips           = Search order\n  If [ 1.  2. ] conditions are met, stop the search; otherwise, continue searching.\n\n\n1. Index Number\n    Search for [ Add Source ]\\Custom\\[ Match the currently mounted index number ], if a match is found, add it and close the search;\n\n2. Edition\n    Search for [ Add Source ]\\Custom\\[ Get Current Mounted Image Flag ], if a match is found, stop the search;\n\n3. Other\n    Twelve requirements were not met; by default, all files from the source ( excluding the 'Custom' directory within the source ) will be added.
 '@

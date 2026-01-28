@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = See on juba kõige uuem versioon.
 
 	SearchOrder               = Otsingujärjekord
-	SearchOrderTips           = Otsingujärjekord\n  Kui 12 tingimust on täidetud, otsing peatub; vastasel juhul jätkub.\n\n\n1. Indeksinumber\n   Otsi [ Lisa allikas ]\\Kohandatud\\[ Vastav hetkel paigaldatud indeksinumbrile ]. Kui leitakse vaste, lisage fail ja peatage otsing.\n\n2. Pildi lipp\n   Otsi [ Lisa allikas ]\\Kohandatud\\[ Hangi hetkel paigaldatud pildi lipp ]. Kui leitakse vaste, lisage fail ja peatage otsing.\n\n3. Muu\n   Kui ükski 12 tingimusest pole täidetud, lisatakse vaikimisi kõik allika failid ( välja arvatud allika kohandatud kaust ).
+	SearchOrderTips           = Otsingujärjekord\n  Kui [ 1.  2. ] tingimust on täidetud, otsing peatub; vastasel juhul jätkub.\n\n\n1. Indeksinumber\n   Otsi [ Lisa allikas ]\\Kohandatud\\[ Vastav hetkel paigaldatud indeksinumbrile ]. Kui leitakse vaste, lisage fail ja peatage otsing.\n\n2. Pildi lipp\n   Otsi [ Lisa allikas ]\\Kohandatud\\[ Hangi hetkel paigaldatud pildi lipp ]. Kui leitakse vaste, lisage fail ja peatage otsing.\n\n3. Muu\n   Kui ükski 12 tingimusest pole täidetud, lisatakse vaikimisi kõik allika failid ( välja arvatud allika kohandatud kaust ).
 '@

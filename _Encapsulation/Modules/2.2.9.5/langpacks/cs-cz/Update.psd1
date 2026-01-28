@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Už je to nejnovější verze.
 
 	SearchOrder               = Pořadí vyhledávání
-	SearchOrderTips           = Pořadí vyhledávání\n  Pokud je splněno 12 podmínek, vyhledávání se zastaví; jinak pokračuje.\n\n\n1. Číslo indexu\n   Hledat [ Přidat zdroj ]\\Vlastní\\[ Odpovídá aktuálně připojenému indexovému číslu ]. Pokud je nalezena shoda, přidat soubor a zastavit vyhledávání.\n\n2. Příznak obrazu\n   Hledat [ Přidat zdroj ]\\Vlastní\\[ Získat příznak aktuálně připojeného obrazu ]. Pokud je nalezena shoda, přidat soubor a zastavit vyhledávání.\n\n3. Ostatní\n   Pokud není splněna žádná z 12 podmínek, budou ve výchozím nastavení přidány všechny soubory ze zdroje ( kromě adresáře Vlastní ve zdroji ).
+	SearchOrderTips           = Pořadí vyhledávání\n  Pokud je splněno [ 1.  2. ] podmínek, vyhledávání se zastaví; jinak pokračuje.\n\n\n1. Číslo indexu\n   Hledat [ Přidat zdroj ]\\Vlastní\\[ Odpovídá aktuálně připojenému indexovému číslu ]. Pokud je nalezena shoda, přidat soubor a zastavit vyhledávání.\n\n2. Příznak obrazu\n   Hledat [ Přidat zdroj ]\\Vlastní\\[ Získat příznak aktuálně připojeného obrazu ]. Pokud je nalezena shoda, přidat soubor a zastavit vyhledávání.\n\n3. Ostatní\n   Pokud není splněna žádná z 12 podmínek, budou ve výchozím nastavení přidány všechny soubory ze zdroje ( kromě adresáře Vlastní ve zdroji ).
 '@

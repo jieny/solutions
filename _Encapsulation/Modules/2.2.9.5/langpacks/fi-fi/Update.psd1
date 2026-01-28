@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Se on jo uusin versio.
 
 	SearchOrder               = Hakujärjestys
-	SearchOrderTips           = Hakujärjestys\n  Jos 12 ehtoa täyttyy, haku pysähtyy; muuten se jatkuu.\n\n\n1. Indeksinumero\n   Etsi [ Lisää lähde ]\\Mukautettu\\[ Vastaa nykyistä liitettyä indeksinumeroa ]. Jos osuma löytyy, lisää tiedosto ja lopeta haku.\n\n2. Kuvan merkintä\n   Etsi [ Lisää lähde ]\\Mukautettu\\[ Hae nykyinen liitetty kuva -merkintä]. Jos osuma löytyy, lisää tiedosto ja lopeta haku.\n\n3. Muu\n   Jos mikään 12 ehdosta ei täyty, kaikki lähteen tiedostot lisätään oletusarvoisesti ( lukuun ottamatta lähteen mukautettua hakemistoa ).
+	SearchOrderTips           = Hakujärjestys\n  Jos [ 1.  2. ] ehtoa täyttyy, haku pysähtyy; muuten se jatkuu.\n\n\n1. Indeksinumero\n   Etsi [ Lisää lähde ]\\Mukautettu\\[ Vastaa nykyistä liitettyä indeksinumeroa ]. Jos osuma löytyy, lisää tiedosto ja lopeta haku.\n\n2. Kuvan merkintä\n   Etsi [ Lisää lähde ]\\Mukautettu\\[ Hae nykyinen liitetty kuva -merkintä]. Jos osuma löytyy, lisää tiedosto ja lopeta haku.\n\n3. Muu\n   Jos mikään 12 ehdosta ei täyty, kaikki lähteen tiedostot lisätään oletusarvoisesti ( lukuun ottamatta lähteen mukautettua hakemistoa ).
 '@

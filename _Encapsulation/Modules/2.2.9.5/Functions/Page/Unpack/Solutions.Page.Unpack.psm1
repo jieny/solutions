@@ -327,7 +327,7 @@ Function UnPack_Create_UI
 
 	$UI_Main_Sources_Line = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 230
+		Height         = 180
 		Width          = 1
 		autoSizeMode   = 1
 		Location       = '560,10'
@@ -467,7 +467,7 @@ Function UnPack_Create_UI
 	}
 	$GUIUnPackShow     = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
-		Height         = 150
+		Height         = 100
 		Width          = 475
 		autoSizeMode   = 1
 		Padding        = "28,0,8,0"
@@ -774,7 +774,36 @@ Function UnPack_Create_UI
 						$UI_Main_Error_Icon.Image = $null
 					}
 				}
-				$UI_Unpack_Api.controls.AddRange($CheckboxSel)
+
+				$UI_Unpack_Api_Name_Copy  = New-Object system.Windows.Forms.LinkLabel -Property @{
+					Height         = 35
+					Width          = 425
+					Padding        = "16,0,0,0"
+					Text           = "$($lang.Copy): Yi -API ""$($item)"""
+					Tag            = $item
+					LinkColor      = "#008000"
+					ActiveLinkColor = "#FF0000"
+					LinkBehavior   = "NeverUnderline"
+					add_Click      = {
+						$Unpack_API_ErrorMsg.Text = ""
+						$Unpack_API_ErrorMsg_Icon.Image = $null
+
+						if ([string]::IsNullOrEmpty($This.Tag)) {
+							$Unpack_API_ErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Error.ico")
+							$Unpack_API_ErrorMsg.Text = "$($lang.Copy): API $($This.Tag), $($lang.Inoperable)"
+						} else {
+							Set-Clipboard -Value "Yi -API ""$($This.Tag)"""
+
+							$Unpack_API_ErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+							$Unpack_API_ErrorMsg.Text = "$($lang.Copy): API $($This.Tag), $($lang.Done)"
+						}
+					}
+				}
+
+				$UI_Unpack_Api.controls.AddRange((
+					$CheckboxSel,
+					$UI_Unpack_Api_Name_Copy
+				))
 
 				if ([string]::IsNullOrEmpty($GetImportFileName)) {
 					$Unpack_API_Shortcut_Panel.controls.AddRange($CheckboxCreate)
@@ -1450,16 +1479,16 @@ Function UnPack_Create_UI
 
 	$GUIUnPackBackup_Line = New-Object system.Windows.Forms.Panel -Property @{
 		BorderStyle    = 0
-		Height         = 365
+		Height         = 425
 		Width          = 1
 		autoSizeMode   = 1
-		Location       = '560,300'
+		Location       = '560,240'
 		BackColor      = "#fa8f03"
 	}
 
 	$GUIUnPackBackup   = New-Object system.Windows.Forms.Button -Property @{
 		UseVisualStyleBackColor = $True
-		Location       = "575,300"
+		Location       = "575,240"
 		Height         = 36
 		Width          = 470
 		Text           = $lang.Backup
@@ -1583,7 +1612,7 @@ Function UnPack_Create_UI
 		Height         = 30
 		Width          = 450
 		Text           = $lang.LevelLatest
-		Location       = '580,340'
+		Location       = '580,280'
 		add_Click      = {
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
@@ -1611,7 +1640,7 @@ Function UnPack_Create_UI
 	$UI_Unpack_Api_Setting = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 30
 		Width          = 390
-		Location       = '575,385'
+		Location       = '575,320'
 		Text           = "$($lang.Setting) > $($lang.RuleName)"
 		LinkColor      = "#008000"
 		ActiveLinkColor = "#FF0000"
@@ -1630,7 +1659,7 @@ Function UnPack_Create_UI
 	$UI_Unpack_Api_Refresh = New-Object system.Windows.Forms.LinkLabel -Property @{
 		Height         = 30
 		Width          = 390
-		Location       = '575,425'
+		Location       = '575,355'
 		Text           = "$($lang.Backup) > $($lang.Functions_Rear): "
 		LinkColor      = "#008000"
 		ActiveLinkColor = "#FF0000"
@@ -1678,11 +1707,11 @@ Function UnPack_Create_UI
 
 	$UI_Unpack_Api     = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
-		Height         = 220
+		Height         = 230
 		Width          = 475
 		autoSizeMode   = 1
 		Padding        = "16,0,8,0"
-		Location       = "575,455"
+		Location       = "575,385"
 		autoScroll     = $True
 	}
 
@@ -1805,7 +1834,7 @@ Function UnPack_Create_UI
 
 	ForEach ($item in $SearchUnPack) {
 		$CheckBox         = New-Object System.Windows.Forms.CheckBox -Property @{
-			Height        = 40
+			Height        = 35
 			Width         = 425
 			Text          = Join-Path -Path $Global:MainMasterFolder -ChildPath $item
 			Checked       = $True

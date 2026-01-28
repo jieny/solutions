@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Že je najnovejša različica.
 
 	SearchOrder               = Vrstni red iskanja
-	SearchOrderTips           = Vrstni red iskanja\n  Če je izpolnjenih 12 pogojev, se iskanje ustavi; sicer se nadaljuje.\n\n\n1. Indeksna številka\n   Išči [ Dodaj vir ]\\Po meri\\[ Ujemanje s trenutno nameščeno indeksno številko ]. Če se najde ujemanje, dodaj datoteko in ustavi iskanje.\n\n2. Zastavica slike\n   Išči [ Dodaj vir ]\\Po meri\\[ Pridobi zastavico trenutno nameščene slike ]. Če se najde ujemanje, dodaj datoteko in ustavi iskanje.\n\n3. Drugo\n   Če ni izpolnjen noben od 12 pogojev, se privzeto dodajo vse datoteke iz vira ( razen imenika Po meri znotraj vira ).
+	SearchOrderTips           = Vrstni red iskanja\n  Če je izpolnjenih [ 1.  2. ] pogojev, se iskanje ustavi; sicer se nadaljuje.\n\n\n1. Indeksna številka\n   Išči [ Dodaj vir ]\\Po meri\\[ Ujemanje s trenutno nameščeno indeksno številko ]. Če se najde ujemanje, dodaj datoteko in ustavi iskanje.\n\n2. Zastavica slike\n   Išči [ Dodaj vir ]\\Po meri\\[ Pridobi zastavico trenutno nameščene slike ]. Če se najde ujemanje, dodaj datoteko in ustavi iskanje.\n\n3. Drugo\n   Če ni izpolnjen noben od 12 pogojev, se privzeto dodajo vse datoteke iz vira ( razen imenika Po meri znotraj vira ).
 '@

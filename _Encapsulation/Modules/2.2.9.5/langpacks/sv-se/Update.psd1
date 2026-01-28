@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Redan den senaste versionen.
 
 	SearchOrder               = Sökordning
-	SearchOrderTips           = Sökordning\n  Om 12 villkor är uppfyllda avbryts sökningen; annars fortsätter den.\n\n\n1. Indexnummer\n   Sök efter [ Lägg till källa ]\\Anpassad\\[ Matchar det för närvarande monterade indexnumret ]. Om en matchning hittas, lägg till filen och stoppa sökningen.\n\n2. Bildflagga\n   Sök efter [ Lägg till källa ]\\Anpassad\\[ Hämta den för närvarande monterade bildflaggan ]. Om en matchning hittas, lägg till filen och stoppa sökningen.\n\n3. Övrigt\n   Om inget av de 12 villkoren är uppfyllda läggs alla filer från källan till som standard ( exklusive den anpassade katalogen i källan ).
+	SearchOrderTips           = Sökordning\n  Om [ 1.  2. ] villkor är uppfyllda avbryts sökningen; annars fortsätter den.\n\n\n1. Indexnummer\n   Sök efter [ Lägg till källa ]\\Anpassad\\[ Matchar det för närvarande monterade indexnumret ]. Om en matchning hittas, lägg till filen och stoppa sökningen.\n\n2. Bildflagga\n   Sök efter [ Lägg till källa ]\\Anpassad\\[ Hämta den för närvarande monterade bildflaggan ]. Om en matchning hittas, lägg till filen och stoppa sökningen.\n\n3. Övrigt\n   Om inget av de 12 villkoren är uppfyllda läggs alla filer från källan till som standard ( exklusive den anpassade katalogen i källan ).
 '@

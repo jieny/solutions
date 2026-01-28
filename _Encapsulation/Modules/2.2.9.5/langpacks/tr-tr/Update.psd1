@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Zaten en son sürüm.
 
 	SearchOrder               = Arama Sırası
-	SearchOrderTips           = Arama Sırası\n  12 koşul karşılanırsa arama durur; aksi takdirde devam eder.\n\n\n1. Dizin Numarası\n   [ Kaynak Ekle ]\\Custom\\[ Şu anda bağlı dizin numarasıyla eşleşen ] şeklinde arama yapılır. Eşleşme bulunursa dosya eklenir ve arama durdurulur.\n\n2. Görüntü Bayrağı\n   [ Kaynak Ekle ]\\Custom\\[ Şu anda bağlı görüntü bayrağını al ] şeklinde arama yapılır. Eşleşme bulunursa dosya eklenir ve arama durdurulur.\n\n3. Diğer\n   12 koşuldan hiçbiri karşılanmazsa, kaynak içindeki Custom dizini hariç tüm dosyalar varsayılan olarak eklenir.
+	SearchOrderTips           = Arama Sırası\n  [ 1.  2. ] koşul karşılanırsa arama durur; aksi takdirde devam eder.\n\n\n1. Dizin Numarası\n   [ Kaynak Ekle ]\\Custom\\[ Şu anda bağlı dizin numarasıyla eşleşen ] şeklinde arama yapılır. Eşleşme bulunursa dosya eklenir ve arama durdurulur.\n\n2. Görüntü Bayrağı\n   [ Kaynak Ekle ]\\Custom\\[ Şu anda bağlı görüntü bayrağını al ] şeklinde arama yapılır. Eşleşme bulunursa dosya eklenir ve arama durdurulur.\n\n3. Diğer\n   12 koşuldan hiçbiri karşılanmazsa, kaynak içindeki Custom dizini hariç tüm dosyalar varsayılan olarak eklenir.
 '@

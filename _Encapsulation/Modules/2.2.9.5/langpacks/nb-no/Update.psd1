@@ -54,5 +54,5 @@
 	Auto_Update_IsLatest      = Allerede den nyeste versjonen.
 
 	SearchOrder               = Søkerekkefølge
-	SearchOrderTips           = Søkerekkefølge\n  Hvis 12 betingelser er oppfylt, stopper søket; ellers fortsetter det.\n\n\n1. Indeksnummer\n   Søk etter [ Legg til kilde ]\\Tilpasset\\[ Samsvarer med det gjeldende monterte indeksnummeret ]. Hvis det finnes et treff, legg til filen og stopp søket.\n\n2. Bildeflagg\n   Søk etter [ Legg til kilde ]\\Tilpasset\\[ Hent det gjeldende monterte bildeflagget ]. Hvis det finnes et treff, legg til filen og stopp søket.\n\n3. Annet\n   Hvis ingen av de 12 betingelsene er oppfylt, legges alle filer fra kilden til som standard ( unntatt den tilpassede mappen i kilden ).
+	SearchOrderTips           = Søkerekkefølge\n  Hvis [ 1.  2. ] betingelser er oppfylt, stopper søket; ellers fortsetter det.\n\n\n1. Indeksnummer\n   Søk etter [ Legg til kilde ]\\Tilpasset\\[ Samsvarer med det gjeldende monterte indeksnummeret ]. Hvis det finnes et treff, legg til filen og stopp søket.\n\n2. Bildeflagg\n   Søk etter [ Legg til kilde ]\\Tilpasset\\[ Hent det gjeldende monterte bildeflagget ]. Hvis det finnes et treff, legg til filen og stopp søket.\n\n3. Annet\n   Hvis ingen av de 12 betingelsene er oppfylt, legges alle filer fra kilden til som standard ( unntatt den tilpassede mappen i kilden ).
 '@
