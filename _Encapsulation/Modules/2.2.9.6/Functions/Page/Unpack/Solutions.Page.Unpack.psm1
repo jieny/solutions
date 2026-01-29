@@ -1634,7 +1634,8 @@ Function UnPack_Create_UI
 			}
 		}
 	} else {
-		$UI_Create_Latest_Zip.Checked = $False
+		Save_Dynamic -regkey "Solutions\Unpack" -name "IsLatest" -value "True"
+		$UI_Create_Latest_Zip.Checked = $True
 	}
 
 	$UI_Unpack_Api_Setting = New-Object system.Windows.Forms.LinkLabel -Property @{
@@ -2387,7 +2388,7 @@ Function Update_Create_Version
 		"title": "$($Global:Author)'s Solutions - Change log",
 		"log":   "  - Allows automatic background update checks, new feature. *New\n  - Mounting of Install.esd is now supported; DISM version must be greater than 26100.2454; *New\n  - Allows adding 'search sources, directories, and RAMDISK' to Windows Defender exclusions; *New\n  - Added Windows 11 25H2 video tutorials, autonomous driving solutions, and packaging scripts. * New\n  - Deleted the outdated 23H2 packaging tutorials. * Del\n  - Routing function: self-healing sequence after adding * New\n  - API: Application Programming Interface, Shortcut: (API *) * New\n  - New shortcut commands and dynamic UI * New"
 	},
-	"url": "$((Get-Module -Name Solutions).HelpInfoURI)/download/solutions/latest.zip"
+	"url": "$((Get-Module -Name Solutions).HelpInfoURI)/solutions/latest.zip"
 }
 "@ | Out-File -FilePath $New_latest_Json_File -Encoding Ascii
 

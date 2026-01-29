@@ -70,7 +70,7 @@ $SafetyWarningsExcludeSuggest = @( "iso"; )
 $SafetyWarningsExcludeFull = @( "exe"; "reg"; "msi"; "bat"; "cmd"; "com"; "vbs"; "hta"; "scr"; "pif"; "js"; "iso"; "zip"; "rar"; "nfo"; "htm"; "html"; )
 
 $Update_Server = @(
-	"https://fengyi.tel/download/solutions/latest.zip"
+	"https://fengyi.tel/solutions/latest.zip"
 	"https://github.com/ilikeyi/Solutions/raw/main/update/latest.zip"
 )
 
@@ -4659,7 +4659,7 @@ Function Download_Process
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
-			Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+			Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 			break
 		} else {
 			write-host "    $($lang.UpdateUnavailable)`n" -ForegroundColor Red

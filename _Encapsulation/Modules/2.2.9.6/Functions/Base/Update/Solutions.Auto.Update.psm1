@@ -5,11 +5,11 @@
 Function Auto_Update
 {
 	$ticks = (Get-Date).Ticks
-	Save_Dynamic -regkey "LXPs\Update" -name "Last_Auto_Update_Time" -value $ticks -Type "QWord"
+	Save_Dynamic -regkey "Solutions\Update" -name "Last_Auto_Update_Time" -value $ticks -Type "QWord"
 
 	$Script:ServerList = @()
 
-	ForEach ($item in (Get-Module -Name LXPs).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
+	ForEach ($item in (Get-Module -Name Solutions).PrivateData.PSData.UpdateServer | Sort-Object { Get-Random } ) {
 		$Script:ServerList += $item
 	}
 
@@ -29,8 +29,8 @@ Function Auto_Update_Process
 	<#
 		.允许自动更新新版本
 	#>
-	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\Update" -Name "IsAutoUpdateNew" -ErrorAction SilentlyContinue) {
-		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\Update" -Name "IsAutoUpdateNew" -ErrorAction SilentlyContinue) {
+	if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Update" -Name "IsAutoUpdateNew" -ErrorAction SilentlyContinue) {
+		switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Update" -Name "IsAutoUpdateNew" -ErrorAction SilentlyContinue) {
 			"True"  { $Force = $True }
 			"False" { $Force = $False }
 		}
@@ -56,7 +56,7 @@ Function Auto_Update_Process
 		if (Test_URI $item) {
 			$PreServerVersion = $item
 			$ServerTest = $true
-			Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+			Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 			break
 		} else {
 			Write-Host "    $($lang.UpdateUnavailable)`n" -ForegroundColor Red
@@ -67,7 +67,7 @@ Function Auto_Update_Process
 		Write-Host "  $('-' * 80)"
 		Write-Host "    $($lang.UpdatePriority)" -ForegroundColor Green
 	} else {
-		Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.UpdateServerTestFailed
+		Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.UpdateServerTestFailed
 		Write-Host "    $($lang.UpdateServerTestFailed)" -ForegroundColor Red
 		Write-Host "  $('-' * 80)"
 		return
@@ -81,7 +81,7 @@ Function Auto_Update_Process
 	if ($error.Count -eq 0) {
 		Write-Host "`n  $($lang.UpdateQueryingTime -f $time.TotalMilliseconds)"
 	} else {
-		Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.UpdateConnectFailed
+		Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.UpdateConnectFailed
 		Write-Host "`n  $($lang.UpdateConnectFailed)"
 		return
 	}
@@ -93,7 +93,7 @@ Function Auto_Update_Process
 	If ([String]::IsNullOrEmpty($chkRemovever)) {
 		$IsCorrectAuVer = $false
 	} else {
-		if ($((Get-Module -Name LXPs).PrivateData.PSData.MinimumVersion).Replace('.', '') -ge $chkRemovever) {
+		if ($((Get-Module -Name Solutions).PrivateData.PSData.MinimumVersion).Replace('.', '') -ge $chkRemovever) {
 			$IsCorrectAuVer = $true
 		} else {
 			$IsCorrectAuVer = $false
@@ -101,10 +101,10 @@ Function Auto_Update_Process
 	}
 
 	if ($IsCorrectAuVer) {
-		Write-Host "`n  $($lang.UpdateMinimumVersion -f $((Get-Module -Name LXPs).PrivateData.PSData.MinimumVersion))"
+		Write-Host "`n  $($lang.UpdateMinimumVersion -f $((Get-Module -Name Solutions).PrivateData.PSData.MinimumVersion))"
 		$IsUpdateAvailable = $false
 
-		if ($getSerVer.version.version.Replace('.', '') -gt (Get-Module -Name LXPs).Version.ToString().Replace('.', '')) {
+		if ($getSerVer.version.version.Replace('.', '') -gt (Get-Module -Name Solutions).Version.ToString().Replace('.', '')) {
 			$IsUpdateAvailable = $true
 		} else {
 			$IsUpdateAvailable = $false
@@ -155,7 +155,7 @@ Function Auto_Update_Process
 				Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "  $('-' * 80)"
 
-				Write-Host "`n  $($lang.UpdateCurrent): $((Get-Module -Name LXPs).Version.ToString())
+				Write-Host "`n  $($lang.UpdateCurrent): $((Get-Module -Name Solutions).Version.ToString())
   $($lang.UpdateLatest): $($getSerVer.version.version)
 
   $($getSerVer.changelog.title)
@@ -164,25 +164,25 @@ $($getSerVer.changelog.log)`n"
 
 				Write-Host "  $($lang.UpdateNewLatest)`n" -ForegroundColor Green
 
-				Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_New_Version" -value $getSerVer.version.version
+				Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_New_Version" -value $getSerVer.version.version
 				If ($Force) {
 					Auto_Update_And_Download -url $url -NewSHA $NewFileSha256
 				} else {
-					Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.UpdateNewLatest
+					Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.UpdateNewLatest
 					Write-Host "  $($lang.UpdateNewLatest)" -ForegroundColor Green
 				}
 			} else {
-				Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.UpdateUnavailable
+				Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.UpdateUnavailable
 				Write-Host "    $($lang.UpdateUnavailable)" -ForegroundColor Red
 				return
 			}
 		} else {
-			Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value "$($lang.Auto_Update_IsLatest)"
+			Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value "$($lang.Auto_Update_IsLatest)"
 			Write-Host "  $($lang.Auto_Update_IsLatest)"
 		}
 	} else {
-		$NewErrorTips = $($lang.UpdateNotSatisfied -f $((Get-Module -Name LXPs).PrivateData.PSData.MinimumVersion))
-		Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $NewErrorTips
+		$NewErrorTips = $($lang.UpdateNotSatisfied -f $((Get-Module -Name Solutions).PrivateData.PSData.MinimumVersion))
+		Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $NewErrorTips
 		Write-Host "  $($NewErrorTips)"
 	}
 }
@@ -195,7 +195,7 @@ Function Auto_Update_And_Download
 		$NewSHA
 	)
 
-	$output = "$($PSScriptRoot)\..\..\..\..\..\latest.zip"
+	$output = "$($PSScriptRoot)\..\..\..\..\..\..\latest.zip"
 
 	$start_time = Get-Date
 	remove-item -path $output -force -ErrorAction SilentlyContinue
@@ -210,7 +210,7 @@ Function Auto_Update_And_Download
 				Invoke-WebRequest -Uri $url -OutFile $output -TimeoutSec 15 -DisableKeepAlive -ErrorAction SilentlyContinue
 			}
 	
-			Write-Host "`n  $($lang.UpdateTimeUsed): $((Get-Date).Subtract($start_time).Seconds) (s)`n"
+			Write-Host "`n  $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)`n"
 			$success = $true
 			break
 		} catch {
@@ -240,36 +240,36 @@ Function Auto_Update_And_Download
 			write-host "$($lang.Verify_Done)" -ForegroundColor Green
 		} else {
 			write-host "$($lang.Verify_Failed)" -ForegroundColor Red
-			Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.Verify_Failed
+			Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.Verify_Failed
 			return
 		}
 	}
 	write-host
 
 	if (Test-Path -Path $output -PathType Leaf) {
-		Archive -filename $output -to "$($PSScriptRoot)\..\..\..\..\.."
+		Archive -filename $output -to "$($PSScriptRoot)\..\..\..\..\..\.."
 
-		$SaveOldVersionShort = (Get-Module -Name LXPs).Version.ToString().Replace('.', '')
-		$SaveOldVersion = (Get-Module -Name LXPs).Version.ToString()
+		$SaveOldVersionShort = (Get-Module -Name Solutions).Version.ToString().Replace('.', '')
+		$SaveOldVersion = (Get-Module -Name Solutions).Version.ToString()
 
 		Modules_Refresh -Function "Unzip_Done_Refresh_Process"
 		remove-item -path $output -force -ErrorAction SilentlyContinue
 
-		$SaveNewVersion = (Get-Module -Name LXPs).Version.ToString().Replace('.', '')
+		$SaveNewVersion = (Get-Module -Name Solutions).Version.ToString().Replace('.', '')
 
 		<#
 			.允许自动清理旧版本
 		#>
 		Write-Host "`n  $($lang.UpdateClean)" -ForegroundColor Yellow
-		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
-			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\LXPs\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
+			switch (Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Update" -Name "IsUpdate_Clean_Allow" -ErrorAction SilentlyContinue) {
 				"True"  {
 					if ($SaveOldVersionShort -eq $SaveNewVersion) {
 						Write-Host "  $($lang.UpdateNotExecuted)"
 					} else {
 						Write-Host "  " -NoNewline
 						Write-Host " $($lang.AddTo) " -NoNewline -BackgroundColor White -ForegroundColor Black
-						Save_Dynamic -regkey "LXPs\Update" -name "IsUpdate_Clean" -value $SaveOldVersion
+						Save_Dynamic -regkey "Solutions\Update" -name "IsUpdate_Clean" -value $SaveOldVersion
 						Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 					}
 				}
@@ -281,9 +281,9 @@ Function Auto_Update_And_Download
 			Write-Host "  $($lang.NoWork)" -ForegroundColor Red
 		}
 
-		Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.UpdateDone
+		Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.UpdateDone
 	} else {
-		Save_Dynamic -regkey "LXPs\Update" -name "Auto_Update_Last_status" -value $lang.UpdateUpdateStop
+		Save_Dynamic -regkey "Solutions\Update" -name "Auto_Update_Last_status" -value $lang.UpdateUpdateStop
 		Write-Host "`n  $($lang.UpdateUpdateStop)"
 	}
 }
