@@ -775,7 +775,7 @@ Function UnPack_Create_UI
 					}
 				}
 
-				$UI_Unpack_Api_Name_Copy  = New-Object system.Windows.Forms.LinkLabel -Property @{
+				$UI_Unpack_Api_Name_Copy = New-Object system.Windows.Forms.LinkLabel -Property @{
 					Height         = 35
 					Width          = 425
 					Padding        = "16,0,0,0"
@@ -1707,7 +1707,7 @@ Function UnPack_Create_UI
 
 	$UI_Unpack_Api     = New-Object System.Windows.Forms.FlowLayoutPanel -Property @{
 		BorderStyle    = 0
-		Height         = 230
+		Height         = 290
 		Width          = 475
 		autoSizeMode   = 1
 		Padding        = "16,0,8,0"
