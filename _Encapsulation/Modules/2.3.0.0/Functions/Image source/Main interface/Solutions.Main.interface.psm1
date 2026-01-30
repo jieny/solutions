@@ -5091,30 +5091,34 @@ Function Image_Select
 		Width          = 475
 		autoSizeMode   = 1
 	}
-	$GUIImageSourceSettingUP_Auto_Update_Clean = New-Object System.Windows.Forms.CheckBox -Property @{
+	$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting = New-Object system.Windows.Forms.NumericUpDown -Property @{
 		Height         = 30
-		Width          = 438
-		Location       = '35,5'
-		Text           = $lang.UpdateClean
-		add_Click      = {
+		Width          = 45
+		Location       = '38,5'
+		Minimum        = 1
+		Maximum        = 365
+		Value          = 6
+		add_ValueChanged = {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
 			$GUIImageSourceGroupSettingErrorMsg.Text = ""
 
-			if ($This.Checked) {
-				Save_Dynamic -regkey "Solutions\Update" -name "IsUpdate_Clean_Allow" -value "True"
-				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.UpdateClean), $($lang.Enable), $($lang.Done)"
-			} else {
-				Save_Dynamic -regkey "Solutions\Update" -name "IsUpdate_Clean_Allow" -value "False"
-				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.UpdateClean), $($lang.Disable), $($lang.Done)"
-			}
+			Save_Dynamic -regkey "Solutions\Update" -name "AutoCheckUpdate_Hours" -value $This.Value
+			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.Setting): $($This.Value) $($lang.Auto_Check_Time), $($lang.Done)"
 		}
 	}
+
+	$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Time = New-Object system.Windows.Forms.Label -Property @{
+		Height         = 40
+		Width          = 420
+		Location       = '95,8'
+		Text           = $lang.Auto_Check_Time
+	}
+
 	$GUIImageSourceSettingUP_Auto_Update_New_Allow = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
 		Width          = 438
-		Location       = '35,45'
+		Location       = '35,55'
 		Text           = $lang.Auto_Update_New_Allow
 		add_Click      = {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
@@ -5131,28 +5135,25 @@ Function Image_Select
 			}
 		}
 	}
-	$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting = New-Object system.Windows.Forms.NumericUpDown -Property @{
+	$GUIImageSourceSettingUP_Auto_Update_Clean = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
-		Width          = 45
-		Location       = '52,90'
-		Minimum        = 1
-		Maximum        = 365
-		Value          = 6
-		add_ValueChanged = {
+		Width          = 438
+		Location       = '35,95'
+		Text           = $lang.UpdateClean
+		add_Click      = {
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = $null
 			$GUIImageSourceGroupSettingErrorMsg.Text = ""
 
-			Save_Dynamic -regkey "Solutions\Update" -name "AutoCheckUpdate_Hours" -value $This.Value
-			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.Setting): $($This.Value) $($lang.Auto_Check_Time), $($lang.Done)"
+			if ($This.Checked) {
+				Save_Dynamic -regkey "Solutions\Update" -name "IsUpdate_Clean_Allow" -value "True"
+				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.UpdateClean), $($lang.Enable), $($lang.Done)"
+			} else {
+				Save_Dynamic -regkey "Solutions\Update" -name "IsUpdate_Clean_Allow" -value "False"
+				$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
+				$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.UpdateClean), $($lang.Disable), $($lang.Done)"
+			}
 		}
-	}
-
-	$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Time = New-Object system.Windows.Forms.Label -Property @{
-		Height         = 60
-		Width          = 420
-		Location       = '105,93'
-		Text           = $lang.Auto_Check_Time
 	}
 
 	<#
@@ -10799,10 +10800,10 @@ Function Image_Select
 
 	#region Allow Auto Update
 	$GUIImageSourceSettingUP_Auto_Adv.controls.AddRange((
-		$GUIImageSourceSettingUP_Auto_Update_Clean,
-		$GUIImageSourceSettingUP_Auto_Update_New_Allow,
 		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Setting,
-		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Time
+		$GUIImageSourceSettingUP_Auto_Adv_Auto_Check_Time,
+		$GUIImageSourceSettingUP_Auto_Update_New_Allow,
+		$GUIImageSourceSettingUP_Auto_Update_Clean
 	))
 
 	<#
