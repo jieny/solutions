@@ -27,7 +27,7 @@
 	UpdateLatest              = Остання доступна версія
 	UpdateNewLatest           = Відкрийте для себе нові доступні версії!
 	UpdateSkipUpdateCheck     = Попередньо налаштована політика, яка забороняє автоматичне оновлення запускатися вперше.
-	UpdateTimeUsed            = Витрачений час:
+	UpdateTimeUsed            = Витрачений час
 	UpdatePostProc            = постобробка
 	UpdateNotExecuted         = Не виконано
 	UpdateNoPost              = Завдання постобробки не знайдено

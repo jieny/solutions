@@ -27,7 +27,7 @@
 	UpdateLatest              = Najnowsza dostępna wersja
 	UpdateNewLatest           = Odkryj nowe dostępne wersje!
 	UpdateSkipUpdateCheck     = Wstępnie skonfigurowana polityka uniemożliwiająca pierwsze uruchomienie automatycznych aktualizacji.
-	UpdateTimeUsed            = Czas potrzebny:
+	UpdateTimeUsed            = Czas potrzebny
 	UpdatePostProc            = Obróbka końcowa
 	UpdateNotExecuted         = Nie wykonano
 	UpdateNoPost              = Nie znaleziono zadania przetwarzania końcowego

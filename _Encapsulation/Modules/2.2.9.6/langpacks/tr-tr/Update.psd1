@@ -27,7 +27,7 @@
 	UpdateLatest              = Mevcut en son sürüm
 	UpdateNewLatest           = Mevcut yeni sürümleri keşfedin!
 	UpdateSkipUpdateCheck     = Otomatik güncellemelerin ilk kez çalıştırılmasına izin vermeyecek şekilde önceden yapılandırılmış politika.
-	UpdateTimeUsed            = Alınan süre:
+	UpdateTimeUsed            = Alınan süre
 	UpdatePostProc            = Işlem sonrası
 	UpdateNotExecuted         = Yürütülmedi
 	UpdateNoPost              = İşlem sonrası görevi bulunamadı

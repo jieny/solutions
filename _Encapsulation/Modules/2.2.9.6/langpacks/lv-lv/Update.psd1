@@ -27,7 +27,7 @@
 	UpdateLatest              = Pieejamā jaunākā versija
 	UpdateNewLatest           = Atklājiet jaunas pieejamās versijas!
 	UpdateSkipUpdateCheck     = Iepriekš konfigurēta politika, kas neļauj automātiskajiem atjauninājumiem palaist pirmo reizi.
-	UpdateTimeUsed            = Patērētais laiks:
+	UpdateTimeUsed            = Patērētais laiks
 	UpdatePostProc            = Pēcapstrāde
 	UpdateNotExecuted         = Nav izpildīts
 	UpdateNoPost              = Pēcapstrādes uzdevums nav atrasts

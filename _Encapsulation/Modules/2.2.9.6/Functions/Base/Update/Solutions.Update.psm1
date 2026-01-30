@@ -463,7 +463,7 @@ Function Update_And_Download
 				Invoke-WebRequest -Uri $url -OutFile $output -TimeoutSec 15 -DisableKeepAlive -ErrorAction SilentlyContinue
 			}
 	
-			Write-Host "`n  $($lang.UpdateTimeUsed)$((Get-Date).Subtract($start_time).Seconds) (s)`n"
+			Write-Host "`n  $($lang.UpdateTimeUsed): $((Get-Date).Subtract($start_time).Seconds) (s)`n"
 			$success = $true
 			break
 		} catch {

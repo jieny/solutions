@@ -27,7 +27,7 @@
 	UpdateLatest              = הגרסה האחרונה זמינה
 	UpdateNewLatest           = גלה גרסאות זמינות חדשות!
 	UpdateSkipUpdateCheck     = מדיניות מוגדרת מראש לא לאפשר לעדכונים אוטומטיים לפעול בפעם הראשונה.
-	UpdateTimeUsed            = זמן נלקח:
+	UpdateTimeUsed            = זמן נלקח
 	UpdatePostProc            = לאחר עיבוד
 	UpdateNotExecuted         = לא הוצא להורג
 	UpdateNoPost              = לא נמצאה משימה לאחר עיבוד

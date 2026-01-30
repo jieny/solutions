@@ -27,7 +27,7 @@
 	UpdateLatest              = มีเวอร์ชันล่าสุด
 	UpdateNewLatest           = ค้นพบเวอร์ชันใหม่ที่มีอยู่!
 	UpdateSkipUpdateCheck     = นโยบายที่กำหนดค่าไว้ล่วงหน้าจะไม่อนุญาตให้เรียกใช้การอัปเดตอัตโนมัติในครั้งแรก
-	UpdateTimeUsed            = เวลาที่ใช้:
+	UpdateTimeUsed            = เวลาที่ใช้
 	UpdatePostProc            = หลังการประมวลผล
 	UpdateNotExecuted         = ไม่ได้ดำเนินการ
 	UpdateNoPost              = ไม่พบงานหลังการประมวลผล

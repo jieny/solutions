@@ -27,7 +27,7 @@
 	UpdateLatest              = Naujausia versija
 	UpdateNewLatest           = Atraskite naujas galimas versijas!
 	UpdateSkipUpdateCheck     = Iš anksto sukonfigūruota politika neleisti automatiniams naujinimams paleisti pirmą kartą.
-	UpdateTimeUsed            = Laikas, skirtas:
+	UpdateTimeUsed            = Laikas, skirtas
 	UpdatePostProc            = Po apdorojimo
 	UpdateNotExecuted         = Neįvykdyta
 	UpdateNoPost              = Po apdorojimo užduotis nerasta

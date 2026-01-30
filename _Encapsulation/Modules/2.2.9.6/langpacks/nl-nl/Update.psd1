@@ -27,7 +27,7 @@
 	UpdateLatest              = Nieuwste versie beschikbaar
 	UpdateNewLatest           = Ontdek nieuwe beschikbare versies!
 	UpdateSkipUpdateCheck     = Vooraf geconfigureerd beleid om automatische updates niet voor de eerste keer uit te voeren.
-	UpdateTimeUsed            = Genomen tijd:
+	UpdateTimeUsed            = Genomen tijd
 	UpdatePostProc            = Nabewerking
 	UpdateNotExecuted         = Niet uitgevoerd
 	UpdateNoPost              = Naverwerkingstaak niet gevonden

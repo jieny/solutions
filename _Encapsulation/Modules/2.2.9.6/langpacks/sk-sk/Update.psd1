@@ -27,7 +27,7 @@
 	UpdateLatest              = Najnovšia dostupná verzia
 	UpdateNewLatest           = Objavte nové dostupné verzie!
 	UpdateSkipUpdateCheck     = Vopred nakonfigurovaná politika nepovoľuje prvé spustenie automatických aktualizácií.
-	UpdateTimeUsed            = Čas potrebný:
+	UpdateTimeUsed            = Čas potrebný
 	UpdatePostProc            = Následné spracovanie
 	UpdateNotExecuted         = Nevykonané
 	UpdateNoPost              = Úloha po spracovaní sa nenašla

@@ -27,7 +27,7 @@
 	UpdateLatest              = Najnovija dostupna verzija
 	UpdateNewLatest           = Otkrijte nove dostupne verzije!
 	UpdateSkipUpdateCheck     = Unaprijed konfigurirana pravila koja ne dopuštaju pokretanje automatskih ažuriranja po prvi put.
-	UpdateTimeUsed            = Potrebno vrijeme:
+	UpdateTimeUsed            = Potrebno vrijeme
 	UpdatePostProc            = Naknadna obrada
 	UpdateNotExecuted         = Nije izvršeno
 	UpdateNoPost              = Zadatak naknadne obrade nije pronađen

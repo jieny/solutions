@@ -27,7 +27,7 @@
 	UpdateLatest              = Senaste versionen tillgänglig
 	UpdateNewLatest           = Upptäck nya tillgängliga versioner!
 	UpdateSkipUpdateCheck     = Förkonfigurerad policy för att inte tillåta automatiska uppdateringar att köras för första gången.
-	UpdateTimeUsed            = Tidsåtgång:
+	UpdateTimeUsed            = Tidsåtgång
 	UpdatePostProc            = Efterbearbetning
 	UpdateNotExecuted         = Ej avrättad
 	UpdateNoPost              = Efterbearbetningsuppgiften hittades inte

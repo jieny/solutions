@@ -27,7 +27,7 @@
 	UpdateLatest              = Ultima versiune disponibilă
 	UpdateNewLatest           = Descoperiți versiuni noi disponibile!
 	UpdateSkipUpdateCheck     = Politică preconfigurată pentru a nu permite rularea actualizărilor automate pentru prima dată.
-	UpdateTimeUsed            = Timp luat:
+	UpdateTimeUsed            = Timp luat
 	UpdatePostProc            = Postprocesare
 	UpdateNotExecuted         = Neexecutat
 	UpdateNoPost              = Sarcina de postprocesare nu a fost găsită
