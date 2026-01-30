@@ -364,7 +364,7 @@ Function Update_Process
 			Write-Host $url -ForegroundColor Green
 
 			if (Test_URI $url) {
-				Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+				Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 				Write-Host "  $('-' * 80)"
 
 				Write-Host "`n  $($lang.UpdateCurrent): $((Get-Module -Name Solutions).Version.ToString())
@@ -421,7 +421,7 @@ $($getSerVer.changelog.log)`n"
 				Write-Host $url -ForegroundColor Green
 
 				if (Test_URI $url) {
-					Write-Host "  $($lang.UpdateAvailable)" -ForegroundColor Green
+					Write-Host "    $($lang.UpdateAvailable)" -ForegroundColor Green
 					Write-Host "  $('-' * 80)"
 					Update_And_Download -url $url -NewSHA $NewFileSha256
 				} else {
@@ -436,6 +436,8 @@ $($getSerVer.changelog.log)`n"
 	} else {
 		Write-Host "  $($lang.UpdateNotSatisfied -f $((Get-Module -Name Solutions).PrivateData.PSData.MinimumVersion))"
 	}
+
+	Start-Sleep -s 4
 }
 
 Function Update_And_Download
