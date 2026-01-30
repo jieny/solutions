@@ -58,8 +58,6 @@ Function Solutions_Help
 	Write-Host "     Reset".PadRight(20) -NoNewline -ForegroundColor Yellow
 	Write-Host $lang.EventManagerClear
 
-
-
 	Write-Host "`n  $($lang.Mounted_Status)"
 	Write-Host "  $('-' * 80)"
 	Write-Host "     Mt".PadRight(20) -NoNewline -ForegroundColor Yellow
@@ -242,7 +240,6 @@ Function Solutions_Help_Command
 					if (Test-Path -Path $NewFileFullPathMain -PathType leaf) {
 						Write-Host $(' ' * 7) -NoNewline
 						Write-Host " Save " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-						Write-host " " -NoNewline
 						Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 						Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 						Write-Host $item.Main.Uid -ForegroundColor Green
@@ -262,7 +259,6 @@ Function Solutions_Help_Command
 							if (Test-Path -Path $test_mount_folder_Current -PathType leaf) {
 								Write-Host $(' ' * 7) -NoNewline
 								Write-Host " Se " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-								Write-host " " -NoNewline
 								Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 								Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 								Write-Host $Expand.Uid -ForegroundColor Green
@@ -290,7 +286,6 @@ Function Solutions_Help_Command
 				if ($Global:SMExt -contains $item.Main.Suffix) {
 					Write-Host $(' ' * 2) -NoNewline
 					Write-Host " Unmt " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-					Write-host " " -NoNewline
 					Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 					Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 					Write-Host $item.Main.Uid -ForegroundColor Green
@@ -307,7 +302,6 @@ Function Solutions_Help_Command
 						if ($Global:SMExt -contains $Expand.Suffix) {
 							Write-Host $(' ' * 2) -NoNewline
 							Write-Host " Unmt " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-							Write-host " " -NoNewline
 							Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 							Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 							Write-Host $Expand.Uid -ForegroundColor Green
@@ -346,7 +340,6 @@ Function Solutions_Help_Command
 				if ($Global:SMExt -contains $item.Main.Suffix) {
 					Write-Host $(' ' * 7) -NoNewline
 					Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-					Write-host " " -NoNewline
 					Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 					Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 					Write-Host $item.Main.Uid -ForegroundColor Green
@@ -364,7 +357,6 @@ Function Solutions_Help_Command
 						if ($Global:SMExt -contains $Expand.Suffix) {
 							Write-Host $(' ' * 7) -NoNewline
 							Write-Host " Sel " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-							Write-host " " -NoNewline
 							Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 							Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 							Write-Host $Expand.Uid -ForegroundColor Green
@@ -395,7 +387,6 @@ Function Solutions_Help_Command
 					if (Test-Path -Path $TestWIMFile -PathType leaf) {
 						Write-Host $(' ' * 7) -NoNewline
 						Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-						Write-host " " -NoNewline
 						Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 						Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 						Write-Host $item.Main.Uid -ForegroundColor Green
@@ -407,7 +398,6 @@ Function Solutions_Help_Command
 				} else {
 					Write-Host $(' ' * 7) -NoNewline
 					Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-					Write-host " " -NoNewline
 					Write-Host " $($item.Main.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 					Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 					Write-Host $item.Main.Uid -ForegroundColor Green
@@ -428,7 +418,6 @@ Function Solutions_Help_Command
 							if (Test-Path -Path $TestWIMFileExpand -PathType leaf) {
 								Write-Host $(' ' * 7) -NoNewline
 								Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-								Write-host " " -NoNewline
 								Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 								Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 								Write-Host $Expand.Uid -ForegroundColor Green
@@ -440,7 +429,6 @@ Function Solutions_Help_Command
 						} else {
 							Write-Host $(' ' * 7) -NoNewline
 							Write-Host " View " -NoNewline -BackgroundColor DarkMagenta -ForegroundColor White
-							Write-host " " -NoNewline
 							Write-Host " $($Expand.Shortcuts) " -NoNewline -BackgroundColor Green -ForegroundColor Black
 							Write-Host " $($lang.Event_Primary_Key): " -NoNewline -ForegroundColor Yellow
 							Write-Host $Expand.Uid -ForegroundColor Green

@@ -1957,7 +1957,7 @@ Function Shortcuts_Additional_Edition
 	)
 
 	Write-Host "`n  $($lang.Command): " -NoNewline
-	Write-host " iAE " -ForegroundColor Green
+	Write-host "iAE" -ForegroundColor Green
 
 	Shortcuts_Show_Available
 

@@ -5144,7 +5144,7 @@ Function Image_Select
 
 			Save_Dynamic -regkey "Solutions\Update" -name "AutoCheckUpdate_Hours" -value $This.Value
 			$GUIImageSourceGroupSettingErrorMsg_Icon.Image = [System.Drawing.Image]::Fromfile("$($PSScriptRoot)\..\..\..\..\Assets\icon\Success.ico")
-			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.Auto_Check_Time), $($lang.Setting): $($This.Value), $($lang.Done)"
+			$GUIImageSourceGroupSettingErrorMsg.Text = "$($lang.Setting): $($This.Value) $($lang.Auto_Check_Time), $($lang.Done)"
 		}
 	}
 

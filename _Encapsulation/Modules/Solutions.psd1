@@ -1,6 +1,6 @@
 ﻿@{
 	RootModule        = 'Solutions.psm1'
-	ModuleVersion     = '2.2.9.6'
+	ModuleVersion     = '2.2.9.7'
 	GUID              = '1e1ad755-d5e1-4769-af9b-7134001c8daf'
 	Author            = 'Yi'
 	Copyright         = 'FengYi, Inc. All rights reserved.'
