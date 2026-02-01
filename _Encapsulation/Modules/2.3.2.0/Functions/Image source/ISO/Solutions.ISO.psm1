@@ -1295,6 +1295,9 @@ Function ISO_Create_UI
 				$UI_ISO_B_Month_UseShortname.Checked = $False
 			}
 		}
+	} else {
+		Save_Dynamic -regkey "Solutions\ImageSources\$($Global:MainImage)\Deploy\ISO" -name "Is_B_Month_UseShortname" -value "True"
+		$UI_ISO_B_Month_UseShortname.Checked = $True
 	}
 	$UI_ISO_Month_UseShortname_Name = New-Object system.Windows.Forms.Label -Property @{
 		Height         = 30
