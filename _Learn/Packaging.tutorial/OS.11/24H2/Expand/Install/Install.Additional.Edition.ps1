@@ -28,7 +28,7 @@ $InstallFilename = "D:\ISOTemp\Sources\install.wim"
 $TempSaveAEFileTo = "D:\ISOTemp\Sources\install.AE.Temp.wim"
 $Mount = "D:\ISOTemp_Custom\Install\Install\Mount"
 
-$RandomGuid = New-Guid
+$RandomGuid = (New-Guid).Guid
 $BackupInstallTo = "D:\ISOTemp_Custom\_Backup\Additional edition\$($RandomGuid)"
 
 if (Test-Path -Path $InstallFilename -PathType Leaf) {
@@ -43,7 +43,7 @@ if (Test-Path -Path $InstallFilename -PathType Leaf) {
 
 remove-item -path $TempSaveAEFileTo -force -ErrorAction SilentlyContinue
 if (Test-Path $TempSaveAEFileTo -PathType Leaf) {
-	$RandomGuid = New-Guid
+	$RandomGuid = (New-Guid).Guid
 	$TempSaveAEFileTo = "D:\ISOTemp\Sources\install.AE.Temp.$($RandomGuid).wim"
 }
 
@@ -122,7 +122,7 @@ if ($AdditionalEdition.Rule.count -gt 0) {
 	return
 }
 
-$RandomGuid = New-Guid
+$RandomGuid = (New-Guid).Guid
 $Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
 $Arguments = "info ""$($InstallFilename)"" --extract-xml ""$($Export_To_New_Xml)"""
 Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
