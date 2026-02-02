@@ -1,5 +1,5 @@
 ﻿$RegSystem = "D:\ISOTemp_Custom\Boot\Boot\Mount\Windows\System32\Config\SYSTEM"
-$RandomGuid = (New-Guid).Guid
+$RandomGuid = [guid]::NewGuid()
 Write-Host "   HKLM:\$($RandomGuid)"
 New-PSDrive -PSProvider Registry -Name OtherTasksTPM -Root HKLM -ErrorAction SilentlyContinue | Out-Null
 Start-Process reg -ArgumentList "Load ""HKLM\$($RandomGuid)"" ""$($RegSystem)""" -Wait -WindowStyle Hidden -ErrorAction SilentlyContinue

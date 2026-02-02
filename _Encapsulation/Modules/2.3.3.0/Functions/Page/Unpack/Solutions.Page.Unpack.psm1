@@ -28,7 +28,7 @@ $UnPackSaveTo = "$(Convert-Path "$($PSScriptRoot)\..\..\..\..\..\.." -ErrorActio
 	.Archive temporary directory
 	.压缩包临时目录
 #>
-$RandomFolderGuid = (New-Guid).Guid
+$RandomFolderGuid = [guid]::NewGuid()
 $TempFolderUnPack = "$(Convert-Path "$($PSScriptRoot)\..\..\..\..\..\.." -ErrorAction SilentlyContinue)\_Unpack\$($RandomFolderGuid)"
 
 <#
@@ -1575,7 +1575,7 @@ Function UnPack_Create_UI
 				}
 			}
 
-			$RandomTempFileGuid = (New-Guid).Guid
+			$RandomTempFileGuid = [guid]::NewGuid()
 			Check_Folder -chkpath $TempFolderUnPack
 			$test_temp_folder_guid = "$($TempFolderUnPack)\writetest-$($RandomTempFileGuid)"
 

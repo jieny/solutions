@@ -7874,7 +7874,7 @@ Function Solutions_Replace_Unattend
 		$GUID
 	)
 
-	$RandomUniqueGUID = (New-Guid).Guid
+	$RandomUniqueGUID = [guid]::NewGuid()
 
 	$FullFilename = Join-Path -Path $SaveTo -ChildPath $FileName
 	Write-Host "  $($lang.SaveTo): " -NoNewline

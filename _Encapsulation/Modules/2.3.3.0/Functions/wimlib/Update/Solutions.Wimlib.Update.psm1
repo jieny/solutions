@@ -576,7 +576,7 @@ Function Wimlib_Extract_And_Update
 							<#
 								.创建保存到位置目录
 							#>
-							$RandomGuid = (New-Guid).Guid
+							$RandomGuid = [guid]::NewGuid()
 
 							$Local_Wim_Update_Folder_Sources = "$($UI_Main_Mask_Report_Save_To.Text)\$($RandomGuid)"
 							Check_Folder -chkpath $Local_Wim_Update_Folder_Sources

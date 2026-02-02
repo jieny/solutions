@@ -9,7 +9,7 @@ Function Rebuild_Image_File
 		$Filename
 	)
 
-	$RandomGuid = (New-Guid).Guid
+	$RandomGuid = [guid]::NewGuid()
 
 	Write-Host "`n  $($lang.Rebuilding)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"

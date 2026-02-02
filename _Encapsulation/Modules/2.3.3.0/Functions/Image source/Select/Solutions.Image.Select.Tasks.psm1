@@ -162,7 +162,7 @@ Function Image_Select_Tasks_UI
 				$LabelNewFilename_Warp
 			))
 
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
 			$Arguments = "info ""$($ImageFilePath)"" --extract-xml ""$($Export_To_New_Xml)"""
 			Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
@@ -171,7 +171,7 @@ Function Image_Select_Tasks_UI
 				[XML]$empDetails = Get-Content $Export_To_New_Xml
 
 				ForEach ($empDetail in $empDetails.wim.IMAGE) {
-					$RandomGuid = (New-Guid).Guid
+					$RandomGuid = [guid]::NewGuid()
 					$NewLASTMODIFICATIONTIME = ConvertToDate -lowpart $empDetail.CREATIONTIME.LOWPART -highpart $empDetail.CREATIONTIME.HIGHPART
 					$NewLastModifiTime = ConvertToDate -lowpart $empDetail.LASTMODIFICATIONTIME.LOWPART -highpart $empDetail.LASTMODIFICATIONTIME.HIGHPART
 
@@ -314,7 +314,7 @@ Function Image_Select_Tasks_UI
 			try {
 				Get-WindowsImage -ImagePath $ImageFilePath -ErrorAction SilentlyContinue | ForEach-Object {
 					Get-WindowsImage -ImagePath $ImageFilePath -index $_.ImageIndex -ErrorAction SilentlyContinue | ForEach-Object {
-						$RandomGuid = (New-Guid).Guid
+						$RandomGuid = [guid]::NewGuid()
 						$Script:custom_array += [pscustomobject]@{
 							GUID               = $RandomGuid
 							ImageIndex         = $_.ImageIndex

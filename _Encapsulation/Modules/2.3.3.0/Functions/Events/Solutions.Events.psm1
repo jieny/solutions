@@ -582,7 +582,7 @@ Function Event_Assign_Task_Queue_Add
 	<#
 		.分配到全局唯一识别
 	#>
-	$Global:EventProcessGuid = (New-Guid).Guid
+	$Global:EventProcessGuid = [guid]::NewGuid()
 	$Global:Event_Guid = $Uid
 
 	<#
@@ -731,7 +731,7 @@ Function Event_Assign_Task_Queue_Add_New
 	<#
 		.分配到全局唯一识别
 	#>
-	$Global:EventProcessGuid = (New-Guid).Guid
+	$Global:EventProcessGuid = [guid]::NewGuid()
 	$Global:Event_Guid = $Uid
 
 	<#
@@ -765,7 +765,7 @@ Function Event_Track
 	)
 
 	if ($Reset) {
-		$Global:EventProcessGuid = (New-Guid).Guid
+		$Global:EventProcessGuid = [guid]::NewGuid()
 	}
 
 	if ($Global:AutopilotMode) {

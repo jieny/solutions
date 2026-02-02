@@ -485,7 +485,7 @@ function Get_Mount_To_Logs
 
 function Get_Mount_To_Temp
 {
-	$RandomGuid = (New-Guid).Guid
+	$RandomGuid = [guid]::NewGuid()
 	$Temp_New_Temp_Path = Join-Path -Path $Global:Mount_To_RouteTemp -ChildPath $RandomGuid
 
 	if (Test_Available_Disk -Path $Temp_New_Temp_Path) {

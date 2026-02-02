@@ -417,7 +417,7 @@ Function Image_Get_Detailed
 
 		$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
 		if (Test-Path -Path $wimlib -PathType Leaf) {
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
 			$Arguments = "info ""$($Filename)"" --extract-xml ""$($Export_To_New_Xml)"""
 			Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow

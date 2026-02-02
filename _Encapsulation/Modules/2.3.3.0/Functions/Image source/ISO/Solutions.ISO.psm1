@@ -3117,7 +3117,7 @@ Function ISO_Create_UI
 				<#
 					.测试 ISO 生成临时目录
 				#>
-				$RandomGuid = (New-Guid).Guid
+				$RandomGuid = [guid]::NewGuid()
 				$ISOTestFolderMain = Join-Path -Path $Global:ISOSaveToFolder -ChildPath $RandomGuid
 				Check_Folder -chkpath $ISOTestFolderMain
 

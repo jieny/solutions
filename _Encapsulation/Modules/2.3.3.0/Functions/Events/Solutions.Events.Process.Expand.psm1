@@ -41,7 +41,7 @@ Function Expand_Process_abc
 		<#
 			.保存到临时目录
 		#>
-		$RandomGuid = (New-Guid).Guid
+		$RandomGuid = [guid]::NewGuid()
 		$Local_Wim_Update_Folder_Sources = "$(Get_MainMasterFolder)\$($Master)\$($Master)\Update\Wimlib\$($RandomGuid)"
 
 		$NewFileName = [IO.Path]::GetFileName($ImageFileMount)

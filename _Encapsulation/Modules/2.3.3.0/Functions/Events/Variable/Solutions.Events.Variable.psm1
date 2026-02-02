@@ -4,7 +4,7 @@
 #>
 Function Event_Reset_Suggest
 {
-	$Global:EventProcessGuid = (New-Guid).Guid
+	$Global:EventProcessGuid = [guid]::NewGuid()
 
 	$GroupSuggest = @(
 		"Queue_Assign_Has_Been_Run"                  # 分配已运行过的 UI

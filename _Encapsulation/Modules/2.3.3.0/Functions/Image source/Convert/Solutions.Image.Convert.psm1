@@ -1107,7 +1107,7 @@ Function Image_Convert_Process
 		.Determine the conversion type
 		.判断转换类型
 	#>
-	$RandomGuid = (New-Guid).Guid
+	$RandomGuid = [guid]::NewGuid()
 
 	$Install_ESD = Join-Path -Path $Global:Image_source -ChildPath "Sources\install.esd"
 	$Install_wim = Join-Path -Path $Global:Image_source -ChildPath "Sources\install.wim"

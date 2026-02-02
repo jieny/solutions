@@ -675,7 +675,7 @@ Function LXPs_Region_Add
 		$UI_Main_Mask_Report_Error_Icon.Image = $null
 		$UI_Main_Mask_Report_Error.Text = ""
 
-		$RandomGuid = (New-Guid).Guid
+		$RandomGuid = [guid]::NewGuid()
 		$InitalReportSources = $UI_Main_Mask_Report_Sources_Path.Text
 		$DesktopOldpath = [Environment]::GetFolderPath("Desktop")
 
@@ -1255,7 +1255,7 @@ Function LXPs_Region_Add
 			$UI_Main_Mask_Report_Error.Text = ""
 			$UI_Main_Mask_Report_Error_Icon.Image = $null
 
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$DesktopOldpath = [Environment]::GetFolderPath("Desktop")
 
 			$FolderBrowser = New-Object System.Windows.Forms.FolderBrowserDialog -Property @{
@@ -1373,7 +1373,7 @@ Function LXPs_Region_Add
 			$UI_Main_Mask_Report_Error.Text = ""
 			$UI_Main_Mask_Report_Error_Icon.Image = $null
 
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 
 			$FileBrowser = New-Object System.Windows.Forms.SaveFileDialog -Property @{
 				FileName = "Report.$($RandomGuid).csv"
@@ -1487,7 +1487,7 @@ Function LXPs_Region_Add
 		Width          = 280
 		Text           = $lang.AdvAppsDetailed
 		add_Click      = {
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$UI_Main_Error.Text = ""
 			$UI_Main_Error_Icon.Image = $null
 
@@ -2152,7 +2152,7 @@ Function LXPs_Save_Report_Process
 
 	Write-Host "`n  $($lang.AdvAppsDetailed)"
 	$QueueSelectLXPsReport = @()
-	$RandomGuid = (New-Guid).Guid
+	$RandomGuid = [guid]::NewGuid()
 	$ISOTestFolderMain = "$($env:userprofile)\AppData\Local\Temp\$($RandomGuid)"
 	Check_Folder -chkpath $ISOTestFolderMain
 

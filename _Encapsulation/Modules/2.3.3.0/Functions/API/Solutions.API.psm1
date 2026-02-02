@@ -15,7 +15,7 @@ Function Api_Create_Template
 		Default { "Mini" }
 	}
 
-	$RandomGuid = (New-Guid).Guid
+	$RandomGuid = [guid]::NewGuid()
 	$ThisFileType = $([System.IO.Path]::GetExtension($NewFile))
 	switch -WildCard ($ThisFileType) {
 		".psd1" {

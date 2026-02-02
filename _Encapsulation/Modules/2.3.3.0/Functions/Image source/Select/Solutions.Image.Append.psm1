@@ -214,7 +214,7 @@ Function Image_Select_Append_UI
 						$LabelNewFilename_Warp
 					))
 
-					$RandomGuid = (New-Guid).Guid
+					$RandomGuid = [guid]::NewGuid()
 					$Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
 					$Arguments = "info ""$($FileBrowser.FileName)"" --extract-xml ""$($Export_To_New_Xml)"""
 					Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
@@ -223,7 +223,7 @@ Function Image_Select_Append_UI
 						[XML]$empDetails = Get-Content $Export_To_New_Xml
 
 						ForEach ($empDetail in $empDetails.wim.IMAGE) {
-							$RandomGuid = (New-Guid).Guid
+							$RandomGuid = [guid]::NewGuid()
 							$NewLASTMODIFICATIONTIME = ConvertToDate -lowpart $empDetail.CREATIONTIME.LOWPART -highpart $empDetail.CREATIONTIME.HIGHPART
 							$NewLastModifiTime = ConvertToDate -lowpart $empDetail.LASTMODIFICATIONTIME.LOWPART -highpart $empDetail.LASTMODIFICATIONTIME.HIGHPART
 
@@ -369,7 +369,7 @@ Function Image_Select_Append_UI
 					try {
 						Get-WindowsImage -ImagePath $FileBrowser.FileName -ErrorAction SilentlyContinue | ForEach-Object {
 							Get-WindowsImage -ImagePath $FileBrowser.FileName -index $_.ImageIndex -ErrorAction SilentlyContinue | ForEach-Object {
-								$RandomGuid = (New-Guid).Guid
+								$RandomGuid = [guid]::NewGuid()
 								$Script:Temp_Save_Select_WIMFile += [pscustomobject]@{
 									GUID               = $RandomGuid
 									ImageIndex         = $_.ImageIndex
@@ -551,7 +551,7 @@ Function Image_Select_Append_UI
 
 					$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
 					if (Test-Path -Path $wimlib -PathType Leaf) {
-						$RandomGuid = (New-Guid).Guid
+						$RandomGuid = [guid]::NewGuid()
 						$Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
 						$Arguments = "info ""$($item)"" --extract-xml ""$($Export_To_New_Xml)"""
 						Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
@@ -560,7 +560,7 @@ Function Image_Select_Append_UI
 							[XML]$empDetails = Get-Content $Export_To_New_Xml
 
 							ForEach ($empDetail in $empDetails.wim.IMAGE) {
-								$RandomGuid = (New-Guid).Guid
+								$RandomGuid = [guid]::NewGuid()
 								$NewLASTMODIFICATIONTIME = ConvertToDate -lowpart $empDetail.CREATIONTIME.LOWPART -highpart $empDetail.CREATIONTIME.HIGHPART
 								$NewLastModifiTime = ConvertToDate -lowpart $empDetail.LASTMODIFICATIONTIME.LOWPART -highpart $empDetail.LASTMODIFICATIONTIME.HIGHPART
 
@@ -711,7 +711,7 @@ Function Image_Select_Append_UI
 						try {
 							Get-WindowsImage -ImagePath $item -ErrorAction SilentlyContinue | ForEach-Object {
 								Get-WindowsImage -ImagePath $item -index $_.ImageIndex -ErrorAction SilentlyContinue | ForEach-Object {
-									$RandomGuid = (New-Guid).Guid
+									$RandomGuid = [guid]::NewGuid()
 
 									$Script:Temp_Save_Select_WIMFile += [pscustomobject]@{
 										GUID               = $RandomGuid

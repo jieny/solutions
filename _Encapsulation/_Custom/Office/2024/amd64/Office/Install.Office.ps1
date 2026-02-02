@@ -583,7 +583,7 @@ Function Install-Process
 		}
 	}
 
-	$RandomGuid = (New-Guid).Guid
+	$RandomGuid = [guid]::NewGuid()
 	$TempGuidConfiguration = "$($env:userprofile)\AppData\Local\Temp\$($RandomGuid)"
 	CheckCatalog -chkpath $TempGuidConfiguration
 	Write-Host "`n   Configuration temp folder: $($TempGuidConfiguration)"
@@ -694,7 +694,7 @@ Function Install-Process
 	}
 
 	if ($FlagsClean) {
-		$RandomTempGuid = (New-Guid).Guid
+		$RandomTempGuid = [guid]::NewGuid()
 		$test_tmp_filename = "$($Global:OfficeSP)\writetest-$($RandomTempGuid)"
 		Out-File -FilePath $test_tmp_filename -Encoding utf8 -ErrorAction SilentlyContinue
 

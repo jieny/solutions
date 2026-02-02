@@ -63,7 +63,7 @@ Function Other_Tasks_CTD
 	Write-Host "  $('-' * 80)"
 	if (Image_Is_Select_IAB) {
 		if (Verify_Is_Current_Same) {
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$Local_Regedit_File_System = Join-Path -Path $Global:Mount_To_Route -ChildPath "$($Global:Primary_Key_Image.Master).$($Global:Primary_Key_Image.MasterSuffix)\$($Global:Primary_Key_Image.ImageFileName).$($Global:Primary_Key_Image.Suffix)\Mount\$($Global:Author)\$($RandomGuid)"
 
 			Check_Folder -chkpath $Local_Regedit_File_System
@@ -98,7 +98,7 @@ Function Other_Tasks_TPM
 			Write-Host "  $($lang.SelFile)"
 			Write-Host "  $($Local_Regedit_File_System)" -ForegroundColor Green
 			if (Test-Path -Path $Local_Regedit_File_System -PathType Leaf) {
-				$RandomGuid = (New-Guid).Guid
+				$RandomGuid = [guid]::NewGuid()
 
 				Write-Host "`n  $($lang.Select_Path): " -NoNewline
 				Write-Host "HKLM:\$($RandomGuid)" -ForegroundColor Yellow
@@ -164,7 +164,7 @@ Function Other_Tasks_REFS
 			Write-Host "  $($lang.SelFile)"
 			Write-Host "  $($Local_Regedit_File_System)" -ForegroundColor Green
 			if (Test-Path -Path $Local_Regedit_File_System -PathType Leaf) {
-				$RandomGuid = (New-Guid).Guid
+				$RandomGuid = [guid]::NewGuid()
 
 				Write-Host "`n  $($lang.Select_Path): " -NoNewline
 				Write-Host "HKLM:\$($RandomGuid)" -ForegroundColor Yellow

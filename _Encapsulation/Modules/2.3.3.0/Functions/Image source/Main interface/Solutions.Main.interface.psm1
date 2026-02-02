@@ -825,7 +825,7 @@ Function Image_Select
 		$GetVarPath = Get-ItemPropertyValue -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment" -Name "Path" -ErrorAction SilentlyContinue
 		$windows_path = $GetVarPath -split ';'
 
-		$RandomGuid = (New-Guid).Guid
+		$RandomGuid = [guid]::NewGuid()
 		$newFileName = Join-Path -Path $env:Temp -ChildPath $RandomGuid
 
 		$Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")

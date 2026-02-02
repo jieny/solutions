@@ -97,7 +97,7 @@ Function Covert_Software_Package_Unpack
 		ForEach ($item in $Script:CompressedPackage) {
 			$fullnewpathsha256 = "$($item.Folder)\$($item.Name).zip.sha256"
 
-			$WYGuid = (New-Guid).Guid
+			$WYGuid = [guid]::NewGuid()
 			$TempFolderUpdate = Join-Path -Path ([Environment]::GetFolderPath("MyDocuments")) -ChildPath "Temp.$($WYGuid)"
 
 			Check_Folder -chkpath $TempFolderUpdate

@@ -44,7 +44,7 @@ Function Image_Additional_Edition_Process
 		$TempSaveAEFileTo = Join-Path -Path $Global:Image_source -ChildPath "Sources\install.AE.Temp.wim"
 		remove-item -path $TempSaveAEFileTo -force -ErrorAction SilentlyContinue
 		if (Test-Path $TempSaveAEFileTo -PathType Leaf) {
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$TempSaveAEFileTo = Join-Path -Path $Global:Image_source -ChildPath "Sources\install.AE.Temp.$($RandomGuid).wim"
 		}
 
@@ -99,7 +99,7 @@ Function Image_Additional_Edition_Process
 		Write-Host "  $('-' * 80)"
 		$wimlib = "$(Get_Arch_Path -Path "$($PSScriptRoot)\..\..\..\..\AIO\wimlib")\wimlib-imagex.exe"
 		if (Test-Path -Path $wimlib -PathType Leaf) {
-			$RandomGuid = (New-Guid).Guid
+			$RandomGuid = [guid]::NewGuid()
 			$Export_To_New_Xml = Join-Path -Path $env:TEMP -ChildPath "$($RandomGuid).xml"
 			$Arguments = "info ""$($Global:Primary_Key_Image.FullPath)"" --extract-xml ""$($Export_To_New_Xml)"""
 			Start-Process -FilePath $wimlib -ArgumentList $Arguments -wait -nonewwindow
@@ -587,7 +587,7 @@ Function Image_Additional_Edition_Process
 			Write-Host "  $($lang.Select_Path): " -NoNewline
 			Write-Host $TempSaveAEFileTo -ForegroundColor Green
 			if (Test-Path -Path $TempSaveAEFileTo -PathType Leaf) {
-				$RandomGuid = (New-Guid).Guid
+				$RandomGuid = [guid]::NewGuid()
 				$SaveToName = [IO.Path]::GetFileName($Global:Primary_Key_Image.FullPath)
 				$SaveFileToEsdTemp = Join-Path -Path $Global:MainMasterFolder -ChildPath "_Backup\Additional edition\$($RandomGuid)"
 				Check_Folder -chkpath $SaveFileToEsdTemp
