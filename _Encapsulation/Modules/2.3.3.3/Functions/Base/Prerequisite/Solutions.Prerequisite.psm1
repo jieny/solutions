@@ -44,7 +44,12 @@ Function Prerequisite
 		Write-Host " $($lang.Check_Pass) " -BackgroundColor DarkGreen -ForegroundColor White
 
 		Write-Host "  $($lang.Check_execution_strategy): " -NoNewline
-		switch (Get-ExecutionPolicy) {
+		try { 
+			$GetEp = Get-ExecutionPolicy
+		} catch {
+			$getep = "Undefined"
+		}
+		switch ($GetEp) {
 			"Bypass" {
 				Write-Host " $($lang.Check_Pass) " -BackgroundColor DarkGreen -ForegroundColor White
 			}
@@ -53,6 +58,9 @@ Function Prerequisite
 			}
 			"Unrestricted" {
 				Write-Host " $($lang.Check_Pass) " -BackgroundColor DarkGreen -ForegroundColor White
+			}
+			"Undefined" {
+				Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White
 			}
 			default {
 				Write-Host " $($lang.Check_Did_not_pass) " -BackgroundColor DarkRed -ForegroundColor White
