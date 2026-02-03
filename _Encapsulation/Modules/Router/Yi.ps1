@@ -49,13 +49,10 @@ $AvailableLanguages = @(
 			Choose               = "Please choose"
 			Reset                = "Reset"
 			History              = "Clean up command-line records"
-			Add                  = "Add routing functionality, system variables"
-			AddOK                = "Added"
-			AddDone              = "Add complete"
+			Router               = "Routing function"
+			Add                  = "Add to"
 			NoWork               = "No task"
 			Remove               = "Delete"
-			RemoveRoute          = "Remove the routing function, system variables"
-			RemoveDone           = "Delete successful"
 			SIP                  = "System encapsulation"
 			VerifyAutopilot      = "Verification: Autonomous Driving Profile"
 			VerifyUnattend       = "Verification: Pre-answer template file"
@@ -97,13 +94,10 @@ $AvailableLanguages = @(
 			Choose               = "اختر من فضلك"
 			Reset                = "إعادة ضبط"
 			History              = "مسح سجلات سطر الأوامر"
-			Add                  = "إضافة وظيفة التوجيه ، متغير النظام"
-			AddOK                = "أضيف"
-			AddDone              = "أضف لإكمال"
+			Router               = "وظيفة التوجيه"
+			Add                  = "اضف إليه"
 			NoWork               = "لا توجد مهام"
 			Remove               = "يمسح"
-			RemoveRoute          = "حذف وظيفة التوجيه ، متغير النظام"
-			RemoveDone           = "تم الحذف بنجاح"
 			SIP                  = "البرنامج النصي لتغليف النظام"
 			VerifyAutopilot      = "التحقق: ملف تعريف القيادة الذاتية"
 			VerifyUnattend       = "التحقق: يجب أن يكون ملف قالب الإجابة المسبقة"
@@ -145,13 +139,10 @@ $AvailableLanguages = @(
 			Choose               = "Моля избери"
 			Reset                = "нулиране"
 			History              = "Изчистване на записите на командния ред"
-			Add                  = "Добавяне на функция за маршрутизиране, променлива на системата"
-			AddOK                = "Добавено"
-			AddDone              = "Добавете към Complete"
+			Router               = "Функция за маршрутизиране"
+			Add                  = "Добави към"
 			NoWork               = "Без задачи"
 			Remove               = "изтрий"
-			RemoveRoute          = "Изтриване на функцията за маршрутизиране, променлива на системата"
-			RemoveDone           = "Успешно изтрити"
 			SIP                  = "Скрипт на системната опаковка"
 			VerifyAutopilot      = "Проверка: Профил на автономно шофиране"
 			VerifyUnattend       = "Проверка: трябва предварително отговор файл шаблон"
@@ -193,13 +184,10 @@ $AvailableLanguages = @(
 			Choose               = "Vyberte prosím"
 			Reset                = "Resetovat"
 			History              = "Vyčistit záznamy příkazové řádky"
-			Add                  = "Přidat funkci směrování, systémovou proměnnou"
-			AddOK                = "Přidáno"
-			AddDone              = "Přidáno do dokončených"
+			Router               = "Funkce směrování"
+			Add                  = "Přidat do"
 			NoWork               = "Žádné úkoly"
 			Remove               = "Odstranit"
-			RemoveRoute          = "Odstranit funkci směrování, systémovou proměnnou"
-			RemoveDone           = "Úspěšně odstraněno"
 			SIP                  = "Skript systémového balení"
 			VerifyAutopilot      = "Ověření: Konfigurační soubor pro autonomní řízení"
 			VerifyUnattend       = "Ověření: musí být předem odpovězen šablonový soubor"
@@ -241,13 +229,10 @@ $AvailableLanguages = @(
 			Choose               = "Vælg venligst"
 			Reset                = "Nulstil"
 			History              = "Ryd kommandolinjeposter"
-			Add                  = "Tilføj routingfunktion, systemvariabel"
-			AddOK                = "Tilføjet"
-			AddDone              = "Tilføj til komplet"
+			Router               = "Routingfunktion"
+			Add                  = "Tilføj til"
 			NoWork               = "Ingen opgaver"
 			Remove               = "Slette"
-			RemoveRoute          = "Slet routingfunktionen, systemvariabel"
-			RemoveDone           = "med succes slettet"
 			SIP                  = "Systememballage -script"
 			VerifyAutopilot      = "Bekræftelse: Autonom kørselsprofil"
 			VerifyUnattend       = "Bekræftelse: skal forhåndsbesvare skabelonfil"
@@ -289,13 +274,10 @@ $AvailableLanguages = @(
 			Choose               = "bitte auswählen"
 			Reset                = "zurücksetzen"
 			History              = "Befehlszeilendatensätze löschen"
-			Add                  = "Routing -Funktion hinzufügen, Systemvariable"
-			AddOK                = "hinzugefügt"
-			AddDone              = "Hinzufügen zum Vervollständigen"
+			Router               = "Routing-Funktion"
+			Add                  = "Hinzufügen zu"
 			NoWork               = "Nicht fragen"
 			Remove               = "löschen"
-			RemoveRoute          = "Löschen Sie die Routing -Funktion, Systemvariable"
-			RemoveDone           = "erfolgreich gelöscht"
 			SIP                  = "Systemverpackungsskript"
 			VerifyAutopilot      = "Überprüfung: Autonomes Fahrprofil"
 			VerifyUnattend       = "Überprüfung: Es sollte eine Vorlagedatei vorab beantwortet werden"
@@ -337,13 +319,10 @@ $AvailableLanguages = @(
 			Choose               = "Παρακαλώ επιλέξτε"
 			Reset                = "επαναφορά"
 			History              = "Εκκαθάριση εγγραφών γραμμής εντολών"
-			Add                  = "Προσθήκη λειτουργίας δρομολόγησης, μεταβλητή συστήματος"
-			AddOK                = "Προστέθηκε"
-			AddDone              = "Προσθήκη στο πλήρες"
+			Router               = "Λειτουργία δρομολόγησης"
+			Add                  = "Προστέθηκε"
 			NoWork               = "Χωρίς εργασίες"
 			Remove               = "διαγράφω"
-			RemoveRoute          = "Διαγράψτε τη λειτουργία δρομολόγησης, μεταβλητή συστήματος"
-			RemoveDone           = "Διαγράφηκε με επιτυχία"
 			SIP                  = "Σενάριο συσκευασίας συστήματος"
 			VerifyAutopilot      = "Επαλήθευση: Προφίλ αυτόνομης οδήγησης"
 			VerifyUnattend       = "Επαλήθευση: θα πρέπει να απαντήσει εκ των προτέρων το αρχείο προτύπου"
@@ -385,13 +364,10 @@ $AvailableLanguages = @(
 			Choose               = "Por favor seleccione"
 			Reset                = "Reiniciar"
 			History              = "Limpiar registros de línea de comando"
-			Add                  = "Agregar funciones de enrutamiento y variables del sistema"
-			AddOK                = "Agregado"
-			AddDone              = "Añadir completado"
+			Router               = "Función de enrutamiento"
+			Add                  = "Agregado"
 			NoWork               = "Sin tareas"
 			Remove               = "Borrar"
-			RemoveRoute          = "Eliminar funciones de enrutamiento y variables del sistema."
-			RemoveDone           = "Eliminar con éxito"
 			SIP                  = "Script de empaquetado del sistema"
 			VerifyAutopilot      = "Verificación: Perfil de conducción autónoma"
 			VerifyUnattend       = "Verificación: debe responder previamente el archivo de plantilla"
@@ -433,13 +409,10 @@ $AvailableLanguages = @(
 			Choose               = "por favor elige"
 			Reset                = "reiniciar"
 			History              = "Borrar registros de línea de comando"
-			Add                  = "Agregar función de enrutamiento, variable del sistema"
-			AddOK                = "adicional"
-			AddDone              = "Añadir a Complete"
+			Router               = "Función de enrutamiento"
+			Add                  = "Agregado"
 			NoWork               = "Sin tareas"
 			Remove               = "borrar"
-			RemoveRoute          = "Eliminar la función de enrutamiento, variable del sistema"
-			RemoveDone           = "Eliminado con éxito"
 			SIP                  = "Script de empaque del sistema"
 			VerifyAutopilot      = "Verificación: Perfil de conducción autónoma"
 			VerifyUnattend       = "Verificación: debe responder previamente el archivo de plantilla"
@@ -481,13 +454,10 @@ $AvailableLanguages = @(
 			Choose               = "palun vali"
 			Reset                = "lähtestada"
 			History              = "Tühjendage käsurea kirjed"
-			Add                  = "Lisage marsruutimisfunktsioon, süsteemimuutuja"
-			AddOK                = "Lisatud"
-			AddDone              = "Lisage lõpule"
+			Router               = "Marsruutimisfunktsioon"
+			Add                  = "Lisa"
 			NoWork               = "Pole ülesandeid"
 			Remove               = "kustutada"
-			RemoveRoute          = "Kustuta marsruutimisfunktsioon, süsteemimuutuja"
-			RemoveDone           = "Edukalt kustutatud"
 			SIP                  = "Süsteemi pakendi skript"
 			VerifyAutopilot      = "Kinnitus: autonoomne sõiduprofiil"
 			VerifyUnattend       = "Kinnitus: peaks mallifaili eelnevalt vastama"
@@ -529,13 +499,10 @@ $AvailableLanguages = @(
 			Choose               = "Valitse"
 			Reset                = "nollaa"
 			History              = "Tyhjennä komentorivin tietueet"
-			Add                  = "Lisää reititystoiminto, järjestelmämuuttuja"
-			AddOK                = "Lisätty"
-			AddDone              = "Lisää loppuun"
+			Router               = "Reititystoiminto"
+			Add                  = "Lisää"
 			NoWork               = "Ei tehtäviä"
 			Remove               = "Puhdistus: Temp-tiedostot, ratkaisulokit, DISM-lokit"
-			RemoveRoute          = "Poista reititystoiminto, järjestelmämuuttuja"
-			RemoveDone           = "Poistettu onnistuneesti"
 			SIP                  = "Järjestelmäpakkauskomentosarja"
 			VerifyAutopilot      = "Vahvistus: Autonominen ajoprofiili"
 			VerifyUnattend       = "Varmistus: pitäisi vastata mallitiedostoon etukäteen"
@@ -577,13 +544,10 @@ $AvailableLanguages = @(
 			Choose               = "Choisissez s'il vous plaît"
 			Reset                = "réinitialiser"
 			History              = "Effacer les enregistrements de ligne de commande"
-			Add                  = "Ajouter la fonction de routage, variable système"
-			AddOK                = "ajoutée"
-			AddDone              = "Ajouter à complet"
+			Router               = "Fonction de routage"
+			Add                  = "Ajouter à"
 			NoWork               = "Aucune tâche"
 			Remove               = "Supprimer"
-			RemoveRoute          = "Supprimer la fonction de routage, variable système"
-			RemoveDone           = "Supprimé avec succès"
 			SIP                  = "Script d'emballage système"
 			VerifyAutopilot      = "Vérification: profil de conduite autonome"
 			VerifyUnattend       = "Vérification: doit pré-répondre le fichier modèle"
@@ -625,13 +589,10 @@ $AvailableLanguages = @(
 			Choose               = "Veuillez sélectionner"
 			Reset                = "Réinitialiser"
 			History              = "Nettoyer les enregistrements de ligne de commande"
-			Add                  = "Ajouter des fonctions de routage et des variables système"
-			AddOK                = "Ajouté"
-			AddDone              = "Ajout terminé"
+			Router               = "Fonction de routage"
+			Add                  = "Ajouter à"
 			NoWork               = "Aucune tâche"
 			Remove               = "Supprimer"
-			RemoveRoute          = "Supprimer les fonctions de routage et les variables système"
-			RemoveDone           = "Supprimer avec succès"
 			SIP                  = "Script d'empaquetage du système"
 			VerifyAutopilot      = "Vérification: profil de conduite autonome"
 			VerifyUnattend       = "Vérification: doit pré-répondre le fichier modèle"
@@ -673,13 +634,10 @@ $AvailableLanguages = @(
 			Choose               = "בבקשה תבחר"
 			Reset                = "אִתחוּל"
 			History              = "נקה רשומות שורת הפקודה"
-			Add                  = "הוסף פונקציית ניתוב, משתנה מערכת"
-			AddOK                = "נוסף"
-			AddDone              = "הוסף להשלמה"
+			Router               = "פונקציית ניתוב"
+			Add                  = "נוסף"
 			NoWork               = "אין משימות"
 			Remove               = "לִמְחוֹק"
-			RemoveRoute          = "מחק את פונקציית הניתוב, משתנה המערכת"
-			RemoveDone           = "נמחק בהצלחה"
 			SIP                  = "סקריפט אריזות מערכת"
 			VerifyAutopilot      = "אימות: פרופיל נהיגה אוטונומית"
 			VerifyUnattend       = "אימות: צריך לענות מראש על קובץ תבנית"
@@ -721,13 +679,10 @@ $AvailableLanguages = @(
 			Choose               = "molim odaberite"
 			Reset                = "Resetirati"
 			History              = "Obrišite zapise naredbenog retka"
-			Add                  = "Dodaj funkciju usmjeravanja, varijablu sustava"
-			AddOK                = "Dodano"
-			AddDone              = "Dodaj u komplet"
+			Router               = "Funkcija usmjeravanja"
+			Add                  = "Dodano"
 			NoWork               = "Nema zadataka"
 			Remove               = "izbrisati"
-			RemoveRoute          = "Izbriši funkciju usmjeravanja, varijablu sustava"
-			RemoveDone           = "Uspješno izbrisano"
 			SIP                  = "Skripta za pakiranje sustava"
 			VerifyAutopilot      = "Provjera: Profil autonomne vožnje"
 			VerifyUnattend       = "Provjera: trebala bi biti datoteka predloška odgovora"
@@ -769,13 +724,10 @@ $AvailableLanguages = @(
 			Choose               = "kérlek válassz"
 			Reset                = "Visszaállítás"
 			History              = "Parancssori rekordok törlése"
-			Add                  = "Az útválasztási funkció hozzáadása, a rendszerváltozó"
-			AddOK                = "Hozzáadva"
-			AddDone              = "Hozzáadás a teljeshez"
+			Router               = "Útválasztási funkció"
+			Add                  = "Hozzáadás"
 			NoWork               = "Nincsenek feladatok"
 			Remove               = "töröl"
-			RemoveRoute          = "Törölje az útválasztási funkciót, a rendszerváltozót"
-			RemoveDone           = "Sikeresen törölte"
 			SIP                  = "A rendszercsomagolási szkript"
 			VerifyAutopilot      = "Ellenőrzés: autonóm vezetési profil"
 			VerifyUnattend       = "Ellenőrzés: előre meg kell válaszolni a sablonfájlt"
@@ -817,13 +769,10 @@ $AvailableLanguages = @(
 			Choose               = "si prega di scegliere"
 			Reset                = "Ripristina"
 			History              = "Cancella i record della riga di comando"
-			Add                  = "Aggiungi funzione di routing, variabile di sistema"
-			AddOK                = "Aggiunto"
-			AddDone              = "Aggiungi a completare"
+			Router               = "Funzione di routing"
+			Add                  = "Aggiunto"
 			NoWork               = "Nessun compito"
 			Remove               = "eliminare"
-			RemoveRoute          = "Elimina la funzione di routing, variabile di sistema"
-			RemoveDone           = "Eliminato con successo"
 			SIP                  = "Script di packaging di sistema"
 			VerifyAutopilot      = "Verifica: profilo di guida autonoma"
 			VerifyUnattend       = "Verifica: dovrebbe pre-rispondere al file modello"
@@ -865,13 +814,10 @@ $AvailableLanguages = @(
 			Choose               = "選んでください"
 			Reset                = "リセット"
 			History              = "コマンドラインレコードをクリアする"
-			Add                  = "ルーティング機能、システム変数を追加"
-			AddOK                = "追加した"
-			AddDone              = "完了に追加"
+			Router               = "ルーティング機能"
+			Add                  = "追加済み"
 			NoWork               = "タスクがありません"
 			Remove               = "消去"
-			RemoveRoute          = "ルーティング関数、システム変数を削除"
-			RemoveDone           = "削除された"
 			SIP                  = "システムパッケージングスクリプト"
 			VerifyAutopilot      = "検証：自動運転プロファイル"
 			VerifyUnattend       = "検証: テンプレート ファイルを事前に回答する必要があります"
@@ -913,13 +859,10 @@ $AvailableLanguages = @(
 			Choose               = "선택해주세요"
 			Reset                = "초기화"
 			History              = "명령줄 레코드 지우기"
-			Add                  = "라우팅 기능 추가, 시스템 변수"
-			AddOK                = "추가"
-			AddDone              = "완료하기 위해 추가"
+			Router               = "라우팅 기능"
+			Add                  = "추가하기"
 			NoWork               = "묻지 않는다"
 			Remove               = "삭제"
-			RemoveRoute          = "라우팅 기능, 시스템 변수 삭제"
-			RemoveDone           = "성공적으로 삭제"
 			SIP                  = "시스템 포장 스크립트"
 			VerifyAutopilot      = "확인: 자율주행 프로필"
 			VerifyUnattend       = "확인: 템플릿 파일에 미리 답변해야 합니다."
@@ -961,13 +904,10 @@ $AvailableLanguages = @(
 			Choose               = "Prašome pasirinkti"
 			Reset                = "atstatyti"
 			History              = "Išvalyti komandinės eilutės įrašus"
-			Add                  = "Pridėti maršruto parinkimo funkciją, sistemos kintamąjį"
-			AddOK                = "Pridėta"
-			AddDone              = "Pridėti prie pilno"
+			Router               = "Maršrutavimo funkcija"
+			Add                  = "Pridėta"
 			NoWork               = "Jokių užduočių"
 			Remove               = "ištrinti"
-			RemoveRoute          = "Ištrinkite maršruto parinkimo funkciją, sistemos kintamąjį"
-			RemoveDone           = "Sėkmingai ištrintas"
 			SIP                  = "Sistemos pakavimo scenarijus"
 			VerifyAutopilot      = "Patvirtinimas: savarankiško vairavimo profilis"
 			VerifyUnattend       = "Patvirtinimas: turėtų iš anksto atsakyti šablono failas"
@@ -1009,13 +949,10 @@ $AvailableLanguages = @(
 			Choose               = "Lūdzu izvēlies"
 			Reset                = "atiestatīt"
 			History              = "Notīrīt komandrindas ierakstus"
-			Add                  = "Pievienojiet maršrutēšanas funkciju, sistēmas mainīgo"
-			AddOK                = "Pievienots"
-			AddDone              = "Pievienot, lai pabeigtu"
+			Router               = "Maršrutēšanas funkcija"
+			Add                  = "Pievienots"
 			NoWork               = "Nav uzdevumu"
 			Remove               = "dzēst"
-			RemoveRoute          = "Izdzēsiet maršrutēšanas funkciju, sistēmas mainīgo"
-			RemoveDone           = "Veiksmīgi izdzēsti"
 			SIP                  = "Sistēmas iepakojuma skripts"
 			VerifyAutopilot      = "Verifikācija: autonomas braukšanas profils"
 			VerifyUnattend       = "Verifikācija: vajadzētu pirms atbildes veidnes faila"
@@ -1057,13 +994,10 @@ $AvailableLanguages = @(
 			Choose               = "Vennligst velg"
 			Reset                = "nullstille"
 			History              = "Slett kommandolinjeposter"
-			Add                  = "Legg til rutingsfunksjon, systemvariabel"
-			AddOK                = "la til"
-			AddDone              = "Legg til i fullført"
+			Router               = "Rutingsfunksjon"
+			Add                  = "lagt til"
 			NoWork               = "Ingen oppgaver"
 			Remove               = "slette"
-			RemoveRoute          = "Slett rutingsfunksjonen, systemvariabel"
-			RemoveDone           = "vellykket slettet"
 			SIP                  = "Systememballasjeskript"
 			VerifyAutopilot      = "Bekreftelse: Autonom kjøreprofil"
 			VerifyUnattend       = "Bekreftelse: skal forhåndsbesvare malfil"
@@ -1105,13 +1039,10 @@ $AvailableLanguages = @(
 			Choose               = "Selecteer alstublieft"
 			Reset                = "Opnieuw instellen"
 			History              = "Opdrachtregelrecords opschonen"
-			Add                  = "Voeg routeringsfuncties en systeemvariabelen toe"
-			AddOK                = "Toegevoegd"
-			AddDone              = "Toevoegen voltooid"
+			Router               = "Routeringsfunctie"
+			Add                  = "Toevoegen"
 			NoWork               = "Geen taken"
 			Remove               = "Verwijderen"
-			RemoveRoute          = "Routeringsfuncties en systeemvariabelen verwijderen"
-			RemoveDone           = "Succesvol verwijderen"
 			SIP                  = "Systeemverpakkingsscript"
 			VerifyAutopilot      = "Verificatie: Autonoom Rijprofiel"
 			VerifyUnattend       = "Verificatie: moet het sjabloonbestand vooraf beantwoorden"
@@ -1153,13 +1084,10 @@ $AvailableLanguages = @(
 			Choose               = "proszę wybrać"
 			Reset                = "Resetowanie"
 			History              = "Wyczyść rekordy wiersza poleceń"
-			Add                  = "Dodaj funkcję routingu, zmienna systemowa"
-			AddOK                = "dodany"
-			AddDone              = "Dodaj do kompletnego"
+			Router               = "Funkcja routingu"
+			Add                  = "Dodaj do"
 			NoWork               = "Brak zadań"
 			Remove               = "usuwać"
-			RemoveRoute          = "Usuń funkcję routingu, zmienną systemową"
-			RemoveDone           = "Z powodzeniem usunięto"
 			SIP                  = "Skrypt pakowania systemu"
 			VerifyAutopilot      = "Weryfikacja: Profil jazdy autonomicznej"
 			VerifyUnattend       = "Weryfikacja: powinna wstępnie odpowiedzieć na plik szablonu"
@@ -1201,13 +1129,10 @@ $AvailableLanguages = @(
 			Choose               = "por favor escolha"
 			Reset                = "reiniciar"
 			History              = "Limpar registros de linha de comando"
-			Add                  = "Adicionar função de roteamento, variável do sistema"
-			AddOK                = "Adicionado"
-			AddDone              = "Adicionar para completar"
+			Router               = "Função de encaminhamento"
+			Add                  = "Adicionar à"
 			NoWork               = "Nenhuma tarefa"
 			Remove               = "excluir"
-			RemoveRoute          = "Exclua a função de roteamento, variável do sistema"
-			RemoveDone           = "Excluído com sucesso"
 			SIP                  = "Script de embalagem do sistema"
 			VerifyAutopilot      = "Verificação: Perfil de direção autônoma"
 			VerifyUnattend       = "Verificação: deve pré-responder arquivo de modelo"
@@ -1249,13 +1174,10 @@ $AvailableLanguages = @(
 			Choose               = "Selecione"
 			Reset                = "Reiniciar"
 			History              = "Limpar registos de linha de comando"
-			Add                  = "Adicione funções de encaminhamento e variáveis de sistema"
-			AddOK                = "Adicionado"
-			AddDone              = "Adicionar concluído"
+			Router               = "Função de encaminhamento"
+			Add                  = "Adicionado"
 			NoWork               = "Nenhuma tarefa"
 			Remove               = "Excluir"
-			RemoveRoute          = "Remover funções de encaminhamento, variáveis do sistema"
-			RemoveDone           = "Apagar com sucesso"
 			SIP                  = "Script de empacotamento do sistema"
 			VerifyAutopilot      = "Verificação: Perfil de condução autónoma"
 			VerifyUnattend       = "Verificação: deve pré-responder ficheiro de modelo"
@@ -1297,13 +1219,10 @@ $AvailableLanguages = @(
 			Choose               = "vă rugăm să alegeți"
 			Reset                = "resetare"
 			History              = "Ștergeți înregistrările din linia de comandă"
-			Add                  = "Adăugați funcția de rutare, variabilă de sistem"
-			AddOK                = "adăugat"
-			AddDone              = "Adăugați la finalizare"
+			Router               = "Funcția de rutare"
+			Add                  = "Adaugă la"
 			NoWork               = "Fără sarcini"
 			Remove               = "şterge"
-			RemoveRoute          = "Ștergeți funcția de rutare, variabila de sistem"
-			RemoveDone           = "Șters cu succes"
 			SIP                  = "Script de ambalare a sistemului"
 			VerifyAutopilot      = "Verificare: Profil de conducere autonomă"
 			VerifyUnattend       = "Verificare: ar trebui să răspundă înainte de fișierul șablon"
@@ -1345,13 +1264,10 @@ $AvailableLanguages = @(
 			Choose               = "пожалуйста, выберите"
 			Reset                = "перезагрузить"
 			History              = "Очистить записи командной строки"
-			Add                  = "Добавить функцию маршрутизации, системную переменную"
-			AddOK                = "добавлен"
-			AddDone              = "Добавить в комплект"
+			Router               = "Функция маршрутизации"
+			Add                  = "Добавлено"
 			NoWork               = "Нет задач"
 			Remove               = "удалить"
-			RemoveRoute          = "Удалить функцию маршрутизации, системная переменная"
-			RemoveDone           = "Успешно удален"
 			SIP                  = "Системная упаковка сценарий"
 			VerifyAutopilot      = "Проверка: профиль автономного вождения"
 			VerifyUnattend       = "Проверка: необходимо предварительно ответить на файл шаблона"
@@ -1393,13 +1309,10 @@ $AvailableLanguages = @(
 			Choose               = "prosím vyber si"
 			Reset                = "resetovať"
 			History              = "Vymazať záznamy príkazového riadku"
-			Add                  = "Pridajte funkciu smerovania, systémovú premennú"
-			AddOK                = "Pridané"
-			AddDone              = "Pridať do dokončenia"
+			Router               = "Routingfunkcia"
+			Add                  = "Pridané"
 			NoWork               = "Žiadne úlohy"
 			Remove               = "vymazať"
-			RemoveRoute          = "Odstráňte funkciu smerovania, systémovú premennú"
-			RemoveDone           = "Úspešne vymazané"
 			SIP                  = "Systémový obalový skript"
 			VerifyAutopilot      = "Overenie: Profil autonómnej jazdy"
 			VerifyUnattend       = "Overenie: mal by sa predpísať súbor šablóny odpovede"
@@ -1441,13 +1354,10 @@ $AvailableLanguages = @(
 			Choose               = "prosim izberite"
 			Reset                = "ponastaviti"
 			History              = "Počisti zapise ukazne vrstice"
-			Add                  = "Dodajte funkcijo usmerjanja, sistemska spremenljivka"
-			AddOK                = "Dodano"
-			AddDone              = "Dodaj za dokončanje"
+			Router               = "Routingfunkcija"
+			Add                  = "Dodano"
 			NoWork               = "Brez nalog"
 			Remove               = "izbrisati"
-			RemoveRoute          = "Izbriši funkcijo usmerjanja, sistemska spremenljivka"
-			RemoveDone           = "Uspešno izbrisano"
 			SIP                  = "Script Scrip Packaging Script"
 			VerifyAutopilot      = "Preverjanje: Profil avtonomne vožnje"
 			VerifyUnattend       = "Preverjanje: datoteka predloge mora biti pred odgovorom"
@@ -1489,13 +1399,10 @@ $AvailableLanguages = @(
 			Choose               = "молимо изаберите"
 			Reset                = "ресетовати"
 			History              = "Обришите записе командне линије"
-			Add                  = "Додајте функцију усмеравања, системска променљива"
-			AddOK                = "додато"
-			AddDone              = "Додај за комплетну"
+			Router               = "Функција усмеравања"
+			Add                  = "Додато"
 			NoWork               = "Нема задатака"
 			Remove               = "избрисати"
-			RemoveRoute          = "Избришите функцију усмеравања, системска променљива"
-			RemoveDone           = "Успешно избрисано"
 			SIP                  = "Скрипта за паковање система"
 			VerifyAutopilot      = "Верификација: профил аутономне вожње"
 			VerifyUnattend       = "Верификација: треба унапред одговорити на датотеку шаблона"
@@ -1537,13 +1444,10 @@ $AvailableLanguages = @(
 			Choose               = "Vänligen välj"
 			Reset                = "Återställa"
 			History              = "Rengör kommandoradsposter"
-			Add                  = "Lägg till routingfunktioner och systemvariabler"
-			AddOK                = "Tillagd"
-			AddDone              = "Lägg till slutfört"
+			Router               = "Routingfunktion"
+			Add                  = "Lagt till"
 			NoWork               = "Inga uppgifter"
 			Remove               = "Radera"
-			RemoveRoute          = "Ta bort routingfunktioner, systemvariabler"
-			RemoveDone           = "Radera framgångsrikt"
 			SIP                  = "Systempaketeringsskript"
 			VerifyAutopilot      = "Verifiering: Autonom körprofil"
 			VerifyUnattend       = "Verifiering: ska förhandsbesvara mallfil"
@@ -1585,13 +1489,10 @@ $AvailableLanguages = @(
 			Choose               = "โปรดเลือก"
 			Reset                = "รีเซ็ต"
 			History              = "ล้างบันทึกบรรทัดคำสั่ง"
-			Add                  = "เพิ่มฟังก์ชั่นการกำหนดเส้นทางตัวแปรระบบ"
-			AddOK                = "เพิ่ม"
-			AddDone              = "เพิ่มให้เสร็จสมบูรณ์"
+			Router               = "ฟังก์ชันการกำหนดเส้นทาง"
+			Add                  = "เพิ่มแล้ว"
 			NoWork               = "ไม่มีงาน"
 			Remove               = "ลบ"
-			RemoveRoute          = "ลบฟังก์ชั่นการกำหนดเส้นทางตัวแปรระบบ"
-			RemoveDone           = "ลบสำเร็จ"
 			SIP                  = "สคริปต์บรรจุภัณฑ์ของระบบ"
 			VerifyAutopilot      = "การยืนยัน: โปรไฟล์การขับขี่แบบอัตโนมัติ"
 			VerifyUnattend       = "การยืนยัน: ควรตอบไฟล์เทมเพลตล่วงหน้า"
@@ -1633,13 +1534,10 @@ $AvailableLanguages = @(
 			Choose               = "lütfen seç"
 			Reset                = "Sıfırla"
 			History              = "Komut satırı kayıtlarını temizle"
-			Add                  = "Yönlendirme işlevi, sistem değişkeni ekle"
-			AddOK                = "katma"
-			AddDone              = "Tamamlamak için ekle"
+			Router               = "Yönlendirme fonksiyonu"
+			Add                  = "Eklendi"
 			NoWork               = "Görev yok"
 			Remove               = "silmek"
-			RemoveRoute          = "Yönlendirme işlevini sil, sistem değişkeni"
-			RemoveDone           = "Başarılı bir şekilde silindi"
 			SIP                  = "Sistem Ambalaj Komut Dosyası"
 			VerifyAutopilot      = "Doğrulama: Otonom Sürüş Profili"
 			VerifyUnattend       = "Doğrulama: şablon dosyasına önceden yanıt verilmelidir"
@@ -1681,13 +1579,10 @@ $AvailableLanguages = @(
 			Choose               = "будь-ласка оберіть"
 			Reset                = "скинути"
 			History              = "Очистити записи командного рядка"
-			Add                  = "Додайте функцію маршрутизації, системну змінну"
-			AddOK                = "Додав"
-			AddDone              = "Додати для завершення"
+			Router               = "Функція маршрутизації"
+			Add                  = "Додати до"
 			NoWork               = "Завдань немає"
 			Remove               = "видалити"
-			RemoveRoute          = "Видаліть функцію маршрутизації, системна змінна"
-			RemoveDone           = "успішно видалено"
 			SIP                  = "Сценарій упаковки системи"
 			VerifyAutopilot      = "Перевірка: профіль автономного водіння"
 			VerifyUnattend       = "Перевірка: необхідно попередньо відповісти файл шаблону"
@@ -1729,13 +1624,10 @@ $AvailableLanguages = @(
 			Choose               = "请选择"
 			Reset                = "重置"
 			History              = "清理命令行记录"
-			Add                  = "添加路由功能、系统变量"
-			AddOK                = "已添加"
-			AddDone              = "添加完成"
+			Router               = "路由功能"
+			Add                  = "添加"
 			NoWork               = "无任务"
 			Remove               = "删除"
-			RemoveRoute          = "删除路由功能，系统变量"
-			RemoveDone           = "删除成功"
 			SIP                  = "系统封装脚本"
 			VerifyAutopilot      = "验证：自动驾驶配置文件"
 			VerifyUnattend       = "验证：应预答模板文件"
@@ -1777,13 +1669,10 @@ $AvailableLanguages = @(
 			Choose               = "請選擇"
 			Reset                = "重置"
 			History              = "清理命令行記錄"
-			Add                  = "添加路由功能、系統變量"
-			AddOK                = "已添加"
-			AddDone              = "添加完成"
+			Router               = "路由功能"
+			Add                  = "已添加"
 			NoWork               = "無任務"
 			Remove               = "刪除"
-			RemoveRoute          = "刪除路由功能，系統變量"
-			RemoveDone           = "刪除成功"
 			SIP                  = "系統封裝腳本"
 			VerifyAutopilot      = "驗證：自動駕駛設定檔"
 			VerifyUnattend       = "驗證：應預答範本文件"
@@ -1851,43 +1740,50 @@ function Solutions_Reset
 {
 	Write-Host "`n  $($lang.Reset)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
-
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Remove) " -NoNewline -BackgroundColor White -ForegroundColor Black
 	$Path = "HKCU:\SOFTWARE\Yi\Solutions"
 	Remove-Item -Path $Path -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
 
-	Write-Host "  $($lang.RemoveDone)`n" -ForegroundColor Green
+	Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 }
 
 function Mount_Fix_Bad
 {
 	Write-Host "`n  $($lang.Clear_Bad_Mount)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Remove) " -NoNewline -BackgroundColor White -ForegroundColor Black
 
 	dism /cleanup-wim | Out-Null
 	Clear-WindowsCorruptMountPoint -ErrorAction SilentlyContinue | Out-Null
 
-	Write-Host "  $($lang.RemoveDone)" -ForegroundColor Green
+	Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 }
 
 function Mount_Fix_Dism
 {
 	Write-Host "`n  $($lang.HistoryClearDismSave)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Remove) " -NoNewline -BackgroundColor White -ForegroundColor Black
 
 	Remove-Item -Path "HKLM:\SOFTWARE\Microsoft\WIMMount\Mounted Images\*" -Force -Recurse -ErrorAction SilentlyContinue | Out-Null
 
-	Write-Host "  $($lang.RemoveDone)" -ForegroundColor Green
+	Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 }
 
 function Solutions_Clear_Hostiry
 {
 	Write-Host "`n  $($lang.History)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
+	Write-Host "  " -NoNewline
+	Write-Host " $($lang.Remove) " -NoNewline -BackgroundColor White -ForegroundColor Black
 
 	Clear-History
 	Remove-Item  -Path (Get-PSReadlineOption).HistorySavePath -ErrorAction SilentlyContinue
 
-	Write-Host "  $($lang.RemoveDone)`n" -ForegroundColor Green
+	Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 }
 
 Function System_Env_Test_Order
@@ -1988,34 +1884,38 @@ function System_Env
 		[switch]$Remove
 	)
 
-	Write-Host "`n  $($lang.Add)" -ForegroundColor Yellow
+	Write-Host "`n  $($lang.Router)" -ForegroundColor Yellow
 	Write-Host "  $('-' * 80)"
 
 	$Current_Folder = Convert-Path -Path $PSScriptRoot -ErrorAction SilentlyContinue
 	$GetVarPath = Get-ItemPropertyValue -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment" -Name "Path" -ErrorAction SilentlyContinue
 
 	if ($Add) {
+		Write-Host "  " -NoNewline
+		Write-Host " $($lang.Add) " -NoNewline -BackgroundColor White -ForegroundColor Black
 		$windows_path = $GetVarPath -split ';'
 
 		if ($windows_path -Contains $Current_Folder) {
 			System_Env_Test_Order
-			Write-Host "  $($lang.AddOK)`n" -ForegroundColor Green
+			Write-Host " $($lang.Add) " -BackgroundColor DarkGreen -ForegroundColor White
 		} else {
 			$GetVarPath = "$($GetVarPath);$($Current_Folder)"
 			Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment" -Name PATH -Value $GetVarPath
 			System_Env_Test_Order
-			Write-Host "  $($lang.AddDone)`n" -ForegroundColor Green
+			Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 		}
 	}
 
 	if ($Remove) {
+		Write-Host "  " -NoNewline
+		Write-Host " $($lang.Remove) " -NoNewline -BackgroundColor White -ForegroundColor Black
 		$path = ($GetVarPath.Split(';') | Where-Object { $_ -ne $Current_Folder }) -join ';'
 		$path = $path.TrimEnd(';')
 
 		Set-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\Session Manager\Environment" -Name PATH -Value $path
 		$Env:Path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
 		[System.Environment]::SetEnvironmentVariable("Path", $Env:Path, "Machine")
-		Write-Host "  $($lang.RemoveDone)`n" -ForegroundColor Green
+		Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 	}
 }
 
@@ -2049,8 +1949,8 @@ Function Cleanup_Logs
 		}
 	}
 
-	Write-Host "`n  $('-' * 80)"
-	Write-Host "  $($lang.RemoveDone)`n" -ForegroundColor Green
+	Write-Host "  $('-' * 80)"
+	Write-Host "  $($lang.Done)`n" -ForegroundColor Green
 }
 
 <#
@@ -2119,7 +2019,7 @@ Function Cleanup_Disk
 		Remove-ItemProperty -Path $($Base+$item) -Name $SageSet -force -ErrorAction SilentlyContinue | Out-Null
 	}
 
-	Write-Host "  $($lang.RemoveDone)`n" -ForegroundColor Green
+	Write-Host "  $($lang.Done)`n" -ForegroundColor Green
 }
 
 function PSscript
@@ -2137,7 +2037,7 @@ Function Help
 	Write-Host
 	Write-Host "  " -NoNewline
 	Write-Host " Yi's Solutions " -NoNewline -BackgroundColor White -ForegroundColor Black
-	Write-Host " v1.0.2.0 " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
+	Write-Host " v1.0.5.0 " -NoNewline -BackgroundColor DarkGreen -ForegroundColor White
 
 	Write-Host
 	Write-Host "  " -NoNewline
@@ -2147,11 +2047,6 @@ Function Help
 	Write-Host
 	Write-Host "  $($lang.Usage)"
 	Write-Host "  $('-' * 80)"
-	Write-Host "   " -NoNewLine -ForegroundColor Green
-	Write-Host "$($PSscript.BaseName) -API {$($lang.RuleName)}" -NoNewLine -ForegroundColor Green
-	Write-Host " | " -NoNewLine
-	Write-Host $lang.Api -ForegroundColor Yellow
-
 	Write-Host "    U   " -NoNewLine -ForegroundColor Green
 	Write-Host "$($PSscript.BaseName) -Update" -NoNewLine -ForegroundColor Green
 	Write-Host "  | " -NoNewLine
@@ -2167,12 +2062,12 @@ Function Help
 	Write-Host "    1   " -NoNewLine -ForegroundColor Green
 	Write-Host "$($PSscript.BaseName) -Add" -NoNewLine -ForegroundColor Green
 	Write-Host "     | " -NoNewLine
-	Write-Host $lang.Add -ForegroundColor Yellow
+	Write-Host "$($lang.Router) < $($lang.Add)" -ForegroundColor Yellow
 
 	Write-Host "    2   " -NoNewLine -ForegroundColor Green
 	Write-Host "$($PSscript.BaseName) -Remove" -NoNewLine -ForegroundColor Green
 	Write-Host "  | " -NoNewLine
-	Write-Host $lang.RemoveRoute -ForegroundColor Yellow
+	Write-Host "$($lang.Router) < $($lang.Remove)" -ForegroundColor Yellow
 
 	Write-Host "    3   " -NoNewLine -ForegroundColor Green
 	Write-Host "$($PSscript.BaseName) -Reset" -NoNewLine -ForegroundColor Green
@@ -2262,6 +2157,11 @@ Function Help
 	Write-Host "$($PSscript.BaseName) -Ys" -NoNewLine -ForegroundColor Green
 	Write-Host "      | " -NoNewLine
 	Write-Host "\Yi.Suite\Engine.ps1" -ForegroundColor Yellow
+
+	Write-Host
+	Write-Host "  $($lang.Api)" -ForegroundColor Yellow
+	Write-Host "   $($PSscript.BaseName) -API list" -ForegroundColor Green
+	Write-Host "   $($PSscript.BaseName) -API { $($lang.RuleName) }" -ForegroundColor Green
 
 	Write-Host
 	write-host "  " -NoNewline
