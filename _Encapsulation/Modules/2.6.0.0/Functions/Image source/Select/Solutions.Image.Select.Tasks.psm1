@@ -847,14 +847,14 @@ Function Image_Select_Tasks_UI
 	}
 
 	switch ($Go) {
-		"Image_Additional_Edition_UI" { $NewMainText = $lang.AdditionalEdition }
-		"Image_Select_Index_UI"       { $NewMainText = "$($lang.SelectSettingImage): $($lang.MountedIndexSelect)" }
-		"Image_Select_Append_UI"      { $NewMainText = "$($lang.SelectSettingImage): $($lang.Wim_Append)" }
-		"Image_Select_Del_UI"         { $NewMainText = "$($lang.SelectSettingImage): $($lang.Del)" }
-		"Wimlib_Extract_And_Update"   { $NewMainText = $lang.Wim_Rule_Update }
-		"Image_Select_Export_UI"      { $NewMainText = "$($lang.SelectSettingImage): $($lang.Export_Image)" }
-		"Feature_More_UI_Menu"        { $NewMainText = $lang.MoreFeature }
-		"Rebuild_Image_File"          { $NewMainText = $lang.Rebuild }
+		"Additional_Edition_UI"     { $NewMainText = $lang.AdditionalEdition }
+		"Image_Select_Index_UI"     { $NewMainText = "$($lang.SelectSettingImage): $($lang.MountedIndexSelect)" }
+		"Image_Select_Append_UI"    { $NewMainText = "$($lang.SelectSettingImage): $($lang.Wim_Append)" }
+		"Image_Select_Del_UI"       { $NewMainText = "$($lang.SelectSettingImage): $($lang.Del)" }
+		"Wimlib_Extract_And_Update" { $NewMainText = $lang.Wim_Rule_Update }
+		"Image_Select_Export_UI"    { $NewMainText = "$($lang.SelectSettingImage): $($lang.Export_Image)" }
+		"Feature_More_UI_Menu"      { $NewMainText = $lang.MoreFeature }
+		"Rebuild_Image_File"        { $NewMainText = $lang.Rebuild }
 		Default { $NewMainText = $lang.ImageCodenameNo }
 	}
 

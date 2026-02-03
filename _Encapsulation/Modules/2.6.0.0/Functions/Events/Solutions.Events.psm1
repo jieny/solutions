@@ -49,13 +49,13 @@ Function Event_Assign
 
 	$Global:Temp_Set_Need_Mounted_Primary = @(
 		@{
-			Uid         = "Image_Additional_Edition_UI"
+			Uid         = "Additional_Edition_UI"
 			IsMounted   = @{
 				Primary = ""
 				Expand  = @()
 			}
 			NotMonuted  = @{
-				Primary = "Image_Additional_Edition_UI"
+				Primary = "Additional_Edition_UI"
 				Expand  = @(
 					"Image_Convert_UI"
 					"ISO_Create_UI"

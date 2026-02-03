@@ -2,7 +2,7 @@
 	.Additional Edition
 	.附加版本
 #>
-Function Image_Additional_Edition_UI
+Function Additional_Edition_UI
 {
 	param
 	(

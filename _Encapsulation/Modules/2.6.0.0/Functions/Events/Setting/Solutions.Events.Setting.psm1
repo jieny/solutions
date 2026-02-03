@@ -270,7 +270,7 @@ Function Event_Assign_Setting
 		Width          = 450
 		Padding        = "16,0,0,0"
 		Text           = $lang.AdditionalEdition
-		Tag            = "Image_Additional_Edition_UI"
+		Tag            = "Additional_Edition_UI"
 	}
 	$GUIImageSelectFunctionConvertImage = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30
@@ -455,6 +455,22 @@ Function Event_Assign_Setting
 				foreach ($NewReg in $item.IsMounted.Expand) {
 					$Temp_Is_Mounted_Assign_Task_Check += $NewReg
 				}
+
+				foreach ($NewReg in $item.NotMonuted.Expand) {
+					$Temp_Add_Not_Mounted_New += $NewReg
+				}
+			}
+		}
+
+		<#
+			.读取注册表扩展项
+		#>
+		$Temp_Get_Main_Suggested = @()
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Suggested\$($RuleName)" -Name "NotMonutedExpand_Select" -ErrorAction SilentlyContinue) {
+			$GetSaveNotMonutedExpand = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Suggested\$($RuleName)" -Name "NotMonutedExpand_Select" -ErrorAction SilentlyContinue
+			
+			foreach ($itemExpand in $GetSaveNotMonutedExpand) {
+				$Temp_Add_Not_Mounted_New += $itemExpand
 			}
 		}
 
@@ -489,7 +505,7 @@ Function Event_Assign_Setting
 		$UI_Main_Select_No_Mounting_Group.controls.AddRange($UI_Main_Select_No_Mounting)
 		$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectEventNeedMount)
 
-		if ($Temp_Add_Not_Mounted_New -Contains "Image_Additional_Edition_UI") {
+		if ($Temp_Add_Not_Mounted_New -Contains "Additional_Edition_UI") {
 			$UI_Main_Select_No_Mounting.controls.AddRange($GUIImageSelectAE)
 
 			if (Image_Is_Mount) {
@@ -754,6 +770,14 @@ Function Event_Assign_Setting
 			.读取注册表已保存的项，复选
 		#>
 		$Temp_Get_Main_Suggested = @()
+		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Suggested\$($RuleName)" -Name "NotMonutedExpand_Select" -ErrorAction SilentlyContinue) {
+			$GetSaveLabelGUID = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Suggested\$($RuleName)" -Name "NotMonutedExpand_Select" -ErrorAction SilentlyContinue
+			
+			foreach ($itemExpand in $GetSaveLabelGUID) {
+				$Temp_Get_Main_Suggested += $itemExpand
+			}
+		}
+
 		if (Get-ItemProperty -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Suggested\$($RuleName)" -Name "IsMountedExpand_Select" -ErrorAction SilentlyContinue) {
 			$GetSaveLabelGUID = Get-ItemPropertyValue -Path "HKCU:\SOFTWARE\$($Global:Author)\Solutions\Suggested\$($RuleName)" -Name "IsMountedExpand_Select" -ErrorAction SilentlyContinue
 			
@@ -797,7 +821,6 @@ Function Event_Assign_Setting
 				}
 			}
 		}
-
 	} else {
 		if ($Global:EventQueueMode) {
 			$UI_Main_Sync_To.visible = $False

@@ -1975,7 +1975,7 @@ Function Shortcuts_Additional_Edition
 			Write-Host " $($lang.Prerequisite_satisfy) " -BackgroundColor DarkGreen -ForegroundColor White
 
 			Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "eq1"
-			Event_Assign -Rule "Image_Additional_Edition_UI" -Run
+			Event_Assign -Rule "Additional_Edition_UI" -Run
 			Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "eq1end"
 		}
 	} else {
@@ -1985,7 +1985,7 @@ Function Shortcuts_Additional_Edition
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.AdditionalEdition)" -ForegroundColor Green
 
-		Image_Select_Tasks_UI -Go "Image_Additional_Edition_UI" -IsEvent
+		Image_Select_Tasks_UI -Go "Additional_Edition_UI" -IsEvent
 	}
 }
 
@@ -2036,7 +2036,7 @@ Function Shortcuts_Additional_Edition_Key
 		Write-Host "  $('-' * 80)"
 		Write-Host "  $($lang.AdditionalEdition)" -ForegroundColor Green
 
-		Image_Select_Tasks_UI -Go "Image_Additional_Edition_UI" -IsEvent
+		Image_Select_Tasks_UI -Go "Additional_Edition_UI" -IsEvent
 	} else {
 		Image_Set_Global_Primary_Key -Uid $NewUid -Detailed -DevCode "0601" -Silent
 
@@ -2053,7 +2053,7 @@ Function Shortcuts_Additional_Edition_Key
 
 				Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "e1"
 				if (Test-Path -Path $Global:Primary_Key_Image.FullPath -PathType Leaf) {
-					Event_Assign -Rule "Image_Additional_Edition_UI" -Run
+					Event_Assign -Rule "Additional_Edition_UI" -Run
 					Image_Set_Global_Primary_Key -Uid $Global:Primary_Key_Image.Uid -Detailed -DevCode "e1end"
 				} else {
 					Write-Host "  $($lang.NoInstallImage)" -ForegroundColor Red
@@ -2066,7 +2066,7 @@ Function Shortcuts_Additional_Edition_Key
 			Write-Host "  $('-' * 80)"
 			Write-Host "  $($lang.AdditionalEdition)" -ForegroundColor Green
 
-			Image_Select_Tasks_UI -Go "Image_Additional_Edition_UI" -IsEvent
+			Image_Select_Tasks_UI -Go "Additional_Edition_UI" -IsEvent
 		}
 	}
 }

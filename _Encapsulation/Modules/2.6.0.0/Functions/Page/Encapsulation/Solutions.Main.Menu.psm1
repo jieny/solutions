@@ -1533,7 +1533,7 @@ Function Mainpage
 #				foreach ($item in $Autopilot.Deploy.ImageSource.Tasks.AdditionalEdition) {
 #					if ($GroupSelectAE -contains $item.Uid) {
 #						Image_Set_Global_Primary_Key -Uid $item.Uid -Silent -DevCode "Autopilot - 9000"
-#						Image_Additional_Edition_UI -Autopilot $item
+#						Additional_Edition_UI -Autopilot $item
 #					}
 #				}
 #			}

@@ -2372,7 +2372,7 @@ Function Image_Select
 				@{ Path = "Shortcuts_Go_Select_Index";             Lang = "$($lang.Sel_Primary_Key): $($lang.Mount)"; }
 				@{ Path = "Shortcuts_Save_Current";                Lang = "$($lang.Sel_Primary_Key): $($lang.Save)"; }
 				@{ Path = "Shortcuts_Dont_Save_Current";           Lang = "$($lang.Sel_Primary_Key): $($lang.Unmount)"; }
-				@{ Path = "Event_Assign -Rule ""Image_Additional_Edition_UI"" -Run"; Lang = "$($lang.Sel_Primary_Key): $($lang.AdditionalEdition)"; }
+				@{ Path = "Event_Assign -Rule ""Additional_Edition_UI"" -Run"; Lang = "$($lang.Sel_Primary_Key): $($lang.AdditionalEdition)"; }
 			)
 		}
 
@@ -6787,7 +6787,7 @@ Function Image_Select
 		Width          = 465
 		Padding        = "26,0,0,0"
 		Text           = $lang.AdditionalEdition
-		Tag            = "Image_Additional_Edition_UI"
+		Tag            = "Additional_Edition_UI"
 		LinkColor      = "#008000"
 		ActiveLinkColor = "#FF0000"
 		LinkBehavior   = "NeverUnderline"

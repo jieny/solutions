@@ -5206,7 +5206,7 @@ Function Image_Assign_Autopilot_Master
 							foreach ($itemUid in $item.Uid) {
 								if ($GroupSelectAE -contains $itemUid) {
 									Image_Set_Global_Primary_Key -Uid $itemUid -Silent -DevCode "Autopilot - 6700"
-									Image_Additional_Edition_UI -Autopilot $item
+									Additional_Edition_UI -Autopilot $item
 								}
 							}
 						}
@@ -6925,7 +6925,7 @@ Function Image_Assign_Autopilot_Master
 					LinkBehavior   = "NeverUnderline"
 					add_Click      = {
 						Image_Set_Global_Primary_Key -Uid $this.Name -Silent -DevCode "Autopilot - 3333"
-						Image_Additional_Edition_UI
+						Additional_Edition_UI
 					}
 				}
 
