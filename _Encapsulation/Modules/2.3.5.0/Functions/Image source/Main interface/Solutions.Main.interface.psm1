@@ -588,6 +588,7 @@ Function Image_Select
 
 			if ($GetAddFolderExclude.count -gt 0) {
 				$isExclude = @()
+
 				try {
 					$extensionExclusion = Get-MpPreference -ErrorAction SilentlyContinue | Select-Object -Property ExclusionPath
 					foreach ($exclusion in $extensionExclusion.ExclusionPath) {
@@ -5890,7 +5891,8 @@ Function Image_Select
 									}
 								}
 							} catch {
-								
+								Save_Dynamic -regkey "Solutions\RAMDisk" -name "RAMDisk_Exclude" -value "False"
+								$GUIImageSource_Setting_RAMDISK_Exclude.Enabled = $False
 							}
 
 							$WaitAddExclude = @()
@@ -6124,7 +6126,8 @@ Function Image_Select
 									}
 								}
 							} catch {
-								
+								Save_Dynamic -regkey "Solutions" -name "Custom_Exclude" -value "False"
+								$GUIImageSource_Setting_Custom_Exclude.Enabled = $False
 							}
 
 							$WaitAddExclude = @()
@@ -6938,7 +6941,8 @@ Function Image_Select
 							}
 						}
 					} catch {
-
+						Save_Dynamic -regkey "Solutions" -name "IsDefenderExclude" -value "False"
+						$GUIImageSourceGroupSettingDefenderAdd.enabled = $False
 					}
 
 					if ($isExclude) {
