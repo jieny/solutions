@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Ime bližnjice ne sme presegati {0} znakov in ne sme vsebovati: začetnih in končnih presledkov, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Preverite, ali je pot do datoteke na voljo
 	RuleNameFormat                  = Podprti formati datotek
-	RuleNoImport                    = Ne uporabljajte več uvoza ( dedovanja ) za zagon
+	RuleNoImport                    = Pravila ni mogoče uvoziti
 '@

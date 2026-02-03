@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Īsceļa nosaukums nedrīkst pārsniegt {0} rakstzīmes, un tajā nedrīkst būt: sākuma un beigu atstarpes, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Pārbaudiet, vai faila ceļš ir pieejams
 	RuleNameFormat                  = Atbalstītie failu formāti
-	RuleNoImport                    = Vairs nepalaidiet pēc importa ( mantošanas )
+	RuleNoImport                    = Kārtulu nevar importēt
 '@

@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = El nombre del acceso directo no puede exceder los {0} caracteres y no puede contener: espacios iniciales y finales, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Verifique que la ruta del archivo esté disponible
 	RuleNameFormat                  = Formatos de archivo admitidos
-	RuleNoImport                    = Ya no se utiliza la importación ( herencia ) para ejecutar
+	RuleNoImport                    = La regla no se puede importar
 '@

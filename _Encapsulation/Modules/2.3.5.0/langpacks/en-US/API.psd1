@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = The shortcut command name should not exceed {0} characters and cannot contain: leading and trailing spaces, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Verify that the file path is available
 	RuleNameFormat                  = Supported file formats
-	RuleNoImport                    = No longer using import ( inheritance ) before running
+	RuleNoImport                    = The rule cannot be imported
 '@

@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Der Verknüpfungsname darf nicht länger als {0} Zeichen sein und darf folgende Leerzeichen nicht enthalten: \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Überprüfen Sie, ob der Dateipfad verfügbar ist
 	RuleNameFormat                  = Unterstützte Dateiformate
-	RuleNoImport                    = Die Verwendung von Import ( Vererbung ) zum Ausführen wird nicht mehr verwendet
+	RuleNoImport                    = Die Regel kann nicht importiert werden
 '@

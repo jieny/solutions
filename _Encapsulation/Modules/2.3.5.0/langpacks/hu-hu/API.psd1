@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = A parancsikon neve nem haladhatja meg a {0} karaktert, és nem tartalmazhat kezdő és záró szóközöket, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Ellenőrizze, hogy elérhető-e a fájl elérési útja
 	RuleNameFormat                  = Támogatott fájlformátumok
-	RuleNoImport                    = Már nem használ importálást ( öröklést ) a futtatáshoz
+	RuleNoImport                    = A szabály nem importálható
 '@

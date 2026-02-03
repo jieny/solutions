@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Numele comenzii rapide nu poate depăși {0} caractere și nu poate conține: spații de început și de final, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Verificați că calea fișierului este disponibilă
 	RuleNameFormat                  = Formate de fișiere acceptate
-	RuleNoImport                    = Nu mai utilizați importul ( moștenirea ) pentru a rula
+	RuleNoImport                    = Regula nu poate fi importată
 '@

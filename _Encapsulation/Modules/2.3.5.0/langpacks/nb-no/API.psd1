@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Snarveisnavnet kan ikke overstige {0} tegn og kan ikke inneholde: innledende og etterfølgende mellomrom, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Bekreft at filbanen er tilgjengelig
 	RuleNameFormat                  = Støttede filformater
-	RuleNoImport                    = Ikke lenger kjør etter import ( arv )
+	RuleNoImport                    = Regelen kan ikke importeres
 '@

@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Nuorodos pavadinimas negali viršyti {0} simbolių ir jame negali būti tarpų priekyje ir gale, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Patikrinkite, ar yra failo kelias
 	RuleNameFormat                  = Palaikomi failų formatai
-	RuleNoImport                    = Nebenaudokite importavimo ( paveldėjimo ) paleidimo
+	RuleNoImport                    = Taisyklės negalima importuoti
 '@

@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Kısayol adı {0} karakteri aşamaz ve şunları içeremez: başta ve sonda boşluklar, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Dosya yolunun mevcut olduğunu doğrulayın
 	RuleNameFormat                  = Desteklenen dosya formatları
-	RuleNoImport                    = İçe aktarma ( miras ) sonrası çalıştırmayı artık kullanmıyor
+	RuleNoImport                    = Kural içe aktarılamıyor
 '@

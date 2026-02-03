@@ -265,7 +265,7 @@ Function API_Process_Rule_Name
 
 			write-host
 			write-host "  " -NoNewline
-			Write-Host " $($lang.Import) " -NoNewline -BackgroundColor White -ForegroundColor Black
+			Write-Host " $($lang.Running) " -NoNewline -BackgroundColor White -ForegroundColor Black
 			if (Test-Path -Path $GetImportFileName -PathType leaf) {
 				Write-Host " $($lang.UpdateAvailable) " -BackgroundColor DarkGreen -ForegroundColor White
 

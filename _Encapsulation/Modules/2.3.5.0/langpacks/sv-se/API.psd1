@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Genvägens namn får inte överstiga {0} tecken och får inte innehålla: inledande och efterföljande mellanslag, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Kontrollera att sökvägen är tillgänglig
 	RuleNameFormat                  = Filformat som stöds
-	RuleNoImport                    = Använd inte längre import ( ärva ) för att köra
+	RuleNoImport                    = Regeln kan inte importeras
 '@

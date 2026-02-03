@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = 快捷指令名称别超过 {0} 位，不能包含：前后空格、\\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = 验证文件路径是否可用
 	RuleNameFormat                  = 支持的文件格式
-	RuleNoImport                    = 不再使用导入（继承）后运行
+	RuleNoImport                    = 不再使用继承后运行
 '@

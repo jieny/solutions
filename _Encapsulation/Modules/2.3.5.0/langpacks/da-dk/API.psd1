@@ -7,5 +7,5 @@
 	RuleNewNameTips                 = Genvejsnavnet må ikke overstige {0} tegn og må ikke indeholde: foranstående og efterfølgende mellemrum, \\ / : * ? & @ ! "" < > |
 	RuleNewPathISCheck              = Bekræft, at filstien er tilgængelig
 	RuleNameFormat                  = Understøttede filformater
-	RuleNoImport                    = Bruger ikke længere import ( arv ) til at køre
+	RuleNoImport                    = Reglen kan ikke importeres
 '@
