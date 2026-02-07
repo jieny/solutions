@@ -122,7 +122,7 @@ Vector original file, document version Illustator 2020, open it with Adobe Illus
 ![Image.Sources](https://github.com/ilikeyi/Solutions/raw/refs/heads/main/_Learn/Screenshots/Technique/Technique.Abandon.webp)
 </li>
 
-<li>What is the fastest way to obtain a report from Install.wim
+<li>What is the fastest way to obtain a report from Install.{ wim, esd }
 
 ![Image.Sources](https://github.com/ilikeyi/Solutions/raw/refs/heads/main/_Learn/Screenshots/Technique/Technique.Report.webp)
 
@@ -203,8 +203,8 @@ Vector original file, document version Illustator 2020, open it with Adobe Illus
 
 <br>
           <dl>
-            <dd>For example, when operating WinRE.wim, you need to mount Install.wim before mounting WinRe.wim to perform the corresponding tasks for WinRE.</dd>
-            <dd>What are the files within the image? For example, Install.wim contains the WinRE.wim file. After mounting install.wim, events can be assigned to process WinRe.wim.</dd>
+            <dd>For example, when operating WinRE.wim, you need to mount Install.{ wim, esd } before mounting WinRe.wim to perform the corresponding tasks for WinRE.</dd>
+            <dd>What are the files within the image? For example, Install.{ wim, esd } contains the WinRE.wim file. After mounting install.{ wim, esd }, events can be assigned to process WinRe.wim.</dd>
             <dd>Main functions: Mounted or unmounted events can be assigned. The main trigger events can be assigned: </dd>
           </dl>
         </dd>
