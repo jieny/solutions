@@ -540,7 +540,7 @@ $Global:Pre_Config_Rules = @(
 				AdditionalEdition = @(
 					@{
 						Group  = "Install;Install;"
-						Uid    =  "Install;wim;Install;wim;"
+						Uid    = "Install;wim;Install;wim;"
 						Scheme = "Auto"
 						Rule = @(
 							@{ GUID = "7e8c14e8-b7bb-4c04-95c5-e65355277398"; Name = "Windows 11 Home";                                        Requiredversion = "Core";          NewEditionId = "Core";                     Productkey = ""; Detailed = @{ ImageName = "Auto"; Description = "Auto"; DisplayName = "Auto"; DisplayDescription = "Auto"; }; }
@@ -595,7 +595,9 @@ $Global:Pre_Config_Rules = @(
 					Rule = @(
 						#region Boot
 						@{
-							Uid  = "Boot;wim;Boot;wim;"
+							Uid = @(
+								"Boot;wim;Boot;wim;"
+							)
 							Rule = @(
 								@{
 									Architecture = "Auto"
@@ -626,7 +628,10 @@ $Global:Pre_Config_Rules = @(
 
 						#region Install
 						@{
-							Uid  = "Install;wim;Install;wim;"
+							Uid = @(
+								"Install;wim;Install;wim;"
+								"Install;esd;Install;esd;"
+							)
 							Rule = @(
 								@{
 									Architecture = "Auto"
@@ -723,7 +728,10 @@ $Global:Pre_Config_Rules = @(
 
 						#region WinRE
 						@{
-							Uid  = "Install;wim;WinRE;wim;"
+							Uid = @(
+								"Install;wim;WinRE;wim;"
+								"Install;esd;WinRE;wim;"
+							)
 							Rule = @(
 								@{
 									Architecture = "Auto"
@@ -1190,7 +1198,9 @@ $Global:Pre_Config_Rules = @(
 					Rule = @(
 						#region Boot
 						@{
-							Uid  = "Boot;wim;Boot;wim;"
+							Uid = @(
+								"Boot;wim;Boot;wim;"
+							)
 							Rule = @(
 								@{
 									Architecture = "Auto"
@@ -1220,7 +1230,10 @@ $Global:Pre_Config_Rules = @(
 
 						#region Install
 						@{
-							Uid  = "Install;wim;Install;wim;"
+							Uid = @(
+								"Install;wim;Install;wim;"
+								"Install;esd;Install;esd;"
+							)
 							Rule = @(
 								@{
 									Architecture = "Auto"
@@ -1254,7 +1267,10 @@ $Global:Pre_Config_Rules = @(
 
 						#region WinRE
 						@{
-							Uid  = "Install;wim;WinRE;wim;"
+							Uid = @(
+								"Install;wim;WinRE;wim;"
+								"Install;esd;WinRE;wim;"
+							)
 							Rule = @(
 								@{
 									Architecture = "Auto"
@@ -1373,7 +1389,9 @@ $Global:Pre_Config_Rules = @(
 			)
 			Rule = @(
 				@{
-					Uid  = "Boot;wim;Boot;wim;"
+					Uid = @(
+						"Boot;wim;Boot;wim;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -1384,7 +1402,10 @@ $Global:Pre_Config_Rules = @(
 					)
 				}
 				@{
-					Uid  = "Install;wim;Install;wim;"
+					Uid = @(
+						"Install;wim;Install;wim;"
+						"Install;esd;Install;esd;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -1395,7 +1416,10 @@ $Global:Pre_Config_Rules = @(
 					)
 				}
 				@{
-					Uid  = "Install;wim;WinRE;wim;"
+					Uid = @(
+						"Install;wim;WinRE;wim;"
+						"Install;esd;WinRE;wim;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"

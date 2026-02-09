@@ -98,7 +98,9 @@ $Global:Preconfigured_Rule_Language = @(
 			)
 			Rule = @(
 				@{
-					Uid  = "Boot;wim;Boot;wim;"
+					Uid = @(
+						"Boot;wim;Boot;wim;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -124,7 +126,10 @@ $Global:Preconfigured_Rule_Language = @(
 					)
 				}
 				@{
-					Uid  = "Install;wim;Install;wim;"
+					Uid = @(
+						"Install;wim;Install;wim;"
+						"Install;esd;Install;esd;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -169,7 +174,10 @@ $Global:Preconfigured_Rule_Language = @(
 					)
 				}
 				@{
-					Uid  = "Install;wim;WinRE;wim;"
+					Uid  = @(
+						"Install;wim;WinRE;wim;"
+						"Install;esd;WinRE;wim;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -263,7 +271,9 @@ $Global:Preconfigured_Rule_Language = @(
 			)
 			Rule = @(
 				@{
-					Uid  = "Boot;wim;Boot;wim;"
+					Uid = @(
+						"Boot;wim;Boot;wim;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -289,7 +299,10 @@ $Global:Preconfigured_Rule_Language = @(
 					)
 				}
 				@{
-					Uid  = "Install;wim;Install;wim;"
+					Uid = @(
+						"Install;wim;Install;wim;"
+						"Install;esd;Install;esd;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"
@@ -316,7 +329,10 @@ $Global:Preconfigured_Rule_Language = @(
 					)
 				}
 				@{
-					Uid  = "Install;wim;WinRE;wim;"
+					Uid  = @(
+						"Install;wim;WinRE;wim;"
+						"Install;esd;WinRE;wim;"
+					)
 					Rule = @(
 						@{
 							Architecture = "Auto"

@@ -438,7 +438,7 @@ Function Language_Extract_UI
 		}
 
 		ForEach ($item in $InBox_Apps_Rule_Select_Single.Language.Rule) {
-			if ($NewUid -Contains $item.Uid) {
+			if ($item.Uid -Contains $NewUid) {
 				$NewMatchFileRule = @()
 				Foreach ($itemNewArch in $item.Rule) {
 					if ($itemNewArch.Architecture -eq $Global:Architecture) {
@@ -458,12 +458,12 @@ Function Language_Extract_UI
 				}
 
 				if ($NewMatchFileRule.Count -gt 0) {
-					$UI_Main_Extract_Rule_Have_Result.Text += "$($lang.Event_Primary_Key): $($item.Uid)`n$('-' * 80)`n"
-					$UI_Main_Extract_Rule_Need_Result.Text += "$($lang.Event_Primary_Key): $($item.Uid)`n$('-' * 80)`n"
-					$UI_Main_Extract_Rule_Not_Result.Text  += "$($lang.Event_Primary_Key): $($item.Uid)`n$('-' * 80)`n"
+					$UI_Main_Extract_Rule_Have_Result.Text += "$($lang.Event_Primary_Key): $($NewUid)`n$('-' * 80)`n"
+					$UI_Main_Extract_Rule_Need_Result.Text += "$($lang.Event_Primary_Key): $($NewUid)`n$('-' * 80)`n"
+					$UI_Main_Extract_Rule_Not_Result.Text  += "$($lang.Event_Primary_Key): $($NewUid)`n$('-' * 80)`n"
 
 					Foreach ($itemLanguage in $NewMatchFileRule) {
-						$WimLib_SplieNew_Rule_path = $item.Uid -split ';'
+						$WimLib_SplieNew_Rule_path = $NewUid -split ';'
 
 						$MarkSearchTempFileResult = $False
 
@@ -1441,7 +1441,9 @@ Function Language_Extract_UI
 				Language_Add_Refresh_Folder_Sources
 
 				ForEach ($item in $Script:TempSelectLXPsLanguage) {
-					Language_Extract_Add_Refresh -NewLanguage $item -Mode "Search" -NewUid $Script:Select_WIM_Scheme -SaveTo $Script:MarkCheckSelectAddDelDefault
+					Foreach ($itemNew in $Script:Select_WIM_Scheme) {
+						Language_Extract_Add_Refresh -NewLanguage $item -Mode "Search" -NewUid $itemNew -SaveTo $Script:MarkCheckSelectAddDelDefault
+					}
 				}
 			}
 		}
@@ -1458,7 +1460,9 @@ Function Language_Extract_UI
 				Language_Add_Refresh_Folder_Sources
 
 				ForEach ($item in $Script:TempSelectLXPsLanguage) {
-					Language_Extract_Add_Refresh -NewLanguage $item -Mode "Import" -NewUid $Script:Select_WIM_Scheme -SaveTo $Script:MarkCheckSelectAddDelDefault
+					Foreach ($itemNew in $Script:Select_WIM_Scheme) {
+						Language_Extract_Add_Refresh -NewLanguage $item -Mode "Import" -NewUid $itemNew -SaveTo $Script:MarkCheckSelectAddDelDefault
+					}
 				}
 
 				if ($UI_Main_Extract_Done_Eject_ISO.Checked) {
@@ -2035,42 +2039,44 @@ Function Language_Extract_UI
 
 	ForEach ($item in $Global:Image_Rule) {
 		if ($Global:SMExt -contains $item.Main.Suffix) {
-			$New_Main     = New-Object System.Windows.Forms.CheckBox -Property @{
-				Height    = 40
-				Width     = 435
-				Text      = $item.Main.ImageFileName
-				Tag       = $item.Main.Uid
-				add_Click = {
-					$UI_Main_Error.Text = ""
-					$UI_Main_Error_Icon.Image = $null
+			if (Test-Path -Path "$($item.Main.Path)\$($item.Main.ImageFileName).$($item.Main.Suffix)" -PathType Leaf) {
+				$New_Main     = New-Object System.Windows.Forms.CheckBox -Property @{
+					Height    = 40
+					Width     = 435
+					Text      = $item.Main.Uid
+					Tag       = $item.Main.Uid
+					add_Click = {
+						$UI_Main_Error.Text = ""
+						$UI_Main_Error_Icon.Image = $null
+					}
 				}
-			}
 
-			if ($Global:Primary_Key_Image.Uid -eq $item.Main.Uid) {
-				$New_Main.Checked = $True
-			}
+				if ($Global:Primary_Key_Image.Uid -eq $item.Main.Uid) {
+					$New_Main.Checked = $True
+				}
 
-			$UI_Main_Extract_Select_WIM.Controls.AddRange($New_Main)
+				$UI_Main_Extract_Select_WIM.Controls.AddRange($New_Main)
 
-			if ($item.Expand.Count -gt 0) {
-				ForEach ($itemExpandNew in $item.Expand) {
-					$Temp_Main_Save_Expand_Name = New-Object System.Windows.Forms.CheckBox -Property @{
-						Height    = 35
-						Width     = 435
-						Padding   = "20,0,0,0"
-						Text      = $itemExpandNew.ImageFileName
-						Tag       = $itemExpandNew.Uid
-						add_Click = {
-							$UI_Main_Error.Text = ""
-							$UI_Main_Error_Icon.Image = $null
+				if ($item.Expand.Count -gt 0) {
+					ForEach ($itemExpandNew in $item.Expand) {
+						$Temp_Main_Save_Expand_Name = New-Object System.Windows.Forms.CheckBox -Property @{
+							Height    = 35
+							Width     = 435
+							Padding   = "20,0,0,0"
+							Text      = $itemExpandNew.Uid
+							Tag       = $itemExpandNew.Uid
+							add_Click = {
+								$UI_Main_Error.Text = ""
+								$UI_Main_Error_Icon.Image = $null
+							}
 						}
-					}
 
-					if ($Global:Primary_Key_Image.Uid -eq $itemExpandNew.Uid) {
-						$Temp_Main_Save_Expand_Name.Checked = $True
-					}
+						if ($Global:Primary_Key_Image.Uid -eq $itemExpandNew.Uid) {
+							$Temp_Main_Save_Expand_Name.Checked = $True
+						}
 
-					$UI_Main_Extract_Select_WIM.Controls.AddRange($Temp_Main_Save_Expand_Name)
+						$UI_Main_Extract_Select_WIM.Controls.AddRange($Temp_Main_Save_Expand_Name)
+					}
 				}
 			}
 		}
@@ -2272,7 +2278,9 @@ Function Language_Extract_UI
 			Language_Add_Refresh_Folder_Sources
 
 			ForEach ($item in $Script:TempSelectLXPsLanguage) {
-				Language_Extract_Add_Refresh -NewLanguage $item -Mode "Import" -NewUid $Script:Select_WIM_Scheme -SaveTo $Script:MarkCheckSelectAddDelDefault
+				Foreach ($itemNew in $Script:Select_WIM_Scheme) {
+					Language_Extract_Add_Refresh -NewLanguage $item -Mode "Import" -NewUid $itemNew -SaveTo $Script:MarkCheckSelectAddDelDefault
+				}
 			}
 
 			if ($UI_Main_Extract_Done_Eject_ISO.Checked) {
