@@ -211,7 +211,7 @@
 							}
 						},
 						"RemoveImage": false,
-						"RemoveImageCustom": true
+						"RemoveImageCustom": false
 					}
 				}
 			}
