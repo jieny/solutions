@@ -87,7 +87,7 @@ Function Update_Create_UI
 	}
 
 	<#
-		.asc
+		.sig
 	#>
 	$UI_Main_Create_ASC = New-Object System.Windows.Forms.CheckBox -Property @{
 		Height         = 30

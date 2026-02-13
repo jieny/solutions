@@ -4917,7 +4917,7 @@ Function ISO_Create_Process
 			.清理旧文件
 		#>
 		Remove-Item "$($Global:ISOSaveToFullName)" -force -ErrorAction SilentlyContinue | Out-Null
-		Remove-Item "$($Global:ISOSaveToFullName).asc" -force -ErrorAction SilentlyContinue | Out-Null
+		Remove-Item "$($Global:ISOSaveToFullName).sig" -force -ErrorAction SilentlyContinue | Out-Null
 		Remove-Item "$($Global:ISOSaveToFullName).sha1" -force -ErrorAction SilentlyContinue | Out-Null
 		Remove-Item "$($Global:ISOSaveToFullName).sha256" -force -ErrorAction SilentlyContinue | Out-Null
 
@@ -4997,7 +4997,7 @@ Function ISO_Create_Process
 					.删除旧文件 .sha256
 				#>
 				$CustomNewSparseName = "$($RenameNewISOFile).$($Global:ISOSparseType)"
-				Remove-Item -path "$($RenameNewISOFile).asc" -Force -ErrorAction SilentlyContinue
+				Remove-Item -path "$($RenameNewISOFile).sig" -Force -ErrorAction SilentlyContinue
 				Remove-Item -path "$($RenameNewISOFile).sha1" -Force -ErrorAction SilentlyContinue
 				Remove-Item -path "$($RenameNewISOFile).sha256" -Force -ErrorAction SilentlyContinue
 
@@ -5078,15 +5078,15 @@ Function ISO_Create_Process
 				$Verify_Install_Path = Get_ASC -Run "gpg.exe"
 				if (Test-Path -Path $Verify_Install_Path -PathType leaf) {
 					if (Test-Path -Path $RenameNewISOFile -PathType Leaf) {
-						Remove-Item -path "$($RenameNewISOFile).asc" -Force -ErrorAction SilentlyContinue
+						Remove-Item -path "$($RenameNewISOFile).sig" -Force -ErrorAction SilentlyContinue
 
-						Write-Host "  * $($RenameNewISOFile).asc"
+						Write-Host "  * $($RenameNewISOFile).sig"
 						if ([string]::IsNullOrEmpty($Global:secure_password)) {
 							$argumentsPrint = @(
 								"--local-user",
 								"""$($Global:SignGpgKeyID)""",
 								"--output",
-								"""$($RenameNewISOFile).asc""",
+								"""$($RenameNewISOFile).sig""",
 								"--detach-sign",
 								"""$($RenameNewISOFile)"""
 							)
@@ -5095,7 +5095,7 @@ Function ISO_Create_Process
 								"--local-user",
 								"""$($Global:SignGpgKeyID)""",
 								"--output",
-								"""$($RenameNewISOFile).asc""",
+								"""$($RenameNewISOFile).sig""",
 								"--detach-sign",
 								"""$($RenameNewISOFile)"""
 							)
@@ -5108,7 +5108,7 @@ Function ISO_Create_Process
 								"--local-user",
 								"""$($Global:SignGpgKeyID)""",
 								"--output",
-								"""$($RenameNewISOFile).asc""",
+								"""$($RenameNewISOFile).sig""",
 								"--detach-sign",
 								"""$($RenameNewISOFile)"""
 							)
@@ -5121,7 +5121,7 @@ Function ISO_Create_Process
 								"--local-user",
 								"""$($Global:SignGpgKeyID)""",
 								"--output",
-								"""$($RenameNewISOFile).asc""",
+								"""$($RenameNewISOFile).sig""",
 								"--detach-sign",
 								"""$($RenameNewISOFile)"""
 							)
@@ -5138,7 +5138,7 @@ Function ISO_Create_Process
 						Write-Host "  " -NoNewline
 						Write-Host " $($lang.Uping) " -NoNewline -BackgroundColor White -ForegroundColor Black
 						Start-Process -FilePath $Verify_Install_Path -argument $arguments -Wait -WindowStyle Minimized
-						if (Test-Path -Path "$($RenameNewISOFile).asc" -PathType Leaf) {
+						if (Test-Path -Path "$($RenameNewISOFile).sig" -PathType Leaf) {
 							Write-Host " $($lang.Done) " -BackgroundColor DarkGreen -ForegroundColor White
 						} else {
 							Write-Host " $($lang.Failed) " -BackgroundColor DarkRed -ForegroundColor White

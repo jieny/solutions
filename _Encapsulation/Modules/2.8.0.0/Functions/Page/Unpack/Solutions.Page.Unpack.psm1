@@ -2094,7 +2094,7 @@ Function UnPack_Compression_Create_Format
 
 				Write-Host "`n  * latest.zip"
 				if ($UI_Create_Latest_Zip.Checked) {
-					remove-item -path "$($UnPackSaveTo)\latest.zip.asc" -force -ErrorAction SilentlyContinue
+					remove-item -path "$($UnPackSaveTo)\latest.zip.sig" -force -ErrorAction SilentlyContinue
 					remove-item -path "$($UnPackSaveTo)\latest.zip.sha256" -force -ErrorAction SilentlyContinue
 					remove-item -path "$($UnPackSaveTo)\latest.zip" -force -ErrorAction SilentlyContinue
 
@@ -2295,7 +2295,7 @@ Function UnPack_Create_SHA256_GPG
 
 	Get-ChildItem $Path -Recurse -Include ($UnPackigtype + $NewBuildTypeUnpack) -ErrorAction SilentlyContinue | ForEach-Object {
 		$fullnewpath = $_.FullName
-		$fullnewpathasc = "$($_.FullName).asc"
+		$fullnewpathasc = "$($_.FullName).sig"
 		$fullnewpathsha256 = "$($_.FullName).sha256"
 		$shortnamesha256 = [IO.Path]::GetFileName($_.FullName)
 
